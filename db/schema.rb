@@ -10,12 +10,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101215102623) do
+ActiveRecord::Schema.define(:version => 20101215103351) do
 
   create_table "specialities", :force => true do |t|
     t.string   "name"
     t.string   "degree"
     t.string   "qualification"
+
+  create_table "chairs", :force => true do |t|
+    t.integer  "faculty_id"
+    t.string   "name"
+    t.string   "abbr"
+    t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "faculties", :force => true do |t|
+    t.string   "name"
+    t.string   "abbr"
+    t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
