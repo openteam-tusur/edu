@@ -21,6 +21,13 @@ ActiveRecord::Schema.define(:version => 20101215112842) do
     t.datetime "updated_at"
   end
 
+  create_table "disciplines", :force => true do |t|
+    t.text     "name"
+    t.integer  "speciality_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "examinations", :force => true do |t|
     t.string   "slug"
     t.string   "name"
@@ -32,6 +39,15 @@ ActiveRecord::Schema.define(:version => 20101215112842) do
     t.string   "name"
     t.string   "abbr"
     t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "specialities", :force => true do |t|
+    t.string   "name"
+    t.string   "degree"
+    t.string   "qualification"
+    t.integer  "chair_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

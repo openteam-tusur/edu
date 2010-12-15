@@ -1,6 +1,11 @@
 class Chair < ActiveRecord::Base
   belongs_to :faculty
+
+  has_many :specialities
+
   validates_uniqueness_of :slug
+
+  default_scope order("id")
 
   def to_param
     self.slug

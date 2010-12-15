@@ -1,5 +1,6 @@
 class Faculty < ActiveRecord::Base
   has_many :chairs
+  default_scope order("id")
 end
 
 # == Schema Information

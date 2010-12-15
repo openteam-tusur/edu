@@ -1,7 +1,10 @@
 Portal::Application.routes.draw do
   namespace :manage do
-    resources :chairs, :only => [:index, :show]
+    resources :chairs, :only => [:index, :show], :shallow => true do
+      resources :specialities
+    end
   end
 
   root :to => "manage/chairs#index"
 end
+
