@@ -3,7 +3,7 @@
   <%= speciality.attributes :name, :qualification, :degree %>
 <% end %>
 
-<%= link_to t(:back), manage_specialities_path(@speciality) %> |
-<%= link_to t(:edit), edit_manage_chair_speciality_path(@chair, @speciality) %> |
-<%= link_to t(:destroy), [:manage, @chair, @speciality], :confirm => 'are you sure?', :method => :delete %>
+<%= link_to t(:back), manage_chair_specialities_path(@chair) %> |
+<%= link_to t(:edit), edit_manage_speciality_path(@speciality) %> |
+<%= link_to t(:destroy), [:manage, @speciality], :confirm => 'are you sure?', :method => :delete %>
 

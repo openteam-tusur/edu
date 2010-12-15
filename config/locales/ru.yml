@@ -3,6 +3,7 @@ ru:
   new: Добавить
   back: Назад
   destroy: Удалить
+  edit: Редактировать
 
   activerecord:
     models:
@@ -15,6 +16,8 @@ ru:
       slug: Слаг
 
       speciality:
+        name: Название
+        degree: Степень
         qualification: Квалификация
         code: Код
         degree_enum:
