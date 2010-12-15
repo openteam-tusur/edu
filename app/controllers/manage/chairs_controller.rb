@@ -5,6 +5,6 @@ class Manage::ChairsController < Manage::ApplicationController
   end
 
   def show
-    @chair = Chair.find(params[:id])
+    @chair = Chair.find_by_slug(params[:id])
   end
 end
