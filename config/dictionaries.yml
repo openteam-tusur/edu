@@ -1,0 +1,11 @@
+examinations:
+  examination:
+    name: Экзамен
+  test:
+    name: Зачет
+  research:
+    name: Курсовая работа
+  design:
+    name: Курсовой проект
+  varied_test:
+    name: Диф. зачет
