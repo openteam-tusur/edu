@@ -1,0 +1,8 @@
+<%= show_for @speciality do |speciality| %>
+  <%= speciality.attributes :chair, :name, :qualification, :degree %>
+<% end %>
+
+<%= link_to 'back', specialities_path %> |
+<%= link_to 'edit', edit_speciality_path(@speciality) %> |
+<%= link_to 'destroy', @speciality, :confirm => 'are you sure?', :method => :delete %>
+

@@ -4,6 +4,7 @@ class CreateSpecialities < ActiveRecord::Migration
       t.string :name
       t.string :degree
       t.string :qualification
+      t.integer :chair_id
 
       t.timestamps
     end
