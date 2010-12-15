@@ -5,6 +5,8 @@ class Chair < ActiveRecord::Base
 
   validates_uniqueness_of :slug
 
+  default_scope order("id")
+
   def to_param
     self.slug
   end
