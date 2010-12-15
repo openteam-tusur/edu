@@ -28,6 +28,13 @@ ActiveRecord::Schema.define(:version => 20101215113923) do
     t.datetime "updated_at"
   end
 
+  create_table "examinations", :force => true do |t|
+    t.string   "slug"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "faculties", :force => true do |t|
     t.string   "name"
     t.string   "abbr"
