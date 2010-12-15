@@ -7,9 +7,9 @@ class Chair < ActiveRecord::Base
 
   default_scope order("id")
 
-  def to_param
-    self.slug
-  end
+#  def to_param
+#    self.slug
+#  end
 end
 
 # == Schema Information
