@@ -39,5 +39,8 @@ gem "formtastic", "1.1.0"
 gem "show_for", :git => "git://github.com/jenkek/show_for"
 gem "will_paginate", ">= 3.0.pre2"
 
+# restful
+gem "inherited_resources", :git => "git://github.com/josevalim/inherited_resources"
+
 # enumerations in models
 gem "has_enum", "~> 0.3.0"
