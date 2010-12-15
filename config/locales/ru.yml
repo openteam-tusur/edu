@@ -1,4 +1,5 @@
 ru:
+  create: Создать
   new: Добавить
   back: Назад
   destroy: Удалить
@@ -15,4 +16,9 @@ ru:
 
       speciality:
         qualification: Квалификация
+        code: Код
+        degree_enum:
+          specialist: специалист
+          master: магист
+          bachelor: бакалавр
 
