@@ -1,31 +1,46 @@
-source 'http://rubygems.org'
+source "http://rubygems.org"
 
-gem 'rails', '3.0.3'
+gem "rails"
+gem "racc"
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+group :production do
+  gem "pg"
+  gem "exception_notification", :git => "git://github.com/rails/exception_notification", :require => "exception_notifier"
+end
 
-gem 'sqlite3-ruby', :require => 'sqlite3'
+group :development do
+  gem "rails3-generators"
+  gem "autotest", :require => nil
+  gem "spork"
+  # introspection
+  gem "rails-erd"
+  gem "annotate", :git => "git://github.com/lda/annotate_models"
+end
 
-# Use unicorn as the web server
-# gem 'unicorn'
+group :test do
+  gem "sqlite3-ruby", :require => "sqlite3"
+  gem "capybara", :git => "git://github.com/jnicklas/capybara"
+  gem "rr"
+  gem "faker"
+  gem "launchy"
+  gem "factory_girl_rails"
+end
 
-# Deploy with Capistrano
-# gem 'capistrano'
+group :test, :development do
+  gem "rspec-rails"
+  gem "steak", :git => "git://github.com/cavalle/steak"
+end
 
-# To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
-# gem 'ruby-debug'
-# gem 'ruby-debug19'
+# GUI
+gem "compass"
+gem "fancy-buttons"
+gem "simple-navigation"
+gem "formtastic", "1.1.0"
+gem "show_for", :git => "git://github.com/jenkek/show_for"
+gem "will_paginate", ">= 3.0.pre2"
 
-# Bundle the extra gems:
-# gem 'bj'
-# gem 'nokogiri'
-# gem 'sqlite3-ruby', :require => 'sqlite3'
-# gem 'aws-s3', :require => 'aws/s3'
+# restful
+gem "inherited_resources", :git => "git://github.com/josevalim/inherited_resources"
 
-# Bundle gems for the local environment. Make sure to
-# put test-only gems in this group so their generators
-# and rake tasks are available in development mode:
-# group :development, :test do
-#   gem 'webrat'
-# end
+# enumerations in models
+gem "has_enum", "~> 0.3.0"
