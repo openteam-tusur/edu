@@ -2,6 +2,12 @@ class Chair < ActiveRecord::Base
   belongs_to :faculty
 
   has_many :specialities
+
+  validates_uniqueness_of :slug
+
+  def to_param
+    self.slug
+  end
 end
 
 # == Schema Information
