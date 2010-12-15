@@ -1,0 +1,16 @@
+<ul class="faculties">
+  <li class="line_wrapper">
+    <% @faculties.each_slice(5) do |fc| %>
+     <ul class="line">
+        <% fc.each do |faculty| %>
+          <li class="faculty_<%= faculty.slug %>">
+            <%= faculty.abbr %>
+            <% faculty.chairs.each do |chair| %>
+              <%= link_to chair.abbr, manage_chair_path(chair) %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </li>
+</ul>
