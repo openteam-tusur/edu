@@ -1,9 +1,18 @@
 ru:
+  new: Добавить
+  back: Назад
+  destroy: Удалить
+
   activerecord:
     models:
       faculty: Факультет
+      speciality: Специальность
 
     attributes:
       name: Название
       abbr: Аббревиатура
       slug: Слаг
+
+      speciality:
+        qualification: Квалификация
+
