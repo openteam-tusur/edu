@@ -26,6 +26,14 @@ GIT
       xpath (~> 0.1.2)
 
 GIT
+  remote: git://github.com/josevalim/inherited_resources
+  revision: 83ae72b221339e01d2516f736812eccd96df64d2
+  specs:
+    inherited_resources (1.1.2)
+      has_scope (~> 0.5.0)
+      responders (~> 0.6.0)
+
+GIT
   remote: git://github.com/lda/annotate_models
   revision: d9a6fe279c5b9092317d4042ee8446bc01752e83
   specs:
@@ -98,6 +106,7 @@ GEM
     haml (3.0.24)
     has_enum (0.3.4)
       rails (~> 3.0.0)
+    has_scope (0.5.0)
     i18n (0.5.0)
     json_pure (1.4.6)
     launchy (0.3.7)
@@ -138,6 +147,7 @@ GEM
       rake (>= 0.8.7)
       thor (~> 0.14.4)
     rake (0.8.7)
+    responders (0.6.2)
     rr (1.0.2)
     rspec (2.3.0)
       rspec-core (~> 2.3.0)
@@ -185,6 +195,7 @@ DEPENDENCIES
   fancy-buttons
   formtastic (= 1.1.0)
   has_enum (~> 0.3.0)
+  inherited_resources!
   launchy
   pg
   racc
