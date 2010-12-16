@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Speciality::Licence < ActiveRecord::Base
   validates_presence_of :number, :issued_at
 
