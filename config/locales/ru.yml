@@ -56,12 +56,10 @@ ru:
           bachelor: бакалавр
         qualification: Квалификация
         semesters_count: Количество семестров
-
-      speciality/licence:
-        issued_at: Дата выдачи
-        number: Номер
-
-      speciality/accreditation:
-        issued_at: Дата выдачи
-        number: Номер
+        licence:
+          issued_at: Дата выдачи
+          number: Номер
+        accreditation:
+          issued_at: Дата выдачи
+          number: Номер
 
