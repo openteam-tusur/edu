@@ -52,9 +52,10 @@ ru:
         degree: Степень
         degree_enum:
           specialist: специалист
-          master: магист
+          master: магистр
           bachelor: бакалавр
         qualification: Квалификация
+        semesters_count: Количество семестров
 
       speciality/licence:
         issued_at: Дата выдачи
