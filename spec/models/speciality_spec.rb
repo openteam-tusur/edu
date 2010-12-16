@@ -8,6 +8,20 @@ describe 'Специальность' do
 
     speciality.semesters.count.should eql 10
   end
+
+  it 'должна правильно отдаваться продолжительность обучения в годах' do
+    speciality = Factory.create(:speciality, :semesters_count => 8)
+    speciality.duration.should eql '4 года'
+
+    speciality = Factory.create(:speciality, :semesters_count => 9)
+    speciality.duration.should eql '4,5 года'
+
+    speciality = Factory.create(:speciality, :semesters_count => 10)
+    speciality.duration.should eql '5 лет'
+
+    speciality = Factory.create(:speciality, :semesters_count => 11)
+    speciality.duration.should eql '5,5 лет'
+  end
 end
 
 

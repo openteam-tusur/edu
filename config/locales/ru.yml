@@ -1,6 +1,5 @@
 ru:
   application: Научно-образовательный портал
-  add_speciality: Добавить специальность
 
   destroy: Удалить
   edit: Редактировать
@@ -27,6 +26,12 @@ ru:
 
     manage/specialities:
       new: Добавление специальности
+
+  speciality:
+    add: Добавить специальность
+    duration:
+      few: "года"
+      many: "лет"
 
   discipline:
     add: Добавить дисциплину

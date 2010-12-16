@@ -9,6 +9,8 @@
 
   <%= speciality.association :chair %>
   <%= speciality.attributes :code, :name, :qualification, :degree %>
+
+  Срок обучения <%= resource.duration %>
 <% end %>
 
 <%= link_to t(:edit), edit_manage_speciality_path(@speciality) %> |
