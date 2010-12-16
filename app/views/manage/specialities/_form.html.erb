@@ -1,4 +1,9 @@
+<% @speciality.build_licence unless @speciality.licence %>
 <% form.inputs do %>
+  <%= form.inputs @speciality.licence.class.model_name.human,
+                  :for => :licence do |licence_form| %>
+    <%= licence_form.inputs :number, :issued_at %>
+  <% end %>
   <%= form.inputs :code, :name, :qualification %>
   <%= form.enum_input :degree %>
 <% end %>

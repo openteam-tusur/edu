@@ -2,11 +2,24 @@ ru:
   application: Научно-образовательный портал
   add_speciality: Добавить специальность
 
-  create: Создать
-  new: Добавить
   destroy: Удалить
   edit: Редактировать
   cancel: Отмена
+
+  date:
+    formats:
+      default: '%d.%m.%Y'
+      long: '%d %B %Y'
+      short: '%d %b'
+
+    abbr_day_names: [Вс, Пн, Вт, Ср, Чт, Пт, Сб]
+    abbr_month_names: [~, янв., февр., марта, апр., мая, июня, июля, авг., сент., окт., нояб., дек.]
+    day_names: [воскресенье, понедельник, вторник, среда, четверг, пятница, суббота]
+    month_names: [~, января, февраля, марта, апреля, мая, июня, июля, августа, сентября, октября, ноября, декабря]
+    order: [ :day, :month, :year ]
+    standalone_abbr_month_names: [~, янв., февр., март, апр., май, июнь, июль, авг., сент., окт., нояб., дек.]
+    standalone_day_names: [Воскресенье, Понедельник, Вторник, Среда, Четверг, Пятница, Суббота]
+    standalone_month_names: [~, Январь, Февраль, Март, Апрель, Май, Июнь, Июль, Август, Сентябрь, Октябрь, Ноябрь, Декабрь]
 
   title:
     manage/chairs:
@@ -24,21 +37,26 @@ ru:
     slug: Слаг
 
   activerecord:
-
     models:
       chair: Кафедра
+      discipline: Дисциплина
       faculty: Факультет
       speciality: Специальность
-      discipline: Дисциплина
+      speciality/licence: Лицензия
 
     attributes:
       speciality:
-        degree: Степень
-        qualification: Квалификация
-        code: Код
         chair: Кафедра
+        code: Код
+        degree: Степень
         degree_enum:
           specialist: специалист
           master: магист
           bachelor: бакалавр
+        licence: Лицензия
+        qualification: Квалификация
+
+      speciality/licence:
+        issued_at: Дата выдачи
+        number: Номер
 

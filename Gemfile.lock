@@ -167,6 +167,7 @@ GEM
       rspec (~> 2.3.0)
     ruby-graphviz (0.9.20)
     rubyzip (0.9.4)
+    russian (0.2.7)
     selenium-webdriver (0.1.1)
       childprocess (= 0.1.4)
       ffi (~> 0.6.3)
@@ -209,6 +210,7 @@ DEPENDENCIES
   rails3-generators
   rr
   rspec-rails
+  russian
   show_for!
   simple-navigation
   spork

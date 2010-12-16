@@ -1,4 +1,7 @@
 <%= show_for resource do |speciality| %>
+  <%= show_for @speciality.licence do |licence| %>
+    <%= licence.attributes :number, :issued_at %>
+  <% end %>
   <%= speciality.association :chair %>
   <%= speciality.attributes :code, :name, :qualification, :degree %>
 <% end %>
