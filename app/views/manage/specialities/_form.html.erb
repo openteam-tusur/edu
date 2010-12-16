@@ -1,13 +1,6 @@
-<%= semantic_form_for [:manage, @chair, @speciality] do |form| %>
-  <%= form.inputs do %>
-    <%= form.input :name %>
-    <%= form.enum_input :degree %>
-    <%= form.input :qualification %>
-    <%= form.input :code %>
-  <% end %>
-
-  <%= form.buttons do %>
-    <%= form.commit_button %>
-  <% end %>
+<%= form.inputs do %>
+  <%= form.input :code %>
+  <%= form.input :name %>
+  <%= form.enum_input :degree %>
+  <%= form.input :qualification %>
 <% end %>
-

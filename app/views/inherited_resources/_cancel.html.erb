@@ -1,0 +1,6 @@
+<% if controller.respond_to? :show %>
+  <li><%= link_to t(:cancel), resource_path, :class => "button light" %></li>
+<% else %>
+  <li><%= link_to t(:cancel), collection_path, :class => "button light" %></li>
+<% end %>
+

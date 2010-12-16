@@ -88,6 +88,7 @@ GEM
     configuration (1.2.0)
     culerity (0.2.12)
     diff-lcs (1.1.2)
+    dynamic_form (1.1.3)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     factory_girl (1.3.2)
@@ -108,6 +109,8 @@ GEM
       rails (~> 3.0.0)
     has_scope (0.5.0)
     i18n (0.5.0)
+    inherited_resources_views (0.4.1)
+      inherited_resources (>= 1.0)
     json_pure (1.4.6)
     launchy (0.3.7)
       configuration (>= 0.0.5)
@@ -189,6 +192,7 @@ DEPENDENCIES
   autotest
   capybara!
   compass
+  dynamic_form
   exception_notification!
   factory_girl_rails
   faker
@@ -196,6 +200,7 @@ DEPENDENCIES
   formtastic (= 1.1.0)
   has_enum (~> 0.3.0)
   inherited_resources!
+  inherited_resources_views
   launchy
   pg
   racc
