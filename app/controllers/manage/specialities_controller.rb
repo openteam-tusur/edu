@@ -3,17 +3,5 @@ class Manage::SpecialitiesController < Manage::ApplicationController
 
   belongs_to :chair, :shallow => true
 
-  def create
-    create!(:location => manage_chair_specialities_path(@chair))
-  end
-
-  def update
-    update!(:location => manage_speciality_path(@chair))
-  end
-
-  def destroy
-    destroy!(:location => manage_chair_specialities_path(@chair))
-  end
-
 end
 

@@ -2,21 +2,27 @@ ru:
   create: Создать
   new: Добавить
   back: Назад
+  cancel: Отмена
   destroy: Удалить
   edit: Редактировать
 
+  discipline:
+    add: Добавить дисциплину
+
+  attributes:
+    name: Название
+    abbr: Аббревиатура
+    slug: Слаг
+
   activerecord:
+
     models:
       faculty: Факультет
       speciality: Специальность
+      discipline: Дисциплина
 
     attributes:
-      name: Название
-      abbr: Аббревиатура
-      slug: Слаг
-
       speciality:
-        name: Название
         degree: Степень
         qualification: Квалификация
         code: Код
