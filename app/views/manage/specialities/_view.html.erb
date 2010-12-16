@@ -1,6 +1,6 @@
-<%= show_for @speciality do |speciality| %>
+<%= show_for resource do |speciality| %>
   <%= speciality.association :chair %>
-  <%= speciality.attributes :name, :qualification, :degree %>
+  <%= speciality.attributes :code, :name, :qualification, :degree %>
 <% end %>
 
 <%= link_to t(:edit), edit_manage_speciality_path(@speciality) %> |

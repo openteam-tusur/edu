@@ -1,0 +1,7 @@
+<%= show_for resource do |obj| %>
+  <% resource.attributes.keys.each do |field| %>
+    <% next if ['id', 'created_at', 'updated_at', 'old_id'].include?(field) %>
+    <%= field.scan(/_id$/) ? obj.association(field.sub(/_id$/, "").to_sym) : obj.attribute(field.to_sym) %>
+  <% end %>
+<% end %>
+

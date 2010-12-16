@@ -1,6 +1,5 @@
-<%= form.inputs do %>
-  <%= form.input :code %>
-  <%= form.input :name %>
+<% form.inputs do %>
+  <%= form.inputs :code, :name, :qualification %>
   <%= form.enum_input :degree %>
-  <%= form.input :qualification %>
 <% end %>
+
