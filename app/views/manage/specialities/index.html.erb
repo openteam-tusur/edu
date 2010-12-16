@@ -3,5 +3,5 @@
   <li><%= link_to speciality.name, manage_speciality_path(speciality) %></li>
 <% end %>
 </ul>
-<%= link_to 'new', new_manage_chair_speciality_path  %>
+<%= link_to t(:new), new_manage_chair_speciality_path(@chair) %>
 

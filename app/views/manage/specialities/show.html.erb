@@ -3,8 +3,7 @@
   <%= speciality.attributes :name, :qualification, :degree %>
 <% end %>
 
-<%= link_to 'edit', edit_manage_speciality_path(@speciality) %> |
-<%= link_to 'destroy', [:manage, @speciality], :confirm => 'are you sure?', :method => :delete %>
-
+<%= link_to t(:edit), edit_manage_speciality_path(@speciality) %> |
+<%= link_to t(:destroy), [:manage, @speciality], :confirm => 'are you sure?', :method => :delete %>
 <%= link_to t(:add_disciline), new_manage_speciality_discipline_path(@speciality) %>
 

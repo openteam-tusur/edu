@@ -1,9 +1,27 @@
 ru:
+  create: Создать
+  new: Добавить
+  back: Назад
+  destroy: Удалить
+  edit: Редактировать
+
   activerecord:
     models:
       faculty: Факультет
+      speciality: Специальность
 
     attributes:
       name: Название
       abbr: Аббревиатура
       slug: Слаг
+
+      speciality:
+        name: Название
+        degree: Степень
+        qualification: Квалификация
+        code: Код
+        degree_enum:
+          specialist: специалист
+          master: магист
+          bachelor: бакалавр
+
