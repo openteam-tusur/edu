@@ -38,9 +38,11 @@ gem "simple-navigation"
 gem "formtastic", "1.1.0"
 gem "show_for", :git => "git://github.com/jenkek/show_for"
 gem "will_paginate", ">= 3.0.pre2"
+gem "dynamic_form"
 
 # restful
-gem "inherited_resources", :git => "git://github.com/josevalim/inherited_resources"
+gem "inherited_resources", :git => "git://github.com/lda/inherited_resources"
+gem "inherited_resources_views"
 
 # enumerations in models
 gem "has_enum", "~> 0.3.0"
