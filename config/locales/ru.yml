@@ -1,7 +1,6 @@
 ru:
-  create: Создать
+  add_discipline: Добавить дисциплину
   new: Добавить
-  back: Назад
   destroy: Удалить
   edit: Редактировать
 
