@@ -18,6 +18,7 @@ group :development do
 end
 
 group :test do
+  gem "shoulda"
   gem 'sqlite3-ruby', :require => 'sqlite3'
   gem 'capybara', :git => 'git://github.com/jnicklas/capybara'
   gem 'rr'
