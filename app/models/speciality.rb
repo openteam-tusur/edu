@@ -1,6 +1,8 @@
 # encoding: utf-8
 
 class Speciality < ActiveRecord::Base
+  attr_accessor :semesters_count
+
   validates_presence_of :name, :qualification, :code, :degree, :chair
 
   belongs_to :chair
