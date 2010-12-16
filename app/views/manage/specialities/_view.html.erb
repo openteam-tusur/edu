@@ -3,5 +3,17 @@
   <%= speciality.attributes :code, :name, :qualification, :degree %>
 <% end %>
 
-<%= link_to t(:edit), edit_resource_path %>
+<%= link_to t(:edit), edit_manage_speciality_path(@speciality) %> |
+<%= link_to t(:destroy), [:manage, @speciality], :confirm => 'are you sure?', :method => :delete %>
+
+<h2>Учебный план</h2>
+<ul>
+  <% @speciality.disciplines.each do |discipline| %>
+    <li>
+      <%= discipline.name %>
+      <%= link_to t(:edit), edit_manage_discipline_path(discipline) %> |
+    </li>
+  <% end %>
+</ul>
+<%= link_to t('discipline.add'), new_manage_speciality_discipline_path(@speciality) %>
 

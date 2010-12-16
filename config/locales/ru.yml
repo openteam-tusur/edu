@@ -1,8 +1,9 @@
 ru:
   application: Научно-образовательный портал
-
-
   add_speciality: Добавить специальность
+
+  create: Создать
+  new: Добавить
   destroy: Удалить
   edit: Редактировать
   cancel: Отмена
@@ -14,19 +15,24 @@ ru:
     manage/specialities:
       new: Добавление специальности
 
+  discipline:
+    add: Добавить дисциплину
+
+  attributes:
+    name: Название
+    abbr: Аббревиатура
+    slug: Слаг
+
   activerecord:
+
     models:
       chair: Кафедра
       faculty: Факультет
       speciality: Специальность
+      discipline: Дисциплина
 
     attributes:
-      name: Название
-      abbr: Аббревиатура
-      slug: Слаг
-
       speciality:
-        name: Название
         degree: Степень
         qualification: Квалификация
         code: Код
