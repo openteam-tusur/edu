@@ -3,7 +3,8 @@ class Chair < ActiveRecord::Base
 
   has_many :specialities
 
-  validates_uniqueness_of :slug
+  validates_presence_of :name, :abbr, :slug
+  validates_uniqueness_of :slug, :abbr, :name
 
   default_scope order("id")
 

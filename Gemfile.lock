@@ -173,6 +173,7 @@ GEM
       ffi (~> 0.6.3)
       json_pure
       rubyzip
+    shoulda (2.11.3)
     simple-navigation (3.0.2)
       activesupport (>= 2.3.2)
     spork (0.8.4)
@@ -211,6 +212,7 @@ DEPENDENCIES
   rr
   rspec-rails
   russian
+  shoulda
   show_for!
   simple-navigation
   spork

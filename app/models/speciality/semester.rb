@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Speciality::Semester < ActiveRecord::Base
   belongs_to :speciality
 
@@ -6,7 +7,10 @@ class Speciality::Semester < ActiveRecord::Base
 
   validates_numericality_of :number, :only_integer => true
 
+  has_many :educations, :class_name => 'Speciality::Education'
+
   default_scope :order => :number
+
 end
 
 
