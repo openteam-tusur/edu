@@ -26,18 +26,18 @@ GIT
       xpath (~> 0.1.2)
 
 GIT
-  remote: git://github.com/josevalim/inherited_resources
-  revision: 83ae72b221339e01d2516f736812eccd96df64d2
-  specs:
-    inherited_resources (1.1.2)
-      has_scope (~> 0.5.0)
-      responders (~> 0.6.0)
-
-GIT
   remote: git://github.com/lda/annotate_models
   revision: d9a6fe279c5b9092317d4042ee8446bc01752e83
   specs:
     annotate (2.4.0)
+
+GIT
+  remote: git://github.com/lda/inherited_resources
+  revision: 6434f18449226d36c6826ee792a3200bdd286125
+  specs:
+    inherited_resources (1.1.2)
+      has_scope (~> 0.5.0)
+      responders (~> 0.6.0)
 
 GIT
   remote: git://github.com/rails/exception_notification
