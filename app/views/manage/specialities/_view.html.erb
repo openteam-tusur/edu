@@ -1,0 +1,7 @@
+<%= show_for resource do |speciality| %>
+  <%= speciality.association :chair %>
+  <%= speciality.attributes :code, :name, :qualification, :degree %>
+<% end %>
+
+<%= link_to t(:edit), edit_resource_path %>
+

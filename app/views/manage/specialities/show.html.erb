@@ -1,9 +1,0 @@
-<%= show_for @speciality do |speciality| %>
-  <%= speciality.association :chair %>
-  <%= speciality.attributes :name, :qualification, :degree %>
-<% end %>
-
-<%= link_to t(:edit), edit_manage_speciality_path(@speciality) %> |
-<%= link_to t(:destroy), [:manage, @speciality], :confirm => 'are you sure?', :method => :delete %> |
-<%= link_to t(:add_discipline), new_manage_speciality_discipline_path(@speciality) %>
-

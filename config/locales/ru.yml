@@ -1,11 +1,22 @@
 ru:
-  add_discipline: Добавить дисциплину
-  new: Добавить
+  application: Научно-образовательный портал
+
+
+  add_speciality: Добавить специальность
   destroy: Удалить
   edit: Редактировать
+  cancel: Отмена
+
+  title:
+    manage/chairs:
+      index: Кафедры
+
+    manage/specialities:
+      new: Добавление специальности
 
   activerecord:
     models:
+      chair: Кафедра
       faculty: Факультет
       speciality: Специальность
 
@@ -19,6 +30,7 @@ ru:
         degree: Степень
         qualification: Квалификация
         code: Код
+        chair: Кафедра
         degree_enum:
           specialist: специалист
           master: магист
