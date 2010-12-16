@@ -10,6 +10,9 @@ class Speciality < ActiveRecord::Base
   has_one :licence
   accepts_nested_attributes_for :licence
 
+  has_one :accreditation
+  accepts_nested_attributes_for :accreditation
+
   has_enum :degree, %w[specialist master bachelor]
 end
 

@@ -2,6 +2,11 @@
   <%= show_for @speciality.licence do |licence| %>
     <%= licence.attributes :number, :issued_at %>
   <% end %>
+
+  <%= show_for @speciality.accreditation do |accreditation| %>
+    <%= accreditation.attributes :number, :issued_at %>
+  <% end %>
+
   <%= speciality.association :chair %>
   <%= speciality.attributes :code, :name, :qualification, :degree %>
 <% end %>

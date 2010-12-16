@@ -4,6 +4,7 @@ class CreateSpecialityLicences < ActiveRecord::Migration
       t.integer :speciality_id
       t.string :number
       t.date :issued_at
+
       t.timestamps
     end
   end

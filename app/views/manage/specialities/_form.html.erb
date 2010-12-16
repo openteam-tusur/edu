@@ -1,9 +1,17 @@
 <% @speciality.build_licence unless @speciality.licence %>
+<% @speciality.build_accreditation unless @speciality.accreditation %>
+
 <% form.inputs do %>
+  <%= @speciality.licence.class.model_name.human %>
   <%= form.inputs @speciality.licence.class.model_name.human,
                   :for => :licence do |licence_form| %>
     <%= licence_form.inputs :number, :issued_at %>
   <% end %>
+  <%= form.inputs @speciality.accreditation.class.model_name.human,
+                  :for => :accreditation do |accreditation_form| %>
+    <%= accreditation_form.inputs :number, :issued_at %>
+  <% end %>
+
   <%= form.inputs :code, :name, :qualification %>
   <%= form.enum_input :degree %>
 <% end %>

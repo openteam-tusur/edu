@@ -43,6 +43,7 @@ ru:
       faculty: Факультет
       speciality: Специальность
       speciality/licence: Лицензия
+      speciality/accreditation: Свидетельство об аккредитации
 
     attributes:
       speciality:
@@ -53,10 +54,13 @@ ru:
           specialist: специалист
           master: магист
           bachelor: бакалавр
-        licence: Лицензия
         qualification: Квалификация
 
       speciality/licence:
+        issued_at: Дата выдачи
+        number: Номер
+
+      speciality/accreditation:
         issued_at: Дата выдачи
         number: Номер
 
