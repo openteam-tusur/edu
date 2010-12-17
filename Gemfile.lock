@@ -33,7 +33,7 @@ GIT
 
 GIT
   remote: git://github.com/lda/inherited_resources
-  revision: 10ec70038e555f33aaccabb3c18581adaecfca54
+  revision: 33db9887dc1058d95477adc58cfb535d49cdae85
   specs:
     inherited_resources (1.1.2)
       has_scope (~> 0.5.0)
