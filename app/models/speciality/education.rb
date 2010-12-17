@@ -1,14 +1,22 @@
 # encoding: utf-8
 class Speciality::Education < ActiveRecord::Base
   attr_accessor :discipline_name
-  belongs_to :semester, :class_name => 'Speciality::Semester'
-  belongs_to :discipline, :class_name => 'Speciality::Discipline'
+
+  belongs_to :semester
+  belongs_to :discipline
+
   validates_presence_of :semester, :discipline
 
   before_validation :prepare_discipline
 
   private
   def prepare_discipline
-    self.discipline = semester.speciality.disciplines.find_or_create_by_name(discipline_name)
+    return if discipline_name.blank?
+    old_discipline = self.discipline
+    new_discipline = semester.speciality.disciplines.find_or_create_by_name(discipline_name)
+    self.discipline_id = new_discipline.id
+    return unless old_discipline
+    return if old_discipline.eql?(new_discipline)
+    old_discipline.destroy if old_discipline.educations.eql? [self]
   end
 end

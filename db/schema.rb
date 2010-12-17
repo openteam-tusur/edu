@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101216083624) do
+ActiveRecord::Schema.define(:version => 20101217104829) do
 
   create_table "chairs", :force => true do |t|
     t.integer  "faculty_id"
@@ -62,8 +62,8 @@ ActiveRecord::Schema.define(:version => 20101216083624) do
   end
 
   create_table "speciality_educations", :force => true do |t|
-    t.integer  "speciality_semester_id"
-    t.integer  "speciality_discipline_id"
+    t.integer  "semester_id"
+    t.integer  "discipline_id"
     t.integer  "loading_lecture"
     t.integer  "loading_laboratory"
     t.integer  "loading_practice"
