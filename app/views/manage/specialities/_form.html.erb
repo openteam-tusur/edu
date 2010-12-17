@@ -1,4 +1,4 @@
-<% form.inputs do %>
+<%= form.inputs do %>
   <%= @speciality.licence.class.model_name.human %>
   <%= form.inputs @speciality.licence.class.model_name.human,
                   :for => :licence do |licence_form| %>
