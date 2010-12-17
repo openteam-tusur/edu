@@ -1,9 +1,9 @@
-<%= show_for @speciality do |speciality| %>
-  <%= show_for @speciality.licence do |licence| %>
+<%= show_for @speciality_speciality do |speciality| %>
+  <%= show_for @speciality_speciality.licence do |licence| %>
     <%= licence.attributes :number, :issued_at %>
   <% end %>
 
-  <%= show_for @speciality.accreditation do |accreditation| %>
+  <%= show_for @speciality_speciality.accreditation do |accreditation| %>
     <%= accreditation.attributes :number, :issued_at %>
   <% end %>
 
@@ -12,32 +12,32 @@
 
   <p>
     <strong>Срок обучения</strong><br />
-    <%= @speciality.duration %>
+    <%= @speciality_speciality.duration %>
   </p>
 <% end %>
 
-<%= link_to t(:edit), edit_manage_speciality_path(@speciality) %> |
-<%= link_to t(:destroy), [:manage, @speciality], :confirm => 'are you sure?', :method => :delete %>
+<%= link_to t(:edit), edit_resource_path %> |
+<%= link_to t(:destroy), resource_path, :confirm => 'are you sure?', :method => :delete %>
 
 <h2>Семестры</h2>
 <ul>
-  <% @speciality.semesters.each do |semester| %>
+  <% @speciality_speciality.semesters.each do |semester| %>
     <li>
       <%= semester.number %>
       <%= link_to t(:edit), edit_manage_semester_path(semester) %>
     </li>
   <% end %>
 </ul>
-<%= link_to t('semester.add'), new_manage_speciality_semester_path(@speciality) %>
+<%= link_to t('semester.add'), new_manage_speciality_semester_path(@speciality_speciality) %>
 
 <h2>Учебный план</h2>
 <ul>
-  <% @speciality.disciplines.each do |discipline| %>
+  <% @speciality_speciality.disciplines.each do |discipline| %>
     <li>
       <%= discipline.name %>
       <%= link_to t(:edit), edit_manage_discipline_path(discipline) %> |
     </li>
   <% end %>
 </ul>
-<%= link_to t('discipline.add'), new_manage_speciality_discipline_path(@speciality) %>
+<%= link_to t('discipline.add'), new_manage_speciality_discipline_path(@speciality_speciality) %>
 
