@@ -5,7 +5,9 @@ gem 'racc'
 
 group :production do
   gem 'pg'
-  gem 'exception_notification', :git => 'git://github.com/rails/exception_notification', :require => 'exception_notifier'
+  gem 'exception_notification',
+      :git => 'git://github.com/rails/exception_notification',
+      :require => 'exception_notifier'
 end
 
 group :development do
@@ -36,8 +38,8 @@ end
 gem 'compass'
 gem 'fancy-buttons'
 gem 'simple-navigation'
-gem 'formtastic', '1.1.0'
-gem 'show_for', :git => 'git://github.com/jenkek/show_for'
+gem 'formtastic'
+gem 'show_for'
 gem 'will_paginate', '>= 3.0.pre2'
 gem 'dynamic_form'
 gem 'russian'

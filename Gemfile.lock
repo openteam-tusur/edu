@@ -6,12 +6,6 @@ GIT
       rspec
 
 GIT
-  remote: git://github.com/jenkek/show_for
-  revision: 37e3a63baf05f3e8b1adc3a4b88563fd45049179
-  specs:
-    show_for (0.2.3)
-
-GIT
   remote: git://github.com/jnicklas/capybara
   revision: 78c5812b6eed0a78cd39933d7b78c260245830ea
   specs:
@@ -174,6 +168,7 @@ GEM
       json_pure
       rubyzip
     shoulda (2.11.3)
+    show_for (0.2.3)
     simple-navigation (3.0.2)
       activesupport (>= 2.3.2)
     spork (0.8.4)
@@ -199,7 +194,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   fancy-buttons
-  formtastic (= 1.1.0)
+  formtastic
   has_enum (~> 0.3.0)
   inherited_resources!
   inherited_resources_views
@@ -213,7 +208,7 @@ DEPENDENCIES
   rspec-rails
   russian
   shoulda
-  show_for!
+  show_for
   simple-navigation
   spork
   sqlite3-ruby
