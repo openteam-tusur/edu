@@ -1,4 +1,4 @@
-<%= show_for resource do |speciality| %>
+<%= show_for @speciality do |speciality| %>
   <%= show_for @speciality.licence do |licence| %>
     <%= licence.attributes :number, :issued_at %>
   <% end %>
@@ -9,10 +9,26 @@
 
   <%= speciality.association :chair %>
   <%= speciality.attributes :code, :name, :qualification, :degree %>
+
+  <p>
+    <strong>Срок обучения</strong><br />
+    <%= @speciality.duration %>
+  </p>
 <% end %>
 
 <%= link_to t(:edit), edit_manage_speciality_path(@speciality) %> |
 <%= link_to t(:destroy), [:manage, @speciality], :confirm => 'are you sure?', :method => :delete %>
+
+<h2>Семестры</h2>
+<ul>
+  <% @speciality.semesters.each do |semester| %>
+    <li>
+      <%= semester.number %>
+      <%= link_to t(:edit), edit_manage_semester_path(semester) %>
+    </li>
+  <% end %>
+</ul>
+<%= link_to t('semester.add'), new_manage_speciality_semester_path(@speciality) %>
 
 <h2>Учебный план</h2>
 <ul>

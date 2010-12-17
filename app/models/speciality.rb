@@ -23,6 +23,12 @@ class Speciality < ActiveRecord::Base
 
   after_create :create_semesters
 
+  def duration
+    years = (semesters.count / 2).to_s
+    result = (semesters.count % 2).zero? ? "#{years} " : "#{years},5 "
+    result += I18n.t('speciality.duration', :count => semesters.count / 2)
+  end
+
   private
   def create_semesters
     @semesters_count.to_i.times do |number|

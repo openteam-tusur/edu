@@ -1,4 +1,4 @@
-<% form.inputs do %>
+<%= form.inputs do %>
   <%= @speciality.licence.class.model_name.human %>
   <%= form.inputs @speciality.licence.class.model_name.human,
                   :for => :licence do |licence_form| %>
@@ -9,7 +9,8 @@
     <%= accreditation_form.inputs :number, :issued_at %>
   <% end %>
 
-  <%= form.inputs :code, :name, :qualification, :semesters_count %>
+  <%= form.inputs :code, :name, :qualification %>
+  <%= form.input :semesters_count if @speciality.new_record? %>
   <%= form.enum_input :degree %>
 <% end %>
 

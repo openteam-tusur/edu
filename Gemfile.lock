@@ -6,12 +6,6 @@ GIT
       rspec
 
 GIT
-  remote: git://github.com/jenkek/show_for
-  revision: 37e3a63baf05f3e8b1adc3a4b88563fd45049179
-  specs:
-    show_for (0.2.3)
-
-GIT
   remote: git://github.com/jnicklas/capybara
   revision: 78c5812b6eed0a78cd39933d7b78c260245830ea
   specs:
@@ -33,7 +27,7 @@ GIT
 
 GIT
   remote: git://github.com/lda/inherited_resources
-  revision: 6434f18449226d36c6826ee792a3200bdd286125
+  revision: 33db9887dc1058d95477adc58cfb535d49cdae85
   specs:
     inherited_resources (1.1.2)
       has_scope (~> 0.5.0)
@@ -80,7 +74,7 @@ GEM
     autotest (4.4.6)
       ZenTest (>= 4.4.1)
     builder (2.1.2)
-    celerity (0.8.5)
+    celerity (0.8.6)
     childprocess (0.1.4)
       ffi (~> 0.6.3)
     compass (0.10.6)
@@ -100,9 +94,9 @@ GEM
       compass (>= 0.10.6)
     ffi (0.6.3)
       rake (>= 0.8.7)
-    formtastic (1.1.0)
-      actionpack (>= 2.3.0)
-      activesupport (>= 2.3.0)
+    formtastic (1.2.2)
+      actionpack (>= 2.3.7)
+      activesupport (>= 2.3.7)
       i18n (>= 0.4.0)
     haml (3.0.24)
     has_enum (0.3.4)
@@ -156,11 +150,11 @@ GEM
       rspec-core (~> 2.3.0)
       rspec-expectations (~> 2.3.0)
       rspec-mocks (~> 2.3.0)
-    rspec-core (2.3.0)
+    rspec-core (2.3.1)
     rspec-expectations (2.3.0)
       diff-lcs (~> 1.1.2)
     rspec-mocks (2.3.0)
-    rspec-rails (2.3.0)
+    rspec-rails (2.3.1)
       actionpack (~> 3.0)
       activesupport (~> 3.0)
       railties (~> 3.0)
@@ -174,6 +168,7 @@ GEM
       json_pure
       rubyzip
     shoulda (2.11.3)
+    show_for (0.2.3)
     simple-navigation (3.0.2)
       activesupport (>= 2.3.2)
     spork (0.8.4)
@@ -199,7 +194,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   fancy-buttons
-  formtastic (= 1.1.0)
+  formtastic
   has_enum (~> 0.3.0)
   inherited_resources!
   inherited_resources_views
@@ -213,7 +208,7 @@ DEPENDENCIES
   rspec-rails
   russian
   shoulda
-  show_for!
+  show_for
   simple-navigation
   spork
   sqlite3-ruby
