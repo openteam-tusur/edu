@@ -33,6 +33,9 @@ ru:
       few: "года"
       many: "лет"
 
+  semester:
+    add: Добавить семестр
+
   discipline:
     add: Добавить дисциплину
 
@@ -49,6 +52,7 @@ ru:
       speciality: Специальность
       speciality/licence: Лицензия
       speciality/accreditation: Свидетельство об аккредитации
+      speciality/semester: Семестр
 
     attributes:
       speciality:
@@ -66,5 +70,7 @@ ru:
           number: Номер
         accreditation:
           issued_at: Дата выдачи
+          number: Номер
+        semester:
           number: Номер
 
