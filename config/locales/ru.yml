@@ -49,22 +49,24 @@ ru:
       chair: Кафедра
       discipline: Дисциплина
       faculty: Факультет
-      speciality: Специальность
-      speciality/licence: Лицензия
-      speciality/accreditation: Свидетельство об аккредитации
-      speciality/semester: Семестр
+      speciality:
+        speciality: Специальность
+        licence: Лицензия
+        accreditation: Свидетельство об аккредитации
+        semester: Семестр
 
     attributes:
       speciality:
-        chair: Кафедра
-        code: Код
-        degree: Степень
-        degree_enum:
-          specialist: специалист
-          master: магистр
-          bachelor: бакалавр
-        qualification: Квалификация
-        semesters_count: Количество семестров
+        speciality:
+          chair: Кафедра
+          code: Код
+          degree: Степень
+          degree_enum:
+            specialist: специалист
+            master: магистр
+            bachelor: бакалавр
+          qualification: Квалификация
+          semesters_count: Количество семестров
         licence:
           issued_at: Дата выдачи
           number: Номер
@@ -73,4 +75,3 @@ ru:
           number: Номер
         semester:
           number: Номер
-
