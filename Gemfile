@@ -35,6 +35,7 @@ group :test, :development do
 end
 
 # GUI
+gem 'jquery-rails'
 gem 'compass'
 gem 'fancy-buttons'
 gem 'simple-navigation'
@@ -53,4 +54,6 @@ gem "protected_parent"
 
 # enumerations in models
 gem 'has_enum', '~> 0.3.0'
+
+gem 'aasm'
 

@@ -2,16 +2,44 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+  <%= csrf_meta_tag %>
   <title><%= show_title? ? yield(:title) : title_locale %> | <%= raw t("application") %></title>
   <%= favicon_link_tag %>
-  <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
-  <%= csrf_meta_tag %>
+  <%= stylesheet_link_tag "screen" %>
+  <%= javascript_include_tag "jquery.min", "rails", "application" %>
+  <!--[if IE 6]>
+    <%= stylesheet_link_tag "ie6" %>
+  <![endif]-->
+  <!--[if IE 7]>
+    <%= stylesheet_link_tag "ie7" %>
+  <![endif]-->
 </head>
 <body>
-
-<div class="wrapper"><%= yield %></div>
-
+  <div class="header_wrapper">
+    <div class="header">
+      <div class="dashboard">
+        <a href="#" class="sign_in">Вход</a>
+      </div>
+      <a href="http://www.tusur.ru/" class="tusur" title="Томский государственный университет систем управления и радиоэлектроники">Томский государственный университет систем управления и радиоэлектроники</a>
+      <h1 class="site_name"><%= link_to "Научно-образовательный портал", root_path %></h1>
+    </div>
+  </div>
+  <div class="content_wrapper">
+    <div class="main_menu">
+      тут будет меню
+    </div>
+    <div class="content">
+      <%= yield %>
+    </div>
+  </div>
+  <div class="footer_wrapper">
+    <div class="footer">
+      <p>тут будет бальшой и крсявый падвал</p>
+      <p>тут будет бальшой и крсявый падвал</p>
+      <p>тут будет бальшой и крсявый падвал</p>
+      <p>тут будет бальшой и крсявый падвал</p>
+    </div>
+  </div>
 </body>
 </html>
 

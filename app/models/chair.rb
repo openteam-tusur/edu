@@ -1,7 +1,7 @@
 class Chair < ActiveRecord::Base
   belongs_to :faculty
 
-  has_many :specialities, :class_name => 'Speciality::Speciality'
+  has_many :specialities
 
   validates_presence_of :name, :abbr, :slug
   validates_uniqueness_of :slug, :abbr, :name

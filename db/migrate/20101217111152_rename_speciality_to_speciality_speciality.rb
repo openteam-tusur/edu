@@ -4,6 +4,6 @@ class RenameSpecialityToSpecialitySpeciality < ActiveRecord::Migration
   end
 
   def self.down
-    rename_table :speciality_specialities, :speciality
+    rename_table :speciality_specialities, :specialities
   end
 end

@@ -5,7 +5,7 @@ Sham.semester_number {|n| n }
 
 Factory.define :speciality_semester,
   :default_strategy => :attributes_for,
-  :class => 'Speciality::Semester' do |semester|
+  :class => 'Plan::Semester' do |semester|
   semester.association :speciality
   semester.number { Sham.semester_number }
 end

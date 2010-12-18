@@ -1,5 +1,6 @@
 # encoding: utf-8
-class Speciality::Licence < ActiveRecord::Base
+class Plan::Accreditation < ActiveRecord::Base
+  set_table_name :plan_accreditations
   validates_presence_of :number, :issued_at
 
   belongs_to :speciality
@@ -8,7 +9,7 @@ end
 
 # == Schema Information
 #
-# Table name: speciality_licences
+# Table name: speciality_accreditations
 #
 #  id            :integer         not null, primary key
 #  speciality_id :integer
