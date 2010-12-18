@@ -118,6 +118,7 @@ GEM
     nokogiri (1.4.4)
     pg (0.10.0)
     polyglot (0.3.1)
+    protected_parent (0.1.0)
     racc (1.4.6)
     rack (1.2.1)
     rack-mount (0.6.13)
@@ -200,6 +201,7 @@ DEPENDENCIES
   inherited_resources_views
   launchy
   pg
+  protected_parent
   racc
   rails
   rails-erd

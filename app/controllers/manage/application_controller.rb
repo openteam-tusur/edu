@@ -1,3 +1,4 @@
 class Manage::ApplicationController < ApplicationController
-  protect_from_forgery
+  inherit_resources
+  custom_actions :resource => :delete
 end
