@@ -36,6 +36,7 @@ end
 
 # GUI
 gem 'compass'
+gem 'compass-baseline', :git => 'git://github.com/openteam/compass-baseline'
 gem 'fancy-buttons'
 gem 'simple-navigation'
 gem 'formtastic'
