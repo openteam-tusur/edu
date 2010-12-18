@@ -15,25 +15,31 @@
   <![endif]-->
 </head>
 <body>
-<div class="header_wrapper">
-  <div class="header">
-    <div class="dashboard">
-      <a href="#" class="sign_in">Вход</a>
+  <div class="header_wrapper">
+    <div class="header">
+      <div class="dashboard">
+        <a href="#" class="sign_in">Вход</a>
+      </div>
+      <a href="http://www.tusur.ru/" class="tusur" title="Томский государственный университет систем управления и радиоэлектроники">Томский государственный университет систем управления и радиоэлектроники</a>
+      <h1 class="site_name"><%= link_to "Научно-образовательный портал", root_path %></h1>
     </div>
-    <a href="http://www.tusur.ru/" class="tusur" title="Томский государственный университет систем управления и радиоэлектроники">Томский государственный университет систем управления и радиоэлектроники</a>
-    <h1 class="site_name"><%= link_to "Научно-образовательный портал", root_path %></h1>
   </div>
-</div>
-
-<div class="center_wrapper">
-  <div class="main_menu">
-    тут будет меню
+  <div class="content_wrapper">
+    <div class="main_menu">
+      тут будет меню
+    </div>
+    <div class="content">
+      <%= yield %>
+    </div>
   </div>
-  <div class="content">
-    <%= yield %>
+  <div class="footer_wrapper">
+    <div class="footer">
+      <p>тут будет бальшой и крсявый падвал</p>
+      <p>тут будет бальшой и крсявый падвал</p>
+      <p>тут будет бальшой и крсявый падвал</p>
+      <p>тут будет бальшой и крсявый падвал</p>
+    </div>
   </div>
-</div>
-
 </body>
 </html>
 
