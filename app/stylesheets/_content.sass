@@ -2,14 +2,18 @@
   width: 970px
   margin: 0 auto
 
-  .main_menu
-    color: #fff
-    background-color: #d04836
-    padding: 15px
+.main_menu
+  +clearfix
+  color: #fff
+  +linear-gradient(color-stops(#da5942, #c73b2c), top)
+  background-color: #d04836
+  +box-shadow(#000, 0, 3px, 10px)
+  border: 1px solid #d45944
+  padding: 15px
 
-  .content
-    +clearfix
-    background-color: #fff
-    margin: 0 5px
-    padding: 20px 20px 0 20px
+.content
+  +clearfix
+  background: #fafaee url("../../images/content_bg.png") repeat-x top
+  margin: 0 5px
+  padding: 20px 20px 0 20px
 

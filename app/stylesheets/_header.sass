@@ -3,7 +3,7 @@
   margin-bottom: 20px
 
 .header
-  width: 960px
+  width: 970px
   margin: 0 auto
   +clearfix
 
@@ -31,3 +31,14 @@
 
   .dashboard
     float: right
+    +linear-gradient(color-stops(#f2dabe, #eac496), top)
+    background-color: #eecfaa
+    +border-bottom-left-radius
+    +border-bottom-right-radius
+    padding: 5px 10px 7px 10px
+    .sign_in
+      +inline-block
+      line-height: 16px
+      text-transform: uppercase
+      background: transparent url("../../images/icon_sign_in.png") no-repeat right
+      padding-right: 21px
