@@ -9,11 +9,52 @@
   background-color: #d04836
   +box-shadow(#000, 0, 3px, 10px)
   border: 1px solid #d45944
-  padding: 15px
+  padding: 5px
+
+  li
+    +inline-block
+    font-size: 18px
+    font-family: "Trebuchet MS", "Lucida Grande", Tahoma, sans-serif
+    line-height: 20px
+    background: transparent url("../images/main_menu_item_bg.png") repeat-y right
+    margin-left: 5px
+    padding: 5px 10px 5px 0
+
+  a
+    color: #eee
+    text-transform: uppercase
+    +text-shadow(#333, 1px, 1px, 2px)
+    padding-right: 21px
+    background-color: transparent
+    background-repeat: no-repeat
+    background-position: right
+
+    .decreased
+      font-size: 12px
+      font-weight: bold
+
+    &.selected
+      color: #fffb98
+      +text-shadow(#333, 2px, 2px, 2px)
+
+    &:hover
+      color: #fff
+
+  .training a
+    background-image: url("../images/icon_training.png")
+  .science a
+    background-image: url("../images/icon_science.png")
+  .subfaculties a
+    background-image: url("../images/icon_subfaculties.png")
+  .peoples a
+    background-image: url("../images/icon_peoples.png")
+  .library a
+    background-image: url("../images/icon_library.png")
 
 .content
   +clearfix
-  background: #fafaee url("../../images/content_bg.png") repeat-x top
+  +min-height(300px)
+  background: #fafaee url("../images/content_bg.png") repeat-x top
   margin: 0 5px
   padding: 20px 20px 0 20px
 

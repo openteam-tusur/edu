@@ -18,7 +18,7 @@
   <div class="header_wrapper">
     <div class="header">
       <div class="dashboard">
-        <a href="#" class="sign_in">Вход</a>
+        <a href="/" class="sign_in">Вход</a>
       </div>
       <a href="http://www.tusur.ru/" class="tusur" title="Томский государственный университет систем управления и радиоэлектроники">Томский государственный университет систем управления и радиоэлектроники</a>
       <h1 class="site_name"><%= link_to "Научно-образовательный портал", root_path %></h1>
@@ -26,7 +26,13 @@
   </div>
   <div class="content_wrapper">
     <div class="main_menu">
-      тут будет меню
+      <ul>
+        <li class="training"><a class="selected" href="/"><span class="decreased">для</span> учебы</a></li>
+        <li class="science"><a href="/"><span class="decreased">для</span> науки</a></li>
+        <li class="subfaculties"><a href="/"><span class="decreased">наши</span> кафедры</a></li>
+        <li class="peoples"><a href="/"><span class="decreased">наши</span> люди</a></li>
+        <li class="library"><a href="/"><span class="decreased">наша</span> библиотека</a></li>
+      </ul>
     </div>
     <div class="content">
       <%= yield %>
