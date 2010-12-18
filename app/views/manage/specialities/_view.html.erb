@@ -23,8 +23,7 @@
 <ul>
   <% @speciality.semesters.each do |semester| %>
     <li>
-      <%= semester.number %>
-      <%= link_to t(:edit), edit_manage_semester_path(semester) %>
+      <%= link_to semester.number, manage_semester_path(semester) %>
     </li>
   <% end %>
 </ul>
