@@ -1,4 +1,8 @@
 ru:
+  formtastic:
+    actions:
+      create: "Создать %{model}"
+
   application: Научно-образовательный портал
 
   destroy: Удалить
