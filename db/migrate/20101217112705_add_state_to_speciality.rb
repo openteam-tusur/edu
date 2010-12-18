@@ -1,9 +1,10 @@
 class AddStateToSpeciality < ActiveRecord::Migration
   def self.up
-    add_column :specialities, :state, :string
+    add_column :speciality_specialities, :state, :string
   end
 
   def self.down
-    remove_column :specialities, :state
+    remove_column :speciality_specialities, :state
   end
 end
+

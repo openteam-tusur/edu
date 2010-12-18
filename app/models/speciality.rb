@@ -6,16 +6,21 @@ class Speciality < ActiveRecord::Base
   attr_accessor :semesters_count
 
   validates_presence_of     :chair, :code, :degree, :name, :qualification
-  validates_numericality_of :semesters_count, :only_integer => true, :on => :create
+  validates_numericality_of :semesters_count,
+                            :only_integer => true,
+                            :on => :create
 
   belongs_to  :chair
-  has_many    :disciplines
-  has_many    :semesters
 
-  has_one :licence
+  has_many :disciplines, :class_name => "Plan::Discipline"
+
+  has_one :licence, :class_name => "Plan::Licence"
   accepts_nested_attributes_for :licence
-  has_one :accreditation
+
+  has_one :accreditation, :class_name => "Plan::Accreditation"
   accepts_nested_attributes_for :accreditation
+
+  has_many :semesters, :class_name => "Plan::Semester"
 
   has_enum :degree, %w[specialist master bachelor]
 
@@ -58,11 +63,11 @@ end
 #
 #  id            :integer         not null, primary key
 #  name          :string(255)     'Название'
-#  degree        :string(255)     'Степень'
-#  qualification :string(255)     'Квалификация'
+#  degree        :string(255)
+#  qualification :string(255)
 #  chair_id      :integer
 #  created_at    :datetime
 #  updated_at    :datetime
-#  code          :string(255)     'Код'
+#  code          :string(255)
 #
 

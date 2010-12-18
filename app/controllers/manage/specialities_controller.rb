@@ -4,9 +4,10 @@ class Manage::SpecialitiesController < Manage::ApplicationController
   belongs_to :chair, :shallow => true
 
   def new
-    @speciality = Speciality.new
-    @speciality.build_licence unless @speciality.licence
-    @speciality.build_accreditation unless @speciality.accreditation
+    new! do
+      @speciality.build_licence unless @speciality.licence
+      @speciality.build_accreditation unless @speciality.accreditation
+    end
   end
 
   def publish

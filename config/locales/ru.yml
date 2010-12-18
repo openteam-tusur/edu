@@ -54,9 +54,10 @@ ru:
       discipline: Дисциплина
       faculty: Факультет
       speciality: Специальность
-      speciality/licence: Лицензия
-      speciality/accreditation: Свидетельство об аккредитации
-      speciality/semester: Семестр
+      plan:
+        licence: Лицензия
+        accreditation: Свидетельство об аккредитации
+        semester: Семестр
 
     attributes:
       speciality:
@@ -69,6 +70,7 @@ ru:
           bachelor: бакалавр
         qualification: Квалификация
         semesters_count: Количество семестров
+      plan:
         licence:
           issued_at: Дата выдачи
           number: Номер
@@ -77,4 +79,3 @@ ru:
           number: Номер
         semester:
           number: Номер
-
