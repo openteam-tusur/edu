@@ -34,14 +34,6 @@ GIT
       responders (~> 0.6.0)
 
 GIT
-  remote: git://github.com/openteam/compass-baseline
-  revision: 293f14c4a2d6bbdf5a7c5cf9e5c77ab40868c5f4
-  specs:
-    compass-baseline (0.3.0)
-      compass
-      haml (>= 3.0)
-
-GIT
   remote: git://github.com/rails/exception_notification
   revision: 192a49a02d63d28b23ed41cebadfedd490929cf1
   specs:
@@ -200,7 +192,6 @@ DEPENDENCIES
   autotest
   capybara!
   compass
-  compass-baseline!
   dynamic_form
   exception_notification!
   factory_girl_rails
