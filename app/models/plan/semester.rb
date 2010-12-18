@@ -1,11 +1,13 @@
 # encoding: utf-8
-class Speciality::Semester < ActiveRecord::Base
+class Plan::Semester < ActiveRecord::Base
+  set_table_name :plan_semesters
+
   belongs_to :speciality
 
   validates_presence_of :number, :speciality
   validates_uniqueness_of :number, :scope => :speciality_id
 
-#  validates_numericality_of :number, :only_integer => true
+  validates_numericality_of :number, :only_integer => true
 
   has_many :educations
 

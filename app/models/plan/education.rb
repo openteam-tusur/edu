@@ -1,5 +1,7 @@
 # encoding: utf-8
-class Speciality::Education < ActiveRecord::Base
+class Plan::Education < ActiveRecord::Base
+  set_table_name :plan_educations
+
   attr_accessor :discipline_name
 
   belongs_to :semester
