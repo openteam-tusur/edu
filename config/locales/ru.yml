@@ -32,6 +32,10 @@ ru:
     duration:
       few: "года"
       many: "лет"
+    state: Состояние
+    state_enum:
+      unpublished: Неопубликован
+      published: Опубликован
 
   semester:
     add: Добавить семестр

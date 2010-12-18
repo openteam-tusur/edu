@@ -49,3 +49,5 @@ gem 'inherited_resources_views'
 # enumerations in models
 gem 'has_enum', '~> 0.3.0'
 
+gem 'aasm'
+

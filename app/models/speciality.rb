@@ -1,25 +1,38 @@
 # encoding: utf-8
 
 class Speciality < ActiveRecord::Base
+  include AASM
+
   attr_accessor :semesters_count
 
-  validates_presence_of :code, :name, :qualification, :degree, :chair
+  validates_presence_of     :chair, :code, :degree, :name, :qualification
+  validates_numericality_of :semesters_count, :only_integer => true, :on => :create
 
-  validates_numericality_of :semesters_count, :only_integer => true
-
-  belongs_to :chair
-
-  has_many :disciplines
+  belongs_to  :chair
+  has_many    :disciplines
+  has_many    :semesters
 
   has_one :licence
   accepts_nested_attributes_for :licence
-
   has_one :accreditation
   accepts_nested_attributes_for :accreditation
 
-  has_many :semesters
-
   has_enum :degree, %w[specialist master bachelor]
+
+  aasm_column :state
+
+  aasm_initial_state :unpublished
+
+  aasm_state :unpublished
+  aasm_state :published
+
+  aasm_event :publish do
+    transitions  :to => :published, :from => :unpublished
+  end
+
+  aasm_event :unpublish do
+    transitions  :to => :unpublished, :from => :published
+  end
 
   after_create :create_semesters
 

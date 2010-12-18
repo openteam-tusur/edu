@@ -22,6 +22,17 @@ describe 'Специальность' do
     speciality = Factory.create(:speciality, :semesters_count => 11)
     speciality.duration.should eql '5,5 лет'
   end
+
+  it 'может публиковаться и убираться с публикации' do
+    speciality = Factory.create(:speciality)
+    speciality.unpublished?.should eql true
+
+    speciality.publish!
+    speciality.reload.published?.should eql true
+
+    speciality.unpublish!
+    speciality.reload.unpublished?.should eql true
+  end
 end
 
 
