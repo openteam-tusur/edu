@@ -1,5 +1,4 @@
 class Manage::ChairsController < Manage::ApplicationController
-
   def index
     @faculties = Faculty.all
   end
