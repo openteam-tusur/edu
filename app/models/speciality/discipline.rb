@@ -3,6 +3,7 @@ class Speciality::Discipline < ActiveRecord::Base
   belongs_to :speciality
   validates_presence_of :name, :speciality
   validates_uniqueness_of :name, :scope => :speciality_id
+  has_many :educations
 end
 
 # == Schema Information

@@ -7,7 +7,7 @@ class Speciality::Semester < ActiveRecord::Base
 
 #  validates_numericality_of :number, :only_integer => true
 
-  has_many :educations, :class_name => 'Speciality::Education'
+  has_many :educations
 
   default_scope :order => :number
 end
