@@ -1,11 +1,16 @@
 @import "compass/reset"
-@import compass/utilities
-@import compass/css3
-@import fancy-buttons
+@import "compass/utilities"
+@import "compass/css3"
+@import "baseline"
+
+@import "fancy-buttons"
+@import "buttons"
+@import "formtastic"
+
++baseline
 
 body
-  +clearfix
-  background: #ebebeb  url("/images/background.png")
+  background: #ebebeb url("../../images/background.png") repeat
 
 .wrapper
-  background: rgba( 235, 235, 235, 0.4)
+  background: rgba(235, 235, 235, 0.4)

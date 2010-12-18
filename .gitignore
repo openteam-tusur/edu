@@ -8,4 +8,6 @@ config/database.yml
 .rake_tasks~
 *.swp
 .sass-cache
+public/stylesheets/compiled/*.css
 .redcar
+*.pdf
