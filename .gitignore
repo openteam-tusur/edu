@@ -9,3 +9,4 @@ config/database.yml
 *.swp
 .sass-cache
 .redcar
+public/stylesheets/compiled/*.css

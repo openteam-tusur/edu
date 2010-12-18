@@ -35,6 +35,7 @@ group :test, :development do
 end
 
 # GUI
+gem 'jquery-ujs'
 gem 'compass'
 gem 'compass-baseline', :git => 'git://github.com/openteam/compass-baseline'
 gem 'fancy-buttons'

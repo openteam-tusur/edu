@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+  <%= csrf_meta_tag %>
   <title><%= show_title? ? yield(:title) : title_locale %> | <%= raw t("application") %></title>
   <%= favicon_link_tag %>
   <%= stylesheet_link_tag 'compiled/screen.css', :media => 'screen, projection' %>
@@ -13,7 +14,6 @@
   <!--[if IE 7]>
   <%= stylesheet_link_tag "compiled/ie7.css", :media => "screen, projection" %>
   <![endif]-->
-  <%= csrf_meta_tag %>
 </head>
 <body>
 
