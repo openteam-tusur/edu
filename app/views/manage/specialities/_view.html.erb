@@ -23,8 +23,7 @@
 <ul>
   <% @speciality.semesters.each do |semester| %>
     <li>
-      <%= semester.number %>
-      <%= link_to t(:edit), edit_manage_semester_path(semester) %>
+      <%= link_to semester.number, manage_semester_path(semester) %>
     </li>
   <% end %>
 </ul>
@@ -32,8 +31,10 @@
 
 <h2>Учебный план</h2>
 <%= @speciality.state %>
-<%= link_to 'Опубликовать', publish_manage_speciality_path(@speciality) %>
-<%= link_to 'Убрать с публикации ', unpublish_manage_speciality_path(@speciality) %>
+<% @speciality.aasm_events_for_current_state.each do |event| %>
+  <%= link_to event, transit_manage_speciality_path(@speciality, :event => event) %>
+<% end %>
+
 <ul>
   <% @speciality.disciplines.each do |discipline| %>
     <li>
