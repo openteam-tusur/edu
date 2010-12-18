@@ -1,15 +1,25 @@
 class Manage::SpecialitiesController < Manage::ApplicationController
   inherit_resources
 
-  defaults :resource_class => Speciality::Speciality,
-           :instance_name  => 'speciality_speciality'
-  
   belongs_to :chair, :shallow => true
 
   def new
-    @speciality_speciality = Speciality::Speciality.new
-    @speciality_speciality.build_licence unless @speciality_speciality.licence
-    @speciality_speciality.build_accreditation unless @speciality_speciality.accreditation
+    new! do
+      @speciality.build_licence unless @speciality.licence
+      @speciality.build_accreditation unless @speciality.accreditation
+    end
+  end
+
+  def publish
+    @speciality = Speciality.find(params[:id])
+    @speciality.publish! if @speciality.aasm_events_for_current_state.include?(:publish)
+    redirect_to [:manage, @speciality]
+  end
+
+  def unpublish
+    @speciality = Speciality.find(params[:id])
+    @speciality.unpublish! if  @speciality.aasm_events_for_current_state.include?(:unpublish)
+    redirect_to [:manage, @speciality]
   end
 end
 

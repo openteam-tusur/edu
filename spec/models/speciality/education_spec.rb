@@ -1,7 +1,7 @@
 #encoding: utf-8
 require 'spec_helper'
 
-describe Speciality::Education do
+describe Plan::Education do
 
   describe "должна прозрачно работать с дисциплинами" do
     before(:each) do

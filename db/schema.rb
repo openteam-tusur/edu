@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101217111152) do
+ActiveRecord::Schema.define(:version => 20101218041129) do
 
   create_table "chairs", :force => true do |t|
     t.integer  "faculty_id"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(:version => 20101217111152) do
     t.datetime "updated_at"
   end
 
-  create_table "speciality_accreditations", :force => true do |t|
+  create_table "plan_accreditations", :force => true do |t|
     t.integer  "speciality_id"
     t.string   "number"
     t.date     "issued_at"
@@ -44,14 +44,14 @@ ActiveRecord::Schema.define(:version => 20101217111152) do
     t.datetime "updated_at"
   end
 
-  create_table "speciality_disciplines", :force => true do |t|
+  create_table "plan_disciplines", :force => true do |t|
     t.text     "name"
     t.integer  "speciality_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "speciality_educations", :force => true do |t|
+  create_table "plan_educations", :force => true do |t|
     t.integer  "semester_id"
     t.integer  "discipline_id"
     t.integer  "loading_lecture"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(:version => 20101217111152) do
     t.datetime "updated_at"
   end
 
-  create_table "speciality_licences", :force => true do |t|
+  create_table "plan_licences", :force => true do |t|
     t.integer  "speciality_id"
     t.string   "number"
     t.date     "issued_at"
@@ -72,14 +72,14 @@ ActiveRecord::Schema.define(:version => 20101217111152) do
     t.datetime "updated_at"
   end
 
-  create_table "speciality_semesters", :force => true do |t|
+  create_table "plan_semesters", :force => true do |t|
     t.integer  "speciality_id"
     t.integer  "number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "speciality_specialities", :force => true do |t|
+  create_table "specialities", :force => true do |t|
     t.string   "name"
     t.string   "degree"
     t.string   "qualification"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(:version => 20101217111152) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "code"
+    t.string   "state"
   end
 
 end

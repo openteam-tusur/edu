@@ -32,6 +32,10 @@ ru:
     duration:
       few: "года"
       many: "лет"
+    state: Состояние
+    state_enum:
+      unpublished: Неопубликован
+      published: Опубликован
 
   semester:
     add: Добавить семестр
@@ -49,24 +53,24 @@ ru:
       chair: Кафедра
       discipline: Дисциплина
       faculty: Факультет
-      speciality:
-        speciality: Специальность
+      speciality: Специальность
+      plan:
         licence: Лицензия
         accreditation: Свидетельство об аккредитации
         semester: Семестр
 
     attributes:
       speciality:
-        speciality:
-          chair: Кафедра
-          code: Код
-          degree: Степень
-          degree_enum:
-            specialist: специалист
-            master: магистр
-            bachelor: бакалавр
-          qualification: Квалификация
-          semesters_count: Количество семестров
+        chair: Кафедра
+        code: Код
+        degree: Степень
+        degree_enum:
+          specialist: специалист
+          master: магистр
+          bachelor: бакалавр
+        qualification: Квалификация
+        semesters_count: Количество семестров
+      plan:
         licence:
           issued_at: Дата выдачи
           number: Номер
