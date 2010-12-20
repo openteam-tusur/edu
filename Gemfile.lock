@@ -36,7 +36,19 @@ GIT
 GIT
   remote: git://github.com/openteam/has_enum
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
   revision: 8752d83e55e3be6b7577d69b60be73f0387cbe0e
+=======
+  revision: 0e1f43fe6f2d956ef259a2ed79434479e40886d8
+>>>>>>> Stashed changes
+=======
+  revision: 0e1f43fe6f2d956ef259a2ed79434479e40886d8
+>>>>>>> Stashed changes
+=======
+  revision: 0e1f43fe6f2d956ef259a2ed79434479e40886d8
+>>>>>>> Stashed changes
 =======
   revision: 0e1f43fe6f2d956ef259a2ed79434479e40886d8
 >>>>>>> Stashed changes
