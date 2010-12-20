@@ -58,3 +58,5 @@ gem 'has_enum', :git => 'git://github.com/openteam/has_enum'
 gem 'aasm'
 gem 'devise'
 
+# file management
+gem 'paperclip'

@@ -35,7 +35,11 @@ GIT
 
 GIT
   remote: git://github.com/openteam/has_enum
+<<<<<<< Updated upstream
   revision: 8752d83e55e3be6b7577d69b60be73f0387cbe0e
+=======
+  revision: 0e1f43fe6f2d956ef259a2ed79434479e40886d8
+>>>>>>> Stashed changes
   specs:
     has_enum (0.3.4)
       rails (~> 3.0.0)
@@ -129,6 +133,9 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.16)
     nokogiri (1.4.4)
+    paperclip (2.3.8)
+      activerecord
+      activesupport
     pg (0.10.0)
     polyglot (0.3.1)
     protected_parent (0.1.0)
@@ -218,6 +225,7 @@ DEPENDENCIES
   inherited_resources_views
   jquery-rails
   launchy
+  paperclip
   pg
   protected_parent
   racc
