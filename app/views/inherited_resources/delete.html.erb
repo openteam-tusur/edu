@@ -1,0 +1,30 @@
+<% title "#{resource.class.model_name.human}. #{t(:delete)}" %>
+
+<%= resource.send ShowFor.association_methods.find { |m| resource.respond_to?(m) } %>
+
+<% if resource.protected? %>
+  <p>Нельзя удалить этот объект, пока существуют связанные объекты</p>
+<% else %>
+  <p>Вы уверены что хотите удалить?</p>
+<% end %>
+
+<%= show_for resource do | s | %>
+  <% unless resource.protected_children.empty? %>
+    С этим объектом связаны:
+    <% resource.protected_children.each do |attribute| %>
+      <%= s.association attribute.to_sym do | object | %>
+        <%= link_to object, [:manage, object] %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= semantic_form_for resource, :url => resource_path, :html => {:method => :delete} do |form| %>
+  <%= form.error_messages %>
+  <%= form.buttons do %>
+    <%= form.commit_button  :label => t(:destroy),
+                            :button_html => { :class => "button red", :disabled => resource.protected? } %>
+    <%= link_to t(:cancel), resource_path, :class => "button" %>
+  <% end %>
+<% end %>
+

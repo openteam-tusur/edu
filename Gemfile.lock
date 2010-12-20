@@ -27,7 +27,7 @@ GIT
 
 GIT
   remote: git://github.com/lda/inherited_resources
-  revision: 0f3381ca55eb06016011a5dd47e51c22fab71b1e
+  revision: 85a66218b876bb77cff4f75d50867e49e23f620f
   specs:
     inherited_resources (1.1.2)
       has_scope (~> 0.5.0)
@@ -122,6 +122,7 @@ GEM
     nokogiri (1.4.4)
     pg (0.10.0)
     polyglot (0.3.1)
+    protected_parent (0.1.0)
     racc (1.4.6)
     rack (1.2.1)
     rack-mount (0.6.13)
@@ -206,6 +207,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   pg
+  protected_parent
   racc
   rails
   rails-erd
