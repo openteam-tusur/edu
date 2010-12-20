@@ -17,6 +17,7 @@ group :development do
   # introspection
   gem 'rails-erd'
   gem 'annotate', :git => 'git://github.com/lda/annotate_models'
+  gem 'hirb'
 end
 
 group :test do
@@ -57,4 +58,5 @@ gem 'has_enum', :git => 'git://github.com/openteam/has_enum'
 
 gem 'aasm'
 gem 'devise'
+gem 'cancan'
 
