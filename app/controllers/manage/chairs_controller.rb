@@ -1,9 +1,10 @@
 class Manage::ChairsController < Manage::ApplicationController
+
+  defaults :finder => :find_by_slug
+  actions :index, :show
+
   def index
     @faculties = Faculty.all
   end
 
-  def show
-    @chair = Chair.find(params[:id])
-  end
 end
