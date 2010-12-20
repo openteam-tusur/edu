@@ -49,8 +49,12 @@ gem 'russian'
 gem 'inherited_resources', :git => 'git://github.com/lda/inherited_resources'
 gem 'inherited_resources_views'
 
+# smart deletions
+gem "protected_parent"
+
 # enumerations in models
-gem 'has_enum', '~> 0.3.0'
+gem 'has_enum', :git => 'git://github.com/openteam/has_enum'
 
 gem 'aasm'
+gem 'devise'
 

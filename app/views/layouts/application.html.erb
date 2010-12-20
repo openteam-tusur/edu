@@ -20,6 +20,17 @@
       <div class="dashboard">
         <a href="/" class="sign_in">Вход</a>
       </div>
+
+      <div id="user_nav">
+        <% if user_signed_in? %>
+          Signed in as <%= current_user.email %>. Not you?
+          <%= link_to "Sign out", destroy_user_session_path %>
+        <% else %>
+          <%= link_to "Sign up", new_user_registration_path %> or
+          <%= link_to "Sign in", new_user_session_path %>
+        <% end %>
+      </div>
+
       <a href="http://www.tusur.ru/" class="tusur" title="Томский государственный университет систем управления и радиоэлектроники">Томский государственный университет систем управления и радиоэлектроники</a>
       <h1 class="site_name"><%= link_to "Научно-образовательный портал", root_path %></h1>
     </div>
@@ -45,6 +56,10 @@
       </ul>
     </div>
     <div class="content">
+
+     <p class="notice"><%= notice %></p>
+     <p class="alert"><%= alert %></p>
+
       <%= yield %>
     </div>
   </div>

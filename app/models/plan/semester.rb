@@ -2,10 +2,12 @@
 class Plan::Semester < ActiveRecord::Base
   set_table_name :plan_semesters
 
-  belongs_to :speciality
+  belongs_to :curriculum
+  delegate :speciality, :to => :curriculum
 
-  validates_presence_of :number, :speciality
-  validates_uniqueness_of :number, :scope => :speciality_id
+
+  validates_presence_of :number, :curriculum
+  validates_uniqueness_of :number, :scope => :curriculum_id
 
   validates_numericality_of :number, :only_integer => true
 
@@ -17,11 +19,12 @@ end
 
 # == Schema Information
 #
-# Table name: speciality_semesters
+# Table name: plan_semesters
+# Human name: Семестр
 #
 #  id            :integer         not null, primary key
 #  speciality_id :integer
-#  number        :integer
+#  number        :integer         'Номер'
 #  created_at    :datetime
 #  updated_at    :datetime
 #

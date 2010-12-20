@@ -33,16 +33,20 @@ ru:
 
   speciality:
     add: Добавить специальность
+
+  curriculum:
+    add: Добавить учебный план
     duration:
       few: "года"
       many: "лет"
-    state: Состояние
-    state_enum:
-      unpublished: Неопубликован
-      published: Опубликован
+    publish: Опубликовать
+    unpublish: Снять с публикации
 
   semester:
     add: Добавить семестр
+
+  education:
+    add: Добавить дисциплину
 
   discipline:
     add: Добавить дисциплину
@@ -62,6 +66,8 @@ ru:
         licence: Лицензия
         accreditation: Свидетельство об аккредитации
         semester: Семестр
+        education: Дисциплина
+        curriculum: Учебный план
 
     attributes:
       speciality:
@@ -73,7 +79,6 @@ ru:
           master: магистр
           bachelor: бакалавр
         qualification: Квалификация
-        semesters_count: Количество семестров
       plan:
         licence:
           issued_at: Дата выдачи
@@ -81,5 +86,25 @@ ru:
         accreditation:
           issued_at: Дата выдачи
           number: Номер
+        curriculum:
+          duration: Срок обучения
+          semesters_count: Количество семестров
+          study: Форма обучения
+          study_enum:
+            fulltime: очная
+            parttime: очно-заочная (вечерняя)
+            postal: заочная
+          state_enum:
+            unpublished: Неопубликован
+            published: Опубликован
         semester:
           number: Номер
+        education:
+          discipline: Название дисциплины
+          discipline_name: Название дисциплины
+          loading_lecture: Лекции
+          loading_laboratory: Лабораторные занятия
+          loading_practice: Практические занятия
+          loading_course_project: Курсовое проектирование
+          loading_course_work: Курсовая работа
+          loading_self_training: Самостоятельная работа

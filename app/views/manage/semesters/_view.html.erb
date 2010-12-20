@@ -1,3 +1,40 @@
 <%= @plan_semester.number %>
 <%= link_to t(:edit), edit_manage_semester_path(@plan_semester) %>
 <h2>Изучаемые дисциплины</h2>
+<table style="border: 1px solid #000;">
+  <tr>
+    <th rowspan="3">Дисциплина</th>
+    <th colspan="7">Нагрузка</th>
+    <th rowspan="3">Форма контроля</th>
+    <th rowspan="3">управление</th>
+  </tr>
+  <tr>
+    <th rowspan="2">Всего часов</th>
+    <th colspan="5">Аудиторных</th>
+    <th rowspan="2">Самостоятельная работа</th>
+  </tr>
+
+  <tr>
+    <th>Лекции</th>
+    <th>Лабораторные работы</th>
+    <th>Практические занятия и семинары</th>
+    <th>Курсовое проектирование</th>
+    <th>Курсовая работа</th>
+  </tr>
+  <% @plan_semester.educations.each do |education| %>
+    <tr>
+      <td><%= education.discipline.name %></td>
+      <td><%= education.summ_loading %></td>
+      <td><%= education.loading_lecture %></td>
+      <td><%= education.loading_laboratory %></td>
+      <td><%= education.loading_practice %></td>
+      <td><%= education.loading_course_project %></td>
+      <td><%= education.loading_course_work %></td>
+      <td><%= education.loading_self_training %></td>
+      <td>Форма контроля</td>
+      <td><%= link_to t(:edit), edit_manage_education_path(education) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to t("education.add"), new_manage_semester_education_path(@plan_semester) %>

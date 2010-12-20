@@ -9,12 +9,13 @@ end
 
 # == Schema Information
 #
-# Table name: speciality_accreditations
+# Table name: plan_accreditations
+# Human name: Свидетельство об аккредитации
 #
 #  id            :integer         not null, primary key
 #  speciality_id :integer
-#  number        :string(255)
-#  issued_at     :date
+#  number        :string(255)     'Номер'
+#  issued_at     :date            'Дата выдачи'
 #  created_at    :datetime
 #  updated_at    :datetime
 #
