@@ -53,7 +53,7 @@ gem 'inherited_resources_views'
 gem "protected_parent"
 
 # enumerations in models
-gem 'has_enum', '~> 0.3.0'
+gem 'has_enum', :git => 'git://github.com/openteam/has_enum'
 
 gem 'aasm'
 gem 'devise'
