@@ -56,4 +56,5 @@ gem "protected_parent"
 gem 'has_enum', '~> 0.3.0'
 
 gem 'aasm'
+gem 'devise'
 
