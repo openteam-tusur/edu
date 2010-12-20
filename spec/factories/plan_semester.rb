@@ -3,7 +3,7 @@ require 'factory_girl/syntax/sham'
 
 Sham.semester_number {|n| n }
 
-Factory.define :speciality_semester,
+Factory.define :plan_semester,
   :default_strategy => :attributes_for,
   :class => 'Plan::Semester' do |semester|
   semester.association :speciality

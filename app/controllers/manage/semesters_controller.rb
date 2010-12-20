@@ -2,7 +2,7 @@ class Manage::SemestersController < Manage::ApplicationController
   inherit_resources
 
   defaults :resource_class => Plan::Semester,
-           :instance_name => 'plan_semester'
+           :instance_name => :plan_semester
 
   belongs_to :chair, :shallow => true do
     belongs_to :speciality

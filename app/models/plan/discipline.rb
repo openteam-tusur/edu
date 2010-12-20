@@ -10,8 +10,7 @@ end
 
 # == Schema Information
 #
-# Table name: disciplines
-# Human name: Дисциплина
+# Table name: plan_disciplines
 #
 #  id            :integer         not null, primary key
 #  name          :text            'Название'

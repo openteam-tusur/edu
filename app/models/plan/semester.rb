@@ -17,11 +17,12 @@ end
 
 # == Schema Information
 #
-# Table name: speciality_semesters
+# Table name: plan_semesters
+# Human name: Семестр
 #
 #  id            :integer         not null, primary key
 #  speciality_id :integer
-#  number        :integer
+#  number        :integer         'Номер'
 #  created_at    :datetime
 #  updated_at    :datetime
 #

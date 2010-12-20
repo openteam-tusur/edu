@@ -7,7 +7,9 @@ Portal::Application.routes.draw do
           get :unpublish
         end
         resources :disciplines, :except => [:index, :show]
-        resources :semesters
+        resources :semesters do
+          resources :educations
+        end
       end
     end
     root :to => "chairs#index"
