@@ -1,0 +1,20 @@
+  <p>
+    <strong>Срок обучения</strong><br />
+    <%= @curriculum.duration %>
+  </p>
+
+<h2>Семестры</h2>
+<ul>
+  <% @curriculum.semesters.each do |semester| %>
+    <li>
+      <%= link_to semester.number, manage_semester_path(semester) %>
+    </li>
+  <% end %>
+</ul>
+<%= link_to t('semester.add'), new_manage_curriculum_semester_path(@curriculum) %>
+
+<h2>Учебный план</h2>
+<%= @curriculum.state %>
+<% @curriculum.aasm_events_for_current_state.each do |event| %>
+  <%= link_to event, transit_manage_curriculum_path(@curriculum, :event => event) %>
+<% end %>

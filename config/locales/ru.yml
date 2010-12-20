@@ -33,6 +33,9 @@ ru:
 
   speciality:
     add: Добавить специальность
+
+  curriculum:
+    add: Добавить учебный план
     duration:
       few: "года"
       many: "лет"

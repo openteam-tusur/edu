@@ -1,47 +1,27 @@
 <%= show_for @speciality do |speciality| %>
+
   <%= show_for @speciality.licence do |licence| %>
     <%= licence.attributes :number, :issued_at %>
-  <% end %>
+  <% end if @speciality.licence %>
 
   <%= show_for @speciality.accreditation do |accreditation| %>
     <%= accreditation.attributes :number, :issued_at %>
-  <% end %>
+  <% end if @speciality.accreditation %>
 
   <%= speciality.association :chair %>
   <%= speciality.attributes :code, :name, :qualification, :degree %>
-
-  <p>
-    <strong>Срок обучения</strong><br />
-    <%= @speciality.duration %>
-  </p>
 <% end %>
 
 <%= link_to t(:edit), edit_resource_path %> |
 <%= link_to t(:destroy), resource_path, :confirm => 'are you sure?', :method => :delete %>
 
-<h2>Семестры</h2>
+
+<h2>Учебные планы</h2>
 <ul>
-  <% @speciality.semesters.each do |semester| %>
+  <% @speciality.curriculums.each do |curriculum| %>
     <li>
-      <%= link_to semester.number, manage_semester_path(semester) %>
+      <%= link_to curriculum.form, manage_curriculum_path(curriculum) %>
     </li>
   <% end %>
 </ul>
-<%= link_to t('semester.add'), new_manage_speciality_semester_path(@speciality) %>
-
-<h2>Учебный план</h2>
-<%= @speciality.state %>
-<% @speciality.aasm_events_for_current_state.each do |event| %>
-  <%= link_to event, transit_manage_speciality_path(@speciality, :event => event) %>
-<% end %>
-
-<ul>
-  <% @speciality.disciplines.each do |discipline| %>
-    <li>
-      <%= discipline.name %>
-      <%= link_to t(:edit), edit_manage_discipline_path(discipline) %> |
-    </li>
-  <% end %>
-</ul>
-<%= link_to t('discipline.add'), new_manage_speciality_discipline_path(@speciality) %>
-
+<%= link_to t('curriculum.add'), new_manage_speciality_curriculum_path(@speciality) %>
