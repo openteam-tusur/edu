@@ -31,7 +31,7 @@
       <td><%= education.loading_course_project %></td>
       <td><%= education.loading_course_work %></td>
       <td><%= education.loading_self_training %></td>
-      <td>Форма контроля</td>
+      <td><%= education.examinations.collect(&:name).join(", ") %></td>
       <td><%= link_to t(:edit), edit_manage_education_path(education) %></td>
     </tr>
   <% end %>

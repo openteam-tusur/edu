@@ -5,7 +5,7 @@ class Manage::CurriculumsController < Manage::ApplicationController
 
   custom_actions :resource => :transit
 
-  belongs_to :chair, :shallow => true do
+  belongs_to :chair, :finder => :find_by_slug, :shallow => true do
     belongs_to :speciality
   end
 
