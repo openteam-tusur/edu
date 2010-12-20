@@ -1,6 +1,8 @@
 class Manage::SpecialitiesController < Manage::ApplicationController
   inherit_resources
 
+  custom_actions :resource => :transit
+
   belongs_to :chair, :shallow => true
 
   def new
@@ -10,16 +12,11 @@ class Manage::SpecialitiesController < Manage::ApplicationController
     end
   end
 
-  def publish
-    @speciality = Speciality.find(params[:id])
-    @speciality.publish! if @speciality.aasm_events_for_current_state.include?(:publish)
-    redirect_to [:manage, @speciality]
-  end
-
-  def unpublish
-    @speciality = Speciality.find(params[:id])
-    @speciality.unpublish! if  @speciality.aasm_events_for_current_state.include?(:unpublish)
-    redirect_to [:manage, @speciality]
+  def transit
+    transit! do
+      @speciality.send "#{params[:event]}!" if @speciality.aasm_events_for_current_state.include?(params[:event].to_sym)
+      redirect_to [:manage, @speciality] and return
+    end
   end
 end
 

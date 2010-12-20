@@ -3,7 +3,7 @@
   margin-bottom: 20px
 
 .header
-  width: 960px
+  width: 970px
   margin: 0 auto
   +clearfix
 
@@ -14,13 +14,31 @@
     float: left
     overflow: hidden
     text-indent: -9999em
-    background: transparent url("../../images/tusur.png") no-repeat
+    background: transparent url("../images/tusur.png") no-repeat
     margin: 15px 0
 
   .site_name
     float: left
+    font-size: 25px
+    font-family: "Trebuchet MS", "Lucida Grande", Tahoma, sans-serif
     text-align: center
     text-transform: uppercase
+    margin: 17px 0 0 110px
+    a
+      +text-shadow(#000, 1px, 2px, 3px)
+      text-decoration: none
+      color: #f4e1ca
 
   .dashboard
     float: right
+    +linear-gradient(color-stops(#f2dabe, #eac496), top)
+    background-color: #eecfaa
+    +border-bottom-left-radius
+    +border-bottom-right-radius
+    padding: 5px 10px 7px 10px
+    .sign_in
+      +inline-block
+      line-height: 16px
+      text-transform: uppercase
+      background: transparent url("../images/icon_sign_in.png") no-repeat right
+      padding-right: 21px
