@@ -76,6 +76,7 @@ GEM
       ZenTest (>= 4.4.1)
     bcrypt-ruby (2.1.2)
     builder (2.1.2)
+    cancan (1.4.1)
     celerity (0.8.6)
     childprocess (0.1.4)
       ffi (~> 0.6.3)
@@ -200,6 +201,7 @@ DEPENDENCIES
   aasm
   annotate!
   autotest
+  cancan
   capybara!
   compass
   devise
