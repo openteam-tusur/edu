@@ -20,7 +20,7 @@
 <ul>
   <% @speciality.curriculums.each do |curriculum| %>
     <li>
-      <%= link_to curriculum.form, manage_curriculum_path(curriculum) %>
+      <%= link_to curriculum.human_study, manage_curriculum_path(curriculum) %>
     </li>
   <% end %>
 </ul>
