@@ -1,4 +1,6 @@
 Portal::Application.routes.draw do
+  devise_for :users
+
   namespace :manage do
     resources :chairs, :only => [:index, :show], :shallow => true do
       resources :specialities do
