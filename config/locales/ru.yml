@@ -69,8 +69,14 @@ ru:
         education: Дисциплина
         curriculum: Учебный план
       user: Пользователь
+      resource: Ресурс
+      attachment: Вложение
 
     attributes:
+      attachment:
+        data: Выберите файл
+      resource:
+        year: Год издания
       speciality:
         chair: Кафедра
         code: Код

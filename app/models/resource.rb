@@ -2,7 +2,7 @@ class Resource < ActiveRecord::Base
   include AASM
   
   belongs_to :curriculum
-  has_one :attachment
+  #has_one :attachment
   
   aasm_column :state
   aasm_initial_state :unpublished
@@ -14,3 +14,16 @@ class Resource < ActiveRecord::Base
     transitions :to => :published, :from => [:unpublished]
   end
 end
+# == Schema Information
+#
+# Table name: resources
+#
+#  id            :integer         not null, primary key
+#  name          :string(255)     'Название'
+#  state         :string(255)
+#  year          :integer
+#  curriculum_id :integer
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+
