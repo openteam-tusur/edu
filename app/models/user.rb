@@ -9,6 +9,10 @@ class User < ActiveRecord::Base
 
   has_one :human
 
+  accepts_nested_attributes_for :human, :reject_if => :all_blank
+
+  after_create :create_human
+
 end
 
 # == Schema Information
