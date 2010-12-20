@@ -17,5 +17,5 @@
 <h2>Учебный план</h2>
 <%= @plan_curriculum.state %>
 <% @plan_curriculum.aasm_events_for_current_state.each do |event| %>
-  <%= link_to event, transit_manage_curriculum_path(@plan_curriculum, :event => event) %>
+  <%= link_to t("curriculum.#{event}"), transit_manage_curriculum_path(@plan_curriculum, :event => event), :method => :put %>
 <% end %>

@@ -39,7 +39,8 @@ ru:
     duration:
       few: "года"
       many: "лет"
-    state: Состояние
+    publish: Опубликовать
+    unpublish: Снять с публикации
 
   semester:
     add: Добавить семестр
