@@ -61,16 +61,22 @@ ru:
       chair: Кафедра
       discipline: Дисциплина
       faculty: Факультет
-      speciality: Специальность
+      human: Персональная информация
       plan:
-        licence: Лицензия
         accreditation: Свидетельство об аккредитации
-        semester: Семестр
-        education: Дисциплина
         curriculum: Учебный план
+        education: Дисциплина
+        licence: Лицензия
+        semester: Семестр
+      speciality: Специальность
       user: Пользователь
 
     attributes:
+      human:
+        name: Имя
+        patronymic: Отчество
+        surname: Фамилия
+
       speciality:
         chair: Кафедра
         code: Код
