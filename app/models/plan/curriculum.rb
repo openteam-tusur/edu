@@ -10,6 +10,8 @@ class Plan::Curriculum < ActiveRecord::Base
   belongs_to :speciality
   has_many :semesters, :class_name => "Plan::Semester"
 
+  validates_presence_of :speciality, :study
+
   aasm_column :state
   aasm_initial_state :unpublished
   aasm_state :unpublished
@@ -21,12 +23,14 @@ class Plan::Curriculum < ActiveRecord::Base
     transitions  :to => :unpublished, :from => :published
   end
 
+  has_enum :study, %w[fulltime parttime postal]
+
   after_create :create_semesters
 
   def duration
     years = (semesters.count / 2).to_s
     result = (semesters.count % 2).zero? ? "#{years} " : "#{years},5 "
-    result += I18n.t('speciality.duration', :count => semesters.count / 2)
+    result += I18n.t('curriculum.duration', :count => semesters.count / 2)
   end
 
   private

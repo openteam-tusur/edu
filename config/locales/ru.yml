@@ -40,9 +40,6 @@ ru:
       few: "года"
       many: "лет"
     state: Состояние
-    state_enum:
-      unpublished: Неопубликован
-      published: Опубликован
 
   semester:
     add: Добавить семестр
@@ -69,6 +66,7 @@ ru:
         accreditation: Свидетельство об аккредитации
         semester: Семестр
         education: Дисциплина
+        curriculum: Учебный план
 
     attributes:
       speciality:
@@ -80,7 +78,6 @@ ru:
           master: магистр
           bachelor: бакалавр
         qualification: Квалификация
-        semesters_count: Количество семестров
       plan:
         licence:
           issued_at: Дата выдачи
@@ -88,6 +85,17 @@ ru:
         accreditation:
           issued_at: Дата выдачи
           number: Номер
+        curriculum:
+          duration: Срок обучения
+          semesters_count: Количество семестров
+          study: Форма обучения
+          study_enum:
+            fulltime: очная
+            parttime: очно-заочная (вечерняя)
+            postal: заочная
+          state_enum:
+            unpublished: Неопубликован
+            published: Опубликован
         semester:
           number: Номер
         education:
