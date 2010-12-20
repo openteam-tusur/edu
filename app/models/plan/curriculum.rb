@@ -42,3 +42,17 @@ class Plan::Curriculum < ActiveRecord::Base
   end
 
 end
+
+# == Schema Information
+#
+# Table name: plan_curriculums
+# Human name: Учебный план
+#
+#  id            :integer         not null, primary key
+#  study         :string(255)     'Форма обучения'
+#  speciality_id :integer
+#  created_at    :datetime
+#  updated_at    :datetime
+#  state         :string(255)
+#
+

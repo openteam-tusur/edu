@@ -23,7 +23,7 @@ end
 # Human name: Семестр
 #
 #  id            :integer         not null, primary key
-#  speciality_id :integer
+#  curriculum_id :integer
 #  number        :integer         'Номер'
 #  created_at    :datetime
 #  updated_at    :datetime
