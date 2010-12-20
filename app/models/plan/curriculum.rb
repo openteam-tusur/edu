@@ -11,6 +11,7 @@ class Plan::Curriculum < ActiveRecord::Base
   has_many :semesters, :class_name => "Plan::Semester"
 
   validates_presence_of :speciality, :study
+  validates_uniqueness_of :study, :scope => :speciality_id
 
   aasm_column :state
   aasm_initial_state :unpublished

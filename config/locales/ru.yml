@@ -68,6 +68,7 @@ ru:
         semester: Семестр
         education: Дисциплина
         curriculum: Учебный план
+      user: Пользователь
 
     attributes:
       speciality:
@@ -79,6 +80,12 @@ ru:
           master: магистр
           bachelor: бакалавр
         qualification: Квалификация
+        semesters_count: Количество семестров
+      user:
+        email: Электронная почта
+        password: Пароль
+        password_confirmation: Подтверждения пароля
+        remember_me: Запомнить меня?
       plan:
         licence:
           issued_at: Дата выдачи
@@ -108,3 +115,4 @@ ru:
           loading_course_project: Курсовое проектирование
           loading_course_work: Курсовая работа
           loading_self_training: Самостоятельная работа
+
