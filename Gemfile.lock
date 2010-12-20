@@ -27,7 +27,7 @@ GIT
 
 GIT
   remote: git://github.com/lda/inherited_resources
-  revision: 33db9887dc1058d95477adc58cfb535d49cdae85
+  revision: 0f3381ca55eb06016011a5dd47e51c22fab71b1e
   specs:
     inherited_resources (1.1.2)
       has_scope (~> 0.5.0)
@@ -81,7 +81,7 @@ GEM
     compass (0.10.6)
       haml (>= 3.0.4)
     configuration (1.2.0)
-    culerity (0.2.12)
+    culerity (0.2.13)
     diff-lcs (1.1.2)
     dynamic_form (1.1.3)
     erubis (2.6.6)
