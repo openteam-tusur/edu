@@ -4,8 +4,8 @@ require 'spec_helper'
 describe Plan::Education do
 
   it "должна считать суммарную нагрузку" do
-    speciality = Factory.create(:speciality)
-    education = speciality.semesters.first.educations.create!(:discipline_name => "Математика",
+    curriculum = Factory.create(:plan_curriculum)
+    education = curriculum.semesters.first.educations.create!(:discipline_name => "Математика",
           :loading_lecture => 20,
           :loading_laboratory => 40,
           :loading_practice => 4,
@@ -17,8 +17,9 @@ describe Plan::Education do
 
   describe "должна прозрачно работать с дисциплинами" do
     before(:each) do
-      @speciality = Factory.create(:speciality)
-      @semester = @speciality.semesters.first
+      @curriculum = Factory.create(:plan_curriculum)
+      @speciality = @curriculum.speciality
+      @semester = @curriculum.semesters.first
       @education = @semester.educations.build(:discipline_name => "Математика")
       @education.save!
     end
@@ -44,7 +45,7 @@ describe Plan::Education do
     end
 
     it "при обновлении, если изменяется название дисциплины и у старой дисциплины есть еще обучения" do
-      @education_2 = @speciality.semesters.last.educations.build(:discipline_name => "Математика")
+      @education_2 = @curriculum.semesters.last.educations.build(:discipline_name => "Математика")
       @education_2.save!
       @education.discipline_name = "Физика"
       @education.save!
