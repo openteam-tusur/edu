@@ -37,6 +37,16 @@
   </div>
   <div class="content_wrapper">
     <div class="main_menu">
+      <div class="search_bar">
+        <%= semantic_form_for :search, :url => root_path, :html => { :method => "get" } do | form | %>
+          <%= form.inputs do %>
+            <%= form.input :q, :label => false, :input_html => { :value => params[:q], :name => :q } %>
+          <% end %>
+          <%= form.buttons do %>
+            <%= form.commit_button :button_html => { :value => "Поиск" } %>
+          <% end %>
+        <% end %>
+      </div>
       <ul>
         <li class="training"><a class="selected" href="/"><span class="decreased">для</span> учебы</a></li>
         <li class="science"><a href="/"><span class="decreased">для</span> науки</a></li>

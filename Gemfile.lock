@@ -34,6 +34,13 @@ GIT
       responders (~> 0.6.0)
 
 GIT
+  remote: git://github.com/openteam/has_enum
+  revision: 56165b0ca7bb35856114bce7d452ec8dd58eb317
+  specs:
+    has_enum (0.3.4)
+      rails (~> 3.0.0)
+
+GIT
   remote: git://github.com/rails/exception_notification
   revision: 192a49a02d63d28b23ed41cebadfedd490929cf1
   specs:
@@ -104,8 +111,6 @@ GEM
       activesupport (>= 2.3.7)
       i18n (>= 0.4.0)
     haml (3.0.25)
-    has_enum (0.3.4)
-      rails (~> 3.0.0)
     has_scope (0.5.0)
     i18n (0.5.0)
     inherited_resources_views (0.4.1)
@@ -208,7 +213,7 @@ DEPENDENCIES
   faker
   fancy-buttons
   formtastic
-  has_enum (~> 0.3.0)
+  has_enum!
   inherited_resources!
   inherited_resources_views
   jquery-rails
