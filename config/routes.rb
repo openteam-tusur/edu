@@ -4,7 +4,9 @@ Portal::Application.routes.draw do
       resources :specialities do
         get :transit, :on => :member
         resources :disciplines, :except => [:index, :show]
-        resources :semesters
+        resources :semesters do
+          resources :educations
+        end
       end
     end
     root :to => "chairs#index"

@@ -10,12 +10,13 @@ end
 
 # == Schema Information
 #
-# Table name: speciality_licences
+# Table name: plan_licences
+# Human name: Лицензия
 #
 #  id            :integer         not null, primary key
 #  speciality_id :integer
-#  number        :string(255)
-#  issued_at     :date
+#  number        :string(255)     'Номер'
+#  issued_at     :date            'Дата выдачи'
 #  created_at    :datetime
 #  updated_at    :datetime
 #

@@ -50,7 +50,7 @@ class Speciality < ActiveRecord::Base
   private
   def create_semesters
     @semesters_count.to_i.times do |number|
-      semesters.create(:number => number + 1)
+      self.semesters.find_or_create_by_number(number + 1)
     end
   end
 end
@@ -63,11 +63,12 @@ end
 #
 #  id            :integer         not null, primary key
 #  name          :string(255)     'Название'
-#  degree        :string(255)
-#  qualification :string(255)
+#  degree        :string(255)     'Степень'
+#  qualification :string(255)     'Квалификация'
 #  chair_id      :integer
 #  created_at    :datetime
 #  updated_at    :datetime
-#  code          :string(255)
+#  code          :string(255)     'Код'
+#  state         :string(255)
 #
 

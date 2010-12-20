@@ -44,6 +44,9 @@ ru:
   semester:
     add: Добавить семестр
 
+  education:
+    add: Добавить дисциплину
+
   discipline:
     add: Добавить дисциплину
 
@@ -62,6 +65,7 @@ ru:
         licence: Лицензия
         accreditation: Свидетельство об аккредитации
         semester: Семестр
+        education: Дисциплина
 
     attributes:
       speciality:
@@ -83,3 +87,12 @@ ru:
           number: Номер
         semester:
           number: Номер
+        education:
+          discipline: Название дисциплины
+          discipline_name: Название дисциплины
+          loading_lecture: Лекции
+          loading_laboratory: Лабораторные занятия
+          loading_practice: Практические занятия
+          loading_course_project: Курсовое проектирование
+          loading_course_work: Курсовая работа
+          loading_self_training: Самостоятельная работа
