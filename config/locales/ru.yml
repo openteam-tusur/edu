@@ -39,10 +39,8 @@ ru:
     duration:
       few: "года"
       many: "лет"
-    state: Состояние
-    state_enum:
-      unpublished: Неопубликован
-      published: Опубликован
+    publish: Опубликовать
+    unpublish: Снять с публикации
 
   semester:
     add: Добавить семестр
@@ -69,6 +67,7 @@ ru:
         accreditation: Свидетельство об аккредитации
         semester: Семестр
         education: Дисциплина
+        curriculum: Учебный план
       user: Пользователь
 
     attributes:
@@ -94,6 +93,17 @@ ru:
         accreditation:
           issued_at: Дата выдачи
           number: Номер
+        curriculum:
+          duration: Срок обучения
+          semesters_count: Количество семестров
+          study: Форма обучения
+          study_enum:
+            fulltime: очная
+            parttime: очно-заочная (вечерняя)
+            postal: заочная
+          state_enum:
+            unpublished: Неопубликован
+            published: Опубликован
         semester:
           number: Номер
         education:

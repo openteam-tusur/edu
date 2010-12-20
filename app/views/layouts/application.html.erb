@@ -30,8 +30,18 @@
   </div>
   <div class="content_wrapper">
     <div class="main_menu">
+      <div class="search_bar">
+        <%= semantic_form_for :search, :url => root_path, :html => { :method => "get" } do | form | %>
+          <%= form.inputs do %>
+            <%= form.input :q, :label => false, :input_html => { :value => params[:q], :name => :q } %>
+          <% end %>
+          <%= form.buttons do %>
+            <%= form.commit_button :button_html => { :value => "Поиск" } %>
+          <% end %>
+        <% end %>
+      </div>
       <ul>
-        <li class="training"><a class="selected" href="/"><span class="decreased">для</span> учебы</a></li>
+        <li class="training"><a class="selected" href="/"><span class="decreased">для</span> учёбы</a></li>
         <li class="science"><a href="/"><span class="decreased">для</span> науки</a></li>
         <li class="subfaculties"><a href="/"><span class="decreased">наши</span> кафедры</a></li>
         <li class="peoples"><a href="/"><span class="decreased">наши</span> люди</a></li>
@@ -48,10 +58,51 @@
   </div>
   <div class="footer_wrapper">
     <div class="footer">
-      <p>тут будет бальшой и крсявый падвал</p>
-      <p>тут будет бальшой и крсявый падвал</p>
-      <p>тут будет бальшой и крсявый падвал</p>
-      <p>тут будет бальшой и крсявый падвал</p>
+      <ul class="site_map">
+        <li>
+          <h1>Образование</h1>
+          <ul>
+            <li><a href="#">учебные материалы</a></li>
+            <li><a href="#">учебные планы</a></li>
+            <li><a href="#">расписание</a></li>
+            <li><a href="#">успеваемость</a></li>
+          </ul>
+        </li>
+        <li>
+          <h1>Наука</h1>
+          <ul>
+            <li><a href="#">реферативные журналы</a></li>
+            <li><a href="#">публикации</a></li>
+            <li><a href="#">переодические издания</a></li>
+            <li><a href="#">конференции</a></li>
+            <li><a href="#">конкурсы, гранты</a></li>
+          </ul>
+        </li>
+        <li>
+          <h1>Люди</h1>
+          <ul>
+            <li><a href="#">студенты</a></li>
+            <li><a href="#">магистранты</a></li>
+            <li><a href="#">аспиранты</a></li>
+            <li><a href="#">преподаватели</a></li>
+          </ul>
+        </li>
+        <li>
+          <h1>Библиотека</h1>
+          <ul>
+            <li><a href="#">контактная информация</a></li>
+            <li><a href="#">услуги библиотеки</a></li>
+            <li><a href="#">новые книги</a></li>
+            <li><a href="#">внешние базы данных</a></li>
+          </ul>
+        </li>
+      </ul>
+      <div class="copyright">
+        <p class="openteam"><a href="http://openteam.ru/" title="Сделано с любовью OpenTeam">OpenTeam</a></p>
+        <p class="tusur"><a href="http://www.tusur.ru/" title="Томский государственный университет систем управления и радиоэлектроники">Томский государственный университет систем управления и радиоэлектроники</a></p>
+        <p class="copy">&copy; Томский Государственнный Университет Систем Управления и Радиоэлектроники, 2010</p>
+        <p class="issue"><a href="http://issues.openteam.ru/projects/tusur-portal/issues/new">Высказать пожелание или сообщить об ошибке</a></p>
+      </div>
     </div>
   </div>
 </body>

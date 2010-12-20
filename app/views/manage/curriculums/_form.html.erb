@@ -1,0 +1,4 @@
+<%= form.inputs do %>
+  <%= form.enum_input :study %>
+  <%= form.input :semesters_count if @plan_curriculum.new_record? %>
+<% end %>

@@ -6,7 +6,15 @@ class Manage::EducationsController < Manage::ApplicationController
 
   belongs_to :chair, :shallow => true do
     belongs_to :speciality do
-      belongs_to :semester, :param => :semester_id, :instance_name => :semester, :parent_class => Plan::Semester
+      belongs_to :curriculum,
+                  :param => :curriculum_id,
+                  :instance_name => :plan_curriculum,
+                  :parent_class => Plan::Curriculum do
+        belongs_to :semester,
+                    :param => :semester_id,
+                    :instance_name => :plan_semester,
+                    :parent_class => Plan::Semester
+      end
     end
   end
 

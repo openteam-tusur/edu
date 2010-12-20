@@ -13,3 +13,15 @@ describe Plan::Discipline do
 
 
 end
+
+# == Schema Information
+#
+# Table name: plan_disciplines
+#
+#  id            :integer         not null, primary key
+#  name          :text            'Название'
+#  speciality_id :integer
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+
