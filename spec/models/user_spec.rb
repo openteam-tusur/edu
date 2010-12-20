@@ -1,6 +1,12 @@
+# encoding: utf-8
+
 require 'spec_helper'
 
 describe User do
+  it 'при создании пользователя создавать персональную информацию' do
+    user = Factory.create(:user)
+    user.human.should_not be nil
+  end
 end
 
 

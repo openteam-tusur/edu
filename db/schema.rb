@@ -54,6 +54,15 @@ ActiveRecord::Schema.define(:version => 20101220131239) do
     t.datetime "updated_at"
   end
 
+  create_table "humen", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "surname"
+    t.string   "name"
+    t.string   "patronymic"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "plan_accreditations", :force => true do |t|
     t.integer  "speciality_id"
     t.string   "number"

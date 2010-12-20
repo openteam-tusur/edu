@@ -6,6 +6,13 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
+
+  has_one :human
+
+  accepts_nested_attributes_for :human, :reject_if => :all_blank
+
+  after_create :create_human
+
 end
 
 # == Schema Information
