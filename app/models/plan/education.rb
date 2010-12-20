@@ -6,6 +6,7 @@ class Plan::Education < ActiveRecord::Base
 
   belongs_to :semester
   belongs_to :discipline
+  has_and_belongs_to_many :examinations
 
   validates_presence_of :semester, :discipline
   validates_uniqueness_of :discipline_id, :scope => :semester_id
