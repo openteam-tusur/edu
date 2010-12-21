@@ -1,22 +1,28 @@
-class Manage::PlanEducationsController < Manage::ApplicationController
+class Manage::EducationsController < Manage::ApplicationController
   inherit_resources
 
   defaults :resource_class => Plan::Education,
-           :instance_name => 'plan_education'
+           :instance_name => 'education'
 
   belongs_to :chair, :finder => :find_by_slug do
     belongs_to :speciality, :finder => :find_by_slug do
-      belongs_to :plan_curriculum,
-                  :param => :plan_curriculum_id,
-                  :instance_name => :plan_curriculum,
+      belongs_to :curriculum,
+                  :param => :curriculum_id,
+                  :instance_name => :curriculum,
                   :parent_class => Plan::Curriculum,
                   :finder => :find_by_study do
-        belongs_to :plan_semester,
-                    :param => :plan_semester_id,
-                    :instance_name => :plan_semester,
+        belongs_to :semester,
+                    :param => :semester_id,
+                    :instance_name => :semester,
                     :parent_class => Plan::Semester,
                     :finder => :find_by_number
       end
+    end
+  end
+
+  def index
+    index! do
+      redirect_to parent_path and return
     end
   end
 

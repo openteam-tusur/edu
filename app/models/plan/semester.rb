@@ -11,7 +11,7 @@ class Plan::Semester < ActiveRecord::Base
 
   validates_numericality_of :number, :only_integer => true
 
-  has_many :plan_educations, :class_name => "Plan::Education"
+  has_many :educations, :class_name => "Plan::Education"
 
   default_scope :order => :number
 

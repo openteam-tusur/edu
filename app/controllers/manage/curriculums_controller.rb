@@ -1,9 +1,9 @@
-class Manage::PlanCurriculumsController < Manage::ApplicationController
+class Manage::CurriculumsController < Manage::ApplicationController
 
   custom_actions :resource => :transit
 
   defaults :resource_class => Plan::Curriculum,
-           :instance_name => :plan_curriculum,
+           :instance_name => :curriculum,
            :finder => :find_by_study
 
   belongs_to :chair, :finder => :find_by_slug do

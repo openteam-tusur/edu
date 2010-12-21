@@ -15,7 +15,7 @@ class Plan::Curriculum < ActiveRecord::Base
   has_one :resource
   accepts_nested_attributes_for :resource, :reject_if => :all_blank
 
-  has_many :plan_semesters, :class_name => "Plan::Semester"
+  has_many :semesters, :class_name => "Plan::Semester"
 
   validates_presence_of :speciality, :study
   validates_uniqueness_of :study, :scope => :speciality_id
@@ -40,15 +40,15 @@ class Plan::Curriculum < ActiveRecord::Base
   end
 
   def duration
-    years = (plan_semesters.count / 2).to_s
-    result = (plan_semesters.count % 2).zero? ? "#{years} " : "#{years},5 "
-    result += I18n.t('curriculum.duration', :count => plan_semesters.count / 2)
+    years = (semesters.count / 2).to_s
+    result = (semesters.count % 2).zero? ? "#{years} " : "#{years},5 "
+    result += I18n.t('curriculum.duration', :count => semesters.count / 2)
   end
 
   private
   def create_semesters
     @semesters_count.to_i.times do |number|
-      self.plan_semesters.find_or_create_by_number(number + 1)
+      self.semesters.find_or_create_by_number(number + 1)
     end
   end
 

@@ -18,10 +18,10 @@
 
 <h2>Учебные планы</h2>
 <ul>
-  <% @speciality.plan_curriculums.each do |curriculum| %>
+  <% @speciality.curriculums.each do |curriculum| %>
     <li>
-      <%= link_to curriculum.human_study, [:manage, @chair, @speciality, curriculum] %>
+      <%= link_to curriculum.human_study, manage_chair_speciality_curriculum_path(@chair, @speciality, curriculum) %>
     </li>
   <% end %>
 </ul>
-<%= link_to t('curriculum.add'), new_manage_chair_speciality_plan_curriculum_path(@chair, @speciality) %>
+<%= link_to t('curriculum.add'), new_manage_chair_speciality_curriculum_path(@chair, @speciality) %>

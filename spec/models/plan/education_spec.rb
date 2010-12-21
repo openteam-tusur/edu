@@ -5,7 +5,7 @@ describe Plan::Education do
 
   it "должна считать суммарную нагрузку" do
     curriculum = Factory.create(:plan_curriculum)
-    education = curriculum.plan_semesters.first.plan_educations.create!(:discipline_name => "Математика",
+    education = curriculum.semesters.first.educations.create!(:discipline_name => "Математика",
           :loading_lecture => 20,
           :loading_laboratory => 40,
           :loading_practice => 4,
@@ -19,8 +19,8 @@ describe Plan::Education do
     before(:each) do
       @curriculum = Factory.create(:plan_curriculum)
       @speciality = @curriculum.speciality
-      @semester = @curriculum.plan_semesters.first
-      @education = @semester.plan_educations.build(:discipline_name => "Математика")
+      @semester = @curriculum.semesters.first
+      @education = @semester.educations.build(:discipline_name => "Математика")
       @education.save!
     end
 
@@ -45,7 +45,7 @@ describe Plan::Education do
     end
 
     it "при обновлении, если изменяется название дисциплины и у старой дисциплины есть еще обучения" do
-      @education_2 = @curriculum.plan_semesters.last.plan_educations.build(:discipline_name => "Математика")
+      @education_2 = @curriculum.semesters.last.educations.build(:discipline_name => "Математика")
       @education_2.save!
       @education.discipline_name = "Физика"
       @education.save!

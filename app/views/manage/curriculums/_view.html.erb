@@ -1,4 +1,4 @@
-<%= show_for @plan_curriculum do |curriculum| %>
+<%= show_for resource do |curriculum| %>
   <%= curriculum.attributes :study, :duration %>
 <% end %>
 
@@ -6,17 +6,17 @@
 
 <h2>Семестры</h2>
 <ul>
-  <% @plan_curriculum.semesters.each do |semester| %>
+  <% resource.semesters.each do |semester| %>
     <li>
-      <%= link_to semester.number, [:manage, @chair, @speciality, resource, semester] %>
+      <%= link_to semester.number, manage_chair_speciality_curriculum_semester_path(@chair, @speciality, resource, semester) %>
     </li>
   <% end %>
 </ul>
-<%= link_to t('semester.add'), new_manage_chair_speciality_plan_curriculum_plan_semester_path(@chair, @speciality, resource) %>
+<%= link_to t('semester.add'), new_manage_chair_speciality_curriculum_semester_path(@chair, @speciality, resource) %>
 
 <h2>Учебный план</h2>
-<%= @plan_curriculum.state %>
-<% @plan_curriculum.aasm_events_for_current_state.each do |event| %>
+<%= resource.state %>
+<% resource.aasm_events_for_current_state.each do |event| %>
   <%= link_to t("curriculum.#{event}"), transit_resource_path(:event => event), :method => :put %>
 <% end %>
 
