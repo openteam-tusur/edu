@@ -1,35 +1,16 @@
 # encoding: utf-8
-class Plan::Curriculum < ActiveRecord::Base
+class Plan::Curriculum < Resource
   set_table_name :plan_curriculums
-  include AASM
-
   attr_accessor :semesters_count
   validates_numericality_of :semesters_count,
                             :only_integer => true,
                             :on => :create
   belongs_to :speciality
 
-  has_one :attachment
-  accepts_nested_attributes_for :attachment, :reject_if => :all_blank
-
-  has_one :resource
-  accepts_nested_attributes_for :resource, :reject_if => :all_blank
-
   has_many :semesters, :class_name => "Plan::Semester"
 
   validates_presence_of :speciality, :study
   validates_uniqueness_of :study, :scope => :speciality_id
-
-  aasm_column :state
-  aasm_initial_state :unpublished
-  aasm_state :unpublished
-  aasm_state :published
-  aasm_event :publish do
-    transitions  :to => :published, :from => :unpublished
-  end
-  aasm_event :unpublish do
-    transitions  :to => :unpublished, :from => :published
-  end
 
   has_enum :study, %w[fulltime parttime postal]
 
@@ -65,5 +46,7 @@ end
 #  created_at    :datetime
 #  updated_at    :datetime
 #  state         :string(255)
+#  year          :integer
+#  curriculum_id :integer
 #
 

@@ -1,6 +1,6 @@
 class ChairsController < ApplicationController
 
-  authorize_resource
+  load_and_authorize_resource
 
   defaults :finder => :find_by_slug
   actions :show
