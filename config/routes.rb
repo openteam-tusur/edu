@@ -7,7 +7,7 @@ Portal::Application.routes.draw do
         resources :plan_curriculums, :path => :curriculums do
           put :transit, :on => :member
           resources :plan_semesters, :path => :semesters do
-            resources :educations
+            resources :plan_educations, :path => :educations
           end
         end
       end

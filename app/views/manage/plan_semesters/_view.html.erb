@@ -1,5 +1,5 @@
 <%= @plan_semester.number %>
-<%= link_to t(:edit), edit_manage_semester_path(@plan_semester) %>
+<%= link_to t(:edit), edit_resource_path %>
 <h2>Изучаемые дисциплины</h2>
 <table style="border: 1px solid #000;">
   <tr>
@@ -32,9 +32,9 @@
       <td><%= education.loading_course_work %></td>
       <td><%= education.loading_self_training %></td>
       <td><%= education.examinations.collect(&:name).join(", ") %></td>
-      <td><%= link_to t(:edit), edit_manage_education_path(education) %></td>
+      <td><%= link_to t(:edit), edit_manage_chair_speciality_plan_curriculum_plan_semester_plan_education_path(@chair, @speciality, @plan_curriculum, @plan_semester, education) %></td>
     </tr>
   <% end %>
 </table>
 
-<%= link_to t("education.add"), new_manage_semester_education_path(@plan_semester) %>
+<%= link_to t("education.add"), new_manage_chair_speciality_plan_curriculum_plan_semester_plan_education_path(@chair, @speciality, @plan_curriculum, @plan_semester) %>

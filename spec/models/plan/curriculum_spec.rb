@@ -5,7 +5,7 @@ describe Plan::Curriculum do
   it 'при создании должны создаваться семестры' do
     curriculum = Factory.create(:plan_curriculum, :semesters_count => 10)
 
-    curriculum.semesters.count.should eql 10
+    curriculum.plan_semesters.count.should eql 10
   end
 
   it 'должна правильно отдаваться продолжительность обучения в годах' do
