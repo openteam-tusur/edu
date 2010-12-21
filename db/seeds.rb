@@ -19,7 +19,15 @@ YAML.load_file(Rails.root.join('config', 'dictionaries.yml')).each do |model, di
 end
 
 User.destroy_all
-User.create(:email => 'admin@openteam.ru',
-            :password => '123123',
-            :password_confirmation => '123123')
+Role.destroy_all
+
+admin = User.create(:email => 'admin@demo.de',
+                   :password => '123123',
+                   :password_confirmation => '123123')
+
+admin.human.update_attributes( :name => 'Иван',
+                               :surname => 'Иванов',
+                               :patronymic => 'Иванович' )
+
+admin.human.roles << Roles::Admin.new(:title => 'Администратор', :slug => 'admin')
 

@@ -7,6 +7,13 @@ describe User do
     user = Factory.create(:user)
     user.human.should_not be nil
   end
+
+  it 'должен знать свои роли' do
+    user = Factory.create(:user)
+    user.human.roles << Roles::Admin.new( :title => 'Администратор',
+                                          :slug => 'admin' )
+    user.roles.should eql [:admin]
+  end
 end
 
 
