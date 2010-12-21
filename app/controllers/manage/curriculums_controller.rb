@@ -20,7 +20,7 @@ class Manage::CurriculumsController < Manage::ApplicationController
 
   def transit
     transit! do
-      @plan_curriculum.send "#{params[:event]}!" if @plan_curriculum.aasm_events_for_current_state.include?(params[:event].to_sym)
+      @curriculum.send "#{params[:event]}!" if @curriculum.aasm_events_for_current_state.include?(params[:event].to_sym)
       redirect_to resource_path and return
     end
   end
