@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
+  default_scope order(:id)
+
   has_one :human
 
   accepts_nested_attributes_for :human, :reject_if => :all_blank
@@ -20,6 +22,14 @@ class User < ActiveRecord::Base
       human.roles.collect { |r| r.slug.to_sym }
     else
       []
+    end
+  end
+
+  def has_been_started?
+    if !human.filled? #|| human.demands.empty?
+      false
+    else
+      true
     end
   end
 

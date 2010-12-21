@@ -28,7 +28,6 @@
       <h1 class="site_name"><%= link_to "Научно-образовательный портал", root_path %></h1>
     </div>
   </div>
-
   <div class="content_wrapper">
     <div class="main_menu">
       <div class="search_bar">
@@ -53,7 +52,7 @@
 
      <p class="notice"><%= notice %></p>
      <p class="alert"><%= alert %></p>
-
+      <%= render :partial => 'users/shared/has_been_started' %>
       <%= yield %>
     </div>
   </div>
