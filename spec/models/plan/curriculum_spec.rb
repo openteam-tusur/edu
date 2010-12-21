@@ -45,5 +45,7 @@ end
 #  created_at    :datetime
 #  updated_at    :datetime
 #  state         :string(255)
+#  year          :integer
+#  curriculum_id :integer
 #
 

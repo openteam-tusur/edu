@@ -9,12 +9,12 @@ end
 # Table name: resources
 # Human name: Ресурс
 #
-#  id            :integer         not null, primary key
-#  name          :string(255)     'Название'
-#  state         :string(255)
-#  year          :integer         'Год издания'
-#  curriculum_id :integer
-#  created_at    :datetime
-#  updated_at    :datetime
+#  id         :integer         not null, primary key
+#  name       :string(255)     'Название'
+#  state      :string(255)
+#  year       :integer         'Год издания'
+#  created_at :datetime
+#  updated_at :datetime
+#  type       :string(255)
 #
 

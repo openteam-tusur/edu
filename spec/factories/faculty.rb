@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+require 'factory_girl/syntax/sham'
+
 Sham.faculty_name {|n| "Факультет систем управления #{n}" }
 Sham.faculty_abbr {|n| "ФСУ#{n}" }
 Sham.faculty_slug {|n| "fsu#{n}" }
