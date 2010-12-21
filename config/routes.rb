@@ -1,5 +1,6 @@
 Portal::Application.routes.draw do
-  devise_for :users
+  devise_for :users,  :controllers => { :registrations => "users/registrations",
+                                        :sessions => 'users/sessions' }
 
   namespace :manage do
     resources :chairs, :only => [:index, :show] do
@@ -15,6 +16,7 @@ Portal::Application.routes.draw do
     root :to => "chairs#index"
   end
 
-  root :to => "manage/chairs#index"
+  root :to => "chairs#index"
+  match ":id" => "chairs#show", :as => :chair
 end
 

@@ -1,5 +1,7 @@
 class Manage::SemestersController < Manage::ApplicationController
 
+  load_and_authorize_resource
+
   defaults :resource_class => Plan::Semester,
            :instance_name => :semester,
            :finder => :find_by_number

@@ -1,4 +1,5 @@
 ru:
+  access_denied: Доступ запрещен
   formtastic:
     actions:
       create: "Создать %{model}"

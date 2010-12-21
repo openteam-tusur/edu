@@ -13,6 +13,16 @@ class User < ActiveRecord::Base
 
   after_create :create_human
 
+  def roles
+    # Возвращает список ролей пользователя
+
+    if human
+      human.roles.collect { |r| r.slug.to_sym }
+    else
+      []
+    end
+  end
+
 end
 
 # == Schema Information
