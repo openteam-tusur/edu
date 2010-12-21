@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101221031805) do
+ActiveRecord::Schema.define(:version => 20101221101456) do
 
   create_table "attachments", :force => true do |t|
     t.string   "data_uid"
@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(:version => 20101221031805) do
     t.string   "data_content_type"
     t.datetime "data_updated_at"
     t.string   "data_hash"
-    t.integer  "curriculum_id"
   end
 
   create_table "chairs", :force => true do |t|
@@ -77,6 +76,8 @@ ActiveRecord::Schema.define(:version => 20101221031805) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "state"
+    t.string   "name"
+    t.integer  "year"
   end
 
   create_table "plan_disciplines", :force => true do |t|
@@ -110,15 +111,6 @@ ActiveRecord::Schema.define(:version => 20101221031805) do
   create_table "plan_semesters", :force => true do |t|
     t.integer  "curriculum_id"
     t.integer  "number"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "resources", :force => true do |t|
-    t.string   "name"
-    t.string   "state"
-    t.integer  "year"
-    t.integer  "curriculum_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,8 +1,9 @@
 class Resource < ActiveRecord::Base
+  self.abstract_class = true
   include AASM
   
-  belongs_to :curriculum
-  #has_one :attachment
+  has_one :attachment
+  accepts_nested_attributes_for :attachment, :reject_if => :all_blank
   
   aasm_column :state
   aasm_initial_state :unpublished
@@ -13,19 +14,8 @@ class Resource < ActiveRecord::Base
   aasm_event :publish do
     transitions :to => :published, :from => [:unpublished]
   end
+  
+  aasm_event :unpublish do
+    transitions  :to => :unpublished, :from => :published
+  end
 end
-
-# == Schema Information
-#
-# Table name: resources
-# Human name: Ресурс
-#
-#  id            :integer         not null, primary key
-#  name          :string(255)     'Название'
-#  state         :string(255)
-#  year          :integer         'Год издания'
-#  curriculum_id :integer
-#  created_at    :datetime
-#  updated_at    :datetime
-#
-
