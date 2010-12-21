@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 require 'spec_helper'
+require 'cancan/matchers'
 
 describe User do
   it 'при создании пользователя создавать персональную информацию' do
@@ -13,6 +14,12 @@ describe User do
     user.human.roles << Roles::Admin.new( :title => 'Администратор',
                                           :slug => 'admin' )
     user.roles.should eql [:admin]
+  end
+
+  it 'может регистрироваться' do
+    ability = Ability.new(nil)
+
+    ability.should be_able_to(:create, User)
   end
 end
 

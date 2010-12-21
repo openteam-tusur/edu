@@ -16,8 +16,11 @@ class User < ActiveRecord::Base
   def roles
     # Возвращает список ролей пользователя
 
-    human.roles.collect { |r| r.slug.to_sym }
-
+    if human
+      human.roles.collect { |r| r.slug.to_sym }
+    else
+      []
+    end
   end
 
 end
