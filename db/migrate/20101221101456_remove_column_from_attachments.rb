@@ -1,6 +1,6 @@
 class RemoveColumnFromAttachments < ActiveRecord::Migration
   def self.up
-    remove_column :attachments, :curriculum_id, :integer
+    remove_column :attachments, :curriculum_id
   end
 
   def self.down
