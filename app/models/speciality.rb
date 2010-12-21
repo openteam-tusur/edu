@@ -6,7 +6,7 @@ class Speciality < ActiveRecord::Base
   belongs_to  :chair
 
   has_many :disciplines, :class_name => "Plan::Discipline"
-  has_many :curriculums, :class_name => "Plan::Curriculum"
+  has_many :plan_curriculums, :class_name => "Plan::Curriculum"
 
   has_one :licence, :class_name => "Plan::Licence"
   accepts_nested_attributes_for :licence, :reject_if => :all_blank
@@ -16,6 +16,19 @@ class Speciality < ActiveRecord::Base
 
 
   has_enum :degree, %w[specialist master bachelor]
+
+  def slug
+    "#{self.code}-#{self.degree}"
+  end
+
+  def to_param
+    slug
+  end
+
+  def self.find_by_slug(slug)
+    self.find_by_code_and_degree(*slug.split("-"))
+  end
+
 
 end
 

@@ -3,7 +3,7 @@ class Manage::SemestersController < Manage::ApplicationController
   defaults :resource_class => Plan::Semester,
            :instance_name => :plan_semester
 
-  belongs_to :chair, :finder => :find_by_slug, :shallow => true do
+  belongs_to :chair, :finder => :find_by_slug do
     belongs_to :speciality do
       belongs_to :curriculum,
                  :param => :curriculum_id,
