@@ -1,5 +1,8 @@
 class Manage::EducationsController < Manage::ApplicationController
+
   inherit_resources
+
+  load_and_authorize_resource
 
   defaults :resource_class => Plan::Education,
            :instance_name => 'education'
@@ -34,3 +37,4 @@ class Manage::EducationsController < Manage::ApplicationController
     update!(:location => parent_path(parent))
   end
 end
+

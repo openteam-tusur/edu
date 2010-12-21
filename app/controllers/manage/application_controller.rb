@@ -4,7 +4,5 @@ class Manage::ApplicationController < ApplicationController
 
   custom_actions :resource => :delete
 
-  authorize_resource
-
 end
 

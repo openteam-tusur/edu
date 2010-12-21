@@ -1,5 +1,7 @@
 class Manage::CurriculumsController < Manage::ApplicationController
 
+  load_and_authorize_resource
+
   custom_actions :resource => :transit
 
   defaults :resource_class => Plan::Curriculum,
@@ -25,3 +27,4 @@ class Manage::CurriculumsController < Manage::ApplicationController
     end
   end
 end
+
