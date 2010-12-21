@@ -46,7 +46,7 @@ gem 'dynamic_form'
 gem 'russian'
 
 # restful
-gem 'inherited_resources', :git => 'git://github.com/lda/inherited_resources'
+gem 'inherited_resources', :git => 'git://github.com/openteam/inherited_resources'
 gem 'inherited_resources_views'
 
 # smart deletions
