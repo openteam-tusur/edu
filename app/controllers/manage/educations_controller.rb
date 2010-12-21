@@ -4,7 +4,7 @@ class Manage::EducationsController < Manage::ApplicationController
   defaults :resource_class => Plan::Education,
            :instance_name => 'plan_education'
 
-  belongs_to :chair, :shallow => true do
+  belongs_to :chair, :finder => :find_by_slug, :shallow => true do
     belongs_to :speciality do
       belongs_to :curriculum,
                   :param => :curriculum_id,
