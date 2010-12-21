@@ -3,7 +3,7 @@
   <%= render :partial => "form", :object => form %>
   <%= form.buttons do %>
     <%= form.commit_button :button_html => { :class => "button" } %>
-    <%= render "cancel" %>
+    <li><%= link_to t(:cancel), cancel_url, :class => "button light" %></li>
   <% end %>
 <% end %>
 
