@@ -8,4 +8,7 @@
     <%= form.input :loading_course_work %>
     <%= form.input :loading_self_training %>
   <% end %>
+  <%= form.inputs "Форма контроля" do %>
+    <%= form.input :examinations, :as => :check_boxes %>
+  <% end %>
 <% end %>

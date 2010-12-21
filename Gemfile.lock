@@ -35,7 +35,7 @@ GIT
 
 GIT
   remote: git://github.com/openteam/has_enum
-  revision: 8752d83e55e3be6b7577d69b60be73f0387cbe0e
+  revision: 0e1f43fe6f2d956ef259a2ed79434479e40886d8
   specs:
     has_enum (0.3.4)
       rails (~> 3.0.0)
@@ -83,6 +83,7 @@ GEM
       ZenTest (>= 4.4.1)
     bcrypt-ruby (2.1.2)
     builder (2.1.2)
+    cancan (1.4.1)
     celerity (0.8.6)
     childprocess (0.1.4)
       ffi (~> 0.6.3)
@@ -112,6 +113,7 @@ GEM
       i18n (>= 0.4.0)
     haml (3.0.25)
     has_scope (0.5.0)
+    hirb (0.3.5)
     i18n (0.5.0)
     inherited_resources_views (0.4.1)
       inherited_resources (>= 1.0)
@@ -129,6 +131,9 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.16)
     nokogiri (1.4.4)
+    paperclip (2.3.8)
+      activerecord
+      activesupport
     pg (0.10.0)
     polyglot (0.3.1)
     protected_parent (0.1.0)
@@ -204,6 +209,7 @@ DEPENDENCIES
   aasm
   annotate!
   autotest
+  cancan
   capybara!
   compass
   devise
@@ -214,10 +220,12 @@ DEPENDENCIES
   fancy-buttons
   formtastic
   has_enum!
+  hirb
   inherited_resources!
   inherited_resources_views
   jquery-rails
   launchy
+  paperclip
   pg
   protected_parent
   racc

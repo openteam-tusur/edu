@@ -10,13 +10,31 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101220084540) do
+ActiveRecord::Schema.define(:version => 20101220131239) do
+
+  create_table "attachments", :force => true do |t|
+    t.string   "data_uid"
+    t.integer  "resource_id"
+    t.string   "data_file_name"
+    t.integer  "data_file_size"
+    t.string   "data_content_type"
+    t.datetime "data_updated_at"
+    t.string   "data_hash"
+    t.integer  "curriculum_id"
+  end
 
   create_table "chairs", :force => true do |t|
     t.integer  "faculty_id"
     t.string   "name"
     t.string   "abbr"
     t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "educations_examinations", :id => false, :force => true do |t|
+    t.integer  "education_id"
+    t.integer  "examination_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -32,6 +50,15 @@ ActiveRecord::Schema.define(:version => 20101220084540) do
     t.string   "name"
     t.string   "abbr"
     t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "humen", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "surname"
+    t.string   "name"
+    t.string   "patronymic"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -83,6 +110,15 @@ ActiveRecord::Schema.define(:version => 20101220084540) do
   create_table "plan_semesters", :force => true do |t|
     t.integer  "curriculum_id"
     t.integer  "number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resources", :force => true do |t|
+    t.string   "name"
+    t.string   "state"
+    t.integer  "year"
+    t.integer  "curriculum_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

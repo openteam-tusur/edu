@@ -61,16 +61,28 @@ ru:
       chair: Кафедра
       discipline: Дисциплина
       faculty: Факультет
-      speciality: Специальность
+      human: Персональная информация
       plan:
-        licence: Лицензия
         accreditation: Свидетельство об аккредитации
-        semester: Семестр
-        education: Дисциплина
         curriculum: Учебный план
+        education: Дисциплина
+        licence: Лицензия
+        semester: Семестр
+      speciality: Специальность
+      user: Пользователь
+      resource: Ресурс
+      attachment: Вложение
 
     attributes:
-      speciality:
+      attachment:
+        data: Выберите файл
+      resource:
+        year: Год издания
+      human:
+        name: Имя
+        patronymic: Отчество
+        surname: Фамилия
+        speciality:
         chair: Кафедра
         code: Код
         degree: Степень
@@ -79,6 +91,12 @@ ru:
           master: магистр
           bachelor: бакалавр
         qualification: Квалификация
+        semesters_count: Количество семестров
+      user:
+        email: Электронная почта
+        password: Пароль
+        password_confirmation: Подтверждения пароля
+        remember_me: Запомнить меня?
       plan:
         licence:
           issued_at: Дата выдачи
@@ -108,3 +126,5 @@ ru:
           loading_course_project: Курсовое проектирование
           loading_course_work: Курсовая работа
           loading_self_training: Самостоятельная работа
+          examinations: Форма контроля
+
