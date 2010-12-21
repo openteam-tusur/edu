@@ -15,12 +15,6 @@ describe User do
                                           :slug => 'admin' )
     user.roles.should eql [:admin]
   end
-
-  it 'может регистрироваться' do
-    ability = Ability.new(nil)
-
-    ability.should be_able_to(:create, User)
-  end
 end
 
 
