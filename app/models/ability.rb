@@ -9,9 +9,6 @@ class Ability
     end
 
     can :read, :all
-
-    can :create, User
-    can :destroy, User, :id => user.id
   end
 end
 
