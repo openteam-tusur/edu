@@ -1,4 +1,16 @@
 <%= form.inputs do %>
   <%= form.enum_input :study %>
-  <%= form.input :semesters_count if @plan_curriculum.new_record? %>
+  <%= form.input :semesters_count if resource.new_record? %>
+
+  <% resource.build_resource unless resource.resource %>
+  <%= form.inputs resource.resource.class.model_name.human,
+                  :for => :resource do |resource_form| %>
+    <%= resource_form.inputs :name, :year %>
+  <% end %>
+
+  <% resource.build_attachment unless resource.attachment %>
+  <%= form.inputs resource.attachment.class.model_name.human,
+                  :for => :attachment do |attachment_form| %>
+    <%= attachment_form.input :data, :as => :file %>
+  <% end %>
 <% end %>

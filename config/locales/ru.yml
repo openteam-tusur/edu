@@ -70,14 +70,19 @@ ru:
         semester: Семестр
       speciality: Специальность
       user: Пользователь
+      resource: Ресурс
+      attachment: Вложение
 
     attributes:
+      attachment:
+        data: Выберите файл
+      resource:
+        year: Год издания
       human:
         name: Имя
         patronymic: Отчество
         surname: Фамилия
-
-      speciality:
+        speciality:
         chair: Кафедра
         code: Код
         degree: Степень
@@ -121,4 +126,5 @@ ru:
           loading_course_project: Курсовое проектирование
           loading_course_work: Курсовая работа
           loading_self_training: Самостоятельная работа
+          examinations: Форма контроля
 

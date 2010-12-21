@@ -1,11 +1,22 @@
 class Manage::SemestersController < Manage::ApplicationController
 
   defaults :resource_class => Plan::Semester,
-           :instance_name => :plan_semester
+           :instance_name => :semester,
+           :finder => :find_by_number
 
-  belongs_to :chair, :shallow => true do
-    belongs_to :speciality do
-      belongs_to :curriculum, :param => :curriculum_id, :instance_name => :plan_curriculum, :parent_class => Plan::Curriculum
+  belongs_to :chair, :finder => :find_by_slug do
+    belongs_to :speciality, :finder => :find_by_slug do
+      belongs_to :curriculum,
+                 :param => :curriculum_id,
+                 :instance_name => :curriculum,
+                 :parent_class => Plan::Curriculum,
+                 :finder => :find_by_study
+    end
+  end
+
+  def index
+    index! do
+      redirect_to parent_path
     end
   end
 

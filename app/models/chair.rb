@@ -11,6 +11,10 @@ class Chair < ActiveRecord::Base
   def to_param
     self.slug
   end
+
+  def self_with_abbr
+    "#{self.name} (#{self.abbr})"
+  end
 end
 
 # == Schema Information

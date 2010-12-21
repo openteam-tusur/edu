@@ -3,7 +3,7 @@ Portal::Application.routes.draw do
                                         :sessions => 'users/sessions' }
 
   namespace :manage do
-    resources :chairs, :only => [:index, :show], :shallow => true do
+    resources :chairs, :only => [:index, :show] do
       resources :specialities do
         resources :curriculums do
           put :transit, :on => :member
@@ -16,6 +16,7 @@ Portal::Application.routes.draw do
     root :to => "chairs#index"
   end
 
-  root :to => "manage/chairs#index"
+  root :to => "chairs#index"
+  match ":id" => "chairs#show", :as => :chair
 end
 

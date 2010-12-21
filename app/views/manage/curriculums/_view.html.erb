@@ -1,21 +1,24 @@
-<%= show_for @plan_curriculum do |curriculum| %>
+<%= show_for resource do |curriculum| %>
   <%= curriculum.attributes :study, :duration %>
 <% end %>
 
-<%= link_to t(:edit), edit_manage_curriculum_path(@plan_curriculum) %>
+<%= link_to t(:edit), edit_resource_path(resource) %>
 
 <h2>Семестры</h2>
 <ul>
-  <% @plan_curriculum.semesters.each do |semester| %>
+  <% resource.semesters.each do |semester| %>
     <li>
-      <%= link_to semester.number, manage_semester_path(semester) %>
+      <%= link_to semester.number, manage_chair_speciality_curriculum_semester_path(@chair, @speciality, resource, semester) %>
     </li>
   <% end %>
 </ul>
-<%= link_to t('semester.add'), new_manage_curriculum_semester_path(@plan_curriculum) %>
+<%= link_to t('semester.add'), new_manage_chair_speciality_curriculum_semester_path(@chair, @speciality, resource) %>
 
 <h2>Учебный план</h2>
-<%= @plan_curriculum.state %>
-<% @plan_curriculum.aasm_events_for_current_state.each do |event| %>
-  <%= link_to t("curriculum.#{event}"), transit_manage_curriculum_path(@plan_curriculum, :event => event), :method => :put %>
+<%= resource.state %>
+<% resource.aasm_events_for_current_state.each do |event| %>
+  <%= link_to t("curriculum.#{event}"), transit_resource_path(:event => event), :method => :put %>
 <% end %>
+
+<h2>Вложения</h2>
+<%= link_to resource.attachment.data_file_name, resource.attachment.data.url if resource.attachment %>
