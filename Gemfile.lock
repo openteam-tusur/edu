@@ -26,19 +26,19 @@ GIT
     annotate (2.4.0)
 
 GIT
-  remote: git://github.com/lda/inherited_resources
-  revision: 92a9a6e80488e507d0954b2c087f9e87754ba4ee
-  specs:
-    inherited_resources (1.1.2)
-      has_scope (~> 0.5.0)
-      responders (~> 0.6.0)
-
-GIT
   remote: git://github.com/openteam/has_enum
   revision: 0e1f43fe6f2d956ef259a2ed79434479e40886d8
   specs:
     has_enum (0.3.4)
       rails (~> 3.0.0)
+
+GIT
+  remote: git://github.com/openteam/inherited_resources
+  revision: 3e99f6e7fba9afea84cb1eabf6bc728059b7f562
+  specs:
+    inherited_resources (1.1.2)
+      has_scope (~> 0.5.0)
+      responders (~> 0.6.0)
 
 GIT
   remote: git://github.com/rails/exception_notification

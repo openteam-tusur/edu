@@ -40,11 +40,11 @@ end
 #
 #  id            :integer         not null, primary key
 #  name          :string(255)     'Название'
-#  degree        :string(255)     'Степень'
-#  qualification :string(255)     'Квалификация'
+#  degree        :string(255)
+#  qualification :string(255)
 #  chair_id      :integer
 #  created_at    :datetime
 #  updated_at    :datetime
-#  code          :string(255)     'Код'
+#  code          :string(255)
 #
 

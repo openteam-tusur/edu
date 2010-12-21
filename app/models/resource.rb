@@ -14,14 +14,16 @@ class Resource < ActiveRecord::Base
     transitions :to => :published, :from => [:unpublished]
   end
 end
+
 # == Schema Information
 #
 # Table name: resources
+# Human name: Ресурс
 #
 #  id            :integer         not null, primary key
 #  name          :string(255)     'Название'
 #  state         :string(255)
-#  year          :integer
+#  year          :integer         'Год издания'
 #  curriculum_id :integer
 #  created_at    :datetime
 #  updated_at    :datetime

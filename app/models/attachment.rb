@@ -18,6 +18,7 @@ end
 # == Schema Information
 #
 # Table name: attachments
+# Human name: Вложение
 #
 #  id                :integer         not null, primary key
 #  data_uid          :string(255)
@@ -27,5 +28,6 @@ end
 #  data_content_type :string(255)
 #  data_updated_at   :datetime
 #  data_hash         :string(255)
+#  curriculum_id     :integer
 #
 
