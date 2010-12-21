@@ -19,3 +19,6 @@
 <% @plan_curriculum.aasm_events_for_current_state.each do |event| %>
   <%= link_to t("curriculum.#{event}"), transit_manage_curriculum_path(@plan_curriculum, :event => event), :method => :put %>
 <% end %>
+
+<h2>Вложения</h2>
+<%= link_to @plan_curriculum.attachment.data_file_name, @plan_curriculum.attachment.data.url %>

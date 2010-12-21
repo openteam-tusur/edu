@@ -60,3 +60,5 @@ gem 'aasm'
 gem 'devise'
 gem 'cancan'
 
+# file management
+gem 'paperclip'

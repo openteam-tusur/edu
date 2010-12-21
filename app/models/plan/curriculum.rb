@@ -8,6 +8,13 @@ class Plan::Curriculum < ActiveRecord::Base
                             :only_integer => true,
                             :on => :create
   belongs_to :speciality
+
+  has_one :attachment
+  accepts_nested_attributes_for :attachment, :reject_if => :all_blank
+  
+  has_one :resource
+  accepts_nested_attributes_for :resource, :reject_if => :all_blank
+  
   has_many :semesters, :class_name => "Plan::Semester"
 
   validates_presence_of :speciality, :study
