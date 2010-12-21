@@ -17,6 +17,5 @@ end
 #  data_content_type :string(255)
 #  data_updated_at   :datetime
 #  data_hash         :string(255)
-#  curriculum_id     :integer
 #
 
