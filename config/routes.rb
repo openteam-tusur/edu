@@ -15,6 +15,7 @@ Portal::Application.routes.draw do
     root :to => "chairs#index"
   end
 
-  root :to => "manage/chairs#index"
+  root :to => "chairs#index"
+  match ":id" => "chairs#show", :as => :chair
 end
 
