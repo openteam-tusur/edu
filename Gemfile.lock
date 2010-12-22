@@ -34,7 +34,7 @@ GIT
 
 GIT
   remote: git://github.com/openteam/inherited_resources
-  revision: 821020532ad6709ecfbd8982087905dfe83097f2
+  revision: d397e16e050234b6fbb89687ea1f31245322aa40
   specs:
     inherited_resources (1.1.2)
       has_scope (~> 0.5.0)

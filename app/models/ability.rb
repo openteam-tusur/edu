@@ -8,6 +8,8 @@ class Ability
       can :manage, :all
     end
 
+    can :manage, :human, :user_id => user.id
+
     can :read, :all
   end
 end
