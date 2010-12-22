@@ -46,7 +46,7 @@ end
 #  created_at    :datetime
 #  updated_at    :datetime
 #  state         :string(255)
+#  name          :string(255)     'Название'
 #  year          :integer
-#  curriculum_id :integer
 #
 
