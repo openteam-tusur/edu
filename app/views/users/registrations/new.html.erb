@@ -1,28 +1,22 @@
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+<%= semantic_form_for resource, :as => resource_name, :url => registration_path(resource_name) do |form| %>
   <%= devise_error_messages! %>
 
-  <% resource.build_human unless resource.human %>
-  <%= f.fields_for :human do |human_form| %>
-    <p><%= human_form.label :surname %><br />
-    <%= human_form.text_field :surname %></p>
-
-    <p><%= human_form.label :name %><br />
-    <%= human_form.text_field :name %></p>
-
-    <p><%= human_form.label :patronymic %><br />
-    <%= human_form.text_field :patronymic %></p>
+  <%= form.inputs do %>
+    <%= form.input :email %>
+    <%= form.input :password %>
+    <%= form.input :password_confirmation %>
   <% end %>
-
-  <p><%= f.label :email %><br />
-  <%= f.text_field :email %></p>
-
-  <p><%= f.label :password %><br />
-  <%= f.password_field :password %></p>
-
-  <p><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></p>
-
-  <p><%= f.submit "Зарегистрироваться" %></p>
+  <% resource.build_human unless resource.human %>
+  <%= form.semantic_fields_for :human do |human_form| %>
+    <%= human_form.inputs do %>
+      <%= human_form.input :surname %>
+      <%= human_form.input :name %>
+      <%= human_form.input :patronymic %>
+    <% end %>
+  <% end %>
+  <%= form.buttons do %>
+    <%= form.commit_button "Зарегистрироваться", :button_html => { :class => "button" } %>
+  <% end %>
 <% end %>
 
 <%= render :partial => "users/shared/links" %>

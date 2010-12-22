@@ -1,3 +1,13 @@
+=field-style
+  +arial_font_stack
+  border: 1px solid #999
+  +border-radius(2px)
+  background-color: #f5f5f5
+  padding: 4px 3px
+  &:focus
+    border-color: #555
+    background-color: #fff6d5
+
 .content
   .formtastic
     .inputs
@@ -6,8 +16,6 @@
         margin-bottom: 0
         abbr
           +inline-block
-          //color: #990000
-          //font-size: 22px
           cursor: help
           width: 6px
           height: 6px
@@ -15,15 +23,26 @@
           text-indent: -9999em
           background: transparent url("../images/required.png") no-repeat
           margin: 0 0 3px 3px
+        .string,
         .email,
         .password
           label
             display: block
             margin-bottom: 5px
+          input
+            +field-style
 
         .boolean
           input
             margin-right: 5px
+
+        .inline-errors
+          font-size: 11px
+          color: #990000
+          padding-left: 15px
+          background: transparent url("../images/inline_error_arrow.png") no-repeat 0 1px
+          margin: 2px 0 0 2px
+
     .buttons
       ol
         +clearfix
