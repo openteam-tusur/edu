@@ -2,13 +2,14 @@ require 'digest/md5'
 
 class Attachment < ActiveRecord::Base
   belongs_to :resource
-  
+
   has_attached_file :data
-  
+
   validates_attachment_content_type :data, :content_type => ['application/pdf']
-  
-  before_save :set_hash
-  
+  validates_uniqueness_of :data_hash
+
+  before_validation :set_hash
+
   private
   def set_hash
     self.data_hash = Digest::MD5.hexdigest(self.data_file_size.to_s)
