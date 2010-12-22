@@ -12,3 +12,4 @@ config/database.yml
 *.css
 .redcar
 *.pdf
+!spec/data/plan-210400.pdf
