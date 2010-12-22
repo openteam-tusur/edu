@@ -49,6 +49,7 @@
       </ul>
     </div>
     <div class="content">
+      <h1><%= show_title? ? yield(:title) : title_locale %></h1>
       <%= show_notice %>
       <%= render :partial => 'users/shared/has_been_started' %>
       <%= yield %>
