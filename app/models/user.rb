@@ -10,7 +10,9 @@ class User < ActiveRecord::Base
   default_scope order(:id)
 
   has_one :human
-  accepts_nested_attributes_for :human, :reject_if => :all_blank
+  accepts_nested_attributes_for :human,
+                                :reject_if => :all_blank,
+                                :update_only => true
 
   after_create :create_human
 
