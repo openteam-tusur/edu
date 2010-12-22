@@ -9,10 +9,11 @@ describe User do
     user.human.should_not be nil
   end
 
-  it 'должен знать свои роли' do
+  it 'должен знать свои подтвержденые роли' do
     user = Factory.create(:user)
     user.human.roles << Roles::Admin.new( :title => 'Администратор',
-                                          :slug => 'admin' )
+                                          :slug => 'admin',
+                                          :state => 'accepted' )
     user.roles.should eql [:admin]
   end
 end
