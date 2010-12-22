@@ -1,4 +1,7 @@
 ru:
+  human:
+    add: Добавить
+
   access_denied: Доступ запрещен
   formtastic:
     required: обязательно для заполения
@@ -49,6 +52,10 @@ ru:
     roles/students:
       new: Создание роли студента
 
+    manage/humans:
+      new: Создание профиля
+      edit: Редактирование профиля
+    
     humans:
       edit: Редактирование профиля
 

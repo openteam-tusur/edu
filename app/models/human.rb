@@ -6,7 +6,7 @@ class Human < ActiveRecord::Base
   def filled?
     !(surname.blank? && name.blank? && patronymic.blank?)
   end
-
+  
   has_many :students, :class_name => 'Roles::Student'
 end
 
