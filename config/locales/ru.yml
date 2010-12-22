@@ -4,6 +4,7 @@ ru:
     required: обязательно для заполения
     actions:
       create: "Создать %{model}"
+      update: "Сохранить %{model}"
 
   application: Научно-образовательный портал
 

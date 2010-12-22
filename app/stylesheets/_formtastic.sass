@@ -1,7 +1,7 @@
 =field-style
   +arial_font_stack
   border: 1px solid #999
-  +border-radius(2px)
+  +border-radius(3px)
   background-color: #f5f5f5
   padding: 4px 3px
   &:focus
@@ -23,13 +23,22 @@
           text-indent: -9999em
           background: transparent url("../images/required.png") no-repeat
           margin: 0 0 3px 3px
-        .string,
+        .date,
         .email,
-        .password
+        .password,
+        .string
           label
             display: block
             margin-bottom: 5px
           input
+            +field-style
+
+        .enum,
+        .select
+          label
+            display: block
+            margin-bottom: 5px
+          select
             +field-style
 
         .boolean
@@ -43,10 +52,38 @@
           background: transparent url("../images/inline_error_arrow.png") no-repeat 0 1px
           margin: 2px 0 0 2px
 
+    .pictorial
+      border: 1px solid #ccc
+      +border-radius(3px)
+      padding: 15px 15px 0 15px
+      margin-bottom: 15px
+      legend
+        font-size: 16px
+
     .buttons
       ol
         +clearfix
         margin-bottom: 0
       li
         float: left
-        margin-bottom: 0
+        margin: 0 15px 0 0
+        &.floatr
+          float: right
+          margin: 0 0 0 15px
+
+    .clearfix
+      +clearfix
+      margin-bottom: 0
+      fieldset
+        float: left
+      $three_width = 261px
+
+      .speciality_common_info
+        width: $three_width
+        margin-right: 20px
+      .speciality_licence
+        width: $three_width
+        margin-right: 20px
+      .speciality_accreditation
+        width: $three_width
+

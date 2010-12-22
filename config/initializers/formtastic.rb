@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 # Set the default text field size when input is a string. Default is 50.
 # Formtastic::SemanticFormBuilder.default_text_field_size = 50
 
@@ -11,7 +13,7 @@
 
 # Should select fields have a blank option/prompt by default?
 # Defaults to true.
-# Formtastic::SemanticFormBuilder.include_blank_for_select_by_default = true
+Formtastic::SemanticFormBuilder.include_blank_for_select_by_default = "--- не выбрано ---"
 
 # Set the string that will be appended to the labels/fieldsets which are required
 # It accepts string or procs and the default is a localized version of
@@ -55,10 +57,18 @@ Formtastic::SemanticFormBuilder.i18n_lookups_by_default = true
 # Formtastic::SemanticFormHelper.builder = MyCustomBuilder
 
 class Formtastic::SemanticFormBuilder
+
   def enum_input(method, options = {})
     value = @object.send(method)
     additional_params = {:as => :select, :collection => @object.class.values_for_select_tag(method)}
     self.input(method, options.merge(additional_params)).gsub(/class="select/, 'class="enum')
   end
-end
 
+  def date_input(method, options = {})
+    value = @object.send(method)
+    additional_params = {:as => :string}
+    additional_params.merge!(:input_html => { :value => I18n.localize(value)}) if value.is_a?(Date)
+    self.input(method, options.merge(additional_params)).gsub(/class="string/, 'class="date')
+  end
+
+end
