@@ -7,11 +7,5 @@ class HumansController < ApplicationController
 
   actions :edit, :update
 
-  def update
-    update! {
-      redirect_to cancel_url and return
-    }
-  end
-
 end
 
