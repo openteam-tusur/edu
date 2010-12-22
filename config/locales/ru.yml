@@ -74,6 +74,7 @@ ru:
     slug: Слаг
     access: Доступ к файлу
     state: Статус
+    resource_name: Название файла
     state_enum: &state_enum
       unpublished: Неопубликован
       published: Опубликован
