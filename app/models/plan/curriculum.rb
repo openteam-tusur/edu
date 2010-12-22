@@ -14,6 +14,8 @@ class Plan::Curriculum < Resource
 
   has_enum :study, %w[fulltime parttime postal]
 
+  default_scope order('study')
+
   after_create :create_semesters
 
   def to_param

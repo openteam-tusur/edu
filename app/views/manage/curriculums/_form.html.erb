@@ -2,6 +2,7 @@
   <%= form.enum_input :study %>
   <%= form.input :semesters_count if resource.new_record? %>
 
+  <%= form.input :resource_name %>
   <% resource.build_attachment unless resource.attachment %>
   <%= form.inputs resource.attachment.class.model_name.human,
                   :for => :attachment do |attachment_form| %>
