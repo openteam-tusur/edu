@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101222082108) do
+ActiveRecord::Schema.define(:version => 20101222085137) do
 
   create_table "attachments", :force => true do |t|
     t.string   "data_uid"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20101222082108) do
     t.string   "data_content_type"
     t.datetime "data_updated_at"
     t.string   "data_hash"
+    t.string   "resource_type"
   end
 
   create_table "chairs", :force => true do |t|

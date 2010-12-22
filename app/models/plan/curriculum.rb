@@ -6,6 +6,7 @@ class Plan::Curriculum < Resource
                             :only_integer => true,
                             :on => :create
   belongs_to :speciality
+  delegate :chair, :to => :speciality
 
   has_many :semesters, :class_name => "Plan::Semester"
 
