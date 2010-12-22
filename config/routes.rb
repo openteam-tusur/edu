@@ -2,9 +2,8 @@ Portal::Application.routes.draw do
   devise_for :users,  :controllers => { :registrations => "users/registrations",
                                         :sessions => 'users/sessions' }
 
-  resources :users do |user|
-    resource :human, :only => [:edit, :update]
-  end
+  resource :human, :only => [:show, :edit, :update]
+
 
   namespace :manage do
     resources :chairs, :only => [:index, :show] do

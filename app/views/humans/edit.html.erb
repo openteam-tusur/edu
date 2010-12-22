@@ -1,9 +1,8 @@
-<%= semantic_form_for resource, :url => resource_path do |form| %>
-<%= resource.inspect %>
+<%= semantic_form_for resource, :url => human_path do |form| %>
   <%= form.inputs :surname, :name, :patronymic %>
   <%= form.buttons do %>
     <%= form.commit_button :button_html => {:class => 'button'} %>
-    <li><%= link_to t(:cancel), :back, :class => "button light" %></li>
+    <li><%= link_to t(:cancel), cancel_url, :class => "button light" %></li>
   <% end %>
 <% end %>
 

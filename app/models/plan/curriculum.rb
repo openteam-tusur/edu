@@ -45,8 +45,9 @@ end
 #  speciality_id :integer
 #  created_at    :datetime
 #  updated_at    :datetime
-#  state         :string(255)
+#  state         :string(255)     'Статус'
 #  name          :string(255)     'Название'
 #  year          :integer
+#  access        :string(255)     'Доступ к файлу'
 #
 

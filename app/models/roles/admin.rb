@@ -13,5 +13,6 @@ end
 #  type       :string(255)
 #  created_at :datetime
 #  updated_at :datetime
+#  state      :string(255)     'Статус'
 #
 

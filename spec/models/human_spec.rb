@@ -5,7 +5,7 @@ end
 
 # == Schema Information
 #
-# Table name: humen
+# Table name: humans
 # Human name: Персональная информация
 #
 #  id         :integer         not null, primary key

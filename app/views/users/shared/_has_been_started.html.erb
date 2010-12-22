@@ -2,7 +2,7 @@
   <div class="get_started">
     <ul>
       <li <%= "style='text-decoration: line-through;'" if current_user.human.filled? %> >
-        <p><%= link_to 'Заполните', edit_user_human_path(current_user) %> Ваш профиль.</p>
+        <p><%= link_to 'Заполните', edit_human_path %> Ваш профиль.</p>
       </li>
 
       <li>
