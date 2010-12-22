@@ -29,5 +29,5 @@ admin.human.update_attributes( :name => 'Иван',
                                :surname => 'Иванов',
                                :patronymic => 'Иванович' )
 
-admin.human.roles << Roles::Admin.new(:title => 'Администратор', :slug => 'admin')
+admin.human.roles << Roles::Admin.new(:title => 'Администратор', :slug => 'admin', :state => :accepted)
 

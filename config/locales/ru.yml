@@ -1,6 +1,7 @@
 ru:
   access_denied: Доступ запрещен
   formtastic:
+    required: обязательно для заполения
     actions:
       create: "Создать %{model}"
 
@@ -35,6 +36,12 @@ ru:
 
     manage/specialities:
       new: Добавление специальности
+
+    users/registrations:
+      new: Регистрация
+
+    users/sessions:
+      new: Вход
 
   speciality:
     add: Добавить специальность
