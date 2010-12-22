@@ -42,8 +42,15 @@ ru:
       create: Вход
       new: Вход
       destroy: Выход
+
     users/registrations:
       new: Регистрация
+
+    roles/students:
+      new: Создание роли студента
+
+    humans:
+      edit: Редактирование профиля
 
   speciality:
     add: Добавить специальность

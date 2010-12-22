@@ -2,7 +2,12 @@ Portal::Application.routes.draw do
   devise_for :users,  :controllers => { :registrations => "users/registrations",
                                         :sessions => 'users/sessions' }
 
-  resource :human, :only => [:show, :edit, :update]
+  resource :human, :only => [:show, :edit, :update] do
+    namespace :roles do
+      resources :students
+      resources :teachers
+    end
+  end
 
 
   namespace :manage do
@@ -20,6 +25,7 @@ Portal::Application.routes.draw do
   end
 
   root :to => "chairs#index"
-  match ":id" => "chairs#show", :as => :chair
+  match "/:id" => "chairs#show", :as => :chair
+  match "/attachments/:id/download/" => "attachments#download"
 end
 

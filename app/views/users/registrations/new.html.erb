@@ -6,14 +6,7 @@
     <%= form.input :password %>
     <%= form.input :password_confirmation %>
   <% end %>
-  <% resource.build_human unless resource.human %>
-  <%= form.semantic_fields_for :human do |human_form| %>
-    <%= human_form.inputs do %>
-      <%= human_form.input :surname %>
-      <%= human_form.input :name %>
-      <%= human_form.input :patronymic %>
-    <% end %>
-  <% end %>
+
   <%= form.buttons do %>
     <%= form.commit_button "Зарегистрироваться", :button_html => { :class => "button" } %>
   <% end %>

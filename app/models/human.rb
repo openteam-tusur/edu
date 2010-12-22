@@ -1,5 +1,4 @@
 class Human < ActiveRecord::Base
-
   belongs_to :user
 
   has_many :roles
@@ -8,6 +7,7 @@ class Human < ActiveRecord::Base
     !(surname.blank? && name.blank? && patronymic.blank?)
   end
 
+  has_many :students, :class_name => 'Roles::Student'
 end
 
 # == Schema Information

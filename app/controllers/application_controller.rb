@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     flash[:alert] = exception.message
-    redirect_to :back
+    redirect_to :back, :status => 403 rescue redirect_to root_path, :status => 403
   end
 
   protected

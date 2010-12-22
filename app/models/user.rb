@@ -10,13 +10,14 @@ class User < ActiveRecord::Base
   default_scope order(:id)
 
   has_one :human
-  accepts_nested_attributes_for :human, :reject_if => :all_blank
+  accepts_nested_attributes_for :human,
+                                :reject_if => :all_blank,
+                                :update_only => true
 
   after_create :create_human
 
+  # Возвращает список ролей пользователя
   def roles
-    # Возвращает список ролей пользователя
-
     if human
       human.roles.accepted.collect { |r| r.slug.to_sym }
     else
