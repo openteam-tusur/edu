@@ -36,6 +36,11 @@ ru:
     manage/specialities:
       new: Добавление специальности
 
+    users/sessions:
+      create: Вход
+      new: Вход
+      destroy: Выход
+
   speciality:
     add: Добавить специальность
 
