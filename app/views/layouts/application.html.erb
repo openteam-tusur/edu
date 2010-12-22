@@ -6,7 +6,7 @@
   <title><%= show_title? ? yield(:title) : title_locale %> | <%= raw t("application") %></title>
   <%= favicon_link_tag %>
   <%= stylesheet_link_tag "screen" %>
-  <%= javascript_include_tag "jquery.min", "rails", "application" %>
+  <%= javascript_include_tag "jquery.min", "jquery.tipsy.min", "rails", "application" %>
   <!--[if IE 6]>
     <%= stylesheet_link_tag "ie6" %>
   <![endif]-->
@@ -28,7 +28,6 @@
       <h1 class="site_name"><%= link_to "Научно-образовательный портал", root_path %></h1>
     </div>
   </div>
-
   <div class="content_wrapper">
     <div class="main_menu">
       <div class="search_bar">
@@ -50,10 +49,8 @@
       </ul>
     </div>
     <div class="content">
-
-     <p class="notice"><%= notice %></p>
-     <p class="alert"><%= alert %></p>
-
+      <%= show_notice %>
+      <%= render :partial => 'users/shared/has_been_started' %>
       <%= yield %>
     </div>
   </div>
@@ -99,8 +96,8 @@
         </li>
       </ul>
       <div class="copyright">
-        <p class="openteam"><a href="http://openteam.ru/" title="Сделано с любовью OpenTeam">OpenTeam</a></p>
-        <p class="tusur"><a href="http://www.tusur.ru/" title="Томский государственный университет систем управления и радиоэлектроники">Томский государственный университет систем управления и радиоэлектроники</a></p>
+        <p class="openteam"><a href="http://openteam.ru/" title="Сделано с любовью OpenTeam" rel="tipsy">OpenTeam</a></p>
+        <p class="tusur"><a href="http://www.tusur.ru/" title="Томский государственный университет систем управления и радиоэлектроники" rel="tipsy">Томский государственный университет систем управления и радиоэлектроники</a></p>
         <p class="copy">&copy; Томский Государственнный Университет Систем Управления и Радиоэлектроники, 2010</p>
         <p class="issue"><a href="http://issues.openteam.ru/projects/tusur-portal/issues/new">Высказать пожелание или сообщить об ошибке</a></p>
       </div>

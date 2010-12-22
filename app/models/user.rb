@@ -7,8 +7,9 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
-  has_one :human
+  default_scope order(:id)
 
+  has_one :human
   accepts_nested_attributes_for :human, :reject_if => :all_blank
 
   after_create :create_human
@@ -21,6 +22,10 @@ class User < ActiveRecord::Base
     else
       []
     end
+  end
+
+  def has_been_started?
+    human.filled? #|| human.demands.empty?
   end
 
 end
