@@ -14,14 +14,8 @@ class User < ActiveRecord::Base
 
   after_create :create_human
 
-  # TODO: fix inherited_resource
-  def humans
-    [human]
-  end
-
+  # Возвращает список ролей пользователя
   def roles
-    # Возвращает список ролей пользователя
-
     if human
       human.roles.accepted.collect { |r| r.slug.to_sym }
     else

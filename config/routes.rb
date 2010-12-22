@@ -3,7 +3,10 @@ Portal::Application.routes.draw do
                                         :sessions => 'users/sessions' }
 
   resource :human, :only => [:show, :edit, :update] do
-    resources :roles
+    namespace :roles do
+      resources :students
+      resources :teachers
+    end
   end
 
 
