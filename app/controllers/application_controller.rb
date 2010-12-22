@@ -12,6 +12,11 @@ class ApplicationController < ActionController::Base
     redirect_to :back
   end
 
+  protected
+    def redirect_to_root_with_access_denied_message
+      redirect_to root_url, :alert => t( :access_denied )
+    end
+
   private
 
     def cancel_url
