@@ -54,7 +54,7 @@ gem 'inherited_resources_views'
 gem "protected_parent"
 
 # enumerations in models
-gem 'has_enum', :git => 'git://github.com/openteam/has_enum'
+gem 'has_enum', :git => 'git://github.com/openteam/has_enum', :tag => 'v0.4.0'
 
 gem 'aasm'
 gem 'devise'
