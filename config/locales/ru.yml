@@ -1,6 +1,7 @@
 ru:
   access_denied: Доступ запрещен
   formtastic:
+    required: обязательно для заполения
     actions:
       create: "Создать %{model}"
 

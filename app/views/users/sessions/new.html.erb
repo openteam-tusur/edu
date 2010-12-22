@@ -1,15 +1,14 @@
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <p><%= f.label :email %><br />
-  <%= f.text_field :email %></p>
-
-  <p><%= f.label :password %><br />
-  <%= f.password_field :password %></p>
-
-  <% if devise_mapping.rememberable? -%>
-    <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
-  <% end -%>
-
-  <p><%= f.submit "Войти" %></p>
+<%= semantic_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |form| %>
+  <%= form.inputs do %>
+    <%= form.input :email, :input_html => { :class => "focus_first" } %></p>
+    <%= form.input :password %></p>
+    <% if devise_mapping.rememberable? %>
+      <%= form.input :remember_me, :as => :boolean, :input_html => { :checked => false } %>
+    <% end %>
+  <% end %>
+  <%= form.buttons do %>
+    <%= form.commit_button :label => "Войти", :button_html => { :class => "button" } %>
+  <% end %>
 <% end %>
 
 <%= render :partial => "users/shared/links" %>
