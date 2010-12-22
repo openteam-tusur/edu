@@ -10,7 +10,8 @@ function flash() {
 
 $(function() {
   flash();
-  $('a[rel=tipsy]').tipsy({
+  $(".focus_first:first").focus();
+  $('a[rel=tipsy], .formtastic .inputs abbr').tipsy({
     gravity: 's'
   });
 });
