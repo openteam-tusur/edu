@@ -1,12 +1,13 @@
-<div class="clearfix">
-  <%= form.inputs "Общая информация",
-                  :class => "inputs pictorial speciality_common_info" do %>
-    <%= form.input :code, :input_html => { :class => "focus_first" } %>
-    <%= form.input :name %>
-    <%= form.input :qualification %>
-    <%= form.enum_input :degree %>
-  <% end %>
+<%= form.inputs :class => "inputs speciality_name" do %>
+  <%= form.input :code, :input_html => { :class => "focus_first" } %>
+  <%= form.input :name %>
+<% end %>
+<%= form.inputs :class => "inputs speciality_qualification" do %>
+  <%= form.enum_input :degree %>
+  <%= form.input :qualification %>
+<% end %>
 
+<div class="speciality_additional">
   <% @speciality.build_licence unless @speciality.licence %>
   <%= form.inputs @speciality.licence.class.model_name.human,
                   :for => :licence,

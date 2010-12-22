@@ -23,7 +23,6 @@
           text-indent: -9999em
           background: transparent url("../images/required.png") no-repeat
           margin: 0 0 3px 3px
-        .date,
         .email,
         .password,
         .string
@@ -31,6 +30,14 @@
             display: block
             margin-bottom: 5px
           input
+            +field-style
+
+        .date
+          label
+            display: block
+            margin-bottom: 5px
+          input
+            width: 110px
             +field-style
 
         .enum,
@@ -71,19 +78,46 @@
           float: right
           margin: 0 0 0 15px
 
-    .clearfix
+    .speciality_name
+      +clearfix
+      li
+        float: left
+      #speciality_code_input
+        margin-right: 20px
+      #speciality_code
+        width: 139px
+      #speciality_name
+        width: 745px
+
+    .speciality_qualification
+      +clearfix
+      li
+        float: left
+      #speciality_degree_input
+        margin-right: 20px
+      #speciality_degree
+        width: 147px
+      #speciality_qualification
+        width: 745px
+
+    .speciality_additional
       +clearfix
       margin-bottom: 0
       fieldset
         float: left
-      $three_width = 261px
+        +clearfix
+        li
+          float: left
 
-      .speciality_common_info
-        width: $three_width
-        margin-right: 20px
+      $two_width = 418px
+
       .speciality_licence
-        width: $three_width
+        width: $two_width
         margin-right: 20px
+        #speciality_licence_attributes_number_input
+          margin-right: 20px
       .speciality_accreditation
-        width: $three_width
+        width: $two_width
+        #speciality_accreditation_attributes_number_input
+          margin-right: 20px
 
