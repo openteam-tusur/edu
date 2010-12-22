@@ -1,9 +1,12 @@
 require 'digest/md5'
 
 class Attachment < ActiveRecord::Base
-  belongs_to :resource
+  belongs_to :resource, :polymorphic => true
 
-  has_attached_file :data
+
+  has_attached_file :data,
+                    :url  => '/attachments/:id-:resource_name/download',
+                    :path => ':rails_root/attachments/:chair_slug/:year/:resource_type/:resource_id-:filename'
 
   validates_attachment_content_type :data, :content_type => ['application/pdf']
   validates_uniqueness_of :data_hash

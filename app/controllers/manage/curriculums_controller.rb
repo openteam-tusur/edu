@@ -1,6 +1,6 @@
 class Manage::CurriculumsController < Manage::ApplicationController
 
-  load_and_authorize_resource
+  load_and_authorize_resource :class => Plan::Curriculum
 
   custom_actions :resource => [:transit, :delete]
 
@@ -12,7 +12,6 @@ class Manage::CurriculumsController < Manage::ApplicationController
     belongs_to :speciality, :finder => :find_by_slug
   end
 
-  helper_method :transit_resource_path
 
   def index
     index! do
