@@ -5,7 +5,7 @@ class Attachment < ActiveRecord::Base
 
 
   has_attached_file :data,
-                    :url  => '/attachments/:id/download',
+                    :url  => '/attachments/:id-:resource_name/download',
                     :path => ':rails_root/attachments/:chair_slug/:year/:resource_type/:resource_id-:filename'
 
   validates_attachment_content_type :data, :content_type => ['application/pdf']
