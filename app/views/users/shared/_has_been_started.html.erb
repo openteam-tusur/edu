@@ -1,4 +1,4 @@
-<% if current_user && current_user.has_been_started? %>
+<% if current_user && !current_user.has_been_started? %>
   <div class="get_started">
     <ul>
       <li <%= "style='text-decoration: line-through;'" if current_user.human.filled? %> >
