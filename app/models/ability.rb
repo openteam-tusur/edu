@@ -9,7 +9,10 @@ class Ability
     end
 
     can :manage, Human, :user_id => user.id
-
+    #can :download, :all
+    can :download, Attachment do |attachment|
+      attachment.resource.access.eql?("free")
+    end
     can :read, :all
   end
 end

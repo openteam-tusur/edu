@@ -20,6 +20,7 @@ Portal::Application.routes.draw do
   end
 
   root :to => "chairs#index"
-  match ":id" => "chairs#show", :as => :chair
+  match "/:id" => "chairs#show", :as => :chair
+  match "/attachments/:id/download/" => "attachments#download"
 end
 
