@@ -3,6 +3,7 @@ bin/
 db/*.sqlite3
 log/*.log
 tmp/**/*
+tmp/*
 
 config/database.yml
 .rake_tasks~
