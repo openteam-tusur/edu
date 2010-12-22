@@ -6,6 +6,7 @@ ru:
 
   application: Научно-образовательный портал
 
+  delete: Удалить
   destroy: Удалить
   edit: Редактировать
   cancel: Отмена
@@ -26,6 +27,9 @@ ru:
     standalone_month_names: [~, Январь, Февраль, Март, Апрель, Май, Июнь, Июль, Август, Сентябрь, Октябрь, Ноябрь, Декабрь]
 
   title:
+    chairs:
+      index: Кафедры
+
     manage/chairs:
       index: Кафедры
 

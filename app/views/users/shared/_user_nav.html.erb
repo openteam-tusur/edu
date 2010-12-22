@@ -1,7 +1,7 @@
 <div id="user_nav">
   <% if user_signed_in? %>
-          Вы вошли как  <%= current_user.email %>.
-    <%= link_to "Выход", destroy_user_session_path %>
+    <%= current_user.email %>
+    <%= link_to "Выход", destroy_user_session_path, :class => "sign_out" %>
   <% else %>
     <%= link_to "Регистрация", new_user_registration_path, :class => "sign_up" %> или
     <%= link_to "Вход", new_user_session_path, :class => "sign_in" %>

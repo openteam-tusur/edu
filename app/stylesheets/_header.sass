@@ -2,6 +2,13 @@
   background-color: rgba(235, 208, 203, 0.44)
   margin-bottom: 20px
 
+=iconize($image)
+  +inline-block
+  line-height: 16px
+  background: transparent url($image) no-repeat right
+  padding-right: 21px
+  margin-left: 3px
+
 .header
   width: 970px
   margin: 0 auto
@@ -39,16 +46,11 @@
     padding: 5px 10px 7px 10px
 
     .sign_in
-      +inline-block
-      line-height: 16px
-      background: transparent url("../images/icon_sign_in.png") no-repeat right
-      padding-right: 21px
-      margin-left: 3px
+      +iconize("../images/icon_sign_in.png")
 
     .sign_up
-      +inline-block
-      line-height: 16px
-      background: transparent url("../images/icon_sign_up.png") no-repeat right
-      padding-right: 21px
-      margin-right: 3px
+      +iconize("../images/icon_sign_up.png")
+
+    .sign_out
+      +iconize("../images/icon_sign_out.png")
 

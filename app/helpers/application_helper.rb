@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module ApplicationHelper
   def title_locale
     title(t("title.#{params[:controller]}.#{params[:action]}"), true)
@@ -18,11 +20,16 @@ module ApplicationHelper
   end
 
   def show_notice
-    content_tag :div, :class => "notice" do | div |
-      %w(notice alert).map do | field |
-        content_tag :p, controller.send(field), :class => field unless controller.send(field).blank?
-      end.join.html_safe
-    end
+    %w(notice alert).map do | field |
+      unless controller.send(field).blank?
+        content = ""
+        content_tag :div, :class => "flash_block #{field}" do | div |
+          content += link_to "закрыть", "#"
+          content += content_tag :p, controller.send(field)
+          content.html_safe
+        end
+      end
+    end.join.html_safe
   end
 
 end

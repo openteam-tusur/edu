@@ -1,4 +1,5 @@
 class Manage::ApplicationController < ApplicationController
+  load_and_authorize_resource
 
   inherit_resources
 
@@ -6,7 +7,9 @@ class Manage::ApplicationController < ApplicationController
 
   before_filter :verify_admin
 
-  private
+  helper_method :cancel_url
+
+private
 
   def verify_admin
     redirect_to root_url, :alert => t( :access_denied ) unless current_user && current_user.roles.include?(:admin)

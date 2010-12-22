@@ -1,0 +1,44 @@
+.flash_block
+  +inline-block
+  +border-radius(2px)
+  position: relative
+  padding: 10px 32px 10px 10px
+  a
+    position: absolute
+    top: 10px
+    right: 10px
+    display: block
+    float: right
+    width: 12px
+    height: 12px
+    overflow: hidden
+    text-indent: -9999em
+    background: transparent url("../images/cross.png") no-repeat
+    margin-left: 10px
+  p
+    margin-bottom: 0
+  &.alert
+    border: 1px solid #ffe169
+    background-color: #ffeeaa
+  &.notice
+    border: 1px solid #a5ff69
+    background-color: #ccffaa
+
+#error_explanation
+  +inline-block
+  +border-radius(2px)
+  position: relative
+  padding: 10px 32px 10px 10px
+  border: 1px solid #ffe169
+  background-color: #ffeeaa
+  h2
+    font-size: 12px
+    font-weight: bold
+    margin-bottom: 5px
+  ul
+    margin-bottom: 0
+  li
+    margin-bottom: 0
+    margin-left: 15px
+    list-style: disc
+
