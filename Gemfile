@@ -25,7 +25,6 @@ group :test do
   gem 'sqlite3-ruby', :require => 'sqlite3'
   gem 'capybara', :git => 'git://github.com/jnicklas/capybara'
   gem 'rr'
-  gem 'faker'
   gem 'launchy'
   gem 'factory_girl_rails'
 end
