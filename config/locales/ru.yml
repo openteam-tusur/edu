@@ -41,8 +41,12 @@ ru:
       create: Вход
       new: Вход
       destroy: Выход
+
     users/registrations:
       new: Регистрация
+
+    humans:
+      edit: Редактирование профиля
 
   speciality:
     add: Добавить специальность

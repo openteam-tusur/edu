@@ -14,6 +14,11 @@ class User < ActiveRecord::Base
 
   after_create :create_human
 
+  # TODO: fix inherited_resource
+  def humans
+    [human]
+  end
+
   def roles
     # Возвращает список ролей пользователя
 
