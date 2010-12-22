@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
     # Возвращает список ролей пользователя
 
     if human
-      human.roles.collect { |r| r.slug.to_sym }
+      human.roles.accepted.collect { |r| r.slug.to_sym }
     else
       []
     end

@@ -1,4 +1,4 @@
-class HumenController < ApplicationController
+class HumansController < ApplicationController
   load_and_authorize_resource
 
   acts_as_singleton!
