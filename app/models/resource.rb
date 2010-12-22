@@ -3,7 +3,7 @@ class Resource < ActiveRecord::Base
 
   include AASM
 
-  has_one :attachment
+  has_one :attachment, :as => :resource
   accepts_nested_attributes_for :attachment, :reject_if => :all_blank
   has_enum :access, %w[free restricted]
 

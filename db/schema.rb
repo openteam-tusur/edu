@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20101222105600) do
     t.string   "data_content_type"
     t.datetime "data_updated_at"
     t.string   "data_hash"
+    t.string   "resource_type"
   end
 
   create_table "chairs", :force => true do |t|
