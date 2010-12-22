@@ -1,9 +1,18 @@
-<% if current_user && !current_user.has_been_started? %>
+<% if current_user && current_user.has_been_started? %>
   <div class="get_started">
     <ul>
-      <li><a href='#'>Заполните</a> Ваш профиль.</li>
-      <li><a href='#'>Отправьте заявку,</a> для выбора роли.</li>
-      <li>Узнайте больше <a href='#'>о портале.</a></li>
+      <li <%= "style='text-decoration: line-through;'" if current_user.human.filled? %> >
+        <p><%= link_to 'Заполните', edit_user_human_path(current_user) %> Ваш профиль.</p>
+      </li>
+
+      <li>
+        <p><a href='#'>Отправьте заявку,</a> для выбора роли.</p>
+      </li>
+
+      <li>
+        <p>Узнайте больше <a href='#'>о портале.</a></p>
+      </li>
+
     </ul>
   </div>
 <% end %>

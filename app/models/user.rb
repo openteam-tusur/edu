@@ -10,7 +10,6 @@ class User < ActiveRecord::Base
   default_scope order(:id)
 
   has_one :human
-
   accepts_nested_attributes_for :human, :reject_if => :all_blank
 
   after_create :create_human
@@ -26,11 +25,7 @@ class User < ActiveRecord::Base
   end
 
   def has_been_started?
-    if !human.filled? #|| human.demands.empty?
-      false
-    else
-      true
-    end
+    human.filled? #|| human.demands.empty?
   end
 
 end

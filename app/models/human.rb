@@ -5,7 +5,7 @@ class Human < ActiveRecord::Base
   has_many :roles
 
   def filled?
-    surname.blank? && name.blank? && patronymic.blank?
+    !(surname.blank? && name.blank? && patronymic.blank?)
   end
 
 end
