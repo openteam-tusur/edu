@@ -2,7 +2,7 @@ class Manage::CurriculumsController < Manage::ApplicationController
 
   load_and_authorize_resource
 
-  custom_actions :resource => :transit
+  custom_actions :resource => [:transit, :delete]
 
   defaults :resource_class => Plan::Curriculum,
            :instance_name => :curriculum,

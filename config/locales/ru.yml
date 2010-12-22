@@ -65,6 +65,14 @@ ru:
     name: Название
     abbr: Аббревиатура
     slug: Слаг
+    access: Доступ к файлу
+    state: Статус
+    state_enum: &state_enum
+      unpublished: Неопубликован
+      published: Опубликован
+    access_enum: &access_enum
+      free: Свободный
+      restricted: Только для ТУСУРа
 
   activerecord:
     models:
@@ -92,7 +100,7 @@ ru:
         name: Имя
         patronymic: Отчество
         surname: Фамилия
-        speciality:
+      speciality:
         chair: Кафедра
         code: Код
         degree: Степень
@@ -123,8 +131,9 @@ ru:
             parttime: очно-заочная (вечерняя)
             postal: заочная
           state_enum:
-            unpublished: Неопубликован
-            published: Опубликован
+            <<: *state_enum
+          access_enum:
+            <<: *access_enum
         semester:
           number: Номер
         education:
