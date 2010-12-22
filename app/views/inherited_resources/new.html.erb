@@ -1,4 +1,4 @@
-<%= semantic_form_for resource_instance_name, resource, :url => collection_path, :html => { :multipart => true } do |form| %>
+<%= semantic_form_for resource, :as => resource_instance_name, :url => collection_path, :html => { :multipart => true } do |form| %>
   <%= form.error_messages %>
   <%= render :partial => "form", :object => form %>
   <%= form.buttons do %>
