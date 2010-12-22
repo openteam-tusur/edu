@@ -1,16 +1,14 @@
-<ul class="faculties">
-  <li class="line_wrapper">
-    <% @faculties.each_slice(5) do |fc| %>
-     <ul class="line">
-        <% fc.each do |faculty| %>
-          <li class="faculty_<%= faculty.slug %>">
-            <%= faculty.abbr %>
-            <% faculty.chairs.each do |chair| %>
-              <%= link_to chair.abbr, chair_path(chair) %>
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
-    <% end %>
-  </li>
-</ul>
+<div class="faculties">
+  <% @faculties.each_slice(5) do |fc| %>
+   <ul class="line">
+      <% fc.each do |faculty| %>
+        <li class="faculty <%= faculty.slug %>">
+          <h1><%= faculty.abbr %></h1>
+          <% faculty.chairs.each do |chair| %>
+            <p><%= link_to chair.abbr, chair_path(chair), :title => chair.name, :rel => "tipsy" %></p>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
