@@ -16,7 +16,11 @@ ru:
   delete: Удалить
   destroy: Удалить
   edit: Редактировать
-  cancel: Отмена
+  cancel: Отменить
+
+  noun_specialist: Специалитет
+  noun_master: Магистратура
+  noun_bachelor: Бакалавриат
 
   date:
     formats:

@@ -9,11 +9,10 @@ class Speciality < ActiveRecord::Base
   has_many :curriculums, :class_name => "Plan::Curriculum"
 
   has_one :licence, :class_name => "Plan::Licence"
-  accepts_nested_attributes_for :licence, :reject_if => :all_blank
+  accepts_nested_attributes_for :licence
 
   has_one :accreditation, :class_name => "Plan::Accreditation"
-  accepts_nested_attributes_for :accreditation, :reject_if => :all_blank
-
+  accepts_nested_attributes_for :accreditation
 
   has_enum :degree, %w[specialist master bachelor]
 
@@ -29,9 +28,7 @@ class Speciality < ActiveRecord::Base
     self.find_by_code_and_degree(*slug.split("-"))
   end
 
-
 end
-
 
 # == Schema Information
 #
