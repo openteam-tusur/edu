@@ -37,5 +37,7 @@ end
 #  created_at :datetime
 #  updated_at :datetime
 #  state      :string(255)     'Статус'
+#  group      :string(255)
+#  birthday   :date
 #
 

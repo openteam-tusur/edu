@@ -45,7 +45,7 @@ end
 #  created_at    :datetime
 #  updated_at    :datetime
 #  state         :string(255)     'Статус'
-#  name          :string(255)     'Название'
+#  resource_name :string(255)     'Название файла'
 #  year          :integer
 #  access        :string(255)     'Доступ к файлу'
 #
