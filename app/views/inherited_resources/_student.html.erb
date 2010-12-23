@@ -1,4 +1,5 @@
 <li>
   <%= "#{student.title} гр.#{student.group} &ndash; ".html_safe + I18n.t("role.#{student.state}") %>
+  <%= link_to t(:edit), edit_manage_role_path(student) if can? :manage, student %>
 </li>
 
