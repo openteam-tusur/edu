@@ -70,6 +70,9 @@ ru:
       new: Создание профиля
       edit: Редактирование профиля
 
+    manage/roles:
+      edit: Редактирование роли
+
     humans:
       edit: Редактирование профиля
 
@@ -119,6 +122,9 @@ ru:
         education: Дисциплина
         licence: Лицензия
         semester: Семестр
+      roles:
+        student: Роль студента
+        teacher: Роль преподавателя
       speciality: Специальность
       user: Пользователь
       resource: Ресурс
