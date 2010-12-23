@@ -1,7 +1,4 @@
 <%= semantic_form_for resource, :url => human_roles_students_path do |form| %>
-  <%= form.inputs :group, :birthday %>
-  <%= form.buttons do %>
-    <%= form.commit_button %>
-  <% end %>
+  <%= render :partial => 'roles/students/form', :object => form %>
 <% end %>
 

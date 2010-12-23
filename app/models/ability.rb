@@ -8,8 +8,8 @@ class Ability
     end
 
     can :manage, Human, :user_id => user.id
-    can :create, Roles::Student
-    can :create, Roles::Teacher
+    can :manage, Roles::Student, :human_id => user.human.id if user.human
+    can :manage, Roles::Teacher, :human_id => user.human.id if user.human
 
     can :download, Attachment do |attachment|
       attachment.resource.access_free?

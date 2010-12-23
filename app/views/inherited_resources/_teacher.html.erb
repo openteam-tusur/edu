@@ -1,4 +1,5 @@
 <li>
   <%= "#{teacher.post} каф.#{teacher.chair.abbr} &ndash; ".html_safe + I18n.t("role.#{teacher.state}") %>
+  <%= link_to 'Редактировать', edit_human_roles_teacher_path(teacher) %>
 </li>
 
