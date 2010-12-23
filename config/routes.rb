@@ -13,7 +13,6 @@ Portal::Application.routes.draw do
     resources :humans, :shallow => true do
       resources :roles
     end
-
     resources :chairs, :only => [:index, :show] do
       resources :specialities do
         resources :curriculums do
