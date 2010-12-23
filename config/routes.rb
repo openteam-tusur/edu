@@ -10,7 +10,9 @@ Portal::Application.routes.draw do
   end
 
   namespace :manage do
-    resources :humans
+    resources :humans, :shallow => true do
+      resources :roles
+    end
     resources :chairs, :only => [:index, :show] do
       resources :teachers
       resources :specialities do
@@ -23,7 +25,6 @@ Portal::Application.routes.draw do
       end
     end
 
-    resources :roles
     root :to => "chairs#index"
   end
 

@@ -4,11 +4,12 @@ ru:
 
   access_denied: Доступ запрещен
   fill_human: Вы не можете  выполнить действие, пока не заполните профиль
+  can_not_edit: Вы не можете редактировать, создайте новую роль
   formtastic:
     required: обязательно для заполения
     actions:
-      create: "Создать %{model}"
-      update: "Сохранить %{model}"
+      create: "Создать"
+      update: "Сохранить"
 
   application: Научно-образовательный портал
 
@@ -47,6 +48,7 @@ ru:
 
     manage/specialities:
       new: Добавление специальности
+      edit: Изменение специальности
 
     users/sessions:
       create: Вход
@@ -58,13 +60,18 @@ ru:
 
     roles/students:
       new: Создание роли студента
+      edit: Редактирование роли студента
 
     roles/teachers:
       new: Создание роли преподавателя
+      edit: Редактирование роли преподавателя
 
     manage/humans:
       new: Создание профиля
       edit: Редактирование профиля
+
+    manage/roles:
+      edit: Редактирование роли
 
     humans:
       edit: Редактирование профиля
@@ -115,6 +122,9 @@ ru:
         education: Дисциплина
         licence: Лицензия
         semester: Семестр
+      roles:
+        student: Роль студента
+        teacher: Роль преподавателя
       speciality: Специальность
       user: Пользователь
       resource: Ресурс

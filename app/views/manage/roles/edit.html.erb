@@ -1,8 +1,5 @@
-<%= semantic_form_for resource.human, :url => manage_human_path(resource.human) do |form| %>
-  <%= form.inputs :surname, :name, :patronymic %>
-  <% form.inputs :for => "#{resource.class.to_s.underscore.gsub('roles/', '').pluralize}" do |role| %>
-    <%= render :partial => "#{resource.class.to_s.underscore.gsub('roles/', '')}_fields", :locals => { :role => role } %>
-  <% end %>
+<%= semantic_form_for resource, :as => :role, :url => manage_role_path do |form| %>
+  <%= render :partial => "#{resource.class.to_s.underscore.gsub('roles/', '')}_fields", :locals => {:form => form} %>
   <%= form.buttons do %>
     <%= form.commit_button %>
   <% end %>
