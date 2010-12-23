@@ -36,8 +36,11 @@ ru:
   role:
     pending:  На рассмотрении
     rejected: Отклонено
+    reject: Отклонить
     accepted: Утверждено
+    accept: Утвердить
     expired:  Просрочено
+    expire: Закончить срок действия
 
   title:
     chairs:

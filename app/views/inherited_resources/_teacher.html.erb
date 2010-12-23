@@ -2,6 +2,21 @@
   <%= "#{teacher.post} каф.#{teacher.chair.abbr} &ndash; ".html_safe + I18n.t("role.#{teacher.state}") %>
   <% if current_user.roles.include?(:admin) %>
     <%= link_to t(:edit), edit_manage_role_path(teacher) if can? :manage, teacher %>
+
+    <% unless teacher.aasm_events_for_current_state.empty? %>
+      <h4>Перевести в состояние</h4>
+      <ul>
+        <% teacher.aasm_events_for_current_state.each do |event| %>
+          <li>
+            <%= link_to(t("role.#{event}"), transit_manage_role_path(teacher,
+                                                    :event => event),
+                                                    :class => event,
+                                                    :method => :put) %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+
   <% else %>
     <%= link_to t(:edit), edit_human_roles_teacher_path(teacher) %>
   <% end %>

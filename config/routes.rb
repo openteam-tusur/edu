@@ -11,7 +11,9 @@ Portal::Application.routes.draw do
 
   namespace :manage do
     resources :humans, :shallow => true do
-      resources :roles
+      resources :roles do
+        put :transit, :on => :member
+      end
     end
     resources :chairs, :only => [:index, :show] do
       resources :specialities do
