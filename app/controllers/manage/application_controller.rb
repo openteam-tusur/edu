@@ -1,5 +1,7 @@
 class Manage::ApplicationController < ApplicationController
 
+  layout "manage"
+
   inherit_resources
 
   custom_actions :resource => :delete
