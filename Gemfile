@@ -62,3 +62,5 @@ gem 'cancan'
 
 # file management
 gem 'paperclip'
+
+gem "default_value_for"

@@ -1,4 +1,5 @@
 class Roles::Admin < Role
+  default_values :title => 'Администратор', :slug => 'admin'
 end
 
 

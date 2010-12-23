@@ -4,3 +4,11 @@
 
 <%= link_to 'Я являюсь студентом', new_human_roles_student_path, :class => :button %>
 
+<% unless resource.roles.empty? %>
+  <ul>
+    <% resource.roles.each do |role| %>
+      <li><%= role.title %> &ndash; <%= role.state %></li>
+    <% end %>
+  </ul>
+<% end %>
+
