@@ -11,6 +11,7 @@ Portal::Application.routes.draw do
 
 
   namespace :manage do
+    resources :humans
     resources :chairs, :only => [:index, :show] do
       resources :specialities do
         resources :curriculums do

@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git://github.com/jnicklas/capybara
-  revision: 7abde0226c433b6a5462fe5d0e1b8cca38583133
+  revision: e514f2e99cceb3db5be2a6fef8fdfd9a2cb74e2d
   specs:
     capybara (0.4.0)
       celerity (>= 0.7.9)
@@ -27,10 +27,11 @@ GIT
 
 GIT
   remote: git://github.com/openteam/has_enum
-  revision: 0e1f43fe6f2d956ef259a2ed79434479e40886d8
+  revision: b49619ad11a92cbc1c5106cfe3cf0178dbfed612
+  tag: v0.4.0
   specs:
-    has_enum (0.3.4)
-      rails (~> 3.0.0)
+    has_enum (0.4.0)
+      rails (~> 3.0.3)
 
 GIT
   remote: git://github.com/openteam/inherited_resources
@@ -85,7 +86,7 @@ GEM
     builder (2.1.2)
     cancan (1.4.1)
     celerity (0.8.6)
-    childprocess (0.1.4)
+    childprocess (0.1.6)
       ffi (~> 0.6.3)
     compass (0.10.6)
       haml (>= 3.0.4)
@@ -181,8 +182,8 @@ GEM
     ruby-graphviz (0.9.20)
     rubyzip (0.9.4)
     russian (0.2.7)
-    selenium-webdriver (0.1.1)
-      childprocess (= 0.1.4)
+    selenium-webdriver (0.1.2)
+      childprocess (~> 0.1.5)
       ffi (~> 0.6.3)
       json_pure
       rubyzip

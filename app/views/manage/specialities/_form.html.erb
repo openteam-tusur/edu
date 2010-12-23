@@ -1,17 +1,26 @@
-<%= form.inputs do %>
+<%= form.inputs :class => "inputs speciality_name" do %>
+  <%= form.input :code, :input_html => { :class => "focus_first" } %>
+  <%= form.input :name %>
+<% end %>
+<%= form.inputs :class => "inputs speciality_qualification" do %>
+  <%= form.enum_input :degree %>
+  <%= form.input :qualification %>
+<% end %>
+
+<div class="speciality_additional">
   <% @speciality.build_licence unless @speciality.licence %>
   <%= form.inputs @speciality.licence.class.model_name.human,
-                  :for => :licence do |licence_form| %>
-    <%= licence_form.inputs :number, :issued_at %>
+                  :for => :licence,
+                  :class => "inputs pictorial speciality_licence" do |licence_form| %>
+    <%= licence_form.input :number %>
+    <%= licence_form.date_input :issued_at %>
   <% end %>
 
   <% @speciality.build_accreditation unless @speciality.accreditation %>
   <%= form.inputs @speciality.accreditation.class.model_name.human,
-                  :for => :accreditation do |accreditation_form| %>
-    <%= accreditation_form.inputs :number, :issued_at %>
+                  :for => :accreditation,
+                  :class => "inputs pictorial speciality_accreditation" do |accreditation_form| %>
+    <%= accreditation_form.input :number %>
+    <%= accreditation_form.date_input :issued_at %>
   <% end %>
-
-  <%= form.inputs :code, :name, :qualification %>
-  <%= form.enum_input :degree %>
-<% end %>
-
+</div>

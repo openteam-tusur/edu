@@ -1,9 +1,13 @@
 ru:
+  human:
+    add: Добавить
+
   access_denied: Доступ запрещен
   formtastic:
     required: обязательно для заполения
     actions:
       create: "Создать %{model}"
+      update: "Сохранить %{model}"
 
   application: Научно-образовательный портал
 
@@ -48,6 +52,10 @@ ru:
     roles/students:
       new: Создание роли студента
 
+    manage/humans:
+      new: Создание профиля
+      edit: Редактирование профиля
+    
     humans:
       edit: Редактирование профиля
 

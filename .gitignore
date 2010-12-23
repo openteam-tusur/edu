@@ -3,6 +3,7 @@ bin/
 db/*.sqlite3
 log/*.log
 tmp/**/*
+tmp/*
 
 config/database.yml
 .rake_tasks~
@@ -11,3 +12,4 @@ config/database.yml
 *.css
 .redcar
 *.pdf
+!spec/data/plan-210400.pdf
