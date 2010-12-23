@@ -1,5 +1,9 @@
 <li>
-  <%= "#{teacher.title} каф.#{teacher.chair.abbr} &ndash; ".html_safe + I18n.t("role.#{teacher.state}") %>
-  <%= link_to t(:edit), edit_manage_role_path(teacher) if can? :manage, teacher %>
+  <%= "#{teacher.post} каф.#{teacher.chair.abbr} &ndash; ".html_safe + I18n.t("role.#{teacher.state}") %>
+  <% if current_user.roles.include?(:admin) %>
+    <%= link_to t(:edit), edit_manage_role_path(teacher) if can? :manage, teacher %>
+  <% else %>
+    <%= link_to t(:edit), edit_human_roles_teacher_path(teacher) %>
+  <% end %>
 </li>
 

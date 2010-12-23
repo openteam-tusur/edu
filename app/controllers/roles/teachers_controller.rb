@@ -13,5 +13,9 @@ class Roles::TeachersController < RolesController
   def new
     redirect_to human_path, :alert => t(:fill_human) unless current_user.human.filled?
   end
+
+  def update
+    update! { human_path}
+  end
 end
 
