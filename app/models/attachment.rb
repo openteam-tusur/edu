@@ -32,5 +32,6 @@ end
 #  data_content_type :string(255)
 #  data_updated_at   :datetime
 #  data_hash         :string(255)
+#  resource_type     :string(255)
 #
 
