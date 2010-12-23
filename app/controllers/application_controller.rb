@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::Base
+
+  layout "user"
+
   inherit_resources
 
   protect_from_forgery
@@ -12,12 +15,13 @@ class ApplicationController < ActionController::Base
     redirect_to :back, :status => 403 rescue redirect_to root_path, :status => 403
   end
 
-  protected
+protected
+
     def redirect_to_root_with_access_denied_message
       redirect_to root_url, :alert => t( :access_denied )
     end
 
-  private
+private
 
     def cancel_url
       return redirect_to_url unless params[:action] == "new"
