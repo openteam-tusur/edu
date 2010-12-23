@@ -47,6 +47,7 @@ ru:
 
     manage/specialities:
       new: Добавление специальности
+      edit: Изменение специальности
 
     users/sessions:
       create: Вход

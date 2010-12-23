@@ -13,4 +13,9 @@
     <%= render_navigation :level => 1, :context => "manage" %>
   </div>
 <% end %>
+<% content_for :baeadcrumbs do %>
+  <div class="baeadcrumbs">
+    <%= render_navigation :context => "manage_breadcrumbs", :renderer => :breadcrumbs, :join_with => " &raquo; " %>
+  </div>
+<% end %>
 <%= render :file => 'layouts/application' %>
