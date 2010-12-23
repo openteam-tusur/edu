@@ -59,6 +59,9 @@ ru:
     roles/students:
       new: Создание роли студента
 
+    roles/teachers:
+      new: Создание роли преподавателя
+
     manage/humans:
       new: Создание профиля
       edit: Редактирование профиля
@@ -122,6 +125,13 @@ ru:
         data: Выберите файл
       resource:
         year: Год издания
+      roles:
+        student:
+          group: Группа
+          birthday: Дата рождения
+        teacher:
+          chair: Кафедра
+          post: Должность
       human:
         name: Имя
         patronymic: Отчество
