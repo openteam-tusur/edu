@@ -16,6 +16,21 @@ describe User do
                                           :state => 'accepted' )
     user.roles.should eql [:admin]
   end
+
+  it 'не показывается уведомление если заполнен профиль и есть заявка' do
+    user = Factory.create(:user)
+    user.has_been_started?.should be false
+
+    user.human.update_attributes(
+      :surname => 'surname',
+      :name => 'name',
+      :patronymic => 'patronymic'
+    )
+    user.reload.has_been_started?.should be false
+
+    user.human.students.create(:group => '425', :birthday => Date.today)
+    user.reload.has_been_started?.should be true
+  end
 end
 
 

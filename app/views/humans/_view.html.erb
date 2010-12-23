@@ -3,6 +3,7 @@
 <% end %>
 
 <%= link_to 'Я являюсь студентом', new_human_roles_student_path, :class => :button %>
+<%= link_to 'Я являюсь преподавателем', new_human_roles_teacher_path, :class => :button %>
 
 <% unless resource.roles.empty? %>
   <ul>

@@ -9,6 +9,7 @@ class Ability
 
     can :manage, Human, :user_id => user.id
     can :create, Roles::Student
+    can :create, Roles::Teacher
 
     can :download, Attachment do |attachment|
       attachment.resource.access_free?

@@ -4,10 +4,11 @@ class Human < ActiveRecord::Base
   has_many :roles
 
   def filled?
-    !(surname.blank? && name.blank? && patronymic.blank?)
+    !(surname.blank? || name.blank? || patronymic.blank?)
   end
-  
+
   has_many :students, :class_name => 'Roles::Student'
+  has_many :teachers, :class_name => 'Roles::Teacher'
 end
 
 # == Schema Information

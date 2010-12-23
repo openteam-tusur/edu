@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   end
 
   def has_been_started?
-    human.filled? || human.roles.empty?
+    human.filled? && !human.roles.empty?
   end
 
 end

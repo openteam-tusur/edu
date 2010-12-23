@@ -19,5 +19,7 @@ end
 #  state      :string(255)     'Статус'
 #  group      :string(255)
 #  birthday   :date
+#  chair_id   :integer
+#  post       :string(255)
 #
 

@@ -2,6 +2,7 @@ class Role < ActiveRecord::Base
   include AASM
 
   belongs_to :human
+  belongs_to :chair
 
   aasm_column :state
 
@@ -39,5 +40,7 @@ end
 #  state      :string(255)     'Статус'
 #  group      :string(255)
 #  birthday   :date
+#  chair_id   :integer
+#  post       :string(255)
 #
 

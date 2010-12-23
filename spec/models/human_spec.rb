@@ -1,6 +1,21 @@
+# encoding: utf-8
+
 require 'spec_helper'
 
 describe Human do
+  it 'должен правильно определять заполненность' do
+    human = Factory.create(:human)
+    human.filled?.should be false
+
+    human.update_attributes(:surname => 'surname')
+    human.reload.filled?.should be false
+
+    human.update_attributes(:name => 'name')
+    human.reload.filled?.should be false
+
+    human.update_attributes(:patronymic => 'patronymic')
+    human.reload.filled?.should be true
+  end
 end
 
 # == Schema Information

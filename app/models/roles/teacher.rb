@@ -1,11 +1,10 @@
 # encoding: utf-8
 
-class Roles::Student < Role
-  validates_presence_of :group, :birthday
-  validates_uniqueness_of :group, :scope => [:human_id, :state]
+class Roles::Teacher < Role
+  validates_presence_of :chair, :post
+  validates_uniqueness_of :chair_id, :scope => :human_id
 
-  default_values :title => 'Студент', :slug => 'student'
-
+  default_values :title => 'Преподаватель', :slug => 'teacher'
 end
 
 
