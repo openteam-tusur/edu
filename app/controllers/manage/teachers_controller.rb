@@ -2,13 +2,15 @@ class Manage::TeachersController < Manage::ApplicationController
 
   load_and_authorize_resource :class => Human
 
+  actions :all, :except => [:show]
+
   defaults :resource_class => Human,
            :instance_name => 'teacher'
 
   belongs_to :chair, :finder => :find_by_slug
 
   def new
-    @teacher = Human.new
+    @teacher = Human.new(:chair_id => @chair.id)
   end
 
   def create
