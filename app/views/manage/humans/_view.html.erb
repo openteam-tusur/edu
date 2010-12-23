@@ -1,4 +1,10 @@
 <%= show_for resource do |res| %>
   <%= res.attributes :surname, :patronymic, :name %>
 <% end %>
+
+<ul>
+  <%= render resource.roles %>
+</il>
+
 <%= link_to t(:edit), edit_resource_path %>
+

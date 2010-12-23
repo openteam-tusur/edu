@@ -9,6 +9,7 @@ class Human < ActiveRecord::Base
 
   has_many :students, :class_name => 'Roles::Student'
   has_many :teachers, :class_name => 'Roles::Teacher'
+  accepts_nested_attributes_for :students, :teachers
 end
 
 # == Schema Information
