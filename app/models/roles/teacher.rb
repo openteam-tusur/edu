@@ -2,7 +2,7 @@
 
 class Roles::Teacher < Role
   validates_presence_of :chair, :post
-  validates_uniqueness_of :chair_id, :scope => :human_id
+  validates_uniqueness_of :chair_id, :scope => [:human_id, :state]
 
   default_values :title => 'Преподаватель', :slug => 'teacher'
 end

@@ -4,7 +4,7 @@ class Role < ActiveRecord::Base
   belongs_to :human
   belongs_to :chair
 
-  default_scope order(:id)
+  default_scope order('id desc')
 
   aasm_column :state
 
