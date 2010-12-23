@@ -8,8 +8,8 @@ ru:
   formtastic:
     required: обязательно для заполения
     actions:
-      create: "Создать %{model}"
-      update: "Сохранить %{model}"
+      create: "Создать"
+      update: "Сохранить"
 
   application: Научно-образовательный портал
 
