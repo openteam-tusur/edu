@@ -1,5 +1,10 @@
 <% title @chair.name %>
 
-<p><%= link_to 'Специальности и направления подготовки', manage_chair_specialities_path(@chair) %></p>
+<h2>Специальности и направления подготовки</h2>
+<% @chair.specialities.each do |speciality| %>
+  <p><%= link_to speciality.name, manage_chair_speciality_path(speciality.chair, speciality) %></p>
+<% end %>
+<p><%= link_to "Добавить специальность", new_manage_chair_speciality_path(@chair) %></p>
+
 <p><%= link_to 'Добавить персональную информацию(?)', manage_humans_path(@human) %></p>
 
