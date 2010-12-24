@@ -57,6 +57,9 @@ ru:
       new: Вход
       destroy: Выход
 
+    users/passwords:
+      new: Восстановление пароля
+
     users/registrations:
       new: Регистрация
 
