@@ -1,5 +1,6 @@
+<% title @curriculum.title %>
 <%= show_for resource do |curriculum| %>
-  <%= curriculum.attributes :study, :duration %>
+  <%= curriculum.attributes :duration %>
 <% end %>
 
 <%= render :partial => "manage/common/resource", :locals => { :resource => resource } %>

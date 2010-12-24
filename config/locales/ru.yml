@@ -79,6 +79,7 @@ ru:
     manage/curriculums:
       new: Добавление учебного плана
       edit: Изменение учебного плана
+      delete: Удаление учебного плана
 
     manage/teachers:
       index: Сотрудники кафедры
