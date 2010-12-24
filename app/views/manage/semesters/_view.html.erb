@@ -4,6 +4,7 @@
 <table style="border: 1px solid #000;">
   <tr>
     <th rowspan="3">Дисциплина</th>
+    <th rowspan="3">Кафедра</th>
     <th colspan="7">Нагрузка</th>
     <th rowspan="3">Форма контроля</th>
     <th rowspan="3">управление</th>
@@ -24,6 +25,7 @@
   <% resource.educations.each do |education| %>
     <tr>
       <td><%= education.discipline.name %></td>
+      <td><%= link_to education.chair.abbr, manage_chair_path(education.chair) %></td>
       <td><%= education.summ_loading %></td>
       <td><%= education.loading_lecture %></td>
       <td><%= education.loading_laboratory %></td>
