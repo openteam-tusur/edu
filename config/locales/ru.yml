@@ -229,6 +229,7 @@ ru:
           loading_self_training: Самостоятельная работа
           examinations: Форма контроля
           chair: Обеспечивающая кафедра
+          work_programm: Рабочая программа
       work_programm:
         title: Название
         year: Год издания
