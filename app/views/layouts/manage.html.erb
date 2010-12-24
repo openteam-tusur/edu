@@ -15,7 +15,7 @@
 <% end %>
 <% content_for :baeadcrumbs do %>
   <div class="baeadcrumbs">
-    <%= render_navigation :context => "manage_breadcrumbs", :renderer => :breadcrumbs, :join_with => " &raquo; " %>
+    <%= render_navigation :context => "manage_breadcrumbs", :renderer => :breadcrumbs, :join_with => " <span class='black'>&rarr;</span> " %>
   </div>
 <% end %>
 <%= render :file => 'layouts/application' %>

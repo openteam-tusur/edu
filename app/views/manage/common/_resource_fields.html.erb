@@ -1,11 +1,10 @@
 <%= form.input :resource_name %>
 <%= form.input :year %>
+<%= form.enum_input :access %>
 <% resource.build_attachment unless resource.attachment %>
 <li>
-  <%= form.inputs resource.attachment.class.model_name.human,
-                  :for => :attachment do |attachment_form| %>
+  <%= form.inputs :for => :attachment do |attachment_form| %>
     <%= attachment_form.input :data, :as => :file %>
   <% end %>
 </li>
-<%= form.enum_input :access %>
 
