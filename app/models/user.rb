@@ -29,6 +29,11 @@ class User < ActiveRecord::Base
     human.filled? && !human.roles.empty?
   end
 
+  def full_name
+    "#{human.surname} #{human.name}" if human.filled?
+  end
+
+
 end
 
 # == Schema Information

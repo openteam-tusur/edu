@@ -1,0 +1,25 @@
+mailer: &mailer
+  delivery_method: :test
+  admin_email: mail@openteam.ru
+  default_url_options:
+    host: portal.tusur.ru
+  smtp_settings:
+    address:              mail.openteam.ru
+    domain:               portal.tusur.ru
+    enable_starttls_auto: false
+
+production:
+  mailer:
+    <<: *mailer
+
+development:
+  mailer:
+    <<: *mailer
+    default_url_options:
+      host: "localhost:3000"
+
+test:
+  mailer:
+    <<: *mailer
+    delivery_method: test
+

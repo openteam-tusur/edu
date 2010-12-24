@@ -4,6 +4,8 @@ class RolesController < ApplicationController
 
   def create
       create! { human_path }
+      mail = RoleMailer.role_notification(resource)
+      mail.deliver!
   end
 
   def new
