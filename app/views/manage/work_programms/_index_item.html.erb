@@ -1,0 +1,4 @@
+<div>
+  <%= link_to item.title, manage_chair_work_programm_path(@chair, item) %>
+  <%= render :partial => "manage/common/resource", :locals => { :resource => item } %>
+</div>
