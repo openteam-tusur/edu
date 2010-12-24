@@ -1,12 +1,6 @@
 <div>
   <h2>Отправлена измененная заявка</h2>
   <p>Пользователь <%= @role.human.user.full_name %> изменил заявку на роль <%= @role.title %></p>
-  <% @role.aasm_events_for_current_state.each do |event| %>
-
-    <%#= link_to(t("role.#{event}"), transit_manage_role_path(@role,
-                                            :event => event),
-                                            :method => :put) %>
-
-  <% end %>
+  <p>Чтобы обработать заявку пройдите по ссылке на <%= link_to "профиль", manage_human_url(@role.human) %></p>
 </div>
 
