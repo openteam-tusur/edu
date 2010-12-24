@@ -5,6 +5,8 @@ class Manage::EducationsController < Manage::ApplicationController
   defaults :resource_class => Plan::Education,
            :instance_name => 'education'
 
+  actions :all, :except => [:show, :index]
+
   belongs_to :chair, :finder => :find_by_slug do
     belongs_to :speciality, :finder => :find_by_slug do
       belongs_to :curriculum,
@@ -18,12 +20,6 @@ class Manage::EducationsController < Manage::ApplicationController
                     :parent_class => Plan::Semester,
                     :finder => :find_by_number
       end
-    end
-  end
-
-  def index
-    index! do
-      redirect_to parent_path and return
     end
   end
 

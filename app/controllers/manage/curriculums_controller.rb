@@ -8,16 +8,12 @@ class Manage::CurriculumsController < Manage::ApplicationController
            :instance_name => :curriculum,
            :finder => :find_by_study
 
+  actions :all, :except => [:index]
+
   belongs_to :chair, :finder => :find_by_slug do
     belongs_to :speciality, :finder => :find_by_slug
   end
 
-
-  def index
-    index! do
-      redirect_to parent_path and return
-    end
-  end
 
   def transit
     transit! do

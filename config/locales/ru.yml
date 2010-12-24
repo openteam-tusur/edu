@@ -79,6 +79,16 @@ ru:
       edit: Изменение специальности
       delete: Удаление специальности
 
+    manage/curriculums:
+      new: Добавление учебного плана
+      edit: Изменение учебного плана
+      delete: Удаление учебного плана
+
+    manage/semesters:
+      new: Добавление семестра
+      edit: Изменение семестра
+      delete: Удаление семестра
+
     manage/teachers:
       index: Сотрудники кафедры
       new: Добавление информации о сотруднике
@@ -179,6 +189,7 @@ ru:
         patronymic: Отчество
         surname: Фамилия
       speciality:
+        accreditation: Аккредитация
         chair: Кафедра
         code: Код
         degree: Степень
@@ -187,6 +198,7 @@ ru:
           master: магистр
           bachelor: бакалавр
         qualification: Квалификация
+        licence: Лицензия
         semesters_count: Количество семестров
       user:
         email: Электронная почта
@@ -225,6 +237,7 @@ ru:
           loading_self_training: Самостоятельная работа
           examinations: Форма контроля
           chair: Обеспечивающая кафедра
+          work_programm: Рабочая программа
       work_programm:
         title: Название
         year: Год издания

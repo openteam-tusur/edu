@@ -12,4 +12,5 @@
   <%= form.inputs "Форма контроля" do %>
     <%= form.input :examinations, :as => :check_boxes %>
   <% end %>
+  <%= form.input :work_programm, :collection => @chair.work_programms %>
 <% end %>

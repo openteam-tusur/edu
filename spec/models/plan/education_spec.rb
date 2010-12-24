@@ -77,5 +77,6 @@ end
 #  created_at             :datetime
 #  updated_at             :datetime
 #  chair_id               :integer
+#  work_programm_id       :integer
 #
 

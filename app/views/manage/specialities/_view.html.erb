@@ -1,29 +1,27 @@
 <% title @speciality.title %>
 
+<p class="floatr">
+  <%= link_to t(:edit), edit_resource_path, :class => "button" %>
+</p>
 <%= show_for @speciality do |speciality| %>
-
   <%= speciality.association :chair %>
-  <%= speciality.attributes :code, :name, :qualification, :degree %>
-
-  <%= show_for @speciality.licence do |licence| %>
-    <%= licence.attributes :number, :issued_at %>
-  <% end if @speciality.licence %>
-
-  <%= show_for @speciality.accreditation do |accreditation| %>
-    <%= accreditation.attributes :number, :issued_at %>
-  <% end if @speciality.accreditation %>
-
+  <%= speciality.attribute :qualification %>
+  <%= speciality.attribute :licence %>
+  <%= speciality.attribute :accreditation %>
 <% end %>
 
-<p><%= link_to t(:edit), edit_resource_path %></p>
-
-
-<h2>Учебные планы</h2>
-<ul>
+<p class="floatr">
+  <%= link_to t('curriculum.add'),
+              new_manage_chair_speciality_curriculum_path(@chair, @speciality),
+              :class => "button" %>
+</p>
+<h2>Форма обучения</h2>
+<ul class="curriculums">
   <% @speciality.curriculums.each do |curriculum| %>
     <li>
-      <%= link_to curriculum.human_study, manage_chair_speciality_curriculum_path(@chair, @speciality, curriculum) %>
+      <%= link_to curriculum.human_study,
+                  manage_chair_speciality_curriculum_path(@chair, @speciality, curriculum),
+                  :class => curriculum.state %>
     </li>
   <% end %>
 </ul>
-<p><%= link_to t('curriculum.add'), new_manage_chair_speciality_curriculum_path(@chair, @speciality) %></p>
