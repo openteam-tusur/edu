@@ -11,6 +11,10 @@ class Plan::Education < ActiveRecord::Base
   validates_presence_of :semester, :discipline
   validates_uniqueness_of :discipline_id, :scope => :semester_id
 
+  has_one :work_programm, :class_name => "Plan::WorkProgramm"
+  accepts_nested_attributes_for :work_programm, :reject_if => :all_blank
+
+
   before_validation :prepare_discipline
 
   def summ_loading
