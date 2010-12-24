@@ -16,6 +16,10 @@ class Speciality < ActiveRecord::Base
 
   has_enum :degree, %w[specialist master bachelor]
 
+  def title
+    "#{code} - #{name} (#{human_degree})"
+  end
+
   def slug
     "#{self.code}-#{self.degree}"
   end
