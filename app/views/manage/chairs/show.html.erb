@@ -6,8 +6,6 @@
     <tr>
       <th>Код</th>
       <th>Название</th>
-      <th>Лицензия</th>
-      <th>Свидетельство об аккредитации</th>
     </tr>
     <% %w(specialist master bachelor).each do |degree| %>
       <% unless @chair.specialities.where(:degree => degree).empty? %>
@@ -20,9 +18,9 @@
             <td>
               <p><%= link_to speciality.name, manage_chair_speciality_path(speciality.chair, speciality) %></p>
               <p class="qualification"><%= speciality.qualification %></p>
+              <p class="licence">Лицензия: <%= speciality.licence %></p>
+              <p class="accreditation">Аккредитация: <%= speciality.accreditation %></p>
             </td>
-            <td><%= speciality.licence %></td>
-            <td><%= speciality.accreditation %></td>
           </tr>
         <% end %>
       <% end %>
