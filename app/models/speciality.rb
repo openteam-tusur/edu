@@ -5,6 +5,8 @@ class Speciality < ActiveRecord::Base
 
   belongs_to  :chair
 
+  default_scope order("degree, code")
+
   has_many :disciplines, :class_name => "Plan::Discipline"
   has_many :curriculums, :class_name => "Plan::Curriculum"
 
@@ -15,6 +17,10 @@ class Speciality < ActiveRecord::Base
   accepts_nested_attributes_for :accreditation
 
   has_enum :degree, %w[specialist master bachelor]
+
+  def title
+    "#{code} - #{name} (#{human_degree})"
+  end
 
   def slug
     "#{self.code}-#{self.degree}"

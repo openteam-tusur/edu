@@ -1,0 +1,7 @@
+<% title @work_programm.title %>
+
+<%= render :partial => "manage/common/resource", :locals => { :resource => resource } %>
+
+<%= render :partial => "manage/common/resource_state", :locals => { :resource => resource } %>
+
+<%= link_to t(:edit), edit_resource_path(resource) %>

@@ -6,9 +6,9 @@ class Plan::Licence < ActiveRecord::Base
 
   def to_s
     result = ""
-    result += self.number.blank? ? "<span class='empty'>номер не указан</span>" : "№#{self.number}"
+    result += self.number.blank? ? "№<span class='empty'>не указан</span>" : "№#{self.number}"
     result += " от "
-    result += self.issued_at.blank? ? "<span class='empty'>дата не указана</span>" : "№#{I18n.l self.issued_at}"
+    result += self.issued_at.blank? ? "<span class='empty'>не указано</span>" : "#{I18n.l self.issued_at}"
     result.html_safe
   end
 

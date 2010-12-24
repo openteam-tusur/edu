@@ -6,9 +6,10 @@ class Plan::Education < ActiveRecord::Base
 
   belongs_to :semester
   belongs_to :discipline
+  belongs_to :chair
   has_and_belongs_to_many :examinations
 
-  validates_presence_of :semester, :discipline
+  validates_presence_of :semester, :chair, :discipline_name
   validates_uniqueness_of :discipline_id, :scope => :semester_id
 
   before_validation :prepare_discipline
@@ -54,5 +55,6 @@ end
 #  loading_self_training  :integer         'Самостоятельная работа'
 #  created_at             :datetime
 #  updated_at             :datetime
+#  chair_id               :integer
 #
 

@@ -1,5 +1,4 @@
 <%= form.inputs do %>
-  <%= form.enum_input :study %>
-  <%= form.input :semesters_count if resource.new_record? %>
+  <%= form.input :title %>
   <%= render :partial => "manage/common/resource_fields", :locals => {:form => form} %>
 <% end %>

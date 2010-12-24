@@ -1,5 +1,6 @@
 # encoding: utf-8
 class Plan::Curriculum < Resource
+
   set_table_name :plan_curriculums
   attr_accessor :semesters_count
   validates_numericality_of :semesters_count,
@@ -12,6 +13,7 @@ class Plan::Curriculum < Resource
 
   validates_presence_of :speciality, :study
   validates_uniqueness_of :study, :scope => :speciality_id
+  validates_presence_of :access, :resource_name, :year, :if => :attachment
 
   has_enum :study, %w[fulltime parttime postal]
 
@@ -29,7 +31,12 @@ class Plan::Curriculum < Resource
     result += I18n.t('curriculum.duration', :count => semesters.count / 2)
   end
 
-  private
+  def human_state
+    I18n.t("attributes.state_enum.#{self.state}")
+  end
+
+private
+
   def create_semesters
     @semesters_count.to_i.times do |number|
       self.semesters.find_or_create_by_number(number + 1)

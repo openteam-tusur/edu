@@ -13,7 +13,9 @@ ru:
 
   application: Научно-образовательный портал
 
+  new: Добавить
   delete: Удалить
+  deletion: Удаление
   destroy: Удалить
   edit: Редактировать
   cancel: Отменить
@@ -72,11 +74,17 @@ ru:
     manage/specialities:
       new: Добавление специальности
       edit: Изменение специальности
+      delete: Удаление специальности
 
     manage/teachers:
       index: Сотрудники кафедры
       new: Добавление информации о сотруднике
       edit: Изменение информации о сотруднике
+
+    manage/work_programms:
+      index: Рабочие программы
+      new: Добавление рабочей программы
+      edit: Редактирование рабочей программы
 
     manage/humans:
       edit: Редактирование профиля
@@ -109,6 +117,9 @@ ru:
   discipline:
     add: Добавить дисциплину
 
+  workprogramm:
+    add: Добавить рабочую программу
+
   attributes:
     name: Название
     abbr: Аббревиатура
@@ -123,6 +134,7 @@ ru:
     access_enum: &access_enum
       free: Свободный
       restricted: Только для ТУСУРа
+    attachment: Файл ресурса
 
   activerecord:
     models:
@@ -132,7 +144,7 @@ ru:
       human: Персональная информация
       teacher: Сотрудник кафедры
       plan:
-        accreditation: Свидетельство об аккредитации
+        accreditation: Аккредитация
         curriculum: Учебный план
         education: Дисциплина
         licence: Лицензия
@@ -207,4 +219,12 @@ ru:
           loading_course_work: Курсовая работа
           loading_self_training: Самостоятельная работа
           examinations: Форма контроля
+          chair: Обеспечивающая кафедра
+      work_programm:
+        title: Название
+        year: Год издания
+        state_enum:
+          <<: *state_enum
+        access_enum:
+          <<: *access_enum
 

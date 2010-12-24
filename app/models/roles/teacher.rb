@@ -11,6 +11,7 @@ end
 # == Schema Information
 #
 # Table name: roles
+# Human name: Роль преподавателя
 #
 #  id         :integer         not null, primary key
 #  human_id   :integer
@@ -23,6 +24,6 @@ end
 #  group      :string(255)
 #  birthday   :date
 #  chair_id   :integer
-#  post       :string(255)
+#  post       :string(255)     'Должность'
 #
 
