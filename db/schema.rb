@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101223042024) do
+ActiveRecord::Schema.define(:version => 20101224044335) do
 
   create_table "attachments", :force => true do |t|
     t.string   "data_uid"
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(:version => 20101223042024) do
     t.integer  "loading_self_training"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "chair_id"
   end
 
   create_table "plan_licences", :force => true do |t|
@@ -159,5 +160,15 @@ ActiveRecord::Schema.define(:version => 20101223042024) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "work_programms", :force => true do |t|
+    t.integer  "chair_id"
+    t.integer  "year"
+    t.string   "state"
+    t.string   "access"
+    t.text     "resource_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

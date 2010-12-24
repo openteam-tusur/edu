@@ -11,7 +11,8 @@ describe Plan::Education do
           :loading_practice => 4,
           :loading_course_project => 12,
           :loading_course_work => 2,
-          :loading_self_training => 80)
+          :loading_self_training => 80,
+          :chair => Factory.create(:chair))
     education.summ_loading.should be 158
   end
 
@@ -20,7 +21,7 @@ describe Plan::Education do
       @curriculum = Factory.create(:plan_curriculum)
       @speciality = @curriculum.speciality
       @semester = @curriculum.semesters.first
-      @education = @semester.educations.build(:discipline_name => "Математика")
+      @education = @semester.educations.build(:discipline_name => "Математика", :chair_id => Factory.create(:chair).id)
       @education.save!
     end
 
@@ -45,7 +46,7 @@ describe Plan::Education do
     end
 
     it "при обновлении, если изменяется название дисциплины и у старой дисциплины есть еще обучения" do
-      @education_2 = @curriculum.semesters.last.educations.build(:discipline_name => "Математика")
+      @education_2 = @curriculum.semesters.last.educations.build(:discipline_name => "Математика", :chair_id => Factory.create(:chair).id)
       @education_2.save!
       @education.discipline_name = "Физика"
       @education.save!

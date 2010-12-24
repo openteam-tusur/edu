@@ -1,5 +1,6 @@
 <%= form.inputs do %>
   <%= form.input :discipline_name, :input_html => {:value => resource.discipline ? resource.discipline.name : resource.discipline_name} %>
+  <%= form.input :chair, :group_by => :faculty %>
   <%= form.inputs "Нагрузка" do %>
     <%= form.input :loading_lecture %>
     <%= form.input :loading_laboratory %>
