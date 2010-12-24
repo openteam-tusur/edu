@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101224044335) do
+ActiveRecord::Schema.define(:version => 20101224053223) do
 
   create_table "attachments", :force => true do |t|
     t.string   "data_uid"
@@ -169,6 +169,7 @@ ActiveRecord::Schema.define(:version => 20101224044335) do
     t.text     "resource_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "title"
   end
 
 end

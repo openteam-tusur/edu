@@ -55,5 +55,6 @@ end
 #  loading_self_training  :integer         'Самостоятельная работа'
 #  created_at             :datetime
 #  updated_at             :datetime
+#  chair_id               :integer
 #
 
