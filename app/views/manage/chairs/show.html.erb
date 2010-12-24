@@ -23,13 +23,13 @@
             <td>
               <p><%= link_to speciality.name, manage_chair_speciality_path(speciality.chair, speciality) %></p>
               <p class="qualification"><%= speciality.qualification %></p>
-              <p class="additional">Лицензия: <%= speciality.licence %>, Аккредитация: <%= speciality.accreditation %></p>
+              <p class="additional">лицензия: <%= speciality.licence %>, аккредитация: <%= speciality.accreditation %></p>
             </td>
             <td class="curriculums">
               <% speciality.curriculums.each do |curriculum| %>
                 <p class="curriculum">
                   <%= link_to curriculum.human_study, manage_chair_speciality_curriculum_path(speciality.chair, speciality, curriculum),
-                              :class => curriculum.state, :title => curriculum.human_state %>
+                              :class => curriculum.state %>
                 </p>
               <% end %>
             </td>
