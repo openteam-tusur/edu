@@ -18,6 +18,10 @@ class Plan::Semester < ActiveRecord::Base
   def to_param
     "#{self.number}"
   end
+
+  def title
+    "#{self.number} #{self.class.human_name.mb_chars.downcase.to_s}"
+  end
 end
 
 
