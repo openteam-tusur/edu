@@ -1,10 +1,15 @@
 # encoding: utf-8
 class WorkProgramm < Resource
   set_table_name :work_programms
-  belongs_to :chair
-  validates_presence_of :chair, :year, :access, :resource_name, :title, :attachment
+  
+  belongs_to  :chair
+  has_many    :educations, :class_name => 'Plan::Education'
+  
+  validates_presence_of :chair, :title, :attachment, :year, :access, :resource_name
   default_values :resource_name => "Рабочая программа"
 
+  scope :published,   where(:state => 'published')
+  scope :unpublished, where(:state => 'unpublished')
 end
 
 # == Schema Information

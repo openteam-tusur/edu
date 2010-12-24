@@ -1,4 +1,5 @@
 <%= form.inputs do %>
   <%= form.input :title %>
   <%= render :partial => "manage/common/resource_fields", :locals => {:form => form} %>
+  <%= form.input :educations,  :as => :select, :collection => Plan::Education.find(:all) %>
 <% end %>

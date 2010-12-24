@@ -41,6 +41,26 @@
   </table>
 <% end %>
 
+<h2>Рабочие программы</h2>
+<% unless @chair.work_programms.empty?  %>
+  <table class="work_programms">
+    <tbody>
+      <tr>
+        <td><%= link_to 'Рабочие программы', manage_chair_work_programms_path(@chair) %></td>
+        <td><%= @chair.work_programms.count %></td>
+        <td><%= @chair.work_programms.published.count   %></td>
+        <td><%= @chair.work_programms.unpublished.count %></td>
+      </tr>
+      <tr>
+        <td>Обеспечивающие дисциплины</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
+
 <p><%= link_to 'Сотрудники', manage_chair_teachers_path(@chair) %></p>
 
 <p><%= link_to 'Рабочие программы', manage_chair_work_programms_path(@chair) %></p>
