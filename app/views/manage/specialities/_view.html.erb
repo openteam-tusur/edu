@@ -2,6 +2,9 @@
 
 <%= show_for @speciality do |speciality| %>
 
+  <%= speciality.association :chair %>
+  <%= speciality.attributes :code, :name, :qualification, :degree %>
+
   <%= show_for @speciality.licence do |licence| %>
     <%= licence.attributes :number, :issued_at %>
   <% end if @speciality.licence %>
@@ -10,11 +13,9 @@
     <%= accreditation.attributes :number, :issued_at %>
   <% end if @speciality.accreditation %>
 
-  <%= speciality.association :chair %>
-  <%= speciality.attributes :code, :name, :qualification, :degree %>
 <% end %>
 
-<%= link_to t(:edit), edit_resource_path %>
+<p><%= link_to t(:edit), edit_resource_path %></p>
 
 
 <h2>Учебные планы</h2>
@@ -25,4 +26,4 @@
     </li>
   <% end %>
 </ul>
-<%= link_to t('curriculum.add'), new_manage_chair_speciality_curriculum_path(@chair, @speciality) %>
+<p><%= link_to t('curriculum.add'), new_manage_chair_speciality_curriculum_path(@chair, @speciality) %></p>
