@@ -1,6 +1,4 @@
-<% title "#{resource.class.model_name.human}. #{t(:delete)}" %>
-
-<%= resource.send ShowFor.association_methods.find { |m| resource.respond_to?(m) } %>
+<p><%= resource.send ShowFor.association_methods.find { |m| resource.respond_to?(m) } %></p>
 
 <% if resource.protected? %>
   <p>Нельзя удалить этот объект, пока существуют связанные объекты</p>
