@@ -6,6 +6,8 @@ class Manage::SemestersController < Manage::ApplicationController
            :instance_name => :semester,
            :finder => :find_by_number
 
+  actions :all, :except => [:index]
+
   belongs_to :chair, :finder => :find_by_slug do
     belongs_to :speciality, :finder => :find_by_slug do
       belongs_to :curriculum,
@@ -13,12 +15,6 @@ class Manage::SemestersController < Manage::ApplicationController
                  :instance_name => :curriculum,
                  :parent_class => Plan::Curriculum,
                  :finder => :find_by_study
-    end
-  end
-
-  def index
-    index! do
-      redirect_to parent_path
     end
   end
 
