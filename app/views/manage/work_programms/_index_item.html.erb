@@ -1,4 +1,8 @@
 <div>
+<<<<<<< Updated upstream
   <%= link_to item.title, manage_chair_work_programm_path(@chair, item) %>
   <%= render :partial => "manage/common/resource", :locals => { :resource => item } %>
+=======
+  <%= link_to item.title, resource_path(item) %>
+>>>>>>> Stashed changes
 </div>
