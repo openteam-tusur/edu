@@ -10,11 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< Updated upstream
 ActiveRecord::Schema.define(:version => 20101224095609) do
-=======
-ActiveRecord::Schema.define(:version => 20101224073701) do
->>>>>>> Stashed changes
 
   create_table "attachments", :force => true do |t|
     t.string   "data_uid"
