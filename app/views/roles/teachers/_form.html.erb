@@ -1,6 +1,7 @@
 <%= form.inputs :chair, :post %>
 
 <%= form.buttons do %>
-  <%= form.commit_button %>
+  <%= form.commit_button :button_html => {:class => 'button'} %>
+  <li><%= link_to t(:cancel), human_path, :class => "button light" %></li>
 <% end %>
 

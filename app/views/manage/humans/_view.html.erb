@@ -2,9 +2,11 @@
   <%= res.attributes :surname, :patronymic, :name %>
 <% end %>
 
+<%= link_to t(:edit), edit_resource_path, :class => :button %>
+
+<hr />
+
 <ul>
   <%= render resource.roles %>
 </il>
-
-<%= link_to t(:edit), edit_resource_path %>
 
