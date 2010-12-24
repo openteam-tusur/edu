@@ -176,6 +176,7 @@ ru:
         patronymic: Отчество
         surname: Фамилия
       speciality:
+        accreditation: Аккредитация
         chair: Кафедра
         code: Код
         degree: Степень
@@ -184,6 +185,7 @@ ru:
           master: магистр
           bachelor: бакалавр
         qualification: Квалификация
+        licence: Лицензия
         semesters_count: Количество семестров
       user:
         email: Электронная почта
