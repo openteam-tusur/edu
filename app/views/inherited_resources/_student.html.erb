@@ -1,20 +1,19 @@
 <li>
   <%= "#{student.title} гр.#{student.group} &ndash; ".html_safe + I18n.t("role.#{student.state}") %>
   <% if current_user.roles.include?(:admin) %>
-    <%= link_to t(:edit), edit_manage_role_path(student) if can? :manage, student %>
+    <%= link_to t(:edit), edit_manage_role_path(student), :class => :button if can? :manage, student %>
 
     <% unless student.aasm_events_for_current_state.empty? %>
-      <h4>Перевести в состояние</h4>
-      <ul>
+
         <% student.aasm_events_for_current_state.each do |event| %>
-          <li>
+
             <%= link_to(t("role.#{event}"), transit_manage_role_path(student,
                                                     :event => event),
-                                                    :class => event,
+                                                    :class => "event button light",
                                                     :method => :put) %>
-          </li>
+
         <% end %>
-      </ul>
+
     <% end %>
 
   <% else %>
