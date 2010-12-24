@@ -1,5 +1,6 @@
 <% title @chair.name %>
 
+<p class="floatr"><%= link_to t(:new), new_manage_chair_speciality_path(@chair), :class => "button" %></p>
 <h2>Специальности и направления подготовки</h2>
 <% unless @chair.specialities.empty?  %>
   <table class="specialities">
@@ -39,6 +40,5 @@
     </tbody>
   </table>
 <% end %>
-<p><%= link_to "Добавить специальность", new_manage_chair_speciality_path(@chair) %></p>
 
 <p><%= link_to 'Сотрудники', manage_chair_teachers_path(@chair) %></p>
