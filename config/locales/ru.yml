@@ -13,7 +13,9 @@ ru:
 
   application: Научно-образовательный портал
 
+  new: Добавить
   delete: Удалить
+  deletion: Удаление
   destroy: Удалить
   edit: Редактировать
   cancel: Отменить
@@ -72,6 +74,7 @@ ru:
     manage/specialities:
       new: Добавление специальности
       edit: Изменение специальности
+      delete: Удаление специальности
 
     manage/teachers:
       index: Сотрудники кафедры

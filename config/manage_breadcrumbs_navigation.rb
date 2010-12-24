@@ -17,6 +17,8 @@ SimpleNavigation::Configuration.run do |navigation|
           speciality.item :update_speciality, t("title.manage/specialities.edit"),
                         edit_manage_chair_speciality_path(@chair, @speciality),
                         :highlights_on => /specialities/ if params[:action] == "update"
+          speciality.item :delete_speciality, t("title.manage/specialities.delete"),
+                        delete_manage_chair_speciality_path(@chair, @speciality)
         end if @speciality && !@speciality.new_record?
 
         if @speciality && @speciality.new_record?
