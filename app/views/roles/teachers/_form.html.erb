@@ -1,4 +1,7 @@
-<%= form.inputs :chair, :post %>
+<%= form.inputs do %>
+  <%= form.input :chair, :group_by => :faculty %>
+  <%= form.input :post %>
+<% end %>
 
 <%= form.buttons do %>
   <%= form.commit_button :button_html => {:class => 'button'} %>
