@@ -12,7 +12,7 @@ class RoleMailer < ActionMailer::Base
   def role_update_notification(role)
     @role = role
     mail( :to => SETTINGS['mailer']['admin_email'],
-          :subject => "В заявка на роль #{role.title} от #{role.human.user.full_name} внесены поправки" )
+          :subject => "В заявку на роль #{role.title} от #{role.human.user.full_name} внесены поправки" )
   end
 
 end
