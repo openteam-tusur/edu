@@ -81,6 +81,11 @@ ru:
       new: Добавление информации о сотруднике
       edit: Изменение информации о сотруднике
 
+    manage/work_programms:
+      index: Рабочие программы
+      new: Добавление рабочей программы
+      edit: Редактирование рабочей программы
+
     manage/humans:
       edit: Редактирование профиля
       index: Список людей
@@ -112,6 +117,9 @@ ru:
   discipline:
     add: Добавить дисциплину
 
+  workprogramm:
+    add: Добавить рабочую программу
+
   attributes:
     name: Название
     abbr: Аббревиатура
@@ -126,6 +134,7 @@ ru:
     access_enum: &access_enum
       free: Свободный
       restricted: Только для ТУСУРа
+    attachment: Файл ресурса
 
   activerecord:
     models:
@@ -211,4 +220,11 @@ ru:
           loading_self_training: Самостоятельная работа
           examinations: Форма контроля
           chair: Обеспечивающая кафедра
+      work_programm:
+        title: Название
+        year: Год издания
+        state_enum:
+          <<: *state_enum
+        access_enum:
+          <<: *access_enum
 

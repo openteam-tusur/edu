@@ -1,0 +1,6 @@
+<% if resource.attachment %>
+  <% show_for resource do |resource_fields| %>
+    <% resource_fields.attributes :year %>
+  <% end %>
+  <%= link_to resource.resource_name, resource.attachment.data.url, :class => resource.access %>
+<% end %>

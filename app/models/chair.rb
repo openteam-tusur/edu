@@ -9,6 +9,8 @@ class Chair < ActiveRecord::Base
   has_many :accepted_roles_teachers, :class_name => 'Roles::Teacher', :conditions => {:state => "accepted"}
   has_many :teachers, :class_name => "Human", :through => :accepted_roles_teachers, :source => :human
 
+  has_many :work_programms
+
   default_scope order("id")
 
   def to_param

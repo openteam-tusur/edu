@@ -10,6 +10,7 @@ SimpleNavigation::Configuration.run do |navigation|
 
 
 
+        # специальности
         chair.item :speciality, @speciality.title,
                     manage_chair_speciality_path(@chair, @speciality) do |speciality|
           speciality.item :edit_speciality, t("title.manage/specialities.edit"),
@@ -30,6 +31,7 @@ SimpleNavigation::Configuration.run do |navigation|
         end
 
 
+        # сотрудники кафедры
         chair.item :teachers, t("title.manage/teachers.index"),
                   manage_chair_teachers_path(@chair) do |teachers|
           if @teacher && @teacher.new_record?
@@ -44,6 +46,27 @@ SimpleNavigation::Configuration.run do |navigation|
                         edit_manage_chair_teacher_path(@chair, @teacher)
             teachers.item :edit_teacher, t("title.manage/teachers.edit"),
                         edit_manage_chair_teacher_path(@chair, @teacher),
+                        :highlights_on => /teachers/ if params[:action] == "update"
+          end
+        end
+
+        # рабочие программы
+        chair.item :work_programms, t("title.manage/work_programms.index"),
+            manage_chair_work_programms_path(@chair) do |work_programms|
+          if @work_programm && @work_programm.new_record?
+            work_programms.item :add_work_programm, t("title.manage/work_programms.new"),
+                        new_manage_chair_work_programm_path(@chair)
+            work_programms.item :create_teacher, t("title.manage/work_programms.new"),
+                        new_manage_chair_work_programm_path(@chair),
+                        :highlights_on => /work_programms/  if params[:action] == "create"
+          end
+          if @work_programm && !@work_programm.new_record?
+            work_programms.item :work_programm, @work_programm.title,
+                        manage_chair_work_programm_path(@chair, @work_programm)
+            work_programms.item :edit_work_programm, t("title.manage/work_programms.edit"),
+                        edit_manage_chair_work_programm_path(@chair, @work_programm)
+            work_programms.item :edit_work_programm, t("title.manage/work_programms.edit"),
+                        edit_manage_chair_work_programm_path(@chair, @work_programm),
                         :highlights_on => /teachers/ if params[:action] == "update"
           end
         end

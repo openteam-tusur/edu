@@ -18,7 +18,7 @@ end
 # == Schema Information
 #
 # Table name: plan_accreditations
-# Human name: Свидетельство об аккредитации
+# Human name: Аккредитация
 #
 #  id            :integer         not null, primary key
 #  speciality_id :integer

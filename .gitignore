@@ -13,3 +13,4 @@ config/database.yml
 .redcar
 *.pdf
 !spec/data/plan-210400.pdf
+config/settings.yml
