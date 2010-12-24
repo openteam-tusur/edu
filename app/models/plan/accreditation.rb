@@ -1,9 +1,17 @@
 # encoding: utf-8
 class Plan::Accreditation < ActiveRecord::Base
   set_table_name :plan_accreditations
-  validates_presence_of :number, :issued_at
 
   belongs_to :speciality
+
+  def to_s
+    result = ""
+    result += self.number.blank? ? "<span class='empty'>номер не указан</span>" : "№#{self.number}"
+    result += " от "
+    result += self.issued_at.blank? ? "<span class='empty'>дата не указана</span>" : "№#{I18n.l self.issued_at}"
+    result.html_safe
+  end
+
 end
 
 

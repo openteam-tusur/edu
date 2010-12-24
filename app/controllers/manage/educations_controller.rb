@@ -1,7 +1,5 @@
 class Manage::EducationsController < Manage::ApplicationController
 
-  inherit_resources
-
   load_and_authorize_resource
 
   defaults :resource_class => Plan::Education,

@@ -16,6 +16,7 @@ Portal::Application.routes.draw do
       end
     end
     resources :chairs, :only => [:index, :show] do
+      resources :teachers, :except => [:show]
       resources :specialities do
         resources :curriculums do
           put :transit, :on => :member

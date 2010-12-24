@@ -1,4 +1,9 @@
 class Human < ActiveRecord::Base
+
+  default_scope order('surname')
+
+  attr_accessor :post, :chair_id
+
   belongs_to :user
 
   has_many :roles
@@ -9,6 +14,17 @@ class Human < ActiveRecord::Base
 
   has_many :students, :class_name => 'Roles::Student'
   has_many :teachers, :class_name => 'Roles::Teacher'
+
+  validates_presence_of :post, :surname, :name, :patronymic,  :if => :chair_id
+
+  def accepted_teacher_in_chair(chair)
+    teachers.accepted.where(:chair_id => chair.id).first
+  end
+
+  def full_name
+    "#{surname} #{name} #{patronymic}"
+  end
+
 end
 
 # == Schema Information

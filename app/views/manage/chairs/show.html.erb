@@ -1,10 +1,34 @@
 <% title @chair.name %>
 
 <h2>Специальности и направления подготовки</h2>
-<% @chair.specialities.each do |speciality| %>
-  <p><%= link_to speciality.name, manage_chair_speciality_path(speciality.chair, speciality) %></p>
+<% unless @chair.specialities.empty?  %>
+  <table class="specialities">
+    <tr>
+      <th>Код</th>
+      <th>Название</th>
+      <th>Лицензия</th>
+      <th>Свидетельство об аккредитации</th>
+    </tr>
+    <% %w(specialist master bachelor).each do |degree| %>
+      <% unless @chair.specialities.where(:degree => degree).empty? %>
+        <tr>
+          <th colspan="4"><%= t("noun_#{degree}") %></th>
+        </tr>
+        <% @chair.specialities.where(:degree => degree).each do |speciality| %>
+          <tr>
+            <td><%= speciality.code %></td>
+            <td>
+              <p><%= link_to speciality.name, manage_chair_speciality_path(speciality.chair, speciality) %></p>
+              <p class="qualification"><%= speciality.qualification %></p>
+            </td>
+            <td><%= speciality.licence %></td>
+            <td><%= speciality.accreditation %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    <% end %>
+  </table>
 <% end %>
 <p><%= link_to "Добавить специальность", new_manage_chair_speciality_path(@chair) %></p>
 
-<p><%= link_to 'Добавить персональную информацию(?)', manage_humans_path(@human) %></p>
-
+<p><%= link_to 'Сотрудники', manage_chair_teachers_path(@chair) %></p>

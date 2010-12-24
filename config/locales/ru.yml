@@ -16,7 +16,11 @@ ru:
   delete: Удалить
   destroy: Удалить
   edit: Редактировать
-  cancel: Отмена
+  cancel: Отменить
+
+  noun_specialist: Специалитет
+  noun_master: Магистратура
+  noun_bachelor: Бакалавриат
 
   date:
     formats:
@@ -46,13 +50,6 @@ ru:
     chairs:
       index: Кафедры
 
-    manage/chairs:
-      index: Кафедры
-
-    manage/specialities:
-      new: Добавление специальности
-      edit: Изменение специальности
-
     users/sessions:
       create: Вход
       new: Вход
@@ -68,6 +65,19 @@ ru:
     roles/teachers:
       new: Создание роли преподавателя
       edit: Редактирование роли преподавателя
+
+
+    manage/chairs:
+      index: Кафедры
+
+    manage/specialities:
+      new: Добавление специальности
+      edit: Изменение специальности
+
+    manage/teachers:
+      index: Сотрудники кафедры
+      new: Добавление информации о сотруднике
+      edit: Изменение информации о сотруднике
 
     manage/humans:
       new: Создание профиля
@@ -106,6 +116,7 @@ ru:
     access: Доступ к файлу
     state: Статус
     resource_name: Название файла
+    post: Должность
     state_enum: &state_enum
       unpublished: Неопубликован
       published: Опубликован
@@ -119,6 +130,7 @@ ru:
       discipline: Дисциплина
       faculty: Факультет
       human: Персональная информация
+      teacher: Сотрудник кафедры
       plan:
         accreditation: Свидетельство об аккредитации
         curriculum: Учебный план
