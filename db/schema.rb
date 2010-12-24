@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101224053223) do
+ActiveRecord::Schema.define(:version => 20101224095609) do
 
   create_table "attachments", :force => true do |t|
     t.string   "data_uid"
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(:version => 20101224053223) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "chair_id"
+    t.integer  "work_programm_id"
   end
 
   create_table "plan_licences", :force => true do |t|
