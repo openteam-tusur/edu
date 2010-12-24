@@ -5,6 +5,8 @@ class Speciality < ActiveRecord::Base
 
   belongs_to  :chair
 
+  default_scope order("degree, code")
+
   has_many :disciplines, :class_name => "Plan::Discipline"
   has_many :curriculums, :class_name => "Plan::Curriculum"
 

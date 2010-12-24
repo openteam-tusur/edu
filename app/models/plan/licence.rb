@@ -8,7 +8,7 @@ class Plan::Licence < ActiveRecord::Base
     result = ""
     result += self.number.blank? ? "№<span class='empty'>не указан</span>" : "№#{self.number}"
     result += " от "
-    result += self.issued_at.blank? ? "<span class='empty'>не указано</span>" : "№#{I18n.l self.issued_at}"
+    result += self.issued_at.blank? ? "<span class='empty'>не указано</span>" : "#{I18n.l self.issued_at}"
     result.html_safe
   end
 
