@@ -20,5 +20,4 @@ $(function() {
     changeMonth: true,
     changeYear: true
   });
-  $("input:file").uniform({fileBtnText: 'Выбрать&hellip;'});
 });

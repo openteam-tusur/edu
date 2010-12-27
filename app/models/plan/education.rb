@@ -4,6 +4,7 @@ class Plan::Education < ActiveRecord::Base
 
   attr_accessor :discipline_name
 
+  belongs_to :work_programm
   belongs_to :semester
   belongs_to :discipline
   belongs_to :chair

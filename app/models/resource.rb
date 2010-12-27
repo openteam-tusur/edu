@@ -18,6 +18,6 @@ class Resource < ActiveRecord::Base
   end
 
   aasm_event :unpublish do
-    transitions  :to => :unpublished, :from => :published
+    transitions  :to => :unpublished, :from => [:published]
   end
 end
