@@ -1,19 +1,20 @@
-<li>
-  <%= "#{teacher.post} каф.#{teacher.chair.abbr} &ndash; ".html_safe + I18n.t("role.#{teacher.state}") %>
-  <% if current_user.roles.include?(:admin) %>
-    <%= link_to t(:edit), edit_manage_role_path(teacher), :class => :button if can? :manage, teacher %>
-
-    <% unless teacher.aasm_events_for_current_state.empty? %>
+<tr>
+  <td>
+    <%= "#{teacher.post} каф.#{teacher.chair.abbr}" %>
+    <% if current_user.roles.include?(:admin) %>
+      <%= link_to t(:edit), edit_manage_role_path(teacher) if can? :manage, teacher %>
+      <% unless teacher.aasm_events_for_current_state.empty? %>
         <% teacher.aasm_events_for_current_state.each do |event| %>
-            <%= link_to(t("role.#{event}"), transit_manage_role_path(teacher,
-                                                    :event => event),
-                                                    :class => "event button light",
-                                                    :method => :put) %>
+          <%= link_to(t("role.#{event}"), transit_manage_role_path(teacher,
+                                                      :event => event),
+                                                      :method => :put) %>
         <% end %>
+      <% end %>
+    <% else %>
+      <%= link_to t(:edit), edit_human_roles_teacher_path(teacher) %>
     <% end %>
-
-  <% else %>
-    <%= link_to t(:edit), edit_human_roles_teacher_path(teacher), :class => :button %>
-  <% end %>
-</li>
+  </td>
+  <td><%= t "role.#{teacher.state}" %></td>
+  <td><%= l teacher.created_at, :format => :long %></td>
+</tr>
 
