@@ -20,7 +20,7 @@ class Plan::Semester < ActiveRecord::Base
   end
 
   def title
-    "#{self.number} #{self.class.human_name.mb_chars.downcase.to_s}"
+    "#{self.number} #{self.class.model_name.human.mb_chars.downcase.to_s}"
   end
 end
 
