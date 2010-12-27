@@ -8,11 +8,11 @@ describe WorkProgramm do
     @work_programm2 = Factory.create(:work_programm)
     @work_programm3 = Factory.create(:work_programm)
   end
-  
+
   it "должен быть статус unpublished" do
     @work_programm1.state.should eql 'unpublished'
   end
-  
+
   it 'кол-во рабочих опубликованных программ должно считаться правильно' do
     @work_programm1.update_attributes(:state => 'published')
     @work_programm2.update_attributes(:state => 'published')
@@ -20,6 +20,7 @@ describe WorkProgramm do
     WorkProgramm.unpublished.count.should eql 1
     WorkProgramm.count.should             eql 3
   end
+
 end
 
 # == Schema Information

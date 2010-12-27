@@ -13,7 +13,7 @@ class Plan::Curriculum < Resource
 
   validates_presence_of :speciality, :study
   validates_uniqueness_of :study, :scope => :speciality_id
-  validates_presence_of :access, :resource_name, :year, :if => :attachment
+  validates_presence_of :access, :resource_name, :year, :attachment, :if => :need_all_resource_fields?
 
   has_enum :study, %w[fulltime parttime postal]
 

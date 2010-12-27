@@ -20,4 +20,14 @@ class Resource < ActiveRecord::Base
   aasm_event :unpublish do
     transitions  :to => :unpublished, :from => [:published]
   end
+
+  private
+  def need_all_resource_fields?
+    resource_fields = %w[resource_name year access attachment]
+    empty_fields = []
+    resource_fields.each do |field|
+      empty_fields << field if self.send(field).blank?
+    end
+    return true unless empty_fields.eql?(resource_fields)
+  end
 end
