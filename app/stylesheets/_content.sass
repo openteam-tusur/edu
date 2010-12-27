@@ -93,7 +93,16 @@
       padding: 2px 3px
 
     .download
+      +inline-block
+      line-height: 16px
       text-transform: lowercase
+      padding-left: 21px
+
+      &.free
+        background: transparent url("../images/icon_pdf_free.png") no-repeat left
+
+      &.restricted
+        background: transparent url("../images/icon_pdf_restricted.png") no-repeat left
 
   .curriculum_semesters
     +clearfix
