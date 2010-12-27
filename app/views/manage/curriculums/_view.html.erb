@@ -1,20 +1,23 @@
 <% title @curriculum.title %>
-<%= show_for resource do |curriculum| %>
+
+<div class="curriculum_statistics">
+  <%= render :partial => "manage/common/resource", :locals => { :resource => resource } %>
+  <%= render :partial => "manage/common/resource_state", :locals => { :resource => resource } %>
+</div>
+
+<%= show_for resource, :id => "curriculum_duration" do |curriculum| %>
   <%= curriculum.attributes :duration %>
 <% end %>
 
-<%= render :partial => "manage/common/resource", :locals => { :resource => resource } %>
-<%= render :partial => "manage/common/resource_state", :locals => { :resource => resource } %>
-
-<%= link_to t(:edit), edit_resource_path(resource) %>
+<p><%= link_to t(:edit), edit_resource_path(resource), :class => "button" %></p>
 
 <h2>Семестры</h2>
-<ul>
+<ul class="curriculum_semesters">
   <% resource.semesters.each do |semester| %>
     <li>
-      <%= link_to semester.number, manage_chair_speciality_curriculum_semester_path(@chair, @speciality, resource, semester) %>
+      <%= link_to "#{semester.number} семестр", manage_chair_speciality_curriculum_semester_path(@chair, @speciality, resource, semester) %>
     </li>
   <% end %>
 </ul>
-<%= link_to t('semester.add'), new_manage_chair_speciality_curriculum_semester_path(@chair, @speciality, resource) %>
+<p><%= link_to t('semester.add'), new_manage_chair_speciality_curriculum_semester_path(@chair, @speciality, resource), :class => "button" %></p>
 

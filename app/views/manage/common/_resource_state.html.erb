@@ -1,5 +1,5 @@
-<%= resource.state %>
+<p class="resource_state_<%= resource.state %>"><%= t "attributes.state_enum.#{resource.state}" %></p>
 <% resource.aasm_events_for_current_state.each do |event| %>
-  <%= link_to t("curriculum.#{event}"), transit_resource_path(:event => event), :method => :put %>
+  <p><%= link_to t("curriculum.#{event}"), transit_resource_path(:event => event), :class => "button", :method => :put %></p>
 <% end %>
 
