@@ -24,6 +24,12 @@ ru:
   noun_master: Магистратура
   noun_bachelor: Бакалавриат
 
+  time:
+    formats:
+      default: "%a, %d %b %Y, %H:%M:%S %z"
+      short: "%d %b, %H:%M"
+      long: "%d %B %Y"
+
   date:
     formats:
       default: '%d.%m.%Y'
@@ -62,6 +68,7 @@ ru:
 
     users/registrations:
       new: Регистрация
+      edit: Редактирование электронной почты и пароля
 
     roles/students:
       new: Создание роли студента
@@ -213,6 +220,7 @@ ru:
         password: Пароль
         password_confirmation: Подтверждения пароля
         remember_me: Запомнить меня?
+        current_password: Текущий пароль
       plan:
         licence:
           issued_at: Дата выдачи
