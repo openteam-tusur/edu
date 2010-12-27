@@ -99,6 +99,9 @@ ru:
       new: Добавить рабочую программу
       edit: Редактирование рабочей программы
 
+    manage/authors:
+      new: Добавление автора
+
     manage/humans:
       edit: Редактирование профиля
       index: Список людей
@@ -134,6 +137,9 @@ ru:
 
   workprogramm:
     add: Добавить рабочую программу
+
+  author:
+    add: Добавить автора
 
   attributes:
     name: Название
@@ -171,6 +177,8 @@ ru:
       user: Пользователь
       resource: Ресурс
       attachment: Вложение
+      work_programm: Рабочая программа
+      author: Автор материала
 
     attributes:
       attachment:
@@ -246,4 +254,8 @@ ru:
           <<: *state_enum
         access_enum:
           <<: *access_enum
+      author:
+        resource: Материал
+        human: Автор
+        human_id: Автор
 

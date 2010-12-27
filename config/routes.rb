@@ -20,6 +20,7 @@ Portal::Application.routes.draw do
       resources :teachers, :except => [:show]
       resources :work_programms do
         put :transit, :on => :member
+        resources :authors, :except => [:index, :show]
       end
       resources :specialities do
         resources :curriculums do

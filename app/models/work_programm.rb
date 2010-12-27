@@ -1,10 +1,11 @@
 # encoding: utf-8
 class WorkProgramm < Resource
   set_table_name :work_programms
-  
+
   belongs_to  :chair
   has_many    :educations, :class_name => 'Plan::Education'
-  
+  has_many :authors, :as => :resource
+
   validates_presence_of :chair, :title, :attachment, :year, :access, :resource_name
   default_values :resource_name => "Рабочая программа"
 
