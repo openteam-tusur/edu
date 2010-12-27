@@ -1,16 +1,41 @@
-<%= show_for resource do |human| %>
-  <%= human.attributes :surname, :name, :patronymic %>
-<% end %>
+<div class="human_profile">
+    <%= show_for resource do |human| %>
+      <ul class="individual_information">
+        <%= human.attribute :surname, :label_tag => :span, :content_tag => :span, :wrapper_tag => :li %>
+        <%= human.attribute :name, :label_tag => :span, :content_tag => :span, :wrapper_tag => :li %>
+        <%= human.attribute :patronymic, :label_tag => :span, :content_tag => :span, :wrapper_tag => :li %>
+      </ul>
+      <%= link_to 'Изменить личную информацию', edit_human_path %>
+    <% end %>
 
-<%= link_to t(:edit), edit_human_path, :class => :button %>
-<%= link_to 'Я являюсь студентом', new_human_roles_student_path, :class => :button %>
-<%= link_to 'Я являюсь преподавателем', new_human_roles_teacher_path, :class => :button %>
+    <%= show_for resource.user do |user| %>
+      <ul class="login_information">
+        <%= user.attribute :email, :label_tag => :span, :content_tag => :span, :wrapper_tag => :li %>
+        <li class="wrapper user_password">
+          <span class="label">Пароль</span>
+          <span class="content">******</span>
+        </li>
+      </ul>
+      <%= link_to 'Изменить электронную почту и пароль', edit_user_registration_path %>
+    <% end %>
 
-<hr />
+    <hr />
 
-<% unless resource.roles.empty? %>
-  <ul>
-    <%= render resource.roles %>
-  </ul>
-<% end %>
+    <h1>Ваши роли <span>(<%= link_to 'добавить роль студента', new_human_roles_student_path %>, <%= link_to 'добавить роль преподавателя', new_human_roles_teacher_path %>)</span></h1>
+
+    <% unless resource.roles.empty? %>
+      <table>
+        <thead>
+          <tr>
+            <th>Роль</th>
+            <th>Статус</th>
+            <th>Дата создания</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render resource.roles %>
+        </tbody>
+      </table>
+    <% end %>
+</div>
 

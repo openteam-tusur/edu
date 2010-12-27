@@ -41,7 +41,7 @@ gem 'fancy-buttons'
 gem 'simple-navigation'
 gem 'formtastic'
 gem 'validation_reflection'
-gem 'show_for'
+gem 'show_for', :git => "git://github.com/plataformatec/show_for"
 gem 'will_paginate', '>= 3.0.pre2'
 gem 'dynamic_form'
 gem 'russian'
@@ -64,3 +64,4 @@ gem 'cancan'
 gem 'paperclip'
 
 gem "default_value_for"
+
