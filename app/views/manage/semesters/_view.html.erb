@@ -1,6 +1,6 @@
 <% title resource.title %>
 
-<%= link_to t(:edit), edit_resource_path %>
+<p><%= link_to t(:edit), edit_resource_path, :class => "button" %></p>
 <h2>Изучаемые дисциплины</h2>
 <table style="border: 1px solid #000;">
   <tr>
@@ -39,5 +39,4 @@
     </tr>
   <% end %>
 </table>
-
-<%= link_to t("education.add"), new_manage_chair_speciality_curriculum_semester_education_path(@chair, @speciality, @curriculum, resource) %>
+<p><%= link_to t("education.add"), new_manage_chair_speciality_curriculum_semester_education_path(@chair, @speciality, @curriculum, resource), :class => "button" %></p>
