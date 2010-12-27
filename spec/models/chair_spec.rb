@@ -50,6 +50,7 @@ describe Chair do
       teacher.full_name.should eql "Иванов Иван Иванович"
       teacher.reload.teachers.first.post.should eql  "доцент"
     end
+
   end
 
 end
