@@ -65,6 +65,13 @@
             +field-style
             width: 168px
             padding: 3px 3px
+            optgroup
+              +arial_font_stack
+              font-style: normal
+              padding-left: 3px
+              option
+                +arial_font_stack
+                padding-left: 5px
 
         .boolean
           input
@@ -165,3 +172,32 @@
       .email input,
       .password input
         width: 200px
+
+    &.education
+      .education_common_info
+        +clearfix
+        li
+          float: left
+        #education_discipline_name_input,
+        #education_chair_input
+          margin-right: 20px
+        #education_discipline_name
+          width: 292px
+        #education_chair_id
+          width: 290px
+        #education_work_programm_id
+          width: 290px
+
+      .loading
+        ol
+          +clearfix
+        li
+          float: left
+          margin-right: 20px
+
+      .examinations
+        ol
+          +clearfix
+        li
+          float: left
+          margin: 0 20px 0 0
