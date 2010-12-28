@@ -1,20 +1,14 @@
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+<%= semantic_form_for resource, :url => registration_path(resource), :method => :put do |form| %>
   <%= devise_error_messages! %>
-
-  <p><%= f.label :email %><br />
-  <%= f.text_field :email %></p>
-
-  <p><%= f.label :password %> <i>(оставьте пустым, если не хотите изменять пароль)</i><br />
-  <%= f.password_field :password %></p>
-
-  <p><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></p>
-
-  <p><%= f.label :current_password %> <i>(укажите Ваш текущий пароль)</i><br />
-  <%= f.password_field :current_password %></p>
-
-  <p><%= f.submit "Обновить" %></p>
+  <%= form.inputs do  %>
+    <%= form.input :email, :as => :string %>
+    <%= form.input :password %>
+    <%= form.input :password_confirmation %>
+    <%= form.input :current_password %>
+  <% end %>
+  <%= form.buttons do %>
+    <%= form.commit_button 'Обновить', :button_html => { :class => :button } %>
+    <li><%= link_to 'Назад', :back, :class => :button %></li>
+  <% end %>
 <% end %>
-
-<%= link_to "Назад", :back %>
 
