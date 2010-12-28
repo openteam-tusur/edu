@@ -27,8 +27,7 @@ GIT
 
 GIT
   remote: git://github.com/openteam/has_enum
-  revision: b49619ad11a92cbc1c5106cfe3cf0178dbfed612
-  tag: v0.4.0
+  revision: 4d857fc84a11c16df2c12c908be076df08d4e352
   specs:
     has_enum (0.4.0)
       rails (~> 3.0.3)
