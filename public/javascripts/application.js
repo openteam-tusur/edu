@@ -20,4 +20,9 @@ $(function() {
     changeMonth: true,
     changeYear: true
   });
+  $("#education_discipline_name").autocomplete({
+    source: "/", // FIXME
+    minLength: 2
+  });
+
 });
