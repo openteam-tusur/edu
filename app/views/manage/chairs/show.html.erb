@@ -13,11 +13,11 @@
     </thead>
     <tbody>
     <% %w(specialist bachelor master).each do |degree| %>
-      <% unless @chair.specialities.where(:degree => degree).empty? %>
+      <% unless @chair.specialities.send(:"degree_#{degree}").empty? %>
         <tr>
           <th colspan="3"><%= t("noun_#{degree}") %></th>
         </tr>
-        <% @chair.specialities.where(:degree => degree).each do |speciality| %>
+        <% @chair.specialities.send(:"degree_#{degree}").each do |speciality| %>
           <tr>
             <td class="code"><%= link_to speciality.code, manage_chair_speciality_path(speciality.chair, speciality) %></td>
             <td>

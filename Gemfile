@@ -54,7 +54,7 @@ gem 'inherited_resources_views'
 gem "protected_parent"
 
 # enumerations in models
-gem 'has_enum', :git => 'git://github.com/openteam/has_enum', :tag => 'v0.4.0'
+gem 'has_enum', :git => 'git://github.com/openteam/has_enum'
 
 # full text search
 gem "sunspot", ">= 1.2.rc4", :require => false
