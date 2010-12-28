@@ -1,4 +1,5 @@
 class Chair < ActiveRecord::Base
+
   belongs_to :faculty
 
   has_many :specialities
@@ -44,6 +45,7 @@ class Chair < ActiveRecord::Base
     teacher.accepted_teacher_in_chair(self).update_attribute(:post, params["post"]) if teacher.update_attributes(params)
     teacher
   end
+
 end
 
 # == Schema Information
