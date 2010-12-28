@@ -81,6 +81,9 @@ ru:
     manage/chairs:
       index: Кафедры
 
+    manage/educations:
+      new: Добавление дисциплины
+
     manage/specialities:
       new: Добавление специальности
       edit: Изменение специальности
