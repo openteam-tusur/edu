@@ -9,7 +9,7 @@ class Plan::Discipline < ActiveRecord::Base
   has_many :educations
 
   searchable do
-    text :name
+    string :name
   end
 
 end

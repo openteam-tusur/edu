@@ -21,8 +21,7 @@ $(function() {
     changeYear: true
   });
   $("#education_discipline_name").autocomplete({
-    source: "/", // FIXME
+    source: "/manage/disciplines/search",
     minLength: 2
   });
-
 });
