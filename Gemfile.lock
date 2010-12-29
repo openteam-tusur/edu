@@ -1,9 +1,9 @@
 GIT
   remote: git://github.com/cavalle/steak
-  revision: 58e0f57be6117b83efd5d2d6a41c508163f21bad
+  revision: cfbbedb6237b5da32c24e1762bbb611e08903950
   specs:
-    steak (1.0.0)
-      rspec
+    steak (1.0.1)
+      rspec (>= 1.3)
 
 GIT
   remote: git://github.com/jnicklas/capybara
@@ -27,7 +27,7 @@ GIT
 
 GIT
   remote: git://github.com/openteam/has_enum
-  revision: 4d857fc84a11c16df2c12c908be076df08d4e352
+  revision: 896af5bc9b0518e7fe281d45546cb925343a12de
   specs:
     has_enum (0.4.0)
       rails (~> 3.0.3)
@@ -197,7 +197,7 @@ GEM
       json_pure
       rubyzip
     shoulda (2.11.3)
-    simple-navigation (3.0.2)
+    simple-navigation (3.1.0)
       activesupport (>= 2.3.2)
     spork (0.8.4)
     sqlite3-ruby (1.3.2)
