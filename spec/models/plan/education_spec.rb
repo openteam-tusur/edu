@@ -1,7 +1,9 @@
 #encoding: utf-8
 require 'spec_helper'
+require 'sunspot/rails/spec_helper'
 
 describe Plan::Education do
+  disconnect_sunspot
 
   it "должна считать суммарную нагрузку" do
     curriculum = Factory.create(:plan_curriculum)

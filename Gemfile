@@ -57,8 +57,9 @@ gem "protected_parent"
 gem 'has_enum', :git => 'git://github.com/openteam/has_enum'
 
 # full text search
-gem "sunspot", ">= 1.2.rc4", :require => false
-gem "sunspot_rails", ">= 1.2.rc4"
+gem "geohash", "1.0.1", :git => "git://github.com/floze/geohash.git", :require => false
+gem "sunspot", "1.2.rc3", :require => false
+gem "sunspot_rails", "1.2.rc3"
 
 gem 'aasm'
 gem 'devise'
