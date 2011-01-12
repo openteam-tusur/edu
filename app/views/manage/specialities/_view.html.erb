@@ -20,13 +20,9 @@
 <table class="curriculums">
   <tbody>
     <tr>
-      <th rowspan="2">Форма обучения</th>
-      <th rowspan="2">Срок обучения</th>
-      <th colspan="2">Файл учебного плана</th>
-    </tr>
-    <tr>
-      <th>Год издания</th>
-      <th>Файл</th>
+      <th>Форма обучения</th>
+      <th>Срок обучения</th>
+      <th>Файл учебного плана</th>
     </tr>
     <% @speciality.curriculums.each do |curriculum| %>
       <tr>
@@ -39,13 +35,12 @@
                       :class => curriculum.state,  %>
         </td>
         <td><%= curriculum.duration %></td>
-        <td><%= curriculum.year %></td>
         <td>
           <% if curriculum.attachment %>
             <%= link_to image_tag("icon_pdf_#{curriculum.access}.png"),
                         manage_chair_speciality_curriculum_path(@chair, @speciality, curriculum),
                         :title => curriculum.human_access, :rel => "tipsy" %>
-            <%= link_to curriculum.resource_name, curriculum.attachment.data.url,
+            <%= link_to "#{curriculum.resource_name}, #{curriculum.year}", curriculum.attachment.data.url,
                         :class => "#{curriculum.access}_pdf download" %>
           <% else %>
             файл отсутствует
