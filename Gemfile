@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
-gem 'rails'
-gem 'racc'
+gem 'rails', :require => false
+gem 'racc', :require => false
 
 group :production do
   gem 'pg'
