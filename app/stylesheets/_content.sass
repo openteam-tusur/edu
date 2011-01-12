@@ -30,49 +30,29 @@
     .right
       text-align: right
 
-  table.specialities
-    width: 100%
-    .code
-      width: 40px
-    .curriculums
-      width: 165px
-    .qualification
-      color: #777
-      font-size: 11px
-      margin-left: 5px
-    .additional
-      color: #777
-      font-size: 10px
-      margin-left: 5px
-    .empty
-      color: #333
-      background-color: #f6b4b4
-      +border-radius(3px)
-      padding: 1px 3px
-    .curriculum
-      margin: 5px 0
-      a
-        +inline-block
-        height: 16px
-        padding-left: 21px
-        &.published
-          background: transparent url("../images/icon_curriculum_published.png") no-repeat left
-        &.unpublished
-          background: transparent url("../images/icon_curriculum_unpublished.png") no-repeat left
+    &.specialities
+      width: 100%
+      .code
+        width: 40px
+      .curriculums
+        width: 165px
+      .qualification
+        color: #777
+        font-size: 11px
+        margin-left: 5px
+      .additional
+        color: #777
+        font-size: 10px
+        margin-left: 5px
+      .empty
+        color: #333
+        background-color: #f6b4b4
+        +border-radius(3px)
+        padding: 1px 3px
+      .curriculum
+        margin: 5px 0
 
-  .curriculums
-    +clearfix
-    li
-      float: left
-      margin: 0 15px 0 0
-    a
-      +inline-block
-      height: 16px
-      padding-left: 21px
-      &.published
-        background: transparent url("../images/icon_curriculum_published.png") no-repeat left
-      &.unpublished
-        background: transparent url("../images/icon_curriculum_unpublished.png") no-repeat left
+    &.curriculums
 
   .curriculum_statistics
     float: right
@@ -93,18 +73,6 @@
       +border-radius(3px)
       background-color: #ffeeaa
       padding: 2px 3px
-
-    .download
-      +inline-block
-      line-height: 16px
-      text-transform: lowercase
-      padding-left: 21px
-
-      &.free
-        background: transparent url("../images/icon_pdf_free.png") no-repeat left
-
-      &.restricted
-        background: transparent url("../images/icon_pdf_restricted.png") no-repeat left
 
   .curriculum_semesters
     +clearfix
