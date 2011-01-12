@@ -239,7 +239,7 @@ ru:
           year: Год издания
           study_enum:
             fulltime: очная
-            parttime: очно-заочная (вечерняя)
+            parttime: очно-заочная
             postal: заочная
           state_enum:
             <<: *state_enum

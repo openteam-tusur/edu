@@ -8,6 +8,11 @@ function flash() {
   });
 };
 
+function revert_button() {
+  $(".revert_with_title").prev().before($(".revert_with_title"));
+};
+
+
 $(function() {
   flash();
   $(".focus_first:first").focus();
@@ -24,4 +29,5 @@ $(function() {
     source: "/manage/disciplines/search",
     minLength: 2
   });
+  revert_button();
 });
