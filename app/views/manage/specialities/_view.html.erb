@@ -10,11 +10,6 @@
   <%= speciality.attribute :accreditation %>
 <% end %>
 
-<p class="floatr">
-  <%= link_to t('curriculum.add'),
-              new_manage_chair_speciality_curriculum_path(@chair, @speciality),
-              :class => "button" %>
-</p>
 <h2>Учебные планы</h2>
 
 <% @speciality.curriculums.each do |curriculum| %>
@@ -23,7 +18,7 @@
           <%= link_to image_tag("icon_curriculum_#{curriculum.state}.png"),
                       manage_chair_speciality_curriculum_path(@chair, @speciality, curriculum),
                       :title => curriculum.human_state, :rel => "tipsy" %>
-          <%= link_to curriculum.title,
+          <%= link_to curriculum.study_with_since,
                       manage_chair_speciality_curriculum_path(@chair, @speciality, curriculum),
                       :class => curriculum.state %>
     </div>
@@ -41,4 +36,8 @@
     </div>
   </div>
 <% end %>
-
+<p>
+  <%= link_to t('curriculum.add'),
+              new_manage_chair_speciality_curriculum_path(@chair, @speciality),
+              :class => "button" %>
+</p>

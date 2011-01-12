@@ -21,6 +21,10 @@ class Plan::Curriculum < Resource
 
   after_create :create_semesters
 
+  def study_with_since
+    "#{self.human_study} форма с #{self.since} г."
+  end
+
   def title
     "Учебный план (#{self.human_study} форма) с #{self.since} г."
   end

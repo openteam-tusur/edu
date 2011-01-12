@@ -1,31 +1,19 @@
 <% unless @chair.specialities.empty?  %>
-  <table class="specialities">
-    <tbody>
+  <div class="specialities">
     <% %w(specialist bachelor master).each do |degree| %>
       <% unless @chair.specialities.send(:"degree_#{degree}").empty? %>
-        <tr>
-          <th colspan="2"><%= t("noun_#{degree}") %></th>
-        </tr>
-        <% @chair.specialities.send(:"degree_#{degree}").each do |speciality| %>
-          <tr>
-            <td>
-              <p><%= link_to speciality.title, manage_chair_speciality_path(speciality.chair, speciality) %></p>
+        <fieldset>
+          <legend><%= t("noun_#{degree}") %></legend>
+          <% @chair.specialities.send(:"degree_#{degree}").each do |speciality| %>
+            <div class="speciality_item">
+              <p class="name"><%= link_to speciality.short_title, manage_chair_speciality_path(speciality.chair, speciality) %></p>
               <p class="qualification"><%= speciality.qualification %></p>
               <p class="additional">лицензия: <%= speciality.licence %>, аккредитация: <%= speciality.accreditation %></p>
-            </td>
-            <td class="curriculums">
-              <% speciality.curriculums.each do |curriculum| %>
-                <p class="curriculum">
-                  <%= link_to curriculum.human_study, manage_chair_speciality_curriculum_path(speciality.chair, speciality, curriculum),
-                              :class => curriculum.state %>
-                </p>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
+            </div>
+          <% end %>
+      </fieldset>
       <% end %>
     <% end %>
-    </tbody>
-  </table>
+  </div>
 <% end %>
-<p class="floatr"><%= link_to t(:new), new_manage_chair_speciality_path(@chair), :class => "button" %></p>
+<p><%= link_to t(:new), new_manage_chair_speciality_path(@chair), :class => "button" %></p>
