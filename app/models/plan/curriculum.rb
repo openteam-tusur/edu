@@ -22,7 +22,7 @@ class Plan::Curriculum < Resource
   after_create :create_semesters
 
   def title
-    "#{self.human_study.mb_chars.capitalize.to_s} форма"
+    "Учебный план (#{self.human_study} форма)"
   end
 
   def to_param

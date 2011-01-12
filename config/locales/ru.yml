@@ -24,6 +24,15 @@ ru:
   noun_master: Магистратура
   noun_bachelor: Бакалавриат
 
+  errors:
+    template:
+      header:
+        one:   "%{model}: сохранение не удалось из-за %{count} ошибки"
+        few:   "%{model}: сохранение не удалось из-за %{count} ошибок"
+        many:  "%{model}: сохранение не удалось из-за %{count} ошибок"
+        other: "%{model}: сохранение не удалось из-за %{count} ошибки"
+      body: "Проблемы возникли со следующими полями:"
+
   time:
     formats:
       default: "%a, %d %b %Y, %H:%M:%S %z"
@@ -169,6 +178,7 @@ ru:
     attachment: Файл ресурса
 
   activerecord:
+
     models:
       chair: Кафедра
       discipline: Дисциплина
@@ -239,7 +249,7 @@ ru:
           year: Год издания
           study_enum:
             fulltime: очная
-            parttime: очно-заочная (вечерняя)
+            parttime: очно-заочная
             postal: заочная
           state_enum:
             <<: *state_enum

@@ -2,5 +2,11 @@
   <%= show_for resource do |resource_fields| %>
     <%= resource_fields.attributes :year %>
   <% end %>
-  <p><%= link_to resource.resource_name, resource.attachment.data.url, :class => "#{resource.access} download" %></p>
+  <p>
+    <%= link_to image_tag("icon_pdf_#{resource.access}.png"),
+                resource.attachment.data.url,
+                :title => resource.human_access, :rel => "tipsy" %>
+    <%= link_to resource.resource_name, resource.attachment.data.url,
+                :class => "#{resource.access}_pdf download" %>
+  </p>
 <% end %>
