@@ -11,8 +11,8 @@ class Plan::Curriculum < Resource
 
   has_many :semesters, :class_name => "Plan::Semester"
 
-  validates_presence_of :speciality, :study
-  validates_uniqueness_of :study, :scope => :speciality_id
+  validates_presence_of :speciality, :study, :since
+  validates_uniqueness_of :study, :scope => [:speciality_id, :since]
   validates_presence_of :access, :resource_name, :year, :if => :attachment
 
   has_enum :study, %w[fulltime parttime postal]
@@ -22,11 +22,19 @@ class Plan::Curriculum < Resource
   after_create :create_semesters
 
   def title
-    "Учебный план (#{self.human_study} форма)"
+    "Учебный план (#{self.human_study} форма) с #{self.since} г."
   end
 
   def to_param
-    self.study
+    self.slug
+  end
+
+  def slug
+    "#{self.study}-#{self.since}"
+  end
+
+  def self.find_by_slug(slug)
+    self.find_by_study_and_since(*slug.split("-"))
   end
 
   def duration
@@ -63,5 +71,6 @@ end
 #  resource_name :string(255)     'Название файла'
 #  year          :integer         'Год издания'
 #  access        :string(255)     'Доступ к файлу'
+#  since         :integer         'Действует с'
 #
 

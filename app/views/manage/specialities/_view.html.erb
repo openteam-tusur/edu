@@ -17,37 +17,28 @@
 </p>
 <h2>Учебные планы</h2>
 
-<table class="curriculums">
-  <tbody>
-    <tr>
-      <th>Форма обучения</th>
-      <th>Срок обучения</th>
-      <th>Файл учебного плана</th>
-    </tr>
-    <% @speciality.curriculums.each do |curriculum| %>
-      <tr>
-        <td>
+<% @speciality.curriculums.each do |curriculum| %>
+  <div class="curriculum_item">
+    <div class="name">
           <%= link_to image_tag("icon_curriculum_#{curriculum.state}.png"),
                       manage_chair_speciality_curriculum_path(@chair, @speciality, curriculum),
                       :title => curriculum.human_state, :rel => "tipsy" %>
-          <%= link_to curriculum.human_study,
+          <%= link_to curriculum.title,
                       manage_chair_speciality_curriculum_path(@chair, @speciality, curriculum),
-                      :class => curriculum.state,  %>
-        </td>
-        <td><%= curriculum.duration %></td>
-        <td>
-          <% if curriculum.attachment %>
-            <%= link_to image_tag("icon_pdf_#{curriculum.access}.png"),
-                        manage_chair_speciality_curriculum_path(@chair, @speciality, curriculum),
-                        :title => curriculum.human_access, :rel => "tipsy" %>
-            <%= link_to "#{curriculum.resource_name}, #{curriculum.year}", curriculum.attachment.data.url,
-                        :class => "#{curriculum.access}_pdf download" %>
-          <% else %>
-            файл отсутствует
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+                      :class => curriculum.state %>
+    </div>
+    <div class="info">
+      Срок обучения <%= curriculum.duration %>,
+      <% if curriculum.attachment %>
+        <%= link_to image_tag("icon_pdf_#{curriculum.access}.png"),
+                    manage_chair_speciality_curriculum_path(@chair, @speciality, curriculum),
+                    :title => curriculum.human_access, :rel => "tipsy" %>
+        <%= link_to "#{curriculum.resource_name}, #{curriculum.year}", curriculum.attachment.data.url,
+                    :class => "#{curriculum.access}_pdf download" %>
+      <% else %>
+        файл отсутствует
+      <% end %>
+    </div>
+  </div>
+<% end %>
 

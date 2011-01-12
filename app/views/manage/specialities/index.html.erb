@@ -1,5 +1,3 @@
-<p class="floatr revert_with_title"><%= link_to t(:new), new_manage_chair_speciality_path(@chair), :class => "button" %></p>
-
 <% unless @chair.specialities.empty?  %>
   <table class="specialities">
     <tbody>
@@ -30,3 +28,4 @@
     </tbody>
   </table>
 <% end %>
+<p class="floatr"><%= link_to t(:new), new_manage_chair_speciality_path(@chair), :class => "button" %></p>
