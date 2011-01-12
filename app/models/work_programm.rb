@@ -16,6 +16,7 @@ end
 # == Schema Information
 #
 # Table name: work_programms
+# Human name: Рабочая программа
 #
 #  id            :integer         not null, primary key
 #  chair_id      :integer
