@@ -67,9 +67,9 @@ SimpleNavigation::Configuration.run do |navigation|
           end if @speciality && !@speciality.new_record?
 
           if @speciality && @speciality.new_record?
-            chair.item :add_speciality, t("title.manage/specialities.new"),
+            specialities.item :new_speciality, t("title.manage/specialities.new"),
                         new_manage_chair_speciality_path(@chair)
-            chair.item :create_speciality, t("title.manage/specialities.new"),
+            specialities.item :create_speciality, t("title.manage/specialities.new"),
                         new_manage_chair_speciality_path(@chair),
                         :highlights_on => /specialities/ if params[:action] == "create" && params[:controller] == "manage/specialities"
           end
