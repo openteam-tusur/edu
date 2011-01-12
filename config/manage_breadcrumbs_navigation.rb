@@ -3,7 +3,7 @@ SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
 
     primary.item "manage_chairs", t("title.manage/chairs.index"), manage_chairs_path, :class => "subfaculties",
-                  :highlights_on => /^\/manage$|^\/manage\/chairs|^\/manage\/teachers/ do |manage|
+                  :highlights_on => /^\/manage$|^\/manage\/chairs|^\/manage\/employees/ do |manage|
 
       manage.item "manage_chair_#{@chair.slug}", @chair.abbr,
                   manage_chair_path(@chair) do |chair|
@@ -75,21 +75,21 @@ SimpleNavigation::Configuration.run do |navigation|
 
 
         # сотрудники кафедры
-        chair.item :teachers, t("title.manage/teachers.index"),
-                  manage_chair_teachers_path(@chair) do |teachers|
-          if @teacher && @teacher.new_record?
-            teachers.item :add_teacher, t("title.manage/teachers.new"),
-                        new_manage_chair_teacher_path(@chair)
-            teachers.item :create_teacher, t("title.manage/teachers.new"),
-                        new_manage_chair_teacher_path(@chair),
-                        :highlights_on => /teachers/  if params[:action] == "create"
+        chair.item :employees, t("title.manage/employees.index"),
+                  manage_chair_employees_path(@chair) do |employees|
+          if @employee && @employee.new_record?
+            employees.item :add_employee, t("title.manage/employees.new"),
+                        new_manage_chair_employee_path(@chair)
+            employees.item :create_employee, t("title.manage/employees.new"),
+                        new_manage_chair_employee_path(@chair),
+                        :highlights_on => /employees/  if params[:action] == "create"
           end
-          if @teacher && !@teacher.new_record?
-            teachers.item :edit_teacher, t("title.manage/teachers.edit"),
-                        edit_manage_chair_teacher_path(@chair, @teacher)
-            teachers.item :edit_teacher, t("title.manage/teachers.edit"),
-                        edit_manage_chair_teacher_path(@chair, @teacher),
-                        :highlights_on => /teachers/ if params[:action] == "update"
+          if @employee && !@employee.new_record?
+            employees.item :edit_employee, t("title.manage/employees.edit"),
+                        edit_manage_chair_employee_path(@chair, @employee)
+            employees.item :edit_employee, t("title.manage/employees.edit"),
+                        edit_manage_chair_employee_path(@chair, @employee),
+                        :highlights_on => /employees/ if params[:action] == "update"
           end
         end
 
@@ -99,7 +99,7 @@ SimpleNavigation::Configuration.run do |navigation|
           if @work_programm && @work_programm.new_record?
             work_programms.item :add_work_programm, t("title.manage/work_programms.new"),
                         new_manage_chair_work_programm_path(@chair)
-            work_programms.item :create_teacher, t("title.manage/work_programms.new"),
+            work_programms.item :create_employee, t("title.manage/work_programms.new"),
                         new_manage_chair_work_programm_path(@chair),
                         :highlights_on => /work_programms/  if params[:action] == "create"
           end
@@ -110,7 +110,7 @@ SimpleNavigation::Configuration.run do |navigation|
                         edit_manage_chair_work_programm_path(@chair, @work_programm)
             work_programms.item :edit_work_programm, t("title.manage/work_programms.edit"),
                         edit_manage_chair_work_programm_path(@chair, @work_programm),
-                        :highlights_on => /teachers/ if params[:action] == "update"
+                        :highlights_on => /employees/ if params[:action] == "update"
           end
         end
       end if @chair
