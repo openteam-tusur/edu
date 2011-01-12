@@ -43,6 +43,6 @@ user.human.update_attributes( :name => 'Петр',
 user.human.roles << Roles::Student.new( :group => '422',
                                         :birthday => '01.01.1970' )
 
-user.human.roles << Roles::Teacher.new( :chair_id => '16',
+user.human.roles << Roles::Employee.new( :chair_id => '16',
                                         :post => 'Старший преподаватель' )
 

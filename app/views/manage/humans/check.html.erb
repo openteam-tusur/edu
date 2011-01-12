@@ -1,0 +1,10 @@
+<% @humans.each do |human| %>
+  <% human.roles.each do |role| %>
+    <p>
+      <%= radio_button_tag 'name', 'id' %>
+      <%= label_tag "#{human.full_name} #{role.title} на каф. #{role.chair}"%>
+    </p>
+    <%= t "role.#{role.state}" %>
+  <% end %>
+<% end %>
+

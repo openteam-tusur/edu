@@ -15,6 +15,7 @@ Portal::Application.routes.draw do
       get :search, :on => :collection
     end
     resources :humans, :shallow => true do
+      get :check, :on => :collection
       resources :roles do
         put :transit, :on => :member
       end

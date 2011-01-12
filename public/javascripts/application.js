@@ -8,7 +8,28 @@ function flash() {
   });
 };
 
+function human_check(){
+  linka = $('.human_check');
+
+  linka.click(function(){
+    url = linka.attr('href');
+    surname = $('#employee_surname').val();
+    name = $('#employee_name').val();
+    patronymic = $('#employee_patronymic').val();
+    $.get(
+      url,
+      {'surname': surname, 'name': name, 'patronymic': patronymic},
+      function(data) {
+        $('.employees_list').html(data);
+      }
+    );
+
+    return false;
+  });
+};
+
 $(function() {
+  human_check();
   flash();
   $(".focus_first:first").focus();
   $("a[rel=tipsy], .formtastic .inputs abbr").tipsy({gravity: "s"});
@@ -25,3 +46,4 @@ $(function() {
     minLength: 2
   });
 });
+
