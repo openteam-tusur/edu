@@ -1,45 +1,6 @@
 <% title @chair.name %>
 
-<p class="floatr"><%= link_to t(:new), new_manage_chair_speciality_path(@chair), :class => "button" %></p>
-<h2>Специальности и направления подготовки</h2>
-<% unless @chair.specialities.empty?  %>
-  <table class="specialities">
-    <thead>
-      <tr>
-        <th>Код</th>
-        <th>Название</th>
-        <th>Форма обучения</th>
-      </tr>
-    </thead>
-    <tbody>
-    <% %w(specialist bachelor master).each do |degree| %>
-      <% unless @chair.specialities.send(:"degree_#{degree}").empty? %>
-        <tr>
-          <th colspan="3"><%= t("noun_#{degree}") %></th>
-        </tr>
-        <% @chair.specialities.send(:"degree_#{degree}").each do |speciality| %>
-          <tr>
-            <td class="code"><%= link_to speciality.code, manage_chair_speciality_path(speciality.chair, speciality) %></td>
-            <td>
-              <p><%= link_to speciality.name, manage_chair_speciality_path(speciality.chair, speciality) %></p>
-              <p class="qualification"><%= speciality.qualification %></p>
-              <p class="additional">лицензия: <%= speciality.licence %>, аккредитация: <%= speciality.accreditation %></p>
-            </td>
-            <td class="curriculums">
-              <% speciality.curriculums.each do |curriculum| %>
-                <p class="curriculum">
-                  <%= link_to curriculum.human_study, manage_chair_speciality_curriculum_path(speciality.chair, speciality, curriculum),
-                              :class => curriculum.state %>
-                </p>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      <% end %>
-    <% end %>
-    </tbody>
-  </table>
-<% end %>
+<p><%= link_to "Специальности и направления подготовки", manage_chair_specialities_path(@chair) %></p>
 
 <h2>Рабочие программы</h2>
 <% unless @chair.work_programms.empty?  %>
