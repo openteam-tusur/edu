@@ -18,6 +18,9 @@
             <td class="curriculums">
               <% speciality.curriculums.each do |curriculum| %>
                 <p class="curriculum">
+                  <%= link_to image_tag("icon_pdf_#{curriculum.access}.png"),
+                              manage_chair_speciality_curriculum_path(speciality.chair, speciality, curriculum),
+                              :title => curriculum.human_access, :rel => "tipsy" if curriculum.attachment %>
                   <%= link_to curriculum.human_study, manage_chair_speciality_curriculum_path(speciality.chair, speciality, curriculum),
                               :class => curriculum.state %>
                 </p>
