@@ -1,0 +1,32 @@
+<p class="floatr"><%= link_to t(:new), new_manage_chair_speciality_path(@chair), :class => "button" %></p>
+
+<% unless @chair.specialities.empty?  %>
+  <table class="specialities">
+    <tbody>
+    <% %w(specialist bachelor master).each do |degree| %>
+      <% unless @chair.specialities.send(:"degree_#{degree}").empty? %>
+        <tr>
+          <th colspan="2"><%= t("noun_#{degree}") %></th>
+        </tr>
+        <% @chair.specialities.send(:"degree_#{degree}").each do |speciality| %>
+          <tr>
+            <td>
+              <p><%= link_to speciality.title, manage_chair_speciality_path(speciality.chair, speciality) %></p>
+              <p class="qualification"><%= speciality.qualification %></p>
+              <p class="additional">лицензия: <%= speciality.licence %>, аккредитация: <%= speciality.accreditation %></p>
+            </td>
+            <td class="curriculums">
+              <% speciality.curriculums.each do |curriculum| %>
+                <p class="curriculum">
+                  <%= link_to curriculum.human_study, manage_chair_speciality_curriculum_path(speciality.chair, speciality, curriculum),
+                              :class => curriculum.state %>
+                </p>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>

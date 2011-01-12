@@ -8,7 +8,9 @@ SimpleNavigation::Configuration.run do |navigation|
       manage.item "manage_chair_#{@chair.slug}", @chair.abbr,
                   manage_chair_path(@chair) do |chair|
 
-
+        # список специальностей
+        chair.item :specialities, t("title.manage/specialities.index"),
+                    manage_chair_specialities_path(@chair)
 
         # специальности
         chair.item :speciality, @speciality.title,
