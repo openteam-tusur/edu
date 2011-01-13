@@ -8,7 +8,8 @@ class Human < ActiveRecord::Base
 
   belongs_to :user
 
-  has_many :roles
+  has_many :roles, :dependent => :destroy
+  after_destroy :destroy_user
 
   def filled?
     !(surname.blank? || name.blank? || patronymic.blank?)
@@ -26,6 +27,12 @@ class Human < ActiveRecord::Base
 
   def full_name
     "#{surname} #{name} #{patronymic}"
+  end
+
+  private
+
+  def destroy_user
+    self.user.destroy if self.user
   end
 
 end
