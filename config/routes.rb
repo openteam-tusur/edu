@@ -11,9 +11,6 @@ Portal::Application.routes.draw do
   end
 
   namespace :manage do
-    resources :disciplines, :only => [] do
-      get :search, :on => :collection
-    end
     resources :humans, :shallow => true do
       get :check, :on => :collection
       resources :roles do
@@ -41,6 +38,11 @@ Portal::Application.routes.draw do
   end
 
   root :to => "chairs#index"
+
+  resources :autocompletes, :only => [] do
+    get :disciplines, :on => :collection
+  end
+
   match "/:id" => "chairs#show", :as => :chair
   match "/attachments/:id/download/" => "attachments#download"
 end
