@@ -62,26 +62,14 @@
     padding: 15px 15px 0 15px
     background-color: #f4e1ca
 
-    .resource_state_published
-      +inline-block
-      border: 1px solid #a5ff69
-      +border-radius(3px)
-      background-color: #ccffaa
-      padding: 2px 3px
-
-    .resource_state_unpublished
-      +inline-block
-      border: 1px solid #ffe169
-      +border-radius(3px)
-      background-color: #ffeeaa
-      padding: 2px 3px
-
   .curriculum_item
     .name
       font-weight: bold
       margin-bottom: 5px
     .info
       margin-left: 21px
+      .duration
+        margin-right: 10px
 
   .curriculum_semesters
     +clearfix
@@ -89,6 +77,37 @@
     li
       float: left
       width: 130px
+
+  .resource_state_published
+    +inline-block
+    border: 1px solid #a5ff69
+    +border-radius(3px)
+    background-color: #ccffaa
+    padding: 0 5px
+
+  .resource_state_unpublished
+    +inline-block
+    border: 1px solid #ffe169
+    +border-radius(3px)
+    background-color: #ffeeaa
+    padding: 0 5px
+
+  .curriculum_resource_state
+    float: right
+    font-size: 14px
+    margin-bottom: 0
+
+  .curriculum_info
+    border: 1px solid #ccc
+    padding: 10px 10px 0 10px
+    .duration
+      margin-right: 10px
+
+  .curriculum_action
+    +clearfix
+    li
+      float: left
+      margin: 0 10px 0 0
 
 .auth_links
   +clearfix

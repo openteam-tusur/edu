@@ -1,15 +1,26 @@
 <% title @curriculum.title %>
 
-<div class="curriculum_statistics">
-  <%= render :partial => "manage/common/resource", :locals => { :resource => resource } %>
-  <%= render :partial => "manage/common/resource_state", :locals => { :resource => resource } %>
-</div>
+<p class="resource_state_<%= resource.state %> curriculum_resource_state"><%= t "attributes.state_enum.#{resource.state}" %></p>
 
-<%= show_for resource, :id => "curriculum_duration" do |curriculum| %>
-  <%= curriculum.attributes :duration %>
-<% end %>
+<fieldset class="curriculum_info">
+  <div>
+    <span class="duration">Срок обучения <%= resource.duration %></span>
+    <% if resource.attachment %>
+      <%= link_to image_tag("icon_pdf_#{resource.access}.png"),
+                  resource.attachment.data.url,
+                  :title => resource.human_access, :rel => "tipsy" %>
+      <%= link_to "#{resource.resource_name}, #{resource.year}", resource.attachment.data.url,
+                  :class => "#{resource.access}_pdf download" %>
+    <% end %>
+  </div>
+</fieldset>
 
-<p><%= link_to t(:edit), edit_resource_path(resource), :class => "button" %></p>
+<ul class="curriculum_action">
+  <li><%= link_to t(:edit), edit_resource_path(resource), :class => "button" %></li>
+  <% resource.aasm_events_for_current_state.each do |event| %>
+    <li><%= link_to t("curriculum.#{event}"), transit_resource_path(:event => event), :class => "button", :method => :put %></li>
+  <% end %>
+</ul>
 
 <h2>Семестры</h2>
 <ul class="curriculum_semesters">

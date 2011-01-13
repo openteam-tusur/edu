@@ -23,7 +23,7 @@
                       :class => curriculum.state %>
     </div>
     <div class="info">
-      Срок обучения <%= curriculum.duration %>,
+      <span class="duration">Срок обучения <%= curriculum.duration %></span>
       <% if curriculum.attachment %>
         <%= link_to image_tag("icon_pdf_#{curriculum.access}.png"),
                     manage_chair_speciality_curriculum_path(@chair, @speciality, curriculum),
