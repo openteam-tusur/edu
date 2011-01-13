@@ -10,10 +10,10 @@ class Speciality < ActiveRecord::Base
   has_many :disciplines, :class_name => "Plan::Discipline"
   has_many :curriculums, :class_name => "Plan::Curriculum"
 
-  has_one :licence, :class_name => "Plan::Licence"
+  has_one :licence, :class_name => "Plan::Licence", :dependent => :destroy
   accepts_nested_attributes_for :licence
 
-  has_one :accreditation, :class_name => "Plan::Accreditation"
+  has_one :accreditation, :class_name => "Plan::Accreditation", :dependent => :destroy
   accepts_nested_attributes_for :accreditation
 
   has_enum :degree, %w[specialist master bachelor], :scopes => true

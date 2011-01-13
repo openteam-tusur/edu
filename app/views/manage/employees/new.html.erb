@@ -1,0 +1,19 @@
+<%= semantic_form_for resource, :as => resource_instance_name, :url => collection_path, :html => { :multipart => true } do |form| %>
+  <%= form.error_messages %>
+  <%= form.inputs do %>
+    <%= form.input :surname %>
+    <%= form.input :name %>
+    <%= form.input :patronymic %>
+    <%= form.input :post %>
+  <% end %>
+  <%= link_to 'Проверить сотрудника', check_manage_humans_path, :class => "button human_check" %>
+
+  <div class="employees_list">
+  </div>
+
+  <%= form.buttons do %>
+    <%= form.commit_button :button_html => { :class => "button" } %>
+    <li><%= link_to t(:cancel), cancel_url, :class => "button light" %></li>
+  <% end %>
+<% end %>
+

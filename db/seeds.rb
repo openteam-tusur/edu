@@ -24,25 +24,37 @@ Role.destroy_all
 admin = User.create( :email => 'admin@demo.de',
                      :password => '123123',
                      :password_confirmation => '123123' )
-
 admin.human.update_attributes( :name => 'Иван',
                                :surname => 'Иванов',
                                :patronymic => 'Иванович' )
-
 admin.human.roles << Roles::Admin.new( :state => :accepted )
 
 
 user = User.create( :email => 'user@demo.de',
                     :password => '123123',
                     :password_confirmation => '123123' )
-
 user.human.update_attributes( :name => 'Петр',
                               :surname => 'Петров',
                               :patronymic => 'Петрович' )
-
 user.human.roles << Roles::Student.new( :group => '422',
                                         :birthday => '01.01.1970' )
-
-user.human.roles << Roles::Teacher.new( :chair_id => '16',
+user.human.roles << Roles::Employee.new( :chair_id => '16',
                                         :post => 'Старший преподаватель' )
+
+Speciality.destroy_all
+
+svchkr = Chair.find_by_slug('svchkr')
+
+s210401 = svchkr.specialities.create! :code           => 210401,
+                                      :name           => 'Физика и техника оптической связи',
+                                      :degree         => 'specialist',
+                                      :qualification  => 'инженер',
+                                      :licence_attributes => {
+                                        :number     => 'А № 282322',
+                                        :issued_on  => '21.05.2008'
+                                      },
+                                      :accreditation_attributes => {
+                                        :number     => 'АА № 001373',
+                                        :issued_on  => '23.06.08'
+                                      }
 

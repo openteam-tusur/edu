@@ -13,7 +13,7 @@
                   :for => :licence,
                   :class => "inputs pictorial speciality_licence" do |licence_form| %>
     <%= licence_form.input :number %>
-    <%= licence_form.date_input :issued_at %>
+    <%= licence_form.date_input :issued_on %>
   <% end %>
 
   <% @speciality.build_accreditation unless @speciality.accreditation %>
@@ -21,6 +21,6 @@
                   :for => :accreditation,
                   :class => "inputs pictorial speciality_accreditation" do |accreditation_form| %>
     <%= accreditation_form.input :number %>
-    <%= accreditation_form.date_input :issued_at %>
+    <%= accreditation_form.date_input :issued_on %>
   <% end %>
 </div>

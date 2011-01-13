@@ -6,7 +6,7 @@ Portal::Application.routes.draw do
   resource :human, :only => [:show, :edit, :update] do
     namespace :roles do
       resources :students
-      resources :teachers
+      resources :employees
     end
   end
 
@@ -15,12 +15,13 @@ Portal::Application.routes.draw do
       get :search, :on => :collection
     end
     resources :humans, :shallow => true do
+      get :check, :on => :collection
       resources :roles do
         put :transit, :on => :member
       end
     end
     resources :chairs, :only => [:index, :show] do
-      resources :teachers, :except => [:show]
+      resources :employees, :except => [:show]
       resources :work_programms do
         put :transit, :on => :member
         resources :authors, :except => [:index, :show]

@@ -3,6 +3,6 @@ Factory.define :speciality_licence,
                 :class => 'Plan::Licence' do |licence|
   licence.association :speciality
   licence.number '123123'
-  licence.issued_at '2010.10.10'
+  licence.issued_on '2010.10.10'
 end
 
