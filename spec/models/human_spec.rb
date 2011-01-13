@@ -29,6 +29,14 @@ describe Human do
     User.exists?(user.id).should be false
     Role.where(:human_id => human.id).empty?.should be true
   end
+
+  it "должен знать свои рабочие программы" do
+    work_programm = Factory.create(:work_programm)
+    human = Factory.create(:human)
+    work_programm.authors.create!(:human_id => human.id)
+
+    human.work_programms.should eql [work_programm]
+  end
 end
 
 # == Schema Information
