@@ -220,6 +220,7 @@ ru:
         name: Имя
         patronymic: Отчество
         surname: Фамилия
+        human_id: ''
       speciality:
         accreditation: Аккредитация
         chair: Кафедра

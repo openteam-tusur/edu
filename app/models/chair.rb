@@ -25,16 +25,15 @@ class Chair < ActiveRecord::Base
   def create_employee(params)
     human = Human.new(params.merge(:chair_id => self.id))
     return human unless human.valid?
-    if human.human_id.blank?
+    if existed_human = Human.find_by_id(human.human_id)
+      teacher = existed_human.employees.create!(:post => human.post, :chair_id => self.id)
+      teacher.accept!
+      return existed_human
+    else
       if human.save
         teacher = human.employees.create!(:post => human.post, :chair_id => self.id)
         teacher.accept!
       end
-    else
-      existed_human = Human.find(human.human_id)
-      teacher = existed_human.employees.create!(:post => human.post, :chair_id => self.id)
-      teacher.accept!
-      return existed_human
     end
     human
   end
@@ -45,12 +44,6 @@ class Chair < ActiveRecord::Base
     raise ActiveRecord::RecordNotFound unless employee_role
     employee.post = employee_role.post
     employee.chair_id = self.id
-    employee
-  end
-
-  def update_employee(human_id, params)
-    employee = find_employee(human_id)
-    employee.accepted_employee_in_chair(self).update_attribute(:post, params["post"]) if employee.update_attributes(params)
     employee
   end
 

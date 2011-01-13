@@ -10,7 +10,8 @@ describe Chair do
       @employee = @chair.create_employee("surname" => "Фамилия",
                                     "name" => "Имя",
                                     "patronymic" => "Отчество",
-                                    "post" => "старший преподаватель")
+                                    "post" => "старший преподаватель",
+                                    "human_id" => 0)
     end
 
     it "должна уметь создавать сотрудника" do
@@ -31,24 +32,16 @@ describe Chair do
       expired_employee_chair = @chair.create_employee("surname" => "Фамилия",
                                     "name" => "Имя",
                                     "patronymic" => "Отчество",
-                                    "post" => "старший преподаватель")
+                                    "post" => "старший преподаватель",
+                                    "human_id" => 0)
       expired_employee_chair.employees.first.expire!
       chair_2 = Factory.create(:chair)
       employee_chair_2 = chair_2.create_employee("surname" => "Фамилия",
                                     "name" => "Имя",
                                     "patronymic" => "Отчество",
-                                    "post" => "старший преподаватель")
+                                    "post" => "старший преподаватель",
+                                    "human_id" => 0)
       @chair.employees.should eql [@employee]
-    end
-
-    it "должна уметь редактировать сотрудника" do
-      employee = @chair.find_employee(@employee.id)
-      employee = @chair.update_employee(@employee.id, "surname" => "Иванов",
-                                    "name" => "Иван",
-                                    "patronymic" => "Иванович",
-                                    "post" => "доцент")
-      employee.full_name.should eql "Иванов Иван Иванович"
-      employee.reload.employees.first.post.should eql  "доцент"
     end
 
     it "если добавляем сотрудника из существующего пользователя" do
