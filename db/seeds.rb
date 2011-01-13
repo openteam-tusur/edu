@@ -41,3 +41,20 @@ user.human.roles << Roles::Student.new( :group => '422',
 user.human.roles << Roles::Teacher.new( :chair_id => '16',
                                         :post => 'Старший преподаватель' )
 
+Speciality.destroy_all
+
+svchkr = Chair.find_by_slug('svchkr')
+
+s210401 = svchkr.specialities.create! :code           => 210401,
+                                      :name           => 'Физика и техника оптической связи',
+                                      :degree         => 'specialist',
+                                      :qualification  => 'инженер',
+                                      :licence_attributes => {
+                                        :number     => 'А № 282322',
+                                        :issued_on  => '21.05.2008'
+                                      },
+                                      :accreditation_attributes => {
+                                        :number     => 'АА № 001373',
+                                        :issued_on  => '23.06.08'
+                                      }
+
