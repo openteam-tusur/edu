@@ -63,6 +63,11 @@
             <span title="<%= Plan::Education.human_attribute_name :loading_self_training %>" rel="tipsy"><%= education.loading_self_training %></span> /
             <span title="Суммарная нагрузка" rel="tipsy"><%= education.loading_summ %></span>
           </div>
+          <div class="discipline_edit">
+            <%= link_to t("edit"),
+                        edit_manage_chair_speciality_curriculum_semester_education_path(@chair, @speciality, @curriculum, @semester, education),
+                        :title => t("edit"), :rel => "tipsy" %>
+          </div>
         </div>
       <% end %>
     <% else %>
