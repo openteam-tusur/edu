@@ -11,7 +11,7 @@ function flash() {
 function human_check(){
   linka = $('.human_check');
 
-  linka.click(function(){
+  linka.click(function() {
     url = linka.attr('href');
     surname = $('#employee_surname').val();
     name = $('#employee_name').val();
@@ -23,12 +23,12 @@ function human_check(){
         $('.employees_list').html(data);
       }
     );
-
     return false;
   });
 };
 
 $(function() {
+  $(".curriculum_resource_state").prev().append($(".curriculum_resource_state"));
   human_check();
   flash();
   $(".focus_first:first").focus();
