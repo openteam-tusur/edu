@@ -44,24 +44,36 @@ describe Chair do
       @chair.employees.all.should eql [@employee]
     end
 
-    it "если человек занимает две должности на кафедре" do
-      @employee = @chair.create_employee("surname" => "Фамилия",
-                                    "name" => "Имя",
-                                    "patronymic" => "Отчество",
-                                    "post" => "лаборант",
-                                    "human_id" => @employee.id)
-      @chair.employees.all.should eql [@employee]
-      @employee.employees.where(:chair_id => @chair.id).count.should be 2
+    it "должна уметь редактировать сотрудника" do
+      employee = @chair.find_employee(@employee.id)
+      employee = @chair.update_employee(@employee.id, "surname" => "Иванов",
+                                                      "name" => "Иван",
+                                                      "patronymic" => "Иванович",
+                                                      "post" => "доцент",
+                                                      "human_id" => 0)
+      employee.full_name.should eql "Иванов Иван Иванович"
+      employee.reload.employees.first.post.should eql "доцент"
     end
 
-    it "если добавляем сотрудника из существующего пользователя" do
+    it "пользователь не может занимать две должности на одной кафедре" do
       new_employee = @chair.create_employee("surname" => "Иванов",
                                     "name" => "Иван",
                                     "patronymic" => "Иванович",
                                     "post" => "доцент",
                                     "human_id" => @employee.id)
+      new_employee.new_record?.should be true
+      new_employee.errors[:base].empty?.should eql false
+    end
+
+    it "если добавляем сотрудника из существующего пользователя" do
+      chair = Factory.create(:chair)
+      new_employee = chair.create_employee("surname" => "Иванов",
+                                    "name" => "Иван",
+                                    "patronymic" => "Иванович",
+                                    "post" => "доцент",
+                                    "human_id" => @employee.id)
       new_employee.should eql @employee
-      role = new_employee.employees.where(:chair_id => @chair).first
+      role = new_employee.employees.where(:chair_id => chair).first
       role.accepted?.should be true
       role.post.should eql "доцент"
     end

@@ -18,10 +18,10 @@ class Human < ActiveRecord::Base
   has_many :employees, :class_name => 'Roles::Employee'
 
   validates_presence_of :post, :surname, :name, :patronymic,  :if => :chair_id
-  validates_presence_of :human_id, :if => :chair_id, :message => 'Необходимо выполнить проверку перед добавлением сотрудника или должности и выбрать действие'
+  validates_presence_of :human_id, :if => :chair_id, :message => 'Необходимо выполнить проверку перед добавлением сотрудника или должности и выбрать действие', :on => :create
 
-  def employees_in_chair(chair)
-    employees.where(:chair_id => chair.id)
+  def accepted_employee_in_chair(chair)
+    employees.accepted.where(:chair_id => chair.id).first
   end
 
   def full_name

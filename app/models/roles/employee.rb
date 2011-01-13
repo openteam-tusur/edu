@@ -2,7 +2,7 @@
 
 class Roles::Employee < Role
   validates_presence_of :chair, :post
-#  validates_uniqueness_of :chair_id, :scope => [:human_id, :state]
+  validates_uniqueness_of :chair_id, :scope => [:human_id, :state]
 
   default_values :title => 'Сотрудник', :slug => 'Employee'
 end

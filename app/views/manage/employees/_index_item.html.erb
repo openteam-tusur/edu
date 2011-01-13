@@ -1,9 +1,9 @@
 <div>
   <%= item.full_name %>
-  <ul>
-    <% item.employees_in_chair(@chair).each do |role| %>
-      <li><%= role.post %> <%= role.state %></li>
-    <% end %>
-  </ul>
+  <%= link_to 'Редактировать', edit_manage_chair_employee_path(@chair, item.accepted_employee_in_chair(@chair)) %>
+  <p>
+    <%= item.accepted_employee_in_chair(@chair).post %>
+    <%= item.accepted_employee_in_chair(@chair).state %>
+  </p>
 </div>
 
