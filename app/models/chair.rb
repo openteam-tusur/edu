@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Chair < ActiveRecord::Base
 
   belongs_to :faculty
@@ -8,7 +9,7 @@ class Chair < ActiveRecord::Base
   validates_uniqueness_of :slug, :abbr, :name
 
   has_many :accepted_roles_employees, :class_name => 'Roles::Employee', :conditions => {:state => "accepted"}
-#  has_many :employees, :class_name => "Human", :through => :accepted_roles_employees, :source => :human
+  has_many :employees, :class_name => "Human", :through => :accepted_roles_employees, :source => :human
 
   has_many :work_programms
 
@@ -26,6 +27,10 @@ class Chair < ActiveRecord::Base
     human = Human.new(params.merge(:chair_id => self.id))
     return human unless human.valid?
     if existed_human = Human.find_by_id(human.human_id)
+      if existed_human.accepted_employee_in_chair(self)
+        human.errors[:base] << "Этот сотрудник уже есть на кафедре"
+        return human
+      end
       teacher = existed_human.employees.create!(:post => human.post, :chair_id => self.id)
       teacher.accept!
       return existed_human
@@ -38,16 +43,18 @@ class Chair < ActiveRecord::Base
     human
   end
 
-  def employees
-    Human.where(:id => accepted_roles_employees.collect(&:human_id))
-  end
-
   def find_employee(human_id)
     employee = Human.find(human_id)
     employee_role = employee.accepted_employee_in_chair(self)
     raise ActiveRecord::RecordNotFound unless employee_role
     employee.post = employee_role.post
     employee.chair_id = self.id
+    employee
+  end
+
+  def update_employee(human_id, params)
+    employee = find_employee(human_id)
+    employee.accepted_employee_in_chair(self).update_attribute(:post, params["post"]) if employee.update_attributes(params)
     employee
   end
 

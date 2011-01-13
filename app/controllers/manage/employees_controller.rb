@@ -16,9 +16,6 @@ class Manage::EmployeesController < Manage::ApplicationController
   def create
     @employee = @chair.create_employee(params[:employee])
     if @employee.new_record?
-      @humans = Human.where(:surname => @employee.surname,
-                             :name => @employee.name,
-                             :patronymic => @employee.patronymic)
       render :action => :new
     else
       redirect_to collection_path

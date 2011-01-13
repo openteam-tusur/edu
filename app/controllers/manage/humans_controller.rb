@@ -7,7 +7,7 @@ class Manage::HumansController < Manage::ApplicationController
                            :name => params[:name],
                            :patronymic => params[:patronymic] )
 
-    render :partial => "check", :layout => false
+    render :layout => false
   end
 end
 
