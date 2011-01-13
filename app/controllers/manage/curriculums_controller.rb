@@ -6,7 +6,7 @@ class Manage::CurriculumsController < Manage::ApplicationController
 
   defaults :resource_class => Plan::Curriculum,
            :instance_name => :curriculum,
-           :finder => :find_by_study
+           :finder => :find_by_slug
 
   actions :all, :except => [:index]
 

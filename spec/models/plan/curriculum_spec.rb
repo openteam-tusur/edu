@@ -32,6 +32,13 @@ describe Plan::Curriculum do
     curriculum.unpublish!
     curriculum.reload.unpublished?.should eql true
   end
+
+  it "должен требовать заполнения всех полей ресурса, если заполнено хоть одно" do
+    curriculum = Factory.create(:plan_curriculum)
+    curriculum.year = "2010"
+    curriculum.save.should be false
+    curriculum.errors[:attachment].should_not be nil
+  end
 end
 
 # == Schema Information
@@ -46,7 +53,8 @@ end
 #  updated_at    :datetime
 #  state         :string(255)     'Статус'
 #  resource_name :string(255)     'Название файла'
-#  year          :integer
+#  year          :integer         'Год издания'
 #  access        :string(255)     'Доступ к файлу'
+#  since         :integer         'Действует с'
 #
 
