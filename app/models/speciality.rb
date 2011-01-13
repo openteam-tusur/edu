@@ -7,8 +7,8 @@ class Speciality < ActiveRecord::Base
 
   default_scope order("degree, code")
 
-  has_many :disciplines, :class_name => "Plan::Discipline"
-  has_many :curriculums, :class_name => "Plan::Curriculum"
+  has_many :disciplines, :class_name => "Plan::Discipline", :dependent => :destroy
+  has_many :curriculums, :class_name => "Plan::Curriculum", :dependent => :destroy
 
   has_one :licence, :class_name => "Plan::Licence", :dependent => :destroy
   accepts_nested_attributes_for :licence

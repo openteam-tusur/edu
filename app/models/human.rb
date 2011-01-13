@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Human < ActiveRecord::Base
 
   default_scope order('surname')
@@ -16,6 +18,7 @@ class Human < ActiveRecord::Base
   has_many :employees, :class_name => 'Roles::Employee'
 
   validates_presence_of :post, :surname, :name, :patronymic,  :if => :chair_id
+  validates_presence_of :human_id, :if => :chair_id, :message => 'Необходимо выполнить проверку перед добавлением сотрудника или должности и выбрать действие'
 
   def accepted_employee_in_chair(chair)
     employees.accepted.where(:chair_id => chair.id).first

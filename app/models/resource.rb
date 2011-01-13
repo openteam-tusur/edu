@@ -31,6 +31,6 @@ class Resource < ActiveRecord::Base
     resource_fields.each do |field|
       empty_fields << field if self.send(field).blank?
     end
-    return true unless empty_fields.eql?(resource_fields)
+    ! empty_fields.eql?(resource_fields)
   end
 end
