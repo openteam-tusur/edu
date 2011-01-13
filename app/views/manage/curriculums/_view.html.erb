@@ -47,10 +47,26 @@
       <%= content_tag :td, "" unless @curriculum.semesters_count.even? %>
     </tr>
   </table>
-  <div class="semesters_body">
-    <%= p %>
-    <% @semester.educations.each do |education| %>
-      <div><%= education.discipline.name %></div>
+  <div class="semester_body">
+    <p class="floatr"><%= link_to "Добавить дисциплину",
+                new_manage_chair_speciality_curriculum_semester_education_path(@chair, @speciality, @curriculum, @semester),
+                :class => "button" %></p>
+    <% unless @semester.educations.empty? %>
+      <% @semester.educations.each do |education| %>
+        <div class="discipline <%= cycle('odd', 'even') %>">
+          <div class="discipline_name"><%= education.discipline.name %></div>
+          <div class="discipline_loading">
+            <span title="<%= Plan::Education.human_attribute_name :loading_lecture %>" rel="tipsy"><%= education.loading_lecture %></span> /
+            <span title="<%= Plan::Education.human_attribute_name :loading_laboratory %>" rel="tipsy"><%= education.loading_laboratory %></span> /
+            <span title="<%= Plan::Education.human_attribute_name :loading_practice %>" rel="tipsy"><%= education.loading_practice %></span> /
+            <span title="<%= Plan::Education.human_attribute_name :loading_course_project %>" rel="tipsy"><%= education.loading_course_project %></span> /
+            <span title="<%= Plan::Education.human_attribute_name :loading_self_training %>" rel="tipsy"><%= education.loading_self_training %></span> /
+            <span title="Суммарная нагрузка" rel="tipsy"><%= education.loading_summ %></span>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p>Дисциплины не заполнены</p>
     <% end %>
   </div>
 </div>

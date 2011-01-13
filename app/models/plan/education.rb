@@ -15,7 +15,11 @@ class Plan::Education < ActiveRecord::Base
 
   before_validation :prepare_discipline
 
-  def summ_loading
+  default_values :loading_lecture => 0, :loading_laboratory => 0,
+                 :loading_practice => 0, :loading_course_project => 0,
+                 :loading_course_work => 0, :loading_self_training => 0
+
+  def loading_summ
     summ = 0
     %w[loading_lecture
       loading_laboratory
