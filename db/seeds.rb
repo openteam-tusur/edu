@@ -58,3 +58,19 @@ s210401 = svchkr.specialities.create! :code           => 210401,
                                         :issued_on  => '23.06.08'
                                       }
 
+curriculum = s210401.curriculums.create! :study => 'fulltime',
+                                         :state => 'published',
+                                         :since => '2008',
+                                         :semesters_count => 10
+
+semester1 = curriculum.semesters.find_by_number 1
+
+semester1.educations.create :loading_lecture         => 60,
+                            :loading_laboratory      => 5,
+                            :loading_practice        => 8,
+                            :loading_course_project  => 2,
+                            :loading_course_work     => 4,
+                            :loading_self_training   => 40,
+                            :discipline_name => 'Иностранный язык',
+                            :chair => Chair.find_by_slug('iya')
+
