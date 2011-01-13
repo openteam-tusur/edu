@@ -8,7 +8,8 @@ class Human < ActiveRecord::Base
 
   belongs_to :user
 
-  has_many :roles
+  has_many :roles, :dependent => :destroy
+  after_destroy :destroy_user
 
   def filled?
     !(surname.blank? || name.blank? || patronymic.blank?)
@@ -18,14 +19,27 @@ class Human < ActiveRecord::Base
   has_many :employees, :class_name => 'Roles::Employee'
 
   validates_presence_of :post, :surname, :name, :patronymic,  :if => :chair_id
-  validates_presence_of :human_id, :if => :chair_id, :message => 'Необходимо выполнить проверку перед добавлением сотрудника или должности и выбрать действие'
+  validates_presence_of :human_id, :if => :chair_id, :message => 'Необходимо выполнить проверку перед добавлением сотрудника или должности и выбрать действие', :on => :create
 
-  def employees_in_chair(chair)
-    employees.where(:chair_id => chair.id)
+  has_many :authors
+  has_many :work_programms, :through => :authors, :source => :resource, :source_type => "WorkProgramm"
+
+  protected_parent_of :work_programms
+
+
+
+  def accepted_employee_in_chair(chair)
+    employees.accepted.where(:chair_id => chair.id).first
   end
 
   def full_name
     "#{surname} #{name} #{patronymic}"
+  end
+
+  private
+
+  def destroy_user
+    self.user.destroy if self.user
   end
 
 end

@@ -5,7 +5,6 @@ class Plan::Semester < ActiveRecord::Base
   belongs_to :curriculum
   delegate :speciality, :to => :curriculum
 
-
   validates_presence_of :number, :curriculum
   validates_uniqueness_of :number, :scope => :curriculum_id
 

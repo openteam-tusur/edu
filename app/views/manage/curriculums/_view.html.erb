@@ -1,16 +1,16 @@
 <% title @curriculum.title %>
 
-<p class="resource_state_<%= resource.state %> curriculum_resource_state"><%= t "attributes.state_enum.#{resource.state}" %></p>
+<p class="resource_state_<%= @curriculum.state %> curriculum_resource_state"><%= t "attributes.state_enum.#{@curriculum.state}" %></p>
 
 <fieldset class="curriculum_info">
   <div>
-    <span class="duration">Срок обучения <%= resource.duration %></span>
-    <% if resource.attachment %>
-      <%= link_to image_tag("icon_pdf_#{resource.access}.png"),
-                  resource.attachment.data.url,
-                  :title => resource.human_access, :rel => "tipsy" %>
-      <%= link_to "#{resource.resource_name}, #{resource.year}", resource.attachment.data.url,
-                  :class => "#{resource.access}_pdf download" %>
+    <span class="duration">Срок обучения <%= @curriculum.duration %></span>
+    <% if @curriculum.attachment %>
+      <%= link_to image_tag("icon_pdf_#{@curriculum.access}.png"),
+                  @curriculum.attachment.data.url,
+                  :title => @curriculum.human_access, :rel => "tipsy" %>
+      <%= link_to "#{@curriculum.resource_name}, #{@curriculum.year}", @curriculum.attachment.data.url,
+                  :class => "#{@curriculum.access}_pdf download" %>
     <% else %>
       файл отсутствует
     <% end %>
@@ -18,9 +18,9 @@
 </fieldset>
 
 <ul class="curriculum_action">
-  <li><%= link_to t(:edit), edit_resource_path(resource), :class => "button" %></li>
-  <% resource.aasm_events_for_current_state.each do |event| %>
-    <li><%= link_to t("curriculum.#{event}"), transit_resource_path(:event => event), :class => "button", :method => :put %></li>
+  <li><%= link_to t(:edit), edit_manage_chair_speciality_curriculum_path(@chair, @speciality, @curriculum), :class => "button" %></li>
+  <% @curriculum.aasm_events_for_current_state.each do |event| %>
+    <li><%= link_to t("curriculum.#{event}"), transit_manage_chair_speciality_curriculum_path(@chair, @speciality, @curriculum, :event => event), :class => "button", :method => :put %></li>
   <% end %>
 </ul>
 
@@ -29,19 +29,29 @@
 <div class="curriculum_semesters">
   <table class="semesters_header">
     <tr>
-      <% (1..resource.cources_count).each do |cource| %>
+      <% (1..@curriculum.cources_count).each do |cource| %>
         <th colspan="2"><%= "#{cource} курс" %></th>
       <% end %>
     </tr>
     <tr>
-      <% resource.semesters.each do |semester| %>
-        <td><%= link_to "#{semester.number}", manage_chair_speciality_curriculum_semester_path(@chair, @speciality, resource, semester) %></td>
+      <% @curriculum.semesters.each do |semester| %>
+        <td<%= semester.eql?(@semester) ? " class='current'" : ""%>>
+          <span class="trick"></span>
+          <%= link_to semester.number,
+                      manage_chair_speciality_curriculum_semester_path(@chair, @speciality, @curriculum, semester) %>
+          <%= link_to image_tag("icon_edit.png"),
+                      edit_manage_chair_speciality_curriculum_semester_path(@chair, @speciality, @curriculum, semester),
+                      :class => "float", :title => t("edit"), :rel => "tipsy" %>
+        </td>
       <% end %>
-      <%= content_tag :td, raw("&nbsp;"), :class => "current" unless resource.semesters_count.even? %>
+      <%= content_tag :td, "" unless @curriculum.semesters_count.even? %>
     </tr>
   </table>
   <div class="semesters_body">
-    тут будут дисциплины
+    <%= p %>
+    <% @semester.educations.each do |education| %>
+      <div><%= education.discipline.name %></div>
+    <% end %>
   </div>
 </div>
 

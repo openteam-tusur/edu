@@ -41,6 +41,14 @@ class Plan::Curriculum < Resource
     self.find_by_study_and_since(*slug.split("-"))
   end
 
+  def semesters_count
+    self.semesters.count
+  end
+
+  def cources_count
+    (self.semesters_count / 2) + (self.semesters_count % 2)
+  end
+
   def duration
     years = (semesters.count / 2).to_s
     result = (semesters.count % 2).zero? ? "#{years} " : "#{years},5 "

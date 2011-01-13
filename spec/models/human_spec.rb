@@ -16,6 +16,27 @@ describe Human do
     human.update_attributes(:patronymic => 'patronymic')
     human.reload.filled?.should be true
   end
+
+  it "при удалении должен убивать пользователя и роли" do
+    user = Factory.create(:user)
+    chair = Factory.create(:chair)
+    human = chair.create_employee("surname" => "Фамилия",
+                                    "name" => "Имя",
+                                    "patronymic" => "Отчество",
+                                    "post" => "старший преподаватель",
+                                    "human_id" => user.human.id)
+    human.destroy
+    User.exists?(user.id).should be false
+    Role.where(:human_id => human.id).empty?.should be true
+  end
+
+  it "должен знать свои рабочие программы" do
+    work_programm = Factory.create(:work_programm)
+    human = Factory.create(:human)
+    work_programm.authors.create!(:human_id => human.id)
+
+    human.work_programms.should eql [work_programm]
+  end
 end
 
 # == Schema Information

@@ -93,6 +93,8 @@ SimpleNavigation::Configuration.run do |navigation|
             employees.item :edit_employee, t("title.manage/employees.edit"),
                         edit_manage_chair_employee_path(@chair, @employee),
                         :highlights_on => /employees/ if params[:action] == "update"
+            employees.item :delete_employee, t("title.manage/employees.delete"),
+                        delete_manage_chair_employee_path(@chair, @employee)
           end
         end
 

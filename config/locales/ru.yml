@@ -113,6 +113,7 @@ ru:
       index: Сотрудники кафедры
       new: Добавление информации о сотруднике
       edit: Изменение информации о сотруднике
+      delete: Удаление сотрудника
 
     manage/work_programms:
       index: Рабочие программы
@@ -221,6 +222,7 @@ ru:
         patronymic: Отчество
         surname: Фамилия
         human_id: ''
+        work_programms: Рабочие программы
       speciality:
         accreditation: Аккредитация
         chair: Кафедра
