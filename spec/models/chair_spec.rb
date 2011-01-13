@@ -49,8 +49,7 @@ describe Chair do
       employee = @chair.update_employee(@employee.id, "surname" => "Иванов",
                                                       "name" => "Иван",
                                                       "patronymic" => "Иванович",
-                                                      "post" => "доцент",
-                                                      "human_id" => 0)
+                                                      "post" => "доцент")
       employee.full_name.should eql "Иванов Иван Иванович"
       employee.reload.employees.first.post.should eql "доцент"
     end
