@@ -5,6 +5,7 @@
 .content
   +clearfix
   +min-height(300px)
+  position: relative
   background: #fafaee url("../images/content_bg.png") repeat-x top
   margin: 0 5px
   padding: 20px 20px 0 20px
@@ -30,18 +31,23 @@
     .right
       text-align: right
 
-  table.specialities
-    width: 100%
-    .code
-      width: 40px
-    .curriculums
-      width: 165px
+  .specialities
+    fieldset
+      border: 1px solid #ccc
+      padding: 10px 10px 0 10px
+    legend
+      +verdana_font_stack
+      font-size: 16px
+      font-weight: bold
+    .name
+      font-size: 14px
+      font-weight: bold
+      margin-bottom: 5px
     .qualification
-      color: #777
-      font-size: 11px
+      margin: 0 0 0 5px
     .additional
-      color: #777
-      font-size: 10px
+      font-size: 11px
+      margin-left: 5px
     .empty
       color: #333
       background-color: #f6b4b4
@@ -49,28 +55,6 @@
       padding: 1px 3px
     .curriculum
       margin: 5px 0
-      a
-        +inline-block
-        height: 16px
-        padding-left: 21px
-        &.published
-          background: transparent url("../images/icon_curriculum_published.png") no-repeat left
-        &.unpublished
-          background: transparent url("../images/icon_curriculum_unpublished.png") no-repeat left
-
-  .curriculums
-    +clearfix
-    li
-      float: left
-      margin: 0 15px 0 0
-    a
-      +inline-block
-      height: 16px
-      padding-left: 21px
-      &.published
-        background: transparent url("../images/icon_curriculum_published.png") no-repeat left
-      &.unpublished
-        background: transparent url("../images/icon_curriculum_unpublished.png") no-repeat left
 
   .curriculum_statistics
     float: right
@@ -92,8 +76,12 @@
       background-color: #ffeeaa
       padding: 2px 3px
 
-    .download
-      text-transform: lowercase
+  .curriculum_item
+    .name
+      font-weight: bold
+      margin-bottom: 5px
+    .info
+      margin-left: 21px
 
   .curriculum_semesters
     +clearfix

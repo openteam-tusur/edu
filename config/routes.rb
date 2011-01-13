@@ -11,6 +11,9 @@ Portal::Application.routes.draw do
   end
 
   namespace :manage do
+    resources :disciplines, :only => [] do
+      get :search, :on => :collection
+    end
     resources :humans, :shallow => true do
       resources :roles do
         put :transit, :on => :member

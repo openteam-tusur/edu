@@ -5,6 +5,7 @@ Factory.define :plan_curriculum,
   :class => 'Plan::Curriculum' do |curriculum|
   curriculum.association :speciality
   curriculum.study 'fulltime'
+  curriculum.since 2010
   curriculum.semesters_count 10
 end
 

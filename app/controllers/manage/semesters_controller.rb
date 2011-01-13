@@ -14,7 +14,7 @@ class Manage::SemestersController < Manage::ApplicationController
                  :param => :curriculum_id,
                  :instance_name => :curriculum,
                  :parent_class => Plan::Curriculum,
-                 :finder => :find_by_study
+                 :finder => :find_by_slug
     end
   end
 

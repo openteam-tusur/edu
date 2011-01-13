@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
-gem 'rails'
-gem 'racc'
+gem 'rails', :require => false
+gem 'racc', :require => false
 
 group :production do
   gem 'pg'
@@ -54,7 +54,12 @@ gem 'inherited_resources_views'
 gem "protected_parent"
 
 # enumerations in models
-gem 'has_enum', :git => 'git://github.com/openteam/has_enum', :tag => 'v0.4.0'
+gem 'has_enum', :git => 'git://github.com/openteam/has_enum'
+
+# full text search
+gem "geohash", "1.0.1", :git => "git://github.com/floze/geohash.git", :require => false
+gem "sunspot"
+gem "sunspot_rails"
 
 gem 'aasm'
 gem 'devise'

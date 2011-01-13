@@ -1,4 +1,6 @@
 <tr>
-  <td><%= "#{admin.title} &ndash; ".html_safe + I18n.t("role.#{admin.state}") %></td>
+  <td><%= admin.title %></td>
+  <td><%= t "role.#{admin.state}" %></td>
+  <td><%= l admin.created_at, :format => :long %></td>
 </tr>
 

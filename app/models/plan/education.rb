@@ -1,5 +1,6 @@
 # encoding: utf-8
 class Plan::Education < ActiveRecord::Base
+
   set_table_name :plan_educations
 
   attr_accessor :discipline_name
@@ -29,7 +30,8 @@ class Plan::Education < ActiveRecord::Base
     summ
   end
 
-  private
+private
+
   def prepare_discipline
     return if discipline_name.blank?
     old_discipline = self.discipline
@@ -39,6 +41,7 @@ class Plan::Education < ActiveRecord::Base
     return if old_discipline.eql?(new_discipline)
     old_discipline.destroy if old_discipline.educations.eql? [self]
   end
+
 end
 
 # == Schema Information

@@ -53,7 +53,8 @@ end
 #  updated_at    :datetime
 #  state         :string(255)     'Статус'
 #  resource_name :string(255)     'Название файла'
-#  year          :integer
+#  year          :integer         'Год издания'
 #  access        :string(255)     'Доступ к файлу'
+#  since         :integer         'Действует с'
 #
 

@@ -16,10 +16,14 @@ class Speciality < ActiveRecord::Base
   has_one :accreditation, :class_name => "Plan::Accreditation"
   accepts_nested_attributes_for :accreditation
 
-  has_enum :degree, %w[specialist master bachelor]
+  has_enum :degree, %w[specialist master bachelor], :scopes => true
 
   def title
     "#{code} - #{name} (#{human_degree})"
+  end
+
+  def short_title
+    "#{code} - #{name}"
   end
 
   def slug

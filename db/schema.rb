@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101227080749) do
+ActiveRecord::Schema.define(:version => 20110112105814) do
 
   create_table "attachments", :force => true do |t|
     t.string   "data_uid"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(:version => 20101227080749) do
     t.string   "resource_name"
     t.integer  "year"
     t.string   "access"
+    t.integer  "since"
   end
 
   create_table "plan_disciplines", :force => true do |t|
