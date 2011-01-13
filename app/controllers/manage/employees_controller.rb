@@ -14,7 +14,8 @@ class Manage::EmployeesController < Manage::ApplicationController
   end
 
   def create
-    @employee = @chair.create_employee(params[:employee])
+    create_human = (params[:human] == 'new') || params[:human].blank?
+    @employee = @chair.create_employee(params[:employee], create_human)
     if @employee.new_record?
       render :action => :new
     else
