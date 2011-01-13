@@ -222,6 +222,7 @@ ru:
         patronymic: Отчество
         surname: Фамилия
         human_id: ''
+        work_programms: Рабочие программы
       speciality:
         accreditation: Аккредитация
         chair: Кафедра

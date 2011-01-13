@@ -1,3 +1,10 @@
+function discipline_autocomplete() {
+  $("#education_discipline_name").autocomplete({
+    source: "/autocompletes/disciplines",
+    minLength: 2
+  });
+};
+
 function flash() {
   $("#error_explanation").addClass("flash_block").prepend("<a href=\"#\">закрыть</a>");
   $(".flash_block a").click(function(e) {
@@ -30,6 +37,7 @@ function human_check(){
 $(function() {
   $(".curriculum_resource_state").prev().append($(".curriculum_resource_state"));
   human_check();
+  discipline_autocomplete();
   flash();
   $(".focus_first:first").focus();
   $("a[rel=tipsy], span[rel=tipsy], .formtastic .inputs abbr").tipsy({gravity: "s"});
@@ -40,10 +48,6 @@ $(function() {
     showOtherMonths: true,
     changeMonth: true,
     changeYear: true
-  });
-  $("#education_discipline_name").autocomplete({
-    source: "/manage/disciplines/search",
-    minLength: 2
   });
 });
 
