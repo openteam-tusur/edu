@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110112105814) do
+ActiveRecord::Schema.define(:version => 20110113032858) do
 
   create_table "attachments", :force => true do |t|
     t.string   "data_uid"
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(:version => 20110112105814) do
   create_table "plan_accreditations", :force => true do |t|
     t.integer  "speciality_id"
     t.string   "number"
-    t.date     "issued_at"
+    t.date     "issued_on"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -116,7 +116,7 @@ ActiveRecord::Schema.define(:version => 20110112105814) do
   create_table "plan_licences", :force => true do |t|
     t.integer  "speciality_id"
     t.string   "number"
-    t.date     "issued_at"
+    t.date     "issued_on"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -237,10 +237,10 @@ ru:
         current_password: Текущий пароль
       plan:
         licence:
-          issued_at: Дата выдачи
+          issued_on: Дата выдачи
           number: Номер
         accreditation:
-          issued_at: Дата выдачи
+          issued_on: Дата выдачи
           number: Номер
         curriculum:
           duration: Срок обучения

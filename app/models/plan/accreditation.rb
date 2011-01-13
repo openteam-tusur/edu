@@ -8,7 +8,7 @@ class Plan::Accreditation < ActiveRecord::Base
     result = ""
     result += self.number.blank? ? "№<span class='empty'>не указан</span>" : "№#{self.number}"
     result += " от "
-    result += self.issued_at.blank? ? "<span class='empty'>не указано</span>" : "#{I18n.l self.issued_at}"
+    result += self.issued_on.blank? ? "<span class='empty'>не указано</span>" : "#{I18n.l self.issued_on}"
     result.html_safe
   end
 
@@ -23,7 +23,7 @@ end
 #  id            :integer         not null, primary key
 #  speciality_id :integer
 #  number        :string(255)     'Номер'
-#  issued_at     :date            'Дата выдачи'
+#  issued_on     :date            'Дата выдачи'
 #  created_at    :datetime
 #  updated_at    :datetime
 #
