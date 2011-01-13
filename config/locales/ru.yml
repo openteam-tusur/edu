@@ -148,6 +148,9 @@ ru:
   author:
     add: Добавить автора
 
+  resource_education:
+    add: Добавить дисциплину
+
   attributes:
     name: Название
     abbr: Аббревиатура
