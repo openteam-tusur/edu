@@ -48,5 +48,6 @@ end
 #  resource_name :string(255)     'Название файла'
 #  year          :integer         'Год издания'
 #  access        :string(255)     'Доступ к файлу'
+#  since         :integer         'Действует с'
 #
 

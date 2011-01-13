@@ -244,6 +244,7 @@ ru:
           number: Номер
         curriculum:
           duration: Срок обучения
+          since: Действует с
           semesters_count: Количество семестров
           study: Форма обучения
           year: Год издания

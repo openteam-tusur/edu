@@ -22,6 +22,10 @@ class Speciality < ActiveRecord::Base
     "#{code} - #{name} (#{human_degree})"
   end
 
+  def short_title
+    "#{code} - #{name}"
+  end
+
   def slug
     "#{self.code}-#{self.degree}"
   end
