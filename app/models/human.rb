@@ -13,12 +13,12 @@ class Human < ActiveRecord::Base
   end
 
   has_many :students, :class_name => 'Roles::Student'
-  has_many :teachers, :class_name => 'Roles::Teacher'
+  has_many :employees, :class_name => 'Roles::Employee'
 
   validates_presence_of :post, :surname, :name, :patronymic,  :if => :chair_id
 
-  def accepted_teacher_in_chair(chair)
-    teachers.accepted.where(:chair_id => chair.id).first
+  def accepted_employee_in_chair(chair)
+    employees.accepted.where(:chair_id => chair.id).first
   end
 
   def full_name

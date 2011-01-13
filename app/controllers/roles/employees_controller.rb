@@ -1,10 +1,10 @@
 # encoding: utf-8
 
-class Roles::TeachersController < RolesController
-  load_and_authorize_resource :class => Roles::Teacher
+class Roles::EmployeesController < RolesController
+  load_and_authorize_resource :class => Roles::Employee
 
-  defaults :resource_class => Roles::Teacher,
-           :instance_name => :roles_teacher
+  defaults :resource_class => Roles::Employee,
+           :instance_name => :roles_employee
 
   def create
     create! do

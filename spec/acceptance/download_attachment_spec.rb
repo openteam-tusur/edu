@@ -7,8 +7,10 @@ feature "Скачивание файлов" do
     @curriculum = Factory.create(:plan_curriculum,
                           :semesters_count => 10,
                           :resource_name => "учебный план",
-                          :access => "free")
-    @curriculum.create_attachment(:data => File.new(Rails.root.join("spec", "data", "plan-210400.pdf")))
+                          :access => "free",
+                          :year => "2010",
+                          :attachment_attributes => {:data => File.new(Rails.root.join("spec", "data", "plan-210400.pdf"))})
+#    @curriculum.create_attachment(:data => ))
   end
 
   scenario "должен скачиваться файл, версия которого полностью открытая" do

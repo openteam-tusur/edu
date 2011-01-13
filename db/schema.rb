@@ -110,7 +110,6 @@ ActiveRecord::Schema.define(:version => 20110113032858) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "chair_id"
-    t.integer  "work_programm_id"
   end
 
   create_table "plan_licences", :force => true do |t|
@@ -124,6 +123,14 @@ ActiveRecord::Schema.define(:version => 20110113032858) do
   create_table "plan_semesters", :force => true do |t|
     t.integer  "curriculum_id"
     t.integer  "number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resource_educations", :force => true do |t|
+    t.integer  "resource_id"
+    t.string   "resource_type"
+    t.integer  "education_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

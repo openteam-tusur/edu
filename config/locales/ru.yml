@@ -83,7 +83,7 @@ ru:
       new: Создание роли студента
       edit: Редактирование роли студента
 
-    roles/teachers:
+    roles/employees:
       new: Создание роли преподавателя
       edit: Редактирование роли преподавателя
 
@@ -109,7 +109,7 @@ ru:
       edit: Изменение семестра
       delete: Удаление семестра
 
-    manage/teachers:
+    manage/employees:
       index: Сотрудники кафедры
       new: Добавление информации о сотруднике
       edit: Изменение информации о сотруднике
@@ -161,6 +161,9 @@ ru:
   author:
     add: Добавить автора
 
+  resource_education:
+    add: Добавить дисциплину
+
   attributes:
     name: Название
     abbr: Аббревиатура
@@ -184,7 +187,7 @@ ru:
       discipline: Дисциплина
       faculty: Факультет
       human: Персональная информация
-      teacher: Сотрудник кафедры
+      employee: Сотрудник кафедры
       plan:
         accreditation: Аккредитация
         curriculum: Учебный план
@@ -193,7 +196,7 @@ ru:
         semester: Семестр
       roles:
         student: Роль студента
-        teacher: Роль преподавателя
+        employee: Роль преподавателя
       speciality: Специальность
       user: Пользователь
       resource: Ресурс
@@ -210,7 +213,7 @@ ru:
         student:
           group: Группа
           birthday: Дата рождения
-        teacher:
+        employee:
           chair: Кафедра
           post: Должность
       human:
