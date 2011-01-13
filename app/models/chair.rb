@@ -24,9 +24,17 @@ class Chair < ActiveRecord::Base
 
   def create_teacher(params)
     human = Human.new(params.merge(:chair_id => self.id))
-    if human.save
-      teacher = human.teachers.create!(:post => human.post, :chair_id => self.id)
+    return human unless human.valid?
+    if human.human_id.blank?
+      if human.save
+        teacher = human.teachers.create!(:post => human.post, :chair_id => self.id)
+        teacher.accept!
+      end
+    else
+      existed_human = Human.find(human.human_id)
+      teacher = existed_human.teachers.create!(:post => human.post, :chair_id => self.id)
       teacher.accept!
+      return existed_human
     end
     human
   end

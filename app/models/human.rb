@@ -2,7 +2,7 @@ class Human < ActiveRecord::Base
 
   default_scope order('surname')
 
-  attr_accessor :post, :chair_id
+  attr_accessor :post, :chair_id, :human_id
 
   belongs_to :user
 

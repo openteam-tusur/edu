@@ -51,6 +51,27 @@ describe Chair do
       teacher.reload.teachers.first.post.should eql  "доцент"
     end
 
+    it "если добавляем сотрудника из существующего пользователя" do
+      new_employee = @chair.create_teacher("surname" => "Иванов",
+                                    "name" => "Иван",
+                                    "patronymic" => "Иванович",
+                                    "post" => "доцент",
+                                    "human_id" => @teacher.id)
+      new_employee.should eql @teacher
+      role = new_employee.teachers.where(:chair_id => @chair).first
+      role.accepted?.should be true
+      role.post.should eql "доцент"
+    end
+
+    it "если добавляем сотрудника для существующего пользователя, но не заполнили должность" do
+      new_employee = @chair.create_teacher("surname" => "Иванов",
+                                    "name" => "Иван",
+                                    "patronymic" => "Иванович",
+                                    "human_id" => @teacher.id)
+      new_employee.new_record?.should be true
+      new_employee.errors[:post].empty?.should be false
+      @teacher.teachers.count.should be 1
+    end
   end
 
 end
