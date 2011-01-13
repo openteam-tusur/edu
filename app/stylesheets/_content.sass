@@ -71,13 +71,6 @@
       .duration
         margin-right: 10px
 
-  .curriculum_semesters
-    +clearfix
-    margin-bottom: 0
-    li
-      float: left
-      width: 130px
-
   .resource_state_published
     +inline-block
     border: 1px solid #a5ff69
@@ -108,6 +101,34 @@
     li
       float: left
       margin: 0 10px 0 0
+
+  .curriculum_semesters
+    width: 100%
+    +inline-block
+    .semesters_header
+      width: 100%
+      margin-bottom: 0
+      th
+        text-align: center
+      td
+        text-align: center
+        width: 15px
+      .current
+        border-bottom: none
+      .trick
+        float: left
+        display: block
+        width: 16px
+        height: 16px
+      .float
+        float: right
+        display: block
+        width: 16px
+        height: 16px
+    .semesters_body
+      border: 1px solid #ccc
+      border-top: none
+      padding: 15px 10px 0 10px
 
 .auth_links
   +clearfix
