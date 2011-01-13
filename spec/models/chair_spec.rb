@@ -41,7 +41,17 @@ describe Chair do
                                     "patronymic" => "Отчество",
                                     "post" => "старший преподаватель",
                                     "human_id" => 0)
-      @chair.employees.should eql [@employee]
+      @chair.employees.all.should eql [@employee]
+    end
+
+    it "если человек занимает две должности на кафедре" do
+      @employee = @chair.create_employee("surname" => "Фамилия",
+                                    "name" => "Имя",
+                                    "patronymic" => "Отчество",
+                                    "post" => "лаборант",
+                                    "human_id" => @employee.id)
+      @chair.employees.all.should eql [@employee]
+      @employee.employees.where(:chair_id => @chair.id).count.should be 2
     end
 
     it "если добавляем сотрудника из существующего пользователя" do

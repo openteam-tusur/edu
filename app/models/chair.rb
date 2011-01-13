@@ -8,7 +8,7 @@ class Chair < ActiveRecord::Base
   validates_uniqueness_of :slug, :abbr, :name
 
   has_many :accepted_roles_employees, :class_name => 'Roles::Employee', :conditions => {:state => "accepted"}
-  has_many :employees, :class_name => "Human", :through => :accepted_roles_employees, :source => :human
+#  has_many :employees, :class_name => "Human", :through => :accepted_roles_employees, :source => :human
 
   has_many :work_programms
 
@@ -36,6 +36,10 @@ class Chair < ActiveRecord::Base
       end
     end
     human
+  end
+
+  def employees
+    Human.where(:id => accepted_roles_employees.collect(&:human_id))
   end
 
   def find_employee(human_id)

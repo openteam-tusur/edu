@@ -1,6 +1,9 @@
 <div>
   <%= item.full_name %>
-  <%= item.accepted_employee_in_chair(@chair).post %>
-  <%= link_to t(:edit), edit_resource_path(item) %>
+  <ul>
+    <% item.employees_in_chair(@chair).each do |role| %>
+      <li><%= role.post %> <%= role.state %></li>
+    <% end %>
+  </ul>
 </div>
 
