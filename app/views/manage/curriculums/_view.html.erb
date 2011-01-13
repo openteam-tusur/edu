@@ -11,6 +11,8 @@
                   :title => resource.human_access, :rel => "tipsy" %>
       <%= link_to "#{resource.resource_name}, #{resource.year}", resource.attachment.data.url,
                   :class => "#{resource.access}_pdf download" %>
+    <% else %>
+      файл отсутствует
     <% end %>
   </div>
 </fieldset>
@@ -23,12 +25,25 @@
 </ul>
 
 <h2>Семестры</h2>
-<ul class="curriculum_semesters">
-  <% resource.semesters.each do |semester| %>
-    <li>
-      <%= link_to "#{semester.number} семестр", manage_chair_speciality_curriculum_semester_path(@chair, @speciality, resource, semester) %>
-    </li>
-  <% end %>
-</ul>
+
+<div class="curriculum_semesters">
+  <table class="semesters_header">
+    <tr>
+      <% (1..resource.cources_count).each do |cource| %>
+        <th colspan="2"><%= "#{cource} курс" %></th>
+      <% end %>
+    </tr>
+    <tr>
+      <% resource.semesters.each do |semester| %>
+        <td><%= link_to "#{semester.number}", manage_chair_speciality_curriculum_semester_path(@chair, @speciality, resource, semester) %></td>
+      <% end %>
+      <%= content_tag :td, raw("&nbsp;"), :class => "current" unless resource.semesters_count.even? %>
+    </tr>
+  </table>
+  <div class="semesters_body">
+    тут будут дисциплины
+  </div>
+</div>
+
 <p><%= link_to t('semester.add'), new_manage_chair_speciality_curriculum_semester_path(@chair, @speciality, resource), :class => "button" %></p>
 

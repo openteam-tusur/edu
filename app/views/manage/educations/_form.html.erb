@@ -1,7 +1,6 @@
 <%= form.inputs :class => "inputs education_common_info" do %>
   <%= form.input :discipline_name, :input_html => { :value => resource.discipline ? resource.discipline.name : resource.discipline_name, :class => "focus_first" } %>
   <%= form.input :chair, :group_by => :faculty %>
-  <%= form.input :work_programm, :collection => @chair.work_programms %>
 <% end %>
 <%= form.inputs "Нагрузка", :class => "inputs pictorial loading" do %>
   <%= form.input :loading_lecture %>
