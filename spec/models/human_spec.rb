@@ -46,14 +46,20 @@ describe Human do
       @bankin.roles << Roles::Employee.new(:chair => Factory.create(:chair),
                                            :post => 'Старший преподаватель')
 
-      @lapyj = Human.create :name => "Ефрем", :patronymic => "Никитович", :surname => "Лапый"
-      @lapyj.roles << Roles::Employee.new(:chair => Factory.create(:chair),
+      @bapyj = Human.create :name => "Ефрем", :patronymic => "Никитович", :surname => "Бапый"
+      @bapyj.roles << Roles::Employee.new(:chair => Factory.create(:chair),
                                           :post => 'Зав. кафедрой')
+
+      @han = Human.create :name => "Урмас",
+                          :patronymic => "Йорикович",
+                          :surname => "Хан"
+
     end
 
     it 'должен корректно формироваться список сотрудников, доступных в качестве авторов' do
-      Human.available_authors.all.should eql [@bankin, @lapyj]
-      Human.available_authors(@bankin.id).all.should eql [@lapyj]
+      Human.available_authors("ба").collect(&:id).sort.should eql [@bankin.id, @bapyj.id].sort
+      Human.available_authors("ба", :without => @bankin).should eql [@bapyj]
+      Human.available_authors("ба жо").should eql [@bankin]
     end
 
   end

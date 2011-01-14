@@ -11,10 +11,6 @@ class Human < ActiveRecord::Base
   has_many :roles, :dependent => :destroy
   after_destroy :destroy_user
 
-  def filled?
-    !(surname.blank? || name.blank? || patronymic.blank?)
-  end
-
   has_many :students, :class_name => 'Roles::Student'
   has_many :employees, :class_name => 'Roles::Employee'
 
@@ -33,10 +29,19 @@ class Human < ActiveRecord::Base
 
   protected_parent_of :work_programms
 
-  scope :all_employees, where("id in (select human_id from roles where type = 'Roles::Employee')")
+  searchable do
+    text :full_name
+  end
 
-  def self.available_authors(*ids)
-    ids.empty? ? all_employees : all_employees.where("id not in (#{ids.join(', ')})")
+  def self.available_authors(query, options = {})
+    solr_search do
+      text_fields do
+        query.split(/[^[:alnum:]]+/).each do | term |
+          with(:full_name).starting_with term
+        end
+      end
+      without options[:without] if options[:without]
+    end.results
   end
 
   def accepted_employee_in_chair(chair)
@@ -45,6 +50,10 @@ class Human < ActiveRecord::Base
 
   def full_name
     "#{surname} #{name} #{patronymic}"
+  end
+
+  def filled?
+    !(surname.blank? || name.blank? || patronymic.blank?)
   end
 
   private
