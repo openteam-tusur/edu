@@ -179,6 +179,9 @@ ru:
         reject: Отклонить
         accept: Утвердить
         expire: Закончить срок действия
+      resource:
+        publish: Опубликовать
+        unpublish: Убрать с публикации
 
     models:
       chair: Кафедра
