@@ -24,13 +24,22 @@ class Resource < ActiveRecord::Base
     transitions  :to => :unpublished, :from => [:published]
   end
 
-  private
-  def need_all_resource_fields?
-    resource_fields = %w[resource_name year access attachment]
-    empty_fields = []
-    resource_fields.each do |field|
-      empty_fields << field if self.send(field).blank?
-    end
-    ! empty_fields.eql?(resource_fields)
+  searchable do
+    text :title
+    text :year
+    string :authors, :multiple => true do
+      authors.map(&:human).map(&:full_name)
+    end if self.respond_to? :authors
   end
+
+  private
+    def need_all_resource_fields?
+      resource_fields = %w[resource_name year access attachment]
+      empty_fields = []
+      resource_fields.each do |field|
+        empty_fields << field if self.send(field).blank?
+      end
+      ! empty_fields.eql?(resource_fields)
+    end
 end
+
