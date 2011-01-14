@@ -61,7 +61,7 @@ gem "geohash", "1.0.1", :git => "git://github.com/floze/geohash.git", :require =
 gem "sunspot"
 gem "sunspot_rails"
 
-gem 'aasm'
+gem 'aasm', :git => "git://github.com/etehtsea/aasm.git"
 gem 'devise'
 gem 'cancan'
 
