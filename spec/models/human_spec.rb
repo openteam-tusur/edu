@@ -20,11 +20,11 @@ describe Human do
   it "при удалении должен убивать пользователя и роли" do
     user = Factory.create(:user)
     chair = Factory.create(:chair)
-    human = chair.create_employee("surname" => "Фамилия",
-                                    "name" => "Имя",
-                                    "patronymic" => "Отчество",
-                                    "post" => "старший преподаватель",
-                                    "human_id" => user.human.id)
+    human = chair.create_employee "surname" => "Фамилия",
+                                  "name" => "Имя",
+                                  "patronymic" => "Отчество",
+                                  "post" => "старший преподаватель",
+                                  "human_id" => user.human.id
     human.destroy
     User.exists?(user.id).should be false
     Role.where(:human_id => human.id).empty?.should be true
@@ -37,6 +37,33 @@ describe Human do
 
     human.work_programms.should eql [work_programm]
   end
+
+
+  describe 'должен формировать список доступных авторов' do
+
+    before(:each) do
+      @bankin = Human.create :name => "Ерофей", :patronymic => "Жозефович", :surname => "Банькин"
+      @bankin.roles << Roles::Employee.new(:chair => Factory.create(:chair),
+                                           :post => 'Старший преподаватель')
+
+      @bapyj = Human.create :name => "Ефрем", :patronymic => "Никитович", :surname => "Бапый"
+      @bapyj.roles << Roles::Employee.new(:chair => Factory.create(:chair),
+                                          :post => 'Зав. кафедрой')
+
+      @han = Human.create :name => "Урмас",
+                          :patronymic => "Йорикович",
+                          :surname => "Хан"
+
+    end
+
+    it 'должен корректно формироваться список сотрудников, доступных в качестве авторов' do
+      Human.available_authors("ба").collect(&:id).sort.should eql [@bankin.id, @bapyj.id].sort
+      Human.available_authors("ба", :without => @bankin).should eql [@bapyj]
+      Human.available_authors("ба жо").should eql [@bankin]
+    end
+
+  end
+
 end
 
 # == Schema Information

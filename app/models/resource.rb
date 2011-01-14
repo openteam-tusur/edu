@@ -27,9 +27,14 @@ class Resource < ActiveRecord::Base
   searchable do
     text :title
     text :year
-    string :authors, :multiple => true do
-      authors.map(&:human).map(&:full_name)
-    end if self.respond_to? :authors
+
+    text :authors do
+      authors.map(&:human).map(&:full_name).join(" ")
+    end
+  end
+
+  def authors
+    []
   end
 
   private

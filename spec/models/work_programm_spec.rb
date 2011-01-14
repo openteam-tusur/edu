@@ -4,23 +4,31 @@ require 'spec_helper'
 
 describe WorkProgramm do
   before(:each) do
-    @work_programm1 = Factory.create(:work_programm)
-    @work_programm2 = Factory.create(:work_programm)
-    @work_programm3 = Factory.create(:work_programm)
+    @work_programm = Factory.create(:work_programm)
   end
 
   it "должен быть статус unpublished" do
-    @work_programm1.state.should eql 'unpublished'
+    @work_programm.state.should eql 'unpublished'
   end
 
   it 'кол-во рабочих опубликованных программ должно считаться правильно' do
-    @work_programm1.update_attributes(:state => 'published')
+    @work_programm2 = Factory.create(:work_programm)
+    @work_programm3 = Factory.create(:work_programm)
+    @work_programm.update_attributes(:state => 'published')
     @work_programm2.update_attributes(:state => 'published')
     WorkProgramm.published.count.should   eql 2
     WorkProgramm.unpublished.count.should eql 1
     WorkProgramm.count.should             eql 3
   end
 
+  it 'должны привязываться авторы' do
+    @bankin = Human.create :name => "Ерофей", :patronymic => "Жозефович", :surname => "Банькин"
+    @work_programm.update_attributes :authors_attributes => [
+      { :human =>  @bankin }
+    ]
+
+    @work_programm.authors.first.human.should eql @bankin
+  end
 end
 
 # == Schema Information
