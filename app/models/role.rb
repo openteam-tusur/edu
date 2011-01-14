@@ -26,6 +26,15 @@ class Role < ActiveRecord::Base
   aasm_event :expire do
     transitions :from => :accepted, :to => :expired
   end
+
+  after_save :reindex_human
+
+private
+
+  def reindex_human
+    human.index!
+  end
+
 end
 
 # == Schema Information
