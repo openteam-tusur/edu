@@ -1,5 +1,17 @@
+<% @work_programm.authors.build %>
 <%= form.inputs :class => "work_programm inputs" do %>
+
   <%= form.input :title, :as => :string, :input_html => {:class => :focus_first} %>
+
+  <%= form.fields_for :authors do |author_form| %>
+    <h2>Авторы рабочей программы</h2>
+    <%= author_form.inputs do %>
+      <%= author_form.input :author_query, :label => "Выберите автора", :input_html => {:class => "author_query_input"} %>
+    <% end  %>
+  <% end %>
+
+  <div class="author_list"></div>
+
 <% end %>
 <%= render :partial => "manage/common/resource_fields", :locals => {:form => form} %>
 

@@ -20,6 +20,7 @@ end
 
 User.destroy_all
 Role.destroy_all
+Human.destroy_all
 
 admin = User.create( :email => 'admin@demo.de',
                      :password => '123123',

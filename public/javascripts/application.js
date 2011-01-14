@@ -34,9 +34,40 @@ function human_check(){
   });
 };
 
+function author_autocomplete(){
+  $(".author_query_input").autocomplete({
+    source: "/autocompletes/authors",
+    minLength: 2,
+    select: function(event, ui) {
+      $(".add_author_link").show();
+      $(this).attr("author_id",ui.item.id);
+    }
+  });
+};
+
+function add_author_in_list(){
+  var autocomplete_input = $(".author_query_input");
+  autocomplete_input.after("<a href='#' class='add_author_link button'>Добавить автора</a>");
+
+  var link = $(".add_author_link");
+
+  link.live("click",function(){
+    var full_name = autocomplete_input.val();
+    var author_id = autocomplete_input.attr("author_id");
+    $(".author_list").append("<p id="+author_id+" class='author_item'>"+full_name+"</p>");
+    autocomplete_input.val("").attr("author_id","");
+    $(this).hide();
+
+    return false;
+  });
+}
+
+
 $(function() {
   human_check();
   discipline_autocomplete();
+  author_autocomplete();
+  add_author_in_list();
   flash();
   $(".focus_first:first").focus();
   $("a[rel=tipsy], span[rel=tipsy], .formtastic .inputs abbr").tipsy({gravity: "s"});

@@ -41,6 +41,7 @@ Portal::Application.routes.draw do
 
   resources :autocompletes, :only => [] do
     get :disciplines, :on => :collection
+    get :authors, :on => :collection
   end
 
   match "/:id" => "chairs#show", :as => :chair

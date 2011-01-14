@@ -37,7 +37,7 @@ class Human < ActiveRecord::Base
     solr_search do
       text_fields do
         query.split(/[^[:alnum:]]+/).each do | term |
-          with(:full_name).starting_with term
+          with(:full_name).starting_with term.mb_chars.downcase
         end
       end
       without options[:without] if options[:without]
