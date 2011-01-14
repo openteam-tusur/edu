@@ -40,7 +40,7 @@ class Human < ActiveRecord::Base
   end
 
    def self.per_page
-    10
+    1
    end
 end
 
