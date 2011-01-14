@@ -54,11 +54,6 @@ ru:
     standalone_day_names: [Воскресенье, Понедельник, Вторник, Среда, Четверг, Пятница, Суббота]
     standalone_month_names: [~, Январь, Февраль, Март, Апрель, Май, Июнь, Июль, Август, Сентябрь, Октябрь, Ноябрь, Декабрь]
 
-  role:
-    reject: Отклонить
-    accept: Утвердить
-    expire: Закончить срок действия
-
   title:
     chairs:
       index: Кафедры
@@ -179,6 +174,11 @@ ru:
     attachment: Файл ресурса
 
   activerecord:
+    events:
+      role:
+        reject: Отклонить
+        accept: Утвердить
+        expire: Закончить срок действия
 
     models:
       chair: Кафедра
