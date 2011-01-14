@@ -1,14 +1,11 @@
-<div>
-  <%= @employee.full_name %>
-  <p>
+<div class="human">
+  <div class="full_name"><%= @employee.full_name %></div>
+  <div class="post">
     <%= @employee.accepted_employee_in_chair(@chair).post %>
-    <%= @employee.accepted_employee_in_chair(@chair).state %>
-  </p>
+  </div>
 </div>
 
-
-
-<% show_for resource do | s | %>
+<%= show_for resource do | s | %>
   <% unless resource.protected_children.empty? %>
     С этим объектом связаны:
     <% resource.protected_children.each do |attribute| %>

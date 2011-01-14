@@ -55,12 +55,8 @@ ru:
     standalone_month_names: [~, Январь, Февраль, Март, Апрель, Май, Июнь, Июль, Август, Сентябрь, Октябрь, Ноябрь, Декабрь]
 
   role:
-    pending:  На рассмотрении
-    rejected: Отклонено
     reject: Отклонить
-    accepted: Утверждено
     accept: Утвердить
-    expired:  Просрочено
     expire: Закончить срок действия
 
   title:
@@ -183,6 +179,11 @@ ru:
     attachment: Файл ресурса
 
   activerecord:
+    events:
+      role:
+        reject: Отклонить
+        accept: Утвердить
+        expire: Закончить срок действия
 
     models:
       chair: Кафедра
@@ -211,6 +212,13 @@ ru:
         data: Выберите файл
       resource:
         year: Год издания
+
+      role:
+        pending:  На рассмотрении
+        rejected: Отклонено
+        accepted: Утверждено
+        expired:  Просрочено
+
       roles:
         student:
           group: Группа

@@ -62,6 +62,9 @@ class Human < ActiveRecord::Base
     self.user.destroy if self.user
   end
 
+   def self.per_page
+    10
+   end
 end
 
 # == Schema Information
