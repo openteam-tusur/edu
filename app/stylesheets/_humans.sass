@@ -9,7 +9,7 @@
       text-indent: -9999px
       width: 16px
 
-    p
+    div
       margin-bottom: 0
 
     .edit
@@ -26,10 +26,39 @@
       float: left
       margin: 0 10px 0 5px
 
-    .accepted
-      background: #BBFBAC
-      +border-radius
+.employees_list
+  margin-left: 10px
+  .human
+    margin: 10px 0
+    .full_name
       +clearfix
-      float: left
-      padding: 1px 3px 1px 3px
+      line-height: 14px
+      font-weight: bold
+      margin-bottom: 0
+
+      input
+        float: left
+        margin: 0 5px 0 0
+
+      .has_user
+        font-size: 12px
+        font-weight: normal
+
+    ul
+      font-size: 10px
+      line-height: 12px
+      margin-left: 20px
+      li
+        margin-bottom: 3px
+
+.human
+  margin: 10px 0
+  .full_name
+    +clearfix
+    font-size: 14px
+    font-weight: bold
+    margin-bottom: 0
+
+  .post
+    margin-left: 5px
 

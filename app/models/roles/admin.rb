@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class Roles::Admin < Role
-  default_values :title => 'Администратор', :slug => 'admin'
+  default_values :title => 'Администратор', :slug => 'admin', :post => 'Администратор'
 end
 
 

@@ -1,7 +1,6 @@
 # encoding: utf-8
 
 class Human < ActiveRecord::Base
-
   default_scope order('surname')
 
   attr_accessor :post, :chair_id, :human_id
@@ -26,8 +25,6 @@ class Human < ActiveRecord::Base
 
   protected_parent_of :work_programms
 
-
-
   def accepted_employee_in_chair(chair)
     employees.accepted.where(:chair_id => chair.id).first
   end
@@ -42,6 +39,9 @@ class Human < ActiveRecord::Base
     self.user.destroy if self.user
   end
 
+   def self.per_page
+    10
+   end
 end
 
 # == Schema Information
