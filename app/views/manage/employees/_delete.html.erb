@@ -5,9 +5,7 @@
   </div>
 </div>
 
-
-
-<% show_for resource do | s | %>
+<%= show_for resource do | s | %>
   <% unless resource.protected_children.empty? %>
     С этим объектом связаны:
     <% resource.protected_children.each do |attribute| %>

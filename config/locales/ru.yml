@@ -179,6 +179,11 @@ ru:
     attachment: Файл ресурса
 
   activerecord:
+    events:
+      role:
+        reject: Отклонить
+        accept: Утвердить
+        expire: Закончить срок действия
 
     models:
       chair: Кафедра
