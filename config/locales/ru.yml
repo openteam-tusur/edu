@@ -179,6 +179,9 @@ ru:
         reject: Отклонить
         accept: Утвердить
         expire: Закончить срок действия
+      resource:
+        publish: Опубликовать
+        unpublish: Снять с публикации
 
     models:
       chair: Кафедра
@@ -207,13 +210,16 @@ ru:
         data: Выберите файл
       resource:
         year: Год издания
-
       role:
-        pending:  На рассмотрении
-        rejected: Отклонено
-        accepted: Утверждено
-        expired:  Просрочено
-
+        state:
+          pending:  На рассмотрении
+          rejected: Отклонено
+          accepted: Утверждено
+          expired:  Просрочено
+      resource:
+        state:
+          unpublished: Не опубликовано
+          published: Опубликовано
       roles:
         student:
           group: Группа
