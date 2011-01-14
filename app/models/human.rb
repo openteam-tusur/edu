@@ -2,7 +2,7 @@
 
 class Human < ActiveRecord::Base
 
-  default_scope order('surname')
+  default_scope order('surname, name, patronymic')
 
   attr_accessor :post, :chair_id, :human_id
 
@@ -19,14 +19,25 @@ class Human < ActiveRecord::Base
   has_many :employees, :class_name => 'Roles::Employee'
 
   validates_presence_of :post, :surname, :name, :patronymic,  :if => :chair_id
-  validates_presence_of :human_id, :if => :chair_id, :message => 'Необходимо выполнить проверку перед добавлением сотрудника или должности и выбрать действие', :on => :create
+  validates_presence_of :human_id,
+                        :if => :chair_id,
+                        :on => :create,
+                        :message => 'Необходимо выполнить проверку перед добавлением сотрудника или\
+                                     должности и выбрать действие'
 
   has_many :authors
-  has_many :work_programms, :through => :authors, :source => :resource, :source_type => "WorkProgramm"
+  has_many :work_programms,
+           :through => :authors,
+           :source => :resource,
+           :source_type => "WorkProgramm"
 
   protected_parent_of :work_programms
 
+  scope :all_employees, where("id in (select human_id from roles where type = 'Roles::Employee')")
 
+  def self.available_authors(*ids)
+    ids.empty? ? all_employees : all_employees.where("id not in (#{ids.join(', ')})")
+  end
 
   def accepted_employee_in_chair(chair)
     employees.accepted.where(:chair_id => chair.id).first
