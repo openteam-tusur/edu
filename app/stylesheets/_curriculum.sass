@@ -1,0 +1,104 @@
+.content
+  .curriculum_statistics
+    float: right
+    +border-radius(3px)
+    padding: 15px 15px 0 15px
+    background-color: #f4e1ca
+
+  .curriculum_item
+    .name
+      font-weight: bold
+      margin-bottom: 5px
+    .info
+      margin-left: 21px
+      .duration
+        margin-right: 10px
+
+  .resource_state_published
+    +inline-block
+    border: 1px solid #a5ff69
+    +border-radius(3px)
+    background-color: #ccffaa
+    padding: 0 5px
+
+  .resource_state_unpublished
+    +inline-block
+    border: 1px solid #ffe169
+    +border-radius(3px)
+    background-color: #ffeeaa
+    padding: 0 5px
+
+  .curriculum_resource_state
+    float: right
+    font-size: 14px
+    margin-bottom: 0
+
+  .curriculum_info
+    border: 1px solid #ccc
+    padding: 10px 10px 0 10px
+    .duration
+      margin-right: 10px
+
+  .curriculum_action
+    +clearfix
+    li
+      float: left
+      margin: 0 10px 0 0
+
+  .curriculum_semesters
+    width: 100%
+    +inline-block
+    .semesters_header
+      width: 100%
+      margin-bottom: 0
+      font-size: 14px
+      th
+        text-align: center
+        background-color: #f0f0f0
+      td
+        text-align: center
+        width: 15px
+        background-color: #f7f7f7
+      .current
+        border-bottom: none
+        background-color: #fff
+      .trick
+        float: left
+        display: block
+        width: 16px
+        height: 16px
+      .float
+        float: right
+        display: block
+        width: 16px
+        height: 16px
+    .semester_body
+      border: 1px solid #ccc
+      border-top: none
+      padding: 15px 10px 10px 10px
+      margin-bottom: 0
+      .discipline
+        +clearfix
+        margin-bottom: 0
+        div
+          float: left
+          margin-bottom: 0
+          padding: 5px
+      .discipline_name
+        width: 300px
+      .odd
+        background-color: #efefef
+      .discipline_loading
+        width: 200px
+        span
+          cursor: help
+      .discipline_edit
+        a
+          display: block
+          width: 16px
+          height: 16px
+          text-indent: -9999em
+          background: transparent url("../images/icon_edit.png") no-repeat
+      .action
+        margin: 10px 0 0 0
+

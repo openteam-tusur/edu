@@ -35,7 +35,6 @@ function human_check(){
 };
 
 $(function() {
-  $(".curriculum_resource_state").prev().append($(".curriculum_resource_state"));
   human_check();
   discipline_autocomplete();
   flash();
