@@ -3,7 +3,7 @@
    <p class="resource_state_<%= resource.state %>">
     <%= t "attributes.state_enum.#{resource.state}" %>
    </p>
-   <%= link_to t("curriculum.#{event}"),
+   <%#= link_to resource.human_event_name(event),
                transit_resource_path(:event => event),
                :class => "button", :method => :put %>
   </li>

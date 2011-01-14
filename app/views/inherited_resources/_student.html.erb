@@ -5,7 +5,7 @@
       <%= link_to t(:edit), edit_manage_role_path(student) if can? :manage, student %>
       <% unless student.aasm_events_for_current_state.empty? %>
         <% student.aasm_events_for_current_state.each do |event| %>
-          <%= link_to(t("role.#{event}"), transit_manage_role_path(student,
+          <%= link_to(student.human_event_name(event), transit_manage_role_path(student,
                                                       :event => event),
                                                       :method => :put) %>
         <% end %>
@@ -14,7 +14,7 @@
       <%= link_to t(:edit), edit_human_roles_student_path(student) %>
     <% end %>
   </td>
-  <td><%= t("role.#{student.state}") %></td>
+  <td><%= student.human_state %></td>
   <td><%= l student.created_at, :format => :long %></td>
 </tr>
 
