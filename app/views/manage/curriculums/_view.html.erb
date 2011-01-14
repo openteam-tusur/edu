@@ -1,7 +1,5 @@
 <% title @curriculum.title %>
 
-<p class="resource_state_<%= @curriculum.state %> curriculum_resource_state"><%= t "attributes.state_enum.#{@curriculum.state}" %></p>
-
 <fieldset class="curriculum_info">
   <div>
     <span class="duration">Срок обучения <%= @curriculum.duration %></span>
@@ -20,7 +18,12 @@
 <ul class="curriculum_action">
   <li><%= link_to t(:edit), edit_manage_chair_speciality_curriculum_path(@chair, @speciality, @curriculum), :class => "button" %></li>
   <% @curriculum.aasm_events_for_current_state.each do |event| %>
-    <li><%= link_to t("curriculum.#{event}"), transit_manage_chair_speciality_curriculum_path(@chair, @speciality, @curriculum, :event => event), :class => "button", :method => :put %></li>
+    <li class="curriculum_resource_state">
+      <p class="resource_state_<%= @curriculum.state %>"><%= t "attributes.state_enum.#{@curriculum.state}" %></p>
+      <%= link_to t("curriculum.#{event}"),
+                  transit_manage_chair_speciality_curriculum_path(@chair, @speciality, @curriculum, :event => event),
+                  :class => "button", :method => :put %>
+    </li>
   <% end %>
 </ul>
 
@@ -48,9 +51,6 @@
     </tr>
   </table>
   <div class="semester_body">
-    <p class="floatr"><%= link_to "Добавить дисциплину",
-                new_manage_chair_speciality_curriculum_semester_education_path(@chair, @speciality, @curriculum, @semester),
-                :class => "button" %></p>
     <% unless @semester.educations.empty? %>
       <% @semester.educations.each do |education| %>
         <div class="discipline <%= cycle('odd', 'even') %>">
@@ -73,6 +73,9 @@
     <% else %>
       <p>Дисциплины не заполнены</p>
     <% end %>
+    <p class="action"><%= link_to "Добавить дисциплину",
+                   new_manage_chair_speciality_curriculum_semester_education_path(@chair, @speciality, @curriculum, @semester),
+                   :class => "button" %></p>
   </div>
 </div>
 
