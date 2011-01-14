@@ -39,12 +39,8 @@
     <tr>
       <% @curriculum.semesters.each do |semester| %>
         <td<%= semester.eql?(@semester) ? " class='current'" : ""%>>
-          <span class="trick"></span>
           <%= link_to semester.number,
                       manage_chair_speciality_curriculum_semester_path(@chair, @speciality, @curriculum, semester) %>
-          <%= link_to image_tag("icon_edit.png"),
-                      edit_manage_chair_speciality_curriculum_semester_path(@chair, @speciality, @curriculum, semester),
-                      :class => "float", :title => t("edit"), :rel => "tipsy" %>
         </td>
       <% end %>
       <%= content_tag :td, "" unless @curriculum.semesters_count.even? %>
@@ -78,6 +74,4 @@
                    :class => "button" %></p>
   </div>
 </div>
-
-<p><%= link_to t('semester.add'), new_manage_chair_speciality_curriculum_semester_path(@chair, @speciality, resource), :class => "button" %></p>
 
