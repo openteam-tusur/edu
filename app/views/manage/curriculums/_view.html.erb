@@ -1,16 +1,14 @@
 <% title @curriculum.title %>
 
-<p class="resource_state_<%= resource.state %> curriculum_resource_state"><%= t "attributes.state_enum.#{resource.state}" %></p>
-
 <fieldset class="curriculum_info">
   <div>
-    <span class="duration">Срок обучения <%= resource.duration %></span>
-    <% if resource.attachment %>
-      <%= link_to image_tag("icon_pdf_#{resource.access}.png"),
-                  resource.attachment.data.url,
-                  :title => resource.human_access, :rel => "tipsy" %>
-      <%= link_to "#{resource.resource_name}, #{resource.year}", resource.attachment.data.url,
-                  :class => "#{resource.access}_pdf download" %>
+    <span class="duration">Срок обучения <%= @curriculum.duration %></span>
+    <% if @curriculum.attachment %>
+      <%= link_to image_tag("icon_pdf_#{@curriculum.access}.png"),
+                  @curriculum.attachment.data.url,
+                  :title => @curriculum.human_access, :rel => "tipsy" %>
+      <%= link_to "#{@curriculum.resource_name}, #{@curriculum.year}", @curriculum.attachment.data.url,
+                  :class => "#{@curriculum.access}_pdf download" %>
     <% else %>
       файл отсутствует
     <% end %>
@@ -18,9 +16,14 @@
 </fieldset>
 
 <ul class="curriculum_action">
-  <li><%= link_to t(:edit), edit_resource_path(resource), :class => "button" %></li>
-  <% resource.aasm_events_for_current_state.each do |event| %>
-    <li><%= link_to t("curriculum.#{event}"), transit_resource_path(:event => event), :class => "button", :method => :put %></li>
+  <li><%= link_to t(:edit), edit_manage_chair_speciality_curriculum_path(@chair, @speciality, @curriculum), :class => "button" %></li>
+  <% @curriculum.aasm_events_for_current_state.each do |event| %>
+    <li class="curriculum_resource_state">
+      <p class="resource_state_<%= @curriculum.state %>"><%= t "attributes.state_enum.#{@curriculum.state}" %></p>
+      <%= link_to t("curriculum.#{event}"),
+                  transit_manage_chair_speciality_curriculum_path(@chair, @speciality, @curriculum, :event => event),
+                  :class => "button", :method => :put %>
+    </li>
   <% end %>
 </ul>
 
@@ -29,21 +32,46 @@
 <div class="curriculum_semesters">
   <table class="semesters_header">
     <tr>
-      <% (1..resource.cources_count).each do |cource| %>
+      <% (1..@curriculum.cources_count).each do |cource| %>
         <th colspan="2"><%= "#{cource} курс" %></th>
       <% end %>
     </tr>
     <tr>
-      <% resource.semesters.each do |semester| %>
-        <td><%= link_to "#{semester.number}", manage_chair_speciality_curriculum_semester_path(@chair, @speciality, resource, semester) %></td>
+      <% @curriculum.semesters.each do |semester| %>
+        <td<%= semester.eql?(@semester) ? " class='current'" : ""%>>
+          <%= link_to semester.number,
+                      manage_chair_speciality_curriculum_semester_path(@chair, @speciality, @curriculum, semester) %>
+        </td>
       <% end %>
-      <%= content_tag :td, raw("&nbsp;"), :class => "current" unless resource.semesters_count.even? %>
+      <%= content_tag :td, "" unless @curriculum.semesters_count.even? %>
     </tr>
   </table>
-  <div class="semesters_body">
-    тут будут дисциплины
+  <div class="semester_body">
+    <% unless @semester.educations.empty? %>
+      <% @semester.educations.each do |education| %>
+        <div class="discipline <%= cycle('odd', 'even') %>">
+          <div class="discipline_name"><%= education.discipline.name %></div>
+          <div class="discipline_loading">
+            <span title="<%= Plan::Education.human_attribute_name :loading_lecture %>" rel="tipsy"><%= education.loading_lecture %></span> /
+            <span title="<%= Plan::Education.human_attribute_name :loading_laboratory %>" rel="tipsy"><%= education.loading_laboratory %></span> /
+            <span title="<%= Plan::Education.human_attribute_name :loading_practice %>" rel="tipsy"><%= education.loading_practice %></span> /
+            <span title="<%= Plan::Education.human_attribute_name :loading_course_project %>" rel="tipsy"><%= education.loading_course_project %></span> /
+            <span title="<%= Plan::Education.human_attribute_name :loading_self_training %>" rel="tipsy"><%= education.loading_self_training %></span> /
+            <span title="Суммарная нагрузка" rel="tipsy"><%= education.loading_summ %></span>
+          </div>
+          <div class="discipline_edit">
+            <%= link_to t("edit"),
+                        edit_manage_chair_speciality_curriculum_semester_education_path(@chair, @speciality, @curriculum, @semester, education),
+                        :title => t("edit"), :rel => "tipsy" %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p>Дисциплины не заполнены</p>
+    <% end %>
+    <p class="action"><%= link_to "Добавить дисциплину",
+                   new_manage_chair_speciality_curriculum_semester_education_path(@chair, @speciality, @curriculum, @semester),
+                   :class => "button" %></p>
   </div>
 </div>
-
-<p><%= link_to t('semester.add'), new_manage_chair_speciality_curriculum_semester_path(@chair, @speciality, resource), :class => "button" %></p>
 

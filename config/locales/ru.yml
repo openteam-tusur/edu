@@ -92,6 +92,7 @@ ru:
 
     manage/educations:
       new: Добавление дисциплины
+      edit: Редактирование дисциплины
 
     manage/specialities:
       index: Специальности и направления подготовки
@@ -222,6 +223,7 @@ ru:
         patronymic: Отчество
         surname: Фамилия
         human_id: ''
+        work_programms: Рабочие программы
       speciality:
         accreditation: Аккредитация
         chair: Кафедра

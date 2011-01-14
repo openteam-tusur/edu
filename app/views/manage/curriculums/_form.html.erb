@@ -1,8 +1,8 @@
 <%= form.inputs :class => "inputs common_info" do %>
-  <%= form.enum_input :study, :input_html => { :class => "focus_first" } %>
-  <%= form.input :semesters_count if resource.new_record? %>
-  <%= form.input :since %>
-<% end %>
-<%= form.inputs :class => "inputs resource" do %>
+  <%= form.inputs :class => "common_info" do %>
+    <%= form.enum_input :study, :input_html => { :class => "focus_first" } %>
+    <%= form.input :semesters_count if resource.new_record? %>
+    <%= form.input :since %>
+  <% end %>
   <%= render :partial => "manage/common/resource_fields", :locals => {:form => form} %>
 <% end %>

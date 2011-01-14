@@ -1,20 +1,9 @@
-<p><%= resource.send ShowFor.association_methods.find { |m| resource.respond_to?(m) } %></p>
+<%= render :partial => 'delete' %>
 
 <% if resource.protected? %>
   <p>Нельзя удалить этот объект, пока существуют связанные объекты</p>
 <% else %>
   <p>Вы уверены что хотите удалить?</p>
-<% end %>
-
-<%= show_for resource do | s | %>
-  <% unless resource.protected_children.empty? %>
-    С этим объектом связаны:
-    <% resource.protected_children.each do |attribute| %>
-      <%= s.association attribute.to_sym do | object | %>
-        <%= link_to object, [:manage, object] %>
-      <% end %>
-    <% end %>
-  <% end %>
 <% end %>
 
 <%= semantic_form_for resource, :url => resource_path, :html => {:method => :delete} do |form| %>

@@ -1,4 +1,5 @@
-<%= form.inputs do %>
-  <%= form.input :title %>
-  <%= render :partial => "manage/common/resource_fields", :locals => {:form => form} %>
+<%= form.inputs :class => "work_programm inputs" do %>
+  <%= form.input :title, :as => :string, :input_html => {:class => :focus_first} %>
 <% end %>
+<%= render :partial => "manage/common/resource_fields", :locals => {:form => form} %>
+

@@ -105,6 +105,19 @@
 
     /* specific */
 
+    .work_programm, .pictorial
+      +clearfix
+      #work_programm_title, #work_programm_resource_name
+        width: 99%
+
+    .pictorial
+      #work_programm_resource_name_input
+        float: none
+        margin-right: 0
+      li
+        float: left
+        margin-right: 25px
+
     .speciality_name
       +clearfix
       li
@@ -151,6 +164,7 @@
     &.curriculum
       .common_info
         +clearfix
+        margin: 0
         li
           float: left
       #curriculum_study_input,
@@ -160,8 +174,6 @@
         +clearfix
         fieldset
           margin-bottom: 0
-          li
-            margin-bottom: 0
         li
           float: left
       #curriculum_resource_name_input,

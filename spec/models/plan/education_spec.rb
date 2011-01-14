@@ -15,7 +15,7 @@ describe Plan::Education do
           :loading_course_work => 2,
           :loading_self_training => 80,
           :chair => Factory.create(:chair))
-    education.summ_loading.should be 158
+    education.loading_summ.should be 158
   end
 
   describe "должна прозрачно работать с дисциплинами" do

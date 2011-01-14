@@ -21,6 +21,13 @@ class Human < ActiveRecord::Base
   validates_presence_of :post, :surname, :name, :patronymic,  :if => :chair_id
   validates_presence_of :human_id, :if => :chair_id, :message => 'Необходимо выполнить проверку перед добавлением сотрудника или должности и выбрать действие', :on => :create
 
+  has_many :authors
+  has_many :work_programms, :through => :authors, :source => :resource, :source_type => "WorkProgramm"
+
+  protected_parent_of :work_programms
+
+
+
   def accepted_employee_in_chair(chair)
     employees.accepted.where(:chair_id => chair.id).first
   end

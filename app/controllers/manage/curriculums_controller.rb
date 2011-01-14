@@ -14,6 +14,11 @@ class Manage::CurriculumsController < Manage::ApplicationController
     belongs_to :speciality, :finder => :find_by_slug
   end
 
+  def show
+    show! do
+      @semester = @curriculum.semesters.first
+    end
+  end
 
   def transit
     transit! do
