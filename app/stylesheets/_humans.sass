@@ -9,7 +9,7 @@
       text-indent: -9999px
       width: 16px
 
-    p
+    div
       margin-bottom: 0
 
     .edit
@@ -41,6 +41,7 @@
         margin: 0 5px 0 0
 
       .has_user
+        font-size: 12px
         font-weight: normal
 
     ul
@@ -49,15 +50,15 @@
       margin-left: 20px
       li
         margin-bottom: 3px
-        .accepted
-          +inline-block
-          +border-radius
-          background: #90ee90
-          padding: 2px 3px
 
-        .pending
-          +inline-block
-          +border-radius
-          background: #ffc0cb
-          padding: 2px 3px
+.human
+  margin: 10px 0
+  .full_name
+    +clearfix
+    font-size: 14px
+    font-weight: bold
+    margin-bottom: 0
+
+  .post
+    margin-left: 5px
 

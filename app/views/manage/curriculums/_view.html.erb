@@ -20,7 +20,7 @@
   <% @curriculum.aasm_events_for_current_state.each do |event| %>
     <li class="curriculum_resource_state">
       <p class="resource_state_<%= @curriculum.state %>"><%= t "attributes.state_enum.#{@curriculum.state}" %></p>
-      <%= link_to t("curriculum.#{event}"),
+      <%= link_to @curriculum.human_event_name(event),
                   transit_manage_chair_speciality_curriculum_path(@chair, @speciality, @curriculum, :event => event),
                   :class => "button", :method => :put %>
     </li>
@@ -51,14 +51,6 @@
       <% @semester.educations.each do |education| %>
         <div class="discipline <%= cycle('odd', 'even') %>">
           <div class="discipline_name"><%= education.discipline.name %></div>
-          <div class="discipline_loading">
-            <span title="<%= Plan::Education.human_attribute_name :loading_lecture %>" rel="tipsy"><%= education.loading_lecture %></span> /
-            <span title="<%= Plan::Education.human_attribute_name :loading_laboratory %>" rel="tipsy"><%= education.loading_laboratory %></span> /
-            <span title="<%= Plan::Education.human_attribute_name :loading_practice %>" rel="tipsy"><%= education.loading_practice %></span> /
-            <span title="<%= Plan::Education.human_attribute_name :loading_course_project %>" rel="tipsy"><%= education.loading_course_project %></span> /
-            <span title="<%= Plan::Education.human_attribute_name :loading_self_training %>" rel="tipsy"><%= education.loading_self_training %></span> /
-            <span title="Суммарная нагрузка" rel="tipsy"><%= education.loading_summ %></span>
-          </div>
           <div class="discipline_edit">
             <%= link_to t("edit"),
                         edit_manage_chair_speciality_curriculum_semester_education_path(@chair, @speciality, @curriculum, @semester, education),

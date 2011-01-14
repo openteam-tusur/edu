@@ -2,16 +2,6 @@
   <%= form.input :discipline_name, :input_html => { :value => resource.discipline ? resource.discipline.name : resource.discipline_name, :class => "focus_first" } %>
   <%= form.input :chair, :group_by => :faculty %>
 <% end %>
-<%= form.inputs "Нагрузка", :class => "inputs pictorial loading" do %>
-  <%= form.input :loading_lecture %>
-  <%= form.input :loading_laboratory %>
-  <%= form.input :loading_practice %>
-  </ol>
-  <ol>
-  <%= form.input :loading_course_project %>
-  <%= form.input :loading_course_work %>
-  <%= form.input :loading_self_training %>
-<% end %>
 <%= form.inputs "Форма контроля", :class => "inputs pictorial examinations" do %>
   <%= form.input :examinations, :as => :check_boxes, :label => false %>
 <% end %>
