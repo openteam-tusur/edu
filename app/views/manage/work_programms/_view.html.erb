@@ -1,10 +1,14 @@
 <% title @work_programm.title %>
 
+<ul class="resource_action">
+  <li><%= link_to t(:edit), edit_resource_path(resource), :class => "button" %></li>
+  <%= render :partial => "manage/common/resource_state", :locals => { :resource => resource } %>
+</ul>
+
+<% @work_programm.authors.each do |author| %>
+  <%= author.name %>
+<% end %>
 <%= render :partial => "manage/common/resource", :locals => { :resource => resource } %>
-
-<%= render :partial => "manage/common/resource_state", :locals => { :resource => resource } %>
-
-<%= link_to t(:edit), edit_resource_path(resource) %>
 
 <h2>Автор(ы)</h2>
 
