@@ -2,7 +2,7 @@
 
 <p><%= link_to "Специальности и направления подготовки", manage_chair_specialities_path(@chair) %></p>
 
-<h2>Рабочие программы</h2>
+<p><%= link_to "Рабочие программы", manage_chair_work_programms_path(@chair) %></p>
 <% unless @chair.work_programms.empty?  %>
   <table class="work_programms">
     <tbody>
