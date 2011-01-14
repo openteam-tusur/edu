@@ -6,6 +6,7 @@
   </div>
 <% end %>
 
-<%= link_to t("#{resource_class.name.downcase}.add"), new_resource_path, :class => 'button' %>
 <%= will_paginate collection %>
+
+<p><%= link_to t("#{resource_class.name.downcase}.add"), new_resource_path, :class => 'button' %></p>
 
