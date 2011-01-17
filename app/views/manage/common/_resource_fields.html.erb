@@ -1,4 +1,5 @@
 <%= form.inputs "Файл", :class => "inputs pictorial" do %>
+  <%= form.input :volume %>
   <%= form.input :year %>
   <%= form.enum_input :access %>
   <% resource.build_attachment unless resource.attachment %>
