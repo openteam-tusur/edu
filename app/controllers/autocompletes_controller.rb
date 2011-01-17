@@ -39,6 +39,13 @@ class AutocompletesController < ActionController::Base
     render :text => disciplines.to_json
   end
 
+  def discipline_educations
+    discipline = Plan::Discipline.find(params[:discipline_id])
+    @grouped_educations = discipline.educations_grouped_by_curriculums
+    render :text => "Обучения для этой дисциплины не запланировано" and return if @grouped_educations.empty?
+    render :layout => false
+  end
+
 private
 
   def terms

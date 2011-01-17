@@ -56,6 +56,7 @@ function get_discipline_educations() {
     data: {"discipline_id": $("#resource_discipline_speciality_id").val()},
     success: function(data, textStatus, XMLHttpRequest) {
       console.log(data);
+      $("#resource_discipline_educations").html(data);
     }
   });
 };
@@ -66,6 +67,7 @@ function discipline_autocomplete() {
     minLength: 2,
     select: function(event, ui) {
       $("#resource_discipline_discipline_id").val(ui.item.id);
+      get_discipline_educations();
     }
   });
 };

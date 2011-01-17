@@ -19,8 +19,9 @@
       <ul>
         <% @work_programm.resource_disciplines.each do |resource_discipline| %>
           <li>
-            <%= resource_discipline.discipline.speciality.slug %>
-            <%= resource_discipline.discipline.title %>
+            <%= "#{resource_discipline.discipline.speciality.code} - #{resource_discipline.discipline.speciality.name} (#{resource_discipline.discipline.speciality.chair.abbr})" %>
+            <%= resource_discipline.discipline.name %>
+            <%= resource_discipline.educations.collect(&:semester).collect(&:number).join(", ") %> семестры
             <%= link_to t(:edit), edit_manage_chair_work_programm_resource_discipline_path(@chair, @work_programm, resource_discipline) %>
           </li>
         <% end %>
