@@ -6,13 +6,13 @@ GIT
       rspec (>= 1.3)
 
 GIT
-  remote: git://github.com/etehtsea/aasm.git
+  remote: git://github.com/etehtsea/aasm
   revision: d43889d7ceaa14e52797fadaf94ae442199c5547
   specs:
     aasm (2.2.0)
 
 GIT
-  remote: git://github.com/floze/geohash.git
+  remote: git://github.com/floze/geohash
   revision: 2a3f7a99295d400190925738032942c9fd85ed32
   specs:
     geohash (1.0.1)

@@ -29,15 +29,15 @@
   <div class='disciplines'>
     <div>
       <h2>Дисциплины</h2>
-      <%= link_to t("resource_education.add"), new_manage_chair_work_programm_resource_education_path(@chair, @work_programm), :class => 'add' %>
+      <%= link_to t("resource_education.add"), new_manage_chair_work_programm_resource_discipline_path(@chair, @work_programm), :class => 'add' %>
     </div>
-    <% unless @work_programm.resource_educations.empty? %>
+    <% unless @work_programm.resource_disciplines.empty? %>
       <ul>
-        <% @work_programm.resource_educations.each do |resource_education| %>
+        <% @work_programm.resource_disciplines.each do |resource_discipline| %>
           <li>
-            <%= resource_education.education.speciality.slug %>
-            <%= resource_education.education.curriculum.human_study %>
-            <%= link_to t(:edit), edit_manage_chair_work_programm_resource_education_path(@chair, @work_programm, resource_education) %>
+            <%= resource_discipline.discipline.speciality.slug %>
+            <%= resource_discipline.discipline.title %>
+            <%= link_to t(:edit), edit_manage_chair_work_programm_resource_discipline_path(@chair, @work_programm, resource_discipline) %>
           </li>
         <% end %>
       </ul>

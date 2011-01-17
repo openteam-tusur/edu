@@ -1,4 +1,4 @@
-class Manage::ResourceEducationsController < Manage::ApplicationController
+class Manage::ResourceDisciplinesController < Manage::ApplicationController
   load_and_authorize_resource
 
   actions :all, :except => [:index, :show]
