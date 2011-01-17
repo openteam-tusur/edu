@@ -6,7 +6,7 @@
     <%= render :partial => "manage/common/resource_state", :locals => { :resource => resource } %>
   </ul>
 
-  <%= @work_programm.authors.map(&:human).map(&:initials).join(', ') %>
+  <%= @work_programm.authors_list %>
 
 
   <%= render :partial => "manage/common/resource", :locals => { :resource => resource } %>

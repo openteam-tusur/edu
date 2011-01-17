@@ -12,6 +12,10 @@ class WorkProgramm < Resource
 
   scope :published,   where(:state => 'published')
   scope :unpublished, where(:state => 'unpublished')
+
+  def authors_list
+    authors.map(&:human).map(&:initials).join(', ')
+  end
 end
 
 # == Schema Information
