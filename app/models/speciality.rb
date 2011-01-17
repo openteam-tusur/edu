@@ -18,6 +18,12 @@ class Speciality < ActiveRecord::Base
 
   has_enum :degree, %w[specialist master bachelor], :scopes => true
 
+  searchable do
+    text :info do
+      "#{code} #{name} #{chair.abbr} #{chair.name}"
+    end
+  end
+
   def title
     "#{code} - #{name} (#{human_degree})"
   end

@@ -11,7 +11,7 @@ class ResourceDiscipline < ActiveRecord::Base
   validates_presence_of :resource, :discipline
   validates_uniqueness_of :discipline_id, :scope => [:resource_type, :resource_id]
 
-  attr_accessor :speciality_request
+  attr_accessor :speciality_request, :speciality_id, :discipline_request
 
   before_validation :validate_presence_of_educations
 

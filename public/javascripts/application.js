@@ -41,6 +41,43 @@ function author_autocomplete(){
     select: function(event, ui) {
       $(".add_author_link").show();
       $(this).attr("human_id",ui.item.id);
+    },
+    change: function(event, ui) {
+      consolo.log(event);
+      consolo.log(ui);
+    }
+  });
+};
+
+function get_discipline_educations() {
+  $.ajax({
+    type: "GET",
+    url: "/autocompletes/discipline_educations",
+    data: {"discipline_id": $("#resource_discipline_speciality_id").val()},
+    success: function(data, textStatus, XMLHttpRequest) {
+      console.log(data);
+    }
+  });
+};
+
+function discipline_autocomplete() {
+  $("#resource_discipline_discipline_request").autocomplete({
+    source: "/autocompletes/disciplines?speciality_id=" + $("#resource_discipline_speciality_id").val(),
+    minLength: 2,
+    select: function(event, ui) {
+      $("#resource_discipline_discipline_id").val(ui.item.id);
+    }
+  });
+};
+
+function speciality_autocomplete() {
+  $("#resource_discipline_speciality_request").autocomplete({
+    source: "/autocompletes/specialities",
+    minLength: 2,
+    select: function(event, ui) {
+      $("#resource_discipline_speciality_id").val(ui.item.id);
+      $("#resource_discipline_discipline_request").removeAttr("disabled").focus();
+      discipline_autocomplete();
     }
   });
 };
@@ -98,6 +135,7 @@ $(function() {
   human_check();
   discipline_autocomplete();
   author_autocomplete();
+  speciality_autocomplete();
   add_author_in_list();
   delete_author_from_list();
   flash();

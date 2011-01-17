@@ -12,6 +12,7 @@ class Plan::Discipline < ActiveRecord::Base
 
   searchable do
     text :name
+    integer :speciality_id
   end
 
 end

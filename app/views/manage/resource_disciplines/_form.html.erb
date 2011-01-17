@@ -1,3 +1,6 @@
 <%= form.inputs do %>
   <%= form.input :speciality_request, :input_html => { :class => "focus_first" } %>
+  <%= form.input :speciality_id, :as => :hidden %>
+  <%= form.input :discipline_request, :input_html => { :disabled => "disabled" } %>
+  <%= form.input :discipline_id, :as => :hidden %>
 <% end %>
