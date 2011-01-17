@@ -219,6 +219,7 @@ ru:
       resource: Ресурс
       attachment: Вложение
       work_programm: Рабочая программа
+      work_book: Учебный материал
       author: Автор материала
 
     attributes:
