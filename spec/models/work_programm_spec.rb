@@ -29,6 +29,14 @@ describe WorkProgramm do
 
     @work_programm.authors.first.human.should eql @bankin
   end
+
+  it 'должен создаваться объект из хэша' do
+    @bankin = Human.create :name => "Ерофей", :patronymic => "Жозефович", :surname => "Банькин"
+    @chair = Factory.create :chair
+    @wp = @chair.work_programms.create! Factory(:work_programm).merge(:authors_attributes => [{:human_id => @bankin.id}])
+    @wp.authors.collect(&:human).should eql [@bankin]
+  end
+
 end
 
 # == Schema Information

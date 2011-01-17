@@ -4,7 +4,7 @@ class WorkProgramm < Resource
 
   belongs_to  :chair
   has_many    :educations, :class_name => 'Plan::Education'
-  has_many    :authors, :as => :resource
+  has_many    :authors, :as => :resource, :inverse_of => :resource
   accepts_nested_attributes_for :authors
 
   validates_presence_of :chair, :title, :attachment, :year, :access, :resource_name

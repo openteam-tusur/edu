@@ -4,13 +4,16 @@
   <%= form.input :title, :as => :string, :input_html => {:class => :focus_first} %>
 
   <%= form.fields_for :authors do |author_form| %>
-    <h2>Авторы рабочей программы</h2>
-    <%= author_form.inputs do %>
-      <%= author_form.input :author_query, :label => "Выберите автора", :input_html => {:class => "author_query_input"} %>
+  <li>
+    <%= author_form.inputs "Авторы рабочей программы" do %>
+      <%= author_form.input :author_query, :label => "Выберите автора", :input_html => {:class => "author_query_input", :name => "author_query"} %>
     <% end  %>
+  </li>
   <% end %>
 
-  <div class="author_list"></div>
+  <li>
+    <div class="author_list"></div>
+  </li>
 
 <% end %>
 <%= render :partial => "manage/common/resource_fields", :locals => {:form => form} %>

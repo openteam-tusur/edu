@@ -54,13 +54,25 @@ function add_author_in_list(){
   link.live("click",function(){
     var full_name = autocomplete_input.val();
     var author_id = autocomplete_input.attr("author_id");
-    $(".author_list").append("<p id="+author_id+" class='author_item'>"+full_name+"</p>");
+    var delete_link = "<a href='#'>Удалить</a>";
+    var hidden_input = "<input type='hidden' value="+author_id+" name='work_programm[authors_attributes][][human_id]' >";
+    var author_item = "<p class='author_item'>"+full_name+delete_link+hidden_input+"</p>"
+
+    $(".author_list").append(author_item);
     autocomplete_input.val("").attr("author_id","");
     $(this).hide();
 
     return false;
   });
-}
+};
+
+function delete_author_from_list(){
+  $(".author_item a").live("click", function(){
+    $(this).parent().remove();
+
+    return false;
+  });
+};
 
 
 $(function() {
@@ -68,6 +80,7 @@ $(function() {
   discipline_autocomplete();
   author_autocomplete();
   add_author_in_list();
+  delete_author_from_list();
   flash();
   $(".focus_first:first").focus();
   $("a[rel=tipsy], span[rel=tipsy], .formtastic .inputs abbr").tipsy({gravity: "s"});

@@ -21,5 +21,6 @@ class Manage::WorkProgrammsController < Manage::ApplicationController
       redirect_to resource_path and return
     end
   end
+
 end
 
