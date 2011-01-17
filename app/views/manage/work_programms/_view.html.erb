@@ -6,22 +6,9 @@
 </ul>
 
 <% @work_programm.authors.each do |author| %>
-  <%= author.name %>
+  <%= author.human.full_name %>
 <% end %>
 <%= render :partial => "manage/common/resource", :locals => { :resource => resource } %>
-
-<h2>Автор(ы)</h2>
-
-<ul>
-  <% @work_programm.authors.each do |author| %>
-    <li>
-      <%= author.human.full_name %>
-      <%= link_to t(:edit), edit_manage_chair_work_programm_author_path(@chair, @work_programm, author) %>
-    </li>
-  <% end %>
-</ul>
-
-<%= link_to t("author.add"), new_manage_chair_work_programm_author_path(@chair, @work_programm) %>
 
 <h2>Дисциплины</h2>
 

@@ -1,9 +1,8 @@
-<% @work_programm.authors.build %>
 <%= form.inputs :class => "work_programm inputs" do %>
 
   <%= form.input :title, :as => :string, :input_html => {:class => :focus_first} %>
 
-  <%= form.fields_for :authors do |author_form| %>
+  <%= form.fields_for :author do |author_form| %>
   <li>
     <%= author_form.inputs "Авторы рабочей программы" do %>
       <%= author_form.input :author_query, :label => "Выберите автора", :input_html => {:class => "author_query_input", :name => "author_query"} %>
@@ -12,7 +11,19 @@
   <% end %>
 
   <li>
-    <div class="author_list"></div>
+    <div class="author_list">
+      <% resource.authors.each do |author| %>
+        <p class="author_item human_<%= author.human.id %>">
+          <%= hidden_field_tag "work_programm[authors_attributes][][_destroy]",
+                               false,
+                               :class => 'hidden_input' %>
+
+          <%= hidden_field_tag "work_programm[authors_attributes][][id]", author.id %>
+          <%= author.human.full_name %>
+          <%= link_to "Удалить", "#" %>
+        </p>
+      <% end %>
+    </div>
   </li>
 
 <% end %>

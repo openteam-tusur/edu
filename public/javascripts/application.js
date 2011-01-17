@@ -40,7 +40,7 @@ function author_autocomplete(){
     minLength: 2,
     select: function(event, ui) {
       $(".add_author_link").show();
-      $(this).attr("author_id",ui.item.id);
+      $(this).attr("human_id",ui.item.id);
     }
   });
 };
@@ -52,23 +52,40 @@ function add_author_in_list(){
   var link = $(".add_author_link");
 
   link.live("click",function(){
-    var full_name = autocomplete_input.val();
-    var author_id = autocomplete_input.attr("author_id");
-    var delete_link = "<a href='#'>Удалить</a>";
-    var hidden_input = "<input type='hidden' value="+author_id+" name='work_programm[authors_attributes][][human_id]' >";
-    var author_item = "<p class='author_item'>"+full_name+delete_link+hidden_input+"</p>"
+    var human_id = autocomplete_input.attr("human_id");
 
-    $(".author_list").append(author_item);
-    autocomplete_input.val("").attr("author_id","");
-    $(this).hide();
+    var human_exsits = $(".human_"+human_id);
+    if (human_exsits.length > 0) {
+
+      human_exsits.show();
+
+    } else {
+
+      var full_name = autocomplete_input.val();
+      var delete_link = "<a href='#'>Удалить</a>";
+      var hidden_input = "<input type='hidden' value="+human_id+" name='work_programm[authors_attributes][][human_id]' >";
+      var human_item = "<p class='human_item human_"+human_id+"'>"+full_name+delete_link+hidden_input+"</p>"
+
+      $(".author_list").append(human_item);
+      autocomplete_input.val("").attr("human_id","");
+      $(this).hide();
+
+    };
 
     return false;
   });
 };
 
 function delete_author_from_list(){
-  $(".author_item a").live("click", function(){
+  $(".human_item a").live("click", function(){
     $(this).parent().remove();
+
+    return false;
+  });
+
+  $(".author_item a").click(function(){
+    $(this).parent().hide();
+    var name = $(this).siblings('.hidden_input').val('true');
 
     return false;
   });
