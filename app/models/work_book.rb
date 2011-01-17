@@ -9,5 +9,7 @@ class WorkBook < Resource
   accepts_nested_attributes_for :authors, :allow_destroy => true
 
   validates_presence_of :chair, :title, :attachment, :year, :access
+
+  has_enum :kind, %w(tutorial lab_work course_work attestation practice seminar test demo)
 end
 
