@@ -111,6 +111,7 @@ ru:
       index: Рабочие программы
       new: Добавить рабочую программу
       edit: Редактирование рабочей программы
+      delete: Удаление рабочей программы
 
     manage/authors:
       new: Добавление автора
@@ -123,6 +124,9 @@ ru:
 
     manage/roles:
       edit: Редактирование роли
+
+    manage/resource_educations:
+      new:  Добавление дисциплины
 
     humans:
       edit: Редактирование профиля
@@ -289,6 +293,7 @@ ru:
       work_programm:
         title: Название
         year: Год издания
+        volume: Количество страниц
         state_enum:
           <<: *state_enum
         access_enum:

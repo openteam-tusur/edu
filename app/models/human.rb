@@ -52,6 +52,10 @@ class Human < ActiveRecord::Base
     "#{surname} #{name} #{patronymic}"
   end
 
+  def initials
+    "#{surname} #{name[0...1]}. #{patronymic[0...1]}."
+  end
+
   def filled?
     !(surname.blank? || name.blank? || patronymic.blank?)
   end
