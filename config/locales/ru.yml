@@ -32,6 +32,8 @@ ru:
         many:  "%{model}: сохранение не удалось из-за %{count} ошибок"
         other: "%{model}: сохранение не удалось из-за %{count} ошибки"
       body: "Проблемы возникли со следующими полями:"
+      messages:
+        record_invalid: "Возникли ошибки: %{errors}"
 
   time:
     formats:
@@ -113,6 +115,13 @@ ru:
       edit: Редактирование рабочей программы
       delete: Удаление рабочей программы
 
+    manage/work_books:
+      index: Учебные материалы
+      new: Добавить учебный материал
+      edit: Редактирование учебного материала
+      delete: Удаление учебного материала
+      show: Просмотр учебного материала
+
     manage/authors:
       new: Добавление автора
 
@@ -154,6 +163,9 @@ ru:
 
   workprogramm:
     add: Добавить рабочую программу
+
+  workbook:
+    add: Добавить учебный материал
 
   author:
     add: Добавить автора
@@ -299,6 +311,9 @@ ru:
           <<: *state_enum
         access_enum:
           <<: *access_enum
+      work_book:
+        title: Название
+        year: Год издания
       resource_discipline:
         speciality_request: Специальность
         discipline: Дисциплина

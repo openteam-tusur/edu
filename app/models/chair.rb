@@ -14,6 +14,7 @@ class Chair < ActiveRecord::Base
             :source => :human
 
   has_many :work_programms
+  has_many :work_books
 
   default_scope order("id")
 

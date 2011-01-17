@@ -23,6 +23,11 @@ Portal::Application.routes.draw do
         put :transit, :on => :member
         resources :resource_disciplines, :except => [:index, :show]
       end
+
+      resources :work_books do
+        put :transit, :on => :member
+      end
+
       resources :specialities do
         resources :curriculums do
           put :transit, :on => :member
