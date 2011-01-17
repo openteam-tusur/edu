@@ -3,9 +3,9 @@ class WorkProgramm < Resource
   set_table_name :work_programms
 
   belongs_to  :chair
-  has_many    :educations, :class_name => 'Plan::Education'
-  has_many    :authors, :as => :resource
-  accepts_nested_attributes_for :authors
+  has_many    :resource_disciplines, :as => :resource
+  has_many    :authors, :as => :resource, :inverse_of => :resource
+  accepts_nested_attributes_for :authors, :allow_destroy => true
 
   validates_presence_of :chair, :title, :attachment, :year, :access, :resource_name
   default_values :resource_name => "Рабочая программа"

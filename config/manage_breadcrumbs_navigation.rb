@@ -127,7 +127,15 @@ SimpleNavigation::Configuration.run do |navigation|
           end
           if @work_programm && !@work_programm.new_record?
             work_programms.item :work_programm, @work_programm.title,
-                        manage_chair_work_programm_path(@chair, @work_programm)
+                        manage_chair_work_programm_path(@chair, @work_programm) do |work_programm|
+              if @resource_discipline && @resource_discipline.new_record?
+                work_programm.item :add_discipline, t("title.manage/resource_disciplines.new"),
+                          new_manage_chair_work_programm_resource_discipline_path(@chair, @work_programm)
+                work_programm.item :add_discipline, t("title.manage/resource_disciplines.new"),
+                          new_manage_chair_work_programm_resource_discipline_path(@chair, @work_programm),
+                          :highlights_on => /resource_disciplines/  if params[:action] == "create"
+              end
+            end
             work_programms.item :edit_work_programm, t("title.manage/work_programms.edit"),
                         edit_manage_chair_work_programm_path(@chair, @work_programm)
             work_programms.item :edit_work_programm, t("title.manage/work_programms.edit"),

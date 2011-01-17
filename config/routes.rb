@@ -21,8 +21,7 @@ Portal::Application.routes.draw do
       resources :employees, :except => [:show]
       resources :work_programms do
         put :transit, :on => :member
-        resources :authors, :except => [:index, :show]
-        resources :resource_educations, :except => [:index, :show]
+        resources :resource_disciplines, :except => [:index, :show]
       end
       resources :specialities do
         resources :curriculums do
@@ -41,6 +40,7 @@ Portal::Application.routes.draw do
 
   resources :autocompletes, :only => [] do
     get :disciplines, :on => :collection
+    get :authors, :on => :collection
   end
 
   match "/:id" => "chairs#show", :as => :chair

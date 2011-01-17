@@ -2,11 +2,19 @@
 
 class AutocompletesController < ActionController::Base
 
+  def authors
+    authors = Human.available_authors(params[:term])
+    authors.map! do |author|
+      { :id => author.id, :value => author.full_name }
+    end
+    render :text => authors.to_json
+  end
+
   def disciplines
     disciplines = Plan::Discipline.solr_search do
       text_fields do
         terms.each do | term |
-          with(:name).starting_with term
+          with(:name).starting_with term.mb_chars.downcase
         end
       end
     end.results

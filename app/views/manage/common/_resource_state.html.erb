@@ -1,7 +1,7 @@
 <% resource.aasm_events_for_current_state.each do |event| %>
   <li class="event_button_and_resource_state">
    <p class="resource_state_<%= resource.state %>">
-    <%= t "attributes.state_enum.#{resource.state}" %>
+    <%= resource.human_state %>
    </p>
    <%= link_to resource.human_event_name(event),
                transit_resource_path(:event => event),

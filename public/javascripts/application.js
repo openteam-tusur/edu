@@ -34,9 +34,72 @@ function human_check(){
   });
 };
 
+function author_autocomplete(){
+  $(".author_query_input").autocomplete({
+    source: "/autocompletes/authors",
+    minLength: 2,
+    select: function(event, ui) {
+      $(".add_author_link").show();
+      $(this).attr("human_id",ui.item.id);
+    }
+  });
+};
+
+function add_author_in_list(){
+  var autocomplete_input = $(".author_query_input");
+  autocomplete_input.after("<a href='#' class='add_author_link button'>Добавить автора</a>");
+
+  var link = $(".add_author_link");
+  var human_index = parseInt ($(".author_item").attr("id"));
+
+  link.live("click",function(){
+    var human_id = autocomplete_input.attr("human_id");
+
+    var human_exsits = $(".human_"+human_id);
+    if (human_exsits.length > 0) {
+
+      human_exsits.show();
+
+    } else {
+
+      var full_name = autocomplete_input.val();
+      var delete_link = "<a href='#'>Удалить</a>";
+      human_index++;
+      var hidden_input = "<input type='hidden' value="+human_id+" name='work_programm[authors_attributes]["+human_index+"][human_id]' >";
+      var human_item = "<p class='human_item human_"+human_id+"'>"+full_name+delete_link+hidden_input+"</p>"
+
+      $(".author_list").append(human_item);
+    };
+
+    autocomplete_input.val("").attr("human_id","");
+    $(this).hide();
+
+    return false;
+  });
+};
+
+function delete_author_from_list(){
+  $(".human_item a").live("click", function(){
+    $(this).parent().remove();
+
+    return false;
+  });
+
+  $(".author_item a").click(function(){
+    $(this).parent().hide();
+    var name = $(this).siblings('.hidden_input').val('true');
+
+    return false;
+  });
+};
+
+
 $(function() {
   human_check();
   discipline_autocomplete();
+  author_autocomplete();
+  add_author_in_list();
+  delete_author_from_list();
   flash();
   $(".focus_first:first").focus();
   $("a[rel=tipsy], span[rel=tipsy], .formtastic .inputs abbr").tipsy({gravity: "s"});

@@ -1,4 +1,5 @@
 class Author < ActiveRecord::Base
+  attr_accessor :author_query
   belongs_to :resource, :polymorphic => true
   belongs_to :human
   validates_presence_of :resource, :human

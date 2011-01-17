@@ -125,7 +125,7 @@ ru:
     manage/roles:
       edit: Редактирование роли
 
-    manage/resource_educations:
+    manage/resource_disciplines:
       new:  Добавление дисциплины
 
     humans:
@@ -298,6 +298,10 @@ ru:
           <<: *state_enum
         access_enum:
           <<: *access_enum
+      resource_discipline:
+        speciality_request: Специальность
+        discipline: Дисциплина
+        resource: Ресурс
       author:
         resource: Материал
         human: Автор
