@@ -11,6 +11,20 @@ describe Plan::Discipline do
     should validate_presence_of(:speciality)
   end
 
+  it "должна знать сгруппированные по форме обучения educations" do
+    discipline = Factory.create(:plan_discipline)
+    fulltime_curriculum = Factory.create(:plan_curriculum, :speciality => discipline.speciality)
+    postal_curriculum = Factory.create(:plan_curriculum, :speciality => discipline.speciality, :study => "postal")
+    Factory.create(:plan_education, :semester => fulltime_curriculum.semesters.first)
+    fulltime_education_first = Factory.create(:plan_education, :semester => fulltime_curriculum.semesters.first, :discipline => discipline)
+    fulltime_education_last = Factory.create(:plan_education, :semester => fulltime_curriculum.semesters.last, :discipline => discipline)
+    postal_education = Factory.create(:plan_education, :semester => postal_curriculum.semesters.last, :discipline => discipline)
+
+    expected_hash = {fulltime_curriculum => [fulltime_education_first, fulltime_education_last],
+          postal_curriculum => [postal_education]}
+    discipline.educations_grouped_by_curriculums.should eql expected_hash
+  end
+
 
 end
 
