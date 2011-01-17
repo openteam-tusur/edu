@@ -1,5 +1,4 @@
 <%= form.inputs "Файл", :class => "inputs pictorial" do %>
-  <%= form.input :resource_name, :as => :string %>
   <%= form.input :year %>
   <%= form.enum_input :access %>
   <% resource.build_attachment unless resource.attachment %>
@@ -9,3 +8,4 @@
     <% end %>
   </li>
 <% end %>
+

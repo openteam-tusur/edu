@@ -118,6 +118,7 @@ ru:
       new: Добавить учебный материал
       edit: Редактирование учебного материала
       delete: Удаление учебного материала
+      show: Просмотр учебного материала
 
     manage/authors:
       new: Добавление автора
@@ -307,6 +308,9 @@ ru:
           <<: *state_enum
         access_enum:
           <<: *access_enum
+      work_book:
+        title: Название
+        year: Год издания
       resource_discipline:
         speciality_request: Специальность
         discipline: Дисциплина

@@ -1,0 +1,31 @@
+<%= form.inputs :class => "work_book inputs" do %>
+
+  <%= form.input :title, :as => :string, :input_html => {:class => :focus_first} %>
+
+  <%= form.fields_for :author do |author_form| %>
+  <li>
+    <%= author_form.inputs "Авторы рабочей программы" do %>
+      <%= author_form.input :author_query, :label => "Выберите автора", :input_html => {:class => "author_query_input", :name => "author_query"} %>
+    <% end  %>
+  </li>
+  <% end %>
+
+  <li>
+    <div class="author_list">
+      <% resource.authors.each_with_index do |author, index| %>
+        <p class="author_item human_<%= author.human.id %>" id="<%= index %>">
+          <%= hidden_field_tag "work_book[authors_attributes][#{index}][_destroy]",
+                               false,
+                               :class => 'hidden_input' %>
+
+          <%= hidden_field_tag "work_book[authors_attributes][#{index}][id]", author.id %>
+          <%= author.human.full_name %>
+          <%= link_to "Удалить", "#" %>
+        </p>
+      <% end %>
+    </div>
+  </li>
+
+<% end %>
+<%= render :partial => "manage/common/resource_fields", :locals => {:form => form} %>
+
