@@ -37,6 +37,10 @@ class Resource < ActiveRecord::Base
     []
   end
 
+   def self.per_page
+    10
+   end
+
   private
     def need_all_resource_fields?
       resource_fields = %w[resource_name year access attachment]

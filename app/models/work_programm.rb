@@ -12,7 +12,6 @@ class WorkProgramm < Resource
 
   scope :published,   where(:state => 'published')
   scope :unpublished, where(:state => 'unpublished')
-
 end
 
 # == Schema Information

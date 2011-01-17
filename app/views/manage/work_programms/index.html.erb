@@ -1,6 +1,6 @@
 <%= semantic_form_for :work_programms, :html => { :method => :get } do | form | %>
   <%= form.inputs do %>
-    <%= form.input :query, :required => false, :input_html => { :name => 'query', :value => params[:query] } %>
+    <%= form.input :query, :required => false, :label => false, :input_html => { :name => 'query', :value => params[:query] } %>
   <% end %>
   <%= form.buttons do %>
     <%= form.commit_button 'Найти' %>
@@ -15,5 +15,6 @@
   </div>
 <% end %>
 
-<%= link_to t("#{resource_class.name.downcase}.add"), new_resource_path %>
+<div><%= link_to t("#{resource_class.name.downcase}.add"), new_resource_path, :class => 'button' %></div>
+<div><%= will_paginate @work_programms %></div>
 

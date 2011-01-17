@@ -12,6 +12,7 @@ class Manage::WorkProgrammsController < Manage::ApplicationController
   def index
     @work_programms = WorkProgramm.solr_search do
       keywords params[:query]
+      paginate :page => params[:page], :per_page => WorkProgramm.per_page
     end.results
   end
 
