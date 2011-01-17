@@ -6,7 +6,7 @@ class Resource < ActiveRecord::Base
   has_one :attachment, :as => :resource
   accepts_nested_attributes_for :attachment, :reject_if => :all_blank
 
-  has_many :resource_educations
+  has_many :resource_disciplines
 
   has_enum :access, %w[free restricted]
 

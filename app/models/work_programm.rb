@@ -3,7 +3,7 @@ class WorkProgramm < Resource
   set_table_name :work_programms
 
   belongs_to  :chair
-  has_many    :educations, :class_name => 'Plan::Education'
+  has_many    :resource_disciplines, :as => :resource
   has_many    :authors, :as => :resource
   accepts_nested_attributes_for :authors
 
