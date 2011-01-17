@@ -13,3 +13,19 @@ class WorkBook < Resource
   has_enum :kind, %w(tutorial lab_work course_work attestation practice seminar test demo)
 end
 
+
+# == Schema Information
+#
+# Table name: work_books
+#
+#  id         :integer         not null, primary key
+#  title      :string(255)     'Название'
+#  year       :integer         'Год издания'
+#  volume     :integer
+#  state      :string(255)     'Статус'
+#  access     :string(255)     'Доступ к файлу'
+#  chair_id   :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+

@@ -3,14 +3,15 @@
                 item.attachment.data.url,
                 :title => item.human_access, :rel => "tipsy" %>
     <a href="<%= manage_chair_work_programm_path(@chair, item) %>">
-      <span><%= "#{item.title}," %></span>
-      <span class="authors">"#{item.authors_list}"</span>
-      <% unless item.year.blank? %>
-        <span class="year"><%= "#{item.year} год," %></span>
-      <% end %>
-      <% unless item.volume.blank? %>
-        <span class="volume"><%= "#{item.volume} стр." %></span>
-      <% end %>
+      <span><%= "#{item.title} / " %></span>
+
+      <span class="authors">
+        <%= item.authors.any? ? raw("#{item.authors.map(&:abbreviated_name).join(', ')} &ndash;")  : "" %>
+      </span>
+
+      <span class="year"><%= "#{item.year}. " %> &ndash;</span>
+
+      <span class="volume"><%= "#{item.volume} с." %></span>
     </a>
 </div>
 

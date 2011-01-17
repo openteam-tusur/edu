@@ -81,5 +81,6 @@ end
 #  year          :integer         'Год издания'
 #  access        :string(255)     'Доступ к файлу'
 #  since         :integer         'Действует с'
+#  volume        :integer
 #
 

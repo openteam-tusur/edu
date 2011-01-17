@@ -3,6 +3,7 @@
     <%= show_for resource do |resource_fields| %>
       <%= resource_fields.association :authors, :using => :abbreviated_name, :join => ", " %>
       <%= resource_fields.attributes :year %>
+      <%= resource_fields.attributes :volume %>
     <% end %>
     <div class='resource_link'>
       <%= link_to image_tag("icon_pdf_#{resource.access}.png"),
