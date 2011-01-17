@@ -32,7 +32,7 @@ class Human < ActiveRecord::Base
   searchable do
     text :full_name
     integer :employee_chair_ids, :multiple => true do
-      roles.where(:type => 'Roles::Employee', :state => 'accepted').map(&:chair_id)
+      employees.accepted.map(&:chair_id)
     end
   end
 
@@ -57,6 +57,14 @@ class Human < ActiveRecord::Base
 
   def abbreviated_name
     "#{surname} #{name[0...1]}. #{patronymic[0...1]}."
+  end
+
+  def full_name_with_posts
+    "#{full_name}#{posts}"
+  end
+
+  def posts
+    roles.accepted.empty? ? "": " — #{roles.accepted.map(&:to_s).join(', ')}"
   end
 
   def filled?

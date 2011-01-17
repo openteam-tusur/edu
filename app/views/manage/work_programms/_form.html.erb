@@ -15,7 +15,7 @@
                                  :class => 'hidden_input' %>
 
             <%= hidden_field_tag "work_programm[authors_attributes][#{index}][id]", author.id %>
-            <span class="full_name"><%= author.human.full_name %></span>
+            <span class="full_name"><%= author.human.full_name_with_posts %></span>
             <%= link_to "Удалить", "#" %>
           </p>
         <% end %>

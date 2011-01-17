@@ -50,7 +50,11 @@ function add_author_in_list(){
   autocomplete_input.after("<a href='#' class='add_author_link button'>Добавить автора</a>");
 
   var link = $(".add_author_link");
-  var human_index = parseInt ($(".author_item").attr("id"));
+  var human_index = 0;
+  var author_item = $(".author_item");
+  if (author_item.length > 0) {
+    human_index = parseInt (author_item.attr("id"));
+  };
 
   link.live("click",function(){
     var human_id = autocomplete_input.attr("human_id");

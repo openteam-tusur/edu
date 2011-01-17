@@ -18,9 +18,9 @@ YAML.load_file(Rails.root.join('config', 'dictionaries.yml')).each do |model, di
   end
 end
 
+Human.destroy_all
 User.destroy_all
 Role.destroy_all
-Human.destroy_all
 
 admin = User.create( :email => 'admin@demo.de',
                      :password => '123123',
@@ -34,13 +34,16 @@ admin.human.roles << Roles::Admin.new( :state => :accepted )
 user = User.create( :email => 'user@demo.de',
                     :password => '123123',
                     :password_confirmation => '123123' )
-user.human.update_attributes( :name => 'Петр',
-                              :surname => 'Петров',
-                              :patronymic => 'Петрович' )
-user.human.roles << Roles::Student.new( :group => '422',
-                                        :birthday => '01.01.1970' )
-user.human.roles << Roles::Employee.new( :chair_id => '16',
-                                        :post => 'Старший преподаватель' )
+user.human.update_attributes(:name => 'Петр',
+                             :surname => 'Петров',
+                             :patronymic => 'Петрович' )
+user.human.roles << Roles::Student.new(:group => '422',
+                                       :birthday => '01.01.1970',
+                                       :state => :accepted)
+
+user.human.roles << Roles::Employee.new(:chair_id => Chair.find_by_slug('asu'),
+                                        :post => 'Старший преподаватель',
+                                        :state => :accepted)
 
 Speciality.destroy_all
 
