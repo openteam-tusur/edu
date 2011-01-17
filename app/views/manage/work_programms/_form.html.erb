@@ -12,13 +12,13 @@
 
   <li>
     <div class="author_list">
-      <% resource.authors.each do |author| %>
-        <p class="author_item human_<%= author.human.id %>">
-          <%= hidden_field_tag "work_programm[authors_attributes][][_destroy]",
+      <% resource.authors.each_with_index do |author, index| %>
+        <p class="author_item human_<%= author.human.id %>" id="<%= index %>">
+          <%= hidden_field_tag "work_programm[authors_attributes][#{index}][_destroy]",
                                false,
                                :class => 'hidden_input' %>
 
-          <%= hidden_field_tag "work_programm[authors_attributes][][id]", author.id %>
+          <%= hidden_field_tag "work_programm[authors_attributes][#{index}][id]", author.id %>
           <%= author.human.full_name %>
           <%= link_to "Удалить", "#" %>
         </p>

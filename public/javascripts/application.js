@@ -50,6 +50,7 @@ function add_author_in_list(){
   autocomplete_input.after("<a href='#' class='add_author_link button'>Добавить автора</a>");
 
   var link = $(".add_author_link");
+  var human_index = parseInt ($(".author_item").attr("id"));
 
   link.live("click",function(){
     var human_id = autocomplete_input.attr("human_id");
@@ -63,14 +64,15 @@ function add_author_in_list(){
 
       var full_name = autocomplete_input.val();
       var delete_link = "<a href='#'>Удалить</a>";
-      var hidden_input = "<input type='hidden' value="+human_id+" name='work_programm[authors_attributes][][human_id]' >";
+      human_index++;
+      var hidden_input = "<input type='hidden' value="+human_id+" name='work_programm[authors_attributes]["+human_index+"][human_id]' >";
       var human_item = "<p class='human_item human_"+human_id+"'>"+full_name+delete_link+hidden_input+"</p>"
 
       $(".author_list").append(human_item);
-      autocomplete_input.val("").attr("human_id","");
-      $(this).hide();
-
     };
+
+    autocomplete_input.val("").attr("human_id","");
+    $(this).hide();
 
     return false;
   });

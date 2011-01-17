@@ -13,14 +13,13 @@
   <div class='authors'>
     <div>
       <h2>Автор(ы)</h2>
-      <%= link_to t("author.add"), new_manage_chair_work_programm_author_path(@chair, @work_programm), :class => 'add' %>
     </div>
     <% unless @work_programm.authors.empty? %>
       <ul>
         <% @work_programm.authors.each do |author| %>
           <li>
             <span><%= author.human.full_name %></span>
-            <%= link_to t(:edit), edit_manage_chair_work_programm_author_path(@chair, @work_programm, author), :class => 'edit' %>
+
           </li>
         <% end %>
       </ul>
