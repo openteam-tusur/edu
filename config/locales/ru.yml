@@ -291,6 +291,7 @@ ru:
           chair: Обеспечивающая кафедра
           work_programm: Рабочая программа
       work_programm:
+        authors: Автор
         title: Название
         year: Год издания
         volume: Количество страниц

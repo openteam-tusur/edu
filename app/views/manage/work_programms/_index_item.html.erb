@@ -4,9 +4,7 @@
                 :title => item.human_access, :rel => "tipsy" %>
     <a href="<%= manage_chair_work_programm_path(@chair, item) %>">
       <span><%= "#{item.title}," %></span>
-      <% unless item.authors_list.blank? %>
-        <span class="authors"><%= "#{item.authors_list}, " %></span>
-      <% end %>
+      <span class="authors">"#{item.authors_list}"</span>
       <% unless item.year.blank? %>
         <span class="year"><%= "#{item.year} год," %></span>
       <% end %>

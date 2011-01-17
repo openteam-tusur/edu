@@ -52,7 +52,7 @@ class Human < ActiveRecord::Base
     "#{surname} #{name} #{patronymic}"
   end
 
-  def initials
+  def abbreviated_name
     "#{surname} #{name[0...1]}. #{patronymic[0...1]}."
   end
 
