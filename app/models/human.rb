@@ -31,6 +31,9 @@ class Human < ActiveRecord::Base
 
   searchable do
     text :full_name
+    integer :chair_ids, :multiple => true do
+      roles.where(:type => 'Roles::Employee').map(&:chair_id)
+    end
   end
 
   def self.available_authors(query, options = {})

@@ -10,9 +10,12 @@ class Manage::EmployeesController < Manage::ApplicationController
   belongs_to :chair, :finder => :find_by_slug
 
   def index
-    index! do
-      @employees = @employees.paginate :per_page => Human.per_page, :page => params[:page]
-    end
+    chair_id = @chair.id
+    @employees = Human.solr_search do
+      keywords params[:query]
+      with :chair_ids, chair_id
+      paginate :page => params[:page], :per_page => Human.per_page
+    end.results
   end
 
   def new
