@@ -5,6 +5,10 @@ class Roles::Student < Role
   validates_uniqueness_of :group, :scope => [:human_id, :state]
 
   default_values :title => 'Студент', :slug => 'student', :post => 'Студент'
+
+  def to_s
+    "студент гр. #{group}"
+  end
 end
 
 

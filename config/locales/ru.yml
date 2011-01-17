@@ -120,6 +120,7 @@ ru:
       new: Добавить учебный материал
       edit: Редактирование учебного материала
       delete: Удаление учебного материала
+      show: Просмотр учебного материала
 
     manage/authors:
       new: Добавление автора
@@ -218,6 +219,7 @@ ru:
       resource: Ресурс
       attachment: Вложение
       work_programm: Рабочая программа
+      work_book: Учебный материал
       author: Автор материала
 
     attributes:
@@ -302,6 +304,7 @@ ru:
           chair: Обеспечивающая кафедра
           work_programm: Рабочая программа
       work_programm:
+        authors: Автор
         title: Название
         year: Год издания
         volume: Количество страниц
@@ -309,6 +312,29 @@ ru:
           <<: *state_enum
         access_enum:
           <<: *access_enum
+      work_book:
+        title: Название
+        year: Год издания
+        state_enum:
+          <<: *state_enum
+        access_enum:
+          <<: *access_enum
+        isbn: ISBN
+        udk: УДК
+        bbk: ББК
+        stamp: Гриф
+        kind: Тип учебного материала
+
+        kind_enum:
+          tutorial: Учебное пособие
+          lab_work: Описание лабораторных работ
+          course_work: Методические указания по курсовому проектированию
+          attestation: Методические указания по итоговой государственной аттестации
+          practice: Методические указания по практикам
+          seminar: Методические указания по практическим занятиям и семинарам
+          test: Тесты или задания для контроля знаний
+          demo: Демонстрационный материал с использованием компьютера и видеотехники
+
       resource_discipline:
         speciality_request: Специальность
         discipline_request: Дисциплина

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110117092931) do
+ActiveRecord::Schema.define(:version => 20110117110801) do
 
   create_table "attachments", :force => true do |t|
     t.string   "data_uid"
@@ -185,7 +185,7 @@ ActiveRecord::Schema.define(:version => 20110117092931) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "work_books", :force => true do |t|
-    t.string   "title"
+    t.text     "title"
     t.integer  "year"
     t.integer  "volume"
     t.string   "state"
@@ -193,6 +193,11 @@ ActiveRecord::Schema.define(:version => 20110117092931) do
     t.integer  "chair_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "isbn"
+    t.string   "udk"
+    t.string   "bbk"
+    t.string   "kind"
+    t.text     "stamp"
   end
 
   create_table "work_programms", :force => true do |t|

@@ -7,15 +7,12 @@ class WorkProgramm < Resource
   has_many    :authors, :as => :resource, :inverse_of => :resource
   accepts_nested_attributes_for :authors, :allow_destroy => true
 
-  validates_presence_of :chair, :title, :attachment, :year, :access, :resource_name
+  validates_presence_of :chair, :title, :attachment, :year, :access, :volume, :resource_name
   default_values :resource_name => "Рабочая программа"
 
   scope :published,   where(:state => 'published')
   scope :unpublished, where(:state => 'unpublished')
 
-  def authors_list
-    authors.map(&:human).map(&:initials).join(', ')
-  end
 end
 
 # == Schema Information
@@ -32,5 +29,6 @@ end
 #  created_at    :datetime
 #  updated_at    :datetime
 #  title         :text            'Название'
+#  volume        :integer         'Количество страниц'
 #
 
