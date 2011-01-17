@@ -8,7 +8,6 @@
 
   <%= @work_programm.authors_list %>
 
-
   <%= render :partial => "manage/common/resource", :locals => { :resource => resource } %>
 
   <div class='authors'>
@@ -16,14 +15,16 @@
       <h2>Автор(ы)</h2>
       <%= link_to t("author.add"), new_manage_chair_work_programm_author_path(@chair, @work_programm), :class => 'add' %>
     </div>
-    <ul>
-      <% @work_programm.authors.each do |author| %>
-        <li>
-          <span><%= author.human.full_name %></span>
-          <%= link_to t(:edit), edit_manage_chair_work_programm_author_path(@chair, @work_programm, author), :class => 'edit' %>
-        </li>
-      <% end %>
-    </ul>
+    <% unless @work_programm.authors.empty? %>
+      <ul>
+        <% @work_programm.authors.each do |author| %>
+          <li>
+            <span><%= author.human.full_name %></span>
+            <%= link_to t(:edit), edit_manage_chair_work_programm_author_path(@chair, @work_programm, author), :class => 'edit' %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
   </div>
 
   <div class='disciplines'>
@@ -31,15 +32,17 @@
       <h2>Дисциплины</h2>
       <%= link_to t("resource_education.add"), new_manage_chair_work_programm_resource_education_path(@chair, @work_programm), :class => 'add' %>
     </div>
-    <ul>
-      <% @work_programm.resource_educations.each do |resource_education| %>
-        <li>
-          <%= resource_education.education.speciality.slug %>
-          <%= resource_education.education.curriculum.human_study %>
-          <%= link_to t(:edit), edit_manage_chair_work_programm_resource_education_path(@chair, @work_programm, resource_education) %>
-        </li>
-      <% end %>
-    </ul>
+    <% unless @work_programm.resource_educations.empty? %>
+      <ul>
+        <% @work_programm.resource_educations.each do |resource_education| %>
+          <li>
+            <%= resource_education.education.speciality.slug %>
+            <%= resource_education.education.curriculum.human_study %>
+            <%= link_to t(:edit), edit_manage_chair_work_programm_resource_education_path(@chair, @work_programm, resource_education) %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
   </div>
 </div>
 
