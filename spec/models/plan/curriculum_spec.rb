@@ -2,6 +2,7 @@
 require 'spec_helper'
 
 describe Plan::Curriculum do
+
   it 'при создании должны создаваться семестры' do
     curriculum = Factory.create(:plan_curriculum, :semesters_count => 10)
 
@@ -39,6 +40,7 @@ describe Plan::Curriculum do
     curriculum.save.should be false
     curriculum.errors[:attachment].should_not be nil
   end
+
 end
 
 # == Schema Information

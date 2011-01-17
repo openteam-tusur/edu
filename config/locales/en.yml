@@ -1,0 +1,7 @@
+en:
+  activerecord:
+    attributes:
+      plan:
+        curriculum:
+          study_enum:
+            fulltime: fulltime

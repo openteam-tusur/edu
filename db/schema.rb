@@ -47,6 +47,11 @@ ActiveRecord::Schema.define(:version => 20110117092931) do
     t.datetime "updated_at"
   end
 
+  create_table "educations_resource_disciplines", :id => false, :force => true do |t|
+    t.integer "education_id"
+    t.integer "resource_discipline_id"
+  end
+
   create_table "examinations", :force => true do |t|
     t.string   "slug"
     t.string   "name"
