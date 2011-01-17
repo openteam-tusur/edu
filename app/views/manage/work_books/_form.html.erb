@@ -26,6 +26,11 @@
     </div>
   </li>
 
+  <%= form.inputs do %>
+    <%= form.enum_input :kind %>
+    <%= form.inputs :isbn, :udk, :bbk, :stamp %>
+  <% end %>
+
 <% end %>
 <%= render :partial => "manage/common/resource_fields", :locals => {:form => form} %>
 
