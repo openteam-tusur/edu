@@ -1,13 +1,16 @@
 <% if resource.attachment %>
-  <%= show_for resource do |resource_fields| %>
-    <%= resource_fields.attributes :year %>
-  <% end %>
-  <div class='resource_link'>
-    <%= link_to image_tag("icon_pdf_#{resource.access}.png"),
-                resource.attachment.data.url,
-                :title => resource.human_access, :rel => "tipsy" %>
-    <%= link_to resource.resource_name, resource.attachment.data.url,
-                :class => "#{resource.access}_pdf download" %>
-  </div>
+  <fieldset class="additional_info">
+    <%= show_for resource do |resource_fields| %>
+      <%= resource_fields.association :authors, :using => :abbreviated_name, :join => ", " %>
+      <%= resource_fields.attributes :year %>
+    <% end %>
+    <div class='resource_link'>
+      <%= link_to image_tag("icon_pdf_#{resource.access}.png"),
+                  resource.attachment.data.url,
+                  :title => resource.human_access, :rel => "tipsy" %>
+      <%= link_to 'Скачать', resource.attachment.data.url,
+                  :class => "#{resource.access}_pdf download" %>
+    </div>
+  </fieldset>
 <% end %>
 

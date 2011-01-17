@@ -2,6 +2,10 @@
 
 class Roles::Admin < Role
   default_values :title => 'Администратор', :slug => 'admin', :post => 'Администратор'
+
+  def to_s
+    'администратор системы'
+  end
 end
 
 

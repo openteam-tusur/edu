@@ -5,6 +5,11 @@ class Roles::Employee < Role
   validates_uniqueness_of :chair_id, :scope => [:human_id, :state]
 
   default_values :title => 'Сотрудник', :slug => 'Employee'
+
+
+  def to_s
+    "#{post.mb_chars.downcase} каф. #{chair.abbr}"
+  end
 end
 
 
