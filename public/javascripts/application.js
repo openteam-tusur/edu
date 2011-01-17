@@ -66,7 +66,7 @@ function add_author_in_list(){
       var delete_link = "<a href='#'>Удалить</a>";
       human_index++;
       var hidden_input = "<input type='hidden' value="+human_id+" name='work_programm[authors_attributes]["+human_index+"][human_id]' >";
-      var human_item = "<p class='human_item human_"+human_id+"'>"+full_name+delete_link+hidden_input+"</p>"
+      var human_item = "<p class='human_item human_"+human_id+"'><span class='full_name'>"+full_name+"</span>"+delete_link+hidden_input+"</p>"
 
       $(".author_list").append(human_item);
     };
