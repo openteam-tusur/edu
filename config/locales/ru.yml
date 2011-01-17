@@ -293,6 +293,7 @@ ru:
       work_programm:
         title: Название
         year: Год издания
+        volume: Количество страниц
         state_enum:
           <<: *state_enum
         access_enum:

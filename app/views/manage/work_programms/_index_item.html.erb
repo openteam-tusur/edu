@@ -1,7 +1,18 @@
 <div class='work_programm'>
-  <div class='title'>
-    <%= link_to item.title, manage_chair_work_programm_path(@chair, item) %>
-  </div>
-  <%= render :partial => "manage/common/resource", :locals => { :resource => item } %>
+  <%= link_to image_tag("icon_pdf_#{item.access}.png"),
+                item.attachment.data.url,
+                :title => item.human_access, :rel => "tipsy" %>
+    <a href="<%= manage_chair_work_programm_path(@chair, item) %>">
+      <span><%= "#{item.title}," %></span>
+      <% unless item.authors_list.blank? %>
+        <span class="authors"><%= "#{item.authors_list}, " %></span>
+      <% end %>
+      <% unless item.year.blank? %>
+        <span class="year"><%= "#{item.year} год," %></span>
+      <% end %>
+      <% unless item.volume.blank? %>
+        <span class="volume"><%= "#{item.volume} стр." %></span>
+      <% end %>
+    </a>
 </div>
 

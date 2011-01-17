@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(:version => 20110117063409) do
     t.integer  "year"
     t.string   "access"
     t.integer  "since"
+    t.integer  "volume"
   end
 
   create_table "plan_disciplines", :force => true do |t|
@@ -187,6 +188,7 @@ ActiveRecord::Schema.define(:version => 20110117063409) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "title"
+    t.integer  "volume"
   end
 
 end
