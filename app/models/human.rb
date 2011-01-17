@@ -31,6 +31,9 @@ class Human < ActiveRecord::Base
 
   searchable do
     text :full_name
+    integer :employee_chair_ids, :multiple => true do
+      roles.where(:type => 'Roles::Employee', :state => 'accepted').map(&:chair_id)
+    end
   end
 
   def self.available_authors(query, options = {})
@@ -66,8 +69,12 @@ class Human < ActiveRecord::Base
     self.user.destroy if self.user
   end
 
-   def self.per_page
-    10
+  def self.find_accepted_employees_in_chair(query, page, chair)
+    solr_search do
+      keywords query
+      with :employee_chair_ids, chair.id
+      paginate :page => page, :per_page => 10
+    end.results
    end
 end
 
