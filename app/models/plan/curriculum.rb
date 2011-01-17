@@ -52,11 +52,7 @@ class Plan::Curriculum < Resource
   def duration
     years = (semesters.count / 2).to_s
     result = (semesters.count % 2).zero? ? "#{years} " : "#{years},5 "
-    result += I18n.t('curriculum.duration', :count => semesters.count / 2)
-  end
-
-  def human_state
-    I18n.t("attributes.state_enum.#{self.state}")
+    result += ::I18n.t('curriculum.duration', :count => semesters.count / 2)
   end
 
 private

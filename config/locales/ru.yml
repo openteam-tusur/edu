@@ -54,11 +54,6 @@ ru:
     standalone_day_names: [Воскресенье, Понедельник, Вторник, Среда, Четверг, Пятница, Суббота]
     standalone_month_names: [~, Январь, Февраль, Март, Апрель, Май, Июнь, Июль, Август, Сентябрь, Октябрь, Ноябрь, Декабрь]
 
-  role:
-    reject: Отклонить
-    accept: Утвердить
-    expire: Закончить срок действия
-
   title:
     chairs:
       index: Кафедры
@@ -184,6 +179,9 @@ ru:
         reject: Отклонить
         accept: Утвердить
         expire: Закончить срок действия
+      resource:
+        publish: Опубликовать
+        unpublish: Снять с публикации
 
     models:
       chair: Кафедра
@@ -212,13 +210,16 @@ ru:
         data: Выберите файл
       resource:
         year: Год издания
-
       role:
-        pending:  На рассмотрении
-        rejected: Отклонено
-        accepted: Утверждено
-        expired:  Просрочено
-
+        state:
+          pending:  На рассмотрении
+          rejected: Отклонено
+          accepted: Утверждено
+          expired:  Просрочено
+      resource:
+        state:
+          unpublished: Не опубликовано
+          published: Опубликовано
       roles:
         student:
           group: Группа

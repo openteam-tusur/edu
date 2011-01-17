@@ -9,6 +9,12 @@ class Manage::WorkProgrammsController < Manage::ApplicationController
 
   belongs_to :chair, :finder => :find_by_slug
 
+  def index
+    @work_programms = WorkProgramm.solr_search do
+      keywords params[:query]
+    end.results
+  end
+
   def transit
     transit! do
       @work_programm.send "#{params[:event]}!" if @work_programm.aasm_events_for_current_state.include?(params[:event].to_sym)
@@ -16,3 +22,4 @@ class Manage::WorkProgrammsController < Manage::ApplicationController
     end
   end
 end
+

@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git://github.com/etehtsea/aasm.git
-  revision: 41b191698e40d4228c788ceed94842e956095d70
+  revision: d43889d7ceaa14e52797fadaf94ae442199c5547
   specs:
     aasm (2.2.0)
 
