@@ -9,9 +9,7 @@ class Plan::Discipline < ActiveRecord::Base
 
   has_many :educations
 
-
-
-  default_scope order("name desc")
+  default_scope order("plan_disciplines.name")
 
   searchable do
     text :name

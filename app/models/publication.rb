@@ -5,7 +5,11 @@ class Publication < Resource
 
   belongs_to  :chair
 
-  has_many :publication_disciplines
+  has_many :publication_disciplines, :dependent => :destroy,
+    :include => :discipline,
+    :order => "plan_disciplines.name"
+  has_many :disciplines, :through => :publication_disciplines
+
   has_many :authors, :as => :resource, :inverse_of => :resource
   accepts_nested_attributes_for :authors, :allow_destroy => true
 
@@ -27,6 +31,7 @@ class Publication < Resource
     integer :chair_id
 
     string :kind
+
   end
 
   def self.search(query, chair, options={})
@@ -38,6 +43,18 @@ class Publication < Resource
       paginate :page => options[:page], :per_page => Publication.per_page
     end
   end
+
+  def grouped_disciplines
+    result = {}
+    Speciality.where(:id => self.disciplines.map(&:speciality_id)).each do |spec|
+      result[spec] = []
+    end
+    publication_disciplines.each do |publication_discipline|
+      result[publication_discipline.speciality] << publication_discipline
+    end
+    result
+  end
+
 end
 
 

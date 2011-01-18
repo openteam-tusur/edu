@@ -13,16 +13,17 @@
       <h2>Дисциплины</h2>
     </div>
     <% unless @publication.publication_disciplines.empty? %>
-      <ul>
-        <% @publication.publication_disciplines.each do |publication_discipline| %>
-          <li>
-            <p><%= publication_discipline.discipline.speciality.autocomplete_value %></p>
-            <p><%= publication_discipline.discipline.name %></p>
-            <p><%= publication_discipline.educations.collect(&:semester).collect(&:number).join(", ") %> семестры</p>
-            <%= link_to t(:edit), edit_manage_chair_publication_publication_discipline_path(@chair, @publication, publication_discipline) %>
-          </li>
+      <% @publication.grouped_disciplines.each do |speciality, publication_disciplines| %>
+        <p><%= speciality.autocomplete_value %></p>
+        <% publication_disciplines.each do |publication_discipline| %>
+          <p><%= publication_discipline.discipline.name %></p>
+          <p><%= link_to t(:edit), edit_manage_chair_publication_publication_discipline_path(@chair, @publication, publication_discipline) %></p>
+          <% publication_discipline.educations_grouped_by_curriculums.each do |curriculum, educations| %>
+            <p><%= curriculum.human_study %></p>
+            <p><%= educations.collect(&:semester).collect(&:number).join(", ") %> <%= t("semester.associate_publications", :count => educations.size) %></p>
+          <% end %>
         <% end %>
-      </ul>
+      <% end %>
     <% end %>
     <p><%= link_to "Добавить дисциплину", new_manage_chair_publication_publication_discipline_path(@chair, @publication), :class => 'button' %></p>
   </div>

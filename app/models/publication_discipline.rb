@@ -4,7 +4,7 @@ class PublicationDiscipline < ActiveRecord::Base
 
   belongs_to :publication
   belongs_to :discipline, :class_name => "Plan::Discipline"
-  delegate :speciality, :to => :discipline
+  has_one :speciality, :through => :discipline
 
   has_and_belongs_to_many :educations, :class_name => "Plan::Education",
                           :include => :semester,
@@ -17,6 +17,14 @@ class PublicationDiscipline < ActiveRecord::Base
   attr_accessor :speciality_request, :speciality_id, :discipline_request
 
   before_validation :validate_exists_of_educations
+
+  def educations_grouped_by_curriculums
+    grouped = {}
+    speciality.curriculums.each do |curriculum|
+      grouped[curriculum] = curriculum.educations.where(:discipline_id => discipline.id).all
+    end
+    grouped
+  end
 
 private
 

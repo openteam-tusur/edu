@@ -153,6 +153,11 @@ ru:
       few:   "%{count} семестра"
       many:  "%{count} семестров"
       other: "%{count} семестра"
+    associate_publications:
+      one:   "семестр"
+      few:   "семестры"
+      many:  "семестры"
+      other: "семестры"
 
 
   education:
