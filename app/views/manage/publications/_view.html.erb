@@ -1,6 +1,6 @@
-<% title @work_programm.title %>
+<% title @publication.title %>
 
-<div class="work_programm">
+<div class="publication">
   <%= render :partial => "manage/common/resource", :locals => { :resource => resource } %>
 
   <ul class="resource_action">
@@ -11,16 +11,16 @@
   <div class='disciplines'>
     <div>
       <h2>Дисциплины</h2>
-      <%= link_to t("resource_education.add"), new_manage_chair_work_programm_resource_discipline_path(@chair, @work_programm), :class => 'add' %>
+      <p><%= link_to "Добавить дисциплину", new_manage_chair_publication_publication_discipline_path(@chair, @publication), :class => 'button' %></p>
     </div>
-    <% unless @work_programm.resource_disciplines.empty? %>
+    <% unless @publication.publication_disciplines.empty? %>
       <ul>
-        <% @work_programm.resource_disciplines.each do |resource_discipline| %>
+        <% @publication.publication_disciplines.each do |publication_discipline| %>
           <li>
-            <%= "#{resource_discipline.discipline.speciality.code} - #{resource_discipline.discipline.speciality.name} (#{resource_discipline.discipline.speciality.chair.abbr})" %>
-            <%= resource_discipline.discipline.name %>
-            <%= resource_discipline.educations.collect(&:semester).collect(&:number).join(", ") %> семестры
-            <%= link_to t(:edit), edit_manage_chair_work_programm_resource_discipline_path(@chair, @work_programm, resource_discipline) %>
+            <%= "#{publication_discipline.discipline.speciality.code} - #{publication_discipline.discipline.speciality.name} (#{publication_discipline.discipline.speciality.chair.abbr})" %>
+            <%= publication_discipline.discipline.name %>
+            <%= publication_discipline.educations.collect(&:semester).collect(&:number).join(", ") %> семестры
+            <%= link_to t(:edit), edit_manage_chair_publication_publication_discipline_path(@chair, @publication, publication_discipline) %>
           </li>
         <% end %>
       </ul>

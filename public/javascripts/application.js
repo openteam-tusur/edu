@@ -34,6 +34,40 @@ function human_check(){
   });
 };
 
+function get_discipline_educations() {
+  $.ajax({
+    type: "GET",
+    url: "/autocompletes/discipline_educations",
+    data: {"discipline_id": $("#publication_discipline_speciality_id").val()},
+    success: function(data, textStatus, XMLHttpRequest) {
+      $("#publication_discipline_educations").html(data);
+    }
+  });
+};
+
+function discipline_autocomplete() {
+  $("#publication_discipline_discipline_request").autocomplete({
+    source: "/autocompletes/disciplines?speciality_id=" + $("#publication_discipline_speciality_id").val(),
+    minLength: 2,
+    select: function(event, ui) {
+      $("#publication_discipline_discipline_id").val(ui.item.id);
+      get_discipline_educations();
+    }
+  });
+};
+
+function speciality_autocomplete() {
+  $("#publication_discipline_speciality_request").autocomplete({
+    source: "/autocompletes/specialities",
+    minLength: 2,
+    select: function(event, ui) {
+      $("#publication_discipline_speciality_id").val(ui.item.id);
+      $("#publication_discipline_discipline_request").removeAttr("disabled").focus();
+      discipline_autocomplete();
+    }
+  });
+};
+
 function author_autocomplete(){
   $(".author_query_input").autocomplete({
     source: "/autocompletes/authors",
@@ -41,45 +75,6 @@ function author_autocomplete(){
     select: function(event, ui) {
       $(".add_author_link").show();
       $(this).attr("human_id",ui.item.id);
-    },
-    change: function(event, ui) {
-      consolo.log(event);
-      consolo.log(ui);
-    }
-  });
-};
-
-function get_discipline_educations() {
-  $.ajax({
-    type: "GET",
-    url: "/autocompletes/discipline_educations",
-    data: {"discipline_id": $("#resource_discipline_speciality_id").val()},
-    success: function(data, textStatus, XMLHttpRequest) {
-      console.log(data);
-      $("#resource_discipline_educations").html(data);
-    }
-  });
-};
-
-function discipline_autocomplete() {
-  $("#resource_discipline_discipline_request").autocomplete({
-    source: "/autocompletes/disciplines?speciality_id=" + $("#resource_discipline_speciality_id").val(),
-    minLength: 2,
-    select: function(event, ui) {
-      $("#resource_discipline_discipline_id").val(ui.item.id);
-      get_discipline_educations();
-    }
-  });
-};
-
-function speciality_autocomplete() {
-  $("#resource_discipline_speciality_request").autocomplete({
-    source: "/autocompletes/specialities",
-    minLength: 2,
-    select: function(event, ui) {
-      $("#resource_discipline_speciality_id").val(ui.item.id);
-      $("#resource_discipline_discipline_request").removeAttr("disabled").focus();
-      discipline_autocomplete();
     }
   });
 };
@@ -108,7 +103,7 @@ function add_author_in_list(){
       var full_name = autocomplete_input.val();
       var delete_link = "<a href='#'>Удалить</a>";
       human_index++;
-      var hidden_input = "<input type='hidden' value="+human_id+" name='work_programm[authors_attributes]["+human_index+"][human_id]' >";
+      var hidden_input = "<input type='hidden' value="+human_id+" name='publication[authors_attributes]["+human_index+"][human_id]' >";
       var human_item = "<p class='human_item human_"+human_id+"'><span class='full_name'>"+full_name+"</span>"+delete_link+hidden_input+"</p>"
 
       $(".author_list").append(human_item);
