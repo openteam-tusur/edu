@@ -218,9 +218,8 @@ ru:
       user: Пользователь
       resource: Ресурс
       attachment: Вложение
-      work_programm: Рабочая программа
-      work_book: Учебный материал
       author: Автор материала
+      publication: Публикация
 
     attributes:
       attachment:
@@ -303,16 +302,7 @@ ru:
           examinations: Форма контроля
           chair: Обеспечивающая кафедра
           work_programm: Рабочая программа
-      work_programm:
-        authors: Автор
-        title: Название
-        year: Год издания
-        volume: Количество страниц
-        state_enum:
-          <<: *state_enum
-        access_enum:
-          <<: *access_enum
-      work_book:
+      publication:
         title: Название
         year: Год издания
         state_enum:
@@ -335,6 +325,7 @@ ru:
           seminar: Методические указания по практическим занятиям и семинарам
           test: Тесты или задания для контроля знаний
           demo: Демонстрационный материал с использованием компьютера и видеотехники
+          work_programm: Рабочая программа
 
       resource_discipline:
         speciality_request: Специальность

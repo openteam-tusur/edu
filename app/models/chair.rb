@@ -13,8 +13,7 @@ class Chair < ActiveRecord::Base
   has_many  :employees, :class_name => "Human", :through => :accepted_roles_employees,
             :source => :human
 
-  has_many :work_programms
-  has_many :work_books
+  has_many :publications
 
   default_scope order("id")
 

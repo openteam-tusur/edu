@@ -22,12 +22,12 @@ class Human < ActiveRecord::Base
                                      должности и выбрать действие'
 
   has_many :authors
-  has_many :work_programms,
+  has_many :publications,
            :through => :authors,
            :source => :resource,
-           :source_type => "WorkProgramm"
+           :source_type => "Publication"
 
-  protected_parent_of :work_programms
+  protected_parent_of :publications
 
   searchable do
     text :full_name

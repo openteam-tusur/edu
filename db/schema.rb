@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110117110801) do
+ActiveRecord::Schema.define(:version => 20110118035244) do
 
   create_table "attachments", :force => true do |t|
     t.string   "data_uid"
@@ -133,6 +133,22 @@ ActiveRecord::Schema.define(:version => 20110117110801) do
     t.datetime "updated_at"
   end
 
+  create_table "publications", :force => true do |t|
+    t.integer  "chair_id"
+    t.string   "title"
+    t.integer  "year"
+    t.integer  "volume"
+    t.string   "state"
+    t.string   "access"
+    t.string   "kind"
+    t.string   "isbn"
+    t.string   "udk"
+    t.string   "bbk"
+    t.string   "stamp"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "resource_disciplines", :force => true do |t|
     t.integer  "resource_id"
     t.string   "resource_type"
@@ -183,33 +199,5 @@ ActiveRecord::Schema.define(:version => 20110117110801) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-
-  create_table "work_books", :force => true do |t|
-    t.text     "title"
-    t.integer  "year"
-    t.integer  "volume"
-    t.string   "state"
-    t.string   "access"
-    t.integer  "chair_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "isbn"
-    t.string   "udk"
-    t.string   "bbk"
-    t.string   "kind"
-    t.text     "stamp"
-  end
-
-  create_table "work_programms", :force => true do |t|
-    t.integer  "chair_id"
-    t.integer  "year"
-    t.string   "state"
-    t.string   "access"
-    t.text     "resource_name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text     "title"
-    t.integer  "volume"
-  end
 
 end
