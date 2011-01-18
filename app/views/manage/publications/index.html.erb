@@ -12,7 +12,7 @@
 <% end %>
 
 <% if collection.any? %>
-  <div class="results">
+  <div class="publication results">
     <% @publications.each do |obj| %>
       <%= render :partial => "index_item", :locals => { :item => obj } %>
     <% end %>
