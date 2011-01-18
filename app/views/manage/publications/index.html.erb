@@ -1,4 +1,4 @@
-<%= semantic_form_for :work_books, :html => { :method => :get } do | form | %>
+<%= semantic_form_for :work_programms, :html => { :method => :get } do | form | %>
   <%= form.inputs do %>
     <%= form.input :query, :required => false, :label => false, :input_html => { :name => 'query', :value => params[:query] } %>
   <% end %>
@@ -15,5 +15,6 @@
   </div>
 <% end %>
 
-<div><%= link_to t("#{resource_class.name.downcase}.add"), new_resource_path, :class => 'button' %></div>
+<div><%= link_to t("new"), new_resource_path, :class => 'button' %></div>
+<div><%= will_paginate @work_programms %></div>
 

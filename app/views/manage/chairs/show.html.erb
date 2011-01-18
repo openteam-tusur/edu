@@ -2,28 +2,7 @@
 
 <p><%= link_to "Специальности и направления подготовки", manage_chair_specialities_path(@chair) %></p>
 
-<p><%= link_to "Рабочие программы", manage_chair_work_programms_path(@chair) %></p>
-
-<% unless @chair.work_programms.empty?  %>
-  <table class="work_programms">
-    <tbody>
-      <tr>
-        <td><%= link_to 'Рабочие программы', manage_chair_work_programms_path(@chair) %></td>
-        <td><%= @chair.work_programms.count %></td>
-        <td><%= @chair.work_programms.published.count   %></td>
-        <td><%= @chair.work_programms.unpublished.count %></td>
-      </tr>
-      <tr>
-        <td>Обеспечивающие дисциплины</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-<% end %>
-
 <p><%= link_to 'Сотрудники', manage_chair_employees_path(@chair) %></p>
 
-<p><%= link_to 'Учебные материалы', manage_chair_work_books_path(@chair) %></p>
+<p><%= link_to 'Учебно-методическое обеспечение', manage_chair_publications_path(@chair) %></p>
 

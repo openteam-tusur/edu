@@ -107,18 +107,12 @@ ru:
       edit: Изменение информации о сотруднике
       delete: Удаление сотрудника
 
-    manage/work_programms:
-      index: Рабочие программы
-      new: Добавить рабочую программу
-      edit: Редактирование рабочей программы
-      delete: Удаление рабочей программы
+    manage/publications:
+      index: Учебно-методическое обеспечение
+      new: Добавление материала
+      edit: Редактирование материала
+      delete: Удаление материала
 
-    manage/work_books:
-      index: Учебные материалы
-      new: Добавить учебный материал
-      edit: Редактирование учебного материала
-      delete: Удаление учебного материала
-      show: Просмотр учебного материала
 
     manage/authors:
       new: Добавление автора
@@ -132,7 +126,7 @@ ru:
     manage/roles:
       edit: Редактирование роли
 
-    manage/resource_disciplines:
+    manage/publication_disciplines:
       new:  Добавление дисциплины
 
     humans:
@@ -249,7 +243,7 @@ ru:
       resource: Ресурс
       attachment: Вложение
       author: Автор материала
-      publication: Публикация
+      publication: Учебно-методический материал
 
     attributes:
       attachment:
@@ -278,7 +272,7 @@ ru:
         patronymic: Отчество
         surname: Фамилия
         human_id: ''
-        work_programms: Рабочие программы
+        publications: Учебно-методические материалы
       speciality:
         accreditation: Аккредитация
         chair: Кафедра
@@ -332,7 +326,6 @@ ru:
           loading_self_training: Самостоятельная работа
           examinations: Форма контроля
           chair: Обеспечивающая кафедра
-          work_programm: Рабочая программа
       publication:
         title: Название
         year: Год издания

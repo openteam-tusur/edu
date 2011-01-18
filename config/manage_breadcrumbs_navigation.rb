@@ -116,30 +116,30 @@ SimpleNavigation::Configuration.run do |navigation|
         end
 
         # рабочие программы
-        chair.item :work_programms, t("title.manage/work_programms.index"),
-            manage_chair_work_programms_path(@chair) do |work_programms|
-          if @work_programm && @work_programm.new_record?
-            work_programms.item :add_work_programm, t("title.manage/work_programms.new"),
-                        new_manage_chair_work_programm_path(@chair)
-            work_programms.item :create_employee, t("title.manage/work_programms.new"),
-                        new_manage_chair_work_programm_path(@chair),
-                        :highlights_on => /work_programms/  if params[:action] == "create"
+        chair.item :publications, t("title.manage/publications.index"),
+            manage_chair_publications_path(@chair) do |publications|
+          if @publication && @publication.new_record?
+            publications.item :add_publication, t("title.manage/publications.new"),
+                        new_manage_chair_publication_path(@chair)
+            publications.item :create_publication, t("title.manage/publications.new"),
+                        new_manage_chair_publication_path(@chair),
+                        :highlights_on => /publications/  if params[:action] == "create"
           end
-          if @resource_discipline && @resource_discipline.new_record?
-            work_programms.item :add_discipline, t("title.manage/resource_disciplines.new"),
-                      new_manage_chair_work_programm_resource_discipline_path(@chair, @work_programm)
-            work_programms.item :add_discipline, t("title.manage/resource_disciplines.new"),
-                      new_manage_chair_work_programm_resource_discipline_path(@chair, @work_programm),
-                      :highlights_on => /resource_disciplines/  if params[:action] == "create"
-          end
-          if @work_programm && !@work_programm.new_record?
-            work_programms.item :work_programm, @work_programm.title,
-                        manage_chair_work_programm_path(@chair, @work_programm) do |work_programm|
-              work_programm.item :edit_work_programm, t("title.manage/work_programms.edit"),
-                          edit_manage_chair_work_programm_path(@chair, @work_programm)
-              work_programm.item :edit_work_programm, t("title.manage/work_programms.edit"),
-                          edit_manage_chair_work_programm_path(@chair, @work_programm),
-                          :highlights_on => /work_programms/ if params[:action] == "update"
+          if @publication && !@publication.new_record?
+            publications.item :publication, @publication.title,
+                        manage_chair_publication_path(@chair, @publication) do |publication|
+              publication.item :edit_publication, t("title.manage/publication.edit"),
+                          edit_manage_chair_publication_path(@chair, @publication)
+              publication.item :edit_publication, t("title.manage/publication.edit"),
+                          edit_manage_chair_publication_path(@chair, @publication),
+                          :highlights_on => /publications/ if params[:action] == "update"
+              if @publication_discipline && @publication_discipline.new_record?
+                publication.item :add_discipline, t("title.manage/publication_disciplines.new"),
+                          new_manage_chair_publication_publication_discipline_path(@chair, @publication)
+                publication.item :add_discipline, t("title.manage/publication_disciplines.new"),
+                          new_manage_chair_publication_publication_discipline_path(@chair, @publication),
+                          :highlights_on => /publication_disciplines/  if params[:action] == "create"
+              end
             end
           end
         end

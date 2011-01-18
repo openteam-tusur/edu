@@ -20,13 +20,9 @@ Portal::Application.routes.draw do
     end
     resources :chairs, :only => [:index, :show] do
       resources :employees, :except => [:show]
-      resources :work_programms do
+      resources :publications do
         put :transit, :on => :member
-        resources :resource_disciplines, :except => [:index, :show]
-      end
-
-      resources :work_books do
-        put :transit, :on => :member
+        resources :publication_disciplines, :except => [:index, :show]
       end
 
       resources :specialities do
