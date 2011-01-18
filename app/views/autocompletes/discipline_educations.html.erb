@@ -1,0 +1,7 @@
+<% @grouped_educations.each do |curriculum, educations| %>
+  <p><%= curriculum.human_study %></p>
+  <% educations.each do |education| %>
+    <%= check_box_tag "resource_discipline[education_ids][]", education.id, false :id => "resource_discipline_education_#{education.id}" %>
+    <%= label_tag "resource_discipline_education_#{education.id}", education.semester.title %>
+  <% end %>
+<% end %>

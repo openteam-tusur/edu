@@ -45,6 +45,8 @@ Portal::Application.routes.draw do
 
   resources :autocompletes, :only => [] do
     get :disciplines, :on => :collection
+    get :discipline_educations, :on => :collection
+    get :specialities, :on => :collection
     get :authors, :on => :collection
   end
 
