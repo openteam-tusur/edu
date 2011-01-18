@@ -114,7 +114,6 @@ ru:
       edit: Редактирование материала
       delete: Удаление материала
 
-
     manage/authors:
       new: Добавление автора
 
@@ -128,7 +127,8 @@ ru:
       edit: Редактирование роли
 
     manage/publication_disciplines:
-      new:  Добавление дисциплины
+      new: Добавление дисциплины
+      edit: Редактирование дисциплины
 
     humans:
       edit: Редактирование профиля
@@ -349,6 +349,7 @@ ru:
           chair: Обеспечивающая кафедра
       publication:
         title: Название
+        authors: Авторы
         year: Год издания
         state_enum:
           <<: *state_enum
@@ -372,7 +373,7 @@ ru:
           demo: Демонстрационный материал с использованием компьютера и видеотехники
           work_programm: Рабочая программа
 
-      resource_discipline:
+      publication_discipline:
         speciality_request: Специальность
         discipline_request: Дисциплина
         resource: Ресурс

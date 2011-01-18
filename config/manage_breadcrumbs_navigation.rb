@@ -130,9 +130,9 @@ SimpleNavigation::Configuration.run do |navigation|
           if @publication && !@publication.new_record?
             publications.item :publication, @publication.title,
                         manage_chair_publication_path(@chair, @publication) do |publication|
-              publication.item :edit_publication, t("title.manage/publication.edit"),
+              publication.item :edit_publication, t("title.manage/publications.edit"),
                           edit_manage_chair_publication_path(@chair, @publication)
-              publication.item :edit_publication, t("title.manage/publication.edit"),
+              publication.item :edit_publication, t("title.manage/publications.edit"),
                           edit_manage_chair_publication_path(@chair, @publication),
                           :highlights_on => /publications/ if params[:action] == "update"
               if @publication_discipline && @publication_discipline.new_record?

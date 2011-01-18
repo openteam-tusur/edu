@@ -1,6 +1,8 @@
 # encoding: utf-8
 
-class RolesController < ApplicationController
+class RolesController < InheritedResourcesController
+
+  check_authorization
 
   def create
       create! { human_path }

@@ -1,8 +1,8 @@
-<div class='work_programm'>
+<div class='publication'>
   <%= link_to image_tag("icon_pdf_#{item.access}.png"),
                 item.attachment.data.url,
                 :title => item.human_access, :rel => "tipsy" %>
-    <a href="<%= manage_chair_work_programm_path(@chair, item) %>">
+    <a href="<%= manage_chair_publication_path(@chair, item) %>">
       <span><%= "#{item.title} / " %></span>
 
       <span class="authors">

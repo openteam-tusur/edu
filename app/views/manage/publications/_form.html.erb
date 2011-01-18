@@ -1,20 +1,20 @@
-<%= form.inputs :class => "work_programm inputs" do %>
+<%= form.inputs :class => "publication inputs" do %>
 
   <%= form.input :title, :as => :string, :input_html => {:class => :focus_first} %>
 
   <%= form.fields_for :author do |author_form| %>
   <li>
-    <%= author_form.inputs "Авторы рабочей программы", :class => "inputs pictorial" do %>
+    <%= author_form.inputs "Авторы", :class => "inputs pictorial" do %>
       <%= author_form.input :author_query, :label => "Выберите автора", :input_html => {:class => "author_query_input", :name => "author_query"} %>
 
       <li class="author_list">
         <% resource.authors.each_with_index do |author, index| %>
           <p class="author_item human_<%= author.human.id %>" id="<%= index %>">
-            <%= hidden_field_tag "work_programm[authors_attributes][#{index}][_destroy]",
+            <%= hidden_field_tag "publication[authors_attributes][#{index}][_destroy]",
                                  false,
                                  :class => 'hidden_input' %>
 
-            <%= hidden_field_tag "work_programm[authors_attributes][#{index}][id]", author.id %>
+            <%= hidden_field_tag "publication[authors_attributes][#{index}][id]", author.id %>
             <span class="full_name"><%= author.human.full_name_with_posts %></span>
             <%= link_to "Удалить", "#" %>
           </p>

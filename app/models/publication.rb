@@ -5,7 +5,7 @@ class Publication < Resource
 
   belongs_to  :chair
 
-  has_many :resource_disciplines
+  has_many :publication_disciplines
   has_many :authors, :as => :resource, :inverse_of => :resource
   accepts_nested_attributes_for :authors, :allow_destroy => true
 
