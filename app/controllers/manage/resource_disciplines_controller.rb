@@ -7,7 +7,7 @@ class Manage::ResourceDisciplinesController < Manage::ApplicationController
   actions :all, :except => [:index, :show]
 
   belongs_to :chair, :finder => :find_by_slug do
-    polymorphic_belongs_to :work_programm
+    belongs_to :work_programm
   end
 
 end
