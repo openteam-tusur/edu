@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110118035244) do
+ActiveRecord::Schema.define(:version => 20110118050219) do
 
   create_table "attachments", :force => true do |t|
     t.string   "data_uid"
@@ -47,9 +47,9 @@ ActiveRecord::Schema.define(:version => 20110118035244) do
     t.datetime "updated_at"
   end
 
-  create_table "educations_resource_disciplines", :id => false, :force => true do |t|
+  create_table "educations_publication_disciplines", :id => false, :force => true do |t|
     t.integer "education_id"
-    t.integer "resource_discipline_id"
+    t.integer "publication_discipline_id"
   end
 
   create_table "examinations", :force => true do |t|
@@ -133,6 +133,13 @@ ActiveRecord::Schema.define(:version => 20110118035244) do
     t.datetime "updated_at"
   end
 
+  create_table "publication_disciplines", :force => true do |t|
+    t.integer  "publication_id"
+    t.integer  "discipline_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "publications", :force => true do |t|
     t.integer  "chair_id"
     t.string   "title"
@@ -145,14 +152,6 @@ ActiveRecord::Schema.define(:version => 20110118035244) do
     t.string   "udk"
     t.string   "bbk"
     t.string   "stamp"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "resource_disciplines", :force => true do |t|
-    t.integer  "resource_id"
-    t.string   "resource_type"
-    t.integer  "discipline_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

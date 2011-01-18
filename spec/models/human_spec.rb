@@ -31,11 +31,11 @@ describe Human do
   end
 
   it "должен знать свои рабочие программы" do
-    work_programm = Factory.create(:work_programm)
+    publication = Factory.create(:publication)
     human = Factory.create(:human)
-    work_programm.authors.create!(:human_id => human.id)
+    publication.authors.create!(:human_id => human.id)
 
-    human.work_programms.should eql [work_programm]
+    human.publications.should eql [publication]
   end
 
 
