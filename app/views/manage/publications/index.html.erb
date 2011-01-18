@@ -1,3 +1,7 @@
+<div class="publication facets">
+  <%= render_navigation :context => 'manage_publication' %>
+</div>
+
 <%= semantic_form_for :publications, :html => { :method => :get } do | form | %>
   <%= form.inputs do %>
     <%= form.input :query, :required => false, :label => false, :input_html => { :name => 'query', :value => params[:query] } %>
@@ -16,13 +20,6 @@
 
 <% end %>
 
-<div class="facets">
-  <% @facets.each do | facet | %>
-    <%= link_to collection_path(:query => params[:query], :kind => facet.value) do %>
-      <%= Publication.human_attribute_name "kind_enum.#{facet.value}" %> <span><%= facet.count %></span>
-    <% end %>
-  <% end %>
-</div>
 
 <%= will_paginate @publications %>
 

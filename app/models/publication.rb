@@ -29,7 +29,6 @@ class Publication < Resource
     string :kind
   end
 
-
   def self.search(query, chair, options={})
     solr_search do
       keywords query unless query.blank?
