@@ -2,16 +2,15 @@
   <%= link_to image_tag("icon_pdf_#{item.access}.png"),
                 item.attachment.data.url,
                 :title => item.human_access, :rel => "tipsy" %>
-    <a href="<%= manage_chair_publication_path(@chair, item) %>">
-      <span><%= "#{item.title} / " %></span>
-
+    <%= link_to manage_chair_publication_path(@chair, item) do %>
+      <span class="title"><%= "#{item.title}: " %></span>
+      <span><%= "#{item.human_kind} /" %></span>
       <span class="authors">
         <%= item.authors.any? ? raw("#{item.authors.map(&:abbreviated_name).join(', ')} &ndash;")  : "" %>
       </span>
-
       <span class="year"><%= "#{item.year}. " %> &ndash;</span>
-
       <span class="volume"><%= "#{item.volume} с." %></span>
+    <% end %>
     </a>
 </div>
 

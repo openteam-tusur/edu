@@ -9,7 +9,7 @@ class Plan::Curriculum < Resource
   belongs_to :speciality
   delegate :chair, :to => :speciality
 
-  has_many :semesters, :class_name => "Plan::Semester"
+  has_many :semesters, :class_name => "Plan::Semester", :dependent => :destroy
   has_many :educations, :through => :semesters,
                         :class_name => "Plan::Education",
                         :include => :semester,
@@ -18,6 +18,8 @@ class Plan::Curriculum < Resource
   validates_presence_of :speciality, :study, :since
   validates_uniqueness_of :study, :scope => [:speciality_id, :since]
   validates_presence_of :access, :year, :attachment, :volume, :if => :need_all_resource_fields?
+
+  protected_parent_of :educations, :protects => :softly
 
   has_enum :study, %w[fulltime parttime postal]
 

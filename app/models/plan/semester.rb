@@ -12,7 +12,11 @@ class Plan::Semester < ActiveRecord::Base
 
   has_many :educations, :class_name => "Plan::Education",
                         :include => :discipline,
-                        :order => 'plan_disciplines.name'
+                        :order => 'plan_disciplines.name',
+                        :dependent => :destroy
+
+  protected_parent_of :educations, :protects => :softly
+
 
   default_scope :order => :number
 

@@ -9,6 +9,8 @@ class Plan::Discipline < ActiveRecord::Base
 
   has_many :educations
 
+
+
   default_scope order("name desc")
 
   searchable do

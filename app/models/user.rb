@@ -16,6 +16,10 @@ class User < ActiveRecord::Base
 
   after_create :create_human
 
+  def to_s
+    email
+  end
+
   # Возвращает список ролей пользователя
   def roles
     if human

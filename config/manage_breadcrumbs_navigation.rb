@@ -59,6 +59,8 @@ SimpleNavigation::Configuration.run do |navigation|
                   semester.item :create_education, t("title.manage/educations.edit"),
                               edit_manage_chair_speciality_curriculum_semester_education_path(@chair, @speciality, @curriculum, @semester, @education),
                               :highlights_on => /education/ if params[:action] == "update" && params[:controller] == "manage/educations"
+                  semester.item :delete_education, t("title.manage/educations.delete"),
+                              delete_manage_chair_speciality_curriculum_semester_education_path(@chair, @speciality, @curriculum, @semester, @education)
                 end
                 # / education
               end if @semester && !@semester.new_record?

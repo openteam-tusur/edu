@@ -1,3 +1,7 @@
+<div class="publication facets">
+  <%= render_navigation :context => 'manage_publication' %>
+</div>
+
 <%= semantic_form_for :publications, :html => { :method => :get } do | form | %>
   <%= form.inputs do %>
     <%= form.input :query, :required => false, :label => false, :input_html => { :name => 'query', :value => params[:query] } %>
@@ -8,12 +12,14 @@
 <% end %>
 
 <% if collection.any? %>
-  <div id="<%= resource_class.name.downcase.pluralize %>_list">
-    <% collection.each do |obj| %>
+  <div class="publication results">
+    <% @publications.each do |obj| %>
       <%= render :partial => "index_item", :locals => { :item => obj } %>
     <% end %>
   </div>
+
 <% end %>
+
 
 <%= will_paginate @publications %>
 

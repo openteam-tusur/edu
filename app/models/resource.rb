@@ -24,22 +24,9 @@ class Resource < ActiveRecord::Base
     transitions  :to => :unpublished, :from => [:published]
   end
 
-  searchable do
-    text :title
-    text :year
-
-    text :authors do
-      authors.map(&:human).map(&:full_name).join(" ")
-    end
+  def self.per_page
+   10
   end
-
-  def authors
-    []
-  end
-
-   def self.per_page
-    10
-   end
 
   private
     def need_all_resource_fields?

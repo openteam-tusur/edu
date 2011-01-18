@@ -7,10 +7,9 @@ class Manage::PublicationsController < Manage::ApplicationController
   belongs_to :chair, :finder => :find_by_slug
 
   def index
-    @publications = Publication.solr_search do
-      keywords params[:query]
-      paginate :page => params[:page], :per_page => Publication.per_page
-    end.results
+    search = Publication.search(params[:query], @chair, params)
+    @publications = search.results
+    @facets = search.facet(:kind).rows
   end
 
   def transit

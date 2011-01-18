@@ -26,8 +26,9 @@ describe Human do
                                   "post" => "старший преподаватель",
                                   "human_id" => user.human.id
     human.destroy
-    User.exists?(user.id).should be false
-    Role.where(:human_id => human.id).empty?.should be true
+    Human.exists?(human.id).should be true
+    User.exists?(user.id).should be true
+    Role.where(:human_id => human.id).should be_empty
   end
 
   it "должен знать свои рабочие программы" do
@@ -36,6 +37,18 @@ describe Human do
     publication.authors.create!(:human_id => human.id)
 
     human.publications.should eql [publication]
+  end
+
+  it "должен работать поиск сотрудников кафедры" do
+    chair = Factory.create(:chair)
+    human = chair.create_employee("surname" => "Фамилия",
+                                  "name" => "Имя",
+                                  "patronymic" => "Отчество",
+                                  "post" => "старший преподаватель",
+                                  "human_id" => 0)
+
+    Human.find_accepted_employees_in_chair("", 1, chair).should eql [human]
+    Human.find_accepted_employees_in_chair("Фамилия", 1, chair).should eql [human]
   end
 
 
