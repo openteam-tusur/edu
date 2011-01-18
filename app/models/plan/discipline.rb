@@ -12,6 +12,15 @@ class Plan::Discipline < ActiveRecord::Base
 
   searchable do
     text :name
+    integer :speciality_id
+  end
+
+  def educations_grouped_by_curriculums
+    grouped = {}
+    speciality.curriculums.each do |curriculum|
+      grouped[curriculum] = curriculum.educations.where(:discipline_id => self.id).all
+    end
+    grouped
   end
 
 end

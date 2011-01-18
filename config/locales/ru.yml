@@ -326,6 +326,7 @@ ru:
         bbk: ББК
         stamp: Гриф
         kind: Тип учебного материала
+        volume: Количество страниц
 
         kind_enum:
           tutorial: Учебное пособие
@@ -339,7 +340,7 @@ ru:
 
       resource_discipline:
         speciality_request: Специальность
-        discipline: Дисциплина
+        discipline_request: Дисциплина
         resource: Ресурс
       author:
         resource: Материал
