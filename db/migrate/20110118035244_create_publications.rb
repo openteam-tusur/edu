@@ -19,7 +19,6 @@ class CreatePublications < ActiveRecord::Migration
     drop_table :work_programms
     drop_table :work_books
 
-    rename_column :plan_educations, :work_programm_id, :publication_id
   end
 
   def self.down
@@ -47,7 +46,6 @@ class CreatePublications < ActiveRecord::Migration
       t.timestamps
     end
 
-    rename_column :plan_educations, :publication_id, :work_programm_id
   end
 end
 
