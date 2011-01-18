@@ -4,5 +4,6 @@ Factory.define :publication, :default_strategy => :attributes_for do |publicatio
   publication.title         'ololo'
   publication.volume        200
   publication.access        'free'
+  publication.kind          'work_programm'
   publication.attachment    Attachment.new
 end

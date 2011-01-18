@@ -8,12 +8,21 @@
 <% end %>
 
 <% if collection.any? %>
-  <div id="<%= resource_class.name.downcase.pluralize %>_list">
-    <% collection.each do |obj| %>
+  <div class="results">
+    <% @publications.each do |obj| %>
       <%= render :partial => "index_item", :locals => { :item => obj } %>
     <% end %>
   </div>
+
 <% end %>
+
+<div class="facets">
+  <% @facets.each do | facet | %>
+    <%= link_to collection_path(:query => params[:query], :kind => facet.value) do %>
+      <%= Publication.human_attribute_name "kind_enum.#{facet.value}" %> <span><%= facet.count %></span>
+    <% end %>
+  <% end %>
+</div>
 
 <%= will_paginate @publications %>
 
