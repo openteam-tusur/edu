@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class AutocompletesController < ActionController::Base
+class AutocompletesController < ApplicationController
 
   def authors
     authors = Human.available_authors(params[:term])

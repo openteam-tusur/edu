@@ -1,4 +1,6 @@
-class Manage::ApplicationController < ApplicationController
+class Manage::ApplicationController < InheritedResourcesController
+
+  check_authorization
 
   layout "manage"
 

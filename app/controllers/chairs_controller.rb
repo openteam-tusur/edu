@@ -1,6 +1,4 @@
-class ChairsController < ApplicationController
-
-  load_and_authorize_resource
+class ChairsController < InheritedResourcesController
 
   defaults :finder => :find_by_slug
   actions :show
