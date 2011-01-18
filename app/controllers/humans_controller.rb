@@ -1,4 +1,6 @@
-class HumansController < ApplicationController
+class HumansController < InheritedResourcesController
+  check_authorization
+
   load_and_authorize_resource
 
   prepend_before_filter :validate_authentication

@@ -47,9 +47,9 @@ Portal::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  config.middleware.use ExceptionNotifier,
-    :email_prefix => "[Portal error] ",
-    :sender_address => %{"notifier" <notifier@openteam.ru>},
-    :exception_recipients => %w{mail@openteam.ru}
+#  config.middleware.use ExceptionNotifier,
+#    :email_prefix => "[Portal error] ",
+#    :sender_address => %{"notifier" <notifier@openteam.ru>},
+#    :exception_recipients => %w{mail@openteam.ru}
 
 end

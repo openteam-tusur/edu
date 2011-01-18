@@ -1,5 +1,7 @@
 class AttachmentsController < ApplicationController
 
+  check_authorization
+
   def download
     head(:not_found) and return if (attachment = Attachment.find(params[:id].split("-")[0])).nil?
 
