@@ -19,7 +19,7 @@ class AutocompletesController < ApplicationController
       end
     end.results
     specialities.map! do |speciality|
-      { :id => speciality.id, :value => "#{speciality.code} (#{speciality.chair.abbr}) - #{speciality.name}" }
+      { :id => speciality.id, :value => speciality.autocomplete_value }
     end
     render :text => specialities.to_json
   end
@@ -41,9 +41,10 @@ class AutocompletesController < ApplicationController
 
   def discipline_educations
     discipline = Plan::Discipline.find(params[:discipline_id])
+    @publication_discipline = PublicationDiscipline.new(:discipline_id => discipline.id)
     @grouped_educations = discipline.educations_grouped_by_curriculums
     render :text => "Обучения для этой дисциплины не запланировано" and return if @grouped_educations.empty?
-    render :layout => false
+    render :partial => "manage/publication_disciplines/discipline_educations", :layout => false
   end
 
 private

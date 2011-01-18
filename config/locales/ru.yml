@@ -244,6 +244,7 @@ ru:
       attachment: Вложение
       author: Автор материала
       publication: Учебно-методический материал
+      publication_discipline: Дисциплина
 
     attributes:
       attachment:
@@ -355,7 +356,10 @@ ru:
       publication_discipline:
         speciality_request: Специальность
         discipline_request: Дисциплина
-        resource: Ресурс
+        publication: Материал
+        publication_id: Материал
+        discipline: Дисциплина
+        discipline_id: Дисциплина
       author:
         resource: Материал
         human: Автор

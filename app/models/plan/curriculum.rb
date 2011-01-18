@@ -10,7 +10,10 @@ class Plan::Curriculum < Resource
   delegate :chair, :to => :speciality
 
   has_many :semesters, :class_name => "Plan::Semester"
-  has_many :educations, :through => :semesters
+  has_many :educations, :through => :semesters,
+                        :class_name => "Plan::Education",
+                        :include => :semester,
+                        :order => 'plan_semesters.number'
 
   validates_presence_of :speciality, :study, :since
   validates_uniqueness_of :study, :scope => [:speciality_id, :since]

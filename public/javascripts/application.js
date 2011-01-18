@@ -17,7 +17,6 @@ function flash() {
 
 function human_check(){
   linka = $('.human_check');
-
   linka.click(function() {
     url = linka.attr('href');
     surname = $('#employee_surname').val();
@@ -34,11 +33,11 @@ function human_check(){
   });
 };
 
-function get_discipline_educations() {
+function get_discipline_educations(value) {
   $.ajax({
     type: "GET",
     url: "/autocompletes/discipline_educations",
-    data: {"discipline_id": $("#publication_discipline_speciality_id").val()},
+    data: {"discipline_id": value},
     success: function(data, textStatus, XMLHttpRequest) {
       $("#publication_discipline_educations").html(data);
     }
@@ -46,12 +45,16 @@ function get_discipline_educations() {
 };
 
 function discipline_autocomplete() {
+  $("#publication_discipline_discipline_id").live("change", function() {
+    console.log("change");
+    $("#publication_discipline_discipline_request").val("");
+  });
   $("#publication_discipline_discipline_request").autocomplete({
     source: "/autocompletes/disciplines?speciality_id=" + $("#publication_discipline_speciality_id").val(),
     minLength: 2,
     select: function(event, ui) {
       $("#publication_discipline_discipline_id").val(ui.item.id);
-      get_discipline_educations();
+      get_discipline_educations(ui.item.id);
     }
   });
 };
@@ -62,7 +65,8 @@ function speciality_autocomplete() {
     minLength: 2,
     select: function(event, ui) {
       $("#publication_discipline_speciality_id").val(ui.item.id);
-      $("#publication_discipline_discipline_request").removeAttr("disabled").focus();
+      $("#publication_discipline_discipline_request").removeAttr("disabled").focus().val("");
+      $("#publication_discipline_educations").html("");
       discipline_autocomplete();
     }
   });

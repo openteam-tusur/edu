@@ -11,19 +11,19 @@
   <div class='disciplines'>
     <div>
       <h2>Дисциплины</h2>
-      <p><%= link_to "Добавить дисциплину", new_manage_chair_publication_publication_discipline_path(@chair, @publication), :class => 'button' %></p>
     </div>
     <% unless @publication.publication_disciplines.empty? %>
       <ul>
         <% @publication.publication_disciplines.each do |publication_discipline| %>
           <li>
-            <%= "#{publication_discipline.discipline.speciality.code} - #{publication_discipline.discipline.speciality.name} (#{publication_discipline.discipline.speciality.chair.abbr})" %>
-            <%= publication_discipline.discipline.name %>
-            <%= publication_discipline.educations.collect(&:semester).collect(&:number).join(", ") %> семестры
+            <p><%= publication_discipline.discipline.speciality.autocomplete_value %></p>
+            <p><%= publication_discipline.discipline.name %></p>
+            <p><%= publication_discipline.educations.collect(&:semester).collect(&:number).join(", ") %> семестры</p>
             <%= link_to t(:edit), edit_manage_chair_publication_publication_discipline_path(@chair, @publication, publication_discipline) %>
           </li>
         <% end %>
       </ul>
     <% end %>
+    <p><%= link_to "Добавить дисциплину", new_manage_chair_publication_publication_discipline_path(@chair, @publication), :class => 'button' %></p>
   </div>
 </div>

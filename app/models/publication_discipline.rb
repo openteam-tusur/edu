@@ -6,7 +6,10 @@ class PublicationDiscipline < ActiveRecord::Base
   belongs_to :discipline, :class_name => "Plan::Discipline"
   delegate :speciality, :to => :discipline
 
-  has_and_belongs_to_many :educations, :class_name => "Plan::Education"
+  has_and_belongs_to_many :educations, :class_name => "Plan::Education",
+                          :include => :semester,
+                          :order => 'plan_semesters.number'
+
 
   validates_presence_of :publication, :discipline
   validates_uniqueness_of :discipline_id, :scope => :publication_id
@@ -18,7 +21,8 @@ class PublicationDiscipline < ActiveRecord::Base
 private
 
   def validate_exists_of_educations
-    errors[:base] << "Необходимо выбрать семестры" if education_ids.empty?
+    ids = self.education_ids & self.discipline.education_ids
+    errors[:base] << "Необходимо выбрать семестры" if ids.empty?
   end
 
 end
