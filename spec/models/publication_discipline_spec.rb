@@ -30,11 +30,10 @@ end
 #
 # Table name: publication_disciplines
 #
-#  id            :integer         not null, primary key
-#  resource_id   :integer
-#  resource_type :string(255)
-#  discipline_id :integer
-#  created_at    :datetime
-#  updated_at    :datetime
+#  id             :integer         not null, primary key
+#  publication_id :integer
+#  discipline_id  :integer
+#  created_at     :datetime
+#  updated_at     :datetime
 #
 

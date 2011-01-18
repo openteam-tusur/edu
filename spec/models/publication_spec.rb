@@ -41,18 +41,22 @@ end
 
 # == Schema Information
 #
-# Table name: work_programms
-# Human name: Рабочая программа
+# Table name: publications
+# Human name: Публикация
 #
-#  id            :integer         not null, primary key
-#  chair_id      :integer
-#  year          :integer         'Год издания'
-#  state         :string(255)     'Статус'
-#  access        :string(255)     'Доступ к файлу'
-#  resource_name :text            'Название файла'
-#  created_at    :datetime
-#  updated_at    :datetime
-#  title         :text            'Название'
-#  volume        :integer         'Количество страниц'
+#  id         :integer         not null, primary key
+#  chair_id   :integer
+#  title      :string(255)     'Название'
+#  year       :integer         'Год издания'
+#  volume     :integer         'Количество страниц'
+#  state      :string(255)     'Статус'
+#  access     :string(255)     'Доступ к файлу'
+#  kind       :string(255)     'Тип учебного материала'
+#  isbn       :string(255)     'ISBN'
+#  udk        :string(255)     'УДК'
+#  bbk        :string(255)     'ББК'
+#  stamp      :string(255)     'Гриф'
+#  created_at :datetime
+#  updated_at :datetime
 #
 
