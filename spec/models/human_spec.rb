@@ -26,8 +26,9 @@ describe Human do
                                   "post" => "старший преподаватель",
                                   "human_id" => user.human.id
     human.destroy
-    User.exists?(user.id).should be false
-    Role.where(:human_id => human.id).empty?.should be true
+    Human.exists?(human.id).should be true
+    User.exists?(user.id).should be true
+    Role.where(:human_id => human.id).should be_empty
   end
 
   it "должен знать свои рабочие программы" do
