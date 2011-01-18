@@ -7,7 +7,7 @@
       <%= link_to image_tag("icon_pdf_#{@curriculum.access}.png"),
                   @curriculum.attachment.data.url,
                   :title => @curriculum.human_access, :rel => "tipsy" %>
-      <%= link_to "#{@curriculum.resource_name}, #{@curriculum.year}", @curriculum.attachment.data.url,
+      <%= link_to "Учебный план #{@curriculum.year}", @curriculum.attachment.data.url,
                   :class => "#{@curriculum.access}_pdf download" %>
     <% else %>
       файл отсутствует
@@ -19,7 +19,7 @@
   <li><%= link_to t(:edit), edit_manage_chair_speciality_curriculum_path(@chair, @speciality, @curriculum), :class => "button" %></li>
   <% @curriculum.aasm_events_for_current_state.each do |event| %>
     <li class="curriculum_resource_state">
-      <p class="resource_state_<%= @curriculum.state %>"><%= t "attributes.state_enum.#{@curriculum.state}" %></p>
+      <p class="resource_state_<%= @curriculum.state %>"><%= @curriculum.human_state %></p>
       <%= link_to @curriculum.human_event_name(event),
                   transit_manage_chair_speciality_curriculum_path(@chair, @speciality, @curriculum, :event => event),
                   :class => "button", :method => :put %>
