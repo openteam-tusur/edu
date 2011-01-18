@@ -147,8 +147,9 @@ ru:
   curriculum:
     add: Добавить учебный план
     duration:
-      few: "года"
-      many: "лет"
+      one: год
+      few: года
+      many: лет
     publish: Опубликовать
     unpublish: Снять с публикации
 
@@ -276,6 +277,7 @@ ru:
           issued_on: Дата выдачи
           number: Номер
         curriculum:
+          volume: Количество страниц
           duration: Срок обучения
           since: Действует с
           semesters_count: Количество семестров
