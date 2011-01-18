@@ -8,7 +8,7 @@ class WorkBook < Resource
   has_many    :authors, :as => :resource, :inverse_of => :resource
   accepts_nested_attributes_for :authors, :allow_destroy => true
 
-  validates_presence_of :chair, :title, :attachment, :year, :access
+  validates_presence_of :chair, :title, :attachment, :year, :access, :volume
 
   has_enum :kind, %w(tutorial lab_work course_work attestation practice seminar test demo)
 end
