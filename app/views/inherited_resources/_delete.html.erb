@@ -1,12 +1,14 @@
-<p><%= resource.send ShowFor.association_methods.find { |m| resource.respond_to?(m) } %></p>
+<p><%= resource.title %></p>
 
 <% show_for resource do | s | %>
   <% unless resource.protected_children.empty? %>
     С этим объектом связаны:
     <% resource.protected_children.each do |attribute| %>
-      <% s.association attribute.to_sym do | object | %>
-        <%= object.title %>
-      <% end %>
+      <ul class="protected_children">
+        <% s.association attribute.to_sym do | object | %>
+          <li><%= object.title %></li>
+        <% end %>
+      </ul>
     <% end %>
   <% end %>
 <% end %>

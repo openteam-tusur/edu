@@ -1,0 +1,7 @@
+<p><%= @education.title %></p>
+
+<% if @education.publication_disciplines.count > 0 %>
+  <p>С дисциплиной связано <%= t('publication_discipline.count', :count => @education.publication_disciplines.count) %>. Связь этих материалов с дисцилиной будет потеряна.</p>
+<% else %>
+  <p>С дисциплиной не связано материалов.</p>
+<% end %>

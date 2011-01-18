@@ -16,6 +16,9 @@ class Speciality < ActiveRecord::Base
   has_one :accreditation, :class_name => "Plan::Accreditation", :dependent => :destroy
   accepts_nested_attributes_for :accreditation
 
+  protected_parent_of :curriculums, :protects => :softly
+
+
   has_enum :degree, %w[specialist master bachelor], :scopes => true
 
   searchable do

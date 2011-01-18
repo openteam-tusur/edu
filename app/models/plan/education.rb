@@ -9,11 +9,14 @@ class Plan::Education < ActiveRecord::Base
   belongs_to :discipline
   belongs_to :chair
   has_and_belongs_to_many :examinations
+  has_and_belongs_to_many :publication_disciplines
 
   validates_presence_of :semester, :chair, :discipline_name
   validates_uniqueness_of :discipline_id, :scope => :semester_id
 
   before_validation :prepare_discipline
+
+  protected_parent_of :publication_disciplines, :protects => :softly
 
   default_values :loading_lecture => 0, :loading_laboratory => 0,
                  :loading_practice => 0, :loading_course_project => 0,
@@ -30,6 +33,10 @@ class Plan::Education < ActiveRecord::Base
       summ += self.send(field) if self.send(field)
     end
     summ
+  end
+
+  def title
+    discipline.name
   end
 
 private

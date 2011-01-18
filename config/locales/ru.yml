@@ -84,6 +84,7 @@ ru:
     manage/educations:
       new: Добавление дисциплины
       edit: Редактирование дисциплины
+      delete: Удаление дисциплины
 
     manage/specialities:
       index: Специальности и направления подготовки
@@ -147,9 +148,27 @@ ru:
 
   semester:
     add: Добавить семестр
+    count:
+      one:   "%{count} семестр"
+      few:   "%{count} семестра"
+      many:  "%{count} семестров"
+      other: "%{count} семестра"
+
 
   education:
     add: Добавить дисциплину
+    count:
+      one:   "%{count} дисциплину"
+      few:   "%{count} дисциплины"
+      many:  "%{count} дисциплин"
+      other: "%{count} дисциплин"
+
+  publication_discipline:
+    count:
+      one:   "%{count} материал"
+      few:   "%{count} материала"
+      many:  "%{count} материалов"
+      other: "%{count} материалов"
 
   discipline:
     add: Добавить дисциплину
@@ -273,6 +292,7 @@ ru:
         surname: Фамилия
         human_id: ''
         publications: Учебно-методические материалы
+        user: Пользователь
       speciality:
         accreditation: Аккредитация
         chair: Кафедра
@@ -285,6 +305,7 @@ ru:
         qualification: Квалификация
         licence: Лицензия
         semesters_count: Количество семестров
+        curriculums: Учебные планы
       user:
         email: Электронная почта
         password: Пароль

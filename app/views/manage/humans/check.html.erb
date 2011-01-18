@@ -11,8 +11,7 @@
       <ul>
       <% human.roles.each do |role| %>
         <li>
-          <%= role.post %>
-          <%= "на каф. #{role.chair.abbr}, " if role.chair %>
+          <%= role.to_s %>
           <span class="<%= role.state %>"><%= role.human_state.mb_chars.downcase %></span>
         </li>
       <% end %>

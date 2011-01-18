@@ -27,7 +27,7 @@ class Human < ActiveRecord::Base
            :source => :resource,
            :source_type => "Publication"
 
-  protected_parent_of :publications
+  protected_parent_of :publications, :user
 
   searchable do
     text :full_name

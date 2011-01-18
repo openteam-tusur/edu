@@ -38,6 +38,18 @@ describe Human do
     human.publications.should eql [publication]
   end
 
+  it "должен работать поиск сотрудников кафедры" do
+    chair = Factory.create(:chair)
+    human = chair.create_employee("surname" => "Фамилия",
+                                  "name" => "Имя",
+                                  "patronymic" => "Отчество",
+                                  "post" => "старший преподаватель",
+                                  "human_id" => 0)
+
+    Human.find_accepted_employees_in_chair("", 1, chair).should eql [human]
+    Human.find_accepted_employees_in_chair("Фамилия", 1, chair).should eql [human]
+  end
+
 
   describe 'должен формировать список доступных авторов' do
 

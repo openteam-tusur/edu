@@ -28,7 +28,7 @@ describe Chair do
       employee.errors[:post].should_not be nil
     end
 
-    it "должна знать сотрудников" do
+    it "должна создавать сотрудников" do
       expired_employee_chair = @chair.create_employee("surname" => "Фамилия",
                                     "name" => "Имя",
                                     "patronymic" => "Отчество",

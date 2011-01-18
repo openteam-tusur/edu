@@ -8,6 +8,8 @@ class Plan::Discipline < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => :speciality_id
   has_many :educations
 
+
+
   default_scope order("name desc")
 
   searchable do

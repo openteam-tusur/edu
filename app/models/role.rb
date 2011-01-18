@@ -32,7 +32,7 @@ class Role < ActiveRecord::Base
 private
 
   def reindex_human
-    human.index!
+    human.reload.index!
   end
 
 end
