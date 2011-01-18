@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110118050219) do
+ActiveRecord::Schema.define(:version => 20110118061502) do
 
   create_table "attachments", :force => true do |t|
     t.string   "data_uid"
@@ -151,9 +151,11 @@ ActiveRecord::Schema.define(:version => 20110118050219) do
     t.string   "isbn"
     t.string   "udk"
     t.string   "bbk"
-    t.string   "stamp"
+    t.text     "stamp"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "content"
+    t.text     "annotation"
   end
 
   create_table "roles", :force => true do |t|
