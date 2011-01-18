@@ -9,6 +9,7 @@ feature "Скачивание файлов" do
                           :resource_name => "учебный план",
                           :access => "free",
                           :year => "2010",
+                          :volume => 200,
                           :attachment_attributes => {:data => File.new(Rails.root.join("spec", "data", "plan-210400.pdf"))})
 #    @curriculum.create_attachment(:data => ))
   end

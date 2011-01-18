@@ -1,12 +1,15 @@
-<%= show_for resource do |res| %>
-  <%= res.attributes :surname, :patronymic, :name %>
+<%= resource.full_name %>
+<%= link_to t(:edit), edit_resource_path, :class => :edit %>
+
+<% unless resource.user.nil? %>
+  <%= resource.user.email %>
+  <%= link_to t(:edit), edit_manage_user_path(resource.user) %>
 <% end %>
 
-<%= link_to t(:edit), edit_resource_path, :class => :button %>
-
 <hr />
+<%= link_to "Добавить роль", "#" %>
 
 <ul>
-  <%= render resource.roles %>
-</il>
+  <li><%= render resource.roles %></li>
+</ul>
 

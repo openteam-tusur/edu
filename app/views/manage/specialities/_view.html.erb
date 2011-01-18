@@ -28,7 +28,7 @@
         <%= link_to image_tag("icon_pdf_#{curriculum.access}.png"),
                     manage_chair_speciality_curriculum_path(@chair, @speciality, curriculum),
                     :title => curriculum.human_access, :rel => "tipsy" %>
-        <%= link_to "#{curriculum.resource_name}, #{curriculum.year}",
+        <%= link_to "Учебный план #{curriculum.year}",
                     curriculum.attachment.data.url,
                     :class => "#{curriculum.access}_pdf download" %>
       <% else %>

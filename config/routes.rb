@@ -13,6 +13,7 @@ Portal::Application.routes.draw do
   namespace :manage do
     resources :humans, :shallow => true do
       get :check, :on => :collection
+      resources :users
       resources :roles do
         put :transit, :on => :member
       end
