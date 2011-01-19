@@ -20,19 +20,23 @@
   </div>
 
   <div class='disciplines'>
-    <div>
-      <h2>Дисциплины</h2>
-    </div>
+    <h2>Дисциплины</h2>
     <% unless @publication.publication_disciplines.empty? %>
       <% @publication.grouped_disciplines.each do |speciality, publication_disciplines| %>
-        <p><%= speciality.autocomplete_value %></p>
+        <p class="speciality_name"><%= speciality.autocomplete_value %></p>
         <% publication_disciplines.each do |publication_discipline| %>
-          <p><%= publication_discipline.discipline.name %></p>
-          <p><%= link_to t(:edit), edit_manage_chair_publication_publication_discipline_path(@chair, @publication, publication_discipline) %></p>
+          <p class="discipline_name">
+            <%= publication_discipline.discipline.name %>
+            <%= link_to t(:edit), edit_manage_chair_publication_publication_discipline_path(@chair, @publication, publication_discipline), :class => "edit" %>
+          </p>
+          <ul class="educations">
           <% publication_discipline.educations_grouped_by_curriculums.each do |curriculum, educations| %>
-            <p><%= curriculum.human_study %></p>
-            <p><%= educations.collect(&:semester).collect(&:number).join(", ") %> <%= t("semester.associate_publications", :count => educations.size) %></p>
+            <li>
+              <%= curriculum.human_study %>:
+              <%= educations.collect(&:semester).collect(&:number).join(", ") %> <%= t("semester.associate_publications", :count => educations.size) %>
+            </li>
           <% end %>
+          </ul>
         <% end %>
       <% end %>
     <% end %>
