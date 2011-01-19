@@ -70,9 +70,8 @@ describe Human do
     end
 
     it 'должен корректно формироваться список сотрудников, доступных в качестве авторов' do
-      Human.available_authors("ба").collect(&:id).sort.should eql [@bankin.id, @bapyj.id].sort
-      Human.available_authors("ба", :without => @bankin).should eql [@bapyj]
-      Human.available_authors("ба жо").should eql [@bankin]
+      Human.autocomplete_authors("ба").collect(&:id).sort.should eql [@bankin.id, @bapyj.id].sort
+      Human.autocomplete_authors("ба жо").should eql [@bankin]
     end
 
   end
