@@ -30,20 +30,16 @@ class Human < ActiveRecord::Base
   protected_parent_of :publications, :user
 
   searchable do
+    text :autocomplete, :as => :autocomplete_textp do full_name end
     text :full_name
     integer :employee_chair_ids, :multiple => true do
       employees.accepted.map(&:chair_id)
     end
   end
 
-  def self.available_authors(query, options = {})
+  def self.autocomplete_authors(query)
     solr_search do
-      text_fields do
-        query.split(/[^[:alnum:]]+/).each do | term |
-          with(:full_name).starting_with term.mb_chars.downcase
-        end
-      end
-      without options[:without] if options[:without]
+      keywords query
     end.results
   end
 

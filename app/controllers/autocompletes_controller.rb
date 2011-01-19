@@ -3,7 +3,7 @@
 class AutocompletesController < ApplicationController
 
   def authors
-    authors = Human.available_authors(params[:term])
+    authors = Human.autocomplete_authors(params[:term])
     authors.map! do |author|
       { :id => author.id, :value => author.full_name_with_posts }
     end
