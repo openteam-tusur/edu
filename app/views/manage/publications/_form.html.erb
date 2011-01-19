@@ -13,7 +13,8 @@
             <p class="human_item human_<%= author.human_id %>">
               <span class='full_name'><%= author.human.full_name %></span>
               <a href='#'>Удалить</a>
-              <input type='hidden' value="<%= author.human_id %>" name='publication[authors_attributes][<%= index %>][<%= author.human_id %>]' >
+              <input type='hidden' value="<%= author.human_id %>"
+                     name='publication[authors_attributes][<%= index %>][human_id]'>
             </p>
           <% else %>
             <p class="author_item human_<%= author.human.id %>" id="<%= index %>">
@@ -33,7 +34,18 @@
   </li>
   <% end %>
 
-  <%= form.input :kind, :as => :enum %>
+  <li>
+    <%= form.inputs "Дополнительно", :class => "inputs pictorial" do %>
+      <%= form.enum_input :kind %>
+      <li class="publication_id">
+
+      </li>
+
+      <li class="publication_fields">
+        <%= render :partial => "manage/publications/fields" if resource.kind %>
+      </li>
+    <% end %>
+  </li>
 
 <% end %>
 <%= render :partial => "manage/common/resource_fields", :locals => {:form => form} %>

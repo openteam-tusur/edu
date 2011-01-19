@@ -13,6 +13,15 @@
         margin: 0 10px 0 0
         padding: 5px 10px
 
+.publication_search
+  +clearfix
+  fieldset
+    float: left
+  .inputs
+    margin-right: 10px
+  .button
+    font-size: 12px
+
 .publications_list
   .publication
     font-size: 14px
@@ -33,6 +42,19 @@
 
 .publication
 
+  .speciality_name
+    font-size: 14px
+    font-weight: bold
+
+  .discipline_name
+    font-weight: bold
+    margin: 0 0 5px 10px
+
+  .educations
+    margin-left: 10px
+    li
+      margin-bottom: 5px
+
   .add
     background: transparent url("../images/icon_add.png") no-repeat
     height: 16px
@@ -48,6 +70,7 @@
     overflow: hidden
     text-indent: -9999em
     width: 16px
+    margin-left: 5px
 
 .publication.facets
   ul
@@ -63,3 +86,11 @@
     background: #dfeef9
     +border-radius
 
+#publication_discipline_educations
+  p
+    font-size: 14px
+  ul
+    +clearfix
+    li
+      float: left
+      margin: 0 10px 0 0

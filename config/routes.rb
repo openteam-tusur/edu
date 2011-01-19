@@ -11,6 +11,7 @@ Portal::Application.routes.draw do
   end
 
   namespace :manage do
+    match "/publications/get_fields" => "publications#get_fields", :method => :post
     resources :humans, :shallow => true do
       get :check, :on => :collection
       resources :users

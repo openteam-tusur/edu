@@ -55,6 +55,20 @@ class Publication < Resource
     result
   end
 
+  def fields_for_kind(kind = self.kind)
+    if %w(work_programm demo).include? kind
+      return [:annotation]
+    end
+
+    if %w(tutorial).include? kind
+      return [:bbk, :isbn, :udk, :annotation, :content, :stamp]
+    end
+
+    if %w(lab_work course_work attestation practice seminar test).include? kind
+     return [:annotation, :content]
+    end
+  end
+
 end
 
 
@@ -77,7 +91,7 @@ end
 #  stamp      :text            'Гриф'
 #  created_at :datetime
 #  updated_at :datetime
-#  content    :text
-#  annotation :text
+#  content    :text            'Содержание'
+#  annotation :text            'Описание'
 #
 

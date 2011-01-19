@@ -83,7 +83,7 @@ end
 #  stamp      :text            'Гриф'
 #  created_at :datetime
 #  updated_at :datetime
-#  content    :text
-#  annotation :text
+#  content    :text            'Содержание'
+#  annotation :text            'Описание'
 #
 
