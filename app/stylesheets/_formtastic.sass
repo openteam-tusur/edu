@@ -31,8 +31,20 @@
         height: 16px
         width: 16px
 
-    #publication_author_author_query
+    #publication_author_author_query, #publication_kind
       width: 732px
+
+    .publication_fields
+      margin: 0 !important
+      width: 100%
+      li
+        margin-right: 0 !important
+        width: 100%
+
+        textarea
+          display: block
+          height: 150px
+          width: 99%
 
     #publication_author_author_query_input
       +clearfix
@@ -50,6 +62,7 @@
     .inputs
       margin-bottom: 0
       ol
+        +clearfix
         margin-bottom: 0
         abbr
           +inline-block

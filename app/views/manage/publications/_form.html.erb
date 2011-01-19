@@ -34,13 +34,18 @@
   </li>
   <% end %>
 
-  <%= form.enum_input :kind %>
-  <li class="publication_id">
-    <%= hidden_field_tag :id, @publication.id %>
-  </li>
-  <li class="publication_fields">
-    &nbsp;
-    <%= render :partial => resource.fields_for_kind unless resource.new_record? %>
+  <li>
+    <%= form.inputs "Дополнительно", :class => "inputs pictorial" do %>
+      <%= form.enum_input :kind %>
+      <li class="publication_id">
+        <%= hidden_field_tag :id, @publication.id %>
+      </li>
+
+      <li class="publication_fields">
+        &nbsp;
+        <%= render :partial => resource.fields_for_kind unless resource.new_record? %>
+      </li>
+    <% end %>
   </li>
 
 <% end %>
