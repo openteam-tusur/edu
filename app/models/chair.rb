@@ -5,6 +5,7 @@ class Chair < ActiveRecord::Base
 
   has_many :specialities
   has_many :disciplines, :through => :specialities
+  has_many :educations, :class_name => "Plan::Education"
 
   validates_presence_of :name, :abbr, :slug
   validates_uniqueness_of :slug, :abbr, :name
@@ -59,6 +60,24 @@ class Chair < ActiveRecord::Base
     employee = find_employee(human_id)
     employee.accepted_employee_in_chair(self).update_attribute(:post, params["post"]) if employee.update_attributes(params)
     employee
+  end
+
+  def provided_curriculums
+    Plan::Curriculum.where(:id => educations.map(&:curriculum))
+  end
+
+  def provided_specialities
+    Speciality.where(:id => provided_curriculums.map(&:speciality))
+  end
+
+  def grouped_provided_specialities
+    grouped = {}
+    provided_specialities.unscoped.includes(:chair).order("degree, chairs.abbr, code").each do |speciality|
+      grouped[speciality.degree] ||= {}
+      grouped[speciality.degree][speciality.chair] ||= []
+      grouped[speciality.degree][speciality.chair] << speciality
+    end
+    grouped
   end
 
 end

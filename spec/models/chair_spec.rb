@@ -3,10 +3,12 @@
 require 'spec_helper'
 
 describe Chair do
+  before(:each) do
+    @chair = Factory.create(:chair, :abbr => "АОИ")
+  end
 
   describe "при работе с сотрудниками" do
     before(:each) do
-      @chair = Factory.create(:chair)
       @employee = @chair.create_employee("surname" => "Фамилия",
                                     "name" => "Имя",
                                     "patronymic" => "Отчество",
@@ -86,6 +88,55 @@ describe Chair do
       new_employee.errors[:post].empty?.should be false
       @employee.employees.count.should be 1
     end
+
+  end
+
+  describe "статистика обеспечиваемых дисциплин" do
+
+    it "кафедра должна знать учебные планы и по которым она обеспечивает обучение" do
+      @curriculum_1 = Factory.create(:plan_curriculum)
+      @curriculum_2 = Factory.create(:plan_curriculum)
+      @education_1_1 = Factory.create(:plan_education, :semester => @curriculum_1.semesters.first, :chair => @chair)
+      @chair.provided_curriculums.all.should eql [@curriculum_1]
+      @chair.provided_specialities.all.should eql [@curriculum_1.speciality]
+    end
+
+    it "должна отдавать сгруппированные по study и кафедре специальности" do
+      Speciality.count
+      speciality_b_210041 = Factory.create(:speciality, :degree => "bachelor", :chair => @chair, :code => "210041")
+      Factory.create(:plan_education,
+              :semester => Factory.create(:plan_curriculum, :speciality => speciality_b_210041).semesters.first,
+              :chair => @chair)
+      speciality_b_210040 = Factory.create(:speciality, :degree => "bachelor", :chair => @chair, :code => "210040")
+      Factory.create(:plan_education,
+              :semester => Factory.create(:plan_curriculum, :speciality => speciality_b_210040).semesters.first,
+              :chair => @chair)
+      speciality_s_210040 = Factory.create(:speciality, :degree => "specialist", :chair => @chair, :code => "210040")
+      Factory.create(:plan_education,
+              :semester => Factory.create(:plan_curriculum, :speciality => speciality_s_210040).semesters.first,
+              :chair => @chair)
+
+      chair_srs = Factory.create(:chair, :abbr => "СРС")
+      speciality_b_110041 = Factory.create(:speciality, :degree => "bachelor", :chair => chair_srs, :code => "110041")
+      Factory.create(:plan_education,
+              :semester => Factory.create(:plan_curriculum, :speciality => speciality_b_110041).semesters.first,
+              :chair => @chair)
+
+
+      expected = {
+        speciality_b_210041.degree => {
+          @chair => [speciality_b_210040, speciality_b_210041],
+          chair_srs => [speciality_b_110041]
+        },
+        speciality_s_210040.degree => {
+          @chair => [speciality_s_210040]
+        }
+      }
+
+      @chair.grouped_provided_specialities.should eql expected
+    end
+
+
   end
 
 end
