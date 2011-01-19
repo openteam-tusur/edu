@@ -6,6 +6,7 @@ class Plan::Education < ActiveRecord::Base
   attr_accessor :discipline_name
 
   belongs_to :semester
+  has_one :curriculum, :through => :semester
   belongs_to :discipline
   belongs_to :chair
   has_and_belongs_to_many :examinations

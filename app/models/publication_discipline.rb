@@ -18,7 +18,7 @@ class PublicationDiscipline < ActiveRecord::Base
 
   def educations_grouped_by_curriculums
     grouped = {}
-    speciality.curriculums.each do |curriculum|
+    speciality.curriculums.where(:id => educations.map(&:curriculum)).each do |curriculum|
       grouped[curriculum] = curriculum.educations.where(:discipline_id => discipline.id, :id => education_ids).all
     end
     grouped
