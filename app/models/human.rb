@@ -37,7 +37,7 @@ class Human < ActiveRecord::Base
     end
   end
 
-  def self.available_authors(query)
+  def self.autocomplete_authors(query)
     solr_search do
       keywords query
     end.results
