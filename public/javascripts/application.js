@@ -1,4 +1,4 @@
-function discipline_autocomplete() {
+function discipline_name_autocomplete() {
   $("#education_discipline_name").autocomplete({
     source: "/autocompletes/disciplines",
     minLength: 2
@@ -44,7 +44,7 @@ function get_discipline_educations(value) {
   });
 };
 
-function discipline_autocomplete() {
+function publication_discipline_autocomplete() {
   $("#publication_discipline_discipline_id").live("change", function() {
     console.log("change");
     $("#publication_discipline_discipline_request").val("");
@@ -67,7 +67,7 @@ function speciality_autocomplete() {
       $("#publication_discipline_speciality_id").val(ui.item.id);
       $("#publication_discipline_discipline_request").removeAttr("disabled").focus().val("");
       $("#publication_discipline_educations").html("");
-      discipline_autocomplete();
+      publication_discipline_autocomplete();
     }
   });
 };
@@ -138,7 +138,7 @@ function delete_author_from_list(){
 
 $(function() {
   human_check();
-  discipline_autocomplete();
+  discipline_name_autocomplete();
   author_autocomplete();
   speciality_autocomplete();
   add_author_in_list();
