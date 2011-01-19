@@ -9,15 +9,23 @@
 
       <li class="author_list">
         <% resource.authors.each_with_index do |author, index| %>
-          <p class="author_item human_<%= author.human.id %>" id="<%= index %>">
-            <%= hidden_field_tag "publication[authors_attributes][#{index}][_destroy]",
-                                 false,
-                                 :class => 'hidden_input' %>
+          <% if author.new_record? %>
+            <p class="human_item human_<%= author.human_id %>">
+              <span class='full_name'><%= author.human.full_name %></span>
+              <a href='#'>Удалить</a>
+              <input type='hidden' value="<%= author.human_id %>" name='publication[authors_attributes][<%= index %>][<%= author.human_id %>]' >
+            </p>
+          <% else %>
+            <p class="author_item human_<%= author.human.id %>" id="<%= index %>">
+              <%= hidden_field_tag "publication[authors_attributes][#{index}][_destroy]",
+                                   false,
+                                   :class => 'hidden_input' %>
 
-            <%= hidden_field_tag "publication[authors_attributes][#{index}][id]", author.id %>
-            <span class="full_name"><%= author.human.full_name_with_posts %></span>
-            <%= link_to "Удалить", "#" %>
-          </p>
+              <%= hidden_field_tag "publication[authors_attributes][#{index}][id]", author.id %>
+              <span class="full_name"><%= author.human.full_name_with_posts %></span>
+              <%= link_to "Удалить", "#" %>
+            </p>
+          <% end %>
         <% end %>
       </li>
 
