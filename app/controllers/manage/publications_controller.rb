@@ -1,6 +1,7 @@
 class Manage::PublicationsController < Manage::ApplicationController
 
-  load_and_authorize_resource :class=> Publication
+  load_resource :except => :get_fields
+  authorize_resource :class=> Publication
 
   custom_actions :resource => [:transit, :delete]
 
@@ -17,6 +18,14 @@ class Manage::PublicationsController < Manage::ApplicationController
       @publication.send "#{params[:event]}!" if @publication.aasm_events_for_current_state.include?(params[:event].to_sym)
       redirect_to resource_path and return
     end
+  end
+
+  def get_fields
+    render :text => "" and return if params[:publication][:kind].blank?
+    params[:publication].delete("authors_attributes")
+    params[:publication].delete("attachment_attributes")
+    @publication = Publication.new(params[:publication])
+    render :partial => "/manage/publications/fields"
   end
 
 end

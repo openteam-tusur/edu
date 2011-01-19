@@ -4,9 +4,10 @@ class PublicationDiscipline < ActiveRecord::Base
 
   belongs_to :publication
   belongs_to :discipline, :class_name => "Plan::Discipline"
-  delegate :speciality, :to => :discipline
+  has_one :speciality, :through => :discipline
 
   has_and_belongs_to_many :educations, :class_name => "Plan::Education"
+
 
   validates_presence_of :publication, :discipline
   validates_uniqueness_of :discipline_id, :scope => :publication_id
@@ -15,10 +16,19 @@ class PublicationDiscipline < ActiveRecord::Base
 
   before_validation :validate_exists_of_educations
 
+  def educations_grouped_by_curriculums
+    grouped = {}
+    speciality.curriculums.where(:id => educations.map(&:curriculum)).each do |curriculum|
+      grouped[curriculum] = curriculum.educations.where(:discipline_id => discipline.id, :id => education_ids).all
+    end
+    grouped
+  end
+
 private
 
   def validate_exists_of_educations
-    errors[:base] << "Необходимо выбрать семестры" if education_ids.empty?
+    ids = self.education_ids & self.discipline.education_ids
+    errors[:base] << "Необходимо выбрать семестры" if ids.empty?
   end
 
 end
@@ -26,10 +36,11 @@ end
 # == Schema Information
 #
 # Table name: publication_disciplines
+# Human name: Дисциплина
 #
 #  id             :integer         not null, primary key
-#  publication_id :integer
-#  discipline_id  :integer
+#  publication_id :integer         'Материал'
+#  discipline_id  :integer         'Дисциплина'
 #  created_at     :datetime
 #  updated_at     :datetime
 #

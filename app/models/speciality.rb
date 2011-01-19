@@ -39,6 +39,10 @@ class Speciality < ActiveRecord::Base
     "#{self.code}-#{self.degree}"
   end
 
+  def autocomplete_value
+    "#{code} (#{chair.abbr}) - #{name}"
+  end
+
   def to_param
     slug
   end

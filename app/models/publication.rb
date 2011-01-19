@@ -5,7 +5,11 @@ class Publication < Resource
 
   belongs_to  :chair
 
-  has_many :publication_disciplines
+  has_many :publication_disciplines, :dependent => :destroy,
+    :include => :discipline,
+    :order => "plan_disciplines.name"
+  has_many :disciplines, :through => :publication_disciplines
+
   has_many :authors, :as => :resource, :inverse_of => :resource
   accepts_nested_attributes_for :authors, :allow_destroy => true
 
@@ -27,6 +31,7 @@ class Publication < Resource
     integer :chair_id
 
     string :kind
+
   end
 
   def self.search(query, chair, options={})
@@ -38,13 +43,39 @@ class Publication < Resource
       paginate :page => options[:page], :per_page => Publication.per_page
     end
   end
+
+  def grouped_disciplines
+    result = {}
+    Speciality.where(:id => self.disciplines.map(&:speciality_id)).each do |spec|
+      result[spec] = []
+    end
+    publication_disciplines.each do |publication_discipline|
+      result[publication_discipline.speciality] << publication_discipline
+    end
+    result
+  end
+
+  def fields_for_kind(kind = self.kind)
+    if %w(work_programm demo).include? kind
+      return [:annotation]
+    end
+
+    if %w(tutorial).include? kind
+      return [:bbk, :isbn, :udk, :annotation, :content, :stamp]
+    end
+
+    if %w(lab_work course_work attestation practice seminar test).include? kind
+     return [:annotation, :content]
+    end
+  end
+
 end
 
 
 # == Schema Information
 #
 # Table name: publications
-# Human name: Публикация
+# Human name: Учебно-методический материал
 #
 #  id         :integer         not null, primary key
 #  chair_id   :integer
@@ -57,8 +88,10 @@ end
 #  isbn       :string(255)     'ISBN'
 #  udk        :string(255)     'УДК'
 #  bbk        :string(255)     'ББК'
-#  stamp      :string(255)     'Гриф'
+#  stamp      :text            'Гриф'
 #  created_at :datetime
 #  updated_at :datetime
+#  content    :text            'Содержание'
+#  annotation :text            'Описание'
 #
 

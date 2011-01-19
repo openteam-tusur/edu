@@ -10,7 +10,10 @@ class Plan::Curriculum < Resource
   delegate :chair, :to => :speciality
 
   has_many :semesters, :class_name => "Plan::Semester", :dependent => :destroy
-  has_many :educations, :through => :semesters
+  has_many :educations, :through => :semesters,
+                        :class_name => "Plan::Education",
+                        :include => :semester,
+                        :order => 'plan_semesters.number'
 
   validates_presence_of :speciality, :study, :since
   validates_uniqueness_of :study, :scope => [:speciality_id, :since]
@@ -79,7 +82,6 @@ end
 #  created_at    :datetime
 #  updated_at    :datetime
 #  state         :string(255)     'Статус'
-#  resource_name :string(255)     'Название файла'
 #  year          :integer         'Год издания'
 #  access        :string(255)     'Доступ к файлу'
 #  since         :integer         'Действует с'

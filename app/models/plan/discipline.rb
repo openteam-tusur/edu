@@ -6,11 +6,10 @@ class Plan::Discipline < ActiveRecord::Base
   belongs_to :speciality
   validates_presence_of :name, :speciality
   validates_uniqueness_of :name, :scope => :speciality_id
-  has_many :educations
 
+  has_many :educations, :class_name => "Plan::Education"
 
-
-  default_scope order("name desc")
+  default_scope order("plan_disciplines.name")
 
   searchable do
     text :name
@@ -19,7 +18,7 @@ class Plan::Discipline < ActiveRecord::Base
 
   def educations_grouped_by_curriculums
     grouped = {}
-    speciality.curriculums.each do |curriculum|
+    speciality.curriculums.where(:id => educations.map(&:curriculum)).each do |curriculum|
       grouped[curriculum] = curriculum.educations.where(:discipline_id => self.id).all
     end
     grouped

@@ -37,12 +37,37 @@ describe Publication do
     @wp.authors.collect(&:human).should eql [@bankin]
   end
 
+  it "должна получать сгруппированные по специальностям дисциплины" do
+    curriculum = Factory.create(:plan_curriculum)
+    education = Factory.create(:plan_education, :semester => curriculum.semesters.first)
+    education_2 = Factory.create(:plan_education, :semester => curriculum.semesters.last, :discipline => education.discipline)
+    education_3 = Factory.create(:plan_education, :semester => curriculum.semesters.first)
+    Factory.create(:plan_education, :semester => curriculum.semesters.first)
+
+    curriculum_2 = Factory.create(:plan_curriculum)
+    education_4 = Factory.create(:plan_education, :semester => curriculum_2.semesters.first)
+    Factory.create(:plan_education, :semester => curriculum_2.semesters.first)
+
+    publication_discipline = @publication.publication_disciplines.create!(:discipline => education.discipline, :education_ids => [education.id, education_2.id])
+    publication_discipline_2 = @publication.publication_disciplines.create!(:discipline => education_3.discipline, :education_ids => [education_3.id])
+
+    publication_discipline_3 = @publication.publication_disciplines.create!(:discipline => education_4.discipline, :education_ids => [education_4.id])
+
+    expected_result = {
+      curriculum.speciality => [publication_discipline, publication_discipline_2],
+      curriculum_2.speciality => [publication_discipline_3]
+    }
+
+    @publication.grouped_disciplines.should eql expected_result
+
+  end
+
 end
 
 # == Schema Information
 #
 # Table name: publications
-# Human name: Публикация
+# Human name: Учебно-методический материал
 #
 #  id         :integer         not null, primary key
 #  chair_id   :integer
@@ -55,8 +80,10 @@ end
 #  isbn       :string(255)     'ISBN'
 #  udk        :string(255)     'УДК'
 #  bbk        :string(255)     'ББК'
-#  stamp      :string(255)     'Гриф'
+#  stamp      :text            'Гриф'
 #  created_at :datetime
 #  updated_at :datetime
+#  content    :text            'Содержание'
+#  annotation :text            'Описание'
 #
 

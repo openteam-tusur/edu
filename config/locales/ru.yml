@@ -153,6 +153,11 @@ ru:
       few:   "%{count} семестра"
       many:  "%{count} семестров"
       other: "%{count} семестра"
+    associate_publications:
+      one:   "семестр"
+      few:   "семестры"
+      many:  "семестры"
+      other: "семестры"
 
 
   education:
@@ -263,6 +268,7 @@ ru:
       attachment: Вложение
       author: Автор материала
       publication: Учебно-методический материал
+      publication_discipline: Дисциплина
 
     attributes:
       attachment:
@@ -348,19 +354,23 @@ ru:
           examinations: Форма контроля
           chair: Обеспечивающая кафедра
       publication:
-        title: Название
-        authors: Авторы
-        year: Год издания
         state_enum:
           <<: *state_enum
         access_enum:
           <<: *access_enum
-        isbn: ISBN
-        udk: УДК
+        access: Доступ к файлу
+        annotation: Описание
+        authors: Авторы
         bbk: ББК
-        stamp: Гриф
+        content: Содержание
+        isbn: ISBN
         kind: Тип учебного материала
+        stamp: Гриф
+        state: Статус
+        title: Название
+        udk: УДК
         volume: Количество страниц
+        year: Год издания
 
         kind_enum:
           tutorial: Учебное пособие
@@ -376,7 +386,10 @@ ru:
       publication_discipline:
         speciality_request: Специальность
         discipline_request: Дисциплина
-        resource: Ресурс
+        publication: Материал
+        publication_id: Материал
+        discipline: Дисциплина
+        discipline_id: Дисциплина
       author:
         resource: Материал
         human: Автор

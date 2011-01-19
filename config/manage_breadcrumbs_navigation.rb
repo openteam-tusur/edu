@@ -142,6 +142,13 @@ SimpleNavigation::Configuration.run do |navigation|
                           new_manage_chair_publication_publication_discipline_path(@chair, @publication),
                           :highlights_on => /publication_disciplines/  if params[:action] == "create"
               end
+              if @publication_discipline && !@publication_discipline.new_record?
+                publication.item :edit_discipline, t("title.manage/publication_disciplines.edit"),
+                          edit_manage_chair_publication_publication_discipline_path(@chair, @publication)
+                publication.item :edit_discipline, t("title.manage/publication_disciplines.edit"),
+                          edit_manage_chair_publication_publication_discipline_path(@chair, @publication),
+                          :highlights_on => /publication_disciplines/  if params[:action] == "update"
+              end
             end
           end
         end

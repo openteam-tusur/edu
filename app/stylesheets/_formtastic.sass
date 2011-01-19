@@ -31,8 +31,23 @@
         height: 16px
         width: 16px
 
-    #publication_author_author_query
+    .attachment_attributes
+      margin: 0
+
+    #publication_author_author_query, #publication_kind
       width: 732px
+
+    .publication_fields
+      margin: 0 !important
+      width: 100%
+      li
+        margin-right: 0 !important
+        width: 100%
+
+        textarea
+          display: block
+          height: 150px
+          width: 99%
 
     #publication_author_author_query_input
       +clearfix
@@ -50,6 +65,7 @@
     .inputs
       margin-bottom: 0
       ol
+        +clearfix
         margin-bottom: 0
         abbr
           +inline-block
@@ -69,6 +85,14 @@
             margin-bottom: 5px
           input
             +field-style
+
+        .text
+          label
+            display: block
+            margin-bottom: 5px
+          textarea
+            +field-style
+            width: 99%
 
         .file
           label
@@ -148,13 +172,6 @@
       +clearfix
       #publication_title, #publication_resource_name
         width: 99%
-
-    &.publications
-      +clearfix
-
-      .inputs
-        float: left
-        margin-right: 5px
 
     .pictorial
       #publication_resource_name_input
@@ -237,15 +254,12 @@
         +clearfix
         li
           float: left
-        #education_discipline_name_input,
-        #education_chair_input
+        #education_discipline_name_input
           margin-right: 20px
         #education_discipline_name
-          width: 292px
+          width: 440px
         #education_chair_id
-          width: 290px
-        #education_publication_id
-          width: 290px
+          width: 452px
 
       .loading
         ol
@@ -260,4 +274,7 @@
         li
           float: left
           margin: 0 20px 0 0
+    #publication_discipline_speciality_request,
+    #publication_discipline_discipline_request
+      width: 99%
 
