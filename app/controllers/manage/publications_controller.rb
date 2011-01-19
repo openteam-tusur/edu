@@ -21,7 +21,8 @@ class Manage::PublicationsController < Manage::ApplicationController
   end
 
   def get_fields
-    @publication = Publication.find(params[:id]) if params[:id]
+    p params
+    @publication = Publication.find(params[:id]) unless params[:id].blank?
     @publication ||= Publication.new
 
     render :partial => "/manage/publications/#{@publication.fields_for_kind(params[:kind])}"
