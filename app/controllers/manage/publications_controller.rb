@@ -21,10 +21,10 @@ class Manage::PublicationsController < Manage::ApplicationController
   end
 
   def get_fields
-    @publication = Publication.find(params[:id]) unless params[:id].blank?
-    @publication ||= Publication.new
-
-    render :partial => "/manage/publications/#{@publication.fields_for_kind(params[:kind])}"
+    params[:publication].delete("authors_attributes")
+    params[:publication].delete("attachment_attributes")
+    @publication = Publication.new(params[:publication])
+    render :partial => "/manage/publications/fields"
   end
 
 end
