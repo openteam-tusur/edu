@@ -6,7 +6,6 @@ feature "Скачивание файлов" do
   before(:each) do
     @curriculum = Factory.create(:plan_curriculum,
                           :semesters_count => 10,
-                          :resource_name => "учебный план",
                           :access => "free",
                           :year => "2010",
                           :volume => 200,
