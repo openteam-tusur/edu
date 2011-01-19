@@ -21,7 +21,6 @@ class Manage::PublicationsController < Manage::ApplicationController
   end
 
   def get_fields
-    p params
     @publication = Publication.find(params[:id]) unless params[:id].blank?
     @publication ||= Publication.new
 
