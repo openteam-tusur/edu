@@ -41,6 +41,8 @@ describe PublicationDiscipline do
                                   :semester => curriculum_2.semesters.first,
                                   :discipline => education_1_1.discipline)
 
+    curriculum_3 = Factory.create(:plan_curriculum, :speciality => curriculum_1.speciality, :study => "parttime")
+
     publication = Factory.create(:publication)
     publication_discipline = publication.publication_disciplines.create!(:discipline => education_1_1.discipline, :education_ids => [education_1_1.id, education_1_2.id, education_2_1.id])
 
