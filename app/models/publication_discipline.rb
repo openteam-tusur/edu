@@ -6,9 +6,7 @@ class PublicationDiscipline < ActiveRecord::Base
   belongs_to :discipline, :class_name => "Plan::Discipline"
   has_one :speciality, :through => :discipline
 
-  has_and_belongs_to_many :educations, :class_name => "Plan::Education",
-                          :include => :semester,
-                          :order => 'plan_semesters.number'
+  has_and_belongs_to_many :educations, :class_name => "Plan::Education"
 
 
   validates_presence_of :publication, :discipline
@@ -21,7 +19,7 @@ class PublicationDiscipline < ActiveRecord::Base
   def educations_grouped_by_curriculums
     grouped = {}
     speciality.curriculums.each do |curriculum|
-      grouped[curriculum] = curriculum.educations.where(:discipline_id => discipline.id).all
+      grouped[curriculum] = curriculum.educations.where(:discipline_id => discipline.id, :id => education_ids).all
     end
     grouped
   end

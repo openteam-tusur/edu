@@ -30,7 +30,7 @@ class Resource < ActiveRecord::Base
 
   private
     def need_all_resource_fields?
-      resource_fields = %w[resource_name year access attachment volume]
+      resource_fields = %w[year access attachment volume]
       empty_fields = []
       resource_fields.each do |field|
         empty_fields << field if self.send(field).blank?
