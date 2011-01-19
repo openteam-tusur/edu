@@ -8,6 +8,17 @@
     <%= render :partial => "manage/common/resource_state", :locals => { :resource => resource } %>
   </ul>
 
+  <div class="additional">
+    <div>
+      <h2>Дополнительно</h2>
+    </div>
+    <%= show_for resource, :id => 'additional_attributes' do |publication| %>
+      <% @publication.fields_for_kind.each do |attribute| %>
+        <%= publication.attribute attribute %>
+      <% end %>
+    <% end %>
+  </div>
+
   <div class='disciplines'>
     <div>
       <h2>Дисциплины</h2>
@@ -28,3 +39,4 @@
     <p><%= link_to "Добавить дисциплину", new_manage_chair_publication_publication_discipline_path(@chair, @publication), :class => 'button' %></p>
   </div>
 </div>
+

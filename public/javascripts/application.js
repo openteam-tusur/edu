@@ -138,11 +138,12 @@ function delete_author_from_list(){
 function manipulation_publication_fields(){
   var url = '/manage/publications/get_fields';
   $("#publication_kind").change(function(){
+    var params = $('.formtastic').serialize();
     var kind = $(this).val();
     var id = $(".publication_id input").val();
-    $.get(
+    $.post(
       url,
-      {'kind': kind, 'id': id},
+      params,
       function(data){
         $(".publication_fields").html(data);
       }
