@@ -21,6 +21,7 @@ class Manage::PublicationsController < Manage::ApplicationController
   end
 
   def get_fields
+    render :text => "" and return if params[:publication][:kind].blank?
     params[:publication].delete("authors_attributes")
     params[:publication].delete("attachment_attributes")
     @publication = Publication.new(params[:publication])

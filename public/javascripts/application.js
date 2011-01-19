@@ -36,19 +36,25 @@ function flash() {
 };
 
 function human_check(){
-  linka = $('.human_check');
+  var linka = $('.human_check');
   linka.click(function() {
-    url = linka.attr('href');
-    surname = $('#employee_surname').val();
-    name = $('#employee_name').val();
-    patronymic = $('#employee_patronymic').val();
-    $.get(
-      url,
-      {'surname': surname, 'name': name, 'patronymic': patronymic},
-      function(data) {
+    var surname = $('#employee_surname').val();
+    var name = $('#employee_name').val();
+    var patronymic = $('#employee_patronymic').val();
+    $.ajax({
+      type: "GET",
+      url: linka.attr('href'),
+      data: {'surname': surname, 'name': name, 'patronymic': patronymic},
+      beforeSend: function() {
+        ajax_start();
+      },
+      complete: function() {
+        ajax_stop();
+      },
+      success: function(data, textStatus, XMLHttpRequest) {
         $('.employees_list').html(data);
       }
-    );
+    });
     return false;
   });
 };
@@ -153,18 +159,23 @@ function delete_author_from_list(){
 };
 
 function manipulation_publication_fields(){
-  var url = '/manage/publications/get_fields';
   $("#publication_kind").change(function(){
-    var params = $('.formtastic').serialize();
     var kind = $(this).val();
     var id = $(".publication_id input").val();
-    $.post(
-      url,
-      params,
-      function(data){
+    $.ajax({
+      type: "POST",
+      url: "/manage/publications/get_fields",
+      data: $('.formtastic').serialize(),
+      beforeSend: function() {
+        ajax_start();
+      },
+      complete: function() {
+        ajax_stop();
+      },
+      success: function(data, textStatus, XMLHttpRequest){
         $(".publication_fields").html(data);
       }
-    );
+    });
   });
 };
 
