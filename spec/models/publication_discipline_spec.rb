@@ -29,10 +29,11 @@ end
 # == Schema Information
 #
 # Table name: publication_disciplines
+# Human name: Дисциплина
 #
 #  id             :integer         not null, primary key
-#  publication_id :integer
-#  discipline_id  :integer
+#  publication_id :integer         'Материал'
+#  discipline_id  :integer         'Дисциплина'
 #  created_at     :datetime
 #  updated_at     :datetime
 #

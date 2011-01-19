@@ -42,7 +42,7 @@ end
 # == Schema Information
 #
 # Table name: publications
-# Human name: Публикация
+# Human name: Учебно-методический материал
 #
 #  id         :integer         not null, primary key
 #  chair_id   :integer
@@ -55,8 +55,10 @@ end
 #  isbn       :string(255)     'ISBN'
 #  udk        :string(255)     'УДК'
 #  bbk        :string(255)     'ББК'
-#  stamp      :string(255)     'Гриф'
+#  stamp      :text            'Гриф'
 #  created_at :datetime
 #  updated_at :datetime
+#  content    :text
+#  annotation :text
 #
 

@@ -46,7 +46,6 @@ function get_discipline_educations(value) {
 
 function discipline_autocomplete() {
   $("#publication_discipline_discipline_id").live("change", function() {
-    console.log("change");
     $("#publication_discipline_discipline_request").val("");
   });
   $("#publication_discipline_discipline_request").autocomplete({
@@ -136,6 +135,22 @@ function delete_author_from_list(){
 };
 
 
+function manipulation_publication_fields(){
+  var url = '/manage/publications/get_fields';
+  $("#publication_kind").change(function(){
+    var kind = $(this).val();
+    var id = $(".publication_id input").val();
+    $.get(
+      url,
+      {'kind': kind, 'id': id},
+      function(data){
+        $(".publication_fields").html(data);
+      }
+    );
+  });
+};
+
+
 $(function() {
   human_check();
   discipline_autocomplete();
@@ -143,6 +158,7 @@ $(function() {
   speciality_autocomplete();
   add_author_in_list();
   delete_author_from_list();
+  manipulation_publication_fields();
   flash();
   $(".focus_first:first").focus();
   $("a[rel=tipsy], span[rel=tipsy], .formtastic .inputs abbr").tipsy({gravity: "s"});

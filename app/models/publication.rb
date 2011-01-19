@@ -55,13 +55,27 @@ class Publication < Resource
     result
   end
 
+  def fields_for_kind(kind = self.kind)
+    if %w(work_programm demo).include? kind
+      return 'annotation'
+    end
+
+    if %w(tutorial).include? kind
+      return 'all_fields'
+    end
+
+    if %w(lab_work course_work attestation practice seminar test).include? kind
+     return 'annotation_with_content'
+    end
+  end
+
 end
 
 
 # == Schema Information
 #
 # Table name: publications
-# Human name: Публикация
+# Human name: Учебно-методический материал
 #
 #  id         :integer         not null, primary key
 #  chair_id   :integer
@@ -74,8 +88,10 @@ end
 #  isbn       :string(255)     'ISBN'
 #  udk        :string(255)     'УДК'
 #  bbk        :string(255)     'ББК'
-#  stamp      :string(255)     'Гриф'
+#  stamp      :text            'Гриф'
 #  created_at :datetime
 #  updated_at :datetime
+#  content    :text
+#  annotation :text
 #
 

@@ -19,13 +19,21 @@
             <%= link_to "Удалить", "#" %>
           </p>
         <% end %>
+        &nbsp;
       </li>
 
     <% end  %>
   </li>
   <% end %>
 
-  <%= form.input :kind, :as => :enum %>
+  <%= form.enum_input :kind %>
+  <li class="publication_id">
+    <%= hidden_field_tag :id, @publication.id %>
+  </li>
+  <li class="publication_fields">
+    &nbsp;
+    <%= render :partial => resource.fields_for_kind unless resource.new_record? %>
+  </li>
 
 <% end %>
 <%= render :partial => "manage/common/resource_fields", :locals => {:form => form} %>
