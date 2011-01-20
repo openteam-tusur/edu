@@ -147,7 +147,7 @@ GEM
     paperclip (2.3.8)
       activerecord
       activesupport
-    pg (0.10.0)
+    pg (0.10.1)
     polyglot (0.3.1)
     pr_geohash (1.0.0)
     protected_parent (0.1.0)
