@@ -11,6 +11,10 @@ class Manage::RolesController < Manage::ApplicationController
     update! { parent_path }
   end
 
+  def destroy
+    destroy! { parent_path }
+  end
+
   def transit
     transit! do
       @role.send "#{params[:event]}!" if @role.aasm_events_for_current_state.include?(params[:event].to_sym)

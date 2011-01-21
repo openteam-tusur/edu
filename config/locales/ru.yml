@@ -123,8 +123,12 @@ ru:
       new: Создание профиля
       show: Просмотр профиля
 
+    manage/users:
+      edit: Редактирование электронной почты
+
     manage/roles:
       edit: Редактирование роли
+      delete: Удаление роли
 
     manage/publication_disciplines:
       new: Добавление дисциплины
