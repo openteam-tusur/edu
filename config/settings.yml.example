@@ -15,6 +15,7 @@ production:
 development:
   mailer:
     <<: *mailer
+    admin_email: test-portal@mailinator.com
     default_url_options:
       host: "localhost:3000"
 
