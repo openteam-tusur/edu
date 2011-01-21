@@ -11,7 +11,7 @@
   <%= form.buttons do %>
     <%= form.commit_button  :label => t(:destroy),
                             :button_html => { :class => "button red", :disabled => resource.protected? } %>
-    <li><%= link_to t(:cancel), cancel_url, :class => "button light" %></li>
+    <li><%= link_to t(:cancel), smart_resource_url, :class => "button light" %></li>
   <% end %>
 <% end %>
 
