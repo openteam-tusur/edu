@@ -85,27 +85,26 @@ describe Human do
                                   :human_id => 0)
 
       user = User.create(:email => 'sidorov@demo.de',
-                            :password => '123123',
-                            :password_confirmation => '123123' )
+                         :password => '123123',
+                         :password_confirmation => '123123' )
+
       user.human.update_attributes(:surname => 'Иванов',
-                                    :name => 'Иван',
-                                    :patronymic => 'Иванович')
+                                   :name => 'Иван',
+                                   :patronymic => 'Иванович')
 
       user.human.roles << Roles::Student.new(:group => '422',
-                                                 :birthday => '01.01.1970',
-                                                 :state => :accepted,
-                                                 :chair_id => aoi.id)
+                                              :birthday => '01.01.1970',
+                                              :state => :accepted,
+                                              :chair_id => aoi.id)
 
-      human2 = user.human
+      search = Human.search('Иванов', {})
+      search.results.should eql [human1, user.human]
 
-      search = Human.search('Иванов')
-      search.results.should eql [human1, human2]
+      search = Human.search('', :chair_id => asu.id)
+      search.results.should eql [human1]
 
-      search.facet(:chairs_ids).rows.map(&:instance).should eql [asu, aoi]
-      search.facet(:chairs_ids).rows.map(&:count).should eql [1, 1]
-
-      search.facet(:roles_types).rows.map(&:value).should eql [human1.roles.first.type, human2.roles.first.type]
-      search.facet(:roles_types).rows.map(&:count).should eql [1, 1]
+      search = Human.search('', :role => user.human.roles.first.slug)
+      search.results.should eql [user.human]
     end
 
   end

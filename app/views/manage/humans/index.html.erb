@@ -1,0 +1,26 @@
+<div class="humans chairs facets">
+  <%= render_navigation :context => 'manage_human_chairs' %>
+</div>
+
+<div class="humans roles facets">
+  <%= render_navigation :context => 'manage_human_roles' %>
+</div>
+
+<%= semantic_form_for :humans, :html => { :method => :get, :class => "human_search" } do | form | %>
+  <%= form.inputs do %>
+    <%= form.input :query, :required => false, :label => false, :input_html => { :name => 'query', :value => params[:query] } %>
+  <% end %>
+  <%= form.buttons do %>
+    <%= form.commit_button "Найти", :button_html => { :class => "button light" } %>
+  <% end %>
+<% end %>
+
+<% if collection.any? %>
+  <div class="humans_list">
+    <% @humans.each do |obj| %>
+      <%= render :partial => "index_item", :locals => { :item => obj } %>
+    <% end %>
+  </div>
+
+<% end %>
+
