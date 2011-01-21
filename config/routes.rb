@@ -15,6 +15,10 @@ Portal::Application.routes.draw do
     resources :humans, :shallow => true do
       get :check, :on => :collection
       resources :users
+      namespace :roles do
+        resources :students
+        resources :employees
+      end
       resources :roles do
         put :transit, :on => :member
       end
@@ -34,6 +38,8 @@ Portal::Application.routes.draw do
           end
         end
       end
+
+      resources :provided_specialities, :only => :index
     end
 
     root :to => "chairs#index"

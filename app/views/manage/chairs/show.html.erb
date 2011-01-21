@@ -1,8 +1,10 @@
 <% title @chair.name %>
 
-<p><%= link_to "Специальности и направления подготовки", manage_chair_specialities_path(@chair) %></p>
+<p><%= link_to t("title.manage/specialities.index"), manage_chair_specialities_path(@chair) %></p>
 
-<p><%= link_to 'Сотрудники', manage_chair_employees_path(@chair) %></p>
+<p><%= link_to t("title.manage/employees.index"), manage_chair_employees_path(@chair) %></p>
 
-<p><%= link_to 'Учебно-методическое обеспечение', manage_chair_publications_path(@chair) %></p>
+<p><%= link_to t("title.manage/publications.index"), manage_chair_publications_path(@chair) %></p>
+
+<p><%= link_to t("title.manage/provided_specialities.index"), manage_chair_provided_specialities_path(@chair) %></p>
 
