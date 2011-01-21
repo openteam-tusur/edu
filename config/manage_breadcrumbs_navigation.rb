@@ -158,6 +158,12 @@ SimpleNavigation::Configuration.run do |navigation|
                   manage_chair_provided_specialities_path(@chair)
       end if @chair
     end
-  end
 
+    primary.item :humans,
+                t("title.manage/humans.index"),
+                manage_humans_path,
+                :class => 'humans',
+                :highlights_on => /manage\/humans/
+  end
 end
+
