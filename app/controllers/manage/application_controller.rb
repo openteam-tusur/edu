@@ -10,8 +10,6 @@ class Manage::ApplicationController < InheritedResourcesController
 
   before_filter :verify_admin
 
-  helper_method :cancel_url
-
 private
 
   def verify_admin

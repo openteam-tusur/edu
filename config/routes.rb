@@ -38,6 +38,8 @@ Portal::Application.routes.draw do
           end
         end
       end
+
+      resources :provided_specialities, :only => :index
     end
 
     root :to => "chairs#index"
