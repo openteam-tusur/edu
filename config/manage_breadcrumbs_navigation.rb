@@ -117,7 +117,7 @@ SimpleNavigation::Configuration.run do |navigation|
           end
         end
 
-        # рабочие программы
+        # УМО
         chair.item :publications, t("title.manage/publications.index"),
             manage_chair_publications_path(@chair) do |publications|
           if @publication && @publication.new_record?
@@ -152,6 +152,10 @@ SimpleNavigation::Configuration.run do |navigation|
             end
           end
         end
+      # / УМО
+      # Обеспечиваемые дисциплины
+      chair.item :provided_specialities, t("title.manage/provided_specialities.index"),
+                  manage_chair_provided_specialities_path(@chair)
       end if @chair
     end
   end
