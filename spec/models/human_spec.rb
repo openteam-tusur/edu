@@ -51,9 +51,26 @@ describe Human do
     Human.find_accepted_employees_in_chair("Фамилия", 1, chair).should eql [human]
   end
 
+  it 'должны правильно искаться сотрудники' do
+    chair = Factory.create(:chair)
+
+    admin = User.create(:email => 'admin@demo.de', :password => '123123', :password_confirmation => '123123')
+    admin.human.update_attributes( :name => 'Иван', :surname => 'Иванов', :patronymic => 'Иванович' )
+    admin.human.roles << Roles::Admin.new( :state => :accepted )
+
+    user = User.create( :email => 'user@demo.de', :password => '123123', :password_confirmation => '123123' )
+    user.human.update_attributes(:name => 'Петр', :surname => 'Петров', :patronymic => 'Петрович' )
+    user.human.roles << Roles::Student.new(:group => '422', :birthday => '01.01.1970', :state => :accepted)
+    user.human.roles << Roles::Employee.new(:chair_id => chair, :post => 'Старший преподаватель', :state => :accepted)
+
+    search = Human.search('', {})
+    search.results.should eql [admin.human, user.human]
+
+    search = Human.search('Иванов', {})
+    search.results.should eql [admin.human]
+  end
 
   describe 'должен формировать список доступных авторов' do
-
     before(:each) do
       @bankin = Human.create :name => "Ерофей", :patronymic => "Жозефович", :surname => "Банькин"
       @bankin.roles << Roles::Employee.new(:chair => Factory.create(:chair),
@@ -73,40 +90,6 @@ describe Human do
       Human.autocomplete_authors("ба").collect(&:id).sort.should eql [@bankin.id, @bapyj.id].sort
       Human.autocomplete_authors("ба жо").should eql [@bankin]
     end
-
-    it 'должны правильно искаться сотрудники' do
-      asu = Factory.create(:chair)
-      aoi = Factory.create(:chair)
-
-      human1 = asu.create_employee(:surname => 'Иванов',
-                                  :name => 'Иван',
-                                  :patronymic => 'Иванович',
-                                  :post => 'преподаватель',
-                                  :human_id => 0)
-
-      user = User.create(:email => 'sidorov@demo.de',
-                         :password => '123123',
-                         :password_confirmation => '123123' )
-
-      user.human.update_attributes(:surname => 'Иванов',
-                                   :name => 'Иван',
-                                   :patronymic => 'Иванович')
-
-      user.human.roles << Roles::Student.new(:group => '422',
-                                              :birthday => '01.01.1970',
-                                              :state => :accepted,
-                                              :chair_id => aoi.id)
-
-      search = Human.search('Иванов', {})
-      search.results.should eql [human1, user.human]
-
-      search = Human.search('', :chair_id => asu.id)
-      search.results.should eql [human1]
-
-      search = Human.search('', :role => user.human.roles.first.slug)
-      search.results.should eql [user.human]
-    end
-
   end
 
 end
