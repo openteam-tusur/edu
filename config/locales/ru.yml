@@ -128,6 +128,7 @@ ru:
 
     manage/roles:
       edit: Редактирование роли
+      delete: Удаление роли
 
     manage/publication_disciplines:
       new: Добавление дисциплины
