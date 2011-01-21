@@ -1,0 +1,10 @@
+<%= semantic_form_for resource, :as => resource_instance_name, :url => resource_path, :html => { :multipart => true, :method => :put } do |form| %>
+  <%= form.error_messages %>
+  <%= render :partial => "form", :object => form %>
+  <%= form.buttons do %>
+    <%= form.commit_button :button_html => { :class => "button" } %>
+    <li><%= link_to t(:cancel), manage_human_path(resource.human), :class => "button light" %></li>
+    <li class="floatr"><%= link_to t(:delete), delete_resource_path, :class => "button light" %></li>
+  <% end %>
+<% end %>
+

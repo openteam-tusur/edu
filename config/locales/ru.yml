@@ -130,6 +130,12 @@ ru:
       edit: Редактирование роли
       delete: Удаление роли
 
+    manage/roles/students:
+      new: Создать роль студента
+
+    manage/roles/employees:
+      new: Создать роль сотрудника
+
     manage/publication_disciplines:
       new: Добавление дисциплины
       edit: Редактирование дисциплины
