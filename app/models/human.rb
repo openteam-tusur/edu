@@ -43,6 +43,10 @@ class Human < ActiveRecord::Base
     string :role_slugs, :multiple => true do
       roles.accepted.map(&:slug)
     end
+
+    string :surname
+    string :name
+    string :patronymic
   end
 
   def self.autocomplete_authors(query)
@@ -73,6 +77,21 @@ class Human < ActiveRecord::Base
 
   def filled?
     !(surname.blank? || name.blank? || patronymic.blank?)
+  end
+
+  def namesakes
+    human = self
+    Human.solr_search do
+      with :name, human.name
+      with :patronymic, human.patronymic
+      with :surname, human.surname
+      without human
+      paginate :per_page => 1000
+    end.results
+  end
+
+  def to_s
+    abbreviated_name
   end
 
   private

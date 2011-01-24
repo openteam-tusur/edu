@@ -88,3 +88,43 @@
         font-size: 12px
         line-height: 15px
 
+.manage
+  &.human_profile
+    float: left
+    margin-right: 10px
+    width: 680px
+
+.namesakes
+  +clearfix
+  +border-radius
+  background: #eee
+  padding: 10px
+  width: 210px
+
+  .namesake_item
+    background: url("../images/icon_humans.png") no-repeat left top
+    padding-left: 20px
+
+    a
+      font-size: 14px
+
+    .namesake_roles
+      font-size: 10px
+      margin-top: 5px
+
+      li
+        +border-radius
+        clear: both
+        float: left
+        margin-bottom: 5px
+        padding: 1px 3px
+
+      .pending
+        background: rgba(148, 192, 231, 0.2)
+      .accepted
+        background: rgba(138, 173, 13, 0.5)
+      .rejected
+        background: rgba(221, 4, 1, 0.3)
+      .expired
+        background: rgba(247, 185, 3, 0.5)
+

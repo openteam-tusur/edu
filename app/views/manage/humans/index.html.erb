@@ -19,7 +19,7 @@
         <div class="full_name"><%= link_to human.full_name, manage_human_path(human) %></div>
         <ul class="roles">
           <% human.roles.each do |role| %>
-            <%= render :partial => role.slug, :locals => { :role => role } %>
+            <li><%= role %></li>
           <% end %>
         </ul>
       </li>
