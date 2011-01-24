@@ -4,6 +4,7 @@ class Manage::HumansController < Manage::ApplicationController
 
   def index
     search = Human.search(params[:query], params)
+
     @humans = search.results
     @chair_facets = search.facet(:chair_ids).rows
     @role_facets = search.facet(:role_slugs).rows
