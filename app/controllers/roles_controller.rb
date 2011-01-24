@@ -4,6 +4,8 @@ class RolesController < InheritedResourcesController
 
   check_authorization
 
+  actions :all, :except => [:index, :show]
+
   def create
       create! { human_path }
   end
