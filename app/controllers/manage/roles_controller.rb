@@ -3,7 +3,7 @@ class Manage::RolesController < Manage::ApplicationController
 
   belongs_to :human, :shallow => true
 
-  actions :all, :except => [ :index, :show, :new, :create]
+  actions :all, :except => [:index, :show]
 
   custom_actions :resource => :transit
 
@@ -16,5 +16,11 @@ class Manage::RolesController < Manage::ApplicationController
     end
   end
 
+  private
+
+    def build_resource
+      association_chain
+      @human.send(params[:type].pluralize).build(params[:role])
+    end
 end
 
