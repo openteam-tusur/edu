@@ -1,25 +1,36 @@
 <% title @curriculum.title %>
 
-<fieldset>
-  <dl>
-    <dt>Кафедра</dt>
-    <dd><%= @curriculum.speciality.chair.abbr %></dd>
-    <dt>Специальность</dt>
-    <dd><%= @curriculum.speciality.title %></dd>
-  </dl>
-</fieldset>
+<%= show_for @curriculum.speciality do |speciality| %>
+  <fieldset class="pictorial">
+    <%= speciality.association :chair %>
+    <%= speciality.attribute :title %>
+  </fieldset>
+<% end %>
 
 <div class="disciplines">
   <% @chair.grouped_provided_educations_for_curriculum(@curriculum).each do |discipline, educations| %>
     <h2><%= discipline.name %></h2>
-    <% educations.each do |education| %>
-      <strong class="<%= education.provided_class %>"><%= education.semester.title %></strong>
-      <% education.grouped_publications.each do |kind, publications| %>
-        <p><%= t("activerecord.attributes.publication.kind_enum.#{kind}") %></p>
-        <% publications.each do |publication| %>
-          <%= render :partial => "manage/publications/index_item", :locals => {:item => publication} %>
+    <% unless educations.empty? %>
+      <div class="tabs">
+        <ul>
+          <% educations.each do |education| %>
+            <li><a href="#semester-<%= education.semester.id %>"><%= education.semester.title %></a></li>
+          <% end %>
+        </ul>
+        <% educations.each do |education| %>
+          <div id="semester-<%= education.semester.id %>">
+            <!--
+            <strong class="<%= education.provided_class %>"><%= education.semester.title %></strong>
+            -->
+            <% education.grouped_publications.each do |kind, publications| %>
+              <p><%= t("activerecord.attributes.publication.kind_enum.#{kind}") %></p>
+              <% publications.each do |publication| %>
+                <%= render :partial => "manage/publications/index_item", :locals => {:item => publication} %>
+              <% end %>
+            <% end %>
+          </div>
         <% end %>
-      <% end %>
+      </div>
     <% end %>
   <% end %>
 </div>
