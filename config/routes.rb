@@ -5,8 +5,8 @@ Portal::Application.routes.draw do
 
   resource :human, :only => [:show, :edit, :update] do
     namespace :roles do
-      resources :students
-      resources :employees
+      resources :students, :only => [:new, :create, :edit, :update]
+      resources :employees, :only => [:new, :create, :edit, :update]
     end
   end
 
@@ -16,10 +16,6 @@ Portal::Application.routes.draw do
       get :check, :on => :collection
       resource :user, :only => [:edit, :update] do
         get :flush_password, :on => :member
-      end
-      namespace :roles do
-        resources :students
-        resources :employees
       end
       resources :roles do
         put :transit, :on => :member

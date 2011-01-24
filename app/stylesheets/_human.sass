@@ -75,9 +75,22 @@
   float: left
   width: 790px
 
+  .list
+    .full_name
+      font-size: 14px
+      font-weight: bold
+      margin-bottom: 0
+
+    .roles
+      margin-left: 10px
+
+      li
+        margin-bottom: 0
+
 .human_facets.roles
   +clearfix
   display: block
+  margin-bottom: 0
 
   li
     float: left
@@ -86,4 +99,12 @@
 .human_facets.chairs
   +clearfix
   float: right
+
+.human_facets
+  .selected
+    background: #dfeef9
+    +border-radius
+
+  li
+    padding: 3px 3px
 
