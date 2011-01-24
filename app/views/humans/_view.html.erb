@@ -37,8 +37,12 @@
           <tr>
             <td>
               <%= role %>
-              <%= link_to t(:edit), edit_human_roles_student_path(role) if role.is_a? Roles::Student %>
-              <%= link_to t(:edit), edit_human_roles_employee_path(role) if role.is_a? Roles::Employee %>
+              <% unless role.is_a? Roles::Admin %>
+                <span class="actions">
+                  <%= link_to t(:edit), edit_human_roles_student_path(role), :class => :edit  if role.is_a? Roles::Student %>
+                  <%= link_to t(:edit), edit_human_roles_employee_path(role), :class => :edit if role.is_a? Roles::Employee %>
+                </span>
+              <% end %>
             </td>
             <td><%= role.human_state %></td>
             <td><%= l role.created_at, :format => :long %></td>

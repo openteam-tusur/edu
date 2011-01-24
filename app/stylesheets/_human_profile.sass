@@ -27,6 +27,49 @@
       +inline-block
       margin: 18px 0 0 20px
 
+    .break_line
+      +clearfix
+      display: block
+      margin: 0
+      padding: 0 0 15px 20px
+
+  .edit
+    +inline-block
+    background: url("../images/icon_edit.png") no-repeat
+    height: 16px
+    margin-left: 10px
+    text-indent: -9999px
+    width: 16px
+
+  td
+    .edit
+      margin: 0 3px !important
+
+    .actions
+      +border-radius
+      +clearfix
+      background: #F4E1CA
+      display: block
+      float: right
+      margin-left: 10px
+      padding: 2px
+
+    .accept, .reject, .expire
+      float: left
+      height: 19px
+      margin: 0 3px
+      text-indent: -999px
+      width: 19px
+
+    .accept
+      background: url("../images/icon_accept.png") no-repeat
+
+    .reject
+      background: url("../images/icon_reject.png") no-repeat
+
+    .expire
+      background: url("../images/icon_expire.png") no-repeat
+
   .human
     a
       +inline-block
