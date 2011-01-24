@@ -1,9 +1,0 @@
-<%= semantic_form_for resource, :as => :role, :url => manage_role_path do |form| %>
-  <%= render :partial => "#{resource.class.to_s.underscore.gsub('roles/', '')}_fields", :locals => {:form => form} %>
-  <%= form.buttons do %>
-    <%= form.commit_button %>
-    <li><%= link_to t(:cancel), manage_human_path(resource.human.id), :class => "button light" %></li>
-    <li class="floatr"><%= link_to t(:delete), delete_resource_path, :class => "button light" %></li>
-  <% end %>
-<% end %>
-

@@ -40,6 +40,32 @@ class Plan::Education < ActiveRecord::Base
     discipline.name
   end
 
+  def grouped_publications
+    grouped = {}
+    Publication.enum(:kind).each do |kind|
+      grouped[kind] = []
+    end
+    PublicationDiscipline.solr_search do
+      with :education_ids, [self.id]
+      paginate :page => 1, :per_page => 100000
+    end.results.each do |publication_discipline|
+      grouped[publication_discipline.publication.kind] << publication_discipline.publication
+    end
+    grouped
+  end
+
+  def provided_class
+    PublicationDiscipline.solr_search do
+      with :education_ids, [self.id]
+      with :kind, ["work_programm", "tutorial"]
+      facet :kind, :zeros => true
+      paginate :page => 1, :per_page => 100000
+    end.facet(:kind).rows.each do |facet|
+      return "unprovided" if facet.count < 1
+    end
+    "provided"
+  end
+
 private
 
   def prepare_discipline
