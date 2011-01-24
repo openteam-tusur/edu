@@ -1,0 +1,7 @@
+<% unless @humans.empty? %>
+  <ul>
+  <% @humans.each do |human| %>
+    <li><%= link_to human.full_name, manage_human_path(human) %></li>
+  <% end %>
+  </ul>
+<% end %>
