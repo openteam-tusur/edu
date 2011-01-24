@@ -1,8 +1,26 @@
 <% title @curriculum.title %>
-<div class="chair">
-  Кафедра <%= @curriculum.speciality.chair.abbr %>
-</div>
-<div class="speciality">
-  <%= @curriculum.speciality.title %>
+
+<fieldset>
+  <dl>
+    <dt>Кафедра</dt>
+    <dd><%= @curriculum.speciality.chair.abbr %></dd>
+    <dt>Специальность</dt>
+    <dd><%= @curriculum.speciality.title %></dd>
+  </dl>
+</fieldset>
+
+<div class="disciplines">
+  <% @chair.grouped_provided_educations_for_curriculum(@curriculum).each do |discipline, educations| %>
+    <h2><%= discipline.name %></h2>
+    <% educations.each do |education| %>
+      <strong class="<%= education.provided_class %>"><%= education.semester.title %></strong>
+      <% education.grouped_publications.each do |kind, publications| %>
+        <p><%= t("activerecord.attributes.publication.kind_enum.#{kind}") %></p>
+        <% publications.each do |publication| %>
+          <%= render :partial => "manage/publications/index_item", :locals => {:item => publication} %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
 </div>
 
