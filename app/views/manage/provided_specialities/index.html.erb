@@ -12,7 +12,7 @@
               <ul class="curriculums">
                 <% @chair.grouped_curriculums_for_specialities(speciality).each do |curriculum, educations_count| %>
                   <li>
-                    <span class="curriculum"><%= curriculum.study_with_since %></span>
+                    <span class="curriculum"><%= link_to curriculum.study_with_since, manage_chair_provided_disciplines_path(@chair, curriculum) %></span>
                     <span class="educations"><%= educations_count %></span>
                     <% Publication.enum(:kind).each do |kind| %>
                       <% provided = @chair.send("provided_curriculum_by_#{kind}", curriculum) %>

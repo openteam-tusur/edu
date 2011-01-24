@@ -11,5 +11,6 @@
     <span class="year"><%= "#{item.year}. " %> &ndash;</span>
     <span class="volume"><%= "#{item.volume} с." %></span>
   <% end %>
+  <span class="resource_state_<%= item.state %>"><%= item.human_state.mb_chars.downcase %></span>
 </div>
 

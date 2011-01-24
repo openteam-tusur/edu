@@ -51,9 +51,7 @@ describe Human do
     Human.find_accepted_employees_in_chair("Фамилия", 1, chair).should eql [human]
   end
 
-
   describe 'должен формировать список доступных авторов' do
-
     before(:each) do
       @bankin = Human.create :name => "Ерофей", :patronymic => "Жозефович", :surname => "Банькин"
       @bankin.roles << Roles::Employee.new(:chair => Factory.create(:chair),
@@ -73,7 +71,6 @@ describe Human do
       Human.autocomplete_authors("ба").collect(&:id).sort.should eql [@bankin.id, @bapyj.id].sort
       Human.autocomplete_authors("ба жо").should eql [@bankin]
     end
-
   end
 
 end

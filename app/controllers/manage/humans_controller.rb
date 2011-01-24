@@ -2,6 +2,14 @@ class Manage::HumansController < Manage::ApplicationController
   load_resource :except => :check
   authorize_resource
 
+  def index
+    search = Human.search(params[:query], params)
+
+    @humans = search.results
+    @chair_facets = search.facet(:chair_ids).rows
+    @role_facets = search.facet(:role_slugs).rows
+  end
+
   def check
     @humans = Human.where( :surname => params[:surname],
                            :name => params[:name],

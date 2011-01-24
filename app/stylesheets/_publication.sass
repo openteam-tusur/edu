@@ -39,6 +39,10 @@
       margin-bottom: 0
       dl
         margin-bottom: 0
+    .resource_state_published,
+    .resource_state_unpublished
+      font-size: 12px
+      padding: 1px 4px
 
 .publication
 
@@ -71,6 +75,11 @@
     text-indent: -9999em
     width: 16px
     margin-left: 5px
+
+  .additional
+    .publication_content p
+      +monospace_font_stack
+      font-size: 11px
 
 .publication.facets
   ul

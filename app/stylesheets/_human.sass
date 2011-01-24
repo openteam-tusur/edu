@@ -71,3 +71,50 @@
   .post
     margin-left: 5px
 
+.human_wrapper
+  float: left
+  width: 790px
+
+  .list
+    .full_name
+      font-size: 14px
+      font-weight: bold
+      margin-bottom: 0
+
+    .roles
+      +clearfix
+      margin-left: 10px
+
+      li
+        margin-bottom: 0
+        padding-left: 20px
+        float: left
+        clear: both
+
+      .accepted
+        background: transparent url("../images/icon_published.png") no-repeat
+
+      .pending
+        background: transparent url("../images/icon_unpublished.png") no-repeat
+
+.human_facets.roles
+  +clearfix
+  display: block
+  margin-bottom: 0
+
+  li
+    float: left
+    margin-right: 10px
+
+.human_facets.chairs
+  +clearfix
+  float: right
+
+.human_facets
+  .selected
+    background: #dfeef9
+    +border-radius
+
+  li
+    padding: 3px 3px
+

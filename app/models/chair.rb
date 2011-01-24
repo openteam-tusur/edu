@@ -6,6 +6,7 @@ class Chair < ActiveRecord::Base
   has_many :specialities
   has_many :disciplines, :through => :specialities
   has_many :educations, :class_name => "Plan::Education"
+  has_many :provided_disciplines, :class_name => "Plan::Discipline", :through => :educations, :source => :discipline
 
   validates_presence_of :name, :abbr, :slug
   validates_uniqueness_of :slug, :abbr, :name
@@ -84,6 +85,15 @@ class Chair < ActiveRecord::Base
     grouped = {}
     provided_curriculums.where(:speciality_id => speciality).each do |curriculum|
       grouped[curriculum] = curriculum.educations.where(:chair_id => self).count
+    end
+    grouped
+  end
+
+  def grouped_provided_educations_for_curriculum(curriculum)
+    grouped = {}
+    educations.where(:semester_id => curriculum.semesters).includes(:discipline).order("plan_disciplines.name").each do |education|
+      grouped[education.discipline] ||= []
+      grouped[education.discipline] << education
     end
     grouped
   end

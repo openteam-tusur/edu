@@ -15,7 +15,7 @@
 <% @speciality.curriculums.each do |curriculum| %>
   <div class="curriculum_item">
     <div class="name">
-      <%= link_to image_tag("icon_curriculum_#{curriculum.state}.png"),
+      <%= link_to image_tag("icon_#{curriculum.state}.png"),
                   manage_chair_speciality_curriculum_path(@chair, @speciality, curriculum),
                   :title => curriculum.human_state, :rel => "tipsy" %>
       <%= link_to curriculum.study_with_since,
@@ -43,3 +43,4 @@
               new_manage_chair_speciality_curriculum_path(@chair, @speciality),
               :class => "button" %>
 </p>
+
