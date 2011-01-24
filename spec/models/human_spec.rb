@@ -51,25 +51,6 @@ describe Human do
     Human.find_accepted_employees_in_chair("Фамилия", 1, chair).should eql [human]
   end
 
-  it 'должны правильно искаться сотрудники' do
-    chair = Factory.create(:chair)
-
-    admin = User.create(:email => 'admin@demo.de', :password => '123123', :password_confirmation => '123123')
-    admin.human.update_attributes( :name => 'Иван', :surname => 'Иванов', :patronymic => 'Иванович' )
-    admin.human.roles << Roles::Admin.new( :state => :accepted )
-
-    user = User.create( :email => 'user@demo.de', :password => '123123', :password_confirmation => '123123' )
-    user.human.update_attributes(:name => 'Петр', :surname => 'Петров', :patronymic => 'Петрович' )
-    user.human.roles << Roles::Student.new(:group => '422', :birthday => '01.01.1970', :state => :accepted)
-    user.human.roles << Roles::Employee.new(:chair_id => chair, :post => 'Старший преподаватель', :state => :accepted)
-
-    search = Human.search('', {})
-    search.results.should eql [admin.human, user.human]
-
-    search = Human.search('Иванов', {})
-    search.results.should eql [admin.human]
-  end
-
   describe 'должен формировать список доступных авторов' do
     before(:each) do
       @bankin = Human.create :name => "Ерофей", :patronymic => "Жозефович", :surname => "Банькин"
