@@ -7,24 +7,23 @@
 <% end %>
 
 <hr />
-<h1>Ваши роли <span>(
-                <%= link_to 'добавить роль студента', new_human_roles_student_path %>,
+<h1>Ваши роли <span>(<%= link_to 'добавить роль студента', new_human_roles_student_path %>,
                 <%= link_to 'добавить роль преподавателя', new_human_roles_employee_path %>)
               </span>
 </h1>
 
-  <% unless resource.roles.empty? %>
-    <table>
-      <thead>
-        <tr>
-          <th>Роль</th>
-          <th>Статус</th>
-          <th>Дата создания</th>
-        </tr>
-      </thead>
-      <tbody>
-        <%= render resource.roles %>
-      </tbody>
-    </table>
-  <% end %>
+<% unless resource.roles.empty? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Роль</th>
+        <th>Статус</th>
+        <th>Дата создания</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render resource.roles %>
+    </tbody>
+  </table>
+<% end %>
 

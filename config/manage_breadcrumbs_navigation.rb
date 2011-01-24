@@ -165,17 +165,19 @@ SimpleNavigation::Configuration.run do |navigation|
                   :highlights_on => /^\/manage\/humans/ do |humans|
       if @human && @human.new_record?
         humans.item :new_human, t("title.manage/humans.new"),
-                          new_manage_human_path
+                    new_manage_human_path
         humans.item :create_human, t("title.manage/humans.new"),
-                          new_manage_human_path,
-                         :highlights_on => /humans/ if params[:action] == "create" && params[:controller] == "manage/humans"
+                    new_manage_human_path,
+                    :highlights_on => /humans/ if params[:action] == "create" && params[:controller] == "manage/humans"
       end
       if @human && !@human.new_record?
+        humans.item :human, t("title.manage/humans.show"),
+                    manage_human_path(@human)
         humans.item :edit_human, t("title.manage/humans.edit"),
-                          edit_manage_human_path(@human)
+                    edit_manage_human_path(@human)
         humans.item :create_human, t("title.manage/humans.edit"),
-                          edit_manage_human_path(@human),
-                         :highlights_on => /humans/ if params[:action] == "update"
+                    edit_manage_human_path(@human),
+                    :highlights_on => /humans/ if params[:action] == "update"
       end
     end
     # / люди

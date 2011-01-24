@@ -1,6 +1,6 @@
 <%= form.inputs do %>
-  <%= form.input :surname, :input_html => { :class => "focus_first" } %>
-  <%= form.input :patronymic %>
-  <%= form.input :name %>
+  <%= form.input :surname, :required => true, :input_html => { :class => "focus_first" } %>
+  <%= form.input :name, :required => true %>
+  <%= form.input :patronymic, :required => true %>
 <% end %>
 
