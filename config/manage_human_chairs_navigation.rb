@@ -4,7 +4,8 @@ SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
     primary.item :all_chairs,
                  'Все кафедры',
-                 collection_path(:query => params[:query], :role => params[:role])
+                 collection_path(:query => params[:query], :role => params[:role]),
+                 :highlights_on => /^((?!chair_id).)*$/
 
     @chair_facets.each do |facet|
       primary.item facet.instance.slug,
