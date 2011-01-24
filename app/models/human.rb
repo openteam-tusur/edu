@@ -35,6 +35,14 @@ class Human < ActiveRecord::Base
     integer :employee_chair_ids, :multiple => true do
       employees.accepted.map(&:chair_id)
     end
+
+    integer :chair_ids, :multiple => true, :references => Chair do
+      roles.accepted.where("type <> 'Roles::Admin' AND type <> 'Roles::Student'").map(&:chair_id)
+    end
+
+    string :role_slugs, :multiple => true do
+      roles.accepted.map(&:slug)
+    end
   end
 
   def self.autocomplete_authors(query)
@@ -80,6 +88,21 @@ class Human < ActiveRecord::Base
       paginate :page => page, :per_page => 10
     end.results
    end
+
+  def self.search(query, options)
+    solr_search do
+      keywords query
+
+      chair_filter = with(:chair_ids, options[:chair_id]) if options[:chair_id]
+      role_filter = with(:role_slugs, options[:role]) if options[:role]
+
+      facet :chair_ids, :zeros => true, :exclude => chair_filter
+      facet :role_slugs, :zeros => true, :exclude => role_filter
+
+      paginate :page => options[:page], :per_page => 10
+    end
+  end
+
 end
 
 # == Schema Information

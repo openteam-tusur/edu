@@ -11,10 +11,11 @@ describe User do
 
   it 'должен знать свои подтвержденые роли' do
     user = Factory.create(:user)
-    user.human.roles << Roles::Admin.new( :title => 'Администратор',
+    user.human.roles << Roles::Admin.new(:title => 'Администратор',
                                           :slug => 'admin',
-                                          :state => 'accepted' )
-    user.roles.should eql [:admin]
+                                          :state => 'accepted')
+
+    user.reload.roles.should eql [:admin]
   end
 
   it 'не показывается уведомление если заполнен профиль и есть заявка' do
