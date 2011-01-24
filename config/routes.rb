@@ -23,6 +23,7 @@ Portal::Application.routes.draw do
         put :transit, :on => :member
       end
     end
+
     resources :chairs, :only => [:index, :show] do
       resources :employees, :except => [:show]
       resources :publications do
@@ -38,9 +39,12 @@ Portal::Application.routes.draw do
           end
         end
       end
-
-      resources :provided_specialities, :only => :index
     end
+
+    match "chairs/:chair_id/provided_specialities" => "provided_specialities#index",
+          :as => :chair_provided_specialities
+    match "chairs/:chair_id/:curriculum_id/provided_disciplines" => "provided_disciplines#index",
+          :as => :chair_provided_disciplines
 
     root :to => "chairs#index"
   end

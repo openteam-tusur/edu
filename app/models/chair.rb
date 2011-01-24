@@ -6,6 +6,7 @@ class Chair < ActiveRecord::Base
   has_many :specialities
   has_many :disciplines, :through => :specialities
   has_many :educations, :class_name => "Plan::Education"
+  has_many :provided_disciplines, :class_name => "Plan::Discipline", :through => :educations, :source => :discipline
 
   validates_presence_of :name, :abbr, :slug
   validates_uniqueness_of :slug, :abbr, :name

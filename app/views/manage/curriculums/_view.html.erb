@@ -52,6 +52,7 @@
         <div class="discipline <%= cycle('odd', 'even') %>">
           <div class="discipline_name">
             <%= education.discipline.name %>
+            <%= education.chair.abbr %>
             (<%= education.examinations.collect(&:name).join(", ").mb_chars.downcase %>)
           </div>
           <div class="discipline_edit">
