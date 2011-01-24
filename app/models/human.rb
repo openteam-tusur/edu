@@ -96,8 +96,8 @@ class Human < ActiveRecord::Base
       chair_filter = with(:chair_ids, options[:chair_id]) if options[:chair_id]
       role_filter = with(:role_slugs, options[:role]) if options[:role]
 
-      facet :chair_ids, :zeros => true, :exclude => chair_filter
-      facet :role_slugs, :zeros => true, :exclude => role_filter
+      facet :chair_ids, :zeros => true, :exclude => chair_filter, :sort => :index
+      facet :role_slugs, :zeros => true, :exclude => role_filter, :sort => :index
 
       paginate :page => options[:page], :per_page => 10
     end
