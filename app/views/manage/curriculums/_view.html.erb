@@ -2,16 +2,18 @@
 
 <fieldset class="additional_info">
   <div>
-    <span class="duration">Срок обучения <%= @curriculum.duration %></span>
-    <% if @curriculum.attachment %>
-      <%= link_to image_tag("icon_pdf_#{@curriculum.access}.png"),
-                  @curriculum.attachment.data.url,
-                  :title => @curriculum.human_access, :rel => "tipsy" %>
-      <%= link_to "Учебный план #{@curriculum.year}", @curriculum.attachment.data.url,
-                  :class => "#{@curriculum.access}_pdf download" %>
-    <% else %>
-      файл отсутствует
-    <% end %>
+    <p>
+      <span class="duration">Срок обучения <%= @curriculum.duration %></span>
+      <% if @curriculum.attachment %>
+        <%= link_to image_tag("icon_pdf_#{@curriculum.access}.png"),
+                    @curriculum.attachment.data.url,
+                    :title => @curriculum.human_access, :rel => "tipsy" %>
+        <%= link_to "Учебный план #{@curriculum.year}", @curriculum.attachment.data.url,
+                    :class => "#{@curriculum.access}_pdf download" %>
+      <% else %>
+        файл отсутствует
+      <% end %>
+    </p>
   </div>
 </fieldset>
 
@@ -52,6 +54,7 @@
         <div class="discipline <%= cycle('odd', 'even') %>">
           <div class="discipline_name">
             <%= education.discipline.name %>
+            <abbr title="<%= education.chair.name %>" rel="tipsy"><%= education.chair.abbr %></abbr>
             (<%= education.examinations.collect(&:name).join(", ").mb_chars.downcase %>)
           </div>
           <div class="discipline_edit">
