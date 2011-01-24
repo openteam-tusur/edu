@@ -1,14 +1,16 @@
 <%= resource.full_name %>
 <%= link_to t(:edit), edit_resource_path, :class => :edit %>
 
-<% unless resource.user.nil? %>
-  <%= resource.user.email %>
-  <%= link_to t(:edit), edit_manage_user_path(resource.user) %>
+<% unless @human.user.nil? %>
+  <%= @human.user.email %>
+  <%= link_to t(:edit), edit_manage_human_user_path(@human) %>
+  <%= link_to "Сброс пароля", flush_password_manage_human_user_path(@human) %>
 <% end %>
 
 <hr />
-<h1>Ваши роли <span>(<%= link_to 'добавить роль студента', new_human_roles_student_path %>,
-                <%= link_to 'добавить роль преподавателя', new_human_roles_employee_path %>)
+<h1>Роли <span>(
+                <%= link_to 'добавить роль студента', new_manage_human_roles_student_path(@human) %>,
+                <%= link_to 'добавить роль преподавателя', new_manage_human_roles_employee_path(@human) %>)
               </span>
 </h1>
 

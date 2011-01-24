@@ -31,7 +31,6 @@ class Publication < Resource
     integer :chair_id
 
     string :kind
-
   end
 
   def self.search(query, chair, options={})
