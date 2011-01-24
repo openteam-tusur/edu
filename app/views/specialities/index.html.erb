@@ -1,0 +1,19 @@
+<% unless @chair.specialities.empty?  %>
+  <div class="specialities">
+    <% %w(specialist bachelor master).each do |degree| %>
+      <% unless @chair.specialities.send(:"degree_#{degree}").empty? %>
+        <fieldset>
+          <legend><%= t("noun_#{degree}") %></legend>
+          <% @chair.specialities.send(:"degree_#{degree}").each do |speciality| %>
+            <div class="speciality_item">
+              <p class="name"><%= link_to speciality.short_title, chair_speciality_path(speciality.chair, speciality) %></p>
+              <p class="qualification"><%= speciality.qualification %></p>
+              <p class="additional">лицензия: <%= speciality.licence %>, аккредитация: <%= speciality.accreditation %></p>
+            </div>
+          <% end %>
+      </fieldset>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
+
