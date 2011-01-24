@@ -1,1 +1,10 @@
 <% title @chair.self_with_abbr %>
+
+<p><%= link_to t("title.specialities.index"), chair_specialities_path(@chair) %></p>
+
+<p><%= link_to t("title.manage/employees.index"), chair_employees_path(@chair) %></p>
+
+<p><%= link_to t("title.manage/publications.index"), chair_publications_path(@chair) %></p>
+
+<p><%= link_to t("title.manage/provided_specialities.index"), chair_provided_specialities_path(@chair) %></p>
+

@@ -24,6 +24,8 @@ class Plan::Curriculum < Resource
   has_enum :study, %w[fulltime parttime postal]
 
   default_scope order('study')
+  scope :published,   where(:state => 'published')
+  scope :unpublished, where(:state => 'unpublished')
 
   after_create :create_semesters
 

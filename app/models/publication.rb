@@ -15,7 +15,7 @@ class Publication < Resource
 
   validates_presence_of :chair, :title, :attachment, :year, :access, :volume, :kind
 
-  has_enum :kind, %w(work_programm tutorial lab_work course_work attestation practice seminar test demo)
+  has_enum :kind, %w(work_programm tutorial lab_work course_work attestation practice seminar test demo independent)
 
   scope :published,   where(:state => 'published')
   scope :unpublished, where(:state => 'unpublished')
@@ -63,7 +63,7 @@ class Publication < Resource
       return [:bbk, :isbn, :udk, :annotation, :content, :stamp]
     end
 
-    if %w(lab_work course_work attestation practice seminar test).include? kind
+    if %w(lab_work course_work attestation practice seminar test independent).include? kind
      return [:annotation, :content]
     end
   end
