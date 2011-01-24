@@ -147,7 +147,7 @@ SimpleNavigation::Configuration.run do |navigation|
                           edit_manage_chair_publication_publication_discipline_path(@chair, @publication)
                 publication.item :edit_discipline, t("title.manage/publication_disciplines.edit"),
                           edit_manage_chair_publication_publication_discipline_path(@chair, @publication),
-                          :highlights_on => /publication_disciplines/  if params[:action] == "update"
+                          :highlights_on => /publication_disciplines/ if params[:action] == "update"
               end
             end
           end
@@ -161,7 +161,29 @@ SimpleNavigation::Configuration.run do |navigation|
                 manage_chair_provided_disciplines_path(@chair, @curriculum) if @curriculum
       end
       end if @chair
+
+    end
+
+    # люди
+    primary.item "manage_humans", t("title.manage/humans.index"), manage_humans_path, :class => "humans",
+                  :highlights_on => /^\/manage\/humans/ do |humans|
+      if @human && @human.new_record?
+        humans.item :new_human, t("title.manage/humans.new"),
+                    new_manage_human_path
+        humans.item :create_human, t("title.manage/humans.new"),
+                    new_manage_human_path,
+                    :highlights_on => /humans/ if params[:action] == "create" && params[:controller] == "manage/humans"
+      end
+      if @human && !@human.new_record?
+        humans.item :human, t("title.manage/humans.show"),
+                    manage_human_path(@human)
+        humans.item :edit_human, t("title.manage/humans.edit"),
+                    edit_manage_human_path(@human)
+        humans.item :create_human, t("title.manage/humans.edit"),
+                    edit_manage_human_path(@human),
+                    :highlights_on => /humans/ if params[:action] == "update"
+      end
     end
   end
-
 end
+

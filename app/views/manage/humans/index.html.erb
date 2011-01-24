@@ -1,0 +1,29 @@
+<%= semantic_form_for :humans, :html => { :method => :get, :class => "human_search" } do | form | %>
+  <%= form.inputs do %>
+    <%= form.input :query, :required => false, :label => false, :input_html => { :name => 'query', :value => params[:query] } %>
+  <% end %>
+  <%= form.buttons do %>
+    <%= form.commit_button "Найти", :button_html => { :class => "button light" } %>
+  <% end %>
+<% end %>
+
+<div class="human_wrapper">
+  <div class="human_facets roles">
+    <%= render_navigation :context => 'manage_human_roles' %>
+  </div>
+
+  <% unless @humans.empty? %>
+    <ul>
+    <% @humans.each do |human| %>
+      <li><%= link_to human.full_name, manage_human_path(human) %></li>
+    <% end %>
+    </ul>
+  <% end %>
+
+  <%= will_paginate @humans %>
+</div>
+
+<div class="human_facets chairs">
+  <%= render_navigation :context => 'manage_human_chairs' %>
+</div>
+
