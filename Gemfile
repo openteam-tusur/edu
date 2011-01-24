@@ -45,6 +45,7 @@ gem 'show_for', :git => "git://github.com/plataformatec/show_for"
 gem 'will_paginate', '>= 3.0.pre2'
 gem 'dynamic_form'
 gem 'russian'
+gem 'gilenson'
 
 # restful
 gem 'inherited_resources', :git => 'git://github.com/openteam/inherited_resources'

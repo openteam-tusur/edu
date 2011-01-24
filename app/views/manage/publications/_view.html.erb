@@ -14,7 +14,13 @@
     </div>
     <%= show_for resource, :id => 'additional_attributes' do |publication| %>
       <% @publication.fields_for_kind.each do |attribute| %>
-        <%= publication.attribute attribute %>
+        <% if attribute == :annotation || attribute == :content || attribute.eql?(:stamp) %>
+          <%= publication.attribute attribute do %>
+            <%= @publication.send(attribute).blank? ? simple_format("не указано") : simple_format(@publication.send(attribute).gilensize) %>
+          <% end %>
+        <% else %>
+          <%= publication.attribute attribute %>
+        <% end %>
       <% end %>
     <% end %>
   </div>
