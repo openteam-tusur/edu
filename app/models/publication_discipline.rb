@@ -9,12 +9,21 @@ class PublicationDiscipline < ActiveRecord::Base
   has_and_belongs_to_many :educations, :class_name => "Plan::Education"
 
 
-  validates_presence_of :publication, :discipline
-  validates_uniqueness_of :discipline_id, :scope => :publication_id
+#  validates_presence_of :publication, :discipline
+#  validates_uniqueness_of :discipline_id, :scope => :publication_id
 
   attr_accessor :speciality_request, :speciality_id, :discipline_request
 
-  before_validation :validate_exists_of_educations
+  before_validation :validates_presence_of_educations
+
+  searchable do
+    string :kind do
+      publication.kind
+    end
+    integer :education_ids, :multiple => true do
+      educations.map(&:id)
+    end
+  end
 
   def educations_grouped_by_curriculums
     grouped = {}
@@ -26,7 +35,7 @@ class PublicationDiscipline < ActiveRecord::Base
 
 private
 
-  def validate_exists_of_educations
+  def validates_presence_of_educations
     ids = self.education_ids & self.discipline.education_ids
     errors[:base] << "Необходимо выбрать семестры" if ids.empty?
   end

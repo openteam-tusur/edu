@@ -80,6 +80,31 @@ class Chair < ActiveRecord::Base
     grouped
   end
 
+  def grouped_curriculums_for_specialities(speciality)
+    grouped = {}
+    provided_curriculums.where(:speciality_id => speciality).each do |curriculum|
+      grouped[curriculum] = curriculum.educations.where(:chair_id => self).count
+    end
+    grouped
+  end
+
+  Publication.enum(:kind).each do |kind|
+    class_eval <<-END
+      def provided_curriculum_by_#{kind}(curriculum)
+        educations_for_curriculum = curriculum.educations.where(:chair_id => self)
+        publication_disciplines = PublicationDiscipline.solr_search do
+          with :kind, "#{kind}"
+          with :education_ids, educations_for_curriculum.map(&:id)
+          paginate :page => 1, :per_page => 100000
+        end.results.delete_if {|publication_discipline| publication_discipline.publication.unpublished?}
+        provided_educations = publication_disciplines.map(&:educations).flatten & educations_for_curriculum
+        res = {:educations => educations_for_curriculum.count,
+          :provided => provided_educations.size,
+          :class => educations_for_curriculum.count == provided_educations.size ? "provided" : "unprovided"}
+      end
+    END
+  end
+
 end
 
 # == Schema Information

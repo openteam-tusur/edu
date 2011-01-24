@@ -102,7 +102,6 @@ describe Chair do
     end
 
     it "должна отдавать сгруппированные по study и кафедре специальности" do
-      Speciality.count
       speciality_b_210041 = Factory.create(:speciality, :degree => "bachelor", :chair => @chair, :code => "210041")
       Factory.create(:plan_education,
               :semester => Factory.create(:plan_curriculum, :speciality => speciality_b_210041).semesters.first,
@@ -136,6 +135,62 @@ describe Chair do
       @chair.grouped_provided_specialities.should eql expected
     end
 
+    it "должна знать учебные планы и статистику дисциплин по общеспечивающим дисциплинам по специальности" do
+      speciality_s_210040 = Factory.create(:speciality, :degree => "specialist", :chair => @chair, :code => "210040")
+      fulltime_curriculum =  Factory.create(:plan_curriculum,
+                                            :speciality => speciality_s_210040,
+                                            :study => "fulltime")
+      parttime_curriculum =  Factory.create(:plan_curriculum,
+                                            :speciality => speciality_s_210040,
+                                            :study => "parttime")
+      Factory.create(:plan_education,
+              :semester => fulltime_curriculum.semesters.first,
+              :chair => @chair)
+      Factory.create(:plan_education,
+              :semester => fulltime_curriculum.semesters.first,
+              :chair => @chair)
+      Factory.create(:plan_education,
+              :semester => parttime_curriculum.semesters.first,
+              :chair => @chair)
+
+      expected = {
+        fulltime_curriculum => 2,
+        parttime_curriculum => 1
+      }
+
+      @chair.grouped_curriculums_for_specialities(speciality_s_210040).should eql expected
+    end
+
+    it "должна определяться обеспеченность educations для учебного плана рабочей программой и учебным пособием" do
+      speciality = Factory.create(:speciality, :degree => "specialist", :chair => @chair, :code => "210040")
+      fulltime_curriculum =  Factory.create(:plan_curriculum,
+                                            :speciality => speciality,
+                                            :study => "fulltime")
+      education_1 = Factory.create( :plan_education,
+                                    :semester => fulltime_curriculum.semesters.first,
+                                    :chair => @chair)
+      education_2 = Factory.create( :plan_education,
+                                    :semester => fulltime_curriculum.semesters.last,
+                                    :discipline => education_1.discipline,
+                                    :chair => @chair)
+
+      work_program = Factory.create(:publication, :chair => @chair, :kind => "work_programm")
+      work_program.publish!
+      work_program.publication_disciplines.create!(:discipline => education_1.discipline,
+          :education_ids => [education_1.id, education_2.id])
+
+      tutorial = Factory.create(:publication, :chair => @chair, :kind => "tutorial")
+      tutorial.publication_disciplines.create!(:discipline => education_1.discipline,
+          :education_ids => [education_1.id])
+
+      Sunspot.commit
+
+      wp_expected = {:educations => 2, :provided => 2, :class => "provided"}
+      @chair.provided_curriculum_by_work_programm(fulltime_curriculum).should eql wp_expected
+
+      tutorial_expected = {:educations => 2, :provided => 0, :class => "unprovided"}
+      @chair.provided_curriculum_by_tutorial(fulltime_curriculum).should eql tutorial_expected
+    end
 
   end
 
