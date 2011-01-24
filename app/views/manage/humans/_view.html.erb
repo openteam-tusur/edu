@@ -1,30 +1,39 @@
-<%= resource.full_name %>
-<%= link_to t(:edit), edit_resource_path, :class => :edit %>
+<div class="human_profile">
+  <ul>
+    <li>
+      <%= resource.full_name %>
+      <%= link_to t(:edit), edit_resource_path, :class => :edit %>
+    </li>
+    <li>
+      <% unless @human.user.nil? %>
+        <%= @human.user.email %>
+        <%= link_to t(:edit), edit_manage_human_user_path(@human) %>
+        <%= link_to "Сброс пароля", flush_password_manage_human_user_path(@human), :class => :button %>
+      <% end %>
+    </li>
+  </ul>
 
-<% unless @human.user.nil? %>
-  <%= @human.user.email %>
-  <%= link_to t(:edit), edit_manage_human_user_path(@human) %>
-  <%= link_to "Сброс пароля", flush_password_manage_human_user_path(@human) %>
-<% end %>
 
-<hr />
-<h1>Роли <span>(<%= link_to 'добавить роль студента', new_manage_human_roles_student_path(@human) %>,
-                <%= link_to 'добавить роль преподавателя', new_manage_human_roles_employee_path(@human) %>)
-              </span>
-</h1>
+  <hr />
+  <h1>Роли <span>(
+                  <%= link_to 'добавить роль студента', new_manage_human_roles_student_path(@human) %>,
+                  <%= link_to 'добавить роль преподавателя', new_manage_human_roles_employee_path(@human) %>)
+                </span>
+  </h1>
 
-<% unless resource.roles.empty? %>
-  <table>
-    <thead>
-      <tr>
-        <th>Роль</th>
-        <th>Статус</th>
-        <th>Дата создания</th>
-      </tr>
-    </thead>
-    <tbody>
-      <%= render resource.roles %>
-    </tbody>
-  </table>
-<% end %>
+    <% unless resource.roles.empty? %>
+      <table>
+        <thead>
+          <tr>
+            <th>Роль</th>
+            <th>Статус</th>
+            <th>Дата создания</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render resource.roles %>
+        </tbody>
+      </table>
+    <% end %>
+</div>
 
