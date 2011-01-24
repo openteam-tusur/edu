@@ -24,6 +24,12 @@ ru:
   noun_master: Магистратура
   noun_bachelor: Бакалавриат
 
+  roles:
+    admin: Администраторы
+    employee: Сотрудники
+    student: Студенты
+
+
   errors:
     template:
       header:

@@ -180,8 +180,6 @@ SimpleNavigation::Configuration.run do |navigation|
                     :highlights_on => /humans/ if params[:action] == "update"
       end
     end
-    # / люди
-
   end
-
 end
+
