@@ -5,8 +5,8 @@ Portal::Application.routes.draw do
 
   resource :human, :only => [:show, :edit, :update] do
     namespace :roles do
-      resources :students
-      resources :employees
+      resources :students, :only => [:new, :create, :edit, :update]
+      resources :employees, :only => [:new, :create, :edit, :update]
     end
   end
 
@@ -17,14 +17,11 @@ Portal::Application.routes.draw do
       resource :user, :only => [:edit, :update] do
         get :flush_password, :on => :member
       end
-      namespace :roles do
-        resources :students
-        resources :employees
-      end
       resources :roles do
         put :transit, :on => :member
       end
     end
+
     resources :chairs, :only => [:index, :show] do
       resources :employees, :except => [:show]
       resources :publications do
@@ -40,9 +37,12 @@ Portal::Application.routes.draw do
           end
         end
       end
-
-      resources :provided_specialities, :only => :index
     end
+
+    match "chairs/:chair_id/provided_specialities" => "provided_specialities#index",
+          :as => :chair_provided_specialities
+    match "chairs/:chair_id/:curriculum_id/provided_disciplines" => "provided_disciplines#index",
+          :as => :chair_provided_disciplines
 
     root :to => "chairs#index"
   end

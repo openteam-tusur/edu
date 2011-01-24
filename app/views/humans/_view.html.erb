@@ -33,7 +33,17 @@
           </tr>
         </thead>
         <tbody>
-          <%= render resource.roles %>
+          <% @human.roles.each do | role | %>
+          <tr>
+            <td>
+              <%= role %>
+              <%= link_to t(:edit), edit_human_roles_student_path(role) if role.is_a? Roles::Student %>
+              <%= link_to t(:edit), edit_human_roles_employee_path(role) if role.is_a? Roles::Employee %>
+            </td>
+            <td><%= role.human_state %></td>
+            <td><%= l role.created_at, :format => :long %></td>
+          </tr>
+          <% end %>
         </tbody>
       </table>
     <% end %>
