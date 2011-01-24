@@ -65,6 +65,7 @@ ru:
 
     users/passwords:
       new: Восстановление пароля
+      edit: Сброс пароля
 
     users/registrations:
       new: Регистрация
