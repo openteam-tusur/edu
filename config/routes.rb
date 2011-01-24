@@ -17,10 +17,10 @@ Portal::Application.routes.draw do
       resource :user, :only => [:edit, :update] do
         get :flush_password, :on => :member
       end
-      namespace :roles do
-        resources :students
-        resources :employees
-      end
+#      namespace :roles do
+#        resources :students
+#        resources :employees
+#      end
       resources :roles do
         put :transit, :on => :member
       end
