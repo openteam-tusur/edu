@@ -14,7 +14,9 @@ Portal::Application.routes.draw do
     match "/publications/get_fields" => "publications#get_fields", :method => :post
     resources :humans, :shallow => true do
       get :check, :on => :collection
-      resources :users
+      resource :user, :only => [:edit, :update] do
+        get :flush_password, :on => :member
+      end
       namespace :roles do
         resources :students
         resources :employees

@@ -71,6 +71,7 @@ ru:
 
     users/passwords:
       new: Восстановление пароля
+      edit: Сброс пароля
 
     users/registrations:
       new: Регистрация
@@ -135,6 +136,12 @@ ru:
     manage/roles:
       edit: Редактирование роли
       delete: Удаление роли
+
+    manage/roles/students:
+      new: Создать роль студента
+
+    manage/roles/employees:
+      new: Создать роль сотрудника
 
     manage/publication_disciplines:
       new: Добавление дисциплины

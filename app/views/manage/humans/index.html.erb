@@ -12,12 +12,12 @@
     <%= render_navigation :context => 'manage_human_roles' %>
   </div>
 
-  <% if collection.any? %>
-    <div class="humans_list">
-      <% @humans.each do |obj| %>
-        <%= render :partial => "index_item", :locals => { :item => obj } %>
-      <% end %>
-    </div>
+  <% unless @humans.empty? %>
+    <ul>
+    <% @humans.each do |human| %>
+      <li><%= link_to human.full_name, manage_human_path(human) %></li>
+    <% end %>
+    </ul>
   <% end %>
 
   <%= will_paginate @humans %>

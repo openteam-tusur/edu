@@ -19,6 +19,7 @@ ru:
       signed_out: Вы вышли из системы
     passwords:
       send_instructions: На Ваш e-mail высланы инструкции для сброса пароля
+      send_instructions_from_admin: На e-mail пользователя высланы инструкции для сброса пароля
       updated: Ваш пароль успешно изменен. Вы авторизованы
     confirmations:
       send_instructions: На Ваш e-mail высланы инструкции для подтверждения регистрации
