@@ -5,6 +5,7 @@
 
   <ul class="resource_action">
     <li><%= link_to t(:edit), edit_resource_path(resource), :class => "button" %></li>
+    <li><%= link_to 'Лицензионный договор', to_report_manage_chair_publication_path(resource), :class => "button" %></li>
     <%= render :partial => "manage/common/resource_state", :locals => { :resource => resource } %>
   </ul>
 

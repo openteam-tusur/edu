@@ -25,6 +25,7 @@ Portal::Application.routes.draw do
     resources :chairs, :only => [:index, :show] do
       resources :employees, :except => [:show]
       resources :publications do
+        get :to_report, :on => :member
         put :transit, :on => :member
         resources :publication_disciplines, :except => [:index, :show]
       end
