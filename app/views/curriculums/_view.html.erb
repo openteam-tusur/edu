@@ -38,7 +38,7 @@
       <% @semester.educations.each do |education| %>
         <div class="discipline <%= cycle('odd', 'even') %>">
           <div class="discipline_name">
-            <%= link_to education.discipline.name, '#' %>
+            <%= link_to education.discipline.name, chair_speciality_curriculum_semester_education_path(@chair, @speciality, @curriculum, @semester, education)  %>
             <% unless education.examinations.empty? %>
               (<%= education.examinations.collect(&:name).join(", ").mb_chars.downcase %>)
             <% end %>
