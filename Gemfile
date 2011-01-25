@@ -55,7 +55,7 @@ gem 'inherited_resources_views'
 gem "protected_parent"
 
 # enumerations in models
-gem 'has_enum', '~> 0.5.0'
+gem 'has_enum', :git => "git://github.com/openteam/has_enum"
 
 # full text search
 gem "geohash", "1.0.1", :git => "git://github.com/floze/geohash", :require => false

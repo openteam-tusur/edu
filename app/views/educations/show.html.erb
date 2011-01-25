@@ -1,0 +1,22 @@
+<% @education.grouped_publications.each do |kind, publications| %>
+   <% unless publications.empty? %>
+    <%= Publication.human_enum[:kind][kind.to_sym] %>
+    <% publications.each do |publication| %>
+      <div class='publication'>
+        <%= link_to image_tag("icon_pdf_#{publication.access}.png"),
+                publication.attachment.data.url,
+                :title => publication.human_access, :rel => "tipsy" %>
+        <%= link_to chair_publication_path(@chair, publication) do %>
+      <span class="title"><%= "#{publication.title}: " %></span>
+      <span><%= "#{publication.human_kind} /" %></span>
+      <span class="authors">
+        <%= publication.authors.any? ? raw("#{publication.authors.map(&:abbreviated_name).join(', ')} &ndash;")  : "" %>
+      </span>
+      <span class="year"><%= "#{publication.year}. " %> &ndash;</span>
+      <span class="volume"><%= "#{publication.volume} с." %></span>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
