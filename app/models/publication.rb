@@ -13,9 +13,10 @@ class Publication < Resource
   has_many :authors, :as => :resource, :inverse_of => :resource
   accepts_nested_attributes_for :authors, :allow_destroy => true
 
-  validates_presence_of :chair, :title, :attachment, :year, :access, :volume, :kind
+  validates_presence_of :chair, :title, :attachment, :year,
+                        :access, :volume, :kind, :extended_kind
 
-  has_enum :kind, %w(work_programm tutorial lab_work course_work attestation practice seminar test demo independent)
+  has_enum :kind, %w(work_programm tutorial training_toolkit)
 
   scope :published,   where(:state => 'published')
   scope :unpublished, where(:state => 'unpublished')
