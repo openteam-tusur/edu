@@ -15,7 +15,13 @@ SimpleNavigation::Configuration.run do |navigation|
           # специальности
           specialities.item :speciality,
                             @speciality.title,
-                            chair_speciality_path(@chair, @speciality) if @speciality
+                            chair_speciality_path(@chair, @speciality) do |speciality|
+
+        # учебные планы
+            speciality.item :curriculum,
+                            @curriculum.title,
+                            chair_speciality_curriculum_path(@chair, @speciality, @curriculum) if @curriculum
+          end if @speciality
         end
       end if @chair
     end
