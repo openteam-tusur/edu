@@ -13,7 +13,8 @@ class Human < ActiveRecord::Base
   has_many :students, :class_name => 'Roles::Student'
   has_many :employees, :class_name => 'Roles::Employee'
 
-  validates_presence_of :post, :surname, :name, :patronymic,  :if => :chair_id
+  validates_presence_of :surname, :name, :patronymic
+  validates_presence_of :post, :if => :chair_id
   validates_presence_of :human_id,
                         :if => :chair_id,
                         :on => :create,
@@ -72,10 +73,6 @@ class Human < ActiveRecord::Base
 
   def posts
     roles.accepted.empty? ? "": " — #{roles.accepted.map(&:to_s).join(', ')}"
-  end
-
-  def filled?
-    !(surname.blank? || name.blank? || patronymic.blank?)
   end
 
   def namesakes

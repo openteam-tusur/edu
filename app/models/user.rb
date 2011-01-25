@@ -23,21 +23,12 @@ class User < ActiveRecord::Base
 
   # Возвращает список ролей пользователя
   def roles
-    if human.new_record?
-      []
-    else
-      human_without_build.roles.accepted.collect { |r| r.slug.to_sym }
-    end
+    human.roles.accepted.collect { |r| r.slug.to_sym }
   end
 
   def has_been_started?
-    human.filled? && !human.roles.empty?
+    !(human.new_record? || human.roles.empty?)
   end
-
-  def full_name
-    "#{human.surname} #{human.name}" if human.filled?
-  end
-
 
 end
 

@@ -11,7 +11,7 @@ class RolesController < InheritedResourcesController
   end
 
   def new
-    redirect_to human_path, :alert => t(:fill_human) unless current_user.human.filled?
+    redirect_to human_path, :alert => t(:fill_human) if current_user.human.new_record?
   end
 
   def update

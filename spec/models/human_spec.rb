@@ -3,34 +3,17 @@
 require 'spec_helper'
 
 describe Human do
-  it 'должен правильно определять заполненность' do
+  it "при удалении должен убивать роли" do
     human = Factory.create(:human)
-    human.filled?.should be false
-
-    human.update_attributes(:surname => 'surname')
-    human.reload.filled?.should be false
-
-    human.update_attributes(:name => 'name')
-    human.reload.filled?.should be false
-
-    human.update_attributes(:patronymic => 'patronymic')
-    human.reload.filled?.should be true
-  end
-
-  it "при удалении должен убивать пользователя и роли" do
-    user = Factory.create(:user)
-    user.human.save
     chair = Factory.create(:chair)
     human = chair.create_employee "surname" => "Фамилия",
                                   "name" => "Имя",
                                   "patronymic" => "Отчество",
                                   "post" => "старший преподаватель",
-                                  "human_id" => user.human.id
-    p human
-    p human.roles
+                                  "human_id" => human.id
+    human.roles.should_not be_empty
     human.destroy
-    Human.exists?(human.id).should be true
-    User.exists?(user.id).should be true
+    Human.exists?(human.id).should be false
     Role.where(:human_id => human.id).should be_empty
   end
 
