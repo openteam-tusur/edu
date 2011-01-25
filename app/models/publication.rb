@@ -90,6 +90,25 @@ class Publication < Resource
     builder.to_xml
   end
 
+  def generate_data
+    template_path = Rails.root.join("reports", "publication.odt").to_s
+    result_data = ""
+
+    Tempfile.open ["data_file", ".xml"] do |data_file|
+      data_file << to_report
+      data_file.flush
+
+      Tempfile.open ["publication", ".odt"] do | odt_file |
+        libdir = Rails.root.join "reports", "lib"
+        result = system("java", "-Djava.ext.dir=#{libdir}", "-jar", "#{libdir}/jodreports-2.1-RC.jar", template_path, data_file.path, odt_file.path)
+        raise "Ошибка создания документа" unless result
+
+        result_data = File.read(odt_file.path)
+      end
+    end
+    result_data
+  end
+
 end
 
 
