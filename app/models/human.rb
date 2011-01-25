@@ -91,7 +91,21 @@ class Human < ActiveRecord::Base
   end
 
   def merge_with(other_human)
-    other_human.destroy
+    ActiveRecord::Base.transaction do
+      other_human.roles.each do | role |
+        role.update_attributes :human_id => self.id
+      end
+      if other_human.user_id
+        if user_id
+          other_human.user.destroy
+        else
+          self.update_attribute :user_id, other_human.user_id
+          other_human.update_attribute :user_id, nil
+        end
+      end
+      other_human.reload
+      other_human.destroy
+    end
   end
 
   private

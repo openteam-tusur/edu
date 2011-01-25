@@ -4,8 +4,8 @@ require 'spec_helper'
 
 describe Human do
   it "при удалении должен убивать роли" do
-    human = Factory.create(:human)
     chair = Factory.create(:chair)
+    human = Factory.create(:human)
     human = chair.create_employee "surname" => "Фамилия",
                                   "name" => "Имя",
                                   "patronymic" => "Отчество",
@@ -61,29 +61,86 @@ describe Human do
 
 
   describe 'должен уметь объединяться с другим человечишком' do
-    before :each do
-      @human1 = Human.create :name => "Ерофей", :patronymic => "Жозефович", :surname => "Банькин"
-      @human2 = Human.create :name => "Ефрем", :patronymic => "Никитович", :surname => "Бапый"
-    end
-
     after :all do
       Human.where(:id => @human2).should_not be_exists
     end
 
     it 'если у обоих нет аккаунтов' do
+      @human1 = Factory.create :human
+      @human2 = Factory.create :human
       @human1.merge_with(@human2)
     end
 
-#    it 'если у первого есть аккаунт' do
-#      user =
-#      @human1.build_user(Factory.attributes_for(:user)).save!
-#      @human1.reload
-#      p @human1.user
-#      @human1.merge_with(@human2)
-#      @human1.reload
-#      p @human1.user
-#      @human1.reload.user.should_not be_nil
-#    end
+    it 'если у первого есть аккаунт' do
+      @human1 = Factory.create(:user).human
+      @human2 = Factory.create :human
+      @human1.merge_with(@human2)
+      @human1.user.should_not be_nil
+    end
+
+    it 'если у второго есть аккаунт' do
+      @human1 = Factory.create :human
+      @user2 = Factory.create(:user)
+      @human2 = @user2.human
+      @human1.merge_with(@human2)
+      @human1.user.should eql @user2
+    end
+
+    it 'если у обоих есть аккаунты' do
+      @user1 = Factory.create(:user)
+      @human1 = @user1.human
+      @user2 = Factory.create(:user)
+      @human2 = @user2.human
+      @human1.merge_with(@human2)
+      @human1.user.should eql @user1
+      User.where(:id => @user2).should_not be_exists
+    end
+
+    describe "Роли: " do
+      before :each do
+        @human1 = Factory.create :human
+        @human2 = Factory.create :human
+      end
+
+      it 'есть у первого' do
+        @human1.roles << Roles::Employee.new(:chair => Factory.create(:chair),
+                                             :post => 'Старший преподаватель')
+        @human1.merge_with(@human2)
+        @human1.roles.should_not be_empty
+      end
+
+      it 'есть у второго' do
+        @human2.roles << Roles::Employee.new(:chair => Factory.create(:chair),
+                                             :post => 'Старший преподаватель')
+        @human1.merge_with(@human2)
+        @human1.reload
+        @human1.roles.should_not be_empty
+      end
+
+      it 'есть у обоих' do
+        @human1.roles << Roles::Employee.new(:chair => Factory.create(:chair),
+                                             :post => 'Старший преподаватель')
+
+        @human2.roles << Roles::Employee.new(:chair => Factory.create(:chair),
+                                             :post => 'Старший преподаватель')
+
+        @human1.merge_with(@human2)
+        @human1.roles.count.should be 2
+      end
+
+      it 'есть у обоих и они одинаковые' do
+        chair = Factory.create(:chair)
+        @human1.roles << Roles::Employee.new(:chair => chair,
+                                             :post => 'Старший преподаватель')
+
+        @human2.roles << Roles::Employee.new(:chair => chair,
+                                             :post => 'Старший преподаватель')
+
+        @human1.merge_with(@human2)
+        @human1.roles.count.should be 1
+      end
+
+    end
 
   end
 
