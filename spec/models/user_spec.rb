@@ -4,13 +4,9 @@ require 'spec_helper'
 require 'cancan/matchers'
 
 describe User do
-  it 'при создании пользователя создавать персональную информацию' do
-    user = Factory.create(:user)
-    user.human.should_not be nil
-  end
-
   it 'должен знать свои подтвержденые роли' do
     user = Factory.create(:user)
+    user.human.save
     user.human.roles << Roles::Admin.new(:title => 'Администратор',
                                           :slug => 'admin',
                                           :state => 'accepted')

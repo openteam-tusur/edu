@@ -3,31 +3,17 @@
 require 'spec_helper'
 
 describe Human do
-  it 'должен правильно определять заполненность' do
+  it "при удалении должен убивать роли" do
     human = Factory.create(:human)
-    human.filled?.should be false
-
-    human.update_attributes(:surname => 'surname')
-    human.reload.filled?.should be false
-
-    human.update_attributes(:name => 'name')
-    human.reload.filled?.should be false
-
-    human.update_attributes(:patronymic => 'patronymic')
-    human.reload.filled?.should be true
-  end
-
-  it "при удалении должен убивать пользователя и роли" do
-    user = Factory.create(:user)
     chair = Factory.create(:chair)
     human = chair.create_employee "surname" => "Фамилия",
                                   "name" => "Имя",
                                   "patronymic" => "Отчество",
                                   "post" => "старший преподаватель",
-                                  "human_id" => user.human.id
+                                  "human_id" => human.id
+    human.roles.should_not be_empty
     human.destroy
-    Human.exists?(human.id).should be true
-    User.exists?(user.id).should be true
+    Human.exists?(human.id).should be false
     Role.where(:human_id => human.id).should be_empty
   end
 
@@ -71,6 +57,34 @@ describe Human do
       Human.autocomplete_authors("ба").collect(&:id).sort.should eql [@bankin.id, @bapyj.id].sort
       Human.autocomplete_authors("ба жо").should eql [@bankin]
     end
+  end
+
+
+  describe 'должен уметь объединяться с другим человечишком' do
+    before :each do
+      @human1 = Human.create :name => "Ерофей", :patronymic => "Жозефович", :surname => "Банькин"
+      @human2 = Human.create :name => "Ефрем", :patronymic => "Никитович", :surname => "Бапый"
+    end
+
+    after :all do
+      Human.where(:id => @human2).should_not be_exists
+    end
+
+    it 'если у обоих нет аккаунтов' do
+      @human1.merge_with(@human2)
+    end
+
+#    it 'если у первого есть аккаунт' do
+#      user =
+#      @human1.build_user(Factory.attributes_for(:user)).save!
+#      @human1.reload
+#      p @human1.user
+#      @human1.merge_with(@human2)
+#      @human1.reload
+#      p @human1.user
+#      @human1.reload.user.should_not be_nil
+#    end
+
   end
 
 end

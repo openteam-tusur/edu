@@ -9,12 +9,12 @@ class Human < ActiveRecord::Base
   belongs_to :user
 
   has_many :roles, :dependent => :destroy
-  after_destroy :destroy_user
 
   has_many :students, :class_name => 'Roles::Student'
   has_many :employees, :class_name => 'Roles::Employee'
 
-  validates_presence_of :post, :surname, :name, :patronymic,  :if => :chair_id
+  validates_presence_of :surname, :name, :patronymic
+  validates_presence_of :post, :if => :chair_id
   validates_presence_of :human_id,
                         :if => :chair_id,
                         :on => :create,
@@ -75,10 +75,6 @@ class Human < ActiveRecord::Base
     roles.accepted.empty? ? "": " — #{roles.accepted.map(&:to_s).join(', ')}"
   end
 
-  def filled?
-    !(surname.blank? || name.blank? || patronymic.blank?)
-  end
-
   def namesakes
     human = self
     Human.solr_search do
@@ -94,33 +90,33 @@ class Human < ActiveRecord::Base
     abbreviated_name
   end
 
+  def merge_with(other_human)
+    other_human.destroy
+  end
+
   private
 
-  def destroy_user
-    self.user.destroy if self.user
-  end
+    def self.find_accepted_employees_in_chair(query, page, chair)
+      solr_search do
+        keywords query
+        with :employee_chair_ids, chair.id
+        paginate :page => page, :per_page => 10
+      end.results
+     end
 
-  def self.find_accepted_employees_in_chair(query, page, chair)
-    solr_search do
-      keywords query
-      with :employee_chair_ids, chair.id
-      paginate :page => page, :per_page => 10
-    end.results
-   end
+    def self.search(query, options)
+      solr_search do
+        keywords query
 
-  def self.search(query, options)
-    solr_search do
-      keywords query
+        chair_filter = with(:chair_ids, options[:chair_id]) if options[:chair_id]
+        role_filter = with(:role_slugs, options[:role]) if options[:role]
 
-      chair_filter = with(:chair_ids, options[:chair_id]) if options[:chair_id]
-      role_filter = with(:role_slugs, options[:role]) if options[:role]
+        facet :chair_ids, :zeros => true, :exclude => chair_filter, :sort => :index
+        facet :role_slugs, :zeros => true, :exclude => role_filter, :sort => :index
 
-      facet :chair_ids, :zeros => true, :exclude => chair_filter, :sort => :index
-      facet :role_slugs, :zeros => true, :exclude => role_filter, :sort => :index
-
-      paginate :page => options[:page], :per_page => 10
+        paginate :page => options[:page], :per_page => 10
+      end
     end
-  end
 
 end
 

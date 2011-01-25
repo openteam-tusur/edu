@@ -13,6 +13,9 @@
         margin: 0 10px 0 0
         padding: 5px 10px
 
+    .extended_kind
+      width: 610px
+
 .publication_search
   +clearfix
   fieldset
@@ -43,6 +46,11 @@
     .resource_state_unpublished
       font-size: 12px
       padding: 1px 4px
+    .nobr
+      font-size: 12px
+      font-weight: normal
+    .comment_info
+      cursor: help
 
 .publication
 
@@ -80,6 +88,18 @@
     .publication_content p
       +monospace_font_stack
       font-size: 11px
+
+  .publication_comment
+    +inline-block
+    border: 1px solid #ffe169
+    +border-radius(3px)
+    background-color: #ffeeaa
+    padding: 15px 15px 0 15px
+    margin-bottom: 0
+    .label
+      display: block
+      font-size: 14px
+      margin-bottom: 10px
 
 .publication.facets
   ul

@@ -165,6 +165,7 @@ ru:
     manage/publication_disciplines:
       new: Добавление дисциплины
       edit: Редактирование дисциплины
+      delete: Удаление дисциплины
 
     manage/provided_specialities:
       index: Обеспечиваемые дисциплины
@@ -415,6 +416,7 @@ ru:
         volume: Количество страниц
         year: Год издания
         extended_kind: Полное название типа материала
+        comment: Примечание
 
         kind_enum:
           training_toolkit: Учебно-методическое пособие

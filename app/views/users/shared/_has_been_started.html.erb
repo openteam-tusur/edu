@@ -1,8 +1,9 @@
 <% if current_user && !current_user.has_been_started? %>
   <div class="get_started">
     <ul>
-      <li <%= "style='text-decoration: line-through;'" if current_user.human.filled? %> >
-        <p><%= link_to 'Заполните', edit_human_path %> Ваш профиль.</p>
+      <li <%= "style='text-decoration: line-through;'" unless current_user.human.new_record? %> >
+        <p>
+          <%= link_to 'Заполните', current_user.human.new_record? ? new_human_path : edit_human_path %> Ваш профиль.</p>
       </li>
 
       <li>

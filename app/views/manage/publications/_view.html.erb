@@ -1,30 +1,41 @@
 <% title "#{@publication.title} — #{@publication.human_kind}" %>
 
-<div class="publication">
-  <%= render :partial => "/common/resource", :locals => { :resource => resource } %>
+<ul class="resource_action">
+  <%= render :partial => "/common/resource_state", :locals => { :resource => @publication } %>
+  <li class="extended_kind"><%= @publication.extended_kind %></li>
+</ul>
 
-  <ul class="resource_action">
-    <li><%= link_to t(:edit), edit_resource_path(resource), :class => "button" %></li>
-    <li><%= link_to 'Лицензионный договор', to_report_manage_chair_publication_path(resource), :class => "button" %></li>
-    <%= render :partial => "/common/resource_state", :locals => { :resource => resource } %>
-  </ul>
+<div class="publication">
+
+  <%= show_for resource, :id => 'publication_comment' do |publication| %>
+    <%= publication.attribute :comment do %>
+      <%= simple_format(@publication.comment).gilensize %>
+    <% end %>
+  <% end unless @publication.comment.blank? %>
+
+  <%= render :partial => "/common/resource", :locals => { :resource => @publication } %>
 
   <div class="additional">
-    <div>
-      <h2>Дополнительно</h2>
-    </div>
-    <%= show_for resource, :id => 'additional_attributes' do |publication| %>
-      <% @publication.fields_for_kind.each do |attribute| %>
-        <% if attribute == :annotation || attribute == :content || attribute.eql?(:stamp) %>
-          <%= publication.attribute attribute do %>
-            <%= @publication.send(attribute).blank? ? simple_format("не указано") : simple_format(@publication.send(attribute).gilensize) %>
+    <h2>Дополнительно</h2>
+    <%= show_for @publication, :id => 'additional_attributes' do |publication| %>
+      <fieldset class="pictorial">
+        <% @publication.fields_for_kind.each do |attribute| %>
+          <% if attribute == :annotation || attribute == :content || attribute.eql?(:stamp) %>
+            <%= publication.attribute attribute do %>
+              <%= @publication.send(attribute).blank? ? simple_format("не указано") : simple_format(@publication.send(attribute).gilensize) %>
+            <% end %>
+          <% else %>
+            <%= publication.attribute attribute %>
           <% end %>
-        <% else %>
-          <%= publication.attribute attribute %>
         <% end %>
-      <% end %>
+      </fieldset>
     <% end %>
   </div>
+
+  <ul class="resource_action">
+    <li><%= link_to t(:edit), edit_resource_path(@publication), :class => "button" %></li>
+    <li><%= link_to 'Лицензионный договор', to_report_manage_chair_publication_path(@publication), :class => "button" %></li>
+  </ul>
 
   <div class='disciplines'>
     <h2>Дисциплины</h2>
@@ -50,5 +61,6 @@
     <% end %>
     <p><%= link_to "Добавить дисциплину", new_manage_chair_publication_publication_discipline_path(@chair, @publication), :class => 'button' %></p>
   </div>
+
 </div>
 
