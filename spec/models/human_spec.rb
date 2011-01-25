@@ -19,12 +19,15 @@ describe Human do
 
   it "при удалении должен убивать пользователя и роли" do
     user = Factory.create(:user)
+    user.human.save
     chair = Factory.create(:chair)
     human = chair.create_employee "surname" => "Фамилия",
                                   "name" => "Имя",
                                   "patronymic" => "Отчество",
                                   "post" => "старший преподаватель",
                                   "human_id" => user.human.id
+    p human
+    p human.roles
     human.destroy
     Human.exists?(human.id).should be true
     User.exists?(user.id).should be true

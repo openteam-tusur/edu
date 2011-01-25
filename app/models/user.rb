@@ -23,7 +23,11 @@ class User < ActiveRecord::Base
 
   # Возвращает список ролей пользователя
   def roles
-    human.roles.accepted.collect { |r| r.slug.to_sym }
+    if human.new_record?
+      []
+    else
+      human_without_build.roles.accepted.collect { |r| r.slug.to_sym }
+    end
   end
 
   def has_been_started?
