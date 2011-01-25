@@ -408,6 +408,7 @@ ru:
         udk: УДК
         volume: Количество страниц
         year: Год издания
+        extended_kind: Полное название типа материала
 
         kind_enum:
           training_toolkit: Учебно-методическое пособие
