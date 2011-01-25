@@ -38,6 +38,13 @@ GIT
     annotate (2.4.0)
 
 GIT
+  remote: git://github.com/openteam/has_enum
+  revision: 207608f64dfe2f5bb5cdd3b99a2261eb6355d97d
+  specs:
+    has_enum (0.5.0)
+      rails (~> 3.0.0)
+
+GIT
   remote: git://github.com/openteam/inherited_resources
   revision: 98c291618f097eb19bd07765249a525d3c363d58
   specs:
@@ -124,8 +131,6 @@ GEM
       i18n (~> 0.4)
     gilenson (1.1.1)
     haml (3.0.25)
-    has_enum (0.5.0)
-      rails (~> 3.0.0)
     has_scope (0.5.0)
     hirb (0.3.6)
     i18n (0.5.0)
@@ -247,7 +252,7 @@ DEPENDENCIES
   formtastic
   geohash (= 1.0.1)!
   gilenson
-  has_enum (~> 0.5.0)
+  has_enum!
   hirb
   inherited_resources!
   inherited_resources_views

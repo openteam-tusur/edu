@@ -64,6 +64,9 @@ ru:
     chairs:
       index: Кафедры
 
+    educations:
+      show: Учебно-методическое обеспечение
+
     users/sessions:
       create: Вход
       new: Вход
@@ -90,6 +93,9 @@ ru:
 
     chairs:
       index: Кафедры
+
+    plan/educations:
+      index: Учебно-методическое обеспечение
 
     manage/educations:
       new: Добавление дисциплины
