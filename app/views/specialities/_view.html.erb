@@ -26,8 +26,7 @@
         <%= link_to "Учебный план #{curriculum.year}",
                     curriculum.attachment.data.url,
                     :class => "#{curriculum.access}_pdf download" %>
-      <% else %>
-        файл отсутствует
+
       <% end %>
     </div>
   </div>

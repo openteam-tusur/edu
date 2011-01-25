@@ -1,0 +1,24 @@
+# encoding: utf-8
+SimpleNavigation::Configuration.run do |navigation|
+  navigation.items do |primary|
+  primary.item :chairs, t("title.chairs.index"), chairs_path, :class => "subfaculties",
+                  :highlights_on => /^\/chairs|^\/employees/ do |user|
+
+      user.item "chair_#{@chair.slug}", @chair.abbr,
+                  chair_path(@chair) do |chair|
+
+        # список специальностей
+        chair.item :specialities,
+                   t("title.specialities.index"),
+                   chair_specialities_path(@chair) do |specialities|
+
+          # специальности
+          specialities.item :speciality,
+                            @speciality.title,
+                            chair_speciality_path(@chair, @speciality) if @speciality
+        end
+      end if @chair
+    end
+  end
+end
+
