@@ -38,7 +38,7 @@ class Publication < Resource
       keywords query unless query.blank?
       with :chair_id, chair.id
       kind_filter = with :kind, options[:kind] if options[:kind]
-      facet :kind, :zeros => true, :exclude => kind_filter
+      facet :kind, :zeros => true, :exclude => kind_filter, :sort => :index
       paginate :page => options[:page], :per_page => Publication.per_page
     end
   end
