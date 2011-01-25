@@ -22,9 +22,9 @@ Portal::Application.routes.draw do
           put :transit, :on => :member
           resources :semesters do
             resources :educations
+          end
         end
-          end
-          end
+      end
     resources :provided_specialities, :only => :index
     end
 
