@@ -56,15 +56,15 @@ class Publication < Resource
   end
 
   def fields_for_kind(kind = self.kind)
-    if %w(work_programm demo).include? kind
+    if kind.eql? 'work_programm'
       return [:annotation]
     end
 
-    if %w(tutorial).include? kind
-      return [:bbk, :isbn, :udk, :annotation, :content, :stamp]
+    if kind.eql? 'tutorial'
+      return [:annotation, :content, :bbk, :isbn, :udk, :stamp]
     end
 
-    if %w(lab_work course_work attestation practice seminar test independent).include? kind
+    if kind.eql? 'training_toolkit'
      return [:annotation, :content]
     end
   end
