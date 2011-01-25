@@ -1,4 +1,4 @@
-<div class="human_profile">
+<div class="manage human_profile">
     <%= show_for resource do |human| %>
       <ul class="individual_information">
         <%= human.attribute :surname, :label_tag => :span, :content_tag => :span, :wrapper_tag => :li %>
@@ -8,18 +8,20 @@
       <%= link_to 'Изменить личную информацию', edit_resource_path %>
     <% end %>
 
-    <%= show_for resource.user do |user| %>
-      <ul class="login_information">
-        <%= user.attribute :email, :label_tag => :span, :content_tag => :span, :wrapper_tag => :li %>
-        <li class="wrapper user_password">
-          <span class="label">Пароль</span>
-          <span class="content">******</span>
-        </li>
-      </ul>
+    <% if @human.user %>
+      <%= show_for @human.user do |user| %>
+        <ul class="login_information">
+          <%= user.attribute :email, :label_tag => :span, :content_tag => :span, :wrapper_tag => :li %>
+          <li class="wrapper user_password">
+            <span class="label">Пароль</span>
+            <span class="content">******</span>
+          </li>
+        </ul>
 
-      <%= link_to 'Изменить электронную почту', edit_manage_human_user_path(@human), :class => "break_line" %>
+        <%= link_to 'Изменить электронную почту', edit_manage_human_user_path(@human), :class => "break_line" %>
 
-      <%= link_to 'Сброс пароля', flush_password_manage_human_user_path(@human), :class => "break_line" %>
+        <%= link_to 'Сброс пароля', flush_password_manage_human_user_path(@human), :class => "break_line" %>
+      <% end %>
     <% end %>
 
     <hr />
@@ -66,5 +68,21 @@
         </tbody>
       </table>
     <% end %>
+</div>
+
+<div class="namesakes">
+  <h3>Похожие люди</h3>
+  <ul>
+  <% @human.namesakes.each do |namesake| %>
+    <li class="namesake_item">
+      <%= link_to namesake, manage_human_path(namesake) %>
+      <ul class="namesake_roles">
+      <% namesake.roles.each do |role| %>
+        <li class="need_tipsy <%= role.state %>" title="<%= role.human_state %>"><%= role %></li>
+      <% end %>
+      </ul>
+    </li>
+  <% end %>
+  </ul>
 </div>
 
