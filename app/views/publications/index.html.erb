@@ -1,6 +1,6 @@
-#<div class="publication facets">
- # <%= render_navigation :context => 'manage_publication' %>
-#</div>
+<div class="publication facets">
+ <%= render_navigation :context => 'manage_publication' %>
+</div>
 
 <%= semantic_form_for :publications, :html => { :method => :get, :class => "publication_search" } do | form | %>
   <%= form.inputs do %>
