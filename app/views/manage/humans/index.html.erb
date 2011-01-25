@@ -19,7 +19,7 @@
         <div class="full_name"><%= link_to human.full_name, manage_human_path(human) %></div>
         <ul class="roles">
           <% human.roles.each do |role| %>
-            <li><%= role %></li>
+            <li class="<%= role.state %>"><%= role %></li>
           <% end %>
         </ul>
       </li>

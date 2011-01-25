@@ -1,5 +1,5 @@
 <% title "#{@publication.title} — #{@publication.human_kind}" %>
-
+<p><%= @publication.extended_kind %></p>
 <div class="publication">
   <%= render :partial => "/common/resource", :locals => { :resource => resource } %>
 
