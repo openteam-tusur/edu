@@ -118,21 +118,23 @@ end
 # Table name: publications
 # Human name: Учебно-методический материал
 #
-#  id         :integer         not null, primary key
-#  chair_id   :integer
-#  title      :string(255)     'Название'
-#  year       :integer         'Год издания'
-#  volume     :integer         'Количество страниц'
-#  state      :string(255)     'Статус'
-#  access     :string(255)     'Доступ к файлу'
-#  kind       :string(255)     'Тип учебного материала'
-#  isbn       :string(255)     'ISBN'
-#  udk        :string(255)     'УДК'
-#  bbk        :string(255)     'ББК'
-#  stamp      :text            'Гриф'
-#  created_at :datetime
-#  updated_at :datetime
-#  content    :text            'Содержание'
-#  annotation :text            'Описание'
+#  id            :integer         not null, primary key
+#  chair_id      :integer
+#  title         :string(255)     'Название'
+#  year          :integer         'Год издания'
+#  volume        :integer         'Количество страниц'
+#  state         :string(255)     'Статус'
+#  access        :string(255)     'Доступ к файлу'
+#  kind          :string(255)     'Тип учебного материала'
+#  isbn          :string(255)     'ISBN'
+#  udk           :string(255)     'УДК'
+#  bbk           :string(255)     'ББК'
+#  stamp         :text            'Гриф'
+#  created_at    :datetime
+#  updated_at    :datetime
+#  content       :text            'Содержание'
+#  annotation    :text            'Описание'
+#  extended_kind :string(255)     'Полное название типа материала'
+#  comment       :text            'Примечание'
 #
 

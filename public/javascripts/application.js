@@ -189,7 +189,10 @@ $(function() {
   manipulation_publication_fields();
   flash();
   $(".focus_first:first").focus();
-  $("*[rel=tipsy], .formtastic .inputs abbr, .need_tipsy").tipsy({gravity: "s"});
+  $("*[rel=tipsy], .formtastic .inputs abbr, .need_tipsy").tipsy({
+    gravity: "s",
+    html: true
+  });
   $("a[rel=tipsy-left]").tipsy({gravity: "e"});
   $(".formtastic .inputs .date input").datepicker({
     showOn: "button",
