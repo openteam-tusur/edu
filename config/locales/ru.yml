@@ -338,6 +338,7 @@ ru:
       speciality:
         accreditation: Аккредитация
         chair: Кафедра
+        title: Специальность
         code: Код
         degree: Степень
         degree_enum:

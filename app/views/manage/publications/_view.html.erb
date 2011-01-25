@@ -32,7 +32,10 @@
       <% @publication.grouped_disciplines.each do |speciality, publication_disciplines| %>
         <p class="speciality_name"><%= speciality.autocomplete_value %></p>
         <% publication_disciplines.each do |publication_discipline| %>
-
+          <p class="discipline_name">
+            <%= publication_discipline.discipline.name %>
+            <%= link_to t(:edit), edit_manage_chair_publication_publication_discipline_path(@chair, @publication, publication_discipline), :class => "edit" %>
+          </p>
           <ul class="educations">
           <% publication_discipline.educations_grouped_by_curriculums.each do |curriculum, educations| %>
             <li>
@@ -44,7 +47,7 @@
         <% end %>
       <% end %>
     <% end %>
-
+    <p><%= link_to "Добавить дисциплину", new_manage_chair_publication_publication_discipline_path(@chair, @publication), :class => 'button' %></p>
   </div>
 </div>
 

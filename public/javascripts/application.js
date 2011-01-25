@@ -198,5 +198,6 @@ $(function() {
     changeMonth: true,
     changeYear: true
   });
+  $(".disciplines .tabs").tabs();
 });
 

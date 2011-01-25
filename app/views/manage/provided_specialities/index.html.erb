@@ -9,18 +9,20 @@
           <% specialities.each do |speciality| %>
             <div class="speciality_item">
               <p class="name"><%= speciality.short_title %></p>
-              <ul class="curriculums">
-                <% @chair.grouped_curriculums_for_specialities(speciality).each do |curriculum, educations_count| %>
-                  <li>
-                    <span class="curriculum"><%= link_to curriculum.study_with_since, manage_chair_provided_disciplines_path(@chair, curriculum) %></span>
-                    <span class="educations"><%= educations_count %></span>
-                    <% Publication.enum(:kind).each do |kind| %>
-                      <% provided = @chair.send("provided_curriculum_by_#{kind}", curriculum) %>
-                      <span class="<%= kind %> <%= provided[:class] %>"><%= provided[:provided] %></span>
-                    <% end %>
-                  </li>
-                <% end %>
-              </ul>
+              <% unless @chair.grouped_curriculums_for_specialities(speciality).empty? %>
+                <ul class="curriculums">
+                  <% @chair.grouped_curriculums_for_specialities(speciality).each do |curriculum, educations_count| %>
+                    <li>
+                      <span class="curriculum"><%= link_to curriculum.study_with_since, manage_chair_provided_disciplines_path(@chair, curriculum) %></span>
+                      <span class="educations"><%= educations_count %></span>
+                      <% Publication.enum(:kind).each do |kind| %>
+                        <% provided = @chair.send("provided_curriculum_by_#{kind}", curriculum) %>
+                        <span class="<%= kind %> <%= provided[:class] %>"><%= provided[:provided] %></span>
+                      <% end %>
+                    </li>
+                  <% end %>
+                </ul>
+              <% end %>
             </div>
           <% end %>
         </fieldset>

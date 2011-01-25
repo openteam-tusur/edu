@@ -38,8 +38,10 @@
       <% @semester.educations.each do |education| %>
         <div class="discipline <%= cycle('odd', 'even') %>">
           <div class="discipline_name">
-            <%= education.discipline.name %>
-            (<%= education.examinations.collect(&:name).join(", ").mb_chars.downcase %>)
+            <%= link_to education.discipline.name, '#' %>
+            <% unless education.examinations.empty? %>
+              (<%= education.examinations.collect(&:name).join(", ").mb_chars.downcase %>)
+            <% end %>
           </div>
          </div>
       <% end %>
