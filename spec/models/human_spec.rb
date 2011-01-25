@@ -73,6 +73,34 @@ describe Human do
     end
   end
 
+
+  describe 'должен уметь объединяться с другим человечишком' do
+    before :each do
+      @human1 = Human.create :name => "Ерофей", :patronymic => "Жозефович", :surname => "Банькин"
+      @human2 = Human.create :name => "Ефрем", :patronymic => "Никитович", :surname => "Бапый"
+    end
+
+    after :all do
+      Human.where(:id => @human2).should_not be_exists
+    end
+
+    it 'если у обоих нет аккаунтов' do
+      @human1.merge_with(@human2)
+    end
+
+#    it 'если у первого есть аккаунт' do
+#      user =
+#      @human1.build_user(Factory.attributes_for(:user)).save!
+#      @human1.reload
+#      p @human1.user
+#      @human1.merge_with(@human2)
+#      @human1.reload
+#      p @human1.user
+#      @human1.reload.user.should_not be_nil
+#    end
+
+  end
+
 end
 
 # == Schema Information
