@@ -159,6 +159,7 @@ ru:
     manage/publication_disciplines:
       new: Добавление дисциплины
       edit: Редактирование дисциплины
+      delete: Удаление дисциплины
 
     manage/provided_specialities:
       index: Обеспечиваемые дисциплины
