@@ -253,6 +253,8 @@ DEPENDENCIES
   inherited_resources_views
   jquery-rails
   launchy
+  mime-types
+  nokogiri
   paperclip
   pg
   protected_parent

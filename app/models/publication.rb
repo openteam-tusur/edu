@@ -68,6 +68,47 @@ class Publication < Resource
     end
   end
 
+  def to_s
+    result = "#{title}: #{human_kind} / "
+    result += authors.empty? ? "" : "#{authors.map(&:abbreviated_name).join(', ')} – "
+    result += "#{year}. #{volume} с."
+  end
+
+  def to_report
+    builder = Nokogiri::XML::Builder.new(:encoding => 'utf-8') do |xml|
+      xml.root do
+        xml.parent.name = "doc"
+        xml.licensor authors.map(&:human).map(&:full_name).join(", ")
+        xml.publication to_s
+        xml.authors do |xml_authors|
+          authors.map(&:human).map(&:abbreviated_name).each do |author|
+            xml_authors.author author
+          end
+        end
+      end
+    end
+    builder.to_xml
+  end
+
+  def generate_data
+    template_path = Rails.root.join("reports", "publication.odt").to_s
+    result_data = ""
+
+    Tempfile.open ["data_file", ".xml"] do |data_file|
+      data_file << to_report
+      data_file.flush
+
+      Tempfile.open ["publication", ".odt"] do | odt_file |
+        libdir = Rails.root.join "reports", "lib"
+        result = system("java", "-Djava.ext.dir=#{libdir}", "-jar", "#{libdir}/jodreports-2.1-RC.jar", template_path, data_file.path, odt_file.path)
+        raise "Ошибка создания документа" unless result
+
+        result_data = File.read(odt_file.path)
+      end
+    end
+    result_data
+  end
+
 end
 
 
