@@ -1,20 +1,31 @@
-<div class="human_profile">
-  <ul>
-    <li>
-      <%= resource.full_name %>
-      <%= link_to t(:edit), edit_resource_path, :class => :edit %>
-    </li>
-    <li>
-      <% unless @human.user.nil? %>
-        <%= @human.user.email %>
-        <%= link_to t(:edit), edit_manage_human_user_path(@human) %>
-        <%= link_to "Сброс пароля", flush_password_manage_human_user_path(@human), :class => :button %>
+<div class="manage human_profile">
+    <%= show_for resource do |human| %>
+      <ul class="individual_information">
+        <%= human.attribute :surname, :label_tag => :span, :content_tag => :span, :wrapper_tag => :li %>
+        <%= human.attribute :name, :label_tag => :span, :content_tag => :span, :wrapper_tag => :li %>
+        <%= human.attribute :patronymic, :label_tag => :span, :content_tag => :span, :wrapper_tag => :li %>
+      </ul>
+      <%= link_to 'Изменить личную информацию', edit_resource_path %>
+    <% end %>
+
+    <% if @human.user %>
+      <%= show_for @human.user do |user| %>
+        <ul class="login_information">
+          <%= user.attribute :email, :label_tag => :span, :content_tag => :span, :wrapper_tag => :li %>
+          <li class="wrapper user_password">
+            <span class="label">Пароль</span>
+            <span class="content">******</span>
+          </li>
+        </ul>
+
+        <%= link_to 'Изменить электронную почту', edit_manage_human_user_path(@human), :class => "break_line" %>
+
+        <%= link_to 'Сброс пароля', flush_password_manage_human_user_path(@human), :class => "break_line" %>
       <% end %>
-    </li>
-  </ul>
+    <% end %>
 
+    <hr />
 
-  <hr />
   <h1>Роли <span>(
                   <%= link_to 'добавить роль студента', new_manage_human_role_path(@human, :type => "student") %>,
                   <%= link_to 'добавить роль преподавателя', new_manage_human_role_path(@human, :type => "employee") %>)
@@ -31,9 +42,47 @@
           </tr>
         </thead>
         <tbody>
-          <%= render resource.roles %>
+          <% resource.roles.each do | role | %>
+            <tr>
+              <td>
+                <%= role %>
+                <% if current_user.roles.include?(:admin) %>
+                  <span class="actions">
+                    <%= link_to t(:edit), edit_manage_role_path(role), :class => "need_tipsy edit", :title => "Редактировать" if can? :manage, role %>
+                    <% unless role.aasm_events_for_current_state.empty? %>
+                      <% role.aasm_events_for_current_state.each do |event| %>
+                        <%= link_to(role.human_event_name(event),
+                                    transit_manage_role_path(role, :event => event),
+                                    :method => :put,
+                                    :title => role.human_event_name(event),
+                                    :class => "need_tipsy #{event}") %>
+                      <% end %>
+                    <% end %>
+                  </span>
+                <% end %>
+              </td>
+              <td><%= role.human_state %></td>
+              <td><%= l role.created_at, :format => :long %></td>
+            </tr>
+          <% end %>
         </tbody>
       </table>
     <% end %>
+</div>
+
+<div class="namesakes">
+  <h3>Похожие люди</h3>
+  <ul>
+  <% @human.namesakes.each do |namesake| %>
+    <li class="namesake_item">
+      <%= link_to namesake, manage_human_path(namesake) %>
+      <ul class="namesake_roles">
+      <% namesake.roles.each do |role| %>
+        <li class="need_tipsy <%= role.state %>" title="<%= role.human_state %>"><%= role %></li>
+      <% end %>
+      </ul>
+    </li>
+  <% end %>
+  </ul>
 </div>
 

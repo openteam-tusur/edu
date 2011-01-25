@@ -10,6 +10,25 @@ Portal::Application.routes.draw do
     end
   end
 
+  resources :chairs, :only => [:index, :show] do
+  resources :employees, :except => [:show]
+      resources :publications do
+        put :transit, :on => :member
+        resources :publication_disciplines, :except => [:index, :show]
+      end
+
+      resources :specialities do
+        resources :curriculums do
+          put :transit, :on => :member
+          resources :semesters do
+            resources :educations
+        end
+          end
+          end
+    resources :provided_specialities, :only => :index
+    end
+
+
   namespace :manage do
     match "/publications/get_fields" => "publications#get_fields", :method => :post
     resources :humans, :shallow => true do

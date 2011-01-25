@@ -27,6 +27,49 @@
       +inline-block
       margin: 18px 0 0 20px
 
+    .break_line
+      +clearfix
+      display: block
+      margin: 0
+      padding: 0 0 15px 20px
+
+  .edit
+    +inline-block
+    background: url("../images/icon_edit.png") no-repeat
+    height: 16px
+    margin-left: 10px
+    text-indent: -9999px
+    width: 16px
+
+  td
+    .edit
+      margin: 0 3px !important
+
+    .actions
+      +border-radius
+      +clearfix
+      background: #F4E1CA
+      display: block
+      float: right
+      margin-left: 10px
+      padding: 2px
+
+    .accept, .reject, .expire
+      float: left
+      height: 19px
+      margin: 0 3px
+      text-indent: -999px
+      width: 19px
+
+    .accept
+      background: url("../images/icon_accept.png") no-repeat
+
+    .reject
+      background: url("../images/icon_reject.png") no-repeat
+
+    .expire
+      background: url("../images/icon_expire.png") no-repeat
+
   .human
     a
       +inline-block
@@ -44,4 +87,44 @@
         border-bottom: 1px dashed #326693
         font-size: 12px
         line-height: 15px
+
+.manage
+  &.human_profile
+    float: left
+    margin-right: 10px
+    width: 680px
+
+.namesakes
+  +clearfix
+  +border-radius
+  background: #eee
+  padding: 10px
+  width: 210px
+
+  .namesake_item
+    background: url("../images/icon_humans.png") no-repeat left top
+    padding-left: 20px
+
+    a
+      font-size: 14px
+
+    .namesake_roles
+      font-size: 10px
+      margin-top: 5px
+
+      li
+        +border-radius
+        clear: both
+        float: left
+        margin-bottom: 5px
+        padding: 1px 3px
+
+      .pending
+        background: rgba(148, 192, 231, 0.2)
+      .accepted
+        background: rgba(138, 173, 13, 0.5)
+      .rejected
+        background: rgba(221, 4, 1, 0.3)
+      .expired
+        background: rgba(247, 185, 3, 0.5)
 

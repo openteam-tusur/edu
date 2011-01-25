@@ -88,10 +88,16 @@ ru:
     manage/chairs:
       index: Кафедры
 
+    chairs:
+      index: Кафедры
+
     manage/educations:
       new: Добавление дисциплины
       edit: Редактирование дисциплины
       delete: Удаление дисциплины
+
+    specialities:
+      index: Специальности и направления подготовки
 
     manage/specialities:
       index: Специальности и направления подготовки
@@ -103,6 +109,9 @@ ru:
       new: Добавление учебного плана
       edit: Изменение учебного плана
       delete: Удаление учебного плана
+
+    curriculums:
+      new: Добавление учебного плана
 
     manage/semesters:
       new: Добавление семестра
@@ -120,6 +129,9 @@ ru:
       new: Добавление материала
       edit: Редактирование материала
       delete: Удаление материала
+
+    publications:
+      index: Учебно-методическое обеспечение
 
     manage/authors:
       new: Добавление автора
@@ -149,6 +161,9 @@ ru:
       edit: Редактирование дисциплины
 
     manage/provided_specialities:
+      index: Обеспечиваемые дисциплины
+
+    provided_specialities:
       index: Обеспечиваемые дисциплины
 
     humans:
@@ -403,6 +418,7 @@ ru:
           test: Тесты или задания для контроля знаний
           demo: Демонстрационный материал с использованием компьютера и видеотехники
           work_programm: Рабочая программа
+          independent: Учебно-методическое пособие по организации самостоятельной работы студентов
 
       publication_discipline:
         speciality_request: Специальность
