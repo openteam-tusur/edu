@@ -409,6 +409,7 @@ ru:
         volume: Количество страниц
         year: Год издания
         extended_kind: Полное название типа материала
+        comment: Примечание
 
         kind_enum:
           training_toolkit: Учебно-методическое пособие
