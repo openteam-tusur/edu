@@ -38,7 +38,7 @@ class Manage::PublicationsController < Manage::ApplicationController
     @mime_type = MIME::Types.of(@extention).first.content_type
 
     begin
-      data = generate_data('publication', 'publication', @publication.to_xml)
+      data = generate_data('publication', 'publication', @publication.to_report)
       send_data data, :type => @mime_type, :filename => report_filename
     rescue Exception => e
       redirect_to manage_chair_publication_path(@chair, @publication)
@@ -74,7 +74,6 @@ class Manage::PublicationsController < Manage::ApplicationController
     end
     result_data
   end
-
 
 end
 

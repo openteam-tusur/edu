@@ -68,6 +68,28 @@ class Publication < Resource
     end
   end
 
+  def to_s
+    result = "#{title}: #{human_kind} / "
+    result += authors.empty? ? "" : "#{authors.map(&:abbreviated_name).join(', ')} – "
+    result += "#{year}. #{volume} с."
+  end
+
+  def to_report
+    builder = Nokogiri::XML::Builder.new(:encoding => 'utf-8') do |xml|
+      xml.root do
+        xml.parent.name = "doc"
+        xml.licensor authors.map(&:human).map(&:full_name).join(", ")
+        xml.publication to_s
+        xml.authors do |xml_authors|
+          authors.map(&:human).map(&:abbreviated_name).each do |author|
+            xml_authors.author author
+          end
+        end
+      end
+    end
+    builder.to_xml
+  end
+
 end
 
 

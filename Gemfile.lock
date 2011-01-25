@@ -254,6 +254,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   mime-types
+  nokogiri
   paperclip
   pg
   protected_parent
