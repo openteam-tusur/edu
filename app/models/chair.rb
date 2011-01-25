@@ -28,6 +28,10 @@ class Chair < ActiveRecord::Base
     "#{self.name} (#{self.abbr})"
   end
 
+  def display_name
+    "#{self.abbr} - #{self.name}"
+  end
+
   def create_employee(params)
     human = Human.new(params.merge(:chair_id => self.id))
     return human unless human.valid?

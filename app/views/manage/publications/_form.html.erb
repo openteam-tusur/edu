@@ -1,6 +1,8 @@
 <%= form.inputs :class => "publication inputs" do %>
 
   <%= form.input :title, :as => :string, :input_html => {:class => :focus_first} %>
+  <%= form.input :extended_kind, :as => :string %>
+  <%= form.input :comment %>
 
   <%= form.fields_for :author do |author_form| %>
   <li>
@@ -46,7 +48,6 @@
       </li>
     <% end %>
   </li>
-
 <% end %>
 <%= render :partial => "manage/common/resource_fields", :locals => {:form => form} %>
 

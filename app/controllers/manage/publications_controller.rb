@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Manage::PublicationsController < Manage::ApplicationController
 
   load_resource :except => :get_fields
@@ -26,6 +28,18 @@ class Manage::PublicationsController < Manage::ApplicationController
     params[:publication].delete("attachment_attributes")
     @publication = Publication.new(params[:publication])
     render :partial => "/manage/publications/fields"
+  end
+
+  def to_report
+    @chair = Chair.find(params[:chair_id])
+    @mime_type = MIME::Types.of('odt').first.content_type
+
+    begin
+      data = @publication.generate_data
+      send_data data, :type => @mime_type, :filename => 'publication.odt'
+    rescue Exception => e
+      redirect_to manage_chair_publication_path(@chair, @publication)
+    end
   end
 
 end
