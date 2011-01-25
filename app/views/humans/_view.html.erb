@@ -5,7 +5,7 @@
         <%= human.attribute :name, :label_tag => :span, :content_tag => :span, :wrapper_tag => :li %>
         <%= human.attribute :patronymic, :label_tag => :span, :content_tag => :span, :wrapper_tag => :li %>
       </ul>
-      <%= link_to 'Изменить личную информацию', edit_human_path %>
+      <%= link_to 'Изменить личную информацию', edit_human_path unless @human.new_record? %>
     <% end %>
 
     <%= show_for resource.user do |user| %>

@@ -9,12 +9,13 @@ class User < ActiveRecord::Base
 
   default_scope order(:id)
 
-  has_one :human
-  accepts_nested_attributes_for :human,
-                                :reject_if => :all_blank,
-                                :update_only => true
+  has_one :human, :inverse_of => :user
 
-  after_create :create_human
+  alias :human_without_build :human
+
+  def human
+    human_without_build || build_human
+  end
 
   def to_s
     email
@@ -22,11 +23,7 @@ class User < ActiveRecord::Base
 
   # Возвращает список ролей пользователя
   def roles
-    if human
-      human.roles.accepted.collect { |r| r.slug.to_sym }
-    else
-      []
-    end
+    human.roles.accepted.collect { |r| r.slug.to_sym }
   end
 
   def has_been_started?

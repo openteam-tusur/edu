@@ -1,13 +1,22 @@
 class HumansController < InheritedResourcesController
   check_authorization
 
-  load_and_authorize_resource
+  load_resource :except => [:create]
+  authorize_resource
 
   prepend_before_filter :validate_authentication
 
   acts_as_singleton!
 
-  actions :edit, :update, :show
+  actions :all, :except => [:index, :delete, :destroy]
+
+  def create
+    if current_user.human
+      update! { human_path }
+    else
+      create! { human_path }
+    end
+  end
 
   def update
     update! { human_path }

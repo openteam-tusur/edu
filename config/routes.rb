@@ -3,7 +3,7 @@ Portal::Application.routes.draw do
                                         :sessions => 'users/sessions',
                                         :passwords => 'users/passwords' }
 
-  resource :human, :only => [:show, :edit, :update] do
+  resource :human, :except => [:index, :delete, :destroy] do
     namespace :roles do
       resources :students, :only => [:new, :create, :edit, :update]
       resources :employees, :only => [:new, :create, :edit, :update]
@@ -11,7 +11,7 @@ Portal::Application.routes.draw do
   end
 
   resources :chairs, :only => [:index, :show] do
-  resources :employees, :except => [:show]
+    resources :employees, :except => [:show]
       resources :publications do
         put :transit, :on => :member
         resources :publication_disciplines, :except => [:index, :show]
@@ -22,11 +22,11 @@ Portal::Application.routes.draw do
           put :transit, :on => :member
           resources :semesters do
             resources :educations
+          end
         end
-          end
-          end
+      end
     resources :provided_specialities, :only => :index
-    end
+  end
 
 
   namespace :manage do
