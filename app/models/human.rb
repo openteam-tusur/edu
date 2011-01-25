@@ -95,6 +95,9 @@ class Human < ActiveRecord::Base
       other_human.roles.each do | role |
         role.update_attributes :human_id => self.id
       end
+      other_human.authors.each do | author |
+        author.update_attributes :human_id => self.id
+      end
       if other_human.user_id
         if user_id
           other_human.user.destroy

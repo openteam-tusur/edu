@@ -142,6 +142,28 @@ describe Human do
 
     end
 
+    describe "Авторы: " do
+      before :each do
+        @human1 = Factory.create :human
+        @human2 = Factory.create :human
+        @publication = Factory.create :publication
+        @human2.authors.create :resource => @publication
+      end
+
+      it 'авторы есть у второго' do
+        @human1.merge_with(@human2)
+        @human1.reload
+        @human1.authors.count.should be 1
+      end
+
+      it 'авторы есть у обоих есть и они одинаковые' do
+        @human1.authors.create :resource => @publication
+        @human1.merge_with(@human2)
+        @human1.reload
+        @human1.authors.count.should be 1
+      end
+    end
+
   end
 
 end
