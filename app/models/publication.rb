@@ -13,9 +13,10 @@ class Publication < Resource
   has_many :authors, :as => :resource, :inverse_of => :resource
   accepts_nested_attributes_for :authors, :allow_destroy => true
 
-  validates_presence_of :chair, :title, :attachment, :year, :access, :volume, :kind
+  validates_presence_of :chair, :title, :attachment, :year,
+                        :access, :volume, :kind, :extended_kind
 
-  has_enum :kind, %w(work_programm tutorial lab_work course_work attestation practice seminar test demo independent)
+  has_enum :kind, %w(work_programm tutorial training_toolkit)
 
   scope :published,   where(:state => 'published')
   scope :unpublished, where(:state => 'unpublished')
@@ -38,7 +39,7 @@ class Publication < Resource
       keywords query unless query.blank?
       with :chair_id, chair.id
       kind_filter = with :kind, options[:kind] if options[:kind]
-      facet :kind, :zeros => true, :exclude => kind_filter
+      facet :kind, :zeros => true, :exclude => kind_filter, :sort => :index
       paginate :page => options[:page], :per_page => Publication.per_page
     end
   end
@@ -55,15 +56,15 @@ class Publication < Resource
   end
 
   def fields_for_kind(kind = self.kind)
-    if %w(work_programm demo).include? kind
+    if kind.eql? 'work_programm'
       return [:annotation]
     end
 
-    if %w(tutorial).include? kind
-      return [:bbk, :isbn, :udk, :annotation, :content, :stamp]
+    if kind.eql? 'tutorial'
+      return [:annotation, :content, :bbk, :isbn, :udk, :stamp]
     end
 
-    if %w(lab_work course_work attestation practice seminar test independent).include? kind
+    if kind.eql? 'training_toolkit'
      return [:annotation, :content]
     end
   end
