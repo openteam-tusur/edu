@@ -1,4 +1,4 @@
-<% title @publication.title %>
+<% title "#{@publication.title} — #{@publication.human_kind}" %>
 
 <div class="publication">
   <%= render :partial => "/common/resource", :locals => { :resource => resource } %>
@@ -40,7 +40,8 @@
           <% publication_discipline.educations_grouped_by_curriculums.each do |curriculum, educations| %>
             <li>
               <%= curriculum.human_study %>:
-              <%= educations.collect(&:semester).collect(&:number).join(", ") %> <%= t("semester.associate_publications", :count => educations.size) %>
+              <%= educations.collect(&:semester).collect(&:number).join(", ") %>
+              <%= t("semester.associate_publications", :count => educations.size) %>
             </li>
           <% end %>
           </ul>

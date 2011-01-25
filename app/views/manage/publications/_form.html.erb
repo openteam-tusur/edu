@@ -1,6 +1,7 @@
 <%= form.inputs :class => "publication inputs" do %>
 
   <%= form.input :title, :as => :string, :input_html => {:class => :focus_first} %>
+  <%= form.input :extended_kind, :as => :string %>
 
   <%= form.fields_for :author do |author_form| %>
   <li>
