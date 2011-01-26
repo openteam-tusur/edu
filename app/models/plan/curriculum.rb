@@ -17,7 +17,7 @@ class Plan::Curriculum < Resource
                         :order => 'plan_semesters.number'
 
   validates_presence_of :speciality, :study, :since
-  validates_uniqueness_of :study, :scope => [:speciality_id, :since]
+  validates_uniqueness_of :study, :scope => [:speciality_id, :since, :chair_id]
   validates_presence_of :access, :year, :attachment, :volume, :if => :need_all_resource_fields?
 
   protected_parent_of :educations, :protects => :softly

@@ -25,21 +25,15 @@ describe PublicationDiscipline do
 
   it "должна группировать educations по формам обучения учебного плана" do
     curriculum_1 = Factory.create(:plan_curriculum, :study => "fulltime")
-    education_1_1 = Factory.create(:plan_education, :semester => curriculum_1.semesters.first)
-    education_1_2 = Factory.create(:plan_education,
-                                    :semester => curriculum_1.semesters.second,
-                                    :discipline => education_1_1.discipline)
-    education_1_3 = Factory.create(:plan_education,
-                                    :semester => curriculum_1.semesters.second,
-                                    :discipline => education_1_1.discipline)
+    study_1 = Factory.create(:plan_study, :curriculum => curriculum_1)
+    education_1_1 = Factory.create(:plan_education, :semester => curriculum_1.semesters.first, :study => study_1)
+    education_1_2 = Factory.create(:plan_education, :semester => curriculum_1.semesters.second, :study => study_1)
+    education_1_3 = Factory.create(:plan_education, :semester => curriculum_1.semesters.second, :study => study_1)
 
     curriculum_2 = Factory.create(:plan_curriculum, :speciality => curriculum_1.speciality, :study => "postal")
-    education_2_1 = Factory.create(:plan_education,
-                                  :semester => curriculum_2.semesters.first,
-                                  :discipline => education_1_1.discipline)
-    education_2_2 = Factory.create(:plan_education,
-                                  :semester => curriculum_2.semesters.first,
-                                  :discipline => education_1_1.discipline)
+    study_2 = Factory.create(:plan_study, :curriculum => curriculum_2)
+    education_2_1 = Factory.create(:plan_education, :semester => curriculum_2.semesters.first, :study => study_2)
+    education_2_2 = Factory.create(:plan_education, :semester => curriculum_2.semesters.first, :study => study_2)
 
     curriculum_3 = Factory.create(:plan_curriculum, :speciality => curriculum_1.speciality, :study => "parttime")
 

@@ -6,8 +6,10 @@ class Chair < ActiveRecord::Base
   has_many :disciplines, :through => :specialities
   has_many :educations, :class_name => "Plan::Education"
   has_many :studies, :class_name => "Plan::Study"
-  has_many :curriculums, :class_name => "Plan::Curriculum"
   has_many :provided_disciplines, :class_name => "Plan::Discipline", :through => :educations, :source => :discipline
+
+  has_many :curriculums, :class_name => "Plan::Curriculum"
+  has_many :specialities, :through => :curriculums
 
   validates_presence_of :name, :abbr, :slug
   validates_uniqueness_of :slug, :abbr, :name
@@ -68,30 +70,33 @@ class Chair < ActiveRecord::Base
     employee
   end
 
-  def provided_curriculums
-    Plan::Curriculum.where(:id => educations.map(&:curriculum))
+  def provided_specialities
+    Speciality.where(:id => provided_curriculums)
   end
 
-  def provided_specialities
-    Speciality.where(:id => provided_curriculums.map(&:speciality))
+  def provided_curriculums
+    Plan::Curriculum.where(:id => studies.map(&:curriculum_id))
   end
 
   def grouped_provided_specialities
     grouped = {}
-    provided_specialities.unscoped.includes(:chair).order("degree, chairs.abbr, code").each do |speciality|
-      grouped[speciality.degree] ||= {}
-      grouped[speciality.degree][speciality.chair] ||= []
-      grouped[speciality.degree][speciality.chair] << speciality
+    provided_specialities.each do |speciality|
+      grouped[speciality.degree] ||= []
+      grouped[speciality.degree] << speciality
     end
     grouped
   end
 
-  def grouped_curriculums_for_specialities(speciality)
+  def grouped_curriculums_for_speciality(speciality)
     grouped = {}
     provided_curriculums.where(:speciality_id => speciality).each do |curriculum|
-      grouped[curriculum] = curriculum.educations.where(:chair_id => self).count
+      grouped[curriculum] = provided_educations_for_curriculum(curriculum).count
     end
     grouped
+  end
+
+  def provided_educations_for_curriculum(curriculum)
+    curriculum.educations.where(:study_id => studies)
   end
 
   def grouped_provided_educations_for_curriculum(curriculum)
@@ -106,7 +111,7 @@ class Chair < ActiveRecord::Base
   Publication.enum(:kind).each do |kind|
     class_eval <<-END
       def provided_curriculum_by_#{kind}(curriculum)
-        educations_for_curriculum = curriculum.educations.where(:chair_id => self)
+        educations_for_curriculum = provided_educations_for_curriculum(curriculum)
         publication_disciplines = PublicationDiscipline.solr_search do
           with :kind, "#{kind}"
           with :education_ids, educations_for_curriculum.map(&:id)

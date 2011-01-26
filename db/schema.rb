@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110126051952) do
+ActiveRecord::Schema.define(:version => 20110126065034) do
 
   create_table "attachments", :force => true do |t|
     t.string   "data_uid"
@@ -106,16 +106,8 @@ ActiveRecord::Schema.define(:version => 20110126051952) do
 
   create_table "plan_educations", :force => true do |t|
     t.integer  "semester_id"
-    t.integer  "discipline_id"
-    t.integer  "loading_lecture"
-    t.integer  "loading_laboratory"
-    t.integer  "loading_practice"
-    t.integer  "loading_course_project"
-    t.integer  "loading_course_work"
-    t.integer  "loading_self_training"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "chair_id"
     t.integer  "study_id"
   end
 

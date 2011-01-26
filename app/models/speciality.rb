@@ -1,12 +1,14 @@
 # encoding: utf-8
 
 class Speciality < ActiveRecord::Base
-  validates_presence_of :chair, :code, :degree, :name, :qualification
+  validates_presence_of :code, :degree, :name, :qualification
 
   default_scope order("degree, code")
 
   has_many :disciplines, :class_name => "Plan::Discipline", :dependent => :destroy
+
   has_many :curriculums, :class_name => "Plan::Curriculum", :dependent => :destroy
+  has_many :chairs, :through => :curriculums
 
   has_one :licence, :class_name => "Plan::Licence", :dependent => :destroy
   accepts_nested_attributes_for :licence
@@ -20,8 +22,10 @@ class Speciality < ActiveRecord::Base
   has_enum :degree, %w[specialist master bachelor], :scopes => true
 
   searchable do
-    text :info do
-      "#{code} #{name} #{chair.abbr} #{chair.name}"
+    string :info, :multiple => true do
+      chairs.map do |chair|
+        "#{code} #{name} #{chair.abbr} #{chair.name}"
+      end
     end
   end
 
