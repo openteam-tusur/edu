@@ -14,16 +14,13 @@
                   <div class="curriculum_item">
                     <div class="name">
                       <%= link_to image_tag("icon_#{curriculum.state}.png"),
-                                  "#",
+                                  manage_chair_curriculum_path(curriculum.chair, curriculum),
                                   :title => curriculum.human_state, :rel => "tipsy" %>
                       <%= link_to curriculum.study_with_since,
-                                  "#",
+                                  manage_chair_curriculum_path(curriculum.chair, curriculum),
                                   :class => curriculum.state %>
                       <span>Срок обучения <%= curriculum.duration %></span>
                       <%= link_to curriculum.chair.abbr, manage_chair_path(curriculum.chair) %>
-                    </div>
-
-                    <div class="info">
                     </div>
                   </div>
                 <% end %>
