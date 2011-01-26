@@ -30,7 +30,7 @@
                                   curriculum.attachment.data.url,
                                   :class => "#{curriculum.access}_pdf download" %>
                     <% else %>
-                      файл отсутствует
+                      <p>файл отсутствует</p>
                     <% end %>
                   </div>
                 </div>
@@ -44,4 +44,5 @@
   </div>
 <% end %>
 
-<%= link_to t(:new), new_manage_chair_curriculum_path(@chair), :class => "button" %>
+<p><%= link_to t(:new), new_manage_chair_curriculum_path(@chair), :class => "button" %></p>
+

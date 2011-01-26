@@ -1,12 +1,37 @@
 # encoding: utf-8
 SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
+    # список специальностей
+    primary.item :specialities,
+               t("title.manage/specialities.index"),
+               manage_specialities_path do |specialities|
+
+      # специальности
+      specialities.item :speciality,
+                        @speciality.title,
+                        manage_speciality_path(@speciality) do |speciality|
+
+        speciality.item :edit_speciality,
+                        t("title.manage/specialities.edit"),
+                        edit_manage_speciality_path(@speciality)
+
+        speciality.item :update_speciality,
+                        t("title.manage/specialities.edit"),
+                        edit_manage_speciality_path(@speciality),
+                        :highlights_on => /specialities/ if params[:action] == "update" && params[:controller] == "manage/specialities"
+
+        speciality.item :delete_speciality,
+                        t("title.manage/specialities.delete"),
+                        delete_manage_speciality_path(@speciality)
+      end if @speciality
+    end
 
     primary.item "manage_chairs",
                  t("title.manage/chairs.index"),
                  manage_chairs_path,
                  :class => "subfaculties",
                  :highlights_on => /^\/manage$|^\/manage\/chairs|^\/manage\/employees/ do |manage|
+
 
       manage.item "manage_chair_#{@chair.slug}",
                   @chair.abbr,

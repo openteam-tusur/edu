@@ -7,6 +7,10 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :manage_human, "<span class='decreased'>наши</span> люди",
                   manage_humans_path, :class => "humans",
                   :highlights_on => /^\/manage\/humans/
+    primary.item :manage_specialities, "<span class='decreased'>наши</span> специальности",
+                  manage_specialities_path, :class => "specialities",
+                  :highlights_on => /^\/manage\/specialities/
   end
 
 end
+
