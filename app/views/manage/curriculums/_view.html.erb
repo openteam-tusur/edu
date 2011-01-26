@@ -18,12 +18,12 @@
 </fieldset>
 
 <ul class="curriculum_action">
-  <li><%= link_to t(:edit), edit_manage_chair_speciality_curriculum_path(@chair, @speciality, @curriculum), :class => "button" %></li>
+  <li><%= link_to t(:edit), edit_manage_chair_curriculum_path(@chair, @curriculum), :class => "button" %></li>
   <% @curriculum.aasm_events_for_current_state.each do |event| %>
     <li class="curriculum_resource_state">
       <p class="resource_state_<%= @curriculum.state %>"><%= @curriculum.human_state %></p>
       <%= link_to @curriculum.human_event_name(event),
-                  transit_manage_chair_speciality_curriculum_path(@chair, @speciality, @curriculum, :event => event),
+                  transit_manage_chair_curriculum_path(@chair, @curriculum, :event => event),
                   :class => "button", :method => :put %>
     </li>
   <% end %>
@@ -42,7 +42,7 @@
       <% @curriculum.semesters.each do |semester| %>
         <td<%= semester.eql?(@semester) ? " class='current'" : ""%>>
           <%= link_to semester.number,
-                      manage_chair_speciality_curriculum_semester_path(@chair, @speciality, @curriculum, semester) %>
+                      manage_chair_curriculum_semester_path(@chair, @curriculum, semester) %>
         </td>
       <% end %>
       <%= content_tag :td, "" unless @curriculum.semesters_count.even? %>
@@ -59,7 +59,7 @@
           </div>
           <div class="discipline_edit">
             <%= link_to t("edit"),
-                        edit_manage_chair_speciality_curriculum_semester_education_path(@chair, @speciality, @curriculum, @semester, education),
+                        edit_manage_chair_curriculum_semester_education_path(@chair, @curriculum, @semester, education),
                         :title => t("edit"), :rel => "tipsy" %>
           </div>
         </div>
@@ -68,7 +68,7 @@
       <p>Дисциплины не заполнены</p>
     <% end %>
     <p class="action"><%= link_to "Добавить дисциплину",
-                   new_manage_chair_speciality_curriculum_semester_education_path(@chair, @speciality, @curriculum, @semester),
+                   new_manage_chair_curriculum_semester_education_path(@chair, @curriculum, @semester),
                    :class => "button" %></p>
   </div>
 </div>

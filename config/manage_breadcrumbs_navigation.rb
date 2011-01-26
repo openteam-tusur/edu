@@ -40,125 +40,95 @@ SimpleNavigation::Configuration.run do |navigation|
         # список специальностей
         chair.item :specialities,
                    t("title.manage/specialities.index"),
-                   manage_chair_specialities_path(@chair) do |specialities|
+                   manage_chair_curriculums_path(@chair) do |specialities|
 
-          # специальности
-          specialities.item :speciality,
-                            @speciality.title,
-                            manage_chair_speciality_path(@chair, @speciality) do |speciality|
+          # учебные планы
+          specialities.item :curriculum,
+                          @curriculum.title,
+                          manage_chair_curriculum_path(@chair, @curriculum) do |curriculum|
 
-            speciality.item :edit_speciality,
-                            t("title.manage/specialities.edit"),
-                            edit_manage_chair_speciality_path(@chair, @speciality)
+            curriculum.item :edit_curriculum,
+                            t("title.manage/curriculums.edit"),
+                            edit_manage_chair_curriculum_path(@chair, @curriculum)
+            curriculum.item :update_curriculum,
+                            t("title.manage/curriculums.edit"),
+                            edit_manage_chair_curriculum_path(@chair, @curriculum),
+                            :highlights_on => /curriculum/ if params[:action] == "update" && params[:controller] == "manage/curriculums"
 
-            speciality.item :update_speciality,
-                            t("title.manage/specialities.edit"),
-                            edit_manage_chair_speciality_path(@chair, @speciality),
-                            :highlights_on => /specialities/ if params[:action] == "update" && params[:controller] == "manage/specialities"
-            speciality.item :delete_speciality,
-                            t("title.manage/specialities.delete"),
-                            delete_manage_chair_speciality_path(@chair, @speciality)
+            curriculum.item :delete_curriculum,
+                            t("title.manage/curriculums.delete"),
+                            delete_manage_chair_curriculum_path(@chair, @curriculum)
 
-            # учебные планы
-            speciality.item :curriculum,
-                            @curriculum.title,
-                            manage_chair_speciality_curriculum_path(@chair, @speciality, @curriculum) do |curriculum|
+            # семестры
+            curriculum.item :curriculum,
+                            @semester.title,
+                            manage_chair_curriculum_semester_path(@chair, @curriculum, @semester) do |semester|
 
-              curriculum.item :edit_curriculum,
-                              t("title.manage/curriculums.edit"),
-                              edit_manage_chair_speciality_curriculum_path(@chair, @speciality, @curriculum)
-              curriculum.item :update_curriculum,
-                              t("title.manage/curriculums.edit"),
-                              edit_manage_chair_speciality_curriculum_path(@chair, @speciality, @curriculum),
-                              :highlights_on => /curriculum/ if params[:action] == "update" && params[:controller] == "manage/curriculums"
+              semester.item :edit_semester,
+                            t("title.manage/semesters.edit"),
+                            edit_manage_chair_curriculum_semester_path(@chair, @curriculum, @semester)
+              semester.item :update_semester,
+                            t("title.manage/semesters.edit"),
+                            edit_manage_chair_curriculum_semester_path(@chair, @curriculum, @semester),
+                            :highlights_on => /semester/ if params[:action] == "update" && params[:controller] == "manage/semesters"
 
-              curriculum.item :delete_curriculum,
-                              t("title.manage/curriculums.delete"),
-                              delete_manage_chair_speciality_curriculum_path(@chair, @speciality, @curriculum)
+              semester.item :delete_semester,
+                            t("title.manage/semesters.delete"),
+                            delete_manage_chair_curriculum_semester_path(@chair, @curriculum, @semester)
 
-              # семестры
-              curriculum.item :curriculum,
-                              @semester.title,
-                              manage_chair_speciality_curriculum_semester_path(@chair, @speciality, @curriculum, @semester) do |semester|
+              # education
+              if @education && @education.new_record?
+                semester.item :add_education,
+                              t("title.manage/educations.new"),
+                              new_manage_chair_curriculum_semester_education_path(@chair, @curriculum, @semester)
 
-                semester.item :edit_semester,
-                              t("title.manage/semesters.edit"),
-                              edit_manage_chair_speciality_curriculum_semester_path(@chair, @speciality, @curriculum, @semester)
-                semester.item :update_semester,
-                              t("title.manage/semesters.edit"),
-                              edit_manage_chair_speciality_curriculum_semester_path(@chair, @speciality, @curriculum, @semester),
-                              :highlights_on => /semester/ if params[:action] == "update" && params[:controller] == "manage/semesters"
-
-                semester.item :delete_semester,
-                              t("title.manage/semesters.delete"),
-                              delete_manage_chair_speciality_curriculum_semester_path(@chair, @speciality, @curriculum, @semester)
-
-                # education
-                if @education && @education.new_record?
-                  semester.item :add_education,
-                                t("title.manage/educations.new"),
-                                new_manage_chair_speciality_curriculum_semester_education_path(@chair, @speciality, @curriculum, @semester)
-
-                  semester.item :create_education,
-                                t("title.manage/educations.new"),
-                                new_manage_chair_speciality_curriculum_semester_education_path(@chair, @speciality, @curriculum, @semester),
-                                :highlights_on => /education/ if params[:action] == "create" && params[:controller] == "manage/educations"
-                end
-
-                if @education && !@education.new_record?
-                  semester.item :add_education,
-                                t("title.manage/educations.edit"),
-                                edit_manage_chair_speciality_curriculum_semester_education_path(@chair, @speciality, @curriculum, @semester, @education)
-
-                  semester.item :create_education,
-                                t("title.manage/educations.edit"),
-                                edit_manage_chair_speciality_curriculum_semester_education_path(@chair, @speciality, @curriculum, @semester, @education),
-                                :highlights_on => /education/ if params[:action] == "update" && params[:controller] == "manage/educations"
-
-                  semester.item :delete_education,
-                                t("title.manage/educations.delete"),
-                                delete_manage_chair_speciality_curriculum_semester_education_path(@chair, @speciality, @curriculum, @semester, @education)
-                end
-                # / education
-              end if @semester && !@semester.new_record?
-
-              if @semester && @semester.new_record?
-                curriculum.item :add_semester,
-                                t("title.manage/semesters.new"),
-                                new_manage_chair_speciality_curriculum_semester_path(@chair, @speciality, @curriculum)
-
-                curriculum.item :create_semester,
-                                t("title.manage/semesters.new"),
-                                new_manage_chair_speciality_curriculum_semester_path(@chair, @speciality, @curriculum),
-                                :highlights_on => /semester/ if params[:action] == "create" && params[:controller] == "manage/semesters"
+                semester.item :create_education,
+                              t("title.manage/educations.new"),
+                              new_manage_chair_curriculum_semester_education_path(@chair, @curriculum, @semester),
+                              :highlights_on => /education/ if params[:action] == "create" && params[:controller] == "manage/educations"
               end
-              # / семестры
-            end if @curriculum && !@curriculum.new_record?
 
-            if @curriculum && @curriculum.new_record?
-              speciality.item :add_curriculum,
-                              t("title.manage/curriculums.new"),
-                              new_manage_chair_speciality_curriculum_path(@chair, @speciality)
+              if @education && !@education.new_record?
+                semester.item :add_education,
+                              t("title.manage/educations.edit"),
+                              edit_manage_chair_curriculum_semester_education_path(@chair, @curriculum, @semester, @education)
 
-              speciality.item :create_curriculum,
-                              t("title.manage/curriculums.new"),
-                              new_manage_chair_speciality_curriculum_path(@chair, @speciality),
-                              :highlights_on => /curriculums/ if params[:action] == "create" && params[:controller] == "manage/curriculums"
+                semester.item :create_education,
+                              t("title.manage/educations.edit"),
+                              edit_manage_chair_curriculum_semester_education_path(@chair, @curriculum, @semester, @education),
+                              :highlights_on => /education/ if params[:action] == "update" && params[:controller] == "manage/educations"
+
+                semester.item :delete_education,
+                              t("title.manage/educations.delete"),
+                              delete_manage_chair_curriculum_semester_education_path(@chair, @curriculum, @semester, @education)
+              end
+              # / education
+            end if @semester && !@semester.new_record?
+
+            if @semester && @semester.new_record?
+              curriculum.item :add_semester,
+                              t("title.manage/semesters.new"),
+                              new_manage_chair_curriculum_semester_path(@chair, @curriculum)
+
+              curriculum.item :create_semester,
+                              t("title.manage/semesters.new"),
+                              new_manage_chair_curriculum_semester_path(@chair, @curriculum),
+                              :highlights_on => /semester/ if params[:action] == "create" && params[:controller] == "manage/semesters"
             end
-            # / учебные планы
+            # / семестры
+          end if @curriculum && !@curriculum.new_record?
 
-          end if @speciality && !@speciality.new_record?
+          if @curriculum && @curriculum.new_record?
+            specialities.item :add_curriculum,
+                            t("title.manage/curriculums.new"),
+                            new_manage_chair_curriculum_path(@chair)
 
-          if @speciality && @speciality.new_record?
-            specialities.item :new_speciality,
-                              t("title.manage/specialities.new"),
-                              new_manage_chair_speciality_path(@chair)
-
-            specialities.item :create_speciality,
-                              t("title.manage/specialities.new"),
-                              new_manage_chair_speciality_path(@chair),
-                              :highlights_on => /specialities/ if params[:action] == "create" && params[:controller] == "manage/specialities"
+            specialities.item :create_curriculum,
+                            t("title.manage/curriculums.new"),
+                            new_manage_chair_curriculum_path(@chair),
+                            :highlights_on => /curriculums/ if params[:action] == "create" && params[:controller] == "manage/curriculums"
           end
+          # / учебные планы
 
         end
         # / специальности
@@ -258,9 +228,9 @@ SimpleNavigation::Configuration.run do |navigation|
                  t("title.manage/provided_specialities.index"),
                  manage_chair_provided_specialities_path(@chair) do |provided_specialities|
 
-        provided_specialities.item :curriculum,
-                                   "#{@curriculum.chair.abbr} - #{@curriculum.speciality.title} - #{@curriculum.title}",
-                                   manage_chair_provided_disciplines_path(@chair, @curriculum) if @curriculum
+        provided_specialities.item :provided_curriculum,
+               "#{@curriculum.chair.abbr} - #{@curriculum.speciality.title} - #{@curriculum.title}",
+                manage_chair_provided_disciplines_path(@chair, @curriculum) if @curriculum && !@curriculum.new_record?
       end
     end if @chair
 

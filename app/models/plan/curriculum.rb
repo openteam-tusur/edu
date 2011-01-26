@@ -35,7 +35,7 @@ class Plan::Curriculum < Resource
   end
 
   def title
-    "Учебный план (#{self.human_study} форма) с #{self.since} г."
+    "#{speciality.short_title} (#{self.human_study} форма) с #{self.since} г."
   end
 
   def to_param
@@ -43,11 +43,11 @@ class Plan::Curriculum < Resource
   end
 
   def slug
-    "#{self.study}-#{self.since}"
+    "#{self.id}-#{self.speciality.code}-#{self.study}-#{self.since}"
   end
 
   def self.find_by_slug(slug)
-    self.find_by_study_and_since(*slug.split("-"))
+    self.find(slug.split("-")[0])
   end
 
   def semesters_count

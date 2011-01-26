@@ -33,6 +33,10 @@ class Speciality < ActiveRecord::Base
     "#{code} - #{name} (#{human_degree})"
   end
 
+  def display_name
+    title
+  end
+
   def short_title
     "#{code} - #{name}"
   end
