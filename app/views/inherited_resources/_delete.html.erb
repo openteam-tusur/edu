@@ -5,7 +5,7 @@
     С этим объектом связаны:
     <% resource.protected_children.each do |attribute| %>
       <ul class="protected_children">
-        <% s.association attribute.to_sym do | object | %>
+        <%= s.association attribute.to_sym do | object | %>
           <li><%= object.title %></li>
         <% end %>
       </ul>
