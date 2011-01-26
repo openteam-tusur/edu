@@ -35,6 +35,15 @@ class Chair < ActiveRecord::Base
     "#{self.abbr} - #{self.name}"
   end
 
+  def grouped_specialities
+    grouped = {}
+    specialities.each do |speciality|
+      grouped[speciality.degree] ||= {}
+      grouped[speciality.degree][speciality] = speciality.curriculums.where(:chair_id => self)
+    end
+    grouped
+  end
+
   def create_employee(params)
     human = Human.new(params.merge(:chair_id => self.id))
     return human unless human.valid?

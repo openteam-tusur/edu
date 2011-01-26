@@ -8,10 +8,12 @@ class Manage::CurriculumsController < Manage::ApplicationController
            :instance_name => :curriculum,
            :finder => :find_by_slug
 
-  actions :all, :except => [:index]
+  actions :all
 
-  belongs_to :chair, :finder => :find_by_slug do
-    belongs_to :speciality, :finder => :find_by_slug
+  belongs_to :chair, :finder => :find_by_slug
+
+  def index
+    @specialities = @chair.grouped_specialities
   end
 
   def show

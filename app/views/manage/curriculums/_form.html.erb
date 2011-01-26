@@ -1,5 +1,6 @@
 <%= form.inputs :class => "inputs common_info" do %>
   <%= form.inputs :class => "common_info" do %>
+    <%= form.input :speciality %>
     <%= form.enum_input :study, :input_html => { :class => "focus_first" } %>
     <%= form.input :semesters_count if resource.new_record? %>
     <%= form.input :since %>
