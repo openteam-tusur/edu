@@ -3,8 +3,6 @@
 class Speciality < ActiveRecord::Base
   validates_presence_of :chair, :code, :degree, :name, :qualification
 
-  belongs_to  :chair
-
   default_scope order("degree, code")
 
   has_many :disciplines, :class_name => "Plan::Discipline", :dependent => :destroy

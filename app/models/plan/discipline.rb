@@ -8,6 +8,7 @@ class Plan::Discipline < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => :speciality_id
 
   has_many :educations, :class_name => "Plan::Education"
+  has_many :studies, :class_name => "Plan::Study"
 
   default_scope order("plan_disciplines.name")
 

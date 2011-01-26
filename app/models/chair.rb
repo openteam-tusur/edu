@@ -3,9 +3,10 @@ class Chair < ActiveRecord::Base
 
   belongs_to :faculty
 
-  has_many :specialities
   has_many :disciplines, :through => :specialities
   has_many :educations, :class_name => "Plan::Education"
+  has_many :studies, :class_name => "Plan::Study"
+  has_many :curriculums, :class_name => "Plan::Curriculum"
   has_many :provided_disciplines, :class_name => "Plan::Discipline", :through => :educations, :source => :discipline
 
   validates_presence_of :name, :abbr, :slug

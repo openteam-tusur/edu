@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110125075734) do
+ActiveRecord::Schema.define(:version => 20110126051952) do
 
   create_table "attachments", :force => true do |t|
     t.string   "data_uid"
@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(:version => 20110125075734) do
     t.string   "access"
     t.integer  "since"
     t.integer  "volume"
+    t.integer  "chair_id"
   end
 
   create_table "plan_disciplines", :force => true do |t|
@@ -115,6 +116,7 @@ ActiveRecord::Schema.define(:version => 20110125075734) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "chair_id"
+    t.integer  "study_id"
   end
 
   create_table "plan_licences", :force => true do |t|
@@ -128,6 +130,14 @@ ActiveRecord::Schema.define(:version => 20110125075734) do
   create_table "plan_semesters", :force => true do |t|
     t.integer  "curriculum_id"
     t.integer  "number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "plan_studies", :force => true do |t|
+    t.integer  "chair_id"
+    t.integer  "curriculum_id"
+    t.integer  "discipline_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -177,7 +187,6 @@ ActiveRecord::Schema.define(:version => 20110125075734) do
     t.string   "name"
     t.string   "degree"
     t.string   "qualification"
-    t.integer  "chair_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "code"

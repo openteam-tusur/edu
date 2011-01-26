@@ -7,9 +7,10 @@ class Plan::Curriculum < Resource
                             :only_integer => true,
                             :on => :create
   belongs_to :speciality
-  delegate :chair, :to => :speciality
+  belongs_to :chair
 
   has_many :semesters, :class_name => "Plan::Semester", :dependent => :destroy
+  has_many :studies, :class_name => "Plan::Study"
   has_many :educations, :through => :semesters,
                         :class_name => "Plan::Education",
                         :include => :semester,
