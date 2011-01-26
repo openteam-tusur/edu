@@ -52,6 +52,7 @@ Portal::Application.routes.draw do
 
       resources :curriculums do
         put :transit, :on => :member
+        resources :studies, :except => [:index, :show]
         resources :semesters do
           resources :educations
         end

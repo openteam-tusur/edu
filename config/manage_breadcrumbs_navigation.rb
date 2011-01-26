@@ -51,33 +51,6 @@ SimpleNavigation::Configuration.run do |navigation|
                             t("title.manage/semesters.delete"),
                             delete_manage_chair_curriculum_semester_path(@chair, @curriculum, @semester)
 
-              # education
-              if @education && @education.new_record?
-                semester.item :add_education,
-                              t("title.manage/educations.new"),
-                              new_manage_chair_curriculum_semester_education_path(@chair, @curriculum, @semester)
-
-                semester.item :create_education,
-                              t("title.manage/educations.new"),
-                              new_manage_chair_curriculum_semester_education_path(@chair, @curriculum, @semester),
-                              :highlights_on => /education/ if params[:action] == "create" && params[:controller] == "manage/educations"
-              end
-
-              if @education && !@education.new_record?
-                semester.item :add_education,
-                              t("title.manage/educations.edit"),
-                              edit_manage_chair_curriculum_semester_education_path(@chair, @curriculum, @semester, @education)
-
-                semester.item :create_education,
-                              t("title.manage/educations.edit"),
-                              edit_manage_chair_curriculum_semester_education_path(@chair, @curriculum, @semester, @education),
-                              :highlights_on => /education/ if params[:action] == "update" && params[:controller] == "manage/educations"
-
-                semester.item :delete_education,
-                              t("title.manage/educations.delete"),
-                              delete_manage_chair_curriculum_semester_education_path(@chair, @curriculum, @semester, @education)
-              end
-              # / education
             end if @semester && !@semester.new_record?
 
             if @semester && @semester.new_record?
@@ -91,6 +64,34 @@ SimpleNavigation::Configuration.run do |navigation|
                               :highlights_on => /semester/ if params[:action] == "create" && params[:controller] == "manage/semesters"
             end
             # / семестры
+
+            # study
+            if @study && @study.new_record?
+              curriculum.item :add_study,
+                            t("title.manage/studies.new"),
+                            new_manage_chair_curriculum_study_path(@chair, @curriculum)
+
+              curriculum.item :create_study,
+                            t("title.manage/studies.new"),
+                            new_manage_chair_curriculum_study_path(@chair, @curriculum),
+                            :highlights_on => /studies/ if params[:action] == "create" && params[:controller] == "manage/studies"
+            end
+
+            if @study && !@study.new_record?
+              curriculum.item :edit_study,
+                            t("title.manage/studies.edit"),
+                            edit_manage_chair_curriculum_study_path(@chair, @curriculum, @study)
+
+              curriculum.item :update_study,
+                            t("title.manage/studies.edit"),
+                            edit_manage_chair_curriculum_study_path(@chair, @curriculum, @study),
+                            :highlights_on => /studies/ if params[:action] == "update" && params[:controller] == "manage/studies"
+
+              curriculum.item :delete_study,
+                            t("title.manage/studies.delete"),
+                            delete_manage_chair_curriculum_study_path(@chair, @curriculum, @study)
+            end
+            # / study
           end if @curriculum && !@curriculum.new_record?
 
           if @curriculum && @curriculum.new_record?

@@ -97,7 +97,7 @@ ru:
     plan/educations:
       index: Учебно-методическое обеспечение
 
-    manage/educations:
+    manage/studies:
       new: Добавление дисциплины
       edit: Редактирование дисциплины
       delete: Удаление дисциплины
@@ -316,6 +316,7 @@ ru:
       author: Автор материала
       publication: Учебно-методический материал
       publication_discipline: Дисциплина
+      study: Дисциплина
 
     attributes:
       attachment:
@@ -392,17 +393,12 @@ ru:
             <<: *access_enum
         semester:
           number: Номер
-        education:
-          discipline: Название дисциплины
-          discipline_name: Название дисциплины
-          loading_lecture: Лекции
-          loading_laboratory: Лабораторные занятия
-          loading_practice: Практические занятия
-          loading_course_project: Курсовое проектирование
-          loading_course_work: Курсовая работа
-          loading_self_training: Самостоятельная работа
-          examinations: Форма контроля
-          chair: Обеспечивающая кафедра
+        study:
+          discipline_name: Дисциплина
+          discipline_id: Дисциплина
+          educations: Посеместровая разбивка
+          chair: Кафедра
+          chair_id: Кафедра
       publication:
         state_enum:
           <<: *state_enum
