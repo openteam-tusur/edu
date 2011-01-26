@@ -3,6 +3,11 @@
 require 'spec_helper'
 
 describe 'Специальность' do
+
+  it "должна находиться по слагу" do
+    speciality = Factory.create(:speciality)
+    Speciality.find_by_slug(speciality.to_param).should eql speciality
+  end
 end
 
 
