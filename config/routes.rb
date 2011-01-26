@@ -31,6 +31,7 @@ Portal::Application.routes.draw do
 
   namespace :manage do
     match "/publications/get_fields" => "publications#get_fields", :method => :post
+    match "/humans/:id/merge_with/:namesake_id" => "humans#merge_with", :as => "human_merge_with"
     resources :humans, :shallow => true do
       get :check, :on => :collection
       resource :user, :only => [:edit, :update] do

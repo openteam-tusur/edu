@@ -211,6 +211,9 @@ ru:
       many:  "%{count} дисциплин"
       other: "%{count} дисциплин"
 
+  human:
+    merge_complete: Объединено
+
   publication_discipline:
     count:
       one:   "%{count} материал"
