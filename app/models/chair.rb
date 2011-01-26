@@ -95,7 +95,7 @@ class Chair < ActiveRecord::Base
 
   def grouped_provided_educations_for_curriculum(curriculum)
     grouped = {}
-    educations.where(:semester_id => curriculum.semesters).order('plan_educations.created_at DESC').includes(:discipline).order("plan_disciplines.name").each do |education|
+    educations.where(:semester_id => curriculum.semesters).includes(:discipline).order("plan_disciplines.name").includes(:semester).order("plan_semesters.number").each do |education|
       grouped[education.discipline] ||= []
       grouped[education.discipline] << education
     end
