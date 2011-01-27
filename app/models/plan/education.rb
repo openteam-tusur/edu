@@ -3,19 +3,21 @@ class Plan::Education < ActiveRecord::Base
 
   set_table_name :plan_educations
 
-
   belongs_to :semester
-  has_one :curriculum, :through => :semester
   belongs_to :study
+  delegate :curriculum, :to => :study
   has_one :discipline, :through => :study
   has_and_belongs_to_many :examinations
   has_and_belongs_to_many :publication_disciplines
 
-  validates_presence_of :study, :semester
+  attr_accessor :semester_number
 
+  validates_presence_of :study, :semester, :semester_number
+  validates_uniqueness_of :semester_id, :scope => :study_id
+
+  before_validation :prepare_semester
 
   protected_parent_of :publication_disciplines, :protects => :softly
-
 
   def title
     discipline.name
@@ -46,6 +48,18 @@ class Plan::Education < ActiveRecord::Base
     end
     "provided"
   end
+
+  private
+
+    def prepare_semester
+      return if self.semester_number.blank?
+      old_semester = self.semester
+      new_semester = self.curriculum.semesters.find_or_create_by_number(self.semester_number)
+      self.semester_id = new_semester.id
+      return unless old_semester
+      return if old_semester.eql?(new_semester)
+      old_semester.destroy if old_semester.educations.eql? [self]
+    end
 
 end
 
