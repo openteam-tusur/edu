@@ -61,5 +61,6 @@ end
 #  discipline_id :integer         'Дисциплина'
 #  created_at    :datetime
 #  updated_at    :datetime
+#  cycle         :string(255)     'Цикл'
 #
 

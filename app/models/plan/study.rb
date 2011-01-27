@@ -10,10 +10,12 @@ class Plan::Study < ActiveRecord::Base
   has_many :educations, :class_name => "Plan::Education"
   attr_accessor :discipline_name
 
-  validates_presence_of :chair, :discipline_name, :curriculum
+  validates_presence_of :chair, :discipline_name, :curriculum, :cycle
   validates_uniqueness_of :discipline_id, :scope => :curriculum_id
 
   before_validation :prepare_discipline
+
+  has_enum :cycle, %w( humanities mathematical professional special gpo )
 
   private
 
@@ -39,5 +41,6 @@ end
 #  discipline_id :integer         'Дисциплина'
 #  created_at    :datetime
 #  updated_at    :datetime
+#  cycle         :string(255)     'Цикл'
 #
 

@@ -23,9 +23,9 @@ class Speciality < ActiveRecord::Base
 
   searchable do
     text :info do
-      chairs.map do |chair|
-        "#{chair.abbr} #{chair.name}"
-      end.join(" ") + "#{code} #{name}"
+       chairs.map do |chair|
+        "#{code} #{name} #{chair.abbr} #{chair.name}"
+      end.join(" ")
     end
   end
 
@@ -46,7 +46,11 @@ class Speciality < ActiveRecord::Base
   end
 
   def autocomplete_value
-    "#{code} (#{chair.abbr}) - #{name}"
+    value = "#{code}"
+    chairs.each do |chair|
+      value += " (#{chair.abbr})"
+    end.join(" ")
+    value += " - #{name}"
   end
 
   def to_param
