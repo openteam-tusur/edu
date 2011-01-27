@@ -20,7 +20,6 @@ end
 #  name          :string(255)     'Название'
 #  degree        :string(255)     'Степень'
 #  qualification :string(255)     'Квалификация'
-#  chair_id      :integer
 #  created_at    :datetime
 #  updated_at    :datetime
 #  code          :string(255)     'Код'

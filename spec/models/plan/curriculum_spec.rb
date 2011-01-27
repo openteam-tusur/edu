@@ -56,7 +56,7 @@ end
 #
 #  id            :integer         not null, primary key
 #  study         :string(255)     'Форма обучения'
-#  speciality_id :integer
+#  speciality_id :integer         'Направление подготовки (специальность)'
 #  created_at    :datetime
 #  updated_at    :datetime
 #  state         :string(255)     'Статус'
@@ -64,5 +64,6 @@ end
 #  access        :string(255)     'Доступ к файлу'
 #  since         :integer         'Действует с'
 #  volume        :integer         'Количество страниц'
+#  chair_id      :integer
 #
 

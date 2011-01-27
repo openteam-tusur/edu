@@ -50,3 +50,16 @@ describe Plan::Study do
 
 end
 
+
+# == Schema Information
+#
+# Table name: plan_studies
+#
+#  id            :integer         not null, primary key
+#  chair_id      :integer         'Кафедра'
+#  curriculum_id :integer
+#  discipline_id :integer         'Дисциплина'
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+
