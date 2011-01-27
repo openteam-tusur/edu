@@ -6,6 +6,7 @@ class Plan::Education < ActiveRecord::Base
   belongs_to :semester
   belongs_to :study
   delegate :curriculum, :to => :study
+  delegate :chair, :to => :study
   has_one :discipline, :through => :study
   has_and_belongs_to_many :examinations
   has_and_belongs_to_many :publication_disciplines

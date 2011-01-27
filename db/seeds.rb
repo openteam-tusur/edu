@@ -65,7 +65,8 @@ s210401 = Speciality.create! :code           => 210401,
 curriculum = s210401.curriculums.create! :study => 'fulltime',
                                          :state => 'published',
                                          :since => '2008',
-                                         :semesters_count => 10
+                                         :semesters_count => 10,
+                                         :chair => svchkr
 
 study1 = curriculum.studies.create! :chair => Chair.find_by_slug('iya'),
                                     :discipline_name => 'Иностранный язык'
@@ -79,19 +80,11 @@ study3 = curriculum.studies.create! :chair => Chair.find_by_slug('mguk'),
 study4 = curriculum.studies.create! :chair => svchkr,
                                     :discipline_name => 'Химия радиоматериалов'
 
-semester1 = curriculum.semesters.find_by_number 1
+study1.educations.create! :semester_number => 1
+study2.educations.create! :semester_number => 1
+study3.educations.create! :semester_number => 1
 
-semester1.educations.create! :study => study1
-
-semester1.educations.create! :study => study2
-
-semester1.educations.create! :study => study3
-
-semester2 = curriculum.semesters.find_by_number 2
-
-semester2.educations.create! :study => study2
-
-semester2.educations.create! :study => study1
-
-semester2.educations.create! :study => study4
+study1.educations.create! :semester_number => 2
+study2.educations.create! :semester_number => 2
+study4.educations.create! :semester_number => 2
 
