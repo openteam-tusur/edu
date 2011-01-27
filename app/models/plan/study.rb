@@ -15,6 +15,8 @@ class Plan::Study < ActiveRecord::Base
 
   before_validation :prepare_discipline
 
+  accepts_nested_attributes_for :educations
+
   has_enum :cycle, %w( humanities mathematical professional special gpo )
 
   private

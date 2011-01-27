@@ -11,11 +11,10 @@ class Plan::Education < ActiveRecord::Base
   has_and_belongs_to_many :examinations
   has_and_belongs_to_many :publication_disciplines
 
-  attr_accessor :semester_number
+  attr_accessor :semester_number, :curriculum_id
 
-  validates_presence_of :study, :semester, :semester_number
+  validates_presence_of :semester, :semester_number
   validates_uniqueness_of :semester_id, :scope => :study_id
-
   before_validation :prepare_semester
 
   protected_parent_of :publication_disciplines, :protects => :softly
@@ -55,7 +54,7 @@ class Plan::Education < ActiveRecord::Base
     def prepare_semester
       return if self.semester_number.blank?
       old_semester = self.semester
-      new_semester = self.curriculum.semesters.find_or_create_by_number(self.semester_number)
+      new_semester = Plan::Curriculum.find(self.curriculum_id || self.study.curriculum_id).semesters.find_or_create_by_number(self.semester_number)
       self.semester_id = new_semester.id
       return unless old_semester
       return if old_semester.eql?(new_semester)
