@@ -8,7 +8,7 @@ describe Plan::Education do
   describe "должна прозрачно работать с семестрами" do
     before(:each) do
       @curriculum = Factory.create (:plan_curriculum)
-      @study = @curriculum.studies.create!(:discipline_name => "Математика", :chair_id => Factory.create(:chair).id)
+      @study = @curriculum.studies.create!(:discipline_name => "Математика", :chair_id => Factory.create(:chair).id, :cycle => 'gpo')
       @study.educations.create! :semester_number => 1
       @curriculum.reload
     end

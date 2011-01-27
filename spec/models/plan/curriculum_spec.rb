@@ -11,7 +11,7 @@ describe Plan::Curriculum do
 
   it 'должна правильно отдаваться продолжительность обучения в годах' do
     curriculum = Factory.create(:plan_curriculum, :semesters_count => 8)
-    study = curriculum.studies.create!(:discipline_name => "Математика", :chair_id => Factory.create(:chair).id)
+    study = curriculum.studies.create!(:discipline_name => "Математика", :chair_id => Factory.create(:chair).id, :cycle => 'special')
 
     8.times do |index|
       study.educations.create! :semester_number => index + 1
