@@ -3,12 +3,6 @@ require 'spec_helper'
 
 describe Plan::Curriculum do
 
-  it 'при создании должны создаваться семестры' do
-    curriculum = Factory.create(:plan_curriculum, :semesters_count => 10)
-
-    curriculum.semesters.count.should eql 10
-  end
-
   it "должен находиться по слагу" do
     curriculum = Factory.create(:plan_curriculum, :semesters_count => 2)
     Plan::Curriculum.find_by_slug(curriculum.to_param).should eql curriculum
@@ -17,15 +11,20 @@ describe Plan::Curriculum do
 
   it 'должна правильно отдаваться продолжительность обучения в годах' do
     curriculum = Factory.create(:plan_curriculum, :semesters_count => 8)
+    study = curriculum.studies.create!(:discipline_name => "Математика", :chair_id => Factory.create(:chair).id)
+
+    8.times do |index|
+      study.educations.create! :semester_number => index + 1
+    end
     curriculum.duration.should eql '4 года'
 
-    curriculum = Factory.create(:plan_curriculum, :semesters_count => 9)
+    study.educations.create! :semester_number => 9
     curriculum.duration.should eql '4,5 года'
 
-    curriculum = Factory.create(:plan_curriculum, :semesters_count => 10)
+    study.educations.create! :semester_number => 10
     curriculum.duration.should eql '5 лет'
 
-    curriculum = Factory.create(:plan_curriculum, :semesters_count => 11)
+    study.educations.create! :semester_number => 11
     curriculum.duration.should eql '5,5 лет'
   end
 

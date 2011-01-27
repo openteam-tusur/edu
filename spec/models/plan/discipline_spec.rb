@@ -16,11 +16,11 @@ describe Plan::Discipline do
     fulltime_curriculum = Factory.create(:plan_curriculum, :speciality => discipline.speciality)
     postal_curriculum = Factory.create(:plan_curriculum, :speciality => discipline.speciality, :study => "postal")
     Factory.create(:plan_curriculum, :speciality => discipline.speciality, :study => "parttime")
-    Factory.create(:plan_education, :semester => fulltime_curriculum.semesters.first)
+    Factory.create(:plan_education, :semester_number => 1)
     study = Factory.create(:plan_study, :discipline => discipline, :curriculum => fulltime_curriculum)
-    fulltime_education_first = Factory.create(:plan_education, :semester => fulltime_curriculum.semesters.first, :study => study)
-    fulltime_education_last = Factory.create(:plan_education, :semester => fulltime_curriculum.semesters.last, :study => study)
-    postal_education = Factory.create(:plan_education, :semester => postal_curriculum.semesters.last,
+    fulltime_education_first = Factory.create(:plan_education, :semester_number => 1, :study => study)
+    fulltime_education_last = Factory.create(:plan_education, :semester_number => 5, :study => study)
+    postal_education = Factory.create(:plan_education, :semester_number => 5,
                                       :study => Factory.create(:plan_study, :discipline => discipline, :curriculum => postal_curriculum))
 
     expected_hash = {fulltime_curriculum => [fulltime_education_first, fulltime_education_last],

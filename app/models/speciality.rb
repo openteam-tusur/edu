@@ -22,10 +22,10 @@ class Speciality < ActiveRecord::Base
   has_enum :degree, %w[specialist master bachelor], :scopes => true
 
   searchable do
-    string :info, :multiple => true do
+    text :info do
       chairs.map do |chair|
-        "#{code} #{name} #{chair.abbr} #{chair.name}"
-      end
+        "#{chair.abbr} #{chair.name}"
+      end.join(" ") + "#{code} #{name}"
     end
   end
 
