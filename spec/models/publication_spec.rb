@@ -40,14 +40,14 @@ describe Publication do
   it "должна получать сгруппированные по специальностям дисциплины" do
     curriculum = Factory.create(:plan_curriculum)
     study = Factory.create(:plan_study, :curriculum => curriculum, :discipline_name => "дисциплина 1")
-    education = Factory.create(:plan_education, :semester => curriculum.semesters.first, :study => study)
-    education_2 = Factory.create(:plan_education, :semester => curriculum.semesters.last, :study => study)
+    education = Factory.create(:plan_education, :semester_number => 1, :study => study)
+    education_2 = Factory.create(:plan_education, :semester_number => 2, :study => study)
     study_2 = Factory.create(:plan_study, :curriculum => curriculum, :discipline_name => "дисциплина 2")
-    education_3 = Factory.create(:plan_education, :semester => curriculum.semesters.first, :study => study_2)
-    Factory.create(:plan_education, :semester => curriculum.semesters.first)
+    education_3 = Factory.create(:plan_education, :semester_number => 1, :study => study_2)
+    Factory.create(:plan_education, :semester_number => 1)
 
     curriculum_2 = Factory.create(:plan_curriculum)
-    education_4 = Factory.create(:plan_education, :semester => curriculum_2.semesters.first,
+    education_4 = Factory.create(:plan_education, :semester_number => 1,
                                 :study => Factory.create(:plan_study, :curriculum => curriculum_2))
 
     publication_discipline = @publication.publication_disciplines.create!(:discipline => education.discipline, :education_ids => [education.id, education_2.id])

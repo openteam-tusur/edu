@@ -1,5 +1,14 @@
 <%= form.inputs :class => "inputs study_common_info" do %>
   <%= form.input :discipline_name, :input_html => { :value => resource.discipline ? resource.discipline.name : resource.discipline_name, :class => "focus_first" } %>
   <%= form.input :chair, :group_by => :faculty %>
+
+  <%= form.enum_input :cycle %>
+  <% education = @study.educations.build %>
+  <% education.examinations.build %>
+  <%= form.fields_for :educations do |education_form|%>
+    <%= education_form.input :curriculum_id, :as => :hidden, :value => @curriculum.id %>
+    <%= education_form.input :semester_number %>
+    <%= education_form.input :examinations, :as => :check_boxes, :collection => Examination.all %>
+  <% end %>
 <% end %>
 

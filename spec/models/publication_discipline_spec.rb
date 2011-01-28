@@ -6,17 +6,15 @@ describe PublicationDiscipline do
 
   it "должен знать обучения с которыми связан" do
     curriculum = Factory.create(:plan_curriculum)
-    semester = curriculum.semesters.first
-    education = Factory.create(:plan_education, :semester => semester)
+    education = Factory.create(:plan_education, :semester_number => 1)
     publication_discipline = Factory.create(:publication_discipline, :discipline => education.discipline, :education_ids => [education.id])
     publication_discipline.educations.should eql [education]
   end
 
   it "должен связываться только с educations своей дисциплины, останое игнорировать" do
     curriculum = Factory.create(:plan_curriculum)
-    semester = curriculum.semesters.first
-    education = Factory.create(:plan_education, :semester => semester)
-    other_education = Factory.create(:plan_education, :semester => semester)
+    education = Factory.create(:plan_education, :semester_number => 1)
+    other_education = Factory.create(:plan_education, :semester_number => 1)
     publication_discipline = Factory.create(:publication_discipline, :discipline => education.discipline, :education_ids => [education.id])
     publication_discipline.education_ids = []
     publication_discipline.save.should be false
@@ -26,14 +24,14 @@ describe PublicationDiscipline do
   it "должна группировать educations по формам обучения учебного плана" do
     curriculum_1 = Factory.create(:plan_curriculum, :study => "fulltime")
     study_1 = Factory.create(:plan_study, :curriculum => curriculum_1)
-    education_1_1 = Factory.create(:plan_education, :semester => curriculum_1.semesters.first, :study => study_1)
-    education_1_2 = Factory.create(:plan_education, :semester => curriculum_1.semesters.second, :study => study_1)
-    education_1_3 = Factory.create(:plan_education, :semester => curriculum_1.semesters.second, :study => study_1)
+    education_1_1 = Factory.create(:plan_education, :semester_number => 1, :study => study_1)
+    education_1_2 = Factory.create(:plan_education, :semester_number => 2, :study => study_1)
+    education_1_3 = Factory.create(:plan_education, :semester_number => 2, :study => study_1)
 
     curriculum_2 = Factory.create(:plan_curriculum, :speciality => curriculum_1.speciality, :study => "postal")
     study_2 = Factory.create(:plan_study, :curriculum => curriculum_2)
-    education_2_1 = Factory.create(:plan_education, :semester => curriculum_2.semesters.first, :study => study_2)
-    education_2_2 = Factory.create(:plan_education, :semester => curriculum_2.semesters.first, :study => study_2)
+    education_2_1 = Factory.create(:plan_education, :semester_number => 1, :study => study_2)
+    education_2_2 = Factory.create(:plan_education, :semester_number => 1, :study => study_2)
 
     curriculum_3 = Factory.create(:plan_curriculum, :speciality => curriculum_1.speciality, :study => "parttime")
 

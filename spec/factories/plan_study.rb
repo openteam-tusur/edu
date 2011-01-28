@@ -6,9 +6,10 @@ Sham.discipline_name {|n| "Название дисциплины #{n}" }
 
 Factory.define :plan_study,
   :default_strategy => :attributes_for,
-  :class => 'Plan::Study' do |education|
-  education.association :curriculum, :factory => :plan_curriculum
-  education.association :chair
-  education.discipline_name { Sham.discipline_name }
+  :class => 'Plan::Study' do |study|
+  study.association :curriculum, :factory => :plan_curriculum
+  study.association :chair
+  study.discipline_name { Sham.discipline_name }
+  study.cycle "special"
 end
 

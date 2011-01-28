@@ -46,6 +46,18 @@ class Plan::Education < ActiveRecord::Base
     "provided"
   end
 
+  private
+
+    def prepare_semester
+      return if self.semester_number.blank?
+      old_semester = self.semester
+      new_semester = Plan::Curriculum.find(self.curriculum_id || self.study.curriculum_id).semesters.find_or_create_by_number(self.semester_number)
+      self.semester_id = new_semester.id
+      return unless old_semester
+      return if old_semester.eql?(new_semester)
+      old_semester.destroy if old_semester.educations.eql? [self]
+    end
+
 end
 
 # == Schema Information
