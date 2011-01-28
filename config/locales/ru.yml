@@ -394,11 +394,22 @@ ru:
         semester:
           number: Номер
         study:
+          cycle: Цикл
+          cycle_enum:
+            humanities: Общие гуманитарные и социально-экономические дисциплины
+            mathematical: Общие математические и естественно-научные дисциплины
+            professional: Общепрофессиональные дисциплины
+            special: Специальные дисциплины
+            gpo: Групповое проектное обучение
           discipline_name: Дисциплина
           discipline_id: Дисциплина
           educations: Посеместровая разбивка
           chair: Кафедра
           chair_id: Кафедра
+        education:
+          examinations: Форма отчетности
+          semester_number: Номер семестра
+
       publication:
         state_enum:
           <<: *state_enum
