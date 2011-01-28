@@ -3,19 +3,18 @@ class Plan::Education < ActiveRecord::Base
 
   set_table_name :plan_educations
 
-
   belongs_to :semester
-  has_one :curriculum, :through => :semester
   belongs_to :study
+  delegate :curriculum, :to => :study
+  delegate :chair, :to => :study
   has_one :discipline, :through => :study
   has_and_belongs_to_many :examinations
   has_and_belongs_to_many :publication_disciplines
 
-  validates_presence_of :study, :semester
-
+  validates_presence_of :semester_id
+  validates_uniqueness_of :semester_id, :scope => :study_id
 
   protected_parent_of :publication_disciplines, :protects => :softly
-
 
   def title
     discipline.name

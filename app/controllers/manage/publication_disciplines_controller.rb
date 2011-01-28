@@ -22,7 +22,7 @@ class Manage::PublicationDisciplinesController < Manage::ApplicationController
   private
 
   def prepare_grouped_educations_from_params
-    discipline = @chair.disciplines.find(params[:publication_discipline][:discipline_id])
+    discipline = Plan::Discipline.find(params[:publication_discipline][:discipline_id])
     @grouped_educations = discipline.educations_grouped_by_curriculums
   end
 
@@ -31,3 +31,4 @@ class Manage::PublicationDisciplinesController < Manage::ApplicationController
   end
 
 end
+

@@ -22,10 +22,10 @@ class Speciality < ActiveRecord::Base
   has_enum :degree, %w[specialist master bachelor], :scopes => true
 
   searchable do
-    string :info, :multiple => true do
-      chairs.map do |chair|
+    text :info do
+       chairs.map do |chair|
         "#{code} #{name} #{chair.abbr} #{chair.name}"
-      end
+      end.join(" ")
     end
   end
 
@@ -46,7 +46,11 @@ class Speciality < ActiveRecord::Base
   end
 
   def autocomplete_value
-    "#{code} (#{chair.abbr}) - #{name}"
+    value = "#{code}"
+    chairs.each do |chair|
+      value += " (#{chair.abbr})"
+    end.join(" ")
+    value += " - #{name}"
   end
 
   def to_param

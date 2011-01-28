@@ -53,7 +53,7 @@
       <% @semester.educations.each do |education| %>
         <div class="discipline <%= cycle('odd', 'even') %>">
           <div class="discipline_name">
-            <%= education.discipline.name %>
+            <%= education.study.discipline.name %>
             <abbr title="<%= education.chair.name %>" rel="tipsy"><%= education.chair.abbr %></abbr>
             (<%= education.examinations.collect(&:name).join(", ").mb_chars.downcase %>)
           </div>
@@ -73,7 +73,7 @@
   </div>
 </div>
 
-<%= link_to "Добавить дисциплину",
-             new_manage_chair_curriculum_study_path(@chair, @curriculum),
-             :class => "button" %>
+<p><%= link_to "Добавить дисциплину",
+               new_manage_chair_curriculum_study_path(@chair, @curriculum),
+               :class => "button" %></p>
 

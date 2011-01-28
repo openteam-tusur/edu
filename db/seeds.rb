@@ -65,7 +65,8 @@ s210401 = Speciality.create! :code           => 210401,
 curriculum = s210401.curriculums.create! :study => 'fulltime',
                                          :state => 'published',
                                          :since => '2008',
-                                         :semesters_count => 10
+                                         :semesters_count => 10,
+                                         :chair => svchkr
 
 study1 = curriculum.studies.create! :chair => Chair.find_by_slug('iya'),
                                     :discipline_name => 'Иностранный язык'
