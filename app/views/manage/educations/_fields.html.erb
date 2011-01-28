@@ -1,0 +1,10 @@
+<% t = Time.now.to_i %>
+<%= label_tag "study[educations_attributes][#{t}][semester_id]", "Семестер" %>
+<%= select_tag "study[educations_attributes][#{t}][semester_id]", options_for_select(@study.curriculum.semesters.map { |s| ["#{s.number} семестр", s.id] }) %>
+<%= label_tag "study[educations_attributes][#{t}][_destroy]", "Удалить" %>
+<%= check_box_tag "study[educations_attributes][#{t}][_destroy]", 0 %>
+<% Examination.all.each_with_index do |examination, index| %>
+  <%= label_tag "study[educations_attributes][#{t}][examination_ids][]", examination.name %>
+  <%= check_box_tag "study[educations_attributes][#{t}][examination_ids][]", examination.id %>
+<% end %>
+

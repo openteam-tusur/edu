@@ -13,5 +13,5 @@ class Manage::StudiesController < Manage::ApplicationController
                 :parent_class => Plan::Curriculum,
                 :finder => :find_by_slug
   end
-
 end
+

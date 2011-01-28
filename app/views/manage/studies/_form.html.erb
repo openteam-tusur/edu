@@ -1,11 +1,17 @@
+<%= form.input :id, :as => :hidden, :value => @study.id %>
 <%= form.inputs :class => "inputs study_common_info" do %>
   <%= form.input :discipline_name, :input_html => { :value => resource.discipline ? resource.discipline.name : resource.discipline_name, :class => "focus_first" } %>
   <%= form.input :chair, :group_by => :faculty %>
   <%= form.enum_input :cycle %>
+  <%= link_to 'Добавить семестр', '#', :class => 'button add_new_education' %>
   <% @study.educations.build %>
   <%= form.inputs :for => :educations do |education_inputs| %>
     <%= education_inputs.input :semester, :as => :select %>
     <%= education_inputs.input :examinations, :as => :check_boxes %>
+    <% unless education_inputs.object.new_record? %>
+      <%= education_inputs.input :_destroy, :as => :boolean, :label => t(:delete) %>
+    <% end %>
   <% end %>
+  <div class="educations_list"></div>
 <% end %>
 

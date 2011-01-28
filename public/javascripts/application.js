@@ -179,6 +179,30 @@ function manipulation_publication_fields(){
   });
 };
 
+function manipulation_education_fields(){
+  var linka = $('.add_new_education');
+  if (linka) {
+    linka.click(function(){
+
+      $.ajax({
+        type: "POST",
+        url: "/manage/educations/get_fields",
+        data: $('.formtastic').serialize(),
+        beforeSend: function() {
+          ajax_start();
+        },
+        complete: function() {
+          ajax_stop();
+        },
+        success: function(data){
+          $(".educations_list").append(data);
+        }
+      });
+      return false;
+    });
+  };
+};
+
 $(function() {
   human_check();
   discipline_name_autocomplete();
@@ -187,6 +211,7 @@ $(function() {
   add_author_in_list();
   delete_author_from_list();
   manipulation_publication_fields();
+  manipulation_education_fields();
   flash();
   $(".focus_first:first").focus();
   $("*[rel=tipsy], .formtastic .inputs abbr, .need_tipsy").tipsy({
