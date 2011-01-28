@@ -1,0 +1,7 @@
+<div class="nested-fields">
+  <%= f.inputs do %>
+    <%= f.input :semester, :as => :select %>
+    <%= f.input :examinations, :as => :check_boxes %>
+    <%= link_to_remove_association t(:delete), f %>
+  <% end %>
+</div>

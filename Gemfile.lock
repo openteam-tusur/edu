@@ -108,6 +108,7 @@ GEM
       actionpack (>= 2.3.7)
       activesupport (>= 2.3.7)
       i18n (~> 0.4)
+    formtastic_cocoon (0.0.2)
     gilenson (1.1.1)
     haml (3.0.25)
     has_scope (0.5.0)
@@ -229,6 +230,7 @@ DEPENDENCIES
   factory_girl_rails
   fancy-buttons
   formtastic
+  formtastic_cocoon
   gilenson
   has_enum!
   hirb

@@ -38,6 +38,7 @@ gem 'compass'
 gem 'fancy-buttons'
 gem 'simple-navigation'
 gem 'formtastic'
+gem 'formtastic_cocoon'
 gem 'validation_reflection'
 gem 'show_for', :git => "git://github.com/plataformatec/show_for"
 gem 'will_paginate', '>= 3.0.pre2'
