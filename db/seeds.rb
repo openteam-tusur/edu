@@ -80,11 +80,19 @@ study3 = curriculum.studies.create! :chair => Chair.find_by_slug('mguk'),
 study4 = curriculum.studies.create! :chair => svchkr,
                                     :discipline_name => 'Химия радиоматериалов'
 
-study1.educations.create! :semester_number => 1
-study2.educations.create! :semester_number => 1
-study3.educations.create! :semester_number => 1
+semester1 = curriculum.semesters.find_by_number 1
 
-study1.educations.create! :semester_number => 2
-study2.educations.create! :semester_number => 2
-study4.educations.create! :semester_number => 2
+semester1.educations.create! :study => study1
+
+semester1.educations.create! :study => study2
+
+semester1.educations.create! :study => study3
+
+semester2 = curriculum.semesters.find_by_number 2
+
+semester2.educations.create! :study => study2
+
+semester2.educations.create! :study => study1
+
+semester2.educations.create! :study => study4
 

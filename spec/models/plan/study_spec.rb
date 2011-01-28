@@ -10,7 +10,7 @@ describe Plan::Study do
       @curriculum = Factory.create(:plan_curriculum)
       @speciality = @curriculum.speciality
       @semester = @curriculum.semesters.first
-      @study = @curriculum.studies.build(:discipline_name => "Математика", :chair_id => Factory.create(:chair).id, :cycle => 'gpo')
+      @study = @curriculum.studies.build(:discipline_name => "Математика", :chair_id => Factory.create(:chair).id)
       @study.save!
     end
 
@@ -36,7 +36,7 @@ describe Plan::Study do
 
     it "при обновлении, если изменяется название дисциплины и у старой дисциплины есть еще обучения" do
       curriculum_2 = Factory.create(:plan_curriculum, :speciality => @curriculum.speciality)
-      @study_2 = curriculum_2.studies.build(:discipline_name => "Математика", :chair_id => Factory.create(:chair).id, :cycle => 'gpo')
+      @study_2 = curriculum_2.studies.build(:discipline_name => "Математика", :chair_id => Factory.create(:chair).id)
       @study_2.save!
       @study.discipline_name = "Физика"
       @study.save!
@@ -61,6 +61,5 @@ end
 #  discipline_id :integer         'Дисциплина'
 #  created_at    :datetime
 #  updated_at    :datetime
-#  cycle         :string(255)     'Цикл'
 #
 

@@ -11,7 +11,7 @@ class Plan::Curriculum < Resource
 
   has_many :semesters, :class_name => "Plan::Semester", :dependent => :destroy
   has_many :studies, :class_name => "Plan::Study"
-  has_many :educations, :through => :studies,
+  has_many :educations, :through => :semesters,
                         :class_name => "Plan::Education",
                         :include => :semester,
                         :order => 'plan_semesters.number'
@@ -27,6 +27,8 @@ class Plan::Curriculum < Resource
   default_scope order('study')
   scope :published,   where(:state => 'published')
   scope :unpublished, where(:state => 'unpublished')
+
+  after_create :create_semesters
 
   def study_with_since
     "#{self.human_study} форма с #{self.since} г."
@@ -60,6 +62,14 @@ class Plan::Curriculum < Resource
     years = (semesters.count / 2).to_s
     result = (semesters.count % 2).zero? ? "#{years} " : "#{years},5 "
     result += ::I18n.t('curriculum.duration', :count => semesters.count / 2)
+  end
+
+private
+
+  def create_semesters
+    @semesters_count.to_i.times do |number|
+      self.semesters.find_or_create_by_number(number + 1)
+    end
   end
 
 end

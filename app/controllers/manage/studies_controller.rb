@@ -2,7 +2,7 @@ class Manage::StudiesController < Manage::ApplicationController
   load_and_authorize_resource
 
   defaults :resource_class => Plan::Study,
-           :instance_name => :study
+           :instance_name => 'study'
 
   actions :all, :except => [:index, :show]
 
@@ -14,6 +14,4 @@ class Manage::StudiesController < Manage::ApplicationController
                 :finder => :find_by_slug
   end
 
-
 end
-

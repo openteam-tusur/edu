@@ -19,7 +19,7 @@ function ajax_stop() {
 };
 
 function discipline_name_autocomplete() {
-  $("#study_discipline_name").autocomplete({
+  $("#education_discipline_name").autocomplete({
     source: "/autocompletes/disciplines",
     minLength: 2
   });

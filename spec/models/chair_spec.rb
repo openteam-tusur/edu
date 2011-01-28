@@ -137,13 +137,13 @@ describe Chair do
                                             :speciality => speciality_s_210040,
                                             :study => "parttime")
       Factory.create(:plan_education,
-              :semester_number => 1,
+              :semester => fulltime_curriculum.semesters.first,
               :study => Factory.create(:plan_study, :chair => @chair, :curriculum => fulltime_curriculum))
       Factory.create(:plan_education,
-              :semester_number => 1,
+              :semester => fulltime_curriculum.semesters.first,
               :study => Factory.create(:plan_study, :chair => @chair, :curriculum => fulltime_curriculum))
       Factory.create(:plan_education,
-              :semester_number => 1,
+              :semester => parttime_curriculum.semesters.first,
               :study => Factory.create(:plan_study, :chair => @chair, :curriculum => parttime_curriculum))
 
       expected = {
@@ -160,10 +160,10 @@ describe Chair do
                                             :speciality => speciality,
                                             :study => "fulltime")
       education_1 = Factory.create( :plan_education,
-                                    :semester_number => 1,
+                                    :semester => fulltime_curriculum.semesters.first,
                                     :study => Factory.create(:plan_study, :chair => @chair, :curriculum => fulltime_curriculum))
       education_2 = Factory.create( :plan_education,
-                                    :semester_number => 2,
+                                    :semester => fulltime_curriculum.semesters.last,
                                     :study => Factory.create(:plan_study, :chair => @chair,
                                               :curriculum => fulltime_curriculum, :discipline => education_1.study.discipline))
 
