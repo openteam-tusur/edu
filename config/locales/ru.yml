@@ -409,6 +409,7 @@ ru:
         education:
           examinations: Форма отчетности
           semester_number: Номер семестра
+          semester: Семестр
 
       publication:
         state_enum:

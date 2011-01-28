@@ -17,6 +17,8 @@ class Plan::Study < ActiveRecord::Base
 
   has_enum :cycle, %w( humanities mathematical professional special gpo )
 
+  accepts_nested_attributes_for :educations, :allow_destroy => true, :reject_if => proc { |attributes| attributes['semester_id'].blank? } 
+
   private
 
     def prepare_discipline
@@ -41,5 +43,6 @@ end
 #  discipline_id :integer         'Дисциплина'
 #  created_at    :datetime
 #  updated_at    :datetime
+#  cycle         :string(255)     'Цикл'
 #
 
