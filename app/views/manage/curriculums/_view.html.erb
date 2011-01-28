@@ -73,6 +73,41 @@
   </div>
 </div>
 
+<div class="cycles">
+  <% Plan::Study.enum[:cycle].each do |cycle| %>
+    <div class="cycle">
+      <span><%= Plan::Study.human_enum[:cycle][cycle.to_sym] %></span>
+      <% if (@curriculum.studies.send "cycle_#{cycle}").empty? %>
+        <p>Нет дисциплин</p>
+      <% else %>
+        <ul>
+          <% (@curriculum.studies.send "cycle_#{cycle}").each do |study| %>
+            <li>
+              <span><%= study.discipline.name %></span>
+              <abbr title="<%= study.chair.name %>" rel="tipsy"><%= study.chair.abbr %></abbr>
+              <div class="discipline_edit">
+                <%= link_to t("edit"),
+                            edit_manage_chair_curriculum_study_path(@chair, @curriculum, study),
+                            :title => t("edit"), :rel => "tipsy" %>
+              </div>
+              <ul>
+                <% study.semesters.each do |semester| %>
+                 <li>
+                  <%= "#{semester.number} семестр " %>
+                  <% semester.educations.each do |education| %>
+                    <%= "(#{education.examinations.collect(&:name).join(', ').mb_chars.downcase})" unless education.examinations.empty? %>
+                  <% end %>
+                 </li>
+                <% end %>
+              </ul>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
 <p><%= link_to "Добавить дисциплину",
                new_manage_chair_curriculum_study_path(@chair, @curriculum),
                :class => "button" %></p>
