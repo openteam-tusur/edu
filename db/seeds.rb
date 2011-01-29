@@ -69,16 +69,20 @@ curriculum = s210401.curriculums.create! :study => 'fulltime',
                                          :chair => svchkr
 
 study1 = curriculum.studies.create! :chair => Chair.find_by_slug('iya'),
-                                    :discipline_name => 'Иностранный язык'
+                                    :discipline_name => 'Иностранный язык',
+                                    :cycle => 'humanities'
 
 study2 = curriculum.studies.create! :chair => Chair.find_by_slug('fvis'),
-                                    :discipline_name => 'Физическая культура'
+                                    :discipline_name => 'Физическая культура',
+                                    :cycle => 'humanities'
 
 study3 = curriculum.studies.create! :chair => Chair.find_by_slug('mguk'),
-                                    :discipline_name => 'Инженерная и компьютерная графика'
+                                    :discipline_name => 'Инженерная и компьютерная графика',
+                                    :cycle => 'professional'
 
 study4 = curriculum.studies.create! :chair => svchkr,
-                                    :discipline_name => 'Химия радиоматериалов'
+                                    :discipline_name => 'Химия радиоматериалов',
+                                    :cycle => 'special'
 
 semester1 = curriculum.semesters.find_by_number 1
 

@@ -8,6 +8,8 @@ class Plan::Study < ActiveRecord::Base
   belongs_to :discipline
 
   has_many :educations, :class_name => "Plan::Education"
+  has_many :semesters, :through => :educations, :class_name => 'Plan::Semester'
+
   attr_accessor :discipline_name
 
   validates_presence_of :chair, :discipline_name, :curriculum, :cycle
@@ -15,9 +17,11 @@ class Plan::Study < ActiveRecord::Base
 
   before_validation :prepare_discipline
 
-  has_enum :cycle, %w( humanities mathematical professional special gpo )
+  has_enum :cycle,
+           %w( humanities mathematical professional special gpo ),
+           :scopes => true
 
-  accepts_nested_attributes_for :educations, :allow_destroy => true, :reject_if => proc { |attributes| attributes['semester_id'].blank? } 
+  accepts_nested_attributes_for :educations, :allow_destroy => true, :reject_if => proc { |attributes| attributes['semester_id'].blank? }
 
   private
 
