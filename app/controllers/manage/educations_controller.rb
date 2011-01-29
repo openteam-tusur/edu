@@ -1,7 +1,6 @@
 class Manage::EducationsController < Manage::ApplicationController
 
-  load_resource :except => :get_fields
-  authorize_resource :class => Plan::Education
+  load_and_authorize_resource
 
   defaults :resource_class => Plan::Education,
            :instance_name => 'education'
@@ -30,11 +29,6 @@ class Manage::EducationsController < Manage::ApplicationController
 
   def update
     update!(:location => parent_path(parent))
-  end
-
-  def get_fields
-    @study = Plan::Study.find(params[:study][:id])
-    render :partial => 'manage/educations/fields'
   end
 end
 
