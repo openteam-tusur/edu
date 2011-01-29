@@ -11,6 +11,12 @@ GIT
     annotate (2.4.0)
 
 GIT
+  remote: git://github.com/openteam/formtastic-cocoon.git
+  revision: 13c1a11c9f099febf0f09b7aee1bbf66fb52c1a4
+  specs:
+    formtastic_cocoon (0.0.2)
+
+GIT
   remote: git://github.com/openteam/has_enum
   revision: 2f5e3e6dcd044cfe72ad2b2c16a9259a9e241c4e
   specs:
@@ -108,7 +114,6 @@ GEM
       actionpack (>= 2.3.7)
       activesupport (>= 2.3.7)
       i18n (~> 0.4)
-    formtastic_cocoon (0.0.2)
     gilenson (1.1.1)
     haml (3.0.25)
     has_scope (0.5.0)
@@ -151,11 +156,11 @@ GEM
       activesupport (= 3.0.3)
       bundler (~> 1.0)
       railties (= 3.0.3)
-    rails-erd (0.4.1)
+    rails-erd (0.4.3)
       activerecord (~> 3.0)
       activesupport (~> 3.0)
       ruby-graphviz (~> 0.9.18)
-    rails3-generators (0.17.2)
+    rails3-generators (0.17.3)
       railties (>= 3.0.0)
     railties (3.0.3)
       actionpack (= 3.0.3)
@@ -230,7 +235,7 @@ DEPENDENCIES
   factory_girl_rails
   fancy-buttons
   formtastic
-  formtastic_cocoon
+  formtastic_cocoon!
   gilenson
   has_enum!
   hirb
