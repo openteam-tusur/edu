@@ -1,7 +1,4 @@
 ru:
-  human:
-    add: Добавить
-
   access_denied: Доступ запрещен
   fill_human: Вы не можете  выполнить действие, пока не заполните профиль
   can_not_edit: Вы не можете редактировать, создайте новую роль
@@ -213,6 +210,7 @@ ru:
       other: "%{count} дисциплин"
 
   human:
+    add: Добавить сотрудника
     merge_complete: Объединено
 
   publication_discipline:

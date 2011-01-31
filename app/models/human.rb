@@ -117,6 +117,9 @@ class Human < ActiveRecord::Base
       solr_search do
         keywords query
         with :employee_chair_ids, chair.id
+        order_by :surname
+        order_by :name
+        order_by :patronymic
         paginate :page => page, :per_page => 10
       end.results
      end
