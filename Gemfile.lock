@@ -12,7 +12,7 @@ GIT
 
 GIT
   remote: git://github.com/openteam/formtastic-cocoon.git
-  revision: 13c1a11c9f099febf0f09b7aee1bbf66fb52c1a4
+  revision: 937dbec36de9d570147737997cd453a975db7db6
   specs:
     formtastic_cocoon (0.0.2)
 

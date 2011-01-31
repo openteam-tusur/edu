@@ -1,8 +1,8 @@
-$(document).ready(function() {
-
+$(function() {
+  $('.add_fields, .remove_fields').addClass('button');
   $('.add_fields').live('click', function() {
     var assoc   = $(this).attr('data-association');
-    var content = $(this).siblings('#' + assoc + '_fields_template').html();
+    var content = $(this).parent().siblings('#' + assoc + '_fields_template').html();
     var regexp_braced = new RegExp('\\[new_' + assoc + '\\]', 'g');
     var new_id  = new Date().getTime();
     var new_content = content.replace(regexp_braced, '[' + new_id + ']');
@@ -10,7 +10,7 @@ $(document).ready(function() {
         regexp_braced = new RegExp('\\[new_' + assoc + 's\\]', 'g');
         new_content = content.replace(regexp_braced, '[' + new_id + ']');
     }
-    $(this).parent().before(new_content);
+    $(".education_list").append(new_content);
     return false;
   });
 
@@ -26,3 +26,4 @@ $(document).ready(function() {
   });
 
 });
+
