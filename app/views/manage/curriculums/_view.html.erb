@@ -29,72 +29,30 @@
   <% end %>
 </ul>
 
-<h2>Семестры</h2>
-
-<div class="curriculum_semesters">
-  <table class="semesters_header">
-    <tr>
-      <% (1..@curriculum.cources_count).each do |cource| %>
-        <th colspan="2"><%= "#{cource} курс" %></th>
-      <% end %>
-    </tr>
-    <tr>
-      <% @curriculum.semesters.each do |semester| %>
-        <td<%= semester.eql?(@semester) ? " class='current'" : ""%>>
-          <%= link_to semester.number,
-                      manage_chair_curriculum_semester_path(@chair, @curriculum, semester) %>
-        </td>
-      <% end %>
-      <%= content_tag :td, "" unless @curriculum.semesters_count.even? %>
-    </tr>
-  </table>
-  <div class="semester_body">
-    <% unless @semester.educations.empty? %>
-      <% @semester.educations.each do |education| %>
-        <div class="discipline <%= cycle('odd', 'even') %>">
-          <div class="discipline_name">
-            <%= education.study.discipline.name %>
-            <abbr title="<%= education.chair.name %>" rel="tipsy"><%= education.chair.abbr %></abbr>
-            (<%= education.examinations.collect(&:name).join(", ").mb_chars.downcase %>)
-          </div>
-          <div class="discipline_edit">
-            <%= link_to t("edit"),
-                        edit_manage_chair_curriculum_study_path(@chair, @curriculum, education.study),
-                        :title => t("edit"), :rel => "tipsy" %>
-          </div>
-        </div>
-      <% end %>
-    <% else %>
-      <p>Дисциплины не заполнены</p>
-    <% end %>
-    <p class="action"><%= link_to "Добавить дисциплину",
-                   new_manage_chair_curriculum_semester_education_path(@chair, @curriculum, @semester),
-                   :class => "button" %></p>
-  </div>
-</div>
-
 <div class="cycles">
   <% Plan::Study.enum[:cycle].each do |cycle| %>
     <div class="cycle">
-      <span><%= Plan::Study.human_enum[:cycle][cycle.to_sym] %></span>
+      <h3><a id="<%= cycle %>"><%= Plan::Study.human_enum[:cycle][cycle.to_sym] %></a></h3>
       <% if (@curriculum.studies.send "cycle_#{cycle}").empty? %>
         <p>Нет дисциплин</p>
       <% else %>
         <ul>
           <% (@curriculum.studies.send "cycle_#{cycle}").each do |study| %>
             <li>
-              <span><%= study.discipline.name %></span>
-              <abbr title="<%= study.chair.name %>" rel="tipsy"><%= study.chair.abbr %></abbr>
-              <div class="discipline_edit">
+              <h4>
+                <%= study.discipline.name %>
+                <abbr title="<%= study.chair.name %>" rel="tipsy">
+                  <%= study.chair.abbr %>
+                </abbr>
                 <%= link_to t("edit"),
                             edit_manage_chair_curriculum_study_path(@chair, @curriculum, study),
-                            :title => t("edit"), :rel => "tipsy" %>
-              </div>
+                            :title => t("edit"), :rel => "tipsy", :class => "discipline_edit" %>
+              </h4>
               <ul>
                 <% study.semesters.each do |semester| %>
                  <li>
                   <%= "#{semester.number} семестр " %>
-                  <% semester.educations.each do |education| %>
+                  <% semester.educations.where(:study_id => study.id).each do |education| %>
                     <%= "(#{education.examinations.collect(&:name).join(', ').mb_chars.downcase})" unless education.examinations.empty? %>
                   <% end %>
                  </li>

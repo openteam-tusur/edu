@@ -13,5 +13,14 @@ class Manage::StudiesController < Manage::ApplicationController
                 :parent_class => Plan::Curriculum,
                 :finder => :find_by_slug
   end
+
+  def create
+    create! { parent_path(:anchor => @study.cycle) }
+  end
+
+  def update
+    update! { parent_path(:anchor => @study.cycle) }
+  end
+
 end
 
