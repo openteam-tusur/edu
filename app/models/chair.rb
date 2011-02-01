@@ -80,7 +80,7 @@ class Chair < ActiveRecord::Base
   end
 
   def provided_specialities
-    Speciality.where(:id => provided_curriculums)
+    Speciality.where(:id => provided_curriculums.map(&:speciality_id))
   end
 
   def provided_curriculums
