@@ -207,7 +207,12 @@ function irregual_labels(){
   $('#study_educations_attributes_new_educations_examinations_input fieldset ol li label').live('click',
     function(){
       id = $(this).attr('for');
-      $(this).children().attr('checked','checked');
+      checkbox = $(this).children();
+      if (checkbox.is(':checked')) {
+        checkbox.removeAttr('checked');
+      } else {
+        checkbox.attr('checked','checked');
+      };
     });
 };
 
