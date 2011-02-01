@@ -203,6 +203,14 @@ function manipulation_education_fields(){
   };
 };
 
+function irregual_labels(){
+  $('#study_educations_attributes_new_educations_examinations_input fieldset ol li label').live('click',
+    function(){
+      id = $(this).attr('for');
+      $(this).children().attr('checked','checked');
+    });
+};
+
 $(function() {
   human_check();
   discipline_name_autocomplete();
@@ -212,6 +220,7 @@ $(function() {
   delete_author_from_list();
   manipulation_publication_fields();
   manipulation_education_fields();
+  irregual_labels();
   flash();
   $(".focus_first:first").focus();
   $("*[rel=tipsy], .formtastic .inputs abbr, .need_tipsy").tipsy({
