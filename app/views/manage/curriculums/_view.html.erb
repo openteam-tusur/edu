@@ -33,40 +33,53 @@
                new_manage_chair_curriculum_study_path(@chair, @curriculum),
                :class => "button" %></p>
 
-<div class="cycles">
-  <% Plan::Study.enum[:cycle].each do |cycle| %>
-    <div class="cycle">
-      <h3><a id="<%= cycle %>"><%= Plan::Study.human_enum[:cycle][cycle.to_sym] %></a></h3>
-      <% if (@curriculum.studies.send "cycle_#{cycle}").empty? %>
-        <p>Нет дисциплин</p>
-      <% else %>
-        <ul>
-          <% (@curriculum.studies.send "cycle_#{cycle}").each do |study| %>
-            <li>
-              <h4>
-                <%= study.discipline.name %>
-                <abbr title="<%= study.chair.name %>" rel="tipsy">
-                  <%= study.chair.abbr %>
-                </abbr>
-                <%= link_to t("edit"),
-                            edit_manage_chair_curriculum_study_path(@chair, @curriculum, study),
-                            :title => t("edit"), :rel => "tipsy", :class => "discipline_edit" %>
-              </h4>
-              <ul>
-                <% study.semesters.each do |semester| %>
-                 <li>
-                  <%= "#{semester.number} семестр " %>
-                  <% semester.educations.where(:study_id => study.id).each do |education| %>
-                    <%= "(#{education.examinations.collect(&:name).join(', ').mb_chars.downcase})" unless education.examinations.empty? %>
-                  <% end %>
-                 </li>
-                <% end %>
-              </ul>
-            </li>
-          <% end %>
-        </ul>
+<table class="curriculum_table">
+  <thead>
+    <tr>
+      <th rowspan="2">Дисциплина</th>
+      <% courses = (@curriculum.semesters.count/2).round %>
+      <% courses.times do |course| %>
+        <th colspan="2"><%= "#{course+1} курс" %></th>
       <% end %>
-    </div>
-  <% end %>
-</div>
+    </tr>
+    <tr>
+      <% @curriculum.semesters.each do |semester| %>
+        <th><%= semester.number %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% Plan::Study.enum[:cycle].each do |cycle| %>
+      <tr class="cycle">
+        <td colspan="<%= @curriculum.semesters.count+1 %>"><a id="<%= cycle %>"><%= Plan::Study.human_enum[:cycle][cycle.to_sym] %></a></td>
+      </tr>
+      <% if (@curriculum.studies.send "cycle_#{cycle}").empty? %>
+        <tr>
+          <td colspan="<%= @curriculum.semesters.count+1 %>">Нет дисциплин</td>
+        </tr>
+      <% else %>
+        <% (@curriculum.studies.send "cycle_#{cycle}").each do |study| %>
+          <tr class="discipline">
+            <td class="discipline_name">
+              <%= study.discipline.name %>
+              <abbr title="<%= study.chair.name %>" rel="tipsy">
+                <%= study.chair.abbr %>
+              </abbr>
+              <%= link_to t("edit"),
+                          edit_manage_chair_curriculum_study_path(@chair, @curriculum, study),
+                          :title => t("edit"), :rel => "tipsy", :class => "discipline_edit" %>
+            </td>
+            <% @curriculum.semesters.each do |semester| %>
+              <% if study.semesters.find_by_number(semester.number) %>
+                <td><%= study.educations.where(:semester_id => semester.id).first.examinations.map(&:name).join(', ').mb_chars.downcase %></td>
+              <% else %>
+                <td></td>
+              <% end %>
+            <% end %>
+          </tr>
+        <% end %>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
 
