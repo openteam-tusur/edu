@@ -204,10 +204,18 @@ function manipulation_education_fields(){
 };
 
 function irregual_labels(){
-  $('#study_educations_attributes_new_educations_examinations_input fieldset ol li label').live('click',
+  $('#study_educations_attributes_new_educations_examinations_input fieldset ol li label, label>input').live('click',
     function(){
-      id = $(this).attr('for');
-      checkbox = $(this).children();
+      if ($(this).is('label')) {
+        id = $(this).attr('for');
+        checkbox = $(this).children();
+      };
+
+      if ($(this).is('input')) {
+        id = $(this).attr('id');
+        checkbox = $(this);
+      };
+
       if (checkbox.is(':checked')) {
         checkbox.removeAttr('checked');
       } else {
