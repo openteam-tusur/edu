@@ -204,7 +204,7 @@ function manipulation_education_fields(){
 };
 
 function irregual_labels(){
-  $('#study_educations_attributes_new_educations_examinations_input fieldset ol li label, label>input').live('click',
+  $('#study_educations_attributes_new_educations_examinations_input fieldset ol li label, #study_educations_attributes_new_educations_examinations_input fieldset ol li label>input').live('click',
     function(){
       if ($(this).is('label')) {
         id = $(this).attr('for');
