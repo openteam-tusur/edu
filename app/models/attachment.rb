@@ -13,8 +13,13 @@ class Attachment < ActiveRecord::Base
   validates_uniqueness_of :data_hash
 
   before_validation :set_hash
+  before_validation :set_mime_type
 
   private
+
+  def set_mime_type
+    self.data_content_type =  MIME::Types[FileMagic.new(FileMagic::MAGIC_MIME).file(self.data.path)].first
+  end
 
   def set_hash
     self.data_hash = Digest::MD5.hexdigest(self.data_file_size.to_s)

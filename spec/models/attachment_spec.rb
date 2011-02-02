@@ -1,6 +1,13 @@
+# encoding: utf-8
 require 'spec_helper'
 
 describe Attachment do
+  it "должен правильно ставить mime_type" do
+    curriculum = Factory.create(:plan_curriculum)
+    attachment = curriculum.build_attachment(:data => File.new(Rails.root + "spec/data/plan-210400.pdf"))
+    attachment.save.should be true
+    attachment.reload.data_content_type.should eql "application/pdf"
+  end
 end
 
 # == Schema Information

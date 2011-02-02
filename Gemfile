@@ -67,6 +67,8 @@ gem 'cancan'
 
 # file management
 gem 'paperclip'
+gem "mime-types", :require => "mime/types"
+gem "ruby-filemagic", :require => "filemagic"
 
 gem "default_value_for"
 

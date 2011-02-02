@@ -185,6 +185,7 @@ GEM
       activesupport (~> 3.0)
       railties (~> 3.0)
       rspec (~> 2.4.0)
+    ruby-filemagic (0.4.2)
     ruby-graphviz (0.9.20)
     rubyzip (0.9.4)
     russian (0.2.7)
@@ -254,6 +255,7 @@ DEPENDENCIES
   rails3-generators
   rr
   rspec-rails
+  ruby-filemagic
   russian
   shoulda
   show_for!
