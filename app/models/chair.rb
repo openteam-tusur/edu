@@ -4,9 +4,8 @@ class Chair < ActiveRecord::Base
   belongs_to :faculty
 
   has_many :disciplines, :through => :specialities
-  has_many :educations, :class_name => "Plan::Education"
   has_many :studies, :class_name => "Plan::Study"
-  has_many :provided_disciplines, :class_name => "Plan::Discipline", :through => :educations, :source => :discipline
+  has_many :educations, :class_name => "Plan::Education", :through => :studies
 
   has_many :curriculums, :class_name => "Plan::Curriculum"
   has_many :specialities, :through => :curriculums
@@ -87,6 +86,10 @@ class Chair < ActiveRecord::Base
     Plan::Curriculum.where(:id => studies.map(&:curriculum_id))
   end
 
+  def provided_disciplines
+    []
+  end
+
   def grouped_provided_specialities
     grouped = {}
     provided_specialities.each do |speciality|
@@ -108,13 +111,8 @@ class Chair < ActiveRecord::Base
     curriculum.educations.where(:study_id => studies)
   end
 
-  def grouped_provided_educations_for_curriculum(curriculum)
-    grouped = {}
-    educations.where(:semester_id => curriculum.semesters).includes(:discipline).order("plan_disciplines.name").includes(:semester).order("plan_semesters.number").each do |education|
-      grouped[education.discipline] ||= []
-      grouped[education.discipline] << education
-    end
-    grouped
+  def provided_studies_for_curriculum(curriculum)
+    studies.includes(:discipline).order("plan_disciplines.name").where(:curriculum_id => curriculum)
   end
 
   Publication.enum(:kind).each do |kind|

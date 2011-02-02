@@ -3,10 +3,13 @@ require 'spec_helper'
 
 describe Attachment do
   it "должен правильно ставить mime_type" do
-    curriculum = Factory.create(:plan_curriculum)
-    attachment = curriculum.build_attachment(:data => File.new(Rails.root + "spec/data/plan-210400.pdf"))
-    attachment.save.should be true
-    attachment.reload.data_content_type.should eql "application/pdf"
+    @curriculum = Factory.create(:plan_curriculum,
+                          :semesters_count => 10,
+                          :access => "free",
+                          :year => "2010",
+                          :volume => 200,
+                          :attachment_attributes => {:data => File.new(Rails.root.join("spec", "data", "plan-210400.pdf"))})
+    @curriculum.attachment.data_content_type.to_s.should eql "application/pdf"
   end
 end
 

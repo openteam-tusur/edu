@@ -7,6 +7,6 @@ class Manage::ProvidedDisciplinesController < Manage::ApplicationController
 
   def index
     @curriculum = Plan::Curriculum.find_by_slug(params[:curriculum_id])
-    @provided_specialities = @chair.grouped_provided_specialities
+    @studies = @chair.provided_studies_for_curriculum(@curriculum)
   end
 end

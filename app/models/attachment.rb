@@ -18,10 +18,12 @@ class Attachment < ActiveRecord::Base
   private
 
   def set_mime_type
-    self.data_content_type =  MIME::Types[FileMagic.new(FileMagic::MAGIC_MIME).file(self.data.path)].first
+    return unless self.data.file?
+    self.data_content_type =  MIME::Types[FileMagic.new(FileMagic::MAGIC_MIME).file(data.queued_for_write[:original].path)].first
   end
 
   def set_hash
+    return unless self.data.file?
     self.data_hash = Digest::MD5.hexdigest(self.data_file_size.to_s)
   end
 
