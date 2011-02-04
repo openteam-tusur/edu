@@ -71,7 +71,7 @@
             </td>
             <% @curriculum.semesters.each do |semester| %>
               <% if study.semesters.find_by_number(semester.number) %>
-                <td><%= study.educations.where(:semester_id => semester.id).first.examinations.map(&:name).join(', ').mb_chars.downcase %></td>
+                <td class="existed"><%= study.educations.where(:semester_id => semester.id).first.examinations.map(&:name).join(', ').mb_chars.downcase %></td>
               <% else %>
                 <td></td>
               <% end %>
