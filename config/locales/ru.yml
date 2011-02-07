@@ -306,8 +306,9 @@ ru:
         licence: Лицензия
         semester: Семестр
       roles:
-        student: Роль студента
+        graduate: Роль магистранта
         employee: Роль преподавателя
+        student: Роль студента
       speciality: Специальность
       user: Пользователь
       resource: Ресурс
@@ -333,6 +334,9 @@ ru:
           unpublished: Не опубликовано
           published: Опубликовано
       roles:
+        graduate:
+          group: Группа
+          birthday: Дата рождения
         student:
           group: Группа
           birthday: Дата рождения
