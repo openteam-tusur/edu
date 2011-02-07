@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class HumansController < InheritedResourcesController
   check_authorization
 
@@ -8,7 +10,15 @@ class HumansController < InheritedResourcesController
 
   acts_as_singleton!
 
-  actions :all, :except => [:index, :delete, :destroy]
+  actions :all, :except => [:delete, :destroy]
+
+  def index
+    search = Human.search(params[:query], params)
+
+    @humans = search.results
+    @chair_facets = search.facet(:chair_ids).rows
+    @role_facets = search.facet(:role_slugs).rows
+  end
 
   def create
     if current_user.human

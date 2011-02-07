@@ -10,6 +10,8 @@ Portal::Application.routes.draw do
     end
   end
 
+  resources :humans
+
   resources :chairs, :only => [:index, :show] do
     resources :employees, :except => [:show]
       resources :publications do
