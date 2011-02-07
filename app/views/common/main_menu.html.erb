@@ -13,7 +13,11 @@
     <ul>
       <li class="training"><a class="selected" href="/"><span class="decreased">для</span> учёбы</a></li>
       <li class="science"><a href="#"><span class="decreased">для</span> науки</a></li>
-      <li class="subfaculties"><a href="/"><span class="decreased">наши</span> кафедры</a></li>
+      <li class="subfaculties">
+        <%= link_to chairs_path do %>
+          <span class="decreased">наши</span> кафедры
+        <% end %>
+      </li>
       <li class="humans">
         <%= link_to humans_path do %>
           <span class="decreased">наши</span> люди

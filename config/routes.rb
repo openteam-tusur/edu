@@ -19,14 +19,13 @@ Portal::Application.routes.draw do
         resources :publication_disciplines, :except => [:index, :show]
       end
 
-      resources :specialities do
-        resources :curriculums do
-          put :transit, :on => :member
-          resources :semesters do
-            resources :educations
-          end
+      resources :curriculums do
+        resources :studies, :only => [:index, :show]
+        resources :semesters do
+          resources :educations
         end
       end
+
     resources :provided_specialities, :only => :index
   end
 
