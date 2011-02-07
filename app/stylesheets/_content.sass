@@ -86,7 +86,7 @@
       &.fsu h1
         background-image: url("../images/faculty_fsu.png")
       &.fvs h1
-        background-image: url("../images/faculty_fvs.png")
+        background-image: urlmain_page("../images/faculty_fvs.png")
       &.gf h1
         background-image: url("../images/faculty_gf.png")
       &.ef h1
@@ -111,4 +111,39 @@ ul.protected_children
       list-style: circle
       margin-left: 10px
       margin-bottom: 0
+
+.main_page
+  img
+    display: block
+    margin-bottom: 20px
+
+  ul
+    +clearfix
+
+    li
+      +border-radius
+      +linear-gradient(color-stops(#f2dabe, #eac496), top)
+      background-color: #eecfaa
+      float: left
+      height: 80px
+      margin: 0 10px 0 0
+      padding: 15px 10px
+      width: 280px
+
+    .last
+      margin-right: 0
+
+  p
+    margin-bottom: 0
+    text-align: justify
+
+  .greetings_text
+    +border-radius
+    background: #e0f2fc
+    font-size: 14px
+    line-height: 20px
+    padding: 15px 10px
+
+  a
+    display: block
 

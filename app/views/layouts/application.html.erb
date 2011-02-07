@@ -33,8 +33,9 @@
     <div class="content">
       <%= yield :breadcrumbs %>
       <%= show_notice %>
-      <h1><%= show_title? ? yield(:title) : title_locale %></h1>
+      <%= yield :place_for_title %>
       <%= render :partial => 'users/shared/has_been_started' %>
+      <%= yield :main_page %>
       <%= yield %>
     </div>
   </div>

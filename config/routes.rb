@@ -72,7 +72,7 @@ Portal::Application.routes.draw do
     root :to => "chairs#index"
   end
 
-  root :to => "chairs#index"
+  root :to => "application#main_page"
 
   resources :autocompletes, :only => [] do
     get :disciplines, :on => :collection
