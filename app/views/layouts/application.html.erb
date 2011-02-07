@@ -63,10 +63,10 @@
         <li>
           <h1><span class="decreased">наши</span> люди</h1>
           <ul>
-            <li><a href="#">студенты</a></li>
-            <li><a href="#">магистранты</a></li>
-            <li><a href="#">аспиранты</a></li>
-            <li><a href="#">преподаватели</a></li>
+            <li><%= link_to 'студенты', humans_path(:role => 'student') %></li>
+            <li><%= link_to 'магистранты', humans_path(:role => 'graduate') %></li>
+            <li><%= link_to 'аспиранты', '#' %></li>
+            <li><%= link_to 'сотрудники', humans_path(:role => 'employee') %></li>
           </ul>
         </li>
         <li>
