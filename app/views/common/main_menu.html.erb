@@ -10,21 +10,7 @@
         <% end %>
       <% end %>
     </div>
-    <ul>
-      <li class="training"><a class="selected" href="/"><span class="decreased">для</span> учёбы</a></li>
-      <li class="science"><a href="#"><span class="decreased">для</span> науки</a></li>
-      <li class="subfaculties">
-        <%= link_to chairs_path do %>
-          <span class="decreased">наши</span> кафедры
-        <% end %>
-      </li>
-      <li class="humans">
-        <%= link_to humans_path do %>
-          <span class="decreased">наши</span> люди
-        <% end %>
-      </li>
-      <li class="library"><a href="http://lib.tusur.ru/"><span class="decreased">наша</span> библиотека</a></li>
-    </ul>
+    <%= render_navigation :context => :main_menu %>
   </div>
 <% end %>
 

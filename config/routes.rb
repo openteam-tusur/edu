@@ -79,7 +79,6 @@ Portal::Application.routes.draw do
     get :authors, :on => :collection
   end
 
-  match "/:id" => "chairs#show", :as => :chair
   match "/attachments/:id/download/" => "attachments#download"
 end
 
