@@ -20,6 +20,9 @@ class PublicationDiscipline < ActiveRecord::Base
     string :kind do
       publication.kind
     end
+    string :state do
+      publication.state
+    end
     integer :education_ids, :multiple => true do
       educations.map(&:id)
     end

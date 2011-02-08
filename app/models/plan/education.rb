@@ -27,6 +27,7 @@ class Plan::Education < ActiveRecord::Base
     end
     PublicationDiscipline.solr_search do
       with :education_ids, [self.id]
+      with :state, 'published'
       paginate :page => 1, :per_page => 100000
     end.results.each do |publication_discipline|
       grouped[publication_discipline.publication.kind] << publication_discipline.publication

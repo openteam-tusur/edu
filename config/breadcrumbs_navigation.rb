@@ -26,9 +26,13 @@ SimpleNavigation::Configuration.run do |navigation|
                                @curriculum.title,
                                chair_curriculum_path(@chair, @curriculum) do |curriculum|
 
-
-
-
+                curriculum.item :semester,
+                                @semester.title,
+                                chair_curriculum_semester_path(@chair, @curriculum, @semester) do |education|
+                  education.item :education,
+                                 @education.study.discipline.name,
+                                 chair_curriculum_semester_education_path(@chair, @curriculum, @semester, @education) if @education
+                end if @semester
               end if @curriculum
             end
           end if @chair

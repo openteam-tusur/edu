@@ -16,6 +16,8 @@ class Publication < Resource
   validates_presence_of :chair, :title, :attachment, :year,
                         :access, :volume, :kind, :extended_kind
 
+  after_save :reindex_publication_disciplines
+
   has_enum :kind, %w(work_programm tutorial training_toolkit)
 
   scope :published,   where(:state => 'published')
@@ -109,6 +111,11 @@ class Publication < Resource
     end
     result_data
   end
+
+  private
+    def reindex_publication_disciplines
+      PublicationDiscipline.reindex
+    end
 
 end
 

@@ -13,18 +13,17 @@ Portal::Application.routes.draw do
   resources :humans
 
   resources :chairs, :only => [:index, :show] do
-    resources :employees, :except => [:show]
+    resources :employees, :except => :show
       resources :publications do
         put :transit, :on => :member
         resources :publication_disciplines, :except => [:index, :show]
       end
 
-      resources :curriculums do
-        resources :studies, :only => [:index, :show]
-        resources :semesters do
-          resources :educations
-        end
+    resources :curriculums, :only => [:index, :show] do
+      resources :semesters, :only => :show do
+        resources :educations, :only => :show
       end
+    end
 
     resources :provided_specialities, :only => :index
   end
@@ -35,7 +34,7 @@ Portal::Application.routes.draw do
     match "/educations/get_fields" => "educations#get_fields", :method => :post
     match "/humans/:id/merge_with/:namesake_id" => "humans#merge_with", :as => "human_merge_with"
 
-    resources :specialities, :except => [:show]
+    resources :specialities, :except => :show
     resources :humans, :shallow => true do
       get :check, :on => :collection
       resource :user, :only => [:edit, :update] do
@@ -47,7 +46,7 @@ Portal::Application.routes.draw do
     end
 
     resources :chairs, :only => [:index, :show] do
-      resources :employees, :except => [:show]
+      resources :employees, :except => :show
       resources :publications do
         get :to_report, :on => :member
         put :transit, :on => :member
