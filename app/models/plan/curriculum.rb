@@ -31,9 +31,7 @@ class Plan::Curriculum < Resource
   after_create :create_semesters
 
   searchable do
-    text :title do
-      "#{speciality.short_title} (#{self.human_study} форма) с #{self.since} г."
-    end
+    text :title
     integer :chair_id, :references => Chair
     string :study
   end
@@ -42,13 +40,13 @@ class Plan::Curriculum < Resource
     solr_search do
       keywords query unless query.blank?
 
-#      study_filter = with :study, options[:study] if options[:study]
-#      chair_filter = with :chair_id, chair.id if chair
+      study_filter = with :study, options[:study] if options[:study]
+      chair_filter = with :chair_id, chair.id if chair
 
-#      facet :study, :zeros => true, :exclude => study_filter, :sort => :index
-#      facet :chair_id, :zeros => true, :exclude => chair_filter, :sort => :index
+      facet :study, :zeros => true, :exclude => study_filter, :sort => :index
+      facet :chair_id, :zeros => true, :exclude => chair_filter, :sort => :index
 
-      paginate :page => options[:page], :per_page => Publication.per_page
+      paginate :page => options[:page], :per_page => 10
     end
   end
 

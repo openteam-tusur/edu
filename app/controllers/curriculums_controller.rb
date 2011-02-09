@@ -7,15 +7,11 @@ class CurriculumsController < InheritedResources::Base
 
   actions :index, :show
 
-#  def index
-#    @grouped_specialities = Chair.all.map { |chair| chair.grouped_specialities }
-#  end
-
   def index
     p search = Plan::Curriculum.search(params[:query], @chair, params)
     @curriculums = search.results
-#    @facets = search.facet(:study).rows
-#    @chair_facets = search.facet(:chair_id).rows
+    @study_facets = search.facet(:study).rows
+    @chair_facets = search.facet(:chair_id).rows
   end
 
 end
