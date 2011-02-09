@@ -8,7 +8,7 @@ class CurriculumsController < InheritedResources::Base
   actions :index, :show
 
   def index
-    p search = Plan::Curriculum.search(params[:query], @chair, params)
+    search = Plan::Curriculum.search(params[:query], @chair, params)
     @curriculums = search.results
     @study_facets = search.facet(:study).rows
     @chair_facets = search.facet(:chair_id).rows

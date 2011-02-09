@@ -9,9 +9,9 @@ SimpleNavigation::Configuration.run do |navigation|
                      t('title.training.index'),
                      training_path do |training|
 
-        training.item :curriculums,
-                      'Учебные планы',
-                      curriculums_path
+        training.item :specialities,
+                      'Специальности и направления подготовки',
+                      specialities_path
 
         training.item :publications,
                       'Учебно-методическое обеспечение',

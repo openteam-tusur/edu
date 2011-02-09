@@ -23,9 +23,31 @@ class Speciality < ActiveRecord::Base
 
   searchable do
     text :info do
-       chairs.map do |chair|
+      chairs.map do |chair|
         "#{code} #{name} #{chair.abbr} #{chair.name}"
       end.join(" ")
+    end
+
+    integer :chair_id, :multiple => true, :references => Chair do
+      chairs.map(&:id)
+    end
+
+    text :title
+
+    string :degree
+  end
+
+  def self.search(query = nil, options = {})
+    self.solr_search do
+        keywords query unless query.blank?
+
+        without :chair_id, nil
+
+        chair_filter = with :chair_id, options[:chair_id] if options[:chair_id]
+        degree_filter = with :degree, options[:degree] if options[:degree]
+
+        facet :chair_id, :zeros => true, :exclude => chair_filter, :sort => :index
+        facet :degree, :zeros => true, :exclude => degree_filter, :sort => :index
     end
   end
 

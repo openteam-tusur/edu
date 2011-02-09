@@ -73,7 +73,7 @@ ru:
     employees:
       index: Студенты и сотрудники кафедры
 
-    curriculums:
+    specialities:
       index: Специальности и направления подготовки
 
     users/sessions:

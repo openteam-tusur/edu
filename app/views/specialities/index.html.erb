@@ -1,0 +1,38 @@
+<%= semantic_form_for :speciality, :html => { :method => :get, :class => "speciality_search" } do | form | %>
+  <%= form.inputs do %>
+    <%= form.input :query, :required => false, :label => false, :input_html => { :name => 'query', :value => params[:query] } %>
+  <% end %>
+  <%= form.buttons do %>
+    <%= form.commit_button "Найти", :button_html => { :class => "button light" } %>
+  <% end %>
+<% end %>
+
+<div class="specialities_wrapper">
+  <div class="speciality_facets">
+    <%= render_navigation :context => 'speciality_degree' %>
+  </div>
+
+  <% if collection.any? %>
+    <div class="speciality_list">
+      <ul>
+      <% @specialities.each do |speciality| %>
+        <li>
+          <h5><%= speciality.title %></h5>
+          <ul>
+            <% speciality.curriculums.each do |curriculum| %>
+              <li><%= link_to curriculum.study_with_since, "#" %></li>
+            <% end %>
+          </ul>
+        </li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>
+
+<div class="chair_facets">
+  <%= render_navigation :context => 'chairs' %>
+</div>
+
+<%= will_paginate @specialities %>
+
