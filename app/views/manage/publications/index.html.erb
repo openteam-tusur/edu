@@ -1,7 +1,3 @@
-<div class="publication facets">
-  <%= render_navigation :context => 'publication_kind' %>
-</div>
-
 <%= semantic_form_for :publications, :html => { :method => :get, :class => "publication_search" } do | form | %>
   <%= form.inputs do %>
     <%= form.input :query, :required => false, :label => false, :input_html => { :name => 'query', :value => params[:query] } %>
@@ -10,6 +6,11 @@
     <%= form.commit_button "Найти", :button_html => { :class => "button light" } %>
   <% end %>
 <% end %>
+
+<div class="publication facets">
+  <%= render_navigation :context => 'publication_kind' %>
+</div>
+
 
 <% if collection.any? %>
   <div class="publications_list">
