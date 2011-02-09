@@ -7,7 +7,7 @@ class SemestersController < InheritedResources::Base
 
   actions :show
 
-  belongs_to :chair, :finder => :find_by_slug do
+  belongs_to :speciality, :finder => :find_by_slug do
     belongs_to :curriculum,
                :param => :curriculum_id,
                :instance_name => :curriculum,

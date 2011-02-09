@@ -20,7 +20,7 @@
           <h5><%= speciality.title %></h5>
           <ul>
             <% speciality.curriculums.each do |curriculum| %>
-              <li><%= link_to curriculum.study_with_since, "#" %></li>
+              <li><%= link_to curriculum.since_with_study_form, speciality_curriculum_path(speciality, curriculum) %></li>
             <% end %>
           </ul>
         </li>

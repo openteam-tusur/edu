@@ -5,13 +5,15 @@ class CurriculumsController < InheritedResources::Base
            :instance_name => :curriculum,
            :finder => :find_by_slug
 
-  actions :index, :show
+  belongs_to :speciality,
+             :finder => :find_by_slug
 
-  def index
-    search = Plan::Curriculum.search(params[:query], @chair, params)
-    @curriculums = search.results
-    @study_facets = search.facet(:study).rows
-    @chair_facets = search.facet(:chair_id).rows
+  actions :show
+
+  def show
+    show! do
+      @semester = @curriculum.semesters.first
+    end
   end
 
 end

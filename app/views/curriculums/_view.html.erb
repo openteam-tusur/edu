@@ -28,7 +28,7 @@
       <% @curriculum.semesters.each do |semester| %>
         <td<%= semester.eql?(@semester) ? " class='current'" : ""%>>
           <%= link_to semester.number,
-                      chair_curriculum_semester_path(@chair, @curriculum, semester) %>
+                      speciality_curriculum_semester_path(@speciality, @curriculum, semester) %>
         </td>
       <% end %>
       <%= content_tag :td, "" unless @curriculum.semesters_count.even? %>
@@ -39,7 +39,7 @@
       <% @semester.educations.each do |education| %>
         <div class="discipline <%= cycle('odd', 'even') %>">
           <div class="discipline_name">
-            <%= link_to education.study.discipline.name, chair_curriculum_semester_education_path(@chair, @curriculum, @semester, education)  %>
+            <%= link_to education.study.discipline.name, speciality_curriculum_semester_education_path(@speciality, @curriculum, @semester, education)  %>
             <% unless education.examinations.empty? %>
               (<%= education.examinations.collect(&:name).join(", ").mb_chars.downcase %>)
             <% end %>
@@ -49,7 +49,6 @@
     <% else %>
       <p>Дисциплины не заполнены</p>
     <% end %>
-
   </div>
 </div>
 
