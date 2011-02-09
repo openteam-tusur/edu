@@ -3,8 +3,8 @@ SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
     primary.item :training,
                  '<span class="decreased">для</span> учёбы',
-                 "#",
-                 :highlights_on => /jopa/
+                 training_path,
+                 :highlights_on => /^\/training/
 
     primary.item :science,
                  '<span class="decreased">для</span> науки',
@@ -19,7 +19,7 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :humans,
                  '<span class="decreased">наши</span> люди',
                  humans_path,
-                 :highlights_on => /jopa/
+                 :highlights_on => /^\/humans/
 
     primary.item :library,
                  '<span class="decreased">наша</span> библиотека',

@@ -61,6 +61,9 @@ ru:
     application:
       main_page: Главная страница
 
+    training:
+      index: Для учёбы
+
     chairs:
       index: Наши кафедры
 

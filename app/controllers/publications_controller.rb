@@ -1,9 +1,11 @@
 class PublicationsController < InheritedResources::Base
-
   defaults :resource_class => Publication
+
   load_resource :except => :get_fields
 
   belongs_to :chair, :finder => :find_by_slug
+
+  actions :index
 
   def index
     search = Publication.search(params[:query], @chair, params)
@@ -18,6 +20,5 @@ class PublicationsController < InheritedResources::Base
     @publication = Publication.new(params[:publication])
     render :partial => "/publications/fields"
   end
-
 end
 

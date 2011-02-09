@@ -10,23 +10,21 @@
               <p class="qualification"><%= speciality.qualification %></p>
               <p class="additional">лицензия: <%= speciality.licence %>, аккредитация: <%= speciality.accreditation %></p>
               <div class="curriculums">
-                <% curriculums.each do |curriculum| %>
+                <% curriculums.published.each do |curriculum| %>
                 <div class="curriculum_item">
                   <div class="name">
-                    <%= link_to image_tag("icon_#{curriculum.state}.png"),
-                                chair_curriculum_path(@chair, curriculum),
-                                :title => curriculum.human_state, :rel => "tipsy" %>
-                    <%= link_to curriculum.study_with_since,
+                    <%= image_tag "icon_#{curriculum.state}.png",
+                                :title => curriculum.human_state %>
+                    <%= link_to "Учебно-методическое обеспечение для учебного плана #{curriculum.since_with_study_form}",
                                 chair_curriculum_path(@chair, curriculum),
                                 :class => curriculum.state %>
                   </div>
                   <div class="info">
                     <span class="duration">Срок обучения <%= curriculum.duration %></span>
                     <% if curriculum.attachment %>
-                      <%= link_to image_tag("icon_pdf_#{curriculum.access}.png"),
-                                  chair_curriculum_path(@chair, curriculum),
-                                  :title => curriculum.human_access, :rel => "tipsy" %>
-                      <%= link_to "Учебный план #{curriculum.year}",
+                      <%= image_tag "icon_pdf_#{curriculum.access}.png",
+                                    :title => curriculum.human_access, :class => "need_tipsy" %>
+                     <%= link_to "Учебный план #{curriculum.year}",
                                   curriculum.attachment.data.url,
                                   :class => "#{curriculum.access}_pdf download" %>
                     <% else %>

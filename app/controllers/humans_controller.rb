@@ -6,7 +6,7 @@ class HumansController < InheritedResourcesController
   load_resource :except => [:create]
   authorize_resource
 
-  prepend_before_filter :validate_authentication
+  prepend_before_filter :validate_authentication, :except => [:index, :show]
 
   acts_as_singleton!
 

@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   end
 
   def main_page
-    render :file => "layouts/main.html.erb", :layout => 'application'
+    render :file => "common/main.html.erb", :layout => 'application'
   end
 
 protected

@@ -1,0 +1,20 @@
+<ul class="cool_list">
+  <li>
+    <h4>
+      <a href="#">Учебные планы</a>
+
+    </h4>
+  </li>
+
+  <li>
+    <h4>
+      <%= link_to 'Учебно-методическое обеспечение', publications_path %>
+      <% @publication_facets.each do |facet| %>
+        <p><%= "#{Publication.human_enum[:kind][facet.value.to_sym]} - #{facet.count}" %></p>
+      <% end %>
+
+    </h4>
+  </li>
+
+</ul>
+

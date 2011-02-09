@@ -36,10 +36,10 @@ class Publication < Resource
     string :kind
   end
 
-  def self.search(query, chair, options={})
+  def self.search(query = nil, chair = nil, options = {})
     solr_search do
       keywords query unless query.blank?
-      with :chair_id, chair.id
+      with :chair_id, chair.id if chair
       kind_filter = with :kind, options[:kind] if options[:kind]
       facet :kind, :zeros => true, :exclude => kind_filter, :sort => :index
       paginate :page => options[:page], :per_page => Publication.per_page

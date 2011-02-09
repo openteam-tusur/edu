@@ -34,6 +34,10 @@ class Plan::Curriculum < Resource
     "#{self.human_study} форма с #{self.since} г."
   end
 
+  def since_with_study_form
+    "#{self.since} г. набора, #{self.human_study} форма"
+  end
+
   def title
     "#{speciality.short_title} (#{self.human_study} форма) с #{self.since} г."
   end

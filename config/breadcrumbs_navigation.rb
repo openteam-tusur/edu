@@ -5,6 +5,10 @@ SimpleNavigation::Configuration.run do |navigation|
                  t('title.application.main_page'),
                  root_path do |secondary|
 
+      secondary.item :training,
+                     t('title.training.index'),
+                     training_path
+
       secondary.item :humans,
                    t('title.humans.index'),
                    humans_path
