@@ -30,6 +30,28 @@ class Plan::Curriculum < Resource
 
   after_create :create_semesters
 
+  searchable do
+    text :title do
+      "#{speciality.short_title} (#{self.human_study} форма) с #{self.since} г."
+    end
+    integer :chair_id, :references => Chair
+    string :study
+  end
+
+  def self.search(query = nil, chair = nil, options = {})
+    solr_search do
+      keywords query unless query.blank?
+
+#      study_filter = with :study, options[:study] if options[:study]
+#      chair_filter = with :chair_id, chair.id if chair
+
+#      facet :study, :zeros => true, :exclude => study_filter, :sort => :index
+#      facet :chair_id, :zeros => true, :exclude => chair_filter, :sort => :index
+
+      paginate :page => options[:page], :per_page => Publication.per_page
+    end
+  end
+
   def study_with_since
     "#{self.human_study} форма с #{self.since} г."
   end

@@ -1,44 +1,5 @@
-<% unless @specialities.empty?  %>
-  <div class="specialities">
-    <% Speciality.enum(:degree).each do |degree| %>
-      <% if @specialities[degree] %>
-        <fieldset>
-          <legend><%= t("noun_#{degree}") %></legend>
-          <% @specialities[degree].each do |speciality, curriculums| %>
-            <div class="speciality_item">
-              <p class="name"><%= speciality.short_title %></p>
-              <p class="qualification"><%= speciality.qualification %></p>
-              <p class="additional">лицензия: <%= speciality.licence %>, аккредитация: <%= speciality.accreditation %></p>
-              <div class="curriculums">
-                <% curriculums.published.each do |curriculum| %>
-                <div class="curriculum_item">
-                  <div class="name">
-                    <%= image_tag "icon_#{curriculum.state}.png",
-                                :title => curriculum.human_state %>
-                    <%= link_to "Учебно-методическое обеспечение для учебного плана #{curriculum.since_with_study_form}",
-                                chair_curriculum_path(@chair, curriculum),
-                                :class => curriculum.state %>
-                  </div>
-                  <div class="info">
-                    <span class="duration">Срок обучения <%= curriculum.duration %></span>
-                    <% if curriculum.attachment %>
-                      <%= image_tag "icon_pdf_#{curriculum.access}.png",
-                                    :title => curriculum.human_access, :class => "need_tipsy" %>
-                     <%= link_to "Учебный план #{curriculum.year}",
-                                  curriculum.attachment.data.url,
-                                  :class => "#{curriculum.access}_pdf download" %>
-                    <% else %>
-                      <p>файл отсутствует</p>
-                    <% end %>
-                  </div>
-                </div>
-                <% end %>
-              </div>
-            </div>
-          <% end %>
-      </fieldset>
-      <% end %>
-    <% end %>
-  </div>
+<%= @curriculums.count %>
+<% @curriculums.each do |curriculum| %>
+  <%= curriculum %>
 <% end %>
 

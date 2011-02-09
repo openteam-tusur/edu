@@ -1,8 +1,7 @@
 <ul class="cool_list">
   <li>
     <h4>
-      <a href="#">Учебные планы</a>
-
+      <%= link_to 'Учебные планы', curriculums_path %>
     </h4>
   </li>
 
@@ -10,11 +9,11 @@
     <h4>
       <%= link_to 'Учебно-методическое обеспечение', publications_path %>
       <% @publication_facets.each do |facet| %>
-        <p><%= "#{Publication.human_enum[:kind][facet.value.to_sym]} - #{facet.count}" %></p>
+        <p>
+          <%= link_to "#{Publication.human_enum[:kind][facet.value.to_sym]} (#{facet.count})", publications_path(:kind => facet.value) %>
+        </p>
       <% end %>
-
     </h4>
   </li>
-
 </ul>
 

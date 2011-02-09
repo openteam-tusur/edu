@@ -15,7 +15,8 @@ Portal::Application.routes.draw do
   match "/training" => "training#index"
 
   scope '/training' do
-    resources :publications, :only => [:index, :show]
+    resources :publications, :only => [:index]
+    resources :curriculums, :only => [:index, :show]
   end
 
   resources :chairs, :only => [:index, :show] do

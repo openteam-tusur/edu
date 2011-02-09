@@ -7,18 +7,16 @@ class CurriculumsController < InheritedResources::Base
 
   actions :index, :show
 
-  belongs_to :chair, :finder => :find_by_slug
-
-  actions :index, :show
+#  def index
+#    @grouped_specialities = Chair.all.map { |chair| chair.grouped_specialities }
+#  end
 
   def index
-    @specialities = @chair.grouped_specialities
+    p search = Plan::Curriculum.search(params[:query], @chair, params)
+    @curriculums = search.results
+#    @facets = search.facet(:study).rows
+#    @chair_facets = search.facet(:chair_id).rows
   end
 
-  def show
-    show! do
-      @semester = @curriculum.semesters.first
-    end
-  end
 end
 
