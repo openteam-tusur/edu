@@ -1,5 +1,5 @@
 Portal::Application.routes.draw do
-  devise_for :users,  :controllers => { :registrations => "users/registrations",
+  devise_for :users, :controllers => { :registrations => "users/registrations",
                                         :sessions => 'users/sessions',
                                         :passwords => 'users/passwords' }
 
@@ -10,7 +10,7 @@ Portal::Application.routes.draw do
     end
   end
 
-  resources :humans
+  resources :humans, :only => [:index, :show]
 
   match "/training" => "training#index"
 
@@ -34,18 +34,20 @@ Portal::Application.routes.draw do
     resources :provided_specialities, :only => :index
   end
 
-
   namespace :manage do
     match "/publications/get_fields" => "publications#get_fields", :method => :post
     match "/educations/get_fields" => "educations#get_fields", :method => :post
     match "/humans/:id/merge_with/:namesake_id" => "humans#merge_with", :as => "human_merge_with"
 
     resources :specialities, :except => :show
+
     resources :humans, :shallow => true do
       get :check, :on => :collection
+
       resource :user, :only => [:edit, :update] do
         get :flush_password, :on => :member
       end
+
       resources :roles do
         put :transit, :on => :member
       end
@@ -53,6 +55,7 @@ Portal::Application.routes.draw do
 
     resources :chairs, :only => [:index, :show] do
       resources :employees, :except => :show
+
       resources :publications do
         get :to_report, :on => :member
         put :transit, :on => :member
@@ -61,7 +64,9 @@ Portal::Application.routes.draw do
 
       resources :curriculums do
         put :transit, :on => :member
+
         resources :studies, :except => [:index, :show]
+
         resources :semesters do
           resources :educations
         end
@@ -70,6 +75,7 @@ Portal::Application.routes.draw do
 
     match "chairs/:chair_id/provided_specialities" => "provided_specialities#index",
           :as => :chair_provided_specialities
+
     match "chairs/:chair_id/:curriculum_id/provided_disciplines" => "provided_disciplines#index",
           :as => :chair_provided_disciplines
 

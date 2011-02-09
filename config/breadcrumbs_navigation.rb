@@ -7,7 +7,16 @@ SimpleNavigation::Configuration.run do |navigation|
 
       secondary.item :training,
                      t('title.training.index'),
-                     training_path
+                     training_path do |training|
+#        training.item :curriculums,
+#                      'Учебные планы',
+#                      curriculums_path
+
+        training.item :publications,
+                      'Учебно-методическое обеспечение',
+                      publications_path
+
+      end
 
       secondary.item :humans,
                    t('title.humans.index'),

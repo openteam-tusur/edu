@@ -31,7 +31,7 @@ class Publication < Resource
       authors.map(&:human).map(&:full_name).join(" ")
     end
 
-    integer :chair_id
+    integer :chair_id, :references => Chair
 
     string :kind
   end
@@ -39,9 +39,13 @@ class Publication < Resource
   def self.search(query = nil, chair = nil, options = {})
     solr_search do
       keywords query unless query.blank?
-      with :chair_id, chair.id if chair
+
       kind_filter = with :kind, options[:kind] if options[:kind]
+      chair_filter = with :chair_id, chair.id if chair
+
       facet :kind, :zeros => true, :exclude => kind_filter, :sort => :index
+      facet :chair_id, :zeros => true, :exclude => chair_filter, :sort => :index
+
       paginate :page => options[:page], :per_page => Publication.per_page
     end
   end

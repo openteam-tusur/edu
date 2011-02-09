@@ -1,16 +1,13 @@
+# encoding: utf-8
+
 class PublicationsController < InheritedResources::Base
-  defaults :resource_class => Publication
-
   load_resource :except => :get_fields
-
-  belongs_to :chair, :finder => :find_by_slug
-
-  actions :index
 
   def index
     search = Publication.search(params[:query], @chair, params)
     @publications = search.results
     @facets = search.facet(:kind).rows
+    @chair_facets = search.facet(:chair_id).rows
   end
 
   def get_fields

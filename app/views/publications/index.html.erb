@@ -1,7 +1,3 @@
-<div class="publication facets">
- <%= render_navigation :context => 'publication' %>
-</div>
-
 <%= semantic_form_for :publications, :html => { :method => :get, :class => "publication_search" } do | form | %>
   <%= form.inputs do %>
     <%= form.input :query, :required => false, :label => false, :input_html => { :name => 'query', :value => params[:query] } %>
@@ -11,15 +7,23 @@
   <% end %>
 <% end %>
 
-<% if collection.any? %>
-  <div class="publications_list">
-    <% @publications.each do |obj| %>
-      <%= render :partial => "index_item", :locals => { :item => obj } %>
-    <% end %>
+<div class="publications_wrapper">
+  <div class="publication_facets">
+    <%= render_navigation :context => 'publication_kind' %>
   </div>
 
-<% end %>
+  <% if collection.any? %>
+    <div class="publications_list">
+      <% @publications.each do |obj| %>
+        <%= render :partial => "index_item", :locals => { :item => obj } %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
 
+<div class="chair_facets">
+  <%= render_navigation :context => 'chairs' %>
+</div>
 
 <%= will_paginate @publications %>
 
