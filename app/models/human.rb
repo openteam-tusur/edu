@@ -76,6 +76,10 @@ class Human < ActiveRecord::Base
     roles.accepted.empty? ? "": " — #{roles.accepted.map(&:to_s).join(', ')}"
   end
 
+  def has_publication?
+    !publications.empty?
+  end
+
   def namesakes
     human = self
     Human.solr_search do

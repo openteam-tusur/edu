@@ -16,7 +16,13 @@
     <ul class="cool_list">
     <% @humans.each do |human| %>
       <li>
-        <h5 class="full_name human_icon"><%= human.full_name %></h5>
+        <h5 class="full_name human_icon">
+          <% if human.has_publication? %>
+            <%= link_to human.full_name, publications_path(:query => human.full_name) %>
+          <% else %>
+            <%= human.full_name %>
+          <% end %>
+        </h5>
         <ul class="roles">
           <% unless human.roles.empty? %>
             <% human.roles.each do |role| %>
