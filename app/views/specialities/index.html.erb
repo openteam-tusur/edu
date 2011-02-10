@@ -1,11 +1,4 @@
-<%= semantic_form_for :speciality, :html => { :method => :get, :class => "speciality_search" } do | form | %>
-  <%= form.inputs do %>
-    <%= form.input :query, :required => false, :label => false, :input_html => { :name => 'query', :value => params[:query] } %>
-  <% end %>
-  <%= form.buttons do %>
-    <%= form.commit_button "Найти", :button_html => { :class => "button light" } %>
-  <% end %>
-<% end %>
+<%= render :partial => 'search_form' %>
 
 <div class="specialities_wrapper">
   <div class="speciality_facets">
@@ -14,10 +7,10 @@
 
   <% if collection.any? %>
     <div class="speciality_list">
-      <ul>
+      <ul class="cool_list">
       <% @specialities.each do |speciality| %>
         <li>
-          <h5><%= speciality.title %></h5>
+          <h5 class="specialities"><%= speciality.title %></h5>
           <% unless speciality.curriculums.published.empty? %>
           <ul>
             <% speciality.curriculums.published.each do |curriculum| %>
