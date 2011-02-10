@@ -1,24 +1,26 @@
 <ul class="cool_list">
   <li>
-    <h4>
+    <h4 class='specialities'>
       <%= link_to 'Специальности и направления подготовки', specialities_path %>
     </h4>
-    <% @specialities_facets.each do |facet| %>
-      <p>
-        <%= link_to "#{Speciality.human_enum[:degree][facet.value.to_sym]} (#{facet.count})", specialities_path(:degree => facet.value) %>
-      </p>
-    <% end %>
+    <ul>
+      <% @specialities_facets.each do |facet| %>
+        <li><%= link_to "По квалификации #{Speciality.human_enum[:degree][facet.value.to_sym]} (#{facet.count})", specialities_path(:degree => facet.value) %></li>
+      <% end %>
+    </ul>
+    <p>В этом мусоре было много ценных вещей, но не было вещей которые можно было бы поменять на деньги. Денег у детей тогда было мало и продать даже ценнейшие "ушки" было проблематично. Зато в других мусорных машинах, где не было вообще ничего иностранного, бывали вещи, которые можно было легко поменять на деньги. Например пустые бутылки. Бутылку принимали за 10-20 копеек. Найти в день десяток бутылок было вполне возможно.</p>
   </li>
 
   <li>
-    <h4>
+    <h4 class='publications'>
       <%= link_to 'Учебно-методическое обеспечение', publications_path %>
     </h4>
+    <ul>
       <% @publication_facets.each do |facet| %>
-        <p>
-          <%= link_to "#{Publication.human_enum[:kind][facet.value.to_sym]} (#{facet.count})", publications_path(:kind => facet.value) %>
-        </p>
+        <li><%= link_to "#{Publication.human_enum[:kind][facet.value.to_sym]} (#{facet.count})", publications_path(:kind => facet.value) %></li>
       <% end %>
+    </ul>
+    <p>В этом мусоре было много ценных вещей, но не было вещей которые можно было бы поменять на деньги. Денег у детей тогда было мало и продать даже ценнейшие "ушки" было проблематично. Зато в других мусорных машинах, где не было вообще ничего иностранного, бывали вещи, которые можно было легко поменять на деньги. Например пустые бутылки.</p>
   </li>
 </ul>
 
