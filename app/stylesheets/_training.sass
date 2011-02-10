@@ -4,7 +4,6 @@
     border: 1px solid #ddd
     background: #f3f2f1
 
-
   h4
     float: left
     width: 428px
@@ -28,6 +27,7 @@
     &.wide
       width: 100%
 
+    &.without_bullet
       li
         background: none
         padding: 0 0 0 15px
@@ -40,7 +40,7 @@
       padding: 0 0 0 30px
 
   p
-    display: block
+    +clearfix
 
   .search_form
     +clearfix

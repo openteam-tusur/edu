@@ -3,7 +3,7 @@
   <li>
     <h5 class="publications"><%= Publication.human_enum[:kind][kind.to_sym] %></h5>
     <% unless publications.empty? %>
-      <ul class="wide">
+      <ul class="wide without_bullet">
         <% publications.each do |publication| %>
           <li class='publication'>
             <%= link_to image_tag("icon_pdf_#{publication.access}.png"),

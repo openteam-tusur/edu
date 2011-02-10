@@ -12,13 +12,15 @@
         <li>
           <h5 class="specialities"><%= speciality.title %></h5>
           <% unless speciality.curriculums.published.empty? %>
-          <ul>
+          <ul class="wide">
             <% speciality.curriculums.published.each do |curriculum| %>
               <li><%= link_to curriculum.since_with_study_form, speciality_curriculum_path(speciality, curriculum) %></li>
             <% end %>
           </ul>
           <% else %>
-            <p>Учебных планов нет.</p>
+            <ul>
+             <li>Учебных планов нет.</li>
+            </ul>
           <% end %>
         </li>
       <% end %>

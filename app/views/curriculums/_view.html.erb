@@ -19,22 +19,26 @@
       <%= content_tag :td, "" unless @curriculum.semesters_count.even? %>
     </tr>
   </table>
-  <div class="semester_body">
-    <% unless @semester.educations.empty? %>
-      <% @semester.educations.each do |education| %>
-        <div class="discipline <%= cycle('odd', 'even') %>">
-          <div class="discipline_name">
-            <%= link_to education.study.discipline.name, speciality_curriculum_semester_education_path(@speciality, @curriculum, @semester, education)  %>
-            <% unless education.examinations.empty? %>
-              (<%= education.examinations.collect(&:name).join(", ").mb_chars.downcase %>)
-            <% end %>
-          </div>
-         </div>
+  <ul class="semester_body cool_list">
+    <li>
+      <% unless @semester.educations.empty? %>
+        <ul class="wide discipline <%= cycle('odd', 'even') %>">
+          <% @semester.educations.each do |education| %>
+              <li class="discipline_name">
+                <%= link_to education.study.discipline.name, speciality_curriculum_semester_education_path(@speciality, @curriculum, @semester, education)  %>
+                <% unless education.examinations.empty? %>
+                  (<%= education.examinations.collect(&:name).join(", ").mb_chars.downcase %>)
+                <% end %>
+              </li>
+          <% end %>
+         </ul>
+      <% else %>
+        <ul>
+          <li>Дисциплины не заполнены</li>
+        </ul>
       <% end %>
-    <% else %>
-      <p>Дисциплины не заполнены</p>
-    <% end %>
-  </div>
+    </li>
+  </ul>
 </div>
 
 <fieldset class="additional_info">

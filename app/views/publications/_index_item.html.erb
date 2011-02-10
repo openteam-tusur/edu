@@ -2,7 +2,7 @@
   <%= link_to image_tag("icon_pdf_#{item.access}.png"),
                 item.attachment.data.url,
                 :title => item.human_access, :rel => "tipsy" %>
-  <%= link_to '#' do %>
+  <%= link_to item.attachment.data.url do %>
     <span class="title"><%= "#{item.title}: " %></span>
     <span><%= "#{item.human_kind} /" %></span>
     <span class="authors">
