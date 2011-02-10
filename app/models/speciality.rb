@@ -32,6 +32,10 @@ class Speciality < ActiveRecord::Base
       chairs.map(&:id)
     end
 
+    text :study do
+      curriculums.published.map { |cur| "#{Plan::Curriculum.human_enum[:study][cur.study.to_sym]}"}.join(' ')
+    end
+
     text :title
 
     string :degree

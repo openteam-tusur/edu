@@ -18,11 +18,15 @@
       <% @specialities.each do |speciality| %>
         <li>
           <h5><%= speciality.title %></h5>
+          <% unless speciality.curriculums.published.empty? %>
           <ul>
-            <% speciality.curriculums.each do |curriculum| %>
+            <% speciality.curriculums.published.each do |curriculum| %>
               <li><%= link_to curriculum.since_with_study_form, speciality_curriculum_path(speciality, curriculum) %></li>
             <% end %>
           </ul>
+          <% else %>
+            <p>Учебных планов нет.</p>
+          <% end %>
         </li>
       <% end %>
       </ul>

@@ -28,6 +28,7 @@ class Plan::Curriculum < Resource
   scope :published,   where(:state => 'published')
   scope :unpublished, where(:state => 'unpublished')
 
+  after_save :reindex_specialities
   after_create :create_semesters
 
   def study_with_since
@@ -74,6 +75,10 @@ private
     @semesters_count.to_i.times do |number|
       self.semesters.find_or_create_by_number(number + 1)
     end
+  end
+
+  def reindex_specialities
+    speciality.solr_index!
   end
 
 end

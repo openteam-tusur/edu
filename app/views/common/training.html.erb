@@ -3,17 +3,22 @@
     <h4>
       <%= link_to 'Специальности и направления подготовки', specialities_path %>
     </h4>
+    <% @specialities_facets.each do |facet| %>
+      <p>
+        <%= link_to "#{Speciality.human_enum[:degree][facet.value.to_sym]} (#{facet.count})", specialities_path(:degree => facet.value) %>
+      </p>
+    <% end %>
   </li>
 
   <li>
     <h4>
       <%= link_to 'Учебно-методическое обеспечение', publications_path %>
+    </h4>
       <% @publication_facets.each do |facet| %>
         <p>
           <%= link_to "#{Publication.human_enum[:kind][facet.value.to_sym]} (#{facet.count})", publications_path(:kind => facet.value) %>
         </p>
       <% end %>
-    </h4>
   </li>
 </ul>
 
