@@ -98,6 +98,6 @@ Portal::Application.routes.draw do
     get :authors, :on => :collection
   end
 
-  match "/attachments/:id/download/" => "attachments#download"
+  match "/attachments/:id/download/" => "attachments#download", :as => :attachment
 end
 

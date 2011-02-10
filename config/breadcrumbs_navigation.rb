@@ -11,7 +11,22 @@ SimpleNavigation::Configuration.run do |navigation|
 
         training.item :specialities,
                       'Специальности и направления подготовки',
-                      specialities_path
+                      specialities_path do |speciality|
+
+          speciality.item :curriculum,
+                          "#{@curriculum.title}",
+                          speciality_curriculum_path(@speciality, @curriculum) do |curriculum|
+
+            curriculum.item :semester,
+                            @semester.title,
+                            speciality_curriculum_semester_path(@speciality, @curriculum, @semester) do |semester|
+
+              semester.item :education,
+                            @education.title,
+                            speciality_curriculum_semester_education_path if @education
+            end if @semester
+          end if @curriculum
+        end
 
         training.item :publications,
                       'Учебно-методическое обеспечение',

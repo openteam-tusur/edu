@@ -7,7 +7,7 @@
           <%= link_to image_tag("icon_pdf_#{publication.access}.png"),
                       publication.attachment.data.url,
                       :title => publication.human_access, :rel => "tipsy" %>
-          <%= link_to chair_publication_path(@chair, publication) do %>
+          <%= link_to publication.attachment.data.url do %>
             <span class="title"><%= "#{publication.title}: " %></span>
             <span><%= "#{publication.human_kind} /" %></span>
             <span class="authors">
