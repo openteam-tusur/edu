@@ -1,4 +1,4 @@
-<%= semantic_form_for :speciality, :html => { :method => :get, :class => "speciality_search" } do | form | %>
+<%= semantic_form_for :speciality, :url => specialities_path, :html => { :method => :get, :class => "speciality_search"} do | form | %>
   <%= form.inputs do %>
     <%= form.input :query, :required => false, :label => false, :input_html => { :name => 'query', :value => params[:query] } %>
   <% end %>
