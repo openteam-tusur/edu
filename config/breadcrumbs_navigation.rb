@@ -10,7 +10,7 @@ SimpleNavigation::Configuration.run do |navigation|
                      training_path do |training|
 
         training.item :specialities,
-                      'Специальности и направления подготовки',
+                      'Учебные планы для специальностей и направлений подготовки',
                       specialities_path do |speciality|
 
           speciality.item :curriculum,

@@ -1,20 +1,5 @@
-<% title @curriculum.title %>
+<% title @curriculum.speciality_with_curriculum %>
 
-<fieldset class="additional_info">
-  <div>
-    <span class="duration">Срок обучения <%= @curriculum.duration %></span>
-    <% if @curriculum.attachment %>
-      <%= link_to image_tag("icon_pdf_#{@curriculum.access}.png"),
-                  @curriculum.attachment.data.url,
-                  :title => @curriculum.human_access, :rel => "tipsy" %>
-      <%= link_to "Учебный план #{@curriculum.year}", @curriculum.attachment.data.url,
-                  :class => "#{@curriculum.access}_pdf download" %>
-
-      <% end %>
-  </div>
-</fieldset>
-
-<h3><%= "Учебно-методическое обеспечение для учебного плана #{@curriculum.since_with_study_form}" %></h3>
 <p>Ниже представлено учебно-методическое обеспечение для изучаемых предметов, разбитое по семестрам.</p>
 
 <div class="curriculum_semesters">
@@ -51,4 +36,18 @@
     <% end %>
   </div>
 </div>
+
+<fieldset class="additional_info">
+  <div>
+    <span class="duration">Срок обучения <%= @curriculum.duration %></span>
+    <% if @curriculum.attachment %>
+      <%= link_to image_tag("icon_pdf_#{@curriculum.access}.png"),
+                  @curriculum.attachment.data.url,
+                  :title => @curriculum.human_access, :rel => "tipsy" %>
+      <%= link_to "Учебный план #{@curriculum.year}", @curriculum.attachment.data.url,
+                  :class => "#{@curriculum.access}_pdf download" %>
+
+      <% end %>
+  </div>
+</fieldset>
 

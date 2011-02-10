@@ -39,6 +39,10 @@ class Plan::Curriculum < Resource
     "учебный план набора #{self.since} года, #{self.human_study} форма обучения"
   end
 
+  def speciality_with_curriculum
+    "#{speciality.short_title}, учебный план #{self.since} года, #{self.human_study} форма обучения"
+  end
+
   def title
     "#{speciality.short_title} (#{self.human_study} форма) с #{self.since} г."
   end
