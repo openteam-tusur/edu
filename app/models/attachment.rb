@@ -19,7 +19,7 @@ class Attachment < ActiveRecord::Base
 
   def set_mime_type
     return unless self.data.file? && !data.queued_for_write[:original].nil?
-    self.data_content_type =  MIME::Types[FileMagic.new(FileMagic::MAGIC_MIME).file(data.queued_for_write[:original].path)].first
+    self.data_content_type =  MIME::Types[FileMagic.new(FileMagic::MAGIC_MIME).file(data.queued_for_write[:original].path)].first.content_type
   end
 
   def set_hash
