@@ -120,6 +120,10 @@ class Human < ActiveRecord::Base
     roles.send type
   end
 
+  def publications_grouped_by_kind
+    publications.group_by(&:kind)
+  end
+
   private
 
     def self.find_accepted_employees_in_chair(query, page, chair)

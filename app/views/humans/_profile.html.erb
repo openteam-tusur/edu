@@ -1,27 +1,103 @@
+<% title @human.full_name %>
+
+<%= content_for :garavatar do %>
+  <%= image_tag @human.user ? @human.user.gravatar_url : 'human_icon.png' %>
+<% end %>
+
 <div class="human_profile">
-    <%= show_for resource do |human| %>
-      <ul class="individual_information">
-        <%= human.attribute :surname, :label_tag => :span, :content_tag => :span, :wrapper_tag => :li %>
-        <%= human.attribute :name, :label_tag => :span, :content_tag => :span, :wrapper_tag => :li %>
-        <%= human.attribute :patronymic, :label_tag => :span, :content_tag => :span, :wrapper_tag => :li %>
-      </ul>
-      <%= link_to 'Изменить личную информацию', edit_human_path unless @human.new_record? %>
-    <% end %>
+  <%= show_for resource do |human| %>
+    <ul class="individual_information">
+      <%= human.attribute :surname, :label_tag => :span, :content_tag => :span, :wrapper_tag => :li %>
+      <%= human.attribute :name, :label_tag => :span, :content_tag => :span, :wrapper_tag => :li %>
+      <%= human.attribute :patronymic, :label_tag => :span, :content_tag => :span, :wrapper_tag => :li %>
+    </ul>
+    <%= link_to 'Изменить личную информацию', edit_human_path unless @human.new_record? %>
+  <% end %>
 
-    <%= show_for resource.user do |user| %>
-      <ul class="login_information">
-        <%= user.attribute :email, :label_tag => :span, :content_tag => :span, :wrapper_tag => :li %>
-        <li class="wrapper user_password">
-          <span class="label">Пароль</span>
-          <span class="content">******</span>
+  <%= show_for resource.user do |user| %>
+    <ul class="login_information">
+      <%= user.attribute :email, :label_tag => :span, :content_tag => :span, :wrapper_tag => :li %>
+      <li class="wrapper user_password">
+        <span class="label">Пароль</span>
+        <span class="content">******</span>
+      </li>
+    </ul>
+    <%= link_to 'Изменить электронную почту и пароль', edit_user_registration_path %>
+  <% end %>
+
+  <hr />
+
+  <ul class="cool_list">
+    <li>
+      <h5 class="admin_icon">Администратор</h5>
+      <ul>
+        <% @human.roles_with_type(:admin).each do |role| %>
+          <li><%= role %></li>
+        <% end %>
+      </ul>
+      <%= link_to 'Добавить роль администратора', new_human_roles_admin_path %>
+    </li>
+    <li>
+      <h5 class="student_icon">Студент</h5>
+      <ul>
+        <% @human.roles_with_type(:student).each do |role| %>
+          <li>
+            <%= role %>
+            <% unless role.is_a? Roles::Admin %>
+              <span class="actions">
+                <%= link_to t(:edit), edit_human_roles_student_path(role), :class => :edit  if role.is_a? Roles::Student %>
+                <%= link_to t(:edit), edit_human_roles_employee_path(role), :class => :edit if role.is_a? Roles::Employee %>
+              </span>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+      <%= link_to 'Добавить роль студента', new_human_roles_student_path %>
+    </li>
+    <li>
+      <h5 class="graduate_icon">Магистрант</h5>
+        <ul>
+          <% @human.roles_with_type(:graduate).each do |role| %>
+            <li><%= role %></li>
+          <% end %>
+        </ul>
+        <%= link_to 'Добавить роль магистранта', new_human_roles_graduate_path %>
+    </li>
+    <li>
+      <h5 class="employee_icon">Сотрудник</h5>
+        <ul>
+          <% @human.roles_with_type(:employee).each do |role| %>
+            <li><%= role %></li>
+          <% end %>
+        </ul>
+        <%= link_to 'Добавить роль сотрудника', new_human_roles_employee_path %>
+    </li>
+  </ul>
+
+  <% unless @human.publications.empty? %>
+    <ul class="cool_list last">
+        <li>
+          <% @human.publications_grouped_by_kind.each do |kind, publications| %>
+            <h5 class="publications"><%= Publication.human_attribute_name("kind_enum.#{kind}") %></h5>
+            <ul class="wide without_bullet">
+              <% publications.each do |publication| %>
+                <li>
+                  <%= link_to image_tag("icon_pdf_#{publication.access}.png"),
+                                publication.attachment.data.url,
+                                :title => publication.human_access, :rel => "tipsy" %>
+                  <%= link_to publication.to_s, publication.attachment.data.url %>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
         </li>
-      </ul>
-      <%= link_to 'Изменить электронную почту и пароль', edit_user_registration_path %>
-    <% end %>
+    </ul>
+  <% end %>
 
-    <hr />
+</div>
 
-    <h1>Ваши роли <span>(<%= link_to 'добавить роль студента', new_human_roles_student_path %>, <%= link_to 'добавить роль преподавателя', new_human_roles_employee_path %>)</span></h1>
+
+<div class="human_profile">
 
     <% unless resource.roles.empty? %>
       <table>

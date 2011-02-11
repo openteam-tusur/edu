@@ -9,6 +9,8 @@ Portal::Application.routes.draw do
 
   resource :human, :except => [:index, :delete, :destroy] do
     namespace :roles do
+      resources :admin, :only => [:new, :create, :edit, :update]
+      resources :graduate, :only => [:new, :create, :edit, :update]
       resources :students, :only => [:new, :create, :edit, :update]
       resources :employees, :only => [:new, :create, :edit, :update]
     end

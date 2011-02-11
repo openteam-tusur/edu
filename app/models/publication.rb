@@ -116,6 +116,12 @@ class Publication < Resource
     result_data
   end
 
+  class_eval do
+    self.enum(:kind).each do |kind|
+      scope kind.to_sym, where(:kind => kind)
+    end
+  end
+
   private
     def reindex_publication_disciplines
       PublicationDiscipline.reindex

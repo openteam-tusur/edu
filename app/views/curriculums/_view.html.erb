@@ -1,4 +1,4 @@
-<% title @curriculum.speciality_with_curriculum %>
+<% title "#{@curriculum.speciality.short_title}, #{@curriculum.since_with_study_form}" %>
 
 <p>Ниже представлено учебно-методическое обеспечение для изучаемых предметов, разбитое по семестрам.</p>
 
@@ -58,7 +58,7 @@
       <%= link_to image_tag("icon_pdf_#{@curriculum.access}.png"),
                   @curriculum.attachment.data.url,
                   :title => @curriculum.human_access, :rel => "tipsy" %>
-      <%= link_to "Учебный план #{@curriculum.year}", @curriculum.attachment.data.url,
+      <%= link_to @curriculum.since_with_study_form, @curriculum.attachment.data.url,
                   :class => "#{@curriculum.access}_pdf download" %>
 
       <% end %>
