@@ -76,6 +76,9 @@ ru:
     specialities:
       index: Учебные планы для специальностей и направлений подготовки
 
+    profile:
+      index: Профиль
+
     users/sessions:
       create: Вход
       new: Вход

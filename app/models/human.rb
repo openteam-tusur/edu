@@ -116,6 +116,10 @@ class Human < ActiveRecord::Base
     end
   end
 
+  def roles_with_type(type)
+    roles.send type
+  end
+
   private
 
     def self.find_accepted_employees_in_chair(query, page, chair)

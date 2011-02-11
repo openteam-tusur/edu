@@ -29,6 +29,12 @@ class Role < ActiveRecord::Base
 
   after_save :reindex_human
 
+  class_eval do
+    %w[employee graduate student].each do |role|
+      scope role.to_sym, where(:type => "Roles::#{role.capitalize}")
+    end
+  end
+
 private
 
   def reindex_human

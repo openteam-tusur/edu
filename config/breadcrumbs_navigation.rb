@@ -34,9 +34,17 @@ SimpleNavigation::Configuration.run do |navigation|
 
       end
 
+      secondary.item :profile,
+                     t('title.profile.index'),
+                     profile_path
+
       secondary.item :humans,
                    t('title.humans.index'),
-                   humans_path
+                   humans_path do |human|
+        human.item :human,
+                   @human.full_name,
+                   human_path(@human) if @human
+      end
 
       secondary.item :chairs,
                      t("title.chairs.index"),

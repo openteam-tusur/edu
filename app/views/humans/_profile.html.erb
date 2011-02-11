@@ -1,13 +1,14 @@
 <div class="human_profile">
-    <%= show_for @human do |human| %>
+    <%= show_for resource do |human| %>
       <ul class="individual_information">
         <%= human.attribute :surname, :label_tag => :span, :content_tag => :span, :wrapper_tag => :li %>
         <%= human.attribute :name, :label_tag => :span, :content_tag => :span, :wrapper_tag => :li %>
         <%= human.attribute :patronymic, :label_tag => :span, :content_tag => :span, :wrapper_tag => :li %>
       </ul>
+      <%= link_to 'Изменить личную информацию', edit_human_path unless @human.new_record? %>
     <% end %>
 
-    <%= show_for @human.user do |user| %>
+    <%= show_for resource.user do |user| %>
       <ul class="login_information">
         <%= user.attribute :email, :label_tag => :span, :content_tag => :span, :wrapper_tag => :li %>
         <li class="wrapper user_password">
@@ -15,43 +16,14 @@
           <span class="content">******</span>
         </li>
       </ul>
+      <%= link_to 'Изменить электронную почту и пароль', edit_user_registration_path %>
     <% end %>
 
     <hr />
 
-    <h1>Роли</h1>
-    <ul class="cool_list">
-        <li>
-          <h5 class="student_icon">Студент</h5>
-          <ul>
-            <% unless @human.roles_with_type(:student).empty? %>
-              <% @human.roles_with_type(:student).each do |role| %>
-                <li><%= role %></li>
-              <% end %>
-            <% else %>
-                <li>Нет роли студента</li>
-            <% end %>
-          </ul>
-        </li>
-        <li>
-          <h5 class="graduate_icon">Магистрант</h5>
-            <ul>
-              <% @human.roles_with_type(:graduate).each do |role| %>
-                <li><%= role %></li>
-              <% end %>
-            </ul>
-        </li>
-        <li>
-          <h5 class="employee_icon">Сотрудник</h5>
-            <ul>
-              <% @human.roles_with_type(:employee).each do |role| %>
-                <li><%= role %></li>
-              <% end %>
-            </ul>
-        </li>
-    </ul>
+    <h1>Ваши роли <span>(<%= link_to 'добавить роль студента', new_human_roles_student_path %>, <%= link_to 'добавить роль преподавателя', new_human_roles_employee_path %>)</span></h1>
 
-    <% unless @human.roles.empty? %>
+    <% unless resource.roles.empty? %>
       <table>
         <thead>
           <tr>

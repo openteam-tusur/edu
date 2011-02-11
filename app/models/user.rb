@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  include Gravtastic
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   devise :database_authenticatable, :registerable,
@@ -6,6 +7,11 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
+
+  gravtastic :secure => true,
+             :default => :identicon,
+             :filetype => :gif,
+             :size => 32
 
   default_scope order(:id)
 

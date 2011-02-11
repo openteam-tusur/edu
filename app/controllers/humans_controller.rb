@@ -20,6 +20,16 @@ class HumansController < InheritedResourcesController
     @role_facets = search.facet(:role_slugs).rows
   end
 
+  def show
+    if params[:id]
+      @human = Human.find(params[:id])
+      render :file => "humans/_view.html.erb", :layout => true
+    else
+      @human = current_user.human if current_user
+      render :file => "humans/_profile.html.erb", :layout => true
+    end
+  end
+
   def create
     if current_user.human
       update! { human_path }

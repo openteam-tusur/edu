@@ -3,14 +3,16 @@ Portal::Application.routes.draw do
                                         :sessions => 'users/sessions',
                                         :passwords => 'users/passwords' }
 
+  match "/profile" => "humans#show", :as => :profile
+
+  resources :humans, :only => [:index, :show]
+
   resource :human, :except => [:index, :delete, :destroy] do
     namespace :roles do
       resources :students, :only => [:new, :create, :edit, :update]
       resources :employees, :only => [:new, :create, :edit, :update]
     end
   end
-
-  resources :humans, :only => [:index, :show]
 
   match "/training" => "training#index"
 

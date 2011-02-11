@@ -16,9 +16,13 @@
     <ul class="cool_list">
     <% @humans.each do |human| %>
       <li>
-        <h5 class="full_name human_icon">
+        <h5 class="full_name human_icon"
+          <% if human.user %>
+           style="background: url('<%= human.user.gravatar_url %>') no-repeat left 2px"
+          <% end %>
+        >
           <% if human.has_publication? %>
-            <%= link_to human.full_name, publications_path(:query => human.full_name) %>
+            <%= link_to human.full_name, human_path(human) %>
           <% else %>
             <%= human.full_name %>
           <% end %>
