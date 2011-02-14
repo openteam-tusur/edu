@@ -34,6 +34,11 @@ class Publication < Resource
     integer :chair_id, :references => Chair
 
     string :kind
+    string :state
+
+    boolean :with_comment do
+      !comment.blank?
+    end
   end
 
   def self.search(query = nil, chair = nil, options = {})
@@ -42,9 +47,15 @@ class Publication < Resource
 
       kind_filter = with :kind, options[:kind] if options[:kind]
       chair_filter = with :chair_id, chair.id if chair
+      state_filter = with :state, options[:state] if options[:state]
+
+      condition = options[:with_comment].blank? ? false : true
+      comment_filter = with :with_comment, condition if condition
 
       facet :kind, :zeros => true, :exclude => kind_filter, :sort => :index
       facet :chair_id, :zeros => true, :exclude => chair_filter, :sort => :index
+      facet :state, :zeros => true, :exclude => state_filter, :sort => :index
+      facet :with_comment, :zeros => true, :exclude => comment_filter, :sort => :index
 
       paginate :page => options[:page], :per_page => Publication.per_page
     end
