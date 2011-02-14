@@ -28,9 +28,10 @@ class PublicationDiscipline < ActiveRecord::Base
     end
   end
 
-  def educations_grouped_by_curriculums
+  def educations_grouped_by_curriculums(published = nil)
     grouped = {}
-    speciality.curriculums.where(:id => educations.map(&:curriculum)).each do |curriculum|
+    curriculums = published ? speciality.curriculums.published : speciality.curriculums
+    curriculums.where(:id => educations.map(&:curriculum)).each do |curriculum|
       grouped[curriculum] = curriculum.educations.where(:id => education_ids).all
     end
     grouped

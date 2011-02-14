@@ -37,6 +37,7 @@
   <div class='disciplines'>
     <h2>Дисциплины</h2>
     <% unless @publication.publication_disciplines.empty? %>
+
       <% @publication.grouped_disciplines.each do |speciality, publication_disciplines| %>
         <p class="speciality_name"><%= speciality.title %></p>
         <% publication_disciplines.each do |publication_discipline| %>
@@ -44,16 +45,19 @@
             <%= publication_discipline.discipline.name %>
           </p>
           <ul class="educations">
-          <% publication_discipline.educations_grouped_by_curriculums.each do |curriculum, educations| %>
-            <li>
-              <%= link_to curriculum.human_study, speciality_curriculum_path(speciality, curriculum) %>:
-              <%= educations.collect(&:semester).collect(&:number).join(", ") %>
-              <%= t("semester.associate_publications", :count => educations.size) %>
-            </li>
+          <% publication_discipline.educations_grouped_by_curriculums(:published).each do |curriculum, educations| %>
+              <li>
+                <%= link_to curriculum.human_study, speciality_curriculum_path(speciality, curriculum) %>:
+                <%= educations.collect(&:semester).collect(&:number).join(", ") %>
+                <%= t("semester.associate_publications", :count => educations.size) %>
+              </li>
           <% end %>
           </ul>
         <% end %>
       <% end %>
+
+    <% else %>
+      <p>Не связано ни с одной дисциплиной.</p>
     <% end %>
   </div>
 
