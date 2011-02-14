@@ -82,7 +82,7 @@ class Publication < Resource
     end
 
     if kind.eql? 'training_toolkit'
-     return [:annotation, :content]
+     return [:annotation, :content, :udk]
     end
   end
 
