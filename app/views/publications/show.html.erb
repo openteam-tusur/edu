@@ -5,12 +5,6 @@
 </ul>
 
 <div class="publication">
-  <%= show_for resource, :id => 'publication_comment' do |publication| %>
-    <%= publication.attribute :comment do %>
-      <%= simple_format(@publication.comment).gilensize %>
-    <% end %>
-  <% end unless @publication.comment.blank? %>
-
   <%= render :partial => "/common/resource", :locals => { :resource => @publication } %>
 
   <div class="additional">
