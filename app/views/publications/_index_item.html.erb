@@ -1,8 +1,8 @@
 <div class='publication'>
   <%= link_to image_tag("icon_pdf_#{item.access}.png"),
-                item.attachment.data.url,
+                publication_path(item),
                 :title => item.human_access, :rel => "tipsy" %>
-  <%= link_to item.attachment.data.url do %>
+  <%= link_to publication_path(item) do %>
     <span class="title"><%= "#{item.title}: " %></span>
     <span><%= "#{item.human_kind} /" %></span>
     <span class="authors">

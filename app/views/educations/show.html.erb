@@ -7,9 +7,9 @@
         <% publications.each do |publication| %>
           <li class='publication'>
             <%= link_to image_tag("icon_pdf_#{publication.access}.png"),
-                        publication.attachment.data.url,
+                        publication_path(publication),
                         :title => publication.human_access, :rel => "tipsy" %>
-            <%= link_to publication.attachment.data.url do %>
+            <%= link_to publication_path(publication) do %>
               <span class="title"><%= "#{publication.title}: " %></span>
               <span><%= "#{publication.human_kind} /" %></span>
               <span class="authors">

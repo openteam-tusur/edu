@@ -30,7 +30,11 @@ SimpleNavigation::Configuration.run do |navigation|
 
         training.item :publications,
                       'Учебно-методическое обеспечение',
-                      publications_path
+                      publications_path do |publication|
+          publication.item :publication,
+                           @publication.to_s,
+                           publication_path(@publication) if @publication
+        end
 
       end
 

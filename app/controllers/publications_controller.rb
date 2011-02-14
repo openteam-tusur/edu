@@ -10,6 +10,10 @@ class PublicationsController < InheritedResources::Base
     @chair_facets = search.facet(:chair_id).rows
   end
 
+  def show
+    @publication = Publication.find(params[:id])
+  end
+
   def get_fields
     render :text => "" and return if params[:publication][:kind].blank?
     params[:publication].delete("authors_attributes")
