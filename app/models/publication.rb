@@ -33,15 +33,18 @@ class Publication < Resource
 
     integer :chair_id, :references => Chair
 
+    string :state
+
     string :kind
   end
 
-  def self.search(query = nil, chair = nil, options = {})
+  def self.search(query = nil, chair = nil, options = {}, published = nil)
     solr_search do
       keywords query unless query.blank?
 
       kind_filter = with :kind, options[:kind] if options[:kind]
       chair_filter = with :chair_id, chair.id if chair
+      with :state, 'published' if published
 
       facet :kind, :zeros => true, :exclude => kind_filter, :sort => :index
       facet :chair_id, :zeros => true, :exclude => chair_filter, :sort => :index
