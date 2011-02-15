@@ -42,7 +42,7 @@
       <h5 class="student_icon">Студент</h5>
       <ul class="roles">
         <% @human.roles_with_type(:student).each do |role| %>
-          <li class="need_vert_tipsy <%= role.state %>" title="<%= role.human_state %>">
+          <li class="<%= role.state %>">
             <%= role %>
             <% unless role.is_a? Roles::Admin %>
               <span class="actions">
@@ -60,7 +60,7 @@
       <h5 class="graduate_icon">Магистрант</h5>
       <ul class="roles">
         <% @human.roles_with_type(:graduate).each do |role| %>
-          <li class="need_vert_tipsy <%= role.state %>" title="<%= role.human_state %>">
+          <li class="<%= role.state %>">
             <%= role %>
             <% unless role.is_a? Roles::Admin %>
               <span class="actions">
@@ -78,7 +78,7 @@
       <h5 class="employee_icon">Сотрудник</h5>
       <ul class="roles">
         <% @human.roles_with_type(:employee).each do |role| %>
-          <li class="need_vert_tipsy <%= role.state %>" title="<%= role.human_state %>">
+          <li class="<%= role.state %>">
             <%= role %>
             <% unless role.is_a? Roles::Admin %>
               <span class="actions">

@@ -40,7 +40,41 @@ SimpleNavigation::Configuration.run do |navigation|
 
       secondary.item :profile,
                      t('title.profile.index'),
-                     profile_path
+                     profile_path do |profile|
+
+        profile.item :edit_human,
+                     t('title.profile.edit'),
+                     edit_human_path
+
+        profile.item :edit_user,
+                     t('title.users/registrations.edit'),
+                     edit_user_registration_path
+
+        profile.item :new_student_role,
+                     t('title.roles/students.new'),
+                     new_human_roles_student_path
+
+        profile.item :edit_student_role,
+                     t('title.roles/students.edit'),
+                     edit_human_roles_student_path if @student && !@student.new_record?
+
+        profile.item :new_graduate_role,
+                     t('title.roles/graduates.new'),
+                     new_human_roles_graduate_path
+
+        profile.item :edit_graduate_role,
+                     t('title.roles/graduates.edit'),
+                     edit_human_roles_graduate_path if @graduate && !@graduate.new_record?
+
+        profile.item :new_employee_role,
+                     t('title.roles/employees.new'),
+                     new_human_roles_employee_path
+
+        profile.item :edit_employee_role,
+                     t('title.roles/employees.edit'),
+                     edit_human_roles_employee_path if @employee && !@employee.new_record?
+
+      end
 
       secondary.item :humans,
                    t('title.humans.index'),

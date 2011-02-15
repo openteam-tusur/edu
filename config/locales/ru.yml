@@ -78,6 +78,7 @@ ru:
 
     profile:
       index: Профиль
+      edit: Редактирование профиля
 
     users/sessions:
       create: Вход

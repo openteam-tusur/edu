@@ -1,0 +1,74 @@
+<% title @human.full_name %>
+
+<%= content_for :garavatar do %>
+  <%= image_tag @human.user ? @human.user.gravatar_url : 'human_icon.png' %>
+<% end %>
+
+<div class="human_profile">
+  <hr />
+
+  <ul class="cool_list">
+    <% unless @human.roles_with_type(:admin).empty? %>
+      <li>
+        <h5 class="admin_icon">Администратор</h5>
+        <ul>
+          <% @human.roles_with_type(:admin).each do |role| %>
+            <li><%= role %></li>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+    <% unless @human.roles_with_type(:student).empty? %>
+      <li>
+        <h5 class="student_icon">Студент</h5>
+        <ul>
+          <% @human.roles_with_type(:student).each do |role| %>
+            <li><%= role %></li>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+    <% unless @human.roles_with_type(:graduate).empty? %>
+      <li>
+        <h5 class="graduate_icon">Магистрант</h5>
+          <ul>
+            <% @human.roles_with_type(:graduate).each do |role| %>
+              <li><%= role %></li>
+            <% end %>
+          </ul>
+      </li>
+    <% end %>
+    <% unless @human.roles_with_type(:employee).empty? %>
+      <li>
+        <h5 class="employee_icon">Сотрудник</h5>
+          <ul>
+            <% @human.roles_with_type(:employee).each do |role| %>
+              <li><%= role %></li>
+            <% end %>
+          </ul>
+      </li>
+    <% end %>
+  </ul>
+
+  <% unless @human.publications.empty? %>
+    <ul class="cool_list last">
+        <li>
+          <% @human.publications_grouped_by_kind.each do |kind, publications| %>
+            <h5 class="publications"><%= Publication.human_attribute_name("kind_enum.#{kind}") %></h5>
+            <ul class="wide without_bullet">
+              <% publications.each do |publication| %>
+                <li>
+                  <%= link_to image_tag("icon_pdf_#{publication.access}.png"),
+                                publication_path(publication),
+                                :title => publication.human_access, :rel => "tipsy" %>
+                  <%= link_to publication.to_s, publication_path(publication) %>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
+        </li>
+    </ul>
+  <% end %>
+
+</div>
+

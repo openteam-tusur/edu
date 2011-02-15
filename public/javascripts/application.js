@@ -240,7 +240,7 @@ $(function() {
     gravity: "s",
     html: true
   });
-  $("a[rel=tipsy-left]").tipsy({gravity: "e"});
+  $("a[rel=tipsy-left], .need_vert_tipsy").tipsy({gravity: "e"});
   $(".formtastic .inputs .date input").datepicker({
     showOn: "button",
     buttonImage: "/images/icon_datepicker.png",
