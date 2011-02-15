@@ -3,7 +3,7 @@
 class HumansController < InheritedResourcesController
   check_authorization
 
-  load_resource :except => [:create]
+  load_resource :except => [:create, :show]
   authorize_resource
 
   prepend_before_filter :validate_authentication, :except => [:index, :show]

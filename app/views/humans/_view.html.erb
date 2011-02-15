@@ -59,9 +59,9 @@
               <% publications.each do |publication| %>
                 <li>
                   <%= link_to image_tag("icon_pdf_#{publication.access}.png"),
-                                publication.attachment.data.url,
+                                publication_path(publication),
                                 :title => publication.human_access, :rel => "tipsy" %>
-                  <%= link_to publication.to_s, publication.attachment.data.url %>
+                  <%= link_to publication.to_s, publication_path(publication) %>
                 </li>
               <% end %>
             </ul>
