@@ -18,31 +18,31 @@
         </ul>
       </li>
     <% end %>
-    <% unless @human.roles_with_type(:student).empty? %>
+    <% unless @human.roles_with_type(:student, :accepted).empty? %>
       <li>
         <h5 class="student_icon">Студент</h5>
         <ul>
-          <% @human.roles_with_type(:student).each do |role| %>
+          <% @human.roles_with_type(:student, :accepted).each do |role| %>
             <li><%= role %></li>
           <% end %>
         </ul>
       </li>
     <% end %>
-    <% unless @human.roles_with_type(:graduate).empty? %>
+    <% unless @human.roles_with_type(:graduate, :accepted).empty? %>
       <li>
         <h5 class="graduate_icon">Магистрант</h5>
           <ul>
-            <% @human.roles_with_type(:graduate).each do |role| %>
+            <% @human.roles_with_type(:graduate, :accepted).each do |role| %>
               <li><%= role %></li>
             <% end %>
           </ul>
       </li>
     <% end %>
-    <% unless @human.roles_with_type(:employee).empty? %>
+    <% unless @human.roles_with_type(:employee, :accepted).empty? %>
       <li>
         <h5 class="employee_icon">Сотрудник</h5>
           <ul>
-            <% @human.roles_with_type(:employee).each do |role| %>
+            <% @human.roles_with_type(:employee, :accepted).each do |role| %>
               <li><%= role %></li>
             <% end %>
           </ul>

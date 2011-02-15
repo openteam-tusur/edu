@@ -116,8 +116,8 @@ class Human < ActiveRecord::Base
     end
   end
 
-  def roles_with_type(type)
-    roles.send type
+  def roles_with_type(type, accepted=nil)
+    accepted ? roles.accepted.send(type) : roles.send(type)
   end
 
   def publications_grouped_by_kind
