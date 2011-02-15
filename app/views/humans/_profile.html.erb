@@ -1,4 +1,4 @@
-<% title @human.full_name %>
+<% title @human.full_name.empty? ? @human.full_name : 'не указано'  %>
 
 <%= content_for :garavatar do %>
   <%= image_tag @human.user ? @human.user.gravatar_url : 'human_icon.png' %>

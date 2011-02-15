@@ -45,9 +45,10 @@ SimpleNavigation::Configuration.run do |navigation|
       secondary.item :humans,
                    t('title.humans.index'),
                    humans_path do |human|
+
         human.item :human,
                    @human.full_name,
-                   human_path(@human) if @human
+                   human_path(@human) unless @human.nil? || @human.new_record?
       end
 
       secondary.item :chairs,

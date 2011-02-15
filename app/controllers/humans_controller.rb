@@ -32,14 +32,14 @@ class HumansController < InheritedResourcesController
 
   def create
     if current_user.human
-      update! { human_path }
+      update! { profile_path }
     else
-      create! { human_path }
+      create! {profile _path }
     end
   end
 
   def update
-    update! { human_path }
+    update! { profile_path }
   end
 
   protected
