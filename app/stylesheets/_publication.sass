@@ -101,19 +101,40 @@
       font-size: 14px
       margin-bottom: 10px
 
-.publication.facets
+.publication_wrapper
+  float: left
+  width: 790px
+
+  .publication.facets
+    ul
+      +clearfix
+      margin-bottom: 0
+
+      li
+        float: left
+        margin: 0 10px 0 0
+        padding: 3px 3px
+
+  .selected
+    background: #dfeef9
+    +border-radius
+
+.publication_other_facets
+  +clearfix
+  float: right
+
   ul
     +clearfix
     margin-bottom: 0
 
     li
-      float: left
       margin: 0 10px 0 0
       padding: 3px 3px
 
   .selected
     background: #dfeef9
     +border-radius
+
 
 #publication_discipline_educations
   p
@@ -123,3 +144,4 @@
     li
       float: left
       margin: 0 10px 0 0
+

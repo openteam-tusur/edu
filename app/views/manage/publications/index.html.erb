@@ -7,20 +7,25 @@
   <% end %>
 <% end %>
 
-<div class="publication facets">
-  <%= render_navigation :context => 'publication_kind' %>
+
+<div class="publication_wrapper">
+  <div class="publication facets">
+    <%= render_navigation :context => 'publication_kind' %>
+  </div>
+
+  <% if collection.any? %>
+    <div class="publications_list">
+      <% @publications.each do |obj| %>
+        <%= render :partial => "index_item", :locals => { :item => obj } %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= will_paginate @publications %>
+  <div><%= link_to t("new"), new_resource_path, :class => 'button' %></div>
 </div>
 
-
-<% if collection.any? %>
-  <div class="publications_list">
-    <% @publications.each do |obj| %>
-      <%= render :partial => "index_item", :locals => { :item => obj } %>
-    <% end %>
-  </div>
-<% end %>
-
-<%= will_paginate @publications %>
-
-<div><%= link_to t("new"), new_resource_path, :class => 'button' %></div>
+<div class="publication_other_facets">
+  <%= render_navigation :context => 'publication_other_facets' %>
+</div>
 

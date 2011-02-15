@@ -11,9 +11,12 @@ SimpleNavigation::Configuration.run do |navigation|
     @facets.each do |facet|
       primary.item facet.value,
                    Publication.human_attribute_name("kind_enum.#{facet.value}") + " (#{facet.count})",
-                   collection_path(:query => params[:query],
+
+                   collection_path(:chair_id => params[:chair_id],
+                                   :with_comment => params[:with_comment],
                                    :kind => facet.value,
-                                   :chair_id => params[:chair_id]),
+                                   :query => params[:query],
+                                   :state => params[:state]),
                    :class => facet.value,
                    :highlights_on => /#{facet.value}/
     end

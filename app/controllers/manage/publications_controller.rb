@@ -13,6 +13,8 @@ class Manage::PublicationsController < Manage::ApplicationController
     search = Publication.search(params[:query], @chair, params)
     @publications = search.results
     @facets = search.facet(:kind).rows
+    @state_facets = search.facet(:state).rows
+    @comment_facets = search.facet(:with_comment).rows
   end
 
   def transit
