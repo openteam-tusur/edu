@@ -1,7 +1,9 @@
 <% if resource.attachment %>
   <fieldset class="additional_info">
     <%= show_for resource do |resource_fields| %>
-      <%= resource_fields.association :authors, :using => :abbreviated_name, :join => ", " %>
+      <%= resource_fields.association :authors, :using => :abbreviated_name do |author| %>
+        <li><%= link_to author.abbreviated_name, human_path(author.human_id) %></li>
+      <% end %>
       <%= resource_fields.attributes :year %>
       <%= resource_fields.attributes :volume %>
     <% end %>
