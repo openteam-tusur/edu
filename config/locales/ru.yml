@@ -317,7 +317,7 @@ ru:
         semester: Семестр
       roles:
         graduate: Роль магистранта
-        employee: Роль преподавателя
+        employee: Роль сотрудника 
         student: Роль студента
       speciality: Специальность
       user: Пользователь

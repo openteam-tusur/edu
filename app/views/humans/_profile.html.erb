@@ -117,6 +117,7 @@
               <% unless role.is_a? Roles::Admin %>
                 <span class="actions">
                   <%= link_to t(:edit), edit_human_roles_student_path(role), :class => :edit  if role.is_a? Roles::Student %>
+                  <%= link_to t(:edit), edit_human_roles_graduate_path(role), :class => :edit  if role.is_a? Roles::Graduate %>
                   <%= link_to t(:edit), edit_human_roles_employee_path(role), :class => :edit if role.is_a? Roles::Employee %>
                 </span>
               <% end %>
