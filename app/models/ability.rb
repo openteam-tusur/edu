@@ -12,7 +12,6 @@ class Ability
     can :manage, Roles::Student, :human_id => user.human.id if user.human
     can :manage, Roles::Employee, :human_id => user.human.id if user.human
     can :manage, Roles::Graduate, :human_id => user.human.id if user.human
-    can :manage, Roles::Admin, :human_id => user.human.id if user.human
 
     can :download, Attachment do |attachment|
       attachment.resource.access_free?

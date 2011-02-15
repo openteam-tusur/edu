@@ -28,15 +28,16 @@
   <hr />
 
   <ul class="cool_list">
-    <li>
-      <h5 class="admin_icon">Администратор</h5>
-      <ul>
-        <% @human.roles_with_type(:admin).each do |role| %>
-          <li><%= role %></li>
-        <% end %>
-      </ul>
-      <%= link_to 'Добавить роль администратора', new_human_roles_admin_path %>
-    </li>
+    <% unless @human.roles_with_type(:admin).all.empty? %>
+      <li>
+        <h5 class="admin_icon">Администратор</h5>
+        <ul>
+          <% @human.roles_with_type(:admin).each do |role| %>
+            <li><%= role %></li>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
     <li>
       <h5 class="student_icon">Студент</h5>
       <ul>

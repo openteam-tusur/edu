@@ -7,19 +7,19 @@ class RolesController < InheritedResourcesController
   actions :new, :create, :edit, :update
 
   def create
-      create! { human_path }
+      create! { profile_path }
   end
 
   def new
-    redirect_to human_path, :alert => t(:fill_human) if current_user.human.new_record?
+    redirect_to profile_path, :alert => t(:fill_human) if current_user.human.new_record?
   end
 
   def update
-    update! { human_path }
+    update! { profile_path }
   end
 
   def edit
-    redirect_to human_path, :alert => t(:can_not_edit) unless current_user.human.roles.find(params[:id]).pending?
+    redirect_to profile_path, :alert => t(:can_not_edit) unless current_user.human.roles.find(params[:id]).pending?
   end
 
   protected
