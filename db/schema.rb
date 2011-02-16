@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110209112827) do
+ActiveRecord::Schema.define(:version => 20110216042618) do
 
   create_table "attachments", :force => true do |t|
     t.string   "data_uid"
@@ -172,6 +172,7 @@ ActiveRecord::Schema.define(:version => 20110209112827) do
     t.date     "birthday"
     t.integer  "chair_id"
     t.string   "post"
+    t.integer  "contingent_id"
   end
 
   create_table "specialities", :force => true do |t|
