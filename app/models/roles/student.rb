@@ -2,7 +2,8 @@
 
 class Roles::Student < Role
   validates_presence_of :group, :birthday
-  validates_uniqueness_of :group, :scope => [:human_id, :state]
+  validates_uniqueness_of :contingent_id
+  validates_uniqueness_of :group, :scope => [:human_id]
 
   default_values :title => 'Студент', :slug => 'student', :post => 'Студент'
 

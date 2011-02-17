@@ -44,13 +44,6 @@
         <% @human.roles_with_type(:student).each do |role| %>
           <li class="need_vert_tipsy <%= role.state %>" title="<%= role.human_state %>">
             <%= role %>
-            <% unless role.is_a? Roles::Admin %>
-              <span class="actions">
-                <%= link_to t(:edit), edit_human_roles_student_path(role), :class => :edit  if role.is_a? Roles::Student %>
-                <%= link_to t(:edit), edit_human_roles_graduate_path(role), :class => :edit  if role.is_a? Roles::Graduate %>
-                <%= link_to t(:edit), edit_human_roles_employee_path(role), :class => :edit if role.is_a? Roles::Employee %>
-              </span>
-            <% end %>
           </li>
         <% end %>
       </ul>
@@ -62,13 +55,6 @@
         <% @human.roles_with_type(:graduate).each do |role| %>
           <li class="need_vert_tipsy <%= role.state %>" title="<%= role.human_state %>">
             <%= role %>
-            <% unless role.is_a? Roles::Admin %>
-              <span class="actions">
-                <%= link_to t(:edit), edit_human_roles_student_path(role), :class => :edit  if role.is_a? Roles::Student %>
-                <%= link_to t(:edit), edit_human_roles_graduate_path(role), :class => :edit  if role.is_a? Roles::Graduate %>
-                <%= link_to t(:edit), edit_human_roles_employee_path(role), :class => :edit if role.is_a? Roles::Employee %>
-              </span>
-            <% end %>
           </li>
         <% end %>
       </ul>
@@ -80,13 +66,6 @@
         <% @human.roles_with_type(:employee).each do |role| %>
           <li class="need_vert_tipsy <%= role.state %>" title="<%= role.human_state %>">
             <%= role %>
-            <% unless role.is_a? Roles::Admin %>
-              <span class="actions">
-                <%= link_to t(:edit), edit_human_roles_student_path(role), :class => :edit  if role.is_a? Roles::Student %>
-                <%= link_to t(:edit), edit_human_roles_graduate_path(role), :class => :edit  if role.is_a? Roles::Graduate %>
-                <%= link_to t(:edit), edit_human_roles_employee_path(role), :class => :edit if role.is_a? Roles::Employee %>
-              </span>
-            <% end %>
           </li>
         <% end %>
       </ul>

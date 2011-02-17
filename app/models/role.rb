@@ -1,3 +1,6 @@
+require 'net/http'
+require 'uri'
+
 class Role < ActiveRecord::Base
   include AASM
 
@@ -35,10 +38,48 @@ class Role < ActiveRecord::Base
     end
   end
 
+  def check_by_contingent
+    check
+  end
+
 private
 
   def reindex_human
     human.reload.index!
+  end
+
+  def url_for_check
+    unescaped = sprintf("lastname=%s&firstname=%s&patronymic=%s&group=%s&birth_date=%s",
+                         self.human.surname,
+                         self.human.name,
+                         self.human.patronymic,
+                         self.group,
+                         self.birthday)
+
+    parametrs = URI.escape(unescaped)
+    URI.parse("http://#{STUDENTS_HOST}/check?#{parametrs}")
+  end
+
+  def get_contingent_id
+    contingent_id = nil
+    begin
+      contingent_id = Net::HTTP.get(url_for_check)
+    rescue Exception => e
+      # TODO: посылать уведомление о неработоспособности STUDENTS
+    end
+
+    contingent_id
+  end
+
+  def check
+    contingent_id = get_contingent_id
+
+    unless contingent_id.blank?
+      self.update_attributes(:contingent_id => contingent_id, :state => 'accepted')
+      # TODO: посылать уведомление об успешном создании роли
+    else
+      # TODO: посылать уведомление о неудачном созданиее роли
+    end
   end
 
 end

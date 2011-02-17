@@ -46,6 +46,10 @@ SimpleNavigation::Configuration.run do |navigation|
                      t('title.profile.edit'),
                      edit_human_path
 
+        profile.item :new_human,
+                     t('title.humans.new'),
+                     new_human_path
+
         profile.item :edit_user,
                      t('title.users/registrations.edit'),
                      edit_user_registration_path
