@@ -8,9 +8,15 @@ mailer: &mailer
     domain:               portal.tusur.ru
     enable_starttls_auto: false
 
+students: &students
+  host: 'localhost:3333'
+
 production:
   mailer:
     <<: *mailer
+  students:
+    <<: *students
+
 
 development:
   mailer:
@@ -18,9 +24,13 @@ development:
     admin_email: test-portal@mailinator.com
     default_url_options:
       host: "localhost:3000"
+  students:
+    <<: *students
 
 test:
   mailer:
     <<: *mailer
     delivery_method: test
+  students:
+    <<: *students
 
