@@ -2,22 +2,17 @@
 
 <ul class="cool_list">
   <li>
-    <h4><%= link_to t("title.curriculums.index"), chair_curriculums_path(@chair) %></h4>
+    <h4><%= link_to t("title.curriculums.index"), specialities_path(:chair_id => @chair.id) %></h4>
     <p>Тут находится список специальностей, которым обучают на данной кафедре.</p>
   </li>
 
   <li>
-    <h4><%= link_to t("title.employees.index"), chair_employees_path(@chair) %></h4>
+    <h4><%= link_to t("title.employees.index"), humans_path(:chair_id => @chair.id) %></h4>
     <p></p>
   </li>
 
   <li>
-    <h4><%= link_to t("title.publications.index"), chair_publications_path(@chair) %></h4>
-    <p></p>
-  </li>
-
-  <li>
-    <h4><%= link_to t("title.provided_specialities.index"), chair_provided_specialities_path(@chair) %></h4>
+    <h4><%= link_to t("title.publications.index"), publications_path(:chair_id => @chair.id) %></h4>
     <p></p>
   </li>
 </ul>
