@@ -19,6 +19,9 @@ class RoleMailer < ActionMailer::Base
     mail( :subject => "Возникли проблемы при поиске  #{role.title.downcase} #{role.human.full_name}" )
   end
 
-
+  def check_by_contingent_successful_notification(role)
+    @role = role
+    mail( :subject => "Успешно создана роль  #{role.title.downcase} #{role.human.full_name}" )
+  end
 end
 

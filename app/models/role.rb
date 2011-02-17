@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'net/http'
 require 'uri'
 
@@ -42,46 +44,48 @@ class Role < ActiveRecord::Base
     check
   end
 
-private
-
-  def reindex_human
-    human.reload.index!
-  end
-
-  def url_for_check
-    unescaped = sprintf("lastname=%s&firstname=%s&patronymic=%s&group=%s&birth_date=%s",
-                         self.human.surname,
-                         self.human.name,
-                         self.human.patronymic,
-                         self.group,
-                         self.birthday)
-
-    parametrs = URI.escape(unescaped)
-    URI.parse("http://#{STUDENTS_HOST}/check?#{parametrs}")
-  end
-
-  def get_contingent_id
-    contingent_id = nil
-    begin
-      contingent_id = Net::HTTP.get(url_for_check)
-    rescue Exception => e
-      # TODO: посылать уведомление о неработоспособности STUDENTS
+  protected
+    def reindex_human
+      human.reload.index!
     end
 
-    contingent_id
-  end
+    def url_for_check
+      unescaped = sprintf("lastname=%s&firstname=%s&patronymic=%s&group=%s&birth_date=%s",
+                           self.human.surname,
+                           self.human.name,
+                           self.human.patronymic,
+                           self.group,
+                           self.birthday)
 
-  def check
-    contingent_id = get_contingent_id
-
-    unless contingent_id.blank?
-      self.update_attributes(:contingent_id => contingent_id, :state => 'accepted')
-      # TODO: посылать уведомление об успешном создании роли
-    else
-      # TODO: посылать уведомление о неудачном созданиее роли
+      parametrs = URI.escape(unescaped)
+      URI.parse("http://#{STUDENTS_HOST}/check?#{parametrs}")
     end
-  end
 
+    def get_contingent_id
+      contingent_id = nil
+      begin
+        contingent_id = Net::HTTP.get(url_for_check)
+      rescue Exception => e
+        p e.messages
+        # TODO: посылать уведомление о неработоспособности STUDENTS
+      end
+
+      contingent_id
+    end
+
+    def check
+      contingent_id = get_contingent_id
+
+      unless contingent_id.blank?
+        if self.update_attributes(:contingent_id => contingent_id, :state => 'accepted')
+          #RoleMailer.check_by_contingent_successful_notification(self)
+        else
+
+        end
+      else
+        # RoleMailer.check_by_contingent_fault_notification(self)
+      end
+    end
 end
 
 # == Schema Information

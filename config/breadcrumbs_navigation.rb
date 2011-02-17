@@ -54,30 +54,27 @@ SimpleNavigation::Configuration.run do |navigation|
                      t('title.users/registrations.edit'),
                      edit_user_registration_path
 
-        profile.item :new_student_role,
-                     t('title.roles/students.new'),
-                     new_human_roles_student_path
+        p @roles_student
+        p params[:controller]
+        p params[:action]
 
-        profile.item :edit_student_role,
-                     t('title.roles/students.edit'),
-                     edit_human_roles_student_path if @student && !@student.new_record?
+        if @roles_student
+          profile.item :new_student_role,
+                       t('title.roles/students.new'),
+                       new_human_roles_student_path
+
+          profile.item :new_student_role,
+                       t('title.roles/students.new'),
+                       human_roles_students_path if params[:action] == "create" && params[:controller] == "roles/students"
+         end
 
         profile.item :new_graduate_role,
                      t('title.roles/graduates.new'),
                      new_human_roles_graduate_path
 
-        profile.item :edit_graduate_role,
-                     t('title.roles/graduates.edit'),
-                     edit_human_roles_graduate_path if @graduate && !@graduate.new_record?
-
         profile.item :new_employee_role,
                      t('title.roles/employees.new'),
                      new_human_roles_employee_path
-
-        profile.item :edit_employee_role,
-                     t('title.roles/employees.edit'),
-                     edit_human_roles_employee_path if @employee && !@employee.new_record?
-
       end
 
       secondary.item :humans,
