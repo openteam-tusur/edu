@@ -66,8 +66,7 @@ class Role < ActiveRecord::Base
       begin
         contingent_id = Net::HTTP.get(url_for_check)
       rescue Exception => e
-        p e.messages
-        # TODO: посылать уведомление о неработоспособности STUDENTS
+        RoleMailer.service_not_responding.deliver!
       end
 
       contingent_id
@@ -78,12 +77,12 @@ class Role < ActiveRecord::Base
 
       unless contingent_id.blank?
         if self.update_attributes(:contingent_id => contingent_id, :state => 'accepted')
-          #RoleMailer.check_by_contingent_successful_notification(self)
+          RoleMailer.check_by_contingent_successful_notification(self).deliver!
         else
 
         end
       else
-        # RoleMailer.check_by_contingent_fault_notification(self)
+        RoleMailer.check_by_contingent_fault_notification(self).deliver!
       end
     end
 end

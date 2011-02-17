@@ -54,10 +54,6 @@ SimpleNavigation::Configuration.run do |navigation|
                      t('title.users/registrations.edit'),
                      edit_user_registration_path
 
-        p @roles_student
-        p params[:controller]
-        p params[:action]
-
         if @roles_student
           profile.item :new_student_role,
                        t('title.roles/students.new'),

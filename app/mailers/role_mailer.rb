@@ -23,5 +23,9 @@ class RoleMailer < ActionMailer::Base
     @role = role
     mail( :subject => "Успешно создана роль  #{role.title.downcase} #{role.human.full_name}" )
   end
+
+  def service_not_responding
+    mail( :subject => "Сервис проверки контеншента не отвечает")
+  end
 end
 

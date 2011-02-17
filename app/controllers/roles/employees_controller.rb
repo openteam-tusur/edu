@@ -9,14 +9,14 @@ class Roles::EmployeesController < RolesController
   def create
     create! do
       RoleMailer.role_create_notification(resource).deliver!
-      human_path
+      profile_path
     end
   end
 
   def update
     update! do
      RoleMailer.role_update_notification(resource).deliver!
-     human_path
+     profile_path
     end
   end
 end
