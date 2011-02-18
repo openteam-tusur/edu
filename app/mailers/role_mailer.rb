@@ -25,7 +25,7 @@ class RoleMailer < ActionMailer::Base
   end
 
   def service_not_responding
-    mail( :subject => "Сервис проверки контенента не отвечает")
+    mail( :subject => "Сервис проверки контенгента не отвечает")
   end
 end
 

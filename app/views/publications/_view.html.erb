@@ -2,7 +2,6 @@
 
 <div class="publication">
   <%= render :partial => "/common/resource", :locals => { :resource => resource } %>
-
   <ul class="resource_action">
     <li><%= link_to t(:edit), edit_resource_path(resource), :class => "button" %></li>
     <%= render :partial => "/common/resource_state", :locals => { :resource => resource } %>

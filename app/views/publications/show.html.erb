@@ -1,11 +1,11 @@
 <% title raw "#{@publication.human_kind} &ndash; #{@publication.title}" %>
 
-<ul class="resource_action">
-  <li class="extended_kind"><%= @publication.extended_kind %></li>
-</ul>
 
 <div class="publication">
   <%= render :partial => "/common/resource", :locals => { :resource => @publication } %>
+  <ul class="resource_action">
+    <li class="extended_kind"><%= @publication.extended_kind %></li>
+  </ul>
 
   <div class="additional">
     <h2>Дополнительно</h2>
