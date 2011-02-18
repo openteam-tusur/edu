@@ -5,6 +5,18 @@ SimpleNavigation::Configuration.run do |navigation|
                  t('title.application.main_page'),
                  root_path do |secondary|
 
+      secondary.item :sign_in,
+                     t('title.users/sessions.new'),
+                     user_session_path
+
+      secondary.item :sign_up,
+                     t('title.users/registrations.new'),
+                     new_user_registration_path
+
+      secondary.item :password_new,
+                     t('title.users/passwords.new'),
+                     new_user_password_path
+
       secondary.item :training,
                      t('title.training.index'),
                      training_path do |training|
@@ -89,28 +101,9 @@ SimpleNavigation::Configuration.run do |navigation|
 
           chairs.item "chair_#{@chair.slug}",
                       @chair.abbr,
-                      chair_path(@chair) do |chair|
-
-            chair.item :curriculums,
-                       t("title.curriculums.index"),
-                       chair_curriculums_path(@chair) do |curriculums|
-
-              curriculums.item :curriculum,
-                               @curriculum.title,
-                               chair_curriculum_path(@chair, @curriculum) do |curriculum|
-
-                curriculum.item :semester,
-                                @semester.title,
-                                chair_curriculum_semester_path(@chair, @curriculum, @semester) do |education|
-                  education.item :education,
-                                 @education.study.discipline.name,
-                                 chair_curriculum_semester_education_path(@chair, @curriculum, @semester, @education) if @education
-                end if @semester
-              end if @curriculum
-            end
-          end if @chair
-        end
+                      chair_path(@chair) if @chair
       end
     end
+  end
 end
 

@@ -32,9 +32,9 @@
     <%= yield :main_menu %>
     <div class="content">
       <%= yield :breadcrumbs %>
+      <%= yield :get_started %>
       <%= show_notice %>
       <%= yield :place_for_title %>
-      <%= render :partial => 'users/shared/has_been_started' %>
       <%= yield :main_page %>
       <%= yield %>
     </div>

@@ -3,22 +3,23 @@ Portal::Application.routes.draw do
                                         :sessions => 'users/sessions',
                                         :passwords => 'users/passwords' }
 
-  match "/profile" => "humans#show", :as => :profile
-
   resources :humans, :only => [:index, :show]
 
-  resource :human, :except => [:index, :delete, :destroy] do
+  resource :human, :except => [:index, :delete, :destroy], :path => '/profile' do
     namespace :roles do
-      resources :graduates, :only => [:new, :create, :edit, :update]
-      resources :students, :only => [:new, :create, :edit, :update]
-      resources :employees, :only => [:new, :create, :edit, :update]
+      resources :graduates, :only => [:new, :create]
+      resources :students, :only => [:new, :create]
+      resources :employees, :only => [:new, :create]
     end
   end
+
+  match "/profile" => "humans#show", :as => :profile, :method => :get
 
   match "/training" => "training#index"
 
   scope '/training' do
     resources :publications, :only => [:index, :show]
+
     resources :specialities, :only => :index do
       resources :curriculums, :only => :show do
         resources :semesters, :only => :show do
@@ -31,19 +32,7 @@ Portal::Application.routes.draw do
   end
 
   resources :chairs, :only => [:index, :show] do
-    resources :employees, :except => :show
-      resources :publications do
-        put :transit, :on => :member
-        resources :publication_disciplines, :except => [:index, :show]
-      end
 
-    resources :curriculums, :only => [:index, :show] do
-      resources :semesters, :only => :show do
-        resources :educations, :only => :show
-      end
-    end
-
-    resources :provided_specialities, :only => :index
   end
 
   namespace :manage do
