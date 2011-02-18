@@ -2,13 +2,28 @@
 
 class Roles::Graduate < Role
   validates_presence_of :group, :birthday
-  validates_uniqueness_of :group, :scope => [:human_id, :state]
+  validates_uniqueness_of :human_id, :scope => [:contingent_id, :group]
 
   default_values :title => 'Магистрант', :slug => 'graduate', :post => 'Магистрант'
+
+  after_create :check_by_contingent
+
+  validate :find_same_role, :on => :create
 
   def to_s
     "магистрант гр. #{group}"
   end
+
+  protected
+    def find_same_role
+      unless self.class.pending.where(:group => self.group, :birthday => self.birthday).empty?
+        self.errors[:base] << "Ваша заявка находится на рассмотрении"
+      end
+
+      unless self.class.accepted.where(:group => self.group, :birthday => self.birthday).empty?
+        self.errors[:base] << "Вы уже студент этой группы"
+      end
+    end
 end
 
 
