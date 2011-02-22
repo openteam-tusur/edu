@@ -22,7 +22,7 @@
   <% @curriculum.aasm_events_for_current_state.each do |event| %>
     <li class="curriculum_resource_state">
       <p class="resource_state_<%= @curriculum.state %>"><%= @curriculum.human_state %></p>
-      <%= link_to @curriculum.human_event_name(event),
+      <%= link_to @curriculum.class.human_event_name(event),
                   transit_manage_chair_curriculum_path(@chair, @curriculum, :event => event),
                   :class => "button", :method => :put %>
     </li>
