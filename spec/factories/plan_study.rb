@@ -10,6 +10,6 @@ Factory.define :plan_study,
   study.association :curriculum, :factory => :plan_curriculum
   study.association :chair
   study.discipline_name { Sham.discipline_name }
-  study.cycle "special"
+  study.cycle_id { Factory.create(:plan_cycle).id }
 end
 
