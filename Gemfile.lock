@@ -5,12 +5,6 @@ GIT
     aasm (2.2.0)
 
 GIT
-  remote: git://github.com/lda/annotate_models
-  revision: d9a6fe279c5b9092317d4042ee8446bc01752e83
-  specs:
-    annotate (2.4.0)
-
-GIT
   remote: git://github.com/openteam/formtastic-cocoon.git
   revision: 654021e3aac7b978050196954538f534a14e3dc4
   specs:
@@ -206,7 +200,6 @@ PLATFORMS
 
 DEPENDENCIES
   aasm!
-  annotate!
   cancan
   capybara
   compass
