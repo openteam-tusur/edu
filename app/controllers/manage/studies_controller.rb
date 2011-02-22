@@ -15,7 +15,9 @@ class Manage::StudiesController < Manage::ApplicationController
   end
 
   def create
-    create! { parent_path(:anchor => @study.cycle) }
+    create! { 
+      p @study
+      parent_path(:anchor => @study.cycle) }
   end
 
   def update

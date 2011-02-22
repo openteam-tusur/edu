@@ -49,16 +49,16 @@
     </tr>
   </thead>
   <tbody>
-    <% Plan::Study.enum[:cycle].each do |cycle| %>
+    <% Plan::Cycle.with_degree(@curriculum.speciality.degree).each do |cycle| %>
       <tr class="cycle">
-        <td colspan="<%= @curriculum.semesters.count+1 %>"><a id="<%= cycle %>"><%= Plan::Study.human_enum[:cycle][cycle.to_sym] %></a></td>
+        <td colspan="<%= @curriculum.semesters.count+1 %>"><a id="<%= cycle.id %>"><%= cycle.name %></a></td>
       </tr>
-      <% if (@curriculum.studies.send "cycle_#{cycle}").empty? %>
+      <% if @curriculum.studies.where(:cycle_id => cycle.id).empty? %>
         <tr>
           <td colspan="<%= @curriculum.semesters.count+1 %>">Нет дисциплин</td>
         </tr>
       <% else %>
-        <% (@curriculum.studies.send "cycle_#{cycle}").each do |study| %>
+        <% @curriculum.studies.where(:cycle_id => cycle.id).each do |study| %>
           <tr class="discipline">
             <td class="discipline_name">
               <%= study.discipline.name %>

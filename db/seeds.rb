@@ -47,6 +47,72 @@ user.human.roles << Roles::Employee.new(:chair_id => Chair.find_by_slug('asu'),
 
 Speciality.destroy_all
 
+Plan::Cycle.destroy_all
+
+b1 = Plan::Cycle.create!(:code => 'Б1',
+                         :name => 'Гуманитарный, социальный и экономический цикл',
+                         :degree => 'bachelor')
+
+b2 = Plan::Cycle.create!(:code => 'Б2',
+                         :name => 'Математический и естственнонаучный цикл',
+                         :degree => 'bachelor')
+
+b3 = Plan::Cycle.create!(:code => 'Б3',
+                         :name => 'Профессиональный цикл',
+                         :degree => 'bachelor')
+
+b4 = Plan::Cycle.create!(:code => 'Б4',
+                         :name => 'Физическая культура',
+                         :degree => 'bachelor')
+
+b5 = Plan::Cycle.create!(:code => 'Б5',
+                         :name => 'Учебная и производственная практики',
+                         :degree => 'bachelor')
+
+b6 = Plan::Cycle.create!(:code => 'Б6',
+                         :name => 'Итоговая государственная аттестация',
+                         :degree => 'bachelor')
+
+m1 = Plan::Cycle.create!(:code => 'М1',
+                         :name => 'Общенаучный цикл',
+                         :degree => 'master')
+
+m2 = Plan::Cycle.create!(:code => 'М2',
+                         :name => 'Профессиональный цикл',
+                         :degree => 'master')
+
+m3 = Plan::Cycle.create!(:code => 'М3',
+                         :name => 'Практика и научно-исследовательская работы',
+                         :degree => 'master')
+
+m4 = Plan::Cycle.create!(:code => 'М4',
+                         :name => 'Итоговая аттестация',
+                         :degree => 'master')
+
+s1 = Plan::Cycle.create!(:code => 'С1',
+                         :name => 'Гуманитарный, социальный и экономический цикл',
+                         :degree => 'specialist')
+
+s2 = Plan::Cycle.create!(:code => 'С2',
+                         :name => 'Математический и естственнонаучный цикл',
+                         :degree => 'specialist')
+
+s3 = Plan::Cycle.create!(:code => 'С3',
+                         :name => 'Профессиональный цикл',
+                         :degree => 'specialist')
+
+s4 = Plan::Cycle.create!(:code => 'С4',
+                         :name => 'Физическая культура',
+                         :degree => 'specialist')
+
+s5 = Plan::Cycle.create!(:code => 'С5',
+                         :name => 'Учебная и производственная практики',
+                         :degree => 'specialist')
+
+s6 = Plan::Cycle.create!(:code => 'С6',
+                         :name => 'Итоговая аттестация',
+                         :degree => 'specialist')
+
 svchkr = Chair.find_by_slug('svchkr')
 
 s210401 = Speciality.create! :code           => 210401,
@@ -70,19 +136,19 @@ curriculum = s210401.curriculums.create! :study => 'fulltime',
 
 study1 = curriculum.studies.create! :chair => Chair.find_by_slug('iya'),
                                     :discipline_name => 'Иностранный язык',
-                                    :cycle => 'humanities'
+                                    :cycle_id => s1.id
 
 study2 = curriculum.studies.create! :chair => Chair.find_by_slug('fvis'),
                                     :discipline_name => 'Физическая культура',
-                                    :cycle => 'humanities'
+                                    :cycle_id => s4.id
 
 study3 = curriculum.studies.create! :chair => Chair.find_by_slug('mguk'),
                                     :discipline_name => 'Инженерная и компьютерная графика',
-                                    :cycle => 'professional'
+                                    :cycle_id => s2.id
 
 study4 = curriculum.studies.create! :chair => svchkr,
                                     :discipline_name => 'Химия радиоматериалов',
-                                    :cycle => 'special'
+                                    :cycle_id => s3.id
 
 semester1 = curriculum.semesters.find_by_number 1
 

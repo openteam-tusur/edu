@@ -18,7 +18,6 @@ class Speciality < ActiveRecord::Base
 
   protected_parent_of :curriculums, :protects => :softly
 
-
   has_enum :degree, %w[specialist master bachelor], :scopes => true
 
   searchable do

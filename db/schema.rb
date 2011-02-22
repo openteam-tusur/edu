@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110216042618) do
+ActiveRecord::Schema.define(:version => 20110222064102) do
 
   create_table "attachments", :force => true do |t|
     t.string   "data_uid"
@@ -95,6 +95,14 @@ ActiveRecord::Schema.define(:version => 20110216042618) do
     t.integer  "chair_id"
   end
 
+  create_table "plan_cycles", :force => true do |t|
+    t.string   "code"
+    t.string   "name"
+    t.string   "degree"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "plan_disciplines", :force => true do |t|
     t.text     "name"
     t.integer  "speciality_id"
@@ -130,7 +138,7 @@ ActiveRecord::Schema.define(:version => 20110216042618) do
     t.integer  "discipline_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "cycle"
+    t.integer  "cycle_id"
   end
 
   create_table "publication_disciplines", :force => true do |t|

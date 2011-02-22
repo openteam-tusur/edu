@@ -62,5 +62,6 @@ end
 #  created_at    :datetime
 #  updated_at    :datetime
 #  cycle         :string(255)     'Цикл'
+#  cycle_id      :integer
 #
 

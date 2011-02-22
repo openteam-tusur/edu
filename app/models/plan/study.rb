@@ -6,20 +6,21 @@ class Plan::Study < ActiveRecord::Base
   belongs_to :curriculum
   has_one :speciality, :through => :curriculum
   belongs_to :discipline
+  belongs_to :cycle, :class_name => "Plan::Cycle"
 
   has_many :educations, :class_name => "Plan::Education"
   has_many :semesters, :through => :educations, :class_name => 'Plan::Semester'
 
   attr_accessor :discipline_name
 
-  validates_presence_of :chair, :discipline_name, :curriculum, :cycle
+  validates_presence_of :chair, :discipline_name, :curriculum, :cycle_id
   validates_uniqueness_of :discipline_id, :scope => :curriculum_id
 
   before_validation :prepare_discipline
 
-  has_enum :cycle,
-           %w( humanities mathematical professional special gpo ),
-           :scopes => true
+  #has_enum :cycle,
+           #%w( humanities mathematical professional special gpo ),
+           #:scopes => true
 
   accepts_nested_attributes_for :educations, :allow_destroy => true, :reject_if => proc { |attributes| attributes['semester_id'].blank? }
 
@@ -48,5 +49,6 @@ end
 #  created_at    :datetime
 #  updated_at    :datetime
 #  cycle         :string(255)     'Цикл'
+#  cycle_id      :integer
 #
 
