@@ -1,4 +1,5 @@
-source 'http://rubygems.org'
+#source 'http://rubygems.org'
+source 'http://gems.openteam.ru'
 
 gem 'rails', :require => false
 gem 'racc', :require => false
