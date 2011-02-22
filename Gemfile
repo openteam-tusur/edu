@@ -13,7 +13,7 @@ group :development do
   gem 'rails3-generators'
   # introspection
   gem 'rails-erd'
-  gem 'annotate', :git => 'git://github.com/lda/annotate_models'
+  #gem 'annotate', :git => 'git://github.com/lda/annotate_models'
   gem 'hirb'
 end
 
