@@ -33,8 +33,8 @@ class AutocompletesController < ApplicationController
       end
       with(:speciality_id, params[:speciality_id]) if params[:speciality_id]
     end.results
-    disciplines.map! do | discipline |
-      { :id => discipline.id, :value => discipline.name }
+    disciplines = disciplines.map(&:name).uniq.map do | name |
+      { :id => 1, :value => name }
     end
     render :text => disciplines.to_json
   end
@@ -54,3 +54,4 @@ private
   end
 
 end
+
