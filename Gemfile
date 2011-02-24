@@ -24,6 +24,7 @@ group :test do
   gem 'rr'
   gem 'launchy'
   gem 'factory_girl_rails'
+  gem 'spork'
 end
 
 group :test, :development do
@@ -70,4 +71,5 @@ gem "default_value_for"
 
 gem 'mime-types', :require => 'mime/types'
 gem 'nokogiri'
+
 
