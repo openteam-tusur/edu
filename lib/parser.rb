@@ -7,16 +7,22 @@ class Parser
   end
 
   def speciality
-    spec = Speciality.find_by_code(speciality_code)
+    @speciality ||= Speciality.find_by_code(speciality_code)
 
-    unless spec
-      spec = Speciality.create!(:name => speciality_name,
-                                :code => speciality_code,
-                                :qualification => speciality_qualification,
-                                :degree => speciality_degree)
+    unless @speciality
+      @speciality = Speciality.new(:name => speciality_name,
+                                   :code => speciality_code,
+                                   :qualification => speciality_qualification,
+                                   :degree => speciality_degree)
     end
 
-    spec
+    @speciality
+  end
+
+  def curriculum
+    @curriculum ||= Plan::Curriculum.new(:semesters_count => curriculum_semesters_count,
+                                         :study => curriculum_study,
+                                         :since => curriculum_since)
   end
 
   private
@@ -39,6 +45,18 @@ class Parser
         when 'магистр' then 'master'
         else 'undefined'
       end
+    end
+
+    def curriculum_semesters_count
+      @doc.xpath('//Документ/План/Титул/Квалификации/Квалификация').first.attr('СрокОбучения').to_i * 2
+    end
+
+    def curriculum_study
+      'fulltime'
+    end
+
+    def curriculum_since
+      @doc.xpath('//Документ/План/Титул').first.attr('ГодНачалаПодготовки')
     end
 end
 
