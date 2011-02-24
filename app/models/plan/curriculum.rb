@@ -48,7 +48,7 @@ class Plan::Curriculum < Resource
   end
 
   def to_param
-    self.slug
+    self.slug.gsub('.','_')
   end
 
   def slug
