@@ -37,7 +37,7 @@ gem 'compass'
 gem 'fancy-buttons'
 gem 'simple-navigation'
 gem 'formtastic'
-gem 'formtastic_cocoon', :git => 'git://github.com/openteam/formtastic-cocoon.git'
+gem 'formtastic_cocoon', :git => 'git://github.com/openteam/formtastic-cocoon'
 gem 'validation_reflection'
 gem 'show_for'
 gem 'will_paginate', '>= 3.0.pre2'
@@ -47,11 +47,10 @@ gem 'gilenson'
 gem 'gravtastic'
 
 # restful
-gem 'inherited_resources'
+gem 'inherited_resources', :git => 'git://github.com/openteam/inherited_resources'
 gem 'inherited_resources_views'
 
 # full text search
-#gem "geohash", "1.0.1", :git => "git://github.com/floze/geohash", :require => false
 gem "sunspot"
 gem "sunspot_rails"
 

@@ -5,10 +5,18 @@ GIT
     aasm (2.2.0)
 
 GIT
-  remote: git://github.com/openteam/formtastic-cocoon.git
+  remote: git://github.com/openteam/formtastic-cocoon
   revision: 654021e3aac7b978050196954538f534a14e3dc4
   specs:
     formtastic_cocoon (0.0.2)
+
+GIT
+  remote: git://github.com/openteam/inherited_resources
+  revision: 3b249734f5ff92acace0cdb7559755f0b99da2b4
+  specs:
+    inherited_resources (1.2.1)
+      has_scope (~> 0.5.0)
+      responders (~> 0.6.0)
 
 GEM
   remote: http://gems.openteam.ru/
@@ -90,9 +98,6 @@ GEM
     has_scope (0.5.0)
     hirb (0.3.6)
     i18n (0.5.0)
-    inherited_resources (1.2.1)
-      has_scope (~> 0.5.0)
-      responders (~> 0.6.0)
     inherited_resources_views (0.4.1)
       inherited_resources (>= 1.0)
     jquery-rails (0.2.7)
@@ -215,7 +220,7 @@ DEPENDENCIES
   gravtastic
   has_enum
   hirb
-  inherited_resources
+  inherited_resources!
   inherited_resources_views
   jquery-rails
   launchy
