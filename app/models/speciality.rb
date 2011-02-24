@@ -79,7 +79,7 @@ class Speciality < ActiveRecord::Base
   end
 
   def to_param
-    slug
+    slug.gsub('.', '_')
   end
 
   def self.find_by_slug(slug)
