@@ -4,7 +4,7 @@ class PublicationsController < InheritedResources::Base
   load_resource :except => :get_fields
 
   def index
-    search = Publication.search(params[:query], @chair, params, :published)
+    search = Publication.search(params[:query], nil, params, :published)
     @publications = search.results
     @facets = search.facet(:kind).rows
     @chair_facets = search.facet(:chair_id).rows

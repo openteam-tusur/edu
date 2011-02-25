@@ -48,7 +48,7 @@ class Publication < Resource
       keywords query unless query.blank?
 
       kind_filter = with :kind, options[:kind] if options[:kind]
-      chair_filter = with :chair_id, chair.id if chair
+      chair_filter = with :chair_id, options[:chair_id] if options[:chair_id]
       with :state, 'published' if published
 
       state_filter = with :state, options[:state] if options[:state]
