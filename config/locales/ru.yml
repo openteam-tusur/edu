@@ -21,6 +21,11 @@ ru:
   noun_master: Магистратура
   noun_bachelor: Бакалавриат
 
+  publication:
+    work_programm: рабочую программу
+    training_toolkit: учебно-методическое пособие
+    tutorial: учебное пособие
+
   roles:
     admin: Администраторы
     employee: Сотрудники
