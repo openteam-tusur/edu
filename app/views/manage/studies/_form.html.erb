@@ -1,5 +1,6 @@
 <fieldset class="inputs">
   <ol class="study_common_info">
+    <%= form.input :speciality_id, :as => :hidden,:input_html => {:value => resource.curriculum.speciality.id}  %>
     <%= form.input :discipline_name, :input_html => { :value => resource.discipline ? resource.discipline.name : resource.discipline_name, :class => "focus_first" } %>
     <%= form.input :chair, :group_by => :faculty %>
     <%= form.input :cycle_id, :as => :select, :collection => Plan::Cycle.with_degree(resource.curriculum.speciality.degree) %>

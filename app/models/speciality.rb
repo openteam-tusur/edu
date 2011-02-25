@@ -83,7 +83,8 @@ class Speciality < ActiveRecord::Base
   end
 
   def self.find_by_slug(slug)
-    self.find_by_code_and_degree(*slug.split("-"))
+   code, degree = slug.gsub('_','.').split("-")
+   self.find_by_code_and_degree(code, degree)
   end
 
 end
