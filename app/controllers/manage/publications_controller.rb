@@ -9,8 +9,9 @@ class Manage::PublicationsController < Manage::ApplicationController
 
   belongs_to :chair, :finder => :find_by_slug
 
+  # TODO: http://issues.openteam.ru/issues/6765
   def index
-    search = Publication.search(params[:query], @chair, params)
+    search = Publication.search(params[:query], nil, params.merge(:chair_id => @chair.id))
     @publications = search.results
     @facets = search.facet(:kind).rows
     @state_facets = search.facet(:state).rows
