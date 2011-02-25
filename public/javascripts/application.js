@@ -20,7 +20,7 @@ function ajax_stop() {
 
 function discipline_name_autocomplete() {
   $("#study_discipline_name").autocomplete({
-    source: "/autocompletes/disciplines",
+    source: "/autocompletes/disciplines?speciality_id="+$('#study_speciality_id').val(),
     minLength: 2
   });
 };
