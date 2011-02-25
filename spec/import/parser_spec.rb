@@ -3,6 +3,16 @@
 require 'spec_helper'
 
 describe Parser do
+  before(:all) do
+    Plan::Cycle.create!(:code => 'Б1', :name => 'Гуманитарный, социальный и экономический цикл', :degree => 'bachelor')
+    Plan::Cycle.create!(:code => 'Б2', :name => 'Математический и естственнонаучный цикл', :degree => 'bachelor')
+    Plan::Cycle.create!(:code => 'Б3', :name => 'Профессиональный цикл', :degree => 'bachelor')
+    Plan::Cycle.create!(:code => 'Б4', :name => 'Физическая культура', :degree => 'bachelor')
+    Plan::Cycle.create!(:code => 'Б5', :name => 'Учебная и производственная практики', :degree => 'bachelor')
+    Plan::Cycle.create!(:code => 'Б6', :name => 'Итоговая государственная аттестация', :degree => 'bachelor')
+    Plan::Cycle.create!(:code => 'ФТД', :name => 'Факультативы', :degree => 'bachelor')
+  end
+
   let(:parser) { Parser.new(File.expand_path('../../data/bachelor.plm.xml', __FILE__), 'cp1251') }
 
   it 'должен подготавливать специальность, если такой еще нет' do
@@ -29,6 +39,10 @@ describe Parser do
     parser.curriculum.save
 
     parser.curriculum.reload.semesters_count.should be 8
+  end
+
+  it 'должны подготавливаться массив из study' do
+    parser.studies.size.should be 70
   end
 end
 

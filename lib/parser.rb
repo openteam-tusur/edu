@@ -25,6 +25,21 @@ class Parser
                                          :since => curriculum_since)
   end
 
+  def studies
+    studies = []
+
+    @doc.xpath('//Документ/План/СтрокиПлана/Строка[@Цикл]').each do |node|
+      code = node.attr('Цикл').match(/[БМС]\d|ФТД/).to_s
+
+      study = Plan::Study.new(:discipline_name => node.attr('Дис'),
+                                 :cycle_id => Plan::Cycle.where(:degree => speciality_degree, :code => code).first)
+
+
+    end
+
+    studies
+  end
+
   private
     def speciality_name
       name = @doc.xpath('//Документ/План/Титул/Специальности/Специальность').first.attr('Название')

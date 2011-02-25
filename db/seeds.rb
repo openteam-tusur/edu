@@ -73,6 +73,10 @@ b6 = Plan::Cycle.create!(:code => 'Б6',
                          :name => 'Итоговая государственная аттестация',
                          :degree => 'bachelor')
 
+ftd = Plan::Cycle.create!(:code => 'ФТД',
+                         :name => 'Факультативы',
+                         :degree => 'bachelor')
+
 m1 = Plan::Cycle.create!(:code => 'М1',
                          :name => 'Общенаучный цикл',
                          :degree => 'master')

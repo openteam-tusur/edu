@@ -17,11 +17,6 @@ class Plan::Study < ActiveRecord::Base
   validates_uniqueness_of :discipline_id, :scope => :curriculum_id
 
   before_validation :prepare_discipline
-
-  #has_enum :cycle,
-           #%w( humanities mathematical professional special gpo ),
-           #:scopes => true
-
   accepts_nested_attributes_for :educations, :allow_destroy => true, :reject_if => proc { |attributes| attributes['semester_id'].blank? }
 
   private
