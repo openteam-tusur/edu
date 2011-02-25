@@ -89,8 +89,12 @@ class Publication < Resource
     end
   end
 
+  def get_extended_kind
+    extended_kind.gsub(/^./) { |symbol| symbol.mb_chars.upcase}
+  end
+
   def to_s
-    result = "#{title}: #{human_kind} / "
+    result = "#{title}: #{get_extended_kind} / "
     result += authors.empty? ? "" : "#{authors.map(&:abbreviated_name).join(', ')} – "
     result += "#{year}. #{volume} с."
   end
