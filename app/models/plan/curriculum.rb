@@ -48,11 +48,11 @@ class Plan::Curriculum < Resource
   end
 
   def to_param
-    self.slug.gsub('.','_')
+    self.slug
   end
 
   def slug
-    "#{self.id}-#{self.speciality.code}-#{self.study}-#{self.since}"
+    "#{self.id}-#{self.speciality.code}-#{self.study}-#{self.since}".gsub('.','_')
   end
 
   def self.find_by_slug(slug)
