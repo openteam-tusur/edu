@@ -25,19 +25,39 @@ class Parser
                                          :since => curriculum_since)
   end
 
-  def studies
-    studies = []
+  def studies_with_education_attributes
+    studies = {}
 
     @doc.xpath('//Документ/План/СтрокиПлана/Строка[@Цикл]').each do |node|
       code = node.attr('Цикл').match(/[БМС]\d|ФТД/).to_s
 
       study = Plan::Study.new(:discipline_name => node.attr('Дис'),
-                                 :cycle_id => Plan::Cycle.where(:degree => speciality_degree, :code => code).first)
+                              :cycle_id => Plan::Cycle.where(:degree => speciality_degree, :code => code).first.id)
 
-
+      studies.merge!(study => educations(node))
     end
 
     studies
+  end
+
+  def educations(node)
+    result = {}
+
+    if node.attr('СемЗач')
+      node.attr('СемЗач').split(//).each do |semester_number|
+        result[semester_number] ||= []
+        result[semester_number] << Examination.find_by_slug('test')
+      end
+    end
+
+    if node.attr('СемЭкз')
+      node.attr('СемЭкз').split(//).each do |semester_number|
+        result[semester_number] ||= []
+        result[semester_number] << Examination.find_by_slug('examination')
+      end
+    end
+
+    result
   end
 
   private
