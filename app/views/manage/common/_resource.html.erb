@@ -5,13 +5,7 @@
       <%= resource_fields.attributes :year %>
       <%= resource_fields.attributes :volume %>
     <% end %>
-    <div class='resource_link'>
-      <%= link_to image_tag("icon_pdf_#{resource.access}.png"),
-                  resource.attachment.data.url,
-                  :title => resource.human_access, :rel => "tipsy" %>
-      <%= link_to 'Скачать', resource.attachment.data.url,
-                  :class => "#{resource.access}_pdf download" %>
-    </div>
+    <%= render :partial => "/manage/common/resource_link", :locals => {:resource => resource} %>
   </fieldset>
 <% end %>
 

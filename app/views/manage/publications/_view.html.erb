@@ -1,7 +1,7 @@
 <% title "#{@publication.title} — #{@publication.human_kind}" %>
 
 <ul class="resource_action">
-  <%= render :partial => "/common/resource_state", :locals => { :resource => @publication } %>
+  <%= render :partial => "/manage/common/resource_state", :locals => { :resource => @publication } %>
   <li class="extended_kind"><%= @publication.extended_kind %></li>
 </ul>
 
@@ -13,7 +13,7 @@
     <% end %>
   <% end unless @publication.comment.blank? %>
 
-  <%= render :partial => "/common/resource", :locals => { :resource => @publication } %>
+  <%= render :partial => "/manage/common/resource", :locals => { :resource => @publication } %>
 
   <div class="additional">
     <h2>Дополнительно</h2>

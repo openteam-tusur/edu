@@ -89,6 +89,20 @@ class Publication < Resource
     end
   end
 
+  def addition_fields(kind = self.kind)
+    if kind.eql? 'work_programm'
+      return [:annotation]
+    end
+
+    if kind.eql? 'tutorial'
+      return [:stamp, :annotation, :bbk, :isbn, :udk]
+    end
+
+    if kind.eql? 'training_toolkit'
+     return [:udk, :annotation]
+    end
+  end
+
   def get_extended_kind
     extended_kind.gsub(/^./) { |symbol| symbol.mb_chars.upcase}
   end
