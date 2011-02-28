@@ -3,11 +3,6 @@
 require 'spec_helper'
 
 describe Parser do
-  before(:all) do
-    load_cycles
-    load_examinations
-  end
-
   let(:parser) { Parser.new(File.expand_path('../../data/bachelor.plm.xml', __FILE__), 'aoi') }
 
   it 'должен подготавливать специальность, если такой еще нет' do
@@ -36,23 +31,15 @@ describe Parser do
     parser.curriculum.reload.semesters_count.should be 8
   end
 
-  it 'должны подготавливаться массив из study' do
-    parser.studies_with_education_attributes.size.should be 70
+  it 'должны подготавливаться аттрибуты для создания studies и educations' do
+    array = parser.attributes_for_studies_and_educations
+    array.size.should be 70
 
-    cycle = Plan::Cycle.where(:degree => 'bachelor', :code => 'Б1').first
-    chair = Factory.create(:chair, :slug => 'iya')
-
-    study, hz = parser.studies_with_education_attributes.to_a[2]
-
-    p study
-    p hz
-
-    study.discipline_name.should eql 'Иностранный язык'
-    study.cycle_id.should eql cycle.id
-    study.chair_id.should eql chair.id
-
-    hz['1'].should eql ['test', 'examination']
-    hz['2'].should eql ['examination']
+    array[2][:discipline_name].should eql 'Иностранный язык'
+    array[2][:cycle_code].should eql 'Б1'
+    array[2][:chair_slug].should eql 'iya'
+    array[2][:semesters][1].should eql ['test', 'examination']
+    array[2][:semesters][2].should eql ['examination']
   end
 end
 
