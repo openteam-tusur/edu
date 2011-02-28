@@ -1,9 +1,11 @@
 # encoding: utf-8
 
 class Parser
-  def initialize(path, encoding)
+  def initialize(path, chair, encoding = 'cp1251')
     @doc = Nokogiri::XML(File.open(path))
     @doc.encoding = encoding
+
+    @chair_slugs = YAML.load_file(Rails.root.join("config", "chairs.yml"))['chairs'][chair]
   end
 
   def speciality
@@ -25,19 +27,42 @@ class Parser
                                          :since => curriculum_since)
   end
 
-  def studies
-    studies = []
+  def studies_with_education_attributes
+    studies = {}
 
     @doc.xpath('//Документ/План/СтрокиПлана/Строка[@Цикл]').each do |node|
       code = node.attr('Цикл').match(/[БМС]\d|ФТД/).to_s
 
+      chair_id = node.attr('Кафедра').to_i
+
       study = Plan::Study.new(:discipline_name => node.attr('Дис'),
-                                 :cycle_id => Plan::Cycle.where(:degree => speciality_degree, :code => code).first)
+                              :cycle_id => Plan::Cycle.where(:degree => speciality_degree, :code => code).first.id,
+                              :chair_id => Chair.find_by_slug(@chair_slugs[chair_id]))
 
-
+      studies.merge!(study => educations(node))
     end
 
     studies
+  end
+
+  def educations(node)
+    result = {}
+
+    if node.attr('СемЗач')
+      node.attr('СемЗач').split(//).each do |semester_number|
+        result[semester_number] ||= []
+        result[semester_number] << Examination.find_by_slug('test')
+      end
+    end
+
+    if node.attr('СемЭкз')
+      node.attr('СемЭкз').split(//).each do |semester_number|
+        result[semester_number] ||= []
+        result[semester_number] << Examination.find_by_slug('examination')
+      end
+    end
+
+    result
   end
 
   private

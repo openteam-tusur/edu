@@ -71,4 +71,3 @@ gem "default_value_for"
 gem 'mime-types', :require => 'mime/types'
 gem 'nokogiri'
 
-
