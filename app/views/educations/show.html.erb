@@ -6,15 +6,7 @@
       <ul class="wide without_bullet">
         <% publications.each do |publication| %>
           <li class='publication'>
-
-            <% if can? :download, publication.attachment %>
-                <%= image_tag("icon_pdf_free.png") %>
-                <%= link_to publication, publication.attachment.data.url, :title => publication, :class => "need_tipsy", :alt => publication %>
-            <% else %>
-              <%= image_tag("icon_pdf_#{publication.access}.png")  %>
-              <span class="need_tipsy" title="Необходимо зарегистрироваться в качестве студента, магистранта или сотрудника ТУСУР"><%= publication %></span>
-            <% end %>
-
+            <%= render :partial => "common/resource_link", :locals => {:resource => publication, :full_text => true} %>
           </li>
         <% end %>
       </ul>

@@ -23,12 +23,18 @@
                   <div class="info">
                     <span class="duration">Срок обучения <%= curriculum.duration %></span>
                     <% if curriculum.attachment %>
-                      <%= link_to image_tag("icon_pdf_#{curriculum.access}.png"),
-                                  manage_chair_curriculum_path(@chair, curriculum),
-                                  :title => curriculum.human_access, :rel => "tipsy" %>
-                      <%= link_to "Учебный план #{curriculum.year}",
-                                  curriculum.attachment.data.url,
-                                  :class => "#{curriculum.access}_pdf download" %>
+                      <% if can? :download, curriculum.attachment %>
+                        <%= image_tag("icon_pdf_free.png") %>
+
+                        <%= link_to "Скачать #{curriculum.since_with_study_form}", 
+                                    curriculum.attachment.data.url, 
+                                    :title => curriculum.since_with_study_form, 
+                                    :class => "need_tipsy", :alt => curriculum.since_with_study_form %>
+
+                      <% else %>
+                        <%= image_tag("icon_pdf_#{item.access}.png")  %>
+                        <span class="need_tipsy" title="Необходимо зарегистрироваться в качестве студента, магистранта или сотрудника ТУСУР">Вы не можете скачать <%= curriculum.since_with_study_form %>.</span>
+                      <% end %>
                     <% else %>
                       <p>файл отсутствует</p>
                     <% end %>
