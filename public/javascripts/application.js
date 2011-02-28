@@ -224,6 +224,13 @@ function irregual_labels(){
     });
 };
 
+function expander() {
+ $('.expand_link').click(function(){
+  $(this).parent().next().slideToggle('slow');
+  return false;
+ }).parent().next().hide(); 
+};
+
 $(function() {
   human_check();
   discipline_name_autocomplete();
@@ -235,6 +242,7 @@ $(function() {
   manipulation_education_fields();
   irregual_labels();
   flash();
+  expander();
   $(".focus_first:first").focus();
   $("*[rel=tipsy], .formtastic .inputs abbr, .need_tipsy").tipsy({
     gravity: "s",

@@ -25,28 +25,33 @@
   .button
     font-size: 12px
 
+.expand_link
+  text-decoration: underline
+
+.download_block
+  clear: both
+  font-size: 12px
+  line-height: 20px
+  margin: 15px 0 0 0 !important
+
+  a
+    font-size: 12px
+
+  img
+    float: left
+    margin-right: 5px
+
 .publications_list
   .publication
     font-size: 14px
     margin-bottom: 0 
+
     a
       font-weight: bold
       line-height: 20px
 
       .authors, .year, .volume
         font-weight: normal
-
-    .download_block
-      font-size: 12px
-      line-height: 20px
-      margin: 15px 0 0 0 
-
-      a
-        font-size: 12px
-
-      img
-        float: left
-        margin-right: 5px
 
     p
       font-size: 12px
@@ -102,9 +107,13 @@
     margin-left: 5px
 
   .additional
-    .publication_content p
+    div
       +monospace_font_stack
       font-size: 11px
+
+  .expander
+    div, ul
+      margin-left: 15px
 
   .publication_comment
     +inline-block
@@ -162,3 +171,13 @@
       float: left
       margin: 0 10px 0 0
 
+.publication_info
+  .publication_stamp
+  .publication_authors,  
+  .publication_annotation
+    width: 100%
+
+  .publication_bbk, .publication_isbn, .publication_udk, .publication_year,  .publication_volume
+    float: left
+    margin-right: 15px
+    
