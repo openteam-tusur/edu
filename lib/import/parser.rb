@@ -87,7 +87,10 @@ module Import
             when '10' then return 2
             when 'A' then return 2
 
+            when '11' then return 3
             when 'B' then return 3
+
+            when '12' then return 4
             when 'C' then return 4
           end
         end
