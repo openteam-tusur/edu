@@ -2,8 +2,8 @@
 
 require 'spec_helper'
 
-describe Parser do
-  let(:parser) { Parser.new(File.expand_path('../../data/bachelor.plm.xml', __FILE__), 'aoi') }
+describe Import::Parser do
+  let(:parser) { Import::Parser.new(File.expand_path('../../data/bachelor.plm.xml', __FILE__), 'aoi') }
 
   it 'должен правильно определяться slug профилирующей кафедры' do
     parser.profiled_chair_slug.should eql 'aoi'
