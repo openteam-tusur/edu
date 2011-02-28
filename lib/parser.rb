@@ -43,7 +43,7 @@ class Parser
       }
     end
 
-    result
+    result + practics
   end
 
   private
@@ -94,6 +94,27 @@ class Parser
         node.attr('СемЭкз').split(//).each do |semester_number|
           result[semester_number.to_i] ||= []
           result[semester_number.to_i] << 'examination'
+        end
+      end
+
+      result
+    end
+
+    def practics
+      result = []
+
+      ['УчебПрактики', 'ПрочиеПрактики'].each do |practics|
+        @doc.xpath("//Документ/План/СпецВидыРабот/#{practics}").children.each do |node|
+          discipline_name = node.attr('Вид')
+          chair_slug = @chair_slugs[node.attr('Кафедра').to_i]
+          semester = node.attr('Сем').to_i
+
+          result << {
+            :discipline_name => discipline_name,
+            :cycle_code => 'Б5',
+            :chair_slug => chair_slug,
+            :semesters => { semester => ['varied_test'] }
+          }
         end
       end
 
