@@ -8,7 +8,7 @@ describe Parser do
     load_examinations
   end
 
-  let(:parser) { Parser.new(File.expand_path('../../data/bachelor.plm.xml', __FILE__), 'cp1251') }
+  let(:parser) { Parser.new(File.expand_path('../../data/bachelor.plm.xml', __FILE__), 'aoi') }
 
   it 'должен подготавливать специальность, если такой еще нет' do
     parser.speciality.new_record?.should be true
@@ -40,11 +40,13 @@ describe Parser do
     parser.studies_with_education_attributes.size.should be 70
 
     cycle = Plan::Cycle.where(:degree => 'bachelor', :code => 'Б1').first
+    chair = Factory.create(:chair, :slug => 'iya')
 
     study, hz = parser.studies_with_education_attributes.to_a[2]
 
     study.discipline_name.should eql 'Иностранный язык'
     study.cycle_id.should eql cycle.id
+    study.chair_id.should eql chair.id
 
     hz['1'].should eql [Examination.find_by_slug('test'), Examination.find_by_slug('examination')]
     hz['2'].should eql [Examination.find_by_slug('examination')]
