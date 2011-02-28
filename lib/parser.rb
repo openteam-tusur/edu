@@ -100,6 +100,14 @@ class Parser
       result
     end
 
+    def cycle_code_for_practic
+      case speciality_degree
+        when 'bachelor' then 'Б5'
+        when 'master' then 'М3'
+        else 'undefined'
+      end
+    end
+
     def practics
       result = []
 
@@ -111,7 +119,7 @@ class Parser
 
           result << {
             :discipline_name => discipline_name,
-            :cycle_code => 'Б5',
+            :cycle_code => cycle_code_for_practic,
             :chair_slug => chair_slug,
             :semesters => { semester => ['varied_test'] }
           }
