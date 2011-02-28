@@ -68,6 +68,7 @@ GEM
       haml (>= 3.0.4)
     configuration (1.2.0)
     culerity (0.2.15)
+    database_cleaner (0.6.4)
     default_value_for (1.0.1)
     devise (1.1.6)
       bcrypt-ruby (~> 2.1.2)
@@ -209,6 +210,7 @@ DEPENDENCIES
   cancan
   capybara
   compass
+  database_cleaner
   default_value_for
   devise
   dynamic_form

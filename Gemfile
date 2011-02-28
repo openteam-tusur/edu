@@ -18,6 +18,7 @@ group :development do
 end
 
 group :test do
+  gem 'database_cleaner'
   gem "shoulda"
   gem 'sqlite3-ruby', :require => 'sqlite3'
   gem 'capybara'
