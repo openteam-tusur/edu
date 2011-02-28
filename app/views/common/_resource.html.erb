@@ -1,11 +1,12 @@
 <% if resource.attachment %>
   <fieldset class="additional_info">
     <%= show_for resource do |resource_fields| %>
-      <%= resource_fields.association :authors, :using => :abbreviated_name do |author| %>
-        <li><%= link_to author.abbreviated_name, human_path(author.human_id) %></li>
-      <% end %>
+      <%= resource_fields.association :authors, :using => :abbreviated_name, :join => ',' do |author|
+        link_to author.abbreviated_name, human_path(author.human_id) 
+      end %>
       <%= resource_fields.attributes :year %>
       <%= resource_fields.attributes :volume %>
+      <%= resource_fields.attributes :extended_kind %>
     <% end %>
     <div class='resource_link'>
       <%= link_to image_tag("icon_pdf_#{resource.access}.png"),

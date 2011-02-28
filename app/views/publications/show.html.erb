@@ -1,11 +1,7 @@
-<% title raw "#{@publication.title}" %>
-
+<% title @publication.title %>
 
 <div class="publication">
   <%= render :partial => "/common/resource", :locals => { :resource => @publication } %>
-  <ul class="resource_action">
-    <li class="extended_kind"><%= @publication.extended_kind %></li>
-  </ul>
 
   <div class="additional">
     <h2>Дополнительно</h2>
@@ -23,10 +19,6 @@
       </fieldset>
     <% end %>
   </div>
-
-  <ul class="resource_action">
-    <li><%= link_to 'Лицензионный договор', to_report_manage_chair_publication_path(@publication), :class => "button" %></li>
-  </ul>
 
   <div class='disciplines'>
     <h2>Дисциплины</h2>
