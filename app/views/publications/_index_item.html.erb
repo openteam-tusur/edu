@@ -5,7 +5,7 @@
 
   <div class="download_block">
     <% if can? :download, item.attachment %>
-        <%=  image_tag("icon_pdf_free.png") %>
+        <%= image_tag("icon_pdf_free.png") %>
         <%= link_to "Скачать #{t("publication.#{item.kind}")}", item.attachment.data.url, :title => item, :class => "need_tipsy", :alt => item %>
     <% else %>
       <%= image_tag("icon_pdf_#{item.access}.png")  %>
