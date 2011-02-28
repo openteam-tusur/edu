@@ -8,23 +8,17 @@ class Parser
     @chair_slugs = YAML.load_file(Rails.root.join("config", "chairs.yml"))['chairs'][chairs_from]
   end
 
-  def speciality
-    @speciality ||= Speciality.find_by_code(speciality_code)
-
-    unless @speciality
-      @speciality = Speciality.new(:name => speciality_name,
-                                   :code => speciality_code,
-                                   :qualification => speciality_qualification,
-                                   :degree => speciality_degree)
-    end
-
-    @speciality
+  def speciality_attributes
+    { :code => speciality_code,
+      :degree => speciality_degree,
+      :name => speciality_name,
+      :qualification => speciality_qualification }
   end
 
-  def curriculum
-    @curriculum ||= Plan::Curriculum.new(:semesters_count => curriculum_semesters_count,
-                                         :study => curriculum_study,
-                                         :since => curriculum_since)
+  def curriculum_attributes
+    { :semesters_count => curriculum_semesters_count,
+      :since => curriculum_since,
+      :study => curriculum_study }
   end
 
   def attributes_for_studies_and_educations
