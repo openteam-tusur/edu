@@ -44,12 +44,15 @@ describe Parser do
 
     study, hz = parser.studies_with_education_attributes.to_a[2]
 
+    p study
+    p hz
+
     study.discipline_name.should eql 'Иностранный язык'
     study.cycle_id.should eql cycle.id
     study.chair_id.should eql chair.id
 
-    hz['1'].should eql [Examination.find_by_slug('test'), Examination.find_by_slug('examination')]
-    hz['2'].should eql [Examination.find_by_slug('examination')]
+    hz['1'].should eql ['test', 'examination']
+    hz['2'].should eql ['examination']
   end
 end
 

@@ -51,14 +51,14 @@ class Parser
     if node.attr('СемЗач')
       node.attr('СемЗач').split(//).each do |semester_number|
         result[semester_number] ||= []
-        result[semester_number] << Examination.find_by_slug('test')
+        result[semester_number] << 'test'
       end
     end
 
     if node.attr('СемЭкз')
       node.attr('СемЭкз').split(//).each do |semester_number|
         result[semester_number] ||= []
-        result[semester_number] << Examination.find_by_slug('examination')
+        result[semester_number] << 'examination'
       end
     end
 
