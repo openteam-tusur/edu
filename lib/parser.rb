@@ -46,6 +46,10 @@ class Parser
     result + practics
   end
 
+  def profiled_chair_slug
+    @chair_slugs[@doc.xpath('//Документ/План/Титул').first.attr('КодКафедры').to_i]
+  end
+
   private
     def speciality_name
       name = @doc.xpath('//Документ/План/Титул/Специальности/Специальность').first.attr('Название')
@@ -53,11 +57,11 @@ class Parser
     end
 
     def speciality_code
-      @doc.xpath('//Документ/План/Титул').first.attr('ПоследнийШифр')
+      @doc.xpath('//Документ/План/Титул').first.attr('ПолноеИмяПлана').split('-').first.gsub('_', '.')
     end
 
     def speciality_qualification
-      @doc.xpath('//Документ/План/Титул/Квалификации/Квалификация').first.attr('Название')
+      @doc.xpath('//Документ/План/Титул/Квалификации/Квалификация').first.attr('Название').mb_chars.titleize.to_s
     end
 
     def speciality_degree
@@ -80,20 +84,36 @@ class Parser
       @doc.xpath('//Документ/План/Титул').first.attr('ГодНачалаПодготовки')
     end
 
+    def semester_number(semester)
+      if speciality_degree == 'master'
+        case semester
+          when '9' then return 1
+
+          when '10' then return 2
+          when 'A' then return 2
+
+          when 'B' then return 3
+          when 'C' then return 4
+        end
+      end
+
+      return semester.to_i if semester.match(/\d/)
+    end
+
     def semester_numbers_with_examinations(node)
       result = {}
 
       if node.attr('СемЗач')
-        node.attr('СемЗач').split(//).each do |semester_number|
-          result[semester_number.to_i] ||= []
-          result[semester_number.to_i] << 'test'
+        node.attr('СемЗач').split(//).each do |semester|
+          result[semester_number(semester)] ||= []
+          result[semester_number(semester)] << 'test'
         end
       end
 
       if node.attr('СемЭкз')
-        node.attr('СемЭкз').split(//).each do |semester_number|
-          result[semester_number.to_i] ||= []
-          result[semester_number.to_i] << 'examination'
+        node.attr('СемЭкз').split(//).each do |semester|
+          result[semester_number(semester)] ||= []
+          result[semester_number(semester)] << 'examination'
         end
       end
 
@@ -115,7 +135,7 @@ class Parser
         @doc.xpath("//Документ/План/СпецВидыРабот/#{practics}").children.each do |node|
           discipline_name = node.attr('Вид')
           chair_slug = @chair_slugs[node.attr('Кафедра').to_i]
-          semester = node.attr('Сем').to_i
+          semester = semester_number(node.attr('Сем'))
 
           result << {
             :discipline_name => discipline_name,

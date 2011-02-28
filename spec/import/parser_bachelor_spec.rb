@@ -5,6 +5,10 @@ require 'spec_helper'
 describe Parser do
   let(:parser) { Parser.new(File.expand_path('../../data/bachelor.plm.xml', __FILE__), 'aoi') }
 
+  it 'должен правильно определяться slug профилирующей кафедры' do
+    parser.profiled_chair_slug.should eql 'aoi'
+  end
+
   it 'должен подготавливать специальность, если такой еще нет' do
     parser.speciality.new_record?.should be true
     parser.speciality.name.should eql 'Бизнес-информатика'
