@@ -2,11 +2,13 @@
 
 module Import
   class Parser
-    def initialize(path, chairs_from, encoding = 'cp1251')
+    def initialize(path, chairs_from, with_practics = true, encoding = 'cp1251')
       @doc = Nokogiri::XML(File.open(path))
       @doc.encoding = encoding
 
       @chair_slugs = YAML.load_file(Rails.root.join("config", "chairs.yml"))['chairs'][chairs_from]
+
+      @with_practics = with_practics
     end
 
     def speciality_attributes
@@ -38,7 +40,11 @@ module Import
         }
       end
 
-      result + practics
+      if @with_practics
+        return result + practics
+      end
+
+      result
     end
 
     def profiled_chair_slug
