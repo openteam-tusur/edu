@@ -2,8 +2,8 @@
 
 module Import
   class Importer
-    def initialize(path, chairs_from, with_practics = true, print_messages = false)
-      @parser = Import::Parser.new(path, chairs_from, with_practics)
+    def initialize(path, chairs_from, study = 'fulltime', with_practics = true, print_messages = false)
+      @parser = Import::Parser.new(path, chairs_from, study, with_practics)
 
       @print_messages = print_messages
     end

@@ -2,11 +2,13 @@
 
 module Import
   class Parser
-    def initialize(path, chairs_from, with_practics = true, encoding = 'cp1251')
+    def initialize(path, chairs_from, study = 'fulltime', with_practics = true, encoding = 'cp1251')
       @doc = Nokogiri::XML(File.open(path))
       @doc.encoding = encoding
 
       @chair_slugs = YAML.load_file(Rails.root.join("config", "chairs.yml"))['chairs'][chairs_from]
+
+      @study = study
 
       @with_practics = with_practics
     end
@@ -78,7 +80,7 @@ module Import
       end
 
       def curriculum_study
-        'fulltime'
+        @study
       end
 
       def curriculum_since
