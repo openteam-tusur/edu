@@ -34,7 +34,7 @@ class Manage::PublicationsController < Manage::ApplicationController
   end
 
   def to_report
-    @chair = Chair.find(params[:chair_id])
+    @chair = Chair.find_by_slug(params[:chair_id])
     @mime_type = MIME::Types.of('odt').first.content_type
 
     begin
