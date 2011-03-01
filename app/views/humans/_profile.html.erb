@@ -55,7 +55,12 @@
       <% Publication.enum(:kind).each_with_index do |kind, index| %>
         <ul class="<%= "#{kind} #{'first' if index == 0}" %>">
           <% @human.publications.send(kind).each do |publication| %>
-            <li><%= render :partial => "common/resource_link", :locals => {:resource => publication, :full_text => true} %></li>
+            <li class='publication'>
+              <%= link_to publication, publication_path(publication) %>
+              <p><%= publication.annotation %></p>
+              <%= render :partial => "common/resource_link", :locals => {:resource => publication} %>
+              <hr />
+            </li>
           <% end %>
         </ul>
       <% end %>

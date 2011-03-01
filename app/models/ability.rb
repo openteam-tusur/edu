@@ -14,7 +14,7 @@ class Ability
     can :manage, Roles::Graduate, :human_id => user.human.id if user.human
 
     can :download, Attachment do |attachment|
-      attachment.resource.access_free?
+      attachment.resource.access_free? || user.human.roles.any?
     end
 
     can :read, :all
