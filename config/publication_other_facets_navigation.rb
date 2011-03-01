@@ -16,7 +16,6 @@ SimpleNavigation::Configuration.run do |navigation|
                    :highlights_on => /state=#{facet.value}/
     end
 
-
     primary.item :has_not_comment,
                  "С примечанием (#{@comment_facets[1].count})",
                  collection_path(:chair_id => params[:chair_id],
@@ -24,7 +23,7 @@ SimpleNavigation::Configuration.run do |navigation|
                                  :kind => params[:kind],
                                  :query => params[:query],
                                  :state => params[:state]),
-                 :highlights_on => /with_comment=true/
+                 :highlights_on => /with_comment=true/ unless @comment_facets.empty?
 
     primary.item :has_not_comment,
                  "Все",

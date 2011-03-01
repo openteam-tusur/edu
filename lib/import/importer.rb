@@ -2,8 +2,10 @@
 
 module Import
   class Importer
-    def initialize(path, chairs_from)
-      @parser = Import::Parser.new(path, chairs_from)
+    def initialize(path, chairs_from, study = 'fulltime', with_practics = true, print_messages = false)
+      @parser = Import::Parser.new(path, chairs_from, study, with_practics)
+
+      @print_messages = print_messages
     end
 
     def import
@@ -44,24 +46,36 @@ module Import
       end
 
       def create_studies_with_educations
+        puts "#{@curriculum.title}" if @print_messages
+        puts 'Добавление дисциплин:' if @print_messages
+
         @parser.attributes_for_studies_and_educations.each do |attributes|
-          cycle = Plan::Cycle.find_by_code(attributes[:cycle_code])
-          chair = Chair.find_by_slug(attributes[:chair_slug])
+          study = create_study(attributes)
+          puts "\t#{study.discipline.name}" if @print_messages
 
-          study = Plan::Study.create!(:discipline_name => attributes[:discipline_name],
-                                      :cycle_id => cycle.id,
-                                      :chair_id => chair.id,
-                                      :curriculum_id => @curriculum.id)
+          create_educations_for_study(study, attributes)
+        end
+      end
 
-          attributes[:semesters].each do |number, examinations|
-            semester = @curriculum.semesters.find_by_number(number)
+      def create_study(attributes)
+        cycle = Plan::Cycle.find_by_code(attributes[:cycle_code])
+        chair = Chair.find_by_slug(attributes[:chair_slug])
 
-            education = study.educations.create!(:semester_id => semester.id,
-                                                 :study_id => study.id)
+        study = Plan::Study.create!(:discipline_name => attributes[:discipline_name],
+                                    :cycle_id => cycle.id,
+                                    :chair_id => chair.id,
+                                    :curriculum_id => @curriculum.id)
+      end
 
-            examinations.each do |slug|
-              education.examinations << Examination.find_by_slug(slug)
-            end
+      def create_educations_for_study(study, attributes)
+        attributes[:semesters].each do |number, examinations|
+          semester = @curriculum.semesters.find_by_number(number)
+
+          education = study.educations.create!(:semester_id => semester.id,
+                                               :study_id => study.id)
+
+          examinations.each do |slug|
+            education.examinations << Examination.find_by_slug(slug)
           end
         end
       end
