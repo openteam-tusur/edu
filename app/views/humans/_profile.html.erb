@@ -42,29 +42,6 @@
 
   <hr />
 
-  <% unless @human.publications.empty? %>
-    <div class="human_publications">
-      <ul class="tabs">
-        <% Publication.human_enum[:kind].each_with_index do |kind, index| %>
-          <li id="<%= kind[0] %>" class="<%= index == 0 and 'active' %>">
-            <a href="#"><%= kind[1] %></a>
-          </li>
-        <% end %>
-      </ul>
-
-      <% Publication.enum(:kind).each_with_index do |kind, index| %>
-        <ul class="<%= "#{kind} #{'first' if index == 0}" %>">
-          <% @human.publications.send(kind).each do |publication| %>
-            <li class='publication'>
-              <%= link_to publication, publication_path(publication) %>
-              <p><%= publication.annotation %></p>
-              <%= render :partial => "common/resource_link", :locals => {:resource => publication} %>
-              <hr />
-            </li>
-          <% end %>
-        </ul>
-      <% end %>
-    </div>
-  <% end %>
+  <%= render :partial => "publications/item", locals:{human:@human} %>
 </div>
 
