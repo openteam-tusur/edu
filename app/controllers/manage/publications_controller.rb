@@ -15,7 +15,10 @@ class Manage::PublicationsController < Manage::ApplicationController
     @publications = search.results
     @facets = search.facet(:kind).rows
     @state_facets = search.facet(:state).rows
-    @comment_facets = search.facet(:with_comment).rows
+
+    @comment_facets = search.facet(:with_comment).rows.inject({}) do |hash, facet|
+      hash[facet.value] = facet.count; hash
+    end
   end
 
   def transit
