@@ -7,18 +7,7 @@
                   :class => "comment_info",
                   :rel => "tipsy",
                   :title => simple_format(item.comment).gilensize.gsub(/"/, "'") unless item.comment.blank? %>
-  <%= link_to manage_chair_publication_path(@chair, item) do %>
-    <span class="title"><%= "#{item.title}: " %></span>
-    <span><%= "#{item.extended_kind} /" %></span>
-    <span class="authors">
-      <%= item.authors.any? ? raw("#{item.authors.map(&:abbreviated_name).join(', ')} &ndash;")  : "" %>
-    </span>
-    <span class="year"><%= "#{item.year}. " %> &ndash;</span>
-    <span class="volume"><%= "#{item.volume} с." %></span>
-  <% end %>
-  <%= link_to item.attachment.data.url, :class => "nobr" do %>
-    <%= image_tag("icon_pdf_#{item.access}.png", :title => item.human_access, :rel => "tipsy") %>
-    скачать
-  <% end %>
+  <%= link_to item, manage_chair_publication_path(@chair, item) %>
+  <%= render :partial => "common/resource_link", :locals => {:resource => item} %>
 </div>
 

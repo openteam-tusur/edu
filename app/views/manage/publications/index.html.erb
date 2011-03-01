@@ -14,11 +14,11 @@
   </div>
 
   <% if collection.any? %>
-    <div class="publications_list">
+    <ul class="publications_list cool_list">
       <% @publications.each do |obj| %>
-        <%= render :partial => "index_item", :locals => { :item => obj } %>
+        <li> <%= render :partial => "index_item", :locals => { :item => obj } %></li>
       <% end %>
-    </div>
+    </ul>
   <% end %>
 
   <%= will_paginate @publications %>

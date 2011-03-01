@@ -17,7 +17,7 @@ def validate_params
 end
 
 namespace :import do
-  desc 'Import curriculum'
+  desc 'Импорт учебного плана'
   task :curriculum => :environment do
 
     validate_params
