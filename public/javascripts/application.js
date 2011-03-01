@@ -231,6 +231,19 @@ function expander() {
  }).parent().next().hide(); 
 };
 
+function publication_tabs(){
+  if ($('.human_publications').length > 0){
+    $('.human_publications .tabs a').click(function(){
+      $('.active').removeClass('active');
+      $(this).parent().addClass('active');
+      var tab = $(this).parent().attr("id");
+      $('.work_programm, .training_toolkit, .tutorial').hide();
+      $('.'+tab).show();
+      return false;
+    });
+  };
+};
+
 $(function() {
   human_check();
   discipline_name_autocomplete();
@@ -243,6 +256,7 @@ $(function() {
   irregual_labels();
   flash();
   expander();
+  publication_tabs();
   $(".focus_first:first").focus();
   $("*[rel=tipsy], .formtastic .inputs abbr, .need_tipsy").tipsy({
     gravity: "s",
