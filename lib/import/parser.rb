@@ -123,6 +123,20 @@ module Import
           end
         end
 
+        if node.attr('СемКР')
+          node.attr('СемКР').gsub('р', '').split(//).each do |semester|
+            result[semester_number(semester)] ||= []
+            result[semester_number(semester)] << 'research'
+          end
+        end
+
+        if node.attr('СемКП')
+          node.attr('СемКП').gsub('р', '').split(//).each do |semester|
+            result[semester_number(semester)] ||= []
+            result[semester_number(semester)] << 'design'
+          end
+        end
+
         result
       end
 

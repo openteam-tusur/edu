@@ -40,5 +40,19 @@ describe Import::Parser do
     array[71][:chair_slug].should eql 'aoi'
     array[71][:semesters][4].should eql ['varied_test']
   end
+
+  it 'должны подготавливаться атрибуты для курсовых работ и проектов' do
+    array = parser.attributes_for_studies_and_educations
+
+    array[45][:discipline_name].should eql 'Информатика'
+    array[45][:cycle_code].should eql 'Б3'
+    array[45][:chair_slug].should eql 'aoi'
+    array[45][:semesters][2].should eql ['examination', 'research']
+
+    array[56][:discipline_name].should eql 'Учебно-исследовательская работа в семестре'
+    array[56][:cycle_code].should eql 'Б3'
+    array[56][:chair_slug].should eql 'aoi'
+    array[56][:semesters][8].should eql ['design']
+  end
 end
 
