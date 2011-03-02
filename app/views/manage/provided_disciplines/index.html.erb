@@ -2,22 +2,21 @@
 
 <%= show_for @curriculum.speciality do |speciality| %>
   <fieldset class="pictorial">
-    <%= speciality.association :chair %>
     <%= speciality.attribute :title %>
   </fieldset>
 <% end %>
 
 <div class="disciplines">
-  <% @chair.grouped_provided_educations_for_curriculum(@curriculum).each do |discipline, educations| %>
-    <h2><%= discipline.name %></h2>
-    <% unless educations.empty? %>
+  <% @studies.each do |study| %>
+    <h2><%= study.discipline.name %></h2>
+    <% unless study.educations.empty? %>
       <div class="tabs">
         <ul>
-          <% educations.each do |education| %>
+          <% study.educations.each do |education| %>
             <li><a href="#semester-<%= education.semester.id %>"><%= education.semester.title %></a></li>
           <% end %>
         </ul>
-        <% educations.each do |education| %>
+        <% study.educations.each do |education| %>
           <div id="semester-<%= education.semester.id %>">
             <!--
             <strong class="<%= education.provided_class %>"><%= education.semester.title %></strong>

@@ -1,5 +1,5 @@
 class Manage::HumansController < Manage::ApplicationController
-  load_resource :except => :check
+  load_resource :except => [:check]
   authorize_resource
 
   def index
@@ -17,5 +17,12 @@ class Manage::HumansController < Manage::ApplicationController
 
     render :layout => false
   end
+
+  def merge_with
+    namesake = Human.find(params[:namesake_id])
+    @human.merge_with(namesake)
+    redirect_to resource_path(@human) and return flash[:notice] = t("human.merge_complete")
+  end
+
 end
 

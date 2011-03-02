@@ -19,8 +19,8 @@ function ajax_stop() {
 };
 
 function discipline_name_autocomplete() {
-  $("#education_discipline_name").autocomplete({
-    source: "/autocompletes/disciplines",
+  $("#study_discipline_name").autocomplete({
+    source: "/autocompletes/disciplines?speciality_id="+$('#study_speciality_id').val(),
     minLength: 2
   });
 };
@@ -179,6 +179,71 @@ function manipulation_publication_fields(){
   });
 };
 
+function manipulation_education_fields(){
+  var linka = $('.add_new_education');
+  if (linka) {
+    linka.click(function(){
+
+      $.ajax({
+        type: "POST",
+        url: "/manage/educations/get_fields",
+        data: $('.formtastic').serialize(),
+        beforeSend: function() {
+          ajax_start();
+        },
+        complete: function() {
+          ajax_stop();
+        },
+        success: function(data){
+          $(".educations_list").append(data);
+        }
+      });
+      return false;
+    });
+  };
+};
+
+function irregual_labels(){
+  $('#study_educations_attributes_new_educations_examinations_input fieldset ol li label, #study_educations_attributes_new_educations_examinations_input fieldset ol li label>input').live('click',
+    function(){
+      if ($(this).is('label')) {
+        id = $(this).attr('for');
+        checkbox = $(this).children();
+      };
+
+      if ($(this).is('input')) {
+        id = $(this).attr('id');
+        checkbox = $(this);
+      };
+
+      if (checkbox.is(':checked')) {
+        checkbox.removeAttr('checked');
+      } else {
+        checkbox.attr('checked','checked');
+      };
+    });
+};
+
+function expander() {
+ $('.expand_link').click(function(){
+  $(this).parent().next().slideToggle('slow');
+  return false;
+ }).parent().next().hide(); 
+};
+
+function publication_tabs(){
+  if ($('.human_publications').length > 0){
+    $('.human_publications .tabs a').click(function(){
+      $('.active').removeClass('active');
+      $(this).parent().addClass('active');
+      var tab = $(this).parent().attr("id");
+      $('.work_programm, .training_toolkit, .tutorial').hide();
+      $('.'+tab).show();
+      return false;
+    });
+  };
+};
+
 $(function() {
   human_check();
   discipline_name_autocomplete();
@@ -187,13 +252,17 @@ $(function() {
   add_author_in_list();
   delete_author_from_list();
   manipulation_publication_fields();
+  manipulation_education_fields();
+  irregual_labels();
   flash();
+  expander();
+  publication_tabs();
   $(".focus_first:first").focus();
   $("*[rel=tipsy], .formtastic .inputs abbr, .need_tipsy").tipsy({
     gravity: "s",
     html: true
   });
-  $("a[rel=tipsy-left]").tipsy({gravity: "e"});
+  $("a[rel=tipsy-left], .need_vert_tipsy").tipsy({gravity: "e"});
   $(".formtastic .inputs .date input").datepicker({
     showOn: "button",
     buttonImage: "/images/icon_datepicker.png",

@@ -16,7 +16,9 @@ class Publication < Resource
   validates_presence_of :chair, :title, :attachment, :year,
                         :access, :volume, :kind, :extended_kind
 
-  has_enum :kind, %w(work_programm tutorial training_toolkit)
+  after_save :reindex_publication_disciplines
+
+  has_enum :kind, %w(training_toolkit tutorial work_programm), scopes:true
 
   scope :published,   where(:state => 'published')
   scope :unpublished, where(:state => 'unpublished')
@@ -29,17 +31,35 @@ class Publication < Resource
       authors.map(&:human).map(&:full_name).join(" ")
     end
 
-    integer :chair_id
+    integer :chair_id, :references => Chair
+
+    string :state
 
     string :kind
+    string :state
+
+    boolean :with_comment do
+      !comment.blank?
+    end
   end
 
-  def self.search(query, chair, options={})
+  def self.search(query = nil, chair = nil, options = {}, published = nil)
     solr_search do
       keywords query unless query.blank?
-      with :chair_id, chair.id
+
       kind_filter = with :kind, options[:kind] if options[:kind]
+      chair_filter = with :chair_id, options[:chair_id] if options[:chair_id]
+      with :state, 'published' if published
+
+      state_filter = with :state, options[:state] if options[:state]
+      condition = options[:with_comment].blank? ? false : true
+      comment_filter = with :with_comment, condition if condition
+
       facet :kind, :zeros => true, :exclude => kind_filter, :sort => :index
+      facet :chair_id, :zeros => true, :exclude => chair_filter, :sort => :index
+      facet :state, :zeros => true, :exclude => state_filter, :sort => :index
+      facet :with_comment, :zeros => true, :exclude => comment_filter, :sort => :index
+
       paginate :page => options[:page], :per_page => Publication.per_page
     end
   end
@@ -65,12 +85,30 @@ class Publication < Resource
     end
 
     if kind.eql? 'training_toolkit'
-     return [:annotation, :content]
+     return [:annotation, :content, :udk]
     end
   end
 
+  def addition_fields(kind = self.kind)
+    if kind.eql? 'work_programm'
+      return [:annotation]
+    end
+
+    if kind.eql? 'tutorial'
+      return [:stamp, :annotation, :bbk, :isbn, :udk]
+    end
+
+    if kind.eql? 'training_toolkit'
+     return [:udk, :annotation]
+    end
+  end
+
+  def get_extended_kind
+    extended_kind.gsub(/^./) { |symbol| symbol.mb_chars.upcase}
+  end
+
   def to_s
-    result = "#{title}: #{human_kind} / "
+    result = "#{title}: #{get_extended_kind} / "
     result += authors.empty? ? "" : "#{authors.map(&:abbreviated_name).join(', ')} – "
     result += "#{year}. #{volume} с."
   end
@@ -109,6 +147,17 @@ class Publication < Resource
     end
     result_data
   end
+
+  class_eval do
+    self.enum(:kind).each do |kind|
+      scope kind.to_sym, where(:kind => kind)
+    end
+  end
+
+  private
+    def reindex_publication_disciplines
+      PublicationDiscipline.reindex
+    end
 
 end
 

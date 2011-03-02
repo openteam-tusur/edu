@@ -1,7 +1,7 @@
 <% title "#{@publication.title} — #{@publication.human_kind}" %>
 
 <ul class="resource_action">
-  <%= render :partial => "/common/resource_state", :locals => { :resource => @publication } %>
+  <%= render :partial => "/manage/common/resource_state", :locals => { :resource => @publication } %>
   <li class="extended_kind"><%= @publication.extended_kind %></li>
 </ul>
 
@@ -13,7 +13,7 @@
     <% end %>
   <% end unless @publication.comment.blank? %>
 
-  <%= render :partial => "/common/resource", :locals => { :resource => @publication } %>
+  <%= render :partial => "/manage/common/resource", :locals => { :resource => @publication } %>
 
   <div class="additional">
     <h2>Дополнительно</h2>
@@ -22,7 +22,7 @@
         <% @publication.fields_for_kind.each do |attribute| %>
           <% if attribute == :annotation || attribute == :content || attribute.eql?(:stamp) %>
             <%= publication.attribute attribute do %>
-              <%= @publication.send(attribute).blank? ? simple_format("не указано") : simple_format(@publication.send(attribute).gilensize) %>
+              <%= @publication.send(attribute).blank? ? simple_format("не указано") : simple_format(@publication.send(attribute)).gilensize %>
             <% end %>
           <% else %>
             <%= publication.attribute attribute %>
@@ -34,7 +34,7 @@
 
   <ul class="resource_action">
     <li><%= link_to t(:edit), edit_resource_path(@publication), :class => "button" %></li>
-    <li><%= link_to 'Лицензионный договор', to_report_manage_chair_publication_path(@publication), :class => "button" %></li>
+    <li><%= link_to 'Лицензионный договор', to_report_manage_chair_publication_path(@chair, @publication), :class => "button" %></li>
   </ul>
 
   <div class='disciplines'>

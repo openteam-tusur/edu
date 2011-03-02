@@ -1,27 +1,58 @@
 GIT
-  remote: git://github.com/cavalle/steak
-  revision: 36a26d1f87a537a8e504aad72d3f628badcfce46
-  specs:
-    steak (1.1.0)
-      rspec (>= 1.3)
-
-GIT
   remote: git://github.com/etehtsea/aasm
-  revision: d43889d7ceaa14e52797fadaf94ae442199c5547
+  revision: 09efa3e579d05e6d30e66c43a62954d4e278f0cf
   specs:
     aasm (2.2.0)
 
 GIT
-  remote: git://github.com/floze/geohash
-  revision: 2a3f7a99295d400190925738032942c9fd85ed32
+  remote: git://github.com/openteam/formtastic-cocoon
+  revision: 654021e3aac7b978050196954538f534a14e3dc4
   specs:
-    geohash (1.0.1)
+    formtastic_cocoon (0.0.2)
 
 GIT
-  remote: git://github.com/jnicklas/capybara
-  revision: b382a0e769ea7fab0ab7ed78e5860d60f39723fa
+  remote: git://github.com/openteam/inherited_resources
+  revision: 3b249734f5ff92acace0cdb7559755f0b99da2b4
   specs:
-    capybara (0.4.1.1)
+    inherited_resources (1.2.1)
+      has_scope (~> 0.5.0)
+      responders (~> 0.6.0)
+
+GEM
+  remote: http://gems.openteam.ru/
+  specs:
+    abstract (1.0.0)
+    actionmailer (3.0.5)
+      actionpack (= 3.0.5)
+      mail (~> 2.2.15)
+    actionpack (3.0.5)
+      activemodel (= 3.0.5)
+      activesupport (= 3.0.5)
+      builder (~> 2.1.2)
+      erubis (~> 2.6.6)
+      i18n (~> 0.4)
+      rack (~> 1.2.1)
+      rack-mount (~> 0.6.13)
+      rack-test (~> 0.5.7)
+      tzinfo (~> 0.3.23)
+    activemodel (3.0.5)
+      activesupport (= 3.0.5)
+      builder (~> 2.1.2)
+      i18n (~> 0.4)
+    activerecord (3.0.5)
+      activemodel (= 3.0.5)
+      activesupport (= 3.0.5)
+      arel (~> 2.0.2)
+      tzinfo (~> 0.3.23)
+    activeresource (3.0.5)
+      activemodel (= 3.0.5)
+      activesupport (= 3.0.5)
+    activesupport (3.0.5)
+    arel (2.0.9)
+    bcrypt-ruby (2.1.4)
+    builder (2.1.2)
+    cancan (1.5.1)
+    capybara (0.4.1.2)
       celerity (>= 0.7.9)
       culerity (>= 0.2.4)
       mime-types (>= 1.16)
@@ -30,86 +61,16 @@ GIT
       rack-test (>= 0.5.4)
       selenium-webdriver (>= 0.0.27)
       xpath (~> 0.1.3)
-
-GIT
-  remote: git://github.com/lda/annotate_models
-  revision: d9a6fe279c5b9092317d4042ee8446bc01752e83
-  specs:
-    annotate (2.4.0)
-
-GIT
-  remote: git://github.com/openteam/has_enum
-  revision: 2f5e3e6dcd044cfe72ad2b2c16a9259a9e241c4e
-  specs:
-    has_enum (0.6.0)
-      rails (~> 3.0.0)
-
-GIT
-  remote: git://github.com/openteam/inherited_resources
-  revision: 98c291618f097eb19bd07765249a525d3c363d58
-  specs:
-    inherited_resources (1.1.2)
-      has_scope (~> 0.5.0)
-      responders (~> 0.6.0)
-
-GIT
-  remote: git://github.com/plataformatec/show_for
-  revision: 0b6579fa037734605eef3ff7a1692059e24ef275
-  specs:
-    show_for (0.2.3)
-
-GIT
-  remote: git://github.com/rails/exception_notification
-  revision: 192a49a02d63d28b23ed41cebadfedd490929cf1
-  specs:
-    exception_notification (1.0.0)
-
-GEM
-  remote: http://rubygems.org/
-  specs:
-    ZenTest (4.4.2)
-    abstract (1.0.0)
-    actionmailer (3.0.3)
-      actionpack (= 3.0.3)
-      mail (~> 2.2.9)
-    actionpack (3.0.3)
-      activemodel (= 3.0.3)
-      activesupport (= 3.0.3)
-      builder (~> 2.1.2)
-      erubis (~> 2.6.6)
-      i18n (~> 0.4)
-      rack (~> 1.2.1)
-      rack-mount (~> 0.6.13)
-      rack-test (~> 0.5.6)
-      tzinfo (~> 0.3.23)
-    activemodel (3.0.3)
-      activesupport (= 3.0.3)
-      builder (~> 2.1.2)
-      i18n (~> 0.4)
-    activerecord (3.0.3)
-      activemodel (= 3.0.3)
-      activesupport (= 3.0.3)
-      arel (~> 2.0.2)
-      tzinfo (~> 0.3.23)
-    activeresource (3.0.3)
-      activemodel (= 3.0.3)
-      activesupport (= 3.0.3)
-    activesupport (3.0.3)
-    arel (2.0.7)
-    autotest (4.4.6)
-      ZenTest (>= 4.4.1)
-    bcrypt-ruby (2.1.4)
-    builder (2.1.2)
-    cancan (1.5.1)
-    celerity (0.8.7)
-    childprocess (0.1.6)
+    celerity (0.8.8)
+    childprocess (0.1.7)
       ffi (~> 0.6.3)
     compass (0.10.6)
       haml (>= 3.0.4)
     configuration (1.2.0)
     culerity (0.2.15)
+    database_cleaner (0.6.4)
     default_value_for (1.0.1)
-    devise (1.1.5)
+    devise (1.1.7)
       bcrypt-ruby (~> 2.1.2)
       warden (~> 1.0.2)
     diff-lcs (1.1.2)
@@ -117,6 +78,7 @@ GEM
     erubis (2.6.6)
       abstract (>= 1.0.0)
     escape (0.0.4)
+    exception_notification_rails3 (1.2.0)
     factory_girl (1.3.3)
     factory_girl_rails (1.0.1)
       factory_girl (~> 1.3)
@@ -130,20 +92,23 @@ GEM
       activesupport (>= 2.3.7)
       i18n (~> 0.4)
     gilenson (1.1.1)
+    gravtastic (3.1.0)
     haml (3.0.25)
+    has_enum (0.6.1)
+      rails (~> 3.0.0)
     has_scope (0.5.0)
-    hirb (0.3.6)
+    hirb (0.4.0)
     i18n (0.5.0)
     inherited_resources_views (0.4.1)
       inherited_resources (>= 1.0)
-    jquery-rails (0.2.6)
+    jquery-rails (0.2.7)
       rails (~> 3.0)
       thor (~> 0.14.4)
-    json_pure (1.5.0)
+    json_pure (1.5.1)
     launchy (0.3.7)
       configuration (>= 0.0.5)
       rake (>= 0.8.1)
-    mail (2.2.14)
+    mail (2.2.15)
       activesupport (>= 2.3.6)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -163,23 +128,23 @@ GEM
       rack (>= 1.0.0)
     rack-test (0.5.7)
       rack (>= 1.0)
-    rails (3.0.3)
-      actionmailer (= 3.0.3)
-      actionpack (= 3.0.3)
-      activerecord (= 3.0.3)
-      activeresource (= 3.0.3)
-      activesupport (= 3.0.3)
+    rails (3.0.5)
+      actionmailer (= 3.0.5)
+      actionpack (= 3.0.5)
+      activerecord (= 3.0.5)
+      activeresource (= 3.0.5)
+      activesupport (= 3.0.5)
       bundler (~> 1.0)
-      railties (= 3.0.3)
-    rails-erd (0.4.1)
+      railties (= 3.0.5)
+    rails-erd (0.4.3)
       activerecord (~> 3.0)
       activesupport (~> 3.0)
       ruby-graphviz (~> 0.9.18)
-    rails3-generators (0.17.2)
+    rails3-generators (0.17.4)
       railties (>= 3.0.0)
-    railties (3.0.3)
-      actionpack (= 3.0.3)
-      activesupport (= 3.0.3)
+    railties (3.0.5)
+      actionpack (= 3.0.5)
+      activesupport (= 3.0.5)
       rake (>= 0.8.7)
       thor (~> 0.14.4)
     rake (0.8.7)
@@ -187,34 +152,38 @@ GEM
     rr (1.0.2)
     rsolr (0.12.1)
       builder (>= 2.1.2)
-    rspec (2.4.0)
-      rspec-core (~> 2.4.0)
-      rspec-expectations (~> 2.4.0)
-      rspec-mocks (~> 2.4.0)
-    rspec-core (2.4.0)
-    rspec-expectations (2.4.0)
+    rspec (2.5.0)
+      rspec-core (~> 2.5.0)
+      rspec-expectations (~> 2.5.0)
+      rspec-mocks (~> 2.5.0)
+    rspec-core (2.5.1)
+    rspec-expectations (2.5.0)
       diff-lcs (~> 1.1.2)
-    rspec-mocks (2.4.0)
-    rspec-rails (2.4.1)
+    rspec-mocks (2.5.0)
+    rspec-rails (2.5.0)
       actionpack (~> 3.0)
       activesupport (~> 3.0)
       railties (~> 3.0)
-      rspec (~> 2.4.0)
+      rspec (~> 2.5.0)
+    ruby-filemagic (0.4.2)
     ruby-graphviz (0.9.20)
     rubyzip (0.9.4)
     russian (0.2.7)
-    selenium-webdriver (0.1.2)
+    selenium-webdriver (0.1.3)
       childprocess (~> 0.1.5)
       ffi (~> 0.6.3)
       json_pure
       rubyzip
     shoulda (2.11.3)
-    simple-navigation (3.1.1)
+    show_for (0.2.4)
+    simple-navigation (3.2.0)
       activesupport (>= 2.3.2)
     spork (0.8.4)
     sqlite3 (1.3.3)
     sqlite3-ruby (1.3.3)
       sqlite3 (>= 1.3.3)
+    steak (1.1.0)
+      rspec (>= 1.3)
     sunspot (1.2.1)
       escape (= 0.0.4)
       pr_geohash (~> 1.0)
@@ -238,21 +207,21 @@ PLATFORMS
 
 DEPENDENCIES
   aasm!
-  annotate!
-  autotest
   cancan
-  capybara!
+  capybara
   compass
+  database_cleaner
   default_value_for
   devise
   dynamic_form
-  exception_notification!
+  exception_notification_rails3
   factory_girl_rails
   fancy-buttons
   formtastic
-  geohash (= 1.0.1)!
+  formtastic_cocoon!
   gilenson
-  has_enum!
+  gravtastic
+  has_enum
   hirb
   inherited_resources!
   inherited_resources_views
@@ -269,13 +238,14 @@ DEPENDENCIES
   rails3-generators
   rr
   rspec-rails
+  ruby-filemagic
   russian
   shoulda
-  show_for!
+  show_for
   simple-navigation
   spork
   sqlite3-ruby
-  steak!
+  steak
   sunspot
   sunspot_rails
   validation_reflection

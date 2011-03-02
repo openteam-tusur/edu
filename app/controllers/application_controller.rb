@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
     redirect_to :back, :status => 403 rescue redirect_to root_path, :status => 403
   end
 
+  def main_page
+    render :file => "common/main.html.erb", :layout => 'application'
+  end
+
 protected
 
     def redirect_to_root_with_access_denied_message

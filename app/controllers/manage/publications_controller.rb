@@ -9,10 +9,16 @@ class Manage::PublicationsController < Manage::ApplicationController
 
   belongs_to :chair, :finder => :find_by_slug
 
+  # TODO: http://issues.openteam.ru/issues/6765
   def index
-    search = Publication.search(params[:query], @chair, params)
+    search = Publication.search(params[:query], nil, params.merge(:chair_id => @chair.id))
     @publications = search.results
     @facets = search.facet(:kind).rows
+    @state_facets = search.facet(:state).rows
+
+    @comment_facets = search.facet(:with_comment).rows.inject({}) do |hash, facet|
+      hash[facet.value] = facet.count; hash
+    end
   end
 
   def transit
@@ -31,7 +37,7 @@ class Manage::PublicationsController < Manage::ApplicationController
   end
 
   def to_report
-    @chair = Chair.find(params[:chair_id])
+    @chair = Chair.find_by_slug(params[:chair_id])
     @mime_type = MIME::Types.of('odt').first.content_type
 
     begin

@@ -12,6 +12,7 @@ class Human < ActiveRecord::Base
 
   has_many :students, :class_name => 'Roles::Student'
   has_many :employees, :class_name => 'Roles::Employee'
+  has_many :graduates, :class_name => 'Roles::Graduate'
 
   validates_presence_of :surname, :name, :patronymic
   validates_presence_of :post, :if => :chair_id
@@ -37,7 +38,7 @@ class Human < ActiveRecord::Base
     end
 
     integer :chair_ids, :multiple => true, :references => Chair do
-      roles.accepted.where("type <> 'Roles::Admin' AND type <> 'Roles::Student'").map(&:chair_id)
+      roles.accepted.where("type <> 'Roles::Admin' AND type <> 'Roles::Student' AND type <> 'Roles::Graduate'").map(&:chair_id)
     end
 
     string :role_slugs, :multiple => true do
@@ -75,6 +76,10 @@ class Human < ActiveRecord::Base
     roles.accepted.empty? ? "": " — #{roles.accepted.map(&:to_s).join(', ')}"
   end
 
+  def has_publication?
+    !publications.empty?
+  end
+
   def namesakes
     human = self
     Human.solr_search do
@@ -91,7 +96,32 @@ class Human < ActiveRecord::Base
   end
 
   def merge_with(other_human)
-    other_human.destroy
+    ActiveRecord::Base.transaction do
+      other_human.roles.each do | role |
+        role.update_attributes :human_id => self.id
+      end
+      other_human.authors.each do | author |
+        author.update_attributes :human_id => self.id
+      end
+      if other_human.user_id
+        if user_id
+          other_human.user.destroy
+        else
+          self.update_attribute :user_id, other_human.user_id
+          other_human.update_attribute :user_id, nil
+        end
+      end
+      other_human.reload
+      other_human.destroy
+    end
+  end
+
+  def roles_with_type(type, accepted=nil)
+    accepted ? roles.accepted.send(type) : roles.send(type)
+  end
+
+  def publications_grouped_by_kind
+    publications.group_by(&:kind)
   end
 
   private
@@ -100,6 +130,9 @@ class Human < ActiveRecord::Base
       solr_search do
         keywords query
         with :employee_chair_ids, chair.id
+        order_by :surname
+        order_by :name
+        order_by :patronymic
         paginate :page => page, :per_page => 10
       end.results
      end

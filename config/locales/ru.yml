@@ -1,7 +1,4 @@
 ru:
-  human:
-    add: Добавить
-
   access_denied: Доступ запрещен
   fill_human: Вы не можете  выполнить действие, пока не заполните профиль
   can_not_edit: Вы не можете редактировать, создайте новую роль
@@ -24,11 +21,16 @@ ru:
   noun_master: Магистратура
   noun_bachelor: Бакалавриат
 
+  publication:
+    work_programm: рабочую программу
+    training_toolkit: учебно-методическое пособие
+    tutorial: учебное пособие
+
   roles:
     admin: Администраторы
     employee: Сотрудники
     student: Студенты
-
+    graduate: Магистранты
 
   errors:
     template:
@@ -61,11 +63,30 @@ ru:
     standalone_month_names: [~, Январь, Февраль, Март, Апрель, Май, Июнь, Июль, Август, Сентябрь, Октябрь, Ноябрь, Декабрь]
 
   title:
+    application:
+      main_page: Главная страница
+
+    training:
+      index: Для учёбы
+
     chairs:
-      index: Кафедры
+      index: Наши кафедры
+
+    curriculums:
+      index: Учебные планы для специальностей и направлений подготовки
 
     educations:
       show: Учебно-методическое обеспечение
+
+    employees:
+      index: Студенты и сотрудники кафедры
+
+    specialities:
+      index: Учебные планы для специальностей и направлений подготовки
+
+    profile:
+      index: Профиль
+      edit: Редактирование профиля
 
     users/sessions:
       create: Вход
@@ -85,25 +106,23 @@ ru:
       edit: Редактирование роли студента
 
     roles/employees:
-      new: Создание роли преподавателя
-      edit: Редактирование роли преподавателя
+      new: Создание роли сотрудника
+      edit: Редактирование роли сотрудника
+
+    roles/graduates:
+      new: Создание роли магистранта
+      edit: Редактирование роли магистранта
 
     manage/chairs:
-      index: Кафедры
-
-    chairs:
       index: Кафедры
 
     plan/educations:
       index: Учебно-методическое обеспечение
 
-    manage/educations:
+    manage/studies:
       new: Добавление дисциплины
       edit: Редактирование дисциплины
       delete: Удаление дисциплины
-
-    specialities:
-      index: Специальности и направления подготовки
 
     manage/specialities:
       index: Специальности и направления подготовки
@@ -112,12 +131,10 @@ ru:
       delete: Удаление специальности
 
     manage/curriculums:
+      index: Специальности и направления подготовки
       new: Добавление учебного плана
       edit: Изменение учебного плана
       delete: Удаление учебного плана
-
-    curriculums:
-      new: Добавление учебного плана
 
     manage/semesters:
       new: Добавление семестра
@@ -174,6 +191,8 @@ ru:
       index: Обеспечиваемые дисциплины
 
     humans:
+      new: Заполнение профиля
+      index: Наши люди
       edit: Редактирование профиля
       show: Просмотр профиля
 
@@ -210,6 +229,10 @@ ru:
       few:   "%{count} дисциплины"
       many:  "%{count} дисциплин"
       other: "%{count} дисциплин"
+
+  human:
+    add: Добавить сотрудника
+    merge_complete: Объединено
 
   publication_discipline:
     count:
@@ -303,8 +326,9 @@ ru:
         licence: Лицензия
         semester: Семестр
       roles:
+        graduate: Роль магистранта
+        employee: Роль сотрудника 
         student: Роль студента
-        employee: Роль преподавателя
       speciality: Специальность
       user: Пользователь
       resource: Ресурс
@@ -312,6 +336,7 @@ ru:
       author: Автор материала
       publication: Учебно-методический материал
       publication_discipline: Дисциплина
+      study: Дисциплина
 
     attributes:
       attachment:
@@ -329,6 +354,9 @@ ru:
           unpublished: Не опубликовано
           published: Опубликовано
       roles:
+        graduate:
+          group: Группа
+          birthday: Дата рождения
         student:
           group: Группа
           birthday: Дата рождения
@@ -370,6 +398,8 @@ ru:
           issued_on: Дата выдачи
           number: Номер
         curriculum:
+          speciality: Направление подготовки (специальность)
+          speciality_id: Направление подготовки (специальность)
           volume: Количество страниц
           duration: Срок обучения
           since: Действует с
@@ -386,17 +416,24 @@ ru:
             <<: *access_enum
         semester:
           number: Номер
+        study:
+          cycle: Цикл
+          cycle_enum:
+            humanities: Общие гуманитарные и социально-экономические дисциплины
+            mathematical: Общие математические и естественно-научные дисциплины
+            professional: Общепрофессиональные дисциплины
+            special: Специальные дисциплины
+            gpo: Групповое проектное обучение
+          discipline_name: Дисциплина
+          discipline_id: Дисциплина
+          educations: Посеместровая разбивка
+          chair: Кафедра
+          chair_id: Кафедра
         education:
-          discipline: Название дисциплины
-          discipline_name: Название дисциплины
-          loading_lecture: Лекции
-          loading_laboratory: Лабораторные занятия
-          loading_practice: Практические занятия
-          loading_course_project: Курсовое проектирование
-          loading_course_work: Курсовая работа
-          loading_self_training: Самостоятельная работа
-          examinations: Форма контроля
-          chair: Обеспечивающая кафедра
+          examinations: Форма отчетности
+          semester_number: Номер семестра
+          semester: Семестр
+
       publication:
         state_enum:
           <<: *state_enum

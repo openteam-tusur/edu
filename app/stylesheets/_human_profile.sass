@@ -1,4 +1,13 @@
 .human_profile
+  +clearfix
+
+  .cool_list
+    float: left
+    margin-right: 20px
+    width: 450px
+
+  .last
+    margin: 0
 
   .label
     color: #777
@@ -21,6 +30,16 @@
   .human, .user
     +clearfix
     margin: 0
+
+  .roles
+    .accepted
+      background-image: url("../images/icon_accept.png")
+
+    .rejected
+      background-image: url("../images/icon_reject.png")
+
+    .expired
+      background-image: url("../images/icon_expire.png")
 
   .user
     a
@@ -48,17 +67,16 @@
     .actions
       +border-radius
       +clearfix
+      +inline-block
       background: #F4E1CA
-      display: block
-      float: right
       margin-left: 10px
       padding: 2px
 
     .accept, .reject, .expire
-      float: left
+      +inline-block
       height: 19px
       margin: 0 3px
-      text-indent: -999px
+      text-indent: -9999px
       width: 19px
 
     .accept
@@ -104,6 +122,16 @@
   .namesake_item
     background: url("../images/icon_humans.png") no-repeat left top
     padding-left: 20px
+
+    .merge
+      +border-radius
+      +inline-block
+      background: #F4E1CA url("../images/icon_merge.png") no-repeat 2px
+      border: 2px solid pink
+      font-size: 11px
+      height: 16px
+      margin-top: -5px
+      padding: 2px 4px 2px 20px
 
     a
       font-size: 14px

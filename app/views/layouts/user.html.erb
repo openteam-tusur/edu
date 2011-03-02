@@ -1,28 +1,11 @@
-<% content_for :main_menu do %>
-  <div class="main_menu">
-    <div class="search_bar">
-      <%= semantic_form_for :search, :url => root_path, :html => { :method => "get" } do | form | %>
-        <%= form.inputs do %>
-          <%= form.input :q, :label => false, :input_html => { :value => params[:q], :name => :q } %>
-        <% end %>
-        <%= form.buttons do %>
-          <%= form.commit_button :button_html => { :value => "Поиск" } %>
-        <% end %>
-      <% end %>
-    </div>
-    <ul>
-      <li class="training"><a class="selected" href="/"><span class="decreased">для</span> учёбы</a></li>
-      <li class="science"><a href="/"><span class="decreased">для</span> науки</a></li>
-      <li class="subfaculties"><a href="/"><span class="decreased">наши</span> кафедры</a></li>
-      <li class="humans"><a href="/"><span class="decreased">наши</span> люди</a></li>
-      <li class="library"><a href="/"><span class="decreased">наша</span> библиотека</a></li>
-    </ul>
+<%= render :file => "common/main_menu.html.erb" %>
+<% content_for :breadcrumbs do %>
+  <div class="breadcrumbs">
+    <%= render_navigation :context => :breadcrumbs, :renderer => :breadcrumbs, :join_with => " <span class='black'>&rarr;</span> " %>
   </div>
 <% end %>
-<% content_for :baeadcrumbs do %>
-  <div class="baeadcrumbs">
-    <%= render_navigation :context => "breadcrumbs", :renderer => :breadcrumbs, :join_with => " <span class='black'>&rarr;</span> " %>
-  </div>
+<% content_for :get_started do %>
+  <%= render :partial => 'users/shared/has_been_started' %>
 <% end %>
-<%= render :file => 'layouts/application' %>
+<%= render :file => 'layouts/base' %>
 

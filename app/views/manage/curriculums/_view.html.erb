@@ -5,11 +5,18 @@
     <p>
       <span class="duration">Срок обучения <%= @curriculum.duration %></span>
       <% if @curriculum.attachment %>
-        <%= link_to image_tag("icon_pdf_#{@curriculum.access}.png"),
-                    @curriculum.attachment.data.url,
-                    :title => @curriculum.human_access, :rel => "tipsy" %>
-        <%= link_to "Учебный план #{@curriculum.year}", @curriculum.attachment.data.url,
-                    :class => "#{@curriculum.access}_pdf download" %>
+        <% if can? :download, @curriculum.attachment %>
+          <%= image_tag("icon_pdf_free.png") %>
+
+          <%= link_to "Скачать #{@curriculum.since_with_study_form}", 
+                      @curriculum.attachment.data.url, 
+                      :title => @curriculum.since_with_study_form, 
+                      :class => "need_tipsy", :alt => @curriculum.since_with_study_form %>
+
+        <% else %>
+          <%= image_tag("icon_pdf_#{item.access}.png")  %>
+          <span class="need_tipsy" title="Необходимо зарегистрироваться в качестве студента, магистранта или сотрудника ТУСУР">Вы не можете скачать <%= @curriculum.since_with_study_form %>.</span>
+        <% end %>
       <% else %>
         файл отсутствует
       <% end %>
@@ -18,58 +25,68 @@
 </fieldset>
 
 <ul class="curriculum_action">
-  <li><%= link_to t(:edit), edit_manage_chair_speciality_curriculum_path(@chair, @speciality, @curriculum), :class => "button" %></li>
+  <li><%= link_to t(:edit), edit_manage_chair_curriculum_path(@chair, @curriculum), :class => "button" %></li>
   <% @curriculum.aasm_events_for_current_state.each do |event| %>
     <li class="curriculum_resource_state">
       <p class="resource_state_<%= @curriculum.state %>"><%= @curriculum.human_state %></p>
-      <%= link_to @curriculum.human_event_name(event),
-                  transit_manage_chair_speciality_curriculum_path(@chair, @speciality, @curriculum, :event => event),
+      <%= link_to @curriculum.class.human_event_name(event),
+                  transit_manage_chair_curriculum_path(@chair, @curriculum, :event => event),
                   :class => "button", :method => :put %>
     </li>
   <% end %>
 </ul>
 
-<h2>Семестры</h2>
+<p><%= link_to "Добавить дисциплину",
+               new_manage_chair_curriculum_study_path(@chair, @curriculum),
+               :class => "button" %></p>
 
-<div class="curriculum_semesters">
-  <table class="semesters_header">
+<table class="curriculum_table">
+  <thead>
     <tr>
-      <% (1..@curriculum.cources_count).each do |cource| %>
-        <th colspan="2"><%= "#{cource} курс" %></th>
+      <th rowspan="2">Дисциплина</th>
+      <% courses = (@curriculum.semesters.count/2).round %>
+      <% courses.times do |course| %>
+        <th colspan="2"><%= "#{course+1} курс" %></th>
       <% end %>
     </tr>
     <tr>
       <% @curriculum.semesters.each do |semester| %>
-        <td<%= semester.eql?(@semester) ? " class='current'" : ""%>>
-          <%= link_to semester.number,
-                      manage_chair_speciality_curriculum_semester_path(@chair, @speciality, @curriculum, semester) %>
-        </td>
+        <th><%= semester.number %></th>
       <% end %>
-      <%= content_tag :td, "" unless @curriculum.semesters_count.even? %>
     </tr>
-  </table>
-  <div class="semester_body">
-    <% unless @semester.educations.empty? %>
-      <% @semester.educations.each do |education| %>
-        <div class="discipline <%= cycle('odd', 'even') %>">
-          <div class="discipline_name">
-            <%= education.discipline.name %>
-            <abbr title="<%= education.chair.name %>" rel="tipsy"><%= education.chair.abbr %></abbr>
-            (<%= education.examinations.collect(&:name).join(", ").mb_chars.downcase %>)
-          </div>
-          <div class="discipline_edit">
-            <%= link_to t("edit"),
-                        edit_manage_chair_speciality_curriculum_semester_education_path(@chair, @speciality, @curriculum, @semester, education),
-                        :title => t("edit"), :rel => "tipsy" %>
-          </div>
-        </div>
+  </thead>
+  <tbody>
+    <% Plan::Cycle.with_degree(@curriculum.speciality.degree).each do |cycle| %>
+      <tr class="cycle">
+        <td colspan="<%= @curriculum.semesters.count+1 %>"><a id="<%= cycle.id %>"><%= cycle.name %></a></td>
+      </tr>
+      <% if @curriculum.studies.where(:cycle_id => cycle.id).empty? %>
+        <tr>
+          <td colspan="<%= @curriculum.semesters.count+1 %>">Нет дисциплин</td>
+        </tr>
+      <% else %>
+        <% @curriculum.studies.where(:cycle_id => cycle.id).each do |study| %>
+          <tr class="discipline">
+            <td class="discipline_name">
+              <%= study.discipline.name %>
+              <abbr title="<%= study.chair.name %>" rel="tipsy">
+                <%= study.chair.abbr %>
+              </abbr>
+              <%= link_to t("edit"),
+                          edit_manage_chair_curriculum_study_path(@chair, @curriculum, study),
+                          :title => t("edit"), :rel => "tipsy", :class => "discipline_edit" %>
+            </td>
+            <% @curriculum.semesters.each do |semester| %>
+              <% if study.semesters.find_by_number(semester.number) %>
+                <td class="existed"><%= study.educations.where(:semester_id => semester.id).first.examinations.map(&:name).join(', ').mb_chars.downcase %></td>
+              <% else %>
+                <td></td>
+              <% end %>
+            <% end %>
+          </tr>
+        <% end %>
       <% end %>
-    <% else %>
-      <p>Дисциплины не заполнены</p>
     <% end %>
-    <p class="action"><%= link_to "Добавить дисциплину",
-                   new_manage_chair_speciality_curriculum_semester_education_path(@chair, @speciality, @curriculum, @semester),
-                   :class => "button" %></p>
-  </div>
-</div>
+  </tbody>
+</table>
 

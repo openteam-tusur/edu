@@ -1,4 +1,12 @@
 .content
+  .speciality_item
+    .edit
+      +inline-block
+      background: url("../images/icon_edit.png") no-repeat
+      height: 16px
+      text-indent: -9999px
+      width: 16px
+
   .curriculum_statistics
     float: right
     +border-radius(3px)
@@ -7,7 +15,7 @@
 
   .curriculum_item
     .name
-      font-weight: bold
+      font-size: 12px
       margin-bottom: 5px
     .info
       margin-left: 21px
@@ -93,16 +101,44 @@
           float: left
           margin-bottom: 0
           padding: 5px
-      .discipline_name
-      .odd
-        background-color: #efefef
-      .discipline_edit
-        a
-          display: block
-          width: 16px
-          height: 16px
-          text-indent: -9999em
-          background: transparent url("../images/icon_edit.png") no-repeat
-      .action
-        margin: 10px 0 0 0
+
+.discipline_name
+  .odd
+    background-color: #efefef
+  .action
+    margin: 10px 0 0 0
+
+.discipline_edit
+  +inline-block
+  background: transparent url("../images/icon_edit.png") no-repeat
+  height: 16px
+  margin: 0 0 0 5px
+  text-indent: -9999em
+  width: 16px
+
+.curriculum_table
+  th
+    text-align: center
+    vertical-align: middle !important
+
+  .cycle
+    td
+      text-align: center
+      padding: 5px 0
+    a
+      color: #326693
+      font-size: 14px
+
+  .discipline
+    .discipline_name
+      text-align: left
+      width: auto
+
+    td
+      text-align: center
+      vertical-align: middle !important
+      width: 25px
+
+    .existed
+      background: #909493
 

@@ -1,14 +1,17 @@
-class PublicationsController < InheritedResources::Base
+# encoding: utf-8
 
-  defaults :resource_class => Publication
+class PublicationsController < InheritedResources::Base
   load_resource :except => :get_fields
 
-  belongs_to :chair, :finder => :find_by_slug
-
   def index
-    search = Publication.search(params[:query], @chair, params)
+    search = Publication.search(params[:query], nil, params, :published)
     @publications = search.results
     @facets = search.facet(:kind).rows
+    @chair_facets = search.facet(:chair_id).rows
+  end
+
+  def show
+    @publication = Publication.find(params[:id])
   end
 
   def get_fields
@@ -18,6 +21,5 @@ class PublicationsController < InheritedResources::Base
     @publication = Publication.new(params[:publication])
     render :partial => "/publications/fields"
   end
-
 end
 

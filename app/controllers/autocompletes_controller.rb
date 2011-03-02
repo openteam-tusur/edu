@@ -31,11 +31,12 @@ class AutocompletesController < ApplicationController
           with(:name).starting_with term.mb_chars.downcase
         end
       end
-      with(:speciality_id, params[:speciality_id]) if params[:speciality_id]
+      with(:speciality_id, params[:speciality_id])
     end.results
     disciplines.map! do | discipline |
       { :id => discipline.id, :value => discipline.name }
     end
+
     render :text => disciplines.to_json
   end
 
@@ -54,3 +55,4 @@ private
   end
 
 end
+

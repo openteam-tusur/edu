@@ -7,7 +7,8 @@ class Plan::Discipline < ActiveRecord::Base
   validates_presence_of :name, :speciality
   validates_uniqueness_of :name, :scope => :speciality_id
 
-  has_many :educations, :class_name => "Plan::Education"
+  has_many :studies, :class_name => "Plan::Study"
+  has_many :educations, :class_name => "Plan::Education", :through => :studies
 
   default_scope order("plan_disciplines.name")
 
@@ -19,7 +20,7 @@ class Plan::Discipline < ActiveRecord::Base
   def educations_grouped_by_curriculums
     grouped = {}
     speciality.curriculums.where(:id => educations.map(&:curriculum)).each do |curriculum|
-      grouped[curriculum] = curriculum.educations.where(:discipline_id => self.id).all
+      grouped[curriculum] = curriculum.educations.where(:id => educations).all
     end
     grouped
   end

@@ -8,8 +8,8 @@
 <% end %>
 
 <div class="human_wrapper">
-  <div class="human_facets roles">
-    <%= render_navigation :context => 'manage_human_roles' %>
+  <div class="role_facets">
+    <%= render_navigation :context => 'human_roles' %>
   </div>
 
   <% unless @humans.empty? %>
@@ -18,8 +18,12 @@
       <li>
         <div class="full_name"><%= link_to human.full_name, manage_human_path(human) %></div>
         <ul class="roles">
-          <% human.roles.each do |role| %>
-            <li class="<%= role.state %>"><%= role %></li>
+          <% unless human.roles.empty? %>
+            <% human.roles.each do |role| %>
+              <li class="<%= role.state %>"><%= role %></li>
+            <% end %>
+          <% else %>
+            <li>нет ролей</li>
           <% end %>
         </ul>
       </li>
@@ -27,11 +31,11 @@
     <% end %>
     </ul>
   <% end %>
-
-  <%= will_paginate @humans %>
 </div>
 
-<div class="human_facets chairs">
-  <%= render_navigation :context => 'manage_human_chairs' %>
+<div class="chair_facets">
+  <%= render_navigation :context => 'chairs' %>
 </div>
+
+<%= will_paginate @humans %>
 

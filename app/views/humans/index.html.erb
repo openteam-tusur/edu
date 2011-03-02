@@ -1,0 +1,51 @@
+<%= semantic_form_for :humans, :html => { :method => :get, :class => "human_search" } do | form | %>
+  <%= form.inputs do %>
+    <%= form.input :query, :required => false, :label => false, :input_html => { :name => 'query', :value => params[:query] } %>
+  <% end %>
+  <%= form.buttons do %>
+    <%= form.commit_button "Найти", :button_html => { :class => "button light" } %>
+  <% end %>
+<% end %>
+
+<div class="human_wrapper">
+  <div class="role_facets">
+    <%= render_navigation :context => 'human_roles' %>
+  </div>
+
+  <% unless @humans.empty? %>
+    <ul class="cool_list">
+    <% @humans.each do |human| %>
+      <li>
+        <h5 class="full_name human_icon"
+          <% if human.user %>
+           style="background: url('<%= human.user.gravatar_url %>') no-repeat left 2px"
+          <% end %>
+        >
+          <% if human.authors.empty? %>
+            <span><%= human.full_name %></span>
+          <% else %>
+            <%= link_to human.full_name, human_path(human) %>
+          <% end %>
+        </h5>
+        <ul class="roles">
+          <% unless human.roles.accepted.empty? %>
+            <% human.roles.accepted.each do |role| %>
+              <li class='<%= "#{role.slug}_icon" %>'><%= role %></li>
+            <% end %>
+          <% else %>
+            <li>нет ролей</li>
+          <% end %>
+        </ul>
+      </li>
+
+    <% end %>
+    </ul>
+  <% end %>
+
+  <%= will_paginate @humans %>
+</div>
+
+<div class="chair_facets">
+  <%= render_navigation :context => 'chairs' %>
+</div>
+

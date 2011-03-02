@@ -7,16 +7,17 @@ class Plan::Curriculum < Resource
                             :only_integer => true,
                             :on => :create
   belongs_to :speciality
-  delegate :chair, :to => :speciality
+  belongs_to :chair
 
   has_many :semesters, :class_name => "Plan::Semester", :dependent => :destroy
+  has_many :studies, :class_name => "Plan::Study"
   has_many :educations, :through => :semesters,
                         :class_name => "Plan::Education",
                         :include => :semester,
                         :order => 'plan_semesters.number'
 
   validates_presence_of :speciality, :study, :since
-  validates_uniqueness_of :study, :scope => [:speciality_id, :since]
+  validates_uniqueness_of :study, :scope => [:speciality_id, :since, :chair_id]
   validates_presence_of :access, :year, :attachment, :volume, :if => :need_all_resource_fields?
 
   protected_parent_of :educations, :protects => :softly
@@ -27,26 +28,35 @@ class Plan::Curriculum < Resource
   scope :published,   where(:state => 'published')
   scope :unpublished, where(:state => 'unpublished')
 
+  after_save :reindex_specialities
   after_create :create_semesters
 
   def study_with_since
     "#{self.human_study} форма с #{self.since} г."
   end
 
+  def since_with_study_form
+    "учебный план набора #{self.since} года, #{self.human_study} форма обучения"
+  end
+
+  def speciality_with_curriculum
+    "#{speciality.short_title}, учебный план #{self.since} года, #{self.human_study} форма обучения"
+  end
+
   def title
-    "Учебный план (#{self.human_study} форма) с #{self.since} г."
+    "#{speciality.short_title} (#{self.human_study} форма) с #{self.since} г."
   end
 
   def to_param
-    self.slug
+    self.slug.gsub('.','_')
   end
 
   def slug
-    "#{self.study}-#{self.since}"
+    "#{self.id}-#{self.speciality.code}-#{self.study}-#{self.since}"
   end
 
   def self.find_by_slug(slug)
-    self.find_by_study_and_since(*slug.split("-"))
+    self.find(slug.split("-")[0])
   end
 
   def semesters_count
@@ -71,6 +81,10 @@ private
     end
   end
 
+  def reindex_specialities
+    speciality.solr_index!
+  end
+
 end
 
 # == Schema Information
@@ -80,7 +94,7 @@ end
 #
 #  id            :integer         not null, primary key
 #  study         :string(255)     'Форма обучения'
-#  speciality_id :integer
+#  speciality_id :integer         'Направление подготовки (специальность)'
 #  created_at    :datetime
 #  updated_at    :datetime
 #  state         :string(255)     'Статус'
@@ -88,5 +102,6 @@ end
 #  access        :string(255)     'Доступ к файлу'
 #  since         :integer         'Действует с'
 #  volume        :integer         'Количество страниц'
+#  chair_id      :integer
 #
 

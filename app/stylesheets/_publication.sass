@@ -25,15 +25,37 @@
   .button
     font-size: 12px
 
+.expand_link
+  text-decoration: underline
+
+.download_block
+  clear: both
+  font-size: 12px
+  line-height: 20px
+  margin: 15px 0 0 0 !important
+
+  a
+    font-size: 12px !important
+
+  img
+    float: left
+    margin-right: 5px
+
 .publications_list
   .publication
     font-size: 14px
-    margin-bottom: 10px
+    margin-bottom: 0 
+
     a
       font-weight: bold
+      line-height: 20px
 
       .authors, .year, .volume
         font-weight: normal
+
+    p
+      font-size: 12px
+      margin-top: 15px
 
     .resource_link, .show_for
       margin-left: 10px
@@ -85,9 +107,13 @@
     margin-left: 5px
 
   .additional
-    .publication_content p
+    div
       +monospace_font_stack
       font-size: 11px
+
+  .expander
+    div, ul
+      margin-left: 15px
 
   .publication_comment
     +inline-block
@@ -101,19 +127,40 @@
       font-size: 14px
       margin-bottom: 10px
 
-.publication.facets
+.publication_wrapper
+  float: left
+  width: 790px
+
+  .publication.facets
+    ul
+      +clearfix
+      margin-bottom: 0
+
+      li
+        float: left
+        margin: 0 10px 0 0
+        padding: 3px 3px
+
+  .selected
+    background: #dfeef9
+    +border-radius
+
+.publication_other_facets
+  +clearfix
+  float: right
+
   ul
     +clearfix
     margin-bottom: 0
 
     li
-      float: left
       margin: 0 10px 0 0
       padding: 3px 3px
 
   .selected
     background: #dfeef9
     +border-radius
+
 
 #publication_discipline_educations
   p
@@ -123,3 +170,14 @@
     li
       float: left
       margin: 0 10px 0 0
+
+.publication_info
+  .publication_stamp
+  .publication_authors,  
+  .publication_annotation
+    width: 100%
+
+  .publication_bbk, .publication_isbn, .publication_udk, .publication_year,  .publication_volume
+    float: left
+    margin-right: 15px
+    

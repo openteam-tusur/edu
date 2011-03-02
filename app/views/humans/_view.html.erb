@@ -1,55 +1,16 @@
+<% title @human.full_name %>
+
+<%= content_for :garavatar do %>
+  <%= image_tag @human.user ? @human.user.gravatar_url : 'human_icon.png' %>
+<% end %>
+<ul class="roles_list">
+  <% @human.roles.each do |role| %>
+    <li class="<%= "#{role.type.demodulize.downcase}_icon" %>"><%= role %></li>
+  <% end %>
+</ul>
+<hr />
+
 <div class="human_profile">
-    <%= show_for resource do |human| %>
-      <ul class="individual_information">
-        <%= human.attribute :surname, :label_tag => :span, :content_tag => :span, :wrapper_tag => :li %>
-        <%= human.attribute :name, :label_tag => :span, :content_tag => :span, :wrapper_tag => :li %>
-        <%= human.attribute :patronymic, :label_tag => :span, :content_tag => :span, :wrapper_tag => :li %>
-      </ul>
-      <%= link_to 'Изменить личную информацию', edit_human_path unless @human.new_record? %>
-    <% end %>
-
-    <%= show_for resource.user do |user| %>
-      <ul class="login_information">
-        <%= user.attribute :email, :label_tag => :span, :content_tag => :span, :wrapper_tag => :li %>
-        <li class="wrapper user_password">
-          <span class="label">Пароль</span>
-          <span class="content">******</span>
-        </li>
-      </ul>
-      <%= link_to 'Изменить электронную почту и пароль', edit_user_registration_path %>
-    <% end %>
-
-    <hr />
-
-    <h1>Ваши роли <span>(<%= link_to 'добавить роль студента', new_human_roles_student_path %>, <%= link_to 'добавить роль преподавателя', new_human_roles_employee_path %>)</span></h1>
-
-    <% unless resource.roles.empty? %>
-      <table>
-        <thead>
-          <tr>
-            <th>Роль</th>
-            <th>Статус</th>
-            <th>Дата создания</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @human.roles.each do | role | %>
-          <tr>
-            <td>
-              <%= role %>
-              <% unless role.is_a? Roles::Admin %>
-                <span class="actions">
-                  <%= link_to t(:edit), edit_human_roles_student_path(role), :class => :edit  if role.is_a? Roles::Student %>
-                  <%= link_to t(:edit), edit_human_roles_employee_path(role), :class => :edit if role.is_a? Roles::Employee %>
-                </span>
-              <% end %>
-            </td>
-            <td><%= role.human_state %></td>
-            <td><%= l role.created_at, :format => :long %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-    <% end %>
+  <%= render :partial => "publications/item", locals:{human:@human} %>
 </div>
 

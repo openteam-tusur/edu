@@ -9,6 +9,12 @@ describe Plan::Curriculum do
     curriculum.semesters.count.should eql 10
   end
 
+  it "должен находиться по слагу" do
+    curriculum = Factory.create(:plan_curriculum, :semesters_count => 2)
+    Plan::Curriculum.find_by_slug(curriculum.to_param).should eql curriculum
+    curriculum.chair.curriculums.find_by_slug(curriculum.to_param).should eql curriculum
+  end
+
   it 'должна правильно отдаваться продолжительность обучения в годах' do
     curriculum = Factory.create(:plan_curriculum, :semesters_count => 8)
     curriculum.duration.should eql '4 года'
@@ -50,7 +56,7 @@ end
 #
 #  id            :integer         not null, primary key
 #  study         :string(255)     'Форма обучения'
-#  speciality_id :integer
+#  speciality_id :integer         'Направление подготовки (специальность)'
 #  created_at    :datetime
 #  updated_at    :datetime
 #  state         :string(255)     'Статус'
@@ -58,5 +64,6 @@ end
 #  access        :string(255)     'Доступ к файлу'
 #  since         :integer         'Действует с'
 #  volume        :integer         'Количество страниц'
+#  chair_id      :integer
 #
 

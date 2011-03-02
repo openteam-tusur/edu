@@ -6,7 +6,7 @@
   <title><%= show_title? ? yield(:title) : title_locale %> | <%= raw t("application") %></title>
   <%= favicon_link_tag %>
   <%= stylesheet_link_tag "screen" %>
-  <%= javascript_include_tag "jquery.min", "jquery.ui.min", "jquery.ui.datepicker.ru", "jquery.tipsy.min", "rails", "application" %>
+  <%= javascript_include_tag "jquery.min", "jquery.ui.min", "jquery.ui.datepicker.ru", "jquery.tipsy.min", "rails", "application", "formtastic_cocoon" %>
   <!--[if IE 6]>
     <%= stylesheet_link_tag "ie6" %>
   <![endif]-->
@@ -31,10 +31,11 @@
   <div class="content_wrapper">
     <%= yield :main_menu %>
     <div class="content">
-      <%= yield :baeadcrumbs %>
-      <h1><%= show_title? ? yield(:title) : title_locale %></h1>
+      <%= yield :breadcrumbs %>
+      <%= yield :get_started %>
       <%= show_notice %>
-      <%= render :partial => 'users/shared/has_been_started' %>
+      <%= yield :place_for_title %>
+      <%= yield :main_page %>
       <%= yield %>
     </div>
   </div>
@@ -42,48 +43,49 @@
     <div class="footer">
       <ul class="site_map">
         <li>
-          <h1>Образование</h1>
+          <h1><span class="decreased">для</span> учёбы</h1>
           <ul>
-            <li><a href="#">учебные материалы</a></li>
-            <li><a href="#">учебные планы</a></li>
-            <li><a href="#">расписание</a></li>
-            <li><a href="#">успеваемость</a></li>
+            <li><%= link_to "учебные планы", specialities_path %>
+            <li><%= link_to "учебные материалы", publications_path %></li>
+            <li><a href="http://timetable.tusur.ru" target="_blank">расписание</a></li>
+            <li><a href="http://ocenka.tusur.ru" rel="nofollow noreferrer" target="_blank">успеваемость</a></li>
           </ul>
         </li>
         <li>
-          <h1>Наука</h1>
+          <h1><span class="decreased">для</span> науки</h1>
           <ul>
-            <li><a href="#">реферативные журналы</a></li>
-            <li><a href="#">публикации</a></li>
-            <li><a href="#">переодические издания</a></li>
-            <li><a href="#">конференции</a></li>
-            <li><a href="#">конкурсы, гранты</a></li>
+            <li><a href="#" class='need_tipsy' title='Раздел находится в разработке ;)'>реферативные журналы</a></li>
+            <li><a href="#" class='need_tipsy' title='Раздел находится в разработке ;)'>публикации</a></li>
+            <li><a href="#" class='need_tipsy' title='Раздел находится в разработке ;)'>переодические издания</a></li>
+            <li><a href="#" class='need_tipsy' title='Раздел находится в разработке ;)'>конференции</a></li>
+            <li><a href="#" class='need_tipsy' title='Раздел находится в разработке ;)'>конкурсы, гранты</a></li>
           </ul>
         </li>
         <li>
-          <h1>Люди</h1>
+          <h1><span class="decreased">наши</span> люди</h1>
           <ul>
-            <li><a href="#">студенты</a></li>
-            <li><a href="#">магистранты</a></li>
-            <li><a href="#">аспиранты</a></li>
-            <li><a href="#">преподаватели</a></li>
+            <li><%= link_to 'студенты', humans_path(:role => 'student') %></li>
+            <li><%= link_to 'магистранты', humans_path(:role => 'graduate') %></li>
+            <li><%= link_to 'аспиранты', '#', :class => 'need_tipsy', :title => 'Раздел находится в разработке ;)' %></li>
+            <li><%= link_to 'сотрудники', humans_path(:role => 'employee') %></li>
           </ul>
         </li>
         <li>
-          <h1>Библиотека</h1>
+          <h1><span class="decreased">наша</span> библиотека</h1>
           <ul>
-            <li><a href="#">контактная информация</a></li>
-            <li><a href="#">услуги библиотеки</a></li>
-            <li><a href="#">новые книги</a></li>
-            <li><a href="#">внешние базы данных</a></li>
+            <li><a href="http://lib.tusur.ru/category/cat" target="_blank">электронный каталог</a></li>
+            <li><a href="http://lib.tusur.ru/article/periodika-10" target="_blank">периодические издания</a></li>
+            <li><a href="http://lib.tusur.ru/category/bd" target="_blank">внешние базы данных</a></li>
+            <li><a href="http://lib.tusur.ru/about/k-inform" target="_blank">контактная информация</a></li>
+            <li><a href="http://lib.tusur.ru/books" target="_blank">новые книги</a></li>
           </ul>
         </li>
       </ul>
       <div class="copyright">
-        <p class="openteam"><a href="http://openteam.ru/" title="Сделано с любовью OpenTeam" rel="tipsy">OpenTeam</a></p>
-        <p class="tusur"><a href="http://www.tusur.ru/" title="Томский государственный университет систем управления и радиоэлектроники" rel="tipsy">Томский государственный университет систем управления и радиоэлектроники</a></p>
+        <p class="openteam"><a href="http://openteam.ru/" title="Сделано с любовью OpenTeam" rel="tipsy" target="_blank">OpenTeam</a></p>
+        <p class="tusur"><a href="http://www.tusur.ru/" title="Томский государственный университет систем управления и радиоэлектроники" rel="tipsy" target="_blank">Томский государственный университет систем управления и радиоэлектроники</a></p>
         <p class="copy">&copy; Томский Государственнный Университет Систем Управления и Радиоэлектроники, <span class="nowrap">2010 &ndash; <%= Date.today.year %></span></p>
-        <p class="issue"><a href="http://issues.openteam.ru/projects/tusur-portal/issues/new">Высказать пожелание или сообщить об ошибке</a></p>
+        <p class="issue"><a href="http://issues.openteam.ru/projects/tusur-portal/issues/new" target="_blank">Высказать пожелание или сообщить об ошибке</a></p>
       </div>
     </div>
   </div>

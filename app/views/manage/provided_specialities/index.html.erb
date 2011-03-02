@@ -1,35 +1,36 @@
 <% unless @provided_specialities.empty?  %>
   <div class="specialities">
-    <% @provided_specialities.each do |degree, chairs| %>
+    <% @provided_specialities.each do |degree, specialities| %>
       <fieldset>
         <legend><%= t("noun_#{degree}") %></legend>
-        <% chairs.each do |chair, specialities| %>
-        <fieldset>
-          <legend><%= chair.abbr %></legend>
-          <% specialities.each do |speciality| %>
-            <div class="speciality_item">
-              <p class="name"><%= speciality.short_title %></p>
-              <% unless @chair.grouped_curriculums_for_specialities(speciality).empty? %>
+        <% specialities.each do |speciality| %>
+          <div class="speciality_item">
+            <p class="name"><%= speciality.short_title %></p>
+              <% unless @chair.grouped_curriculums_for_speciality(speciality).empty? %>
                 <ul class="curriculums">
-                  <% @chair.grouped_curriculums_for_specialities(speciality).each do |curriculum, educations_count| %>
-                    <li>
-                      <span class="curriculum"><%= link_to curriculum.study_with_since, manage_chair_provided_disciplines_path(@chair, curriculum) %></span>
-                      <span class="educations"><%= educations_count %></span>
-                      <% Publication.enum(:kind).each do |kind| %>
-                        <% provided = @chair.send("provided_curriculum_by_#{kind}", curriculum) %>
-                        <span class="<%= kind %> <%= provided[:class] %>"><%= provided[:provided] %></span>
-                      <% end %>
-                    </li>
+                  <% @chair.grouped_curriculums_for_speciality(speciality).each do |curriculum, educations_count| %>
+                    <fieldset>
+                      <legend><%= curriculum.chair.abbr %></legend>
+                      <li>
+                        <span class="curriculum"><%= link_to curriculum.study_with_since, manage_chair_provided_disciplines_path(curriculum.chair, curriculum) %></span>
+                        <abbr class="educations need_tipsy" title="Количество обеспечиваемых дисциплин"><%= educations_count %></abbr>
+                        <% Publication.enum(:kind).each do |kind| %>
+                          <% provided = @chair.send("provided_curriculum_by_#{kind}", curriculum) %>
+                          <abbr class="<%= kind %> <%= provided[:class] %> need_tipsy" title="<%= Publication.human_enum[:kind][kind.to_sym] %>">
+                            <%= provided[:provided] %>
+                          </abbr>
+                        <% end %>
+                      </li>
+                    </fieldset>
                   <% end %>
                 </ul>
               <% end %>
-            </div>
-          <% end %>
-        </fieldset>
+          </div>
         <% end %>
-    </fieldset>
+      </fieldset>
     <% end %>
   </div>
 <% else %>
   <p>Нет информации об обеспечиваемых дисциплинах.</p>
 <% end %>
+

@@ -10,7 +10,6 @@ feature "Скачивание файлов" do
                           :year => "2010",
                           :volume => 200,
                           :attachment_attributes => {:data => File.new(Rails.root.join("spec", "data", "plan-210400.pdf"))})
-#    @curriculum.create_attachment(:data => ))
   end
 
   scenario "должен скачиваться файл, версия которого полностью открытая" do

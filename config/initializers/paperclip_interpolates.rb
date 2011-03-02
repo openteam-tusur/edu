@@ -17,5 +17,5 @@ Paperclip.interpolates :resource_id do |attachment, style|
 end
 
 Paperclip.interpolates :resource_name do |attachment, style|
-  Russian.translit(attachment.instance.resource.title).downcase.parameterize
+  Russian.translit(attachment.instance.resource.title.truncate(30, :omission => '')).downcase.parameterize
 end

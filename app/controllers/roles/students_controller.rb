@@ -5,6 +5,5 @@ class Roles::StudentsController < RolesController
 
   defaults :resource_class => Roles::Student,
            :instance_name => :roles_student
-
 end
 

@@ -1,18 +1,20 @@
 class CurriculumsController < InheritedResources::Base
+  load_resource :class => Plan::Curriculum
+
   defaults :resource_class => Plan::Curriculum,
            :instance_name => :curriculum,
            :finder => :find_by_slug
 
-  actions :index, :show
+  belongs_to :speciality,
+             :finder => :find_by_slug
 
-  belongs_to :chair, :finder => :find_by_slug do
-    belongs_to :speciality, :finder => :find_by_slug
-  end
+  actions :show
 
   def show
     show! do
       @semester = @curriculum.semesters.first
     end
   end
+
 end
 

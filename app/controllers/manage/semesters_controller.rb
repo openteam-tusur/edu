@@ -9,13 +9,11 @@ class Manage::SemestersController < Manage::ApplicationController
   actions :all, :except => [:index]
 
   belongs_to :chair, :finder => :find_by_slug do
-    belongs_to :speciality, :finder => :find_by_slug do
-      belongs_to :curriculum,
-                 :param => :curriculum_id,
-                 :instance_name => :curriculum,
-                 :parent_class => Plan::Curriculum,
-                 :finder => :find_by_slug
-    end
+    belongs_to :curriculum,
+               :param => :curriculum_id,
+               :instance_name => :curriculum,
+               :parent_class => Plan::Curriculum,
+               :finder => :find_by_slug
   end
 
   def create

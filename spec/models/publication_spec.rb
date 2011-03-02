@@ -39,18 +39,16 @@ describe Publication do
 
   it "должна получать сгруппированные по специальностям дисциплины" do
     curriculum = Factory.create(:plan_curriculum)
-    education = Factory.create(:plan_education, :semester => curriculum.semesters.first,
-                              :discipline_name => "дисциплина 1")
-    education_2 = Factory.create(:plan_education, :semester => curriculum.semesters.last,
-                              :discipline_name => "дисциплина 1")
-    education_3 = Factory.create(:plan_education, :semester => curriculum.semesters.first,
-                              :discipline_name => "дисциплина 2")
+    study = Factory.create(:plan_study, :curriculum => curriculum, :discipline_name => "дисциплина 1")
+    education = Factory.create(:plan_education, :semester => curriculum.semesters.first, :study => study)
+    education_2 = Factory.create(:plan_education, :semester => curriculum.semesters.last, :study => study)
+    study_2 = Factory.create(:plan_study, :curriculum => curriculum, :discipline_name => "дисциплина 2")
+    education_3 = Factory.create(:plan_education, :semester => curriculum.semesters.first, :study => study_2)
     Factory.create(:plan_education, :semester => curriculum.semesters.first)
 
     curriculum_2 = Factory.create(:plan_curriculum)
-    education_4 = Factory.create(:plan_education, :semester => curriculum_2.semesters.first)
-    Factory.create(:plan_education, :semester => curriculum_2.semesters.first,
-                              :discipline_name => "дисциплина 3")
+    education_4 = Factory.create(:plan_education, :semester => curriculum_2.semesters.first,
+                                :study => Factory.create(:plan_study, :curriculum => curriculum_2))
 
     publication_discipline = @publication.publication_disciplines.create!(:discipline => education.discipline, :education_ids => [education.id, education_2.id])
     publication_discipline_2 = @publication.publication_disciplines.create!(:discipline => education_3.discipline, :education_ids => [education_3.id])
