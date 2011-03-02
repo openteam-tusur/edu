@@ -45,8 +45,8 @@
         <li>
           <h1><span class="decreased">для</span> учёбы</h1>
           <ul>
-            <li><a href="#">учебные материалы</a></li>
-            <li><a href="#">учебные планы</a></li>
+            <li><%= link_to "учебные планы", specialities_path %>
+            <li><%= link_to "учебные материалы", publications_path %></li>
             <li><a href="http://timetable.tusur.ru" target="_blank">расписание</a></li>
             <li><a href="http://ocenka.tusur.ru" rel="nofollow noreferrer" target="_blank">успеваемость</a></li>
           </ul>
@@ -54,11 +54,11 @@
         <li>
           <h1><span class="decreased">для</span> науки</h1>
           <ul>
-            <li><a href="#">реферативные журналы</a></li>
-            <li><a href="#">публикации</a></li>
-            <li><a href="#">переодические издания</a></li>
-            <li><a href="#">конференции</a></li>
-            <li><a href="#">конкурсы, гранты</a></li>
+            <li><a href="#" class='need_tipsy' title='Раздел находится в разработке ;)'>реферативные журналы</a></li>
+            <li><a href="#" class='need_tipsy' title='Раздел находится в разработке ;)'>публикации</a></li>
+            <li><a href="#" class='need_tipsy' title='Раздел находится в разработке ;)'>переодические издания</a></li>
+            <li><a href="#" class='need_tipsy' title='Раздел находится в разработке ;)'>конференции</a></li>
+            <li><a href="#" class='need_tipsy' title='Раздел находится в разработке ;)'>конкурсы, гранты</a></li>
           </ul>
         </li>
         <li>
@@ -66,7 +66,7 @@
           <ul>
             <li><%= link_to 'студенты', humans_path(:role => 'student') %></li>
             <li><%= link_to 'магистранты', humans_path(:role => 'graduate') %></li>
-            <li><%= link_to 'аспиранты', '#' %></li>
+            <li><%= link_to 'аспиранты', '#', :class => 'need_tipsy', :title => 'Раздел находится в разработке ;)' %></li>
             <li><%= link_to 'сотрудники', humans_path(:role => 'employee') %></li>
           </ul>
         </li>
