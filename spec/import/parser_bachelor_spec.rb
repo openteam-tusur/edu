@@ -21,7 +21,7 @@ describe Import::Parser do
     parser.curriculum_attributes[:since].should eql '2011'
   end
 
-  it 'должны подготавливаться атрибуты для studies и educations' do
+  it 'должны подготавливаться атрибуты для зачётов и экзаменов' do
     array = parser.attributes_for_studies_and_educations
     array.size.should be 73
 
@@ -53,6 +53,22 @@ describe Import::Parser do
     array[56][:cycle_code].should eql 'Б3'
     array[56][:chair_slug].should eql 'aoi'
     array[56][:semesters][8].should eql ['design']
+  end
+
+  it 'должны создаваться studies для семестров без форм отчетности' do
+    array = parser.attributes_for_studies_and_educations
+
+    array[0][:discipline_name].should eql 'История России'
+    array[0][:semesters][1].should eql ['test']
+    array[0][:semesters][2].should be_nil
+
+    array[69][:discipline_name].should eql 'Физическая культура'
+    array[69][:semesters][1].should eql []
+    array[69][:semesters][2].should eql ['test']
+    array[69][:semesters][3].should eql []
+    array[69][:semesters][4].should eql ['test']
+    array[69][:semesters][5].should eql []
+    array[69][:semesters][6].should eql ['test']
   end
 end
 

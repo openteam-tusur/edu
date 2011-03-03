@@ -137,6 +137,11 @@ module Import
           end
         end
 
+        node.xpath('Сем').each do |semester|
+          semester_number(semester.attr('Ном'))
+          result[semester_number(semester.attr('Ном'))] ||= []
+        end
+
         result
       end
 
