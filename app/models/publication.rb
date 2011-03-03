@@ -113,15 +113,25 @@ class Publication < Resource
     result += "#{year}. #{volume} с."
   end
 
+  def kind_abbr
+    human_kind.mb_chars.split(/[\s-]/).map(&:first).join.mb_chars.upcase.to_s
+  end
+
   def to_report
     builder = Nokogiri::XML::Builder.new(:encoding => 'utf-8') do |xml|
       xml.root do
         xml.parent.name = "doc"
+        xml.number "#{kind_abbr}-#{id}"
+        xml.year Time.now.year
         xml.licensor authors.map(&:human).map(&:full_name).join(", ")
         xml.publication to_s
+
         xml.authors do |xml_authors|
-          authors.map(&:human).map(&:abbreviated_name).each do |author|
-            xml_authors.author author
+          authors.map(&:human).each do |human|
+            xml.author do
+              xml.name human.abbreviated_name
+              xml.roles human.roles.where(:chair_id => chair.id).accepted.map(&:to_s).join(', ')
+            end
           end
         end
       end

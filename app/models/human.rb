@@ -19,8 +19,7 @@ class Human < ActiveRecord::Base
   validates_presence_of :human_id,
                         :if => :chair_id,
                         :on => :create,
-                        :message => 'Необходимо выполнить проверку перед добавлением сотрудника или\
-                                     должности и выбрать действие'
+                        :message => 'Необходимо выполнить проверку перед добавлением сотрудника или должности и выбрать действие'
 
   has_many :authors
   has_many :publications,
