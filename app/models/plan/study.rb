@@ -19,6 +19,16 @@ class Plan::Study < ActiveRecord::Base
   before_validation :prepare_discipline
   accepts_nested_attributes_for :educations, :allow_destroy => true, :reject_if => proc { |attributes| attributes['semester_id'].blank? }
 
+  protected_parent_of :publications, :protects => :softly
+
+  def title
+    discipline.name
+  end
+
+  def publications
+    educations.map(&:publication_disciplines).flatten.uniq.map(&:publication).uniq
+  end
+
   private
 
     def prepare_discipline

@@ -9,7 +9,9 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :science,
                  '<span class="decreased">для</span> науки',
                  "#",
-                 :highlights_on => /jopa/
+                 :highlights_on => /jopa/,
+                 :class => 'need_tipsy',
+                 :title => 'Раздел находится в разработке ;)'
 
     primary.item :subfaculties,
                  '<span class="decreased">наши</span> кафедры',
