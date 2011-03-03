@@ -327,7 +327,7 @@ ru:
         semester: Семестр
       roles:
         graduate: Роль магистранта
-        employee: Роль сотрудника 
+        employee: Роль сотрудника
         student: Роль студента
       speciality: Специальность
       user: Пользователь
@@ -429,6 +429,7 @@ ru:
           educations: Посеместровая разбивка
           chair: Кафедра
           chair_id: Кафедра
+          publications: Учебно-методическое обеспечение
         education:
           examinations: Форма отчетности
           semester_number: Номер семестра
