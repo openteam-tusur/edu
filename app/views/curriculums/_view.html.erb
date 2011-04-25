@@ -1,5 +1,8 @@
 <% title "#{@curriculum.speciality.short_title}, #{@curriculum.since_with_study_form}" %>
 
+<%= show_for @curriculum do |curriculum| %>
+  <%= curriculum.attribute :profile, :label => Plan::Curriculum.human_attribute_name("profile_#{curriculum.object.speciality.degree}") if curriculum.object.profile.present? %>
+<% end %>
 <p>Ниже представлено учебно-методическое обеспечение для изучаемых предметов, разбитое по семестрам.</p>
 
 <div class="curriculum_semesters">
@@ -58,9 +61,9 @@
       <% if can? :download, @curriculum.attachment %>
         <%= image_tag("icon_pdf_free.png") %>
 
-        <%= link_to "Скачать #{@curriculum.since_with_study_form}", 
-                    @curriculum.attachment.data.url, 
-                    :title => @curriculum.since_with_study_form, 
+        <%= link_to "Скачать #{@curriculum.since_with_study_form}",
+                    @curriculum.attachment.data.url,
+                    :title => @curriculum.since_with_study_form,
                     :class => "need_tipsy", :alt => @curriculum.since_with_study_form %>
 
       <% else %>

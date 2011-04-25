@@ -415,6 +415,9 @@ ru:
           access_enum:
             <<: *access_enum
           profile: Профиль/Специализация/Программа
+          profile_master: Программа
+          profile_bachelor: Профиль
+          profile_specialist: Специализация
 
         semester:
           number: Номер

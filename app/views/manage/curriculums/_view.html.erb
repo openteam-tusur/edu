@@ -1,6 +1,9 @@
 <% title @curriculum.title %>
 
 <fieldset class="additional_info">
+  <%= show_for @curriculum do |curriculum| %>
+    <%= curriculum.attribute :profile, :label => Plan::Curriculum.human_attribute_name("profile_#{curriculum.object.speciality.degree}") %>
+  <% end %>
   <div>
     <p>
       <span class="duration">Срок обучения <%= @curriculum.duration %></span>
@@ -8,9 +11,9 @@
         <% if can? :download, @curriculum.attachment %>
           <%= image_tag("icon_pdf_free.png") %>
 
-          <%= link_to "Скачать #{@curriculum.since_with_study_form}", 
-                      @curriculum.attachment.data.url, 
-                      :title => @curriculum.since_with_study_form, 
+          <%= link_to "Скачать #{@curriculum.since_with_study_form}",
+                      @curriculum.attachment.data.url,
+                      :title => @curriculum.since_with_study_form,
                       :class => "need_tipsy", :alt => @curriculum.since_with_study_form %>
 
         <% else %>
