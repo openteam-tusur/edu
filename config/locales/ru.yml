@@ -414,6 +414,8 @@ ru:
             <<: *state_enum
           access_enum:
             <<: *access_enum
+          profile: Профиль/Специализация/Программа
+
         semester:
           number: Номер
         study:
