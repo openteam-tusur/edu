@@ -73,6 +73,10 @@ class Plan::Curriculum < Resource
     result += ::I18n.t('curriculum.duration', :count => semesters.count / 2)
   end
 
+  def human_since
+    self.since ? "#{self.since} года" : nil
+  end
+
 private
 
   def create_semesters
