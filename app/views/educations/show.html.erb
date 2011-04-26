@@ -1,7 +1,7 @@
 <ul class="cool_list">
 <% @education.grouped_publications.each do |kind, publications| %>
   <li>
-    <h5 class="publications"><%= Publication.human_enum[:kind][kind.to_sym] %></h5>
+    <h5 class="publications"><%= Publication.human_enums[:kind][kind.to_sym] %></h5>
     <% unless publications.empty? %>
       <ul class="wide without_bullet">
         <% publications.each do |publication| %>
@@ -12,7 +12,7 @@
       </ul>
     <% else %>
       <ul>
-        <li><%= "#{Publication.human_enum[:kind][kind.to_sym]} пока не добавлено."%></li>
+        <li><%= "#{Publication.human_enums[:kind][kind.to_sym]} пока не добавлено."%></li>
       </ul>
     <% end %>
   </li>

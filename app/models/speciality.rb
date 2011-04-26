@@ -18,7 +18,7 @@ class Speciality < ActiveRecord::Base
 
   protected_parent_of :curriculums, :protects => :softly
 
-  has_enum :degree, %w[specialist master bachelor], :scopes => true
+  has_enum :degree, :scopes => true
 
   searchable do
     text :info do
@@ -32,7 +32,7 @@ class Speciality < ActiveRecord::Base
     end
 
     text :study do
-      curriculums.published.map { |cur| "#{Plan::Curriculum.human_enum[:study][cur.study.to_sym]}"}.join(' ')
+      curriculums.published.map { |cur| "#{Plan::Curriculum.human_enums[:study][cur.study.to_sym]}"}.join(' ')
     end
 
     text :title

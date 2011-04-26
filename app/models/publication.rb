@@ -18,7 +18,7 @@ class Publication < Resource
 
   after_save :reindex_publication_disciplines
 
-  has_enum :kind, %w(training_toolkit tutorial work_programm), scopes:true
+  has_enum :kind, scopes: true
 
   scope :published,   where(:state => 'published')
   scope :unpublished, where(:state => 'unpublished')
@@ -156,12 +156,6 @@ class Publication < Resource
       end
     end
     result_data
-  end
-
-  class_eval do
-    self.enum(:kind).each do |kind|
-      scope kind.to_sym, where(:kind => kind)
-    end
   end
 
   private

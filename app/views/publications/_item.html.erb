@@ -1,7 +1,7 @@
   <% unless human.publications.empty? %>
     <div class="human_publications">
       <ul class="tabs">
-        <% Publication.human_enum[:kind].each_with_index do |kind, index| %>
+        <% Publication.human_enums[:kind].each_with_index do |kind, index| %>
           <li id="<%= kind[0] %>" class="<%= index == 0 and 'active' %>">
             <a href="#"><%= kind[1] %></a>
           </li>

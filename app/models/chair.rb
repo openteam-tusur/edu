@@ -115,7 +115,7 @@ class Chair < ActiveRecord::Base
     studies.includes(:discipline).order("plan_disciplines.name").where(:curriculum_id => curriculum)
   end
 
-  Publication.enum(:kind).each do |kind|
+  Publication.enums[:kind].each do |kind|
     class_eval <<-END
       def provided_curriculum_by_#{kind}(curriculum)
         educations_for_curriculum = provided_educations_for_curriculum(curriculum)

@@ -5,7 +5,7 @@
     </h4>
     <ul>
       <% @specialities_facets.each do |facet| %>
-        <li><%= link_to "По квалификации #{Speciality.human_enum[:degree][facet.value.to_sym]} (#{facet.count})", specialities_path(:degree => facet.value) %></li>
+        <li><%= link_to "По квалификации #{Speciality.human_enums[:degree][facet.value.to_sym]} (#{facet.count})", specialities_path(:degree => facet.value) %></li>
       <% end %>
     </ul>
     <div class="search_form">
@@ -20,7 +20,7 @@
     </h4>
     <ul>
       <% @publication_facets.each do |facet| %>
-        <li><%= link_to "#{Publication.human_enum[:kind][facet.value.to_sym]} (#{facet.count})", publications_path(:kind => facet.value) %></li>
+        <li><%= link_to "#{Publication.human_enums[:kind][facet.value.to_sym]} (#{facet.count})", publications_path(:kind => facet.value) %></li>
       <% end %>
     </ul>
     <div class="search_form">

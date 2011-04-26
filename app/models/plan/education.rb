@@ -22,7 +22,7 @@ class Plan::Education < ActiveRecord::Base
 
   def grouped_publications
     grouped = {}
-    Publication.enum(:kind).each do |kind|
+    Publication.enums[:kind].each do |kind|
       grouped[kind] = []
     end
     PublicationDiscipline.solr_search do

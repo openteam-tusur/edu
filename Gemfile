@@ -27,14 +27,10 @@ group :test, :development do
   gem 'steak'
 end
 
-gem 'mime-types',                       :require => 'mime/types'
-gem 'protected_parent'
-gem 'ruby-filemagic',                   :require => 'filemagic'
-gem 'sunspot'
-gem 'sunspot_rails'
 gem 'aasm',                             :git => 'git://github.com/etehtsea/aasm'
 gem 'cancan'
 gem 'compass'
+gem 'default_value_for'
 gem 'devise'
 gem 'dynamic_form'
 gem 'fancy-buttons'
@@ -47,12 +43,17 @@ gem 'inherited_resources',              :git => 'git://github.com/openteam/inher
 gem 'inherited_resources_views'
 gem 'jquery-rails'
 gem 'mime-types',                       :require => 'mime/types'
+gem 'mime-types',                       :require => 'mime/types'
 gem 'nokogiri'
 gem 'paperclip'
+gem 'protected_parent'
 gem 'racc',                             :require => false
 gem 'rails',                            :require => false
+gem 'ruby-filemagic',                   :require => 'filemagic'
 gem 'russian'
 gem 'show_for'
 gem 'simple-navigation'
+gem 'sunspot'
+gem 'sunspot_rails'
 gem 'validation_reflection'
 gem 'will_paginate', '>= 3.0.pre2'
