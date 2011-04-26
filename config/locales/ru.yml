@@ -27,10 +27,11 @@ ru:
     tutorial: учебное пособие
 
   roles:
-    admin: Администраторы
     employee: Сотрудники
     student: Студенты
     graduate: Магистранты
+    coauthor: Сторонние авторы
+    admin: Администраторы
 
   errors:
     template:

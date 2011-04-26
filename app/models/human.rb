@@ -13,6 +13,7 @@ class Human < ActiveRecord::Base
   has_many :students, :class_name => 'Roles::Student'
   has_many :employees, :class_name => 'Roles::Employee'
   has_many :graduates, :class_name => 'Roles::Graduate'
+  has_many :coauthors, :class_name => 'Roles::Coauthor'
 
   validates_presence_of :surname, :name, :patronymic
   validates_presence_of :post, :if => :chair_id
@@ -33,15 +34,15 @@ class Human < ActiveRecord::Base
     text :autocomplete, :as => :autocomplete_textp do full_name end
     text :full_name
     integer :employee_chair_ids, :multiple => true do
-      employees.accepted.map(&:chair_id)
+      employees.accepted.map(&:chair_id).compact
     end
 
     integer :chair_ids, :multiple => true, :references => Chair do
-      roles.accepted.where("type <> 'Roles::Admin' AND type <> 'Roles::Student' AND type <> 'Roles::Graduate'").map(&:chair_id)
+      roles.accepted.where("type <> 'Roles::Admin' AND type <> 'Roles::Student' AND type <> 'Roles::Graduate' AND type <> 'Roles::Coauthor'").map(&:chair_id).compact
     end
 
     string :role_slugs, :multiple => true do
-      roles.accepted.map(&:slug)
+      roles.accepted.map(&:slug).compact
     end
 
     string :surname

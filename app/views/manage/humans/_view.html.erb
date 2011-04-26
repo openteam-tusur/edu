@@ -29,7 +29,8 @@
     <h1>Роли <span>(
                     <%= link_to 'добавить роль студента', new_manage_human_role_path(@human, :type => "student") %>,
                     <%= link_to 'добавить роль магистранта', new_manage_human_role_path(@human, :type => "graduate") %>,
-                    <%= link_to 'добавить роль преподавателя', new_manage_human_role_path(@human, :type => "employee") %>)
+                    <%= link_to 'добавить роль преподавателя', new_manage_human_role_path(@human, :type => "employee") %>,
+                    <%= link_to 'добавить роль соавтора', new_manage_human_role_path(@human, :type => "coauthor") %>)
                   </span>
     </h1>
 
