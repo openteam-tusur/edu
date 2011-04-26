@@ -21,14 +21,17 @@
                                 :class => curriculum.state %>
                   </div>
                   <div class="info">
+                    <%= show_for curriculum do |item| %>
+                      <%= item.attribute :profile, :label => Plan::Curriculum.human_attribute_name("profile_#{item.object.speciality.degree}") if item.object.profile.present? %>
+                    <% end %>
                     <span class="duration">Срок обучения <%= curriculum.duration %></span>
                     <% if curriculum.attachment %>
                       <% if can? :download, curriculum.attachment %>
                         <%= image_tag("icon_pdf_free.png") %>
 
-                        <%= link_to "Скачать #{curriculum.since_with_study_form}", 
-                                    curriculum.attachment.data.url, 
-                                    :title => curriculum.since_with_study_form, 
+                        <%= link_to "Скачать #{curriculum.since_with_study_form}",
+                                    curriculum.attachment.data.url,
+                                    :title => curriculum.since_with_study_form,
                                     :class => "need_tipsy", :alt => curriculum.since_with_study_form %>
 
                       <% else %>

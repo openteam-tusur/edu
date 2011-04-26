@@ -1,4 +1,11 @@
-<% title "#{@curriculum.speciality.short_title}, #{@curriculum.since_with_study_form}" %>
+<% title "#{@curriculum.speciality.short_title}" %>
+
+<%= show_for @curriculum do |curriculum| %>
+  <%= curriculum.attribute :since %>
+  <%= curriculum.attribute :study %>
+  <%= curriculum.attribute :profile, :label => Plan::Curriculum.human_attribute_name("profile_#{curriculum.object.speciality.degree}") if curriculum.object.profile.present? %>
+  <%= curriculum.attribute :duration %>
+<% end %>
 
 <p>Ниже представлено учебно-методическое обеспечение для изучаемых предметов, разбитое по семестрам.</p>
 
@@ -51,24 +58,23 @@
   </div>
 </div>
 
-<fieldset class="additional_info">
-  <div>
-    <span class="duration">Срок обучения <%= @curriculum.duration %></span>
-    <% if @curriculum.attachment %>
-      <% if can? :download, @curriculum.attachment %>
-        <%= image_tag("icon_pdf_free.png") %>
+<% if @curriculum.attachment %>
+  <fieldset class="additional_info">
+    <div>
+        <% if can? :download, @curriculum.attachment %>
+          <%= image_tag("icon_pdf_free.png") %>
 
-        <%= link_to "Скачать #{@curriculum.since_with_study_form}", 
-                    @curriculum.attachment.data.url, 
-                    :title => @curriculum.since_with_study_form, 
-                    :class => "need_tipsy", :alt => @curriculum.since_with_study_form %>
+          <%= link_to "Скачать #{@curriculum.since_with_study_form}",
+                      @curriculum.attachment.data.url,
+                      :title => @curriculum.since_with_study_form,
+                      :class => "need_tipsy", :alt => @curriculum.since_with_study_form %>
 
-      <% else %>
-        <%= image_tag("icon_pdf_#{item.access}.png")  %>
-        <span class="need_tipsy" title="Необходимо зарегистрироваться в качестве студента, магистранта или сотрудника ТУСУР">Вы не можете скачать <%= @curriculum.since_with_study_form %>.</span>
-      <% end %>
+        <% else %>
+          <%= image_tag("icon_pdf_#{item.access}.png")  %>
+          <span class="need_tipsy" title="Необходимо зарегистрироваться в качестве студента, магистранта или сотрудника ТУСУР">Вы не можете скачать <%= @curriculum.since_with_study_form %>.</span>
+        <% end %>
 
-    <% end %>
-  </div>
-</fieldset>
+    </div>
+  </fieldset>
+<% end %>
 
