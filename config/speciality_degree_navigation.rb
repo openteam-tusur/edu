@@ -10,7 +10,7 @@ SimpleNavigation::Configuration.run do |navigation|
 
     @degree_facets.each do |facet|
       primary.item facet.value,
-                   "#{Speciality.human_enum[:degree][facet.value.to_sym].mb_chars.capitalize} (#{facet.count})",
+                   "#{Speciality.human_enums[:degree][facet.value.to_sym].mb_chars.capitalize} (#{facet.count})",
                    collection_path(:query => params[:query],
                                    :chair_id => params[:chair_id],
                                    :degree => facet.value),
