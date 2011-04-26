@@ -14,7 +14,7 @@
                       <li>
                         <span class="curriculum"><%= link_to curriculum.study_with_since, manage_chair_provided_disciplines_path(curriculum.chair, curriculum) %></span>
                         <abbr class="educations need_tipsy" title="Количество обеспечиваемых дисциплин"><%= educations_count %></abbr>
-                        <% Publication.enum(:kind).each do |kind| %>
+                        <% Publication.enums[:kind].each do |kind| %>
                           <% provided = @chair.send("provided_curriculum_by_#{kind}", curriculum) %>
                           <abbr class="<%= kind %> <%= provided[:class] %> need_tipsy" title="<%= Publication.human_enums[:kind][kind.to_sym] %>">
                             <%= provided[:provided] %>

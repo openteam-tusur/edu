@@ -8,7 +8,7 @@
         <% end %>
       </ul>
 
-      <% Publication.enum(:kind).each_with_index do |kind, index| %>
+      <% Publication.enums[:kind].each_with_index do |kind, index| %>
         <ul class="<%= "#{kind} #{'first' if index == 0}" %>">
           <% if human.publications.send(kind).empty? %>
             <li class='publication'>

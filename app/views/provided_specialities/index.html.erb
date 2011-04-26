@@ -14,7 +14,7 @@
                   <li>
                     <span class="curriculum"><%= curriculum.study_with_since %></span>
                     <span class="educations"><%= educations_count %></span>
-                    <% Publication.enum(:kind).each do |kind| %>
+                    <% Publication.enums[:kind].each do |kind| %>
                       <% provided = @chair.send("provided_curriculum_by_#{kind}", curriculum) %>
                       <span class="<%= kind %> <%= provided[:class] %>"><%= provided[:provided] %></span>
                     <% end %>

@@ -1,6 +1,6 @@
 <% unless @specialities.empty?  %>
   <div class="specialities">
-    <% Speciality.enum(:degree).each do |degree| %>
+    <% Speciality.enums[:degree].each do |degree| %>
       <% if @specialities[degree] %>
         <fieldset>
           <legend><%= t("noun_#{degree}") %></legend>
