@@ -27,12 +27,13 @@ class Plan::Discipline < ActiveRecord::Base
 
 end
 
+
 # == Schema Information
 #
 # Table name: plan_disciplines
 #
 #  id            :integer         not null, primary key
-#  name          :text            'Название'
+#  name          :text
 #  speciality_id :integer
 #  created_at    :datetime
 #  updated_at    :datetime

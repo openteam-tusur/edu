@@ -5,15 +5,15 @@ class Faculty < ActiveRecord::Base
   validates_uniqueness_of :abbr, :slug, :name
 end
 
+
 # == Schema Information
 #
 # Table name: faculties
-# Human name: Факультет
 #
 #  id         :integer         not null, primary key
-#  name       :string(255)     'Название'
-#  abbr       :string(255)     'Аббревиатура'
-#  slug       :string(255)     'Слаг'
+#  name       :string(255)
+#  abbr       :string(255)
+#  slug       :string(255)
 #  created_at :datetime
 #  updated_at :datetime
 #

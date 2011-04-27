@@ -30,14 +30,14 @@ class Plan::Semester < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: plan_semesters
-# Human name: Семестр
 #
 #  id            :integer         not null, primary key
 #  curriculum_id :integer
-#  number        :integer         'Номер'
+#  number        :integer
 #  created_at    :datetime
 #  updated_at    :datetime
 #

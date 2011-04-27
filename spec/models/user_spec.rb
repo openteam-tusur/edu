@@ -31,13 +31,13 @@ describe User do
 end
 
 
+
 # == Schema Information
 #
 # Table name: users
-# Human name: Пользователь
 #
 #  id                   :integer         not null, primary key
-#  email                :string(255)     'Электронная почта', default(""), not null
+#  email                :string(255)     default(""), not null
 #  encrypted_password   :string(128)     default(""), not null
 #  password_salt        :string(255)     default(""), not null
 #  reset_password_token :string(255)

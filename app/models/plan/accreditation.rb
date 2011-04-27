@@ -15,15 +15,15 @@ class Plan::Accreditation < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: plan_accreditations
-# Human name: Аккредитация
 #
 #  id            :integer         not null, primary key
 #  speciality_id :integer
-#  number        :string(255)     'Номер'
-#  issued_on     :date            'Дата выдачи'
+#  number        :string(255)
+#  issued_on     :date
 #  created_at    :datetime
 #  updated_at    :datetime
 #

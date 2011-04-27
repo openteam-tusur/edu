@@ -89,17 +89,17 @@ class Speciality < ActiveRecord::Base
 
 end
 
+
 # == Schema Information
 #
 # Table name: specialities
-# Human name: Специальность
 #
 #  id            :integer         not null, primary key
-#  name          :string(255)     'Название'
-#  degree        :string(255)     'Степень'
-#  qualification :string(255)     'Квалификация'
+#  name          :string(255)
+#  degree        :string(255)
+#  qualification :string(255)
 #  created_at    :datetime
 #  updated_at    :datetime
-#  code          :string(255)     'Код'
+#  code          :string(255)
 #
 

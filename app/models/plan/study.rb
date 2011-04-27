@@ -43,17 +43,17 @@ class Plan::Study < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: plan_studies
 #
 #  id            :integer         not null, primary key
-#  chair_id      :integer         'Кафедра'
+#  chair_id      :integer
 #  curriculum_id :integer
-#  discipline_id :integer         'Дисциплина'
+#  discipline_id :integer
 #  created_at    :datetime
 #  updated_at    :datetime
-#  cycle         :string(255)     'Цикл'
 #  cycle_id      :integer
 #
 

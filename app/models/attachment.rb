@@ -29,10 +29,10 @@ class Attachment < ActiveRecord::Base
 
 end
 
+
 # == Schema Information
 #
 # Table name: attachments
-# Human name: Вложение
 #
 #  id                :integer         not null, primary key
 #  data_uid          :string(255)
