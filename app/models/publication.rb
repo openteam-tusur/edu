@@ -9,10 +9,12 @@ class Publication < Resource
     :include => :discipline,
     :order => "plan_disciplines.name"
   has_many :disciplines, :through => :publication_disciplines
+
   has_many :used_books
 
   has_many :authors, :as => :resource, :inverse_of => :resource
   accepts_nested_attributes_for :authors, :allow_destroy => true
+
   accepts_nested_attributes_for :used_books, :allow_destroy => true
 
   validates_presence_of :chair, :title, :attachment, :year,
@@ -20,7 +22,7 @@ class Publication < Resource
 
   after_save :reindex_publication_disciplines
 
-  has_enum :kind, scopes: true
+  has_enum :kind, :scopes => true
 
   scope :published,   where(:state => 'published')
   scope :unpublished, where(:state => 'unpublished')

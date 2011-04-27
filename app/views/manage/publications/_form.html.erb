@@ -48,6 +48,22 @@
       </li>
     <% end %>
   </li>
+
+  <li>
+    <fieldset class='inputs pictorial used_books'>
+      <legend>
+        <span>Используемая литература</span>
+      </legend>
+      <ol>
+        <%= link_to_add_association 'Добавить используемую литературу', form, :used_books %>
+      </ol>
+      <%= form.semantic_fields_for :used_books do |used_book| %>
+        <%= render :partial => "used_book_fields", :locals => { :f => used_book } %>
+      <% end %>
+
+      <ol class="used_book_list">
+      </ol>
+    </fieldset>
+  </li>
 <% end %>
 <%= render :partial => "manage/common/resource_fields", :locals => {:form => form} %>
-

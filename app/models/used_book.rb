@@ -3,7 +3,7 @@ class UsedBook < ActiveRecord::Base
 
   validates_presence_of :title, :kind
 
-  has_enum :kind
+  has_enum :kind, %w[:additional :main]
 end
 
 # == Schema Information

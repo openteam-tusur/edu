@@ -12,6 +12,50 @@
 
 .content
   .formtastic
+    .used_books
+      display: none
+
+      .used_book_list
+        .nested-fields
+          border-bottom: 1px solid #e6e6e6
+          float: none
+
+          ol
+            li
+              float: none
+
+              input
+                width: 100%
+
+            .remove_link_wrapper
+              +clearfix
+              margin: 33px 0 0 0
+
+            #publication_used_books_attributes_new_used_books_publication_id_input
+              +clearfix
+              margin-right: 0
+              width: 76%
+
+              input
+                width: 98%
+
+            #publication_used_books_attributes_new_used_books_kind_input
+              float: left
+
+            #publication_used_books_attributes_new_used_books_library_code_input
+              float: left
+
+              input
+                width: 160px
+
+            #publication_used_books_attributes_new_used_books_quantity_input
+              +clearfix
+              float: left
+              width: 64%
+
+              input
+                width: 55px
+
     .author_list
       clear: both
       margin: 0

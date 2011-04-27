@@ -10,12 +10,12 @@
 
       <% Publication.enums[:kind].each_with_index do |kind, index| %>
         <ul class="<%= "#{kind} #{'first' if index == 0}" %>">
-          <% if human.publications.send(kind).empty? %>
+          <% if human.publications.send("kind_#{kind}").empty? %>
             <li class='publication'>
               <p>Нет публикаций данного типа</p>
             </li>
           <% end %>
-          <% human.publications.send(kind).each do |publication| %>
+          <% human.publications.send("kind_#{kind}").each do |publication| %>
             <li class='publication'>
               <%= link_to publication, publication_path(publication) %>
               <p><%= publication.annotation %></p>
