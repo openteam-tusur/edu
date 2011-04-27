@@ -158,10 +158,26 @@ function delete_author_from_list(){
   });
 };
 
+function show_used_books(kind) {
+  var used_books_block = $('fieldset.used_books');
+  var used_book_list = used_books_block.children('.used_book_list');
+  if (kind == 'work_programm') {
+    used_books_block.show();
+  } else {
+    used_book_list.find('textarea, select, input').val('');
+    used_book_list.find('#publication_used_books_attributes_new_used_books__destroy').val('1');
+    used_book_list.find('.nested-fields').hide();
+    used_books_block.hide();
+  };
+}
+
+
 function manipulation_publication_fields(){
+  show_used_books($('#publication_kind').val());
   $("#publication_kind").change(function(){
     var kind = $(this).val();
     var id = $(".publication_id input").val();
+    show_used_books(kind);
     $.ajax({
       type: "POST",
       url: "/manage/publications/get_fields",
@@ -228,7 +244,7 @@ function expander() {
  $('.expand_link').click(function(){
   $(this).parent().next().slideToggle('slow');
   return false;
- }).parent().next().hide(); 
+ }).parent().next().hide();
 };
 
 function publication_tabs(){
