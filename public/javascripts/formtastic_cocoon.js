@@ -10,7 +10,7 @@ $(function() {
         regexp_braced = new RegExp('\\[new_' + assoc + 's\\]', 'g');
         new_content = content.replace(regexp_braced, '[' + new_id + ']');
     }
-    $(".education_list").append(new_content);
+    $("."+assoc+"_list").append(new_content);
     return false;
   });
 

@@ -320,6 +320,7 @@ ru:
       faculty: Факультет
       human: Персональная информация
       employee: Сотрудник кафедры
+      used_book: Используемая публикация
       plan:
         accreditation: Аккредитация
         curriculum: Учебный план
@@ -391,6 +392,17 @@ ru:
         password_confirmation: Подтверждения пароля
         remember_me: Запомнить меня?
         current_password: Текущий пароль
+
+      used_book:
+        kind: Тип
+        kind_enum:
+          additional: Дополнительная
+          main: Основная
+        library_code: Код издания в библиотеке
+        publication_id: Публикация на портале
+        quantity: Количество
+        title: Название
+
       plan:
         licence:
           issued_on: Дата выдачи
@@ -474,8 +486,8 @@ ru:
         publication_id: Материал
         discipline: Дисциплина
         discipline_id: Дисциплина
+
       author:
         resource: Материал
         human: Автор
         human_id: Автор
-

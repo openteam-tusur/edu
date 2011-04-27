@@ -1,0 +1,10 @@
+<li class='nested-fields'>
+  <ol>
+    <%= f.input :title %>
+    <%= f.enum_input :kind %>
+    <%= f.input :publication_id %>
+    <%= f.input :library_code %>
+    <%= f.input :quantity %>
+    <%= link_to_remove_association t(:delete), f %>
+  </ol>
+</li>
