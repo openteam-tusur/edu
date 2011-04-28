@@ -46,7 +46,7 @@ end
 
 # == Schema Information
 #
-# Table name: plan_studies
+# Table name: studies
 #
 #  id            :integer         not null, primary key
 #  chair_id      :integer

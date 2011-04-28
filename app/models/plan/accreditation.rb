@@ -18,7 +18,7 @@ end
 
 # == Schema Information
 #
-# Table name: plan_accreditations
+# Table name: accreditations
 #
 #  id            :integer         not null, primary key
 #  speciality_id :integer

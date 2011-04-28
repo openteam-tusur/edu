@@ -32,7 +32,7 @@ end
 
 # == Schema Information
 #
-# Table name: plan_semesters
+# Table name: semesters
 #
 #  id            :integer         not null, primary key
 #  curriculum_id :integer

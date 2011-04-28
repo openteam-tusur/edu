@@ -94,7 +94,7 @@ end
 
 # == Schema Information
 #
-# Table name: plan_curriculums
+# Table name: curriculums
 #
 #  id            :integer         not null, primary key
 #  study         :string(255)

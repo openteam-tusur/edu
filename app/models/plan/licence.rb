@@ -18,7 +18,7 @@ end
 
 # == Schema Information
 #
-# Table name: plan_licences
+# Table name: licences
 #
 #  id            :integer         not null, primary key
 #  speciality_id :integer

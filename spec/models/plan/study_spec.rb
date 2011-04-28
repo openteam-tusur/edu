@@ -7,10 +7,10 @@ describe Study do
 
   describe "должна прозрачно работать с дисциплинами" do
     before(:each) do
-      @curriculum = Factory.create(:plan_curriculum)
+      @curriculum = Factory.create(:curriculum)
       @speciality = @curriculum.speciality
       @semester = @curriculum.semesters.first
-      @study = @curriculum.studies.build(:discipline_name => "Математика", :chair_id => Factory.create(:chair).id, :cycle_id => Factory.create(:plan_cycle).id)
+      @study = @curriculum.studies.build(:discipline_name => "Математика", :chair_id => Factory.create(:chair).id, :cycle_id => Factory.create(:cycle).id)
       @study.save!
     end
 
@@ -35,8 +35,8 @@ describe Study do
     end
 
     it "при обновлении, если изменяется название дисциплины и у старой дисциплины есть еще обучения" do
-      curriculum_2 = Factory.create(:plan_curriculum, :speciality => @curriculum.speciality)
-      @study_2 = curriculum_2.studies.build(:discipline_name => "Математика", :chair_id => Factory.create(:chair).id, :cycle_id => Factory.create(:plan_cycle).id)
+      curriculum_2 = Factory.create(:curriculum, :speciality => @curriculum.speciality)
+      @study_2 = curriculum_2.studies.build(:discipline_name => "Математика", :chair_id => Factory.create(:chair).id, :cycle_id => Factory.create(:cycle).id)
       @study_2.save!
       @study.discipline_name = "Физика"
       @study.save!
@@ -54,7 +54,7 @@ end
 
 # == Schema Information
 #
-# Table name: plan_studies
+# Table name: studies
 #
 #  id            :integer         not null, primary key
 #  chair_id      :integer

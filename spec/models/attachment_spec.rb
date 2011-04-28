@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe Attachment do
   it "должен правильно ставить mime_type" do
-    @curriculum = Factory.create(:plan_curriculum,
+    @curriculum = Factory.create(:curriculum,
                           :semesters_count => 10,
                           :access => "free",
                           :year => "2010",

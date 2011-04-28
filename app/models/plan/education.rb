@@ -51,7 +51,7 @@ end
 
 # == Schema Information
 #
-# Table name: plan_educations
+# Table name: educations
 #
 #  id          :integer         not null, primary key
 #  semester_id :integer

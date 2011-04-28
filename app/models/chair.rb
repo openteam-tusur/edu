@@ -112,7 +112,7 @@ class Chair < ActiveRecord::Base
   end
 
   def provided_studies_for_curriculum(curriculum)
-    studies.includes(:discipline).order("plan_disciplines.name").where(:curriculum_id => curriculum)
+    studies.includes(:discipline).order("disciplines.name").where(:curriculum_id => curriculum)
   end
 
   Publication.enums[:kind].each do |kind|

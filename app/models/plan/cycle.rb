@@ -9,7 +9,7 @@ end
 
 # == Schema Information
 #
-# Table name: plan_cycles
+# Table name: cycles
 #
 #  id         :integer         not null, primary key
 #  code       :string(255)

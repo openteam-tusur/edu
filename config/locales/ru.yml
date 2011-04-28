@@ -117,7 +117,7 @@ ru:
     manage/chairs:
       index: Кафедры
 
-    plan/educations:
+    educations:
       index: Учебно-методическое обеспечение
 
     manage/studies:
@@ -404,34 +404,33 @@ ru:
         quantity: Количество
         title: Название
 
-      plan:
-        licence:
-          issued_on: Дата выдачи
-          number: Номер
-        accreditation:
-          issued_on: Дата выдачи
-          number: Номер
-        curriculum:
-          speciality: Направление подготовки (специальность)
-          speciality_id: Направление подготовки (специальность)
-          volume: Количество страниц
-          duration: Срок обучения
-          since: Действует с
-          semesters_count: Количество семестров
-          study: Форма обучения
-          year: Год издания
-          study_enum:
-            fulltime: очная
-            parttime: очно-заочная
-            postal: заочная
-          state_enum:
-            <<: *state_enum
-          access_enum:
-            <<: *access_enum
-          profile: Профиль/Специализация/Программа
-          profile_master: Программа
-          profile_bachelor: Профиль
-          profile_specialist: Специализация
+      licence:
+        issued_on: Дата выдачи
+        number: Номер
+      accreditation:
+        issued_on: Дата выдачи
+        number: Номер
+      curriculum:
+        speciality: Направление подготовки (специальность)
+        speciality_id: Направление подготовки (специальность)
+        volume: Количество страниц
+        duration: Срок обучения
+        since: Действует с
+        semesters_count: Количество семестров
+        study: Форма обучения
+        year: Год издания
+        study_enum:
+          fulltime: очная
+          parttime: очно-заочная
+          postal: заочная
+        state_enum:
+          <<: *state_enum
+        access_enum:
+          <<: *access_enum
+        profile: Профиль/Специализация/Программа
+        profile_master: Программа
+        profile_bachelor: Профиль
+        profile_specialist: Специализация
 
         semester:
           number: Номер

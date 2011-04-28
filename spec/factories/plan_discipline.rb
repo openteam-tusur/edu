@@ -3,7 +3,7 @@ require 'factory_girl/syntax/sham'
 
 Sham.discipline_name {|n| "Название дисциплины #{n}" }
 
-Factory.define :plan_discipline,
+Factory.define :discipline,
   :default_strategy => :attributes_for,
   :class => 'Discipline' do |semester|
   semester.association :speciality

@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-Factory.define :plan_cycle,
+Factory.define :cycle,
                :default_strategy => :attributes_for,
                :class => 'Cycle' do |cycle|
   cycle.code 'С1'

@@ -29,7 +29,7 @@ end
 
 # == Schema Information
 #
-# Table name: plan_disciplines
+# Table name: disciplines
 #
 #  id            :integer         not null, primary key
 #  name          :text
