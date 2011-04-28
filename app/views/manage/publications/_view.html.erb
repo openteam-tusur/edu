@@ -33,7 +33,7 @@
 
   </div>
 
-  <% if @publication.kind == 'work_programm' %>
+  <% if @publication.kind == 'work_programm' && @publication.used_books.any? %>
     <div>
       <h2>Используемая литература</h2>
       <fieldset class="list_used_book">
