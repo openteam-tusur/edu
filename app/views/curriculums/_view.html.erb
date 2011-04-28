@@ -3,7 +3,7 @@
 <%= show_for @curriculum do |curriculum| %>
   <%= curriculum.attribute :since %>
   <%= curriculum.attribute :study %>
-  <%= curriculum.attribute :profile, :label => Plan::Curriculum.human_attribute_name("profile_#{curriculum.object.speciality.degree}") if curriculum.object.profile.present? %>
+  <%= curriculum.attribute :profile, :label => Curriculum.human_attribute_name("profile_#{curriculum.object.speciality.degree}") if curriculum.object.profile.present? %>
   <%= curriculum.attribute :duration %>
 <% end %>
 

@@ -5,20 +5,20 @@ class Speciality < ActiveRecord::Base
 
   default_scope order("degree, code")
 
-  has_many :disciplines, :class_name => "Plan::Discipline", :dependent => :destroy
+  has_many :disciplines, :class_name => "Discipline", :dependent => :destroy
 
-  has_many :curriculums, :class_name => "Plan::Curriculum", :dependent => :destroy
+  has_many :curriculums, :class_name => "Curriculum", :dependent => :destroy
   has_many :chairs, :through => :curriculums
 
-  has_one :licence, :class_name => "Plan::Licence", :dependent => :destroy
+  has_one :licence, :class_name => "Licence", :dependent => :destroy
   accepts_nested_attributes_for :licence
 
-  has_one :accreditation, :class_name => "Plan::Accreditation", :dependent => :destroy
+  has_one :accreditation, :class_name => "Accreditation", :dependent => :destroy
   accepts_nested_attributes_for :accreditation
 
   protected_parent_of :curriculums, :protects => :softly
 
-  has_enum :degree, :scopes => true
+  has_enum :degree, %w[specialist master bachelor], :scopes => true
 
   searchable do
     text :info do
@@ -32,7 +32,7 @@ class Speciality < ActiveRecord::Base
     end
 
     text :study do
-      curriculums.published.map { |cur| "#{Plan::Curriculum.human_enums[:study][cur.study.to_sym]}"}.join(' ')
+      curriculums.published.map { |cur| "#{Curriculum.human_enums[:study][cur.study.to_sym]}"}.join(' ')
     end
 
     text :title

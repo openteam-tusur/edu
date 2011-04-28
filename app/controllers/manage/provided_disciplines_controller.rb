@@ -6,7 +6,7 @@ class Manage::ProvidedDisciplinesController < Manage::ApplicationController
   belongs_to :chair, :finder => :find_by_slug
 
   def index
-    @curriculum = Plan::Curriculum.find_by_slug(params[:curriculum_id])
+    @curriculum = Curriculum.find_by_slug(params[:curriculum_id])
     @studies = @chair.provided_studies_for_curriculum(@curriculum)
   end
 end

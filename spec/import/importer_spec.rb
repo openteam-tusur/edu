@@ -32,8 +32,8 @@ describe Import::Importer do
   it 'должен создавать учебный план' do
     importer.import
 
-    Plan::Curriculum.first.speciality.should eql Speciality.first
-    Plan::Curriculum.first.chair.should eql Chair.find_by_slug('aoi')
+    Curriculum.first.speciality.should eql Speciality.first
+    Curriculum.first.chair.should eql Chair.find_by_slug('aoi')
   end
 end
 

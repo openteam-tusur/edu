@@ -17,7 +17,7 @@
               <li>
                 <%= link_to curriculum.since_with_study_form, speciality_curriculum_path(speciality, curriculum) %>
                 <%= show_for curriculum do |item| %>
-                  <%= item.attribute :profile, :label => Plan::Curriculum.human_attribute_name("profile_#{item.object.speciality.degree}") if item.object.profile.present? %>
+                  <%= item.attribute :profile, :label => Curriculum.human_attribute_name("profile_#{item.object.speciality.degree}") if item.object.profile.present? %>
                 <% end %>
               </li>
             <% end %>

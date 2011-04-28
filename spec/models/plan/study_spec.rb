@@ -2,7 +2,7 @@
 require 'spec_helper'
 require 'sunspot/rails/spec_helper'
 
-describe Plan::Study do
+describe Study do
   disconnect_sunspot
 
   describe "должна прозрачно работать с дисциплинами" do

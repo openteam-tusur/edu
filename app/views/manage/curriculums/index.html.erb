@@ -22,7 +22,7 @@
                   </div>
                   <div class="info">
                     <%= show_for curriculum do |item| %>
-                      <%= item.attribute :profile, :label => Plan::Curriculum.human_attribute_name("profile_#{item.object.speciality.degree}") if item.object.profile.present? %>
+                      <%= item.attribute :profile, :label => Curriculum.human_attribute_name("profile_#{item.object.speciality.degree}") if item.object.profile.present? %>
                     <% end %>
                     <span class="duration">Срок обучения <%= curriculum.duration %></span>
                     <% if curriculum.attachment %>

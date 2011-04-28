@@ -4,10 +4,10 @@ class Chair < ActiveRecord::Base
   belongs_to :faculty
 
   has_many :disciplines, :through => :specialities
-  has_many :studies, :class_name => "Plan::Study"
-  has_many :educations, :class_name => "Plan::Education", :through => :studies
+  has_many :studies, :class_name => "Study"
+  has_many :educations, :class_name => "Education", :through => :studies
 
-  has_many :curriculums, :class_name => "Plan::Curriculum"
+  has_many :curriculums, :class_name => "Curriculum"
   has_many :specialities, :through => :curriculums
 
   validates_presence_of :name, :abbr, :slug
@@ -83,7 +83,7 @@ class Chair < ActiveRecord::Base
   end
 
   def provided_curriculums
-    Plan::Curriculum.where(:id => studies.map(&:curriculum_id))
+    Curriculum.where(:id => studies.map(&:curriculum_id))
   end
 
   def provided_disciplines

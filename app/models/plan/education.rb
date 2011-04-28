@@ -1,7 +1,6 @@
 # encoding: utf-8
-class Plan::Education < ActiveRecord::Base
-
-  set_table_name :plan_educations
+class Education < ActiveRecord::Base
+  set_table_name :educations
 
   belongs_to :semester
   belongs_to :study

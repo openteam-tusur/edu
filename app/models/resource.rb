@@ -8,7 +8,7 @@ class Resource < ActiveRecord::Base
 
   has_many :resource_disciplines
 
-  has_enum :access
+  has_enum :access, %w[free restricted]
 
   aasm_column :state
   aasm_initial_state :unpublished

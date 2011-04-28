@@ -1,16 +1,15 @@
 # encoding: utf-8
-class Plan::Discipline < ActiveRecord::Base
-
-  set_table_name :plan_disciplines
+class Discipline < ActiveRecord::Base
+  set_table_name :disciplines
 
   belongs_to :speciality
   validates_presence_of :name, :speciality
   validates_uniqueness_of :name, :scope => :speciality_id
 
-  has_many :studies, :class_name => "Plan::Study"
-  has_many :educations, :class_name => "Plan::Education", :through => :studies
+  has_many :studies
+  has_many :educations, :through => :studies
 
-  default_scope order("plan_disciplines.name")
+  default_scope order("disciplines.name")
 
   searchable do
     text :name

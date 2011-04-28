@@ -38,7 +38,7 @@ class AutocompletesController < ApplicationController
   end
 
   def disciplines
-    disciplines = Plan::Discipline.solr_search do
+    disciplines = Discipline.solr_search do
       text_fields do
         terms.each do | term |
           with(:name).starting_with term.mb_chars.downcase
@@ -54,7 +54,7 @@ class AutocompletesController < ApplicationController
   end
 
   def discipline_educations
-    discipline = Plan::Discipline.find(params[:discipline_id])
+    discipline = Discipline.find(params[:discipline_id])
     @publication_discipline = PublicationDiscipline.new(:discipline_id => discipline.id)
     @grouped_educations = discipline.educations_grouped_by_curriculums
     render :text => "Обучения для этой дисциплины не запланировано" and return if @grouped_educations.empty?

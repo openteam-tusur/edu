@@ -1,15 +1,15 @@
 # encoding: utf-8
-class Plan::Study < ActiveRecord::Base
-  set_table_name :plan_studies
+class Study < ActiveRecord::Base
+  set_table_name :studies
 
   belongs_to :chair
   belongs_to :curriculum
   has_one :speciality, :through => :curriculum
   belongs_to :discipline
-  belongs_to :cycle, :class_name => "Plan::Cycle"
+  belongs_to :cycle
 
-  has_many :educations, :class_name => "Plan::Education"
-  has_many :semesters, :through => :educations, :class_name => 'Plan::Semester'
+  has_many :educations
+  has_many :semesters, :through => :educations
 
   attr_accessor :discipline_name
 

@@ -1,7 +1,7 @@
 class CurriculumsController < InheritedResources::Base
-  load_resource :class => Plan::Curriculum
+  load_resource :class => Curriculum
 
-  defaults :resource_class => Plan::Curriculum,
+  defaults :resource_class => Curriculum,
            :instance_name => :curriculum,
            :finder => :find_by_slug
 

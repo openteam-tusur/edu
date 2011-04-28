@@ -1,7 +1,7 @@
 class StudiesController < InheritedResources::Base
   load_resource
 
-  defaults :resource_class => Plan::Study,
+  defaults :resource_class => Study,
            :instance_name => 'study'
 
   actions :index, :show
@@ -10,7 +10,7 @@ class StudiesController < InheritedResources::Base
     belongs_to :curriculum,
                :param => :curriculum_id,
                :instance_name => :curriculum,
-               :parent_class => Plan::Curriculum,
+               :parent_class => Curriculum,
                :finder => :find_by_slug
   end
 

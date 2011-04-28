@@ -1,6 +1,6 @@
 # encoding: utf-8
-class Plan::Licence < ActiveRecord::Base
-  set_table_name :plan_licences
+class Licence < ActiveRecord::Base
+  set_table_name :licences
 
   belongs_to :speciality
 

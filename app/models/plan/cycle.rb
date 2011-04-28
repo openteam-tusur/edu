@@ -1,4 +1,6 @@
-class Plan::Cycle < ActiveRecord::Base
+class Cycle < ActiveRecord::Base
+  set_table_name :cycles
+
   has_enum :degree, %w[specialist master bachelor], :scopes => true
 
   scope :with_degree, ->(degree) { where(:degree => degree) }

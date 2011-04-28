@@ -1,7 +1,7 @@
 #encoding: utf-8
 require 'spec_helper'
 
-describe Plan::Discipline do
+describe Discipline do
 
   it "должно присутствовать название" do
     should validate_presence_of(:name)

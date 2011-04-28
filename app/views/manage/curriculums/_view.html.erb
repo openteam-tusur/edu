@@ -2,7 +2,7 @@
 
 <fieldset class="additional_info">
   <%= show_for @curriculum do |curriculum| %>
-    <%= curriculum.attribute :profile, :label => Plan::Curriculum.human_attribute_name("profile_#{curriculum.object.speciality.degree}") %>
+    <%= curriculum.attribute :profile, :label => Curriculum.human_attribute_name("profile_#{curriculum.object.speciality.degree}") %>
   <% end %>
   <div>
     <p>
@@ -59,7 +59,7 @@
     </tr>
   </thead>
   <tbody>
-    <% Plan::Cycle.with_degree(@curriculum.speciality.degree).each do |cycle| %>
+    <% Cycle.with_degree(@curriculum.speciality.degree).each do |cycle| %>
       <tr class="cycle">
         <td colspan="<%= @curriculum.semesters.count+1 %>"><a id="<%= cycle.id %>"><%= cycle.name %></a></td>
       </tr>

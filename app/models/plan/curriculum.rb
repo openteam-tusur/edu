@@ -1,20 +1,20 @@
 # encoding: utf-8
-class Plan::Curriculum < Resource
+class Curriculum < Resource
+  set_table_name :curriculums
 
-  set_table_name :plan_curriculums
   attr_accessor :semesters_count
+
   validates_numericality_of :semesters_count,
                             :only_integer => true,
                             :on => :create
   belongs_to :speciality
   belongs_to :chair
 
-  has_many :semesters, :class_name => "Plan::Semester", :dependent => :destroy
-  has_many :studies, :class_name => "Plan::Study"
+  has_many :semesters, :dependent => :destroy
+  has_many :studies
   has_many :educations, :through => :semesters,
-                        :class_name => "Plan::Education",
                         :include => :semester,
-                        :order => 'plan_semesters.number'
+                        :order => 'semesters.number'
 
   validates_presence_of :speciality, :study, :since
   validates_uniqueness_of :study, :scope => [:speciality_id, :since, :chair_id, :profile]
@@ -22,7 +22,7 @@ class Plan::Curriculum < Resource
 
   protected_parent_of :educations, :protects => :softly
 
-  has_enum :study
+  has_enum :study, %w[fulltime parttime postal]
 
   default_scope order('study')
   scope :published,   where(:state => 'published')

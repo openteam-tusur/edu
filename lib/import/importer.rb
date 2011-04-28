@@ -38,11 +38,11 @@ module Import
       def create_curriculum
         attributes = @parser.curriculum_attributes
 
-        @curriculum = Plan::Curriculum.create!(:since => attributes[:since],
-                                               :study => attributes[:study],
-                                               :semesters_count => attributes[:semesters_count],
-                                               :speciality_id => @speciality.id,
-                                               :chair_id => @chair.id)
+        @curriculum = Curriculum.create!(:since => attributes[:since],
+                                         :study => attributes[:study],
+                                         :semesters_count => attributes[:semesters_count],
+                                         :speciality_id => @speciality.id,
+                                         :chair_id => @chair.id)
       end
 
       def create_studies_with_educations
@@ -58,10 +58,10 @@ module Import
       end
 
       def create_study(attributes)
-        cycle = Plan::Cycle.find_by_code(attributes[:cycle_code])
+        cycle = Cycle.find_by_code(attributes[:cycle_code])
         chair = Chair.find_by_slug(attributes[:chair_slug])
 
-        study = Plan::Study.create!(:discipline_name => attributes[:discipline_name],
+        study = Study.create!(:discipline_name => attributes[:discipline_name],
                                     :cycle_id => cycle.id,
                                     :chair_id => chair.id,
                                     :curriculum_id => @curriculum.id)

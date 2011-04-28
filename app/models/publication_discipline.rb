@@ -3,10 +3,10 @@
 class PublicationDiscipline < ActiveRecord::Base
 
   belongs_to :publication
-  belongs_to :discipline, :class_name => "Plan::Discipline"
+  belongs_to :discipline, :class_name => "Discipline"
   has_one :speciality, :through => :discipline
 
-  has_and_belongs_to_many :educations, :class_name => "Plan::Education"
+  has_and_belongs_to_many :educations, :class_name => "Education"
 
 
 #  validates_presence_of :publication, :discipline

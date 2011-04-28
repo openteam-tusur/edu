@@ -1,10 +1,10 @@
 class Manage::CurriculumsController < Manage::ApplicationController
 
-  load_and_authorize_resource :class => Plan::Curriculum
+  load_and_authorize_resource :class => Curriculum
 
   custom_actions :resource => [:transit, :delete]
 
-  defaults :resource_class => Plan::Curriculum,
+  defaults :resource_class => Curriculum,
            :instance_name => :curriculum,
            :finder => :find_by_slug
 

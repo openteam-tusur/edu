@@ -1,6 +1,6 @@
 # encoding: utf-8
-class Plan::Accreditation < ActiveRecord::Base
-  set_table_name :plan_accreditations
+class Accreditation < ActiveRecord::Base
+  set_table_name :accreditations
 
   belongs_to :speciality
 

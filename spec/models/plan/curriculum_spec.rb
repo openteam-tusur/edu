@@ -1,7 +1,7 @@
 # encoding: utf-8
 require 'spec_helper'
 
-describe Plan::Curriculum do
+describe Curriculum do
 
   it 'при создании должны создаваться семестры' do
     curriculum = Factory.create(:plan_curriculum, :semesters_count => 10)
@@ -11,7 +11,7 @@ describe Plan::Curriculum do
 
   it "должен находиться по слагу" do
     curriculum = Factory.create(:plan_curriculum, :semesters_count => 2)
-    Plan::Curriculum.find_by_slug(curriculum.to_param).should eql curriculum
+    Curriculum.find_by_slug(curriculum.to_param).should eql curriculum
     curriculum.chair.curriculums.find_by_slug(curriculum.to_param).should eql curriculum
   end
 
