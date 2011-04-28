@@ -1,0 +1,18 @@
+<%= form.inputs do %>
+  <% if @publication_discipline.new_record? %>
+    <%= form.input :speciality_request, :input_html => { :class => "focus_first" } %>
+    <%= form.input :speciality_id, :as => :hidden %>
+    <% if @publication_discipline.discipline_id %>
+      <%= form.input :discipline_request %>
+    <% else %>
+      <%= form.input :discipline_request, :input_html => { :disabled => "disabled" } %>
+    <% end %>
+    <%= form.input :discipline_id, :as => :hidden %>
+  <% else %>
+    <%= form.input :speciality_request, :input_html => { :readonly => "readonly", :value => @publication_discipline.speciality.autocomplete_value } %>
+    <%= form.input :discipline_request, :input_html => { :readonly => "readonly", :value => @publication_discipline.discipline.name } %>
+  <% end %>
+  <li id="publication_discipline_educations">
+    <%= render :partial => "discipline_educations" if @publication_discipline.discipline_id %>
+  </li>
+<% end %>

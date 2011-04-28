@@ -1,0 +1,42 @@
+<%= render :partial => 'search_form' %>
+
+<div class="specialities_wrapper">
+  <div class="speciality_facets">
+    <%= render_navigation :context => 'speciality_degree' %>
+  </div>
+
+  <% if collection.any? %>
+    <div class="speciality_list">
+      <ul class="cool_list">
+      <% @specialities.each do |speciality| %>
+        <li>
+          <h5 class="specialities"><%= speciality.title %></h5>
+          <% unless speciality.curriculums.published.empty? %>
+          <ul class="wide">
+            <% speciality.curriculums.published.each do |curriculum| %>
+              <li>
+                <%= link_to curriculum.since_with_study_form, speciality_curriculum_path(speciality, curriculum) %>
+                <%= show_for curriculum do |item| %>
+                  <%= item.attribute :profile, :label => Plan::Curriculum.human_attribute_name("profile_#{item.object.speciality.degree}") if item.object.profile.present? %>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+          <% else %>
+            <ul>
+             <li>Учебных планов нет.</li>
+            </ul>
+          <% end %>
+        </li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>
+
+<div class="chair_facets">
+  <%= render_navigation :context => 'chairs' %>
+</div>
+
+<%= will_paginate @specialities %>
+

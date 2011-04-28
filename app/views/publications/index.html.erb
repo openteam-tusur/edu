@@ -1,0 +1,22 @@
+<%= render :partial => 'search_form' %>
+
+<div class="publications_wrapper">
+  <div class="publication_facets">
+    <%= render_navigation :context => 'publication_kind' %>
+  </div>
+
+  <% if collection.any? %>
+    <ul class="cool_list publications_list">
+      <% @publications.each do |obj| %>
+        <li><%= render :partial => "index_item", :locals => { :item => obj } %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+
+<div class="chair_facets">
+  <%= render_navigation :context => 'chairs' %>
+</div>
+
+<%= will_paginate @publications %>
+

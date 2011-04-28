@@ -1,0 +1,36 @@
+<% unless @specialities.empty?  %>
+  <div class="specialities">
+    <% %w(specialist bachelor master).each do |degree| %>
+      <% unless @specialities.send(:"degree_#{degree}").empty? %>
+        <fieldset>
+          <legend><%= t("noun_#{degree}") %></legend>
+          <% @specialities.send(:"degree_#{degree}").each do |speciality| %>
+            <div class="speciality_item">
+              <p class="name"><%= speciality.short_title %> <%= link_to t(:edit), edit_manage_speciality_path(speciality), :class => :edit %></p>
+              <p class="qualification"><%= speciality.qualification %></p>
+              <p class="additional">лицензия: <%= speciality.licence %>, аккредитация: <%= speciality.accreditation %></p>
+              <% unless speciality.curriculums.empty? %>
+                <% speciality.curriculums.each do |curriculum| %>
+                  <div class="curriculum_item">
+                    <div class="name">
+                      <%= link_to image_tag("icon_#{curriculum.state}.png"),
+                                  manage_chair_curriculum_path(curriculum.chair, curriculum),
+                                  :title => curriculum.human_state, :rel => "tipsy" %>
+                      <%= link_to curriculum.study_with_since,
+                                  manage_chair_curriculum_path(curriculum.chair, curriculum),
+                                  :class => curriculum.state %>
+                      <span>Срок обучения <%= curriculum.duration %></span>
+                      <%= link_to curriculum.chair.abbr, manage_chair_path(curriculum.chair) %>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+      </fieldset>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
+<p><%= link_to t(:new), new_manage_speciality_path, :class => "button" %></p>
+

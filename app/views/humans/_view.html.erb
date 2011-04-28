@@ -1,0 +1,16 @@
+<% title @human.full_name %>
+
+<%= content_for :garavatar do %>
+  <%= image_tag @human.user ? @human.user.gravatar_url : 'human_icon.png' %>
+<% end %>
+<ul class="roles_list">
+  <% @human.roles.each do |role| %>
+    <li class="<%= "#{role.type.demodulize.downcase}_icon" %>"><%= role %></li>
+  <% end %>
+</ul>
+<hr />
+
+<div class="human_profile">
+  <%= render :partial => "publications/item", locals:{human:@human} %>
+</div>
+

@@ -1,0 +1,22 @@
+<% if current_user && !current_user.has_been_started? %>
+  <div class="get_started">
+    <ul>
+      <li <%= "class='done'" unless current_user.human.new_record? %> >
+        <span>1.</span>
+        <p><%= link_to 'Заполните', current_user.human.new_record? ? new_human_path : edit_human_path %> Ваш профиль.</p>
+      </li>
+
+      <li>
+        <span>2.</span>
+        <p><%= link_to 'Уточните Ваш статус', profile_path %> в ТУСУРе.</p>
+      </li>
+
+      <li class="last">
+        <span>3.</span>
+        <p>Узнайте больше <a href='#'>о портале.</a></p>
+      </li>
+
+    </ul>
+  </div>
+<% end %>
+

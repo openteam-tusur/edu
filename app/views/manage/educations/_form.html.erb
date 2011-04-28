@@ -1,0 +1,8 @@
+<%= form.inputs :class => "inputs education_common_info" do %>
+  <%= form.input :discipline_name, :input_html => { :value => resource.discipline ? resource.discipline.name : resource.discipline_name, :class => "focus_first" } %>
+  <%= form.input :chair, :group_by => :faculty %>
+<% end %>
+<%= form.inputs "Форма контроля", :class => "inputs pictorial examinations" do %>
+  <%= form.input :examinations, :as => :check_boxes, :label => false %>
+<% end %>
+

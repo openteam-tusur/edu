@@ -1,0 +1,6 @@
+<%= form.inputs do %>
+  <%= form.input :group, :input_html => { :class => "focus_first" } %>
+  <%= form.input :birthday %>
+  <%= form.input "type", :as => :hidden, :value => "student", :name => "type" %>
+<% end %>
+

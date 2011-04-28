@@ -1,0 +1,23 @@
+<% if resource.attachment %>
+  <fieldset class="publication_info">
+    <%= show_for resource do |resource_fields| %>
+      <%= resource_fields.value :get_extended_kind, :wrapper_tag => :div, :content_tag => :h4 %>
+      <%= resource_fields.association :authors do 
+        raw resource.authors.map{ |author| link_to(author.abbreviated_name, human_path(author.human_id))}.to_sentence
+      end %>
+      <% @publication.addition_fields.each do |attribute| %>
+        <% if attribute == :annotation || attribute == :stamp %>
+          <%= resource_fields.value attribute do %>
+            <%= @publication.send(attribute).blank? ? simple_format("не указано") : simple_format(@publication.send(attribute).gilensize) %>
+          <% end %>
+        <% else %>
+          <%= resource_fields.attribute attribute %>
+        <% end %>
+      <% end %>
+      <%= resource_fields.attributes :year %>
+      <%= resource_fields.attributes :volume %>
+    <% end %>
+    <%= render :partial => "common/resource_link", :locals => {:resource => resource} %>
+  </fieldset>
+<% end %>
+

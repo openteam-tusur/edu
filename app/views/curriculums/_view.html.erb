@@ -1,0 +1,80 @@
+<% title "#{@curriculum.speciality.short_title}" %>
+
+<%= show_for @curriculum do |curriculum| %>
+  <%= curriculum.attribute :since %>
+  <%= curriculum.attribute :study %>
+  <%= curriculum.attribute :profile, :label => Plan::Curriculum.human_attribute_name("profile_#{curriculum.object.speciality.degree}") if curriculum.object.profile.present? %>
+  <%= curriculum.attribute :duration %>
+<% end %>
+
+<p>Ниже представлено учебно-методическое обеспечение для изучаемых предметов, разбитое по семестрам.</p>
+
+<div class="curriculum_semesters">
+  <table class="semesters_header">
+    <tr>
+      <% (1..@curriculum.cources_count).each do |cource| %>
+        <th colspan="2"><%= "#{cource} курс" %></th>
+      <% end %>
+    </tr>
+    <tr>
+      <% @curriculum.semesters.each do |semester| %>
+        <td<%= semester.eql?(@semester) ? " class='current'" : ""%>>
+          <%= link_to semester.number,
+                      speciality_curriculum_semester_path(@speciality, @curriculum, semester) %>
+        </td>
+      <% end %>
+      <%= content_tag :td, "" unless @curriculum.semesters_count.even? %>
+    </tr>
+  </table>
+  <div class="semester_body cool_list">
+    <% unless @semester.educations.empty? %>
+      <table>
+        <thead>
+          <tr>
+            <th>Название предмета</th>
+            <th class="center">Обсепечивающая кафедра</th>
+            <th class="center">Форма отчетности</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @semester.educations.each do |education| %>
+            <tr class="<%= cycle('odd', 'even')%>">
+              <td><%= link_to education.study.discipline.name, speciality_curriculum_semester_education_path(@speciality, @curriculum, @semester, education) %></td>
+              <td class="center"><%= education.study.chair.abbr %></td>
+              <td class="center">
+                <% unless education.examinations.empty? %>
+                  <%= education.examinations.collect(&:name).join(", ").mb_chars.downcase %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <ul>
+        <li>Дисциплины не заполнены</li>
+      </ul>
+    <% end %>
+  </div>
+</div>
+
+<% if @curriculum.attachment %>
+  <fieldset class="additional_info">
+    <div>
+        <% if can? :download, @curriculum.attachment %>
+          <%= image_tag("icon_pdf_free.png") %>
+
+          <%= link_to "Скачать #{@curriculum.since_with_study_form}",
+                      @curriculum.attachment.data.url,
+                      :title => @curriculum.since_with_study_form,
+                      :class => "need_tipsy", :alt => @curriculum.since_with_study_form %>
+
+        <% else %>
+          <%= image_tag("icon_pdf_#{@curriculum.access}.png")  %>
+          <span class="need_tipsy" title="Необходимо зарегистрироваться в качестве студента, магистранта или сотрудника ТУСУР">Вы не можете скачать <%= @curriculum.since_with_study_form %>.</span>
+        <% end %>
+
+    </div>
+  </fieldset>
+<% end %>
+

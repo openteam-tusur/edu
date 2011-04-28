@@ -1,0 +1,14 @@
+<div class="faculties">
+  <% @faculties.each_slice(5) do |fc| %>
+   <ul class="line">
+      <% fc.each do |faculty| %>
+        <li class="faculty <%= faculty.slug %>">
+          <h1><%= faculty.abbr %></h1>
+          <% faculty.chairs.each do |chair| %>
+            <p><%= link_to chair.abbr, manage_chair_path(chair), :title => chair.name, :rel => "tipsy" %></p>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

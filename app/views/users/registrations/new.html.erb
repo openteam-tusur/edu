@@ -1,0 +1,15 @@
+<%= semantic_form_for resource, :url => registration_path(resource) do |form| %>
+  <%= devise_error_messages! %>
+
+  <%= form.inputs do %>
+    <%= form.input :email, :as => :string %>
+    <%= form.input :password %>
+    <%= form.input :password_confirmation, :required => true %>
+  <% end %>
+  <%= form.buttons do %>
+    <%= form.commit_button "Зарегистрироваться", :button_html => { :class => "button" } %>
+  <% end %>
+<% end %>
+
+<%= render :partial => "users/shared/links" %>
+

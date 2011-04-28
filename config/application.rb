@@ -14,7 +14,7 @@ module Portal
 
     # Custom directories with classes and modules you want to be autoloadable.
     config.autoload_paths += [
-                                "#{config.root}/app/models/auth",
+                                "#{config.root}/app/models/roles",
 
                                 "#{config.root}/lib",
                              ]

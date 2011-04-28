@@ -1,0 +1,69 @@
+<%= form.inputs :class => "publication inputs" do %>
+
+  <%= form.input :title, :as => :string, :input_html => {:class => :focus_first} %>
+  <%= form.input :extended_kind, :as => :string %>
+  <%= form.input :comment %>
+
+  <%= form.fields_for :author do |author_form| %>
+  <li>
+    <%= author_form.inputs "Авторы", :class => "inputs pictorial" do %>
+      <%= author_form.input :author_query, :label => "Выберите автора", :input_html => {:class => "author_query_input", :name => "author_query"} %>
+
+      <li class="author_list">
+        <% resource.authors.each_with_index do |author, index| %>
+          <% if author.new_record? %>
+            <p class="human_item human_<%= author.human_id %>">
+              <span class='full_name'><%= author.human.full_name %></span>
+              <a href='#'>Удалить</a>
+              <input type='hidden' value="<%= author.human_id %>"
+                     name='publication[authors_attributes][<%= index %>][human_id]'>
+            </p>
+          <% else %>
+            <p class="author_item human_<%= author.human.id %>" id="<%= index %>">
+              <%= hidden_field_tag "publication[authors_attributes][#{index}][_destroy]",
+                                   false,
+                                   :class => 'hidden_input' %>
+
+              <%= hidden_field_tag "publication[authors_attributes][#{index}][id]", author.id %>
+              <span class="full_name"><%= author.human.full_name_with_posts %></span>
+              <%= link_to "Удалить", "#" %>
+            </p>
+          <% end %>
+        <% end %>
+      </li>
+
+    <% end  %>
+  </li>
+  <% end %>
+
+  <li>
+    <%= form.inputs "Дополнительно", :class => "inputs pictorial" do %>
+      <%= form.enum_input :kind %>
+      <li class="publication_id">
+
+      </li>
+
+      <li class="publication_fields">
+        <%= render :partial => "manage/publications/fields" if resource.kind %>
+      </li>
+    <% end %>
+  </li>
+
+  <li>
+    <fieldset class='inputs pictorial used_books'>
+      <legend>
+        <span>Используемая литература</span>
+      </legend>
+      <ol class='already_used_books_list'>
+        <%= link_to_add_association 'Добавить используемую литературу', form, :used_books %>
+        <%= form.semantic_fields_for :used_books do |used_book| %>
+          <%= render :partial => "used_book_fields", :locals => { :f => used_book } %>
+        <% end %>
+      </ol>
+
+      <ol class="used_book_list">
+      </ol>
+    </fieldset>
+  </li>
+<% end %>
+<%= render :partial => "manage/common/resource_fields", :locals => {:form => form} %>

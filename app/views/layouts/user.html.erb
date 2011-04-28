@@ -1,0 +1,11 @@
+<%= render :file => "common/main_menu.html.erb" %>
+<% content_for :breadcrumbs do %>
+  <div class="breadcrumbs">
+    <%= render_navigation :context => :breadcrumbs, :renderer => :breadcrumbs, :join_with => " <span class='black'>&rarr;</span> " %>
+  </div>
+<% end %>
+<% content_for :get_started do %>
+  <%= render :partial => 'users/shared/has_been_started' %>
+<% end %>
+<%= render :file => 'layouts/base' %>
+

@@ -1,0 +1,10 @@
+<%= form.inputs do %>
+  <%= form.input :group, :input_html => { :class => "focus_first" } %>
+  <%= form.input :birthday %>
+<% end %>
+<%= form.buttons do %>
+  <%= form.commit_button :button_html => {:class => 'button'} %>
+  <li><%= link_to t(:cancel), profile_path, :class => "button light" %></li>
+<% end %>
+
+

@@ -1,0 +1,14 @@
+<div class="download_block">
+  <% if can? :download, resource.attachment %>
+      <%= image_tag("icon_pdf_free.png") %>
+      <% if defined?(full_text) %>
+        <%= link_to resource, resource.attachment.data.url, :title => resource, :class => "need_tipsy" %>
+      <% else %>
+        <%= link_to "Скачать #{t("publication.#{resource.kind}")}", resource.attachment.data.url, :title => resource, :class => "need_tipsy" %>
+      <% end %>
+  <% else %>
+    <%= image_tag("icon_pdf_#{resource.access}.png")  %>
+    <span class="need_tipsy" title="Необходимо зарегистрироваться в качестве студента, магистранта или сотрудника ТУСУР">Вы не можете скачать <%= t("publication.#{resource.kind}") %>.</span>
+  <% end %>
+</div>
+

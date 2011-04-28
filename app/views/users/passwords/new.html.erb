@@ -1,0 +1,14 @@
+<h2>Забыли Ваш пароль?</h2>
+
+<%= semantic_form_for resource, :url => password_path(resource), :html => { :method => :post } do |form| %>
+  <%= devise_error_messages! %>
+  <%= form.inputs do %>
+    <%= form.input :email, :as => :string %>
+  <% end %>
+  <%= form.buttons do %>
+    <%= form.commit_button "Отправить инструкции на почту", :button_html => { :class => :button } %>
+  <% end %>
+<% end %>
+
+<%= render :partial => "users/shared/links" %>
+

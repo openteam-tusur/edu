@@ -1,0 +1,8 @@
+<%= semantic_form_for resource, :url => {:action => 'update'} do |form| %>
+  <%= form.inputs :surname, :name, :patronymic %>
+  <%= form.buttons do %>
+    <%= form.commit_button :button_html => {:class => 'button'} %>
+    <li><%= link_to t(:cancel), profile_path, :class => "button light" %></li>
+  <% end %>
+<% end %>
+
