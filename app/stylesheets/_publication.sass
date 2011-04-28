@@ -44,7 +44,7 @@
 .publications_list
   .publication
     font-size: 14px
-    margin-bottom: 0 
+    margin-bottom: 0
 
     a
       font-weight: bold
@@ -75,6 +75,14 @@
       cursor: help
 
 .publication
+
+  .list_used_book
+    +border-radius
+    border: 1px solid #ccc
+    padding: 15px 15px 0 15px
+
+    .show_for
+      border-bottom: 1px solid #ccc
 
   .speciality_name
     font-size: 14px
@@ -173,7 +181,7 @@
 
 .publication_info
   .publication_stamp
-  .publication_authors,  
+  .publication_authors,
   .publication_annotation
     +clearfix
     width: 100%
@@ -181,4 +189,4 @@
   .publication_bbk, .publication_isbn, .publication_udk, .publication_year,  .publication_volume
     float: left
     margin-right: 15px
-    
+

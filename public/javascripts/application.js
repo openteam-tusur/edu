@@ -308,5 +308,8 @@ $(function() {
     changeYear: true
   });
   $(".disciplines .tabs").tabs();
+  $('#science a').click(function(){
+    return false;
+  });
 });
 

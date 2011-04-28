@@ -399,6 +399,7 @@ ru:
           additional: Дополнительная
           main: Основная
         library_code: Код издания в библиотеке
+        publication_code: Публикация на портале
         publication_title: Публикация на портале
         quantity: Количество
         title: Название

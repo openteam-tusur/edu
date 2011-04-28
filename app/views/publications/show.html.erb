@@ -12,6 +12,25 @@
     </div>
   <% end %>
 
+  <% if @publication.kind == 'work_programm' && @publication.used_books.any? %>
+    <div>
+      <h2>Используемая литература</h2>
+      <fieldset class="list_used_book">
+        <% @publication.used_books.each do |used_book| %>
+          <%= show_for used_book do |item| %>
+            <%= item.attributes :title, :kind %>
+            <% used_publication = Publication.find(item.object.publication_code) %>
+            <%= item.attribute :publication_code do
+              link_to used_publication, publication_path(used_publication)
+            end %>
+            <%= item.attributes :library_code, :quantity %>
+          <% end %>
+        <% end %>
+      </fieldset>
+    </div>
+  <% end %>
+
+
   <div class='disciplines expander'>
     <h4><a href="#" class='expand_link'>Изучаемые дисциплины</a></h4>
     <% unless @publication.publication_disciplines.empty? %>
