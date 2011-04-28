@@ -1,8 +1,0 @@
-<%= semantic_fields_for @publication do |form| %>
-    <%= form.inputs do %>
-      <% @publication.fields_for_kind.each do |field| %>
-        <%= form.input field, :input_html => { :value => @publication.send(field) } %>
-      <% end %>
-    <% end %>
-<% end %>
-

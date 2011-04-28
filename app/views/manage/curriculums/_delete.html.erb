@@ -1,7 +1,0 @@
-<p><%= @curriculum.title %></p>
-
-<% if @curriculum.semesters.count > 0 %>
-  <p>Учебный план содержит <%= t('semester.count', :count => @curriculum.semesters.count) %> и <%= t('education.count', :count => @curriculum.educations.count) %>. Все они будут удалены.</p>
-<% else %>
-  Учебный план какой-то пустой, его можно безболезненно удалить.
-<% end %>
