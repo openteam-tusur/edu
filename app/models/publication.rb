@@ -15,7 +15,7 @@ class Publication < Resource
   has_many :authors, :as => :resource, :inverse_of => :resource
   accepts_nested_attributes_for :authors, :allow_destroy => true
 
-  accepts_nested_attributes_for :used_books, :allow_destroy => true
+  accepts_nested_attributes_for :used_books, :allow_destroy => true, :reject_if => :all_blank
 
   validates_presence_of :chair, :title, :attachment, :year,
                         :access, :volume, :kind, :extended_kind

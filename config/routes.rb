@@ -90,6 +90,7 @@ Portal::Application.routes.draw do
     get :discipline_educations, :on => :collection
     get :specialities, :on => :collection
     get :authors, :on => :collection
+    get :publications, :on => :collection
   end
 
   match "/attachments/:id/download/" => "attachments#download", :as => :attachment

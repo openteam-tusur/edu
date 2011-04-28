@@ -54,12 +54,12 @@
       <legend>
         <span>Используемая литература</span>
       </legend>
-      <ol>
+      <ol class='already_used_books_list'>
         <%= link_to_add_association 'Добавить используемую литературу', form, :used_books %>
+        <%= form.semantic_fields_for :used_books do |used_book| %>
+          <%= render :partial => "used_book_fields", :locals => { :f => used_book } %>
+        <% end %>
       </ol>
-      <%= form.semantic_fields_for :used_books do |used_book| %>
-        <%= render :partial => "used_book_fields", :locals => { :f => used_book } %>
-      <% end %>
 
       <ol class="used_book_list">
       </ol>

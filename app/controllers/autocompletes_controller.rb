@@ -25,6 +25,18 @@ class AutocompletesController < ApplicationController
     render :text => specialities.to_json
   end
 
+  def publications
+    publications = Publication.solr_search do
+      keywords params[:term]
+    end.results
+
+    publications.map! do | publication |
+      { :id => publication.id, :value => publication.to_s }
+    end
+
+    render :text => publications.to_json
+  end
+
   def disciplines
     disciplines = Plan::Discipline.solr_search do
       text_fields do

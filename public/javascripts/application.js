@@ -171,6 +171,13 @@ function show_used_books(kind) {
   };
 }
 
+function catch_click() {
+  $("#used_book_fields_template #publication_used_books_attributes_new_used_books__destroy").val('');
+  $('.publication_title_field').publication_autocomplete();
+  $(".add_link_wrapper .add_fields").live('click', function(){
+    $('.publication_title_field').publication_autocomplete();
+  });
+}
 
 function manipulation_publication_fields(){
   show_used_books($('#publication_kind').val());
@@ -260,6 +267,19 @@ function publication_tabs(){
   };
 };
 
+$.fn.publication_autocomplete = function () {
+  $(this).live('keyup.autocomplete', function(){
+    $(this).autocomplete({
+      source: "/autocompletes/publications",
+      minLength: 2,
+      select: function(event, ui) {
+        console.log();
+        $(this).parent().siblings('.publication_code_input').children('input').val(ui.item.id);
+      }
+    });
+  });
+};
+
 $(function() {
   human_check();
   discipline_name_autocomplete();
@@ -270,6 +290,7 @@ $(function() {
   manipulation_publication_fields();
   manipulation_education_fields();
   irregual_labels();
+  catch_click();
   flash();
   expander();
   publication_tabs();
