@@ -40,7 +40,7 @@
         <% @publication.used_books.each do |used_book| %>
           <%= show_for used_book do |item| %>
             <%= item.attributes :title, :kind %>
-            <% used_publication = Publication.find(item.object.publication_code) %>
+            <% used_publication = Publication.where(:id => item.object.publication_code).first %>
             <%= item.attribute :publication_code do
               link_to used_publication, publication_path(used_publication)
             end %>
