@@ -27,22 +27,23 @@ class Roles::Graduate < Role
 end
 
 
+
 # == Schema Information
 #
 # Table name: roles
-# Human name: Роль магистранта
 #
-#  id         :integer         not null, primary key
-#  human_id   :integer
-#  title      :string(255)
-#  slug       :string(255)     'Слаг'
-#  type       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
-#  state      :string(255)     'Статус'
-#  group      :string(255)     'Группа'
-#  birthday   :date            'Дата рождения'
-#  chair_id   :integer
-#  post       :string(255)     'Должность'
+#  id            :integer         not null, primary key
+#  human_id      :integer
+#  title         :string(255)
+#  slug          :string(255)
+#  type          :string(255)
+#  created_at    :datetime
+#  updated_at    :datetime
+#  state         :string(255)
+#  group         :string(255)
+#  birthday      :date
+#  chair_id      :integer
+#  post          :string(255)
+#  contingent_id :integer
 #
 

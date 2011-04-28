@@ -17,7 +17,7 @@ class Plan::Curriculum < Resource
                         :order => 'plan_semesters.number'
 
   validates_presence_of :speciality, :study, :since
-  validates_uniqueness_of :study, :scope => [:speciality_id, :since, :chair_id]
+  validates_uniqueness_of :study, :scope => [:speciality_id, :since, :chair_id, :profile]
   validates_presence_of :access, :year, :attachment, :volume, :if => :need_all_resource_fields?
 
   protected_parent_of :educations, :protects => :softly
@@ -91,21 +91,22 @@ private
 
 end
 
+
 # == Schema Information
 #
 # Table name: plan_curriculums
-# Human name: Учебный план
 #
 #  id            :integer         not null, primary key
-#  study         :string(255)     'Форма обучения'
-#  speciality_id :integer         'Направление подготовки (специальность)'
+#  study         :string(255)
+#  speciality_id :integer
 #  created_at    :datetime
 #  updated_at    :datetime
-#  state         :string(255)     'Статус'
-#  year          :integer         'Год издания'
-#  access        :string(255)     'Доступ к файлу'
-#  since         :integer         'Действует с'
-#  volume        :integer         'Количество страниц'
+#  state         :string(255)
+#  year          :integer
+#  access        :string(255)
+#  since         :integer
+#  volume        :integer
 #  chair_id      :integer
+#  profile       :string(255)
 #
 

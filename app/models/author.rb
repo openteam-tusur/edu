@@ -7,15 +7,15 @@ class Author < ActiveRecord::Base
   validates_uniqueness_of :human_id, :scope => [:resource_id, :resource_type]
 end
 
+
 # == Schema Information
 #
 # Table name: authors
-# Human name: Автор материала
 #
 #  id            :integer         not null, primary key
 #  resource_id   :integer
 #  resource_type :string(255)
-#  human_id      :integer         'Автор'
+#  human_id      :integer
 #  created_at    :datetime
 #  updated_at    :datetime
 #

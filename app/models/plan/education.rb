@@ -49,10 +49,10 @@ class Plan::Education < ActiveRecord::Base
 
 end
 
+
 # == Schema Information
 #
 # Table name: plan_educations
-# Human name: Дисциплина
 #
 #  id          :integer         not null, primary key
 #  semester_id :integer

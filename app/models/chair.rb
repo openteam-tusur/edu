@@ -134,16 +134,16 @@ class Chair < ActiveRecord::Base
 
 end
 
+
 # == Schema Information
 #
 # Table name: chairs
-# Human name: Кафедра
 #
 #  id         :integer         not null, primary key
 #  faculty_id :integer
-#  name       :string(255)     'Название'
-#  abbr       :string(255)     'Аббревиатура'
-#  slug       :string(255)     'Слаг'
+#  name       :string(255)
+#  abbr       :string(255)
+#  slug       :string(255)
 #  created_at :datetime
 #  updated_at :datetime
 #
