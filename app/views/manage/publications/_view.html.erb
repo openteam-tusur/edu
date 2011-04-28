@@ -42,7 +42,11 @@
             <%= item.attributes :title, :kind %>
             <% used_publication = Publication.where(:id => item.object.publication_code).first %>
             <%= item.attribute :publication_code do
-               link_to used_publication, publication_path(used_publication) if used_publication.present?
+              if used_publication.present?
+                link_to used_publication, publication_path(used_publication)
+              else
+                'Не указано'
+              end
             end %>
             <%= item.attributes :library_code, :quantity %>
           <% end %>
