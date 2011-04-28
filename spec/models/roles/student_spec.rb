@@ -2,11 +2,11 @@
 
 require 'spec_helper'
 
-describe Roles::Student do
+describe Student do
   it 'роль не должна создаваться если существует такая же роль со статусом pending' do
     role = Factory.create(:roles_student)
 
-    new_role = Roles::Student.new(role.attributes.merge(:human_id => role.human.id))
+    new_role = Student.new(role.attributes.merge(:human_id => role.human.id))
 
     new_role.save.should be false
     new_role.errors[:base].size.should be 1
@@ -16,7 +16,7 @@ describe Roles::Student do
   it 'роль не должна создаваться если существует такая же роль со статусом accepted' do
     role = Factory.create(:roles_student, :state => 'accepted')
 
-    new_role = Roles::Student.new(role.attributes.merge(:human_id => role.human.id))
+    new_role = Student.new(role.attributes.merge(:human_id => role.human.id))
 
     new_role.save.should be false
     new_role.errors[:base].size.should be 1

@@ -36,7 +36,7 @@ class Role < ActiveRecord::Base
 
   class_eval do
     %w[admin employee graduate student].each do |role|
-      scope role.to_sym, where(:type => "Roles::#{role.capitalize}")
+      scope role.to_sym, where(:type => "#{role.capitalize}")
     end
   end
 

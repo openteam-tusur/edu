@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class Roles::Employee < Role
+class Employee < Role
   validates_presence_of :chair, :post
   validates_uniqueness_of :chair_id, :scope => [:human_id, :state]
 

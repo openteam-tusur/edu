@@ -9,9 +9,9 @@ class Ability
     end
 
     can :manage, Human, :user_id => user.id
-    can :manage, Roles::Student, :human_id => user.human.id if user.human
-    can :manage, Roles::Employee, :human_id => user.human.id if user.human
-    can :manage, Roles::Graduate, :human_id => user.human.id if user.human
+    can :manage, Student, :human_id => user.human.id if user.human
+    can :manage, Employee, :human_id => user.human.id if user.human
+    can :manage, Graduate, :human_id => user.human.id if user.human
 
     can :download, Attachment do |attachment|
       attachment.resource.access_free? || user.human.roles.any?

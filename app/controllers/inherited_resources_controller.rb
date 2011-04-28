@@ -1,4 +1,4 @@
-class InheritedResourcesController < ApplicationController
+class InheritedResourcesController < CrudController
   inherit_resources
 end
 

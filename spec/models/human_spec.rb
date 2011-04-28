@@ -40,12 +40,12 @@ describe Human do
   describe 'должен формировать список доступных авторов' do
     before(:each) do
       @bankin = Human.create :name => "Ерофей", :patronymic => "Жозефович", :surname => "Банькин"
-      @bankin.roles << Roles::Employee.new(:chair => Factory.create(:chair),
-                                           :post => 'Старший преподаватель')
+      @bankin.roles << Employee.new(:chair => Factory.create(:chair),
+                                    :post => 'Старший преподаватель')
 
       @bapyj = Human.create :name => "Ефрем", :patronymic => "Никитович", :surname => "Бапый"
-      @bapyj.roles << Roles::Employee.new(:chair => Factory.create(:chair),
-                                          :post => 'Зав. кафедрой')
+      @bapyj.roles << Employee.new(:chair => Factory.create(:chair),
+                                   :post => 'Зав. кафедрой')
 
       @han = Human.create :name => "Урмас",
                           :patronymic => "Йорикович",
@@ -103,26 +103,26 @@ describe Human do
       end
 
       it 'есть у первого' do
-        @human1.roles << Roles::Employee.new(:chair => Factory.create(:chair),
-                                             :post => 'Старший преподаватель')
+        @human1.roles << Employee.new(:chair => Factory.create(:chair),
+                                      :post => 'Старший преподаватель')
         @human1.merge_with(@human2)
         @human1.roles.should_not be_empty
       end
 
       it 'есть у второго' do
-        @human2.roles << Roles::Employee.new(:chair => Factory.create(:chair),
-                                             :post => 'Старший преподаватель')
+        @human2.roles << Employee.new(:chair => Factory.create(:chair),
+                                      :post => 'Старший преподаватель')
         @human1.merge_with(@human2)
         @human1.reload
         @human1.roles.should_not be_empty
       end
 
       it 'есть у обоих' do
-        @human1.roles << Roles::Employee.new(:chair => Factory.create(:chair),
-                                             :post => 'Старший преподаватель')
+        @human1.roles << Employee.new(:chair => Factory.create(:chair),
+                                      :post => 'Старший преподаватель')
 
-        @human2.roles << Roles::Employee.new(:chair => Factory.create(:chair),
-                                             :post => 'Старший преподаватель')
+        @human2.roles << Employee.new(:chair => Factory.create(:chair),
+                                      :post => 'Старший преподаватель')
 
         @human1.merge_with(@human2)
         @human1.roles.count.should be 2
@@ -130,11 +130,11 @@ describe Human do
 
       it 'есть у обоих и они одинаковые' do
         chair = Factory.create(:chair)
-        @human1.roles << Roles::Employee.new(:chair => chair,
+        @human1.roles << Employee.new(:chair => chair,
                                              :post => 'Старший преподаватель')
 
-        @human2.roles << Roles::Employee.new(:chair => chair,
-                                             :post => 'Старший преподаватель')
+        @human2.roles << Employee.new(:chair => chair,
+                                      :post => 'Старший преподаватель')
 
         @human1.merge_with(@human2)
         @human1.roles.count.should be 1

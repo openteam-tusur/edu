@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class Roles::Admin < Role
+class Admin < Role
   default_values :title => 'Администратор', :slug => 'admin', :post => 'Администратор'
 
   def to_s
