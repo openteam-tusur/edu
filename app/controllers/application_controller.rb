@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 
-  layout "user"
+  layout 'user'
 
   protect_from_forgery
 
@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   end
 
   def main_page
-    render :file => "common/main.html.erb", :layout => 'application'
+    render :file => 'common/main.html.erb', :layout => 'application'
   end
 
 protected

@@ -1,4 +1,4 @@
-class CurriculumsController < InheritedResources::Base
+class CurriculumsController < InheritedResourcesController
   load_resource :class => Curriculum
 
   defaults :resource_class => Curriculum,

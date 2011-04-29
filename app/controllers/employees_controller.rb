@@ -1,4 +1,4 @@
-class EmployeesController < InheritedResources::Base
+class EmployeesController < InheritedResourcesController
   actions :show
 
   defaults :resource_class => Human,

@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class PublicationsController < InheritedResources::Base
+class PublicationsController < InheritedResourcesController
   load_resource :except => :get_fields
 
   def index

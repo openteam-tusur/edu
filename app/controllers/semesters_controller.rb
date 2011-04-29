@@ -1,4 +1,4 @@
-class SemestersController < InheritedResources::Base
+class SemestersController < InheritedResourcesController
   load_resource
 
   defaults :resource_class => Semester,

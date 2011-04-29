@@ -1,4 +1,4 @@
-class ChairsController < InheritedResources::Base
+class ChairsController < InheritedResourcesController
   defaults :finder => :find_by_slug
 
   actions :index, :show

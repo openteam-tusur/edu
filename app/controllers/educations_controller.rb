@@ -1,4 +1,4 @@
-class EducationsController < InheritedResources::Base
+class EducationsController < InheritedResourcesController
 
   load_and_authorize_resource
 
