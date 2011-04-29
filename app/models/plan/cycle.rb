@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Cycle < ActiveRecord::Base
   set_table_name :cycles
 

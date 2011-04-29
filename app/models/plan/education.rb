@@ -1,4 +1,5 @@
 # encoding: utf-8
+
 class Education < ActiveRecord::Base
   set_table_name :educations
 
@@ -37,13 +38,13 @@ class Education < ActiveRecord::Base
   def provided_class
     PublicationDiscipline.solr_search do
       with :education_ids, [self.id]
-      with :kind, ["work_programm", "tutorial"]
+      with :kind, ['work_programm', 'tutorial']
       facet :kind, :zeros => true
       paginate :page => 1, :per_page => 100000
     end.facet(:kind).rows.each do |facet|
-      return "unprovided" if facet.count < 1
+      return 'unprovided' if facet.count < 1
     end
-    "provided"
+    'provided'
   end
 
 end

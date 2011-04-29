@@ -1,4 +1,5 @@
 # encoding: utf-8
+
 class Study < ActiveRecord::Base
   set_table_name :studies
 

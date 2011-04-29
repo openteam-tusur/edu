@@ -1,4 +1,5 @@
 # encoding: utf-8
+
 class Semester < ActiveRecord::Base
   set_table_name :semesters
 

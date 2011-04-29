@@ -17,11 +17,11 @@ class Student < Role
   protected
     def find_same_role
       unless self.class.pending.where(:group => self.group, :birthday => self.birthday, :human_id => self.human_id).empty?
-        self.errors[:base] << "Ваша заявка находится на рассмотрении"
+        self.errors[:base] << 'Ваша заявка находится на рассмотрении'
       end
 
       unless self.class.accepted.where(:group => self.group, :birthday => self.birthday, :human_id => self.human_id).empty?
-        self.errors[:base] << "Вы уже студент этой группы"
+        self.errors[:base] << 'Вы уже студент этой группы'
       end
     end
 end

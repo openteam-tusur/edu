@@ -10,10 +10,10 @@ class Human < ActiveRecord::Base
 
   has_many :roles, :dependent => :destroy
 
-  has_many :students, :class_name => 'Student'
-  has_many :employees, :class_name => 'Employee'
-  has_many :graduates, :class_name => 'Graduate'
-  has_many :coauthors, :class_name => 'Coauthor'
+  has_many :students
+  has_many :employees
+  has_many :graduates
+  has_many :coauthors
 
   validates_presence_of :surname, :name, :patronymic
   validates_presence_of :post, :if => :chair_id

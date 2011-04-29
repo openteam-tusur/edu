@@ -5,15 +5,15 @@ class Speciality < ActiveRecord::Base
 
   default_scope order("degree, code")
 
-  has_many :disciplines, :class_name => "Discipline", :dependent => :destroy
+  has_many :disciplines, :dependent => :destroy
 
-  has_many :curriculums, :class_name => "Curriculum", :dependent => :destroy
+  has_many :curriculums, :dependent => :destroy
   has_many :chairs, :through => :curriculums
 
-  has_one :licence, :class_name => "Licence", :dependent => :destroy
+  has_one :licence, :dependent => :destroy
   accepts_nested_attributes_for :licence
 
-  has_one :accreditation, :class_name => "Accreditation", :dependent => :destroy
+  has_one :accreditation, :dependent => :destroy
   accepts_nested_attributes_for :accreditation
 
   protected_parent_of :curriculums, :protects => :softly

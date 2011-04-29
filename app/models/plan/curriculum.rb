@@ -1,4 +1,5 @@
 # encoding: utf-8
+
 class Curriculum < Resource
   set_table_name :curriculums
 
@@ -77,17 +78,17 @@ class Curriculum < Resource
     self.since ? "#{self.since} года" : nil
   end
 
-private
+  private
 
-  def create_semesters
-    @semesters_count.to_i.times do |number|
-      self.semesters.find_or_create_by_number(number + 1)
+    def create_semesters
+      @semesters_count.to_i.times do |number|
+        self.semesters.find_or_create_by_number(number + 1)
+      end
     end
-  end
 
-  def reindex_specialities
-    speciality.solr_index!
-  end
+    def reindex_specialities
+      speciality.solr_index!
+    end
 
 end
 

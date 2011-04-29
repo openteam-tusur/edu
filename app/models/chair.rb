@@ -1,21 +1,24 @@
 # encoding: utf-8
+
 class Chair < ActiveRecord::Base
 
   belongs_to :faculty
 
   has_many :disciplines, :through => :specialities
-  has_many :studies, :class_name => "Study"
-  has_many :educations, :class_name => "Education", :through => :studies
+  has_many :studies
+  has_many :educations, :through => :studies
 
-  has_many :curriculums, :class_name => "Curriculum"
+  has_many :curriculums
   has_many :specialities, :through => :curriculums
 
   validates_presence_of :name, :abbr, :slug
   validates_uniqueness_of :slug, :abbr, :name
 
-  has_many  :accepted_roles_employees, :class_name => 'Employee',
+  has_many  :accepted_roles_employees,
             :conditions => {:state => "accepted"}
-  has_many  :employees, :class_name => "Human", :through => :accepted_roles_employees,
+
+  has_many  :employees,
+            :through => :accepted_roles_employees,
             :source => :human
 
   has_many :publications
@@ -48,7 +51,7 @@ class Chair < ActiveRecord::Base
     return human unless human.valid?
     if existed_human = Human.find_by_id(human.human_id)
       if existed_human.accepted_employee_in_chair(self)
-        human.errors[:base] << "Этот сотрудник уже есть на кафедре"
+        human.errors[:base] << 'Этот сотрудник уже есть на кафедре'
         return human
       end
       teacher = existed_human.employees.create!(:post => human.post, :chair_id => self.id)
@@ -74,7 +77,7 @@ class Chair < ActiveRecord::Base
 
   def update_employee(human_id, params)
     employee = find_employee(human_id)
-    employee.accepted_employee_in_chair(self).update_attribute(:post, params["post"]) if employee.update_attributes(params)
+    employee.accepted_employee_in_chair(self).update_attribute(:post, params['post']) if employee.update_attributes(params)
     employee
   end
 
@@ -112,7 +115,7 @@ class Chair < ActiveRecord::Base
   end
 
   def provided_studies_for_curriculum(curriculum)
-    studies.includes(:discipline).order("disciplines.name").where(:curriculum_id => curriculum)
+    studies.includes(:discipline).order('disciplines.name').where(:curriculum_id => curriculum)
   end
 
   Publication.enums[:kind].each do |kind|

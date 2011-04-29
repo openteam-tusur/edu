@@ -1,4 +1,5 @@
 # encoding: utf-8
+
 class Discipline < ActiveRecord::Base
   set_table_name :disciplines
 
@@ -9,7 +10,7 @@ class Discipline < ActiveRecord::Base
   has_many :studies
   has_many :educations, :through => :studies
 
-  default_scope order("disciplines.name")
+  default_scope order('disciplines.name')
 
   searchable do
     text :name

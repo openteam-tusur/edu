@@ -7,7 +7,7 @@ class Publication < Resource
 
   has_many :publication_disciplines, :dependent => :destroy,
                                      :include => :discipline,
-                                     :order => "disciplines.name"
+                                     :order => 'disciplines.name'
   has_many :disciplines, :through => :publication_disciplines
 
   has_many :used_books
