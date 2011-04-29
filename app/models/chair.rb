@@ -15,7 +15,8 @@ class Chair < ActiveRecord::Base
   validates_uniqueness_of :slug, :abbr, :name
 
   has_many  :accepted_roles_employees,
-            :conditions => {:state => "accepted"}
+            :class_name => 'Employee',
+            :conditions => {:state => 'accepted'}
 
   has_many  :employees,
             :through => :accepted_roles_employees,
@@ -23,7 +24,7 @@ class Chair < ActiveRecord::Base
 
   has_many :publications
 
-  default_scope order("id")
+  default_scope order('id')
 
   def to_param
     self.slug
