@@ -417,9 +417,9 @@ ru:
         duration: Срок обучения
         since: Действует с
         semesters_count: Количество семестров
-        study: Форма обучения
+        study_form: Форма обучения
         year: Год издания
-        study_enum:
+        study_form_enum:
           fulltime: очная
           parttime: очно-заочная
           postal: заочная

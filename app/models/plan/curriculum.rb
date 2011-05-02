@@ -17,15 +17,15 @@ class Curriculum < Resource
                         :include => :semester,
                         :order => 'semesters.number'
 
-  validates_presence_of :speciality, :study, :since
-  validates_uniqueness_of :study, :scope => [:speciality_id, :since, :chair_id, :profile]
+  validates_presence_of :speciality, :study_form, :since
+  validates_uniqueness_of :study_form, :scope => [:speciality_id, :since, :chair_id, :profile]
   validates_presence_of :access, :year, :attachment, :volume, :if => :need_all_resource_fields?
 
   protected_parent_of :educations, :protects => :softly
 
-  has_enum :study, %w[fulltime parttime postal]
+  has_enum :study_form, %w[fulltime parttime postal]
 
-  default_scope order('study')
+  default_scope order('study_form')
   scope :published,   where(:state => 'published')
   scope :unpublished, where(:state => 'unpublished')
 
@@ -33,19 +33,19 @@ class Curriculum < Resource
   after_create :create_semesters
 
   def study_with_since
-    "#{self.human_study} форма с #{self.since} г."
+    "#{self.human_study_form} форма с #{self.since} г."
   end
 
   def since_with_study_form
-    "учебный план набора #{self.since} года, #{self.human_study} форма обучения"
+    "учебный план набора #{self.since} года, #{self.human_study_form} форма обучения"
   end
 
   def speciality_with_curriculum
-    "#{speciality.short_title}, учебный план #{self.since} года, #{self.human_study} форма обучения"
+    "#{speciality.short_title}, учебный план #{self.since} года, #{self.human_study_form} форма обучения"
   end
 
   def title
-    "#{speciality.short_title} (#{self.human_study} форма) с #{self.since} г."
+    "#{speciality.short_title} (#{self.human_study_form} форма) с #{self.since} г."
   end
 
   def to_param
@@ -53,7 +53,7 @@ class Curriculum < Resource
   end
 
   def slug
-    "#{self.id}-#{self.speciality.code}-#{self.study}-#{self.since}"
+    "#{self.id}-#{self.speciality.code}-#{self.study_form}-#{self.since}"
   end
 
   def self.find_by_slug(slug)
@@ -93,12 +93,13 @@ class Curriculum < Resource
 end
 
 
+
 # == Schema Information
 #
 # Table name: curriculums
 #
 #  id            :integer         not null, primary key
-#  study         :string(255)
+#  study_form    :string(255)
 #  speciality_id :integer
 #  created_at    :datetime
 #  updated_at    :datetime

@@ -2,7 +2,7 @@
 
 <%= show_for @curriculum do |curriculum| %>
   <%= curriculum.attribute :since %>
-  <%= curriculum.attribute :study %>
+  <%= curriculum.attribute :study_form %>
   <%= curriculum.attribute :profile, :label => Curriculum.human_attribute_name("profile_#{curriculum.object.speciality.degree}") if curriculum.object.profile.present? %>
   <%= curriculum.attribute :duration %>
 <% end %>
@@ -20,7 +20,7 @@
       <% @curriculum.semesters.each do |semester| %>
         <td<%= semester.eql?(@semester) ? " class='current'" : ""%>>
           <%= link_to semester.number,
-                      speciality_curriculum_semester_path(@speciality, @curriculum, semester) %>
+                      speciality_curriculum_semester_path(@speciality, @curriculum, semester)%>
         </td>
       <% end %>
       <%= content_tag :td, "" unless @curriculum.semesters_count.even? %>
