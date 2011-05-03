@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class HumansController < InheritedResourcesController
+class HumansController < CrudController
   check_authorization
 
   load_resource :except => [:create, :show]

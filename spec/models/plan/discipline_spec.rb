@@ -14,8 +14,8 @@ describe Discipline do
   it "должна знать сгруппированные по форме обучения educations" do
     discipline = Factory.create(:discipline)
     fulltime_curriculum = Factory.create(:curriculum, :speciality => discipline.speciality)
-    postal_curriculum = Factory.create(:curriculum, :speciality => discipline.speciality, :study => "postal")
-    Factory.create(:curriculum, :speciality => discipline.speciality, :study => "parttime")
+    postal_curriculum = Factory.create(:curriculum, :speciality => discipline.speciality, :study_form => "postal")
+    Factory.create(:curriculum, :speciality => discipline.speciality, :study_form => "parttime")
     Factory.create(:education, :semester => fulltime_curriculum.semesters.first)
     study = Factory.create(:study, :discipline => discipline, :curriculum => fulltime_curriculum)
     fulltime_education_first = Factory.create(:education, :semester => fulltime_curriculum.semesters.first, :study => study)

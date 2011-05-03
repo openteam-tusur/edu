@@ -24,18 +24,18 @@ describe PublicationDiscipline do
   end
 
   it "должна группировать educations по формам обучения учебного плана" do
-    curriculum_1 = Factory.create(:curriculum, :study => "fulltime")
+    curriculum_1 = Factory.create(:curriculum, :study_form => "fulltime")
     study_1 = Factory.create(:study, :curriculum => curriculum_1)
     education_1_1 = Factory.create(:education, :semester => curriculum_1.semesters.first, :study => study_1)
     education_1_2 = Factory.create(:education, :semester => curriculum_1.semesters.second, :study => study_1)
     education_1_3 = Factory.create(:education, :semester => curriculum_1.semesters.last, :study => study_1)
 
-    curriculum_2 = Factory.create(:curriculum, :speciality => curriculum_1.speciality, :study => "postal")
+    curriculum_2 = Factory.create(:curriculum, :speciality => curriculum_1.speciality, :study_form => "postal")
     study_2 = Factory.create(:study, :curriculum => curriculum_2)
     education_2_1 = Factory.create(:education, :semester => curriculum_2.semesters.first, :study => study_2)
     education_2_2 = Factory.create(:education, :semester => curriculum_2.semesters.second, :study => study_2)
 
-    curriculum_3 = Factory.create(:curriculum, :speciality => curriculum_1.speciality, :study => "parttime")
+    curriculum_3 = Factory.create(:curriculum, :speciality => curriculum_1.speciality, :study_form => "parttime")
 
     publication = Factory.create(:publication)
     publication_discipline = publication.publication_disciplines.create!(:discipline => education_1_1.discipline, :education_ids => [education_1_1.id, education_1_2.id, education_2_1.id])

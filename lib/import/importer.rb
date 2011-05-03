@@ -39,7 +39,7 @@ module Import
         attributes = @parser.curriculum_attributes
 
         @curriculum = Curriculum.create!(:since => attributes[:since],
-                                         :study => attributes[:study],
+                                         :study_form => attributes[:study],
                                          :semesters_count => attributes[:semesters_count],
                                          :speciality_id => @speciality.id,
                                          :chair_id => @chair.id)

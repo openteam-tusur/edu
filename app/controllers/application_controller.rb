@@ -1,5 +1,6 @@
-class ApplicationController < ActionController::Base
+# encoding: utf-8
 
+class ApplicationController < ActionController::Base
   layout 'user'
 
   protect_from_forgery
@@ -13,11 +14,9 @@ class ApplicationController < ActionController::Base
     render :file => 'common/main.html.erb', :layout => 'application'
   end
 
-protected
-
+  protected
     def redirect_to_root_with_access_denied_message
       redirect_to root_url, :alert => t( :access_denied )
     end
-
 end
 

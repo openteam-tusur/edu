@@ -132,10 +132,10 @@ describe Chair do
       speciality_s_210040 = Factory.create(:speciality, :degree => "specialist", :code => "210040")
       fulltime_curriculum =  Factory.create(:curriculum,
                                             :speciality => speciality_s_210040,
-                                            :study => "fulltime")
+                                            :study_form => "fulltime")
       parttime_curriculum =  Factory.create(:curriculum,
                                             :speciality => speciality_s_210040,
-                                            :study => "parttime")
+                                            :study_form => "parttime")
       Factory.create(:education,
               :semester => fulltime_curriculum.semesters.first,
               :study => Factory.create(:study, :chair => @chair, :curriculum => fulltime_curriculum))
@@ -158,7 +158,7 @@ describe Chair do
       speciality = Factory.create(:speciality, :degree => "specialist", :code => "210040")
       fulltime_curriculum =  Factory.create(:curriculum,
                                             :speciality => speciality,
-                                            :study => "fulltime")
+                                            :study_form => "fulltime")
       education_1 = Factory.create( :education,
                                     :semester => fulltime_curriculum.semesters.first,
                                     :study => Factory.create(:study, :chair => @chair, :curriculum => fulltime_curriculum))

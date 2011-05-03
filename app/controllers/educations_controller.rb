@@ -1,4 +1,4 @@
-class EducationsController < InheritedResourcesController
+class EducationsController < CrudController
 
   load_and_authorize_resource
 

@@ -1,4 +1,3 @@
-#source 'http://gems.openteam.ru'
 source 'http://rubygems.org'
 
 group :production do

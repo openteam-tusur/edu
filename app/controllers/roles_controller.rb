@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class RolesController < InheritedResourcesController
+class RolesController < CrudController
 
   check_authorization
 

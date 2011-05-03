@@ -1,4 +1,4 @@
-class StudiesController < InheritedResourcesController
+class StudiesController < CrudController
   load_resource
 
   defaults :resource_class => Study,
