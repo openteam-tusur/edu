@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class SemestersController < CrudController
   load_resource
 

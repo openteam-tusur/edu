@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class CurriculumsController < CrudController
   load_resource :class => Curriculum
 

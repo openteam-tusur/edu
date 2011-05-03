@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class TrainingController < CrudController
   def index
     @specialities_facets = Speciality.search.facet(:degree).rows
