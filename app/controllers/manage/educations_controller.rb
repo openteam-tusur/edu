@@ -2,9 +2,6 @@ class Manage::EducationsController < Manage::ApplicationController
 
   load_and_authorize_resource
 
-  defaults :resource_class => Education,
-           :instance_name => 'education'
-
   actions :all, :except => [:show, :index]
 
   belongs_to :chair, :finder => :find_by_slug do

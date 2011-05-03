@@ -1,9 +1,8 @@
 # encoding: utf-8
 
 class Manage::PublicationsController < Manage::ApplicationController
-
-  load_resource :except => :get_fields
-  authorize_resource :class=> Publication
+  load_resource      :except => :get_fields
+  authorize_resource :class  => 'Publication'
 
   custom_actions :resource => [:transit, :delete]
 

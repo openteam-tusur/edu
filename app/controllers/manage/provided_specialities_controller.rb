@@ -1,6 +1,6 @@
 # encoding: utf-8
 class Manage::ProvidedSpecialitiesController < Manage::ApplicationController
-  load_and_authorize_resource :class => "Chair"
+  load_and_authorize_resource :class => 'Chair'
   actions :only => []
 
   belongs_to :chair, :finder => :find_by_slug

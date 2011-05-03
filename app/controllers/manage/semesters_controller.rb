@@ -2,9 +2,7 @@ class Manage::SemestersController < Manage::ApplicationController
 
   load_and_authorize_resource
 
-  defaults :resource_class => Semester,
-           :instance_name => :semester,
-           :finder => :find_by_number
+  defaults :finder => :find_by_number
 
   actions :all, :except => [:index]
 
