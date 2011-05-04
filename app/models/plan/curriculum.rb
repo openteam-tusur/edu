@@ -29,6 +29,8 @@ class Curriculum < Resource
   scope :published,   where(:state => 'published')
   scope :unpublished, where(:state => 'unpublished')
 
+  delegate :title, :to => :speciality, :prefix => true
+
   after_save :reindex_specialities
   after_create :create_semesters
 

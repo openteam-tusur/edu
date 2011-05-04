@@ -8,6 +8,5 @@
                   :rel => "tipsy",
                   :title => simple_format(item.comment).gilensize.gsub(/"/, "'") unless item.comment.blank? %>
   <%= link_to item, manage_chair_publication_path(@chair, item) %>
-  <%= render :partial => "shared/resource_link", :locals => {:resource => item} %>
 </div>
 

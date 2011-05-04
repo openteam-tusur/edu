@@ -8,6 +8,6 @@ class Manage::ProvidedDisciplinesController < Manage::ApplicationController
 
   def index
     @curriculum = Curriculum.find_by_slug(params[:curriculum_id])
-    @studies = @chair.provided_studies_for_curriculum(@curriculum)
+    @educations_by_semesters = @chair.provided_educations_for_curriculum_grouped_by_semesters(@curriculum)
   end
 end
