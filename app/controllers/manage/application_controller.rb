@@ -13,5 +13,10 @@ class Manage::ApplicationController < CrudController
     def verify_admin
       redirect_to_root_with_access_denied_message unless current_user && current_user.roles.include?(:admin)
     end
+
+  protected
+    def self.template_lookup_path(param = nil)
+      ["crud/manage/#{name.demodulize.gsub(/Controller$/, '').underscore}"] + super
+    end
 end
 
