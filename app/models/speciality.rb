@@ -32,7 +32,7 @@ class Speciality < ActiveRecord::Base
     end
 
     text :study do
-      curriculums.published.map { |cur| "#{Curriculum.human_enums[:study][cur.study.to_sym]}"}.join(' ')
+      curriculums.published.map { |cur| "#{Curriculum.human_enums[:study_form][cur.study_form.to_sym]}"}.join(' ')
     end
 
     text :title
