@@ -4,11 +4,9 @@ Portal::Application.routes.draw do
   resources :humans, :only => [:index, :show]
 
   resource :human, :except => [:index, :delete, :destroy], :path => '/profile' do
-    namespace :roles do
-      resources :graduates, :only => [:new, :create]
-      resources :students,  :only => [:new, :create]
-      resources :employees, :only => [:new, :create]
-    end
+    resources :graduates, :only => [:new, :create]
+    resources :students,  :only => [:new, :create]
+    resources :employees, :only => [:new, :create]
   end
 
   match '/profile'  => 'humans#show', :as => :profile, :method => :get

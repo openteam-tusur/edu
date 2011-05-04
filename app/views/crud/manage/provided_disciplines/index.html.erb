@@ -1,0 +1,36 @@
+<% title @curriculum.title %>
+
+<%= show_for @curriculum.speciality do |speciality| %>
+  <fieldset class="pictorial">
+    <%= speciality.attribute :title %>
+  </fieldset>
+<% end %>
+
+<div class="disciplines">
+  <% @studies.each do |study| %>
+    <h2><%= study.discipline.name %></h2>
+    <% unless study.educations.empty? %>
+      <div class="tabs">
+        <ul>
+          <% study.educations.each do |education| %>
+            <li><a href="#semester-<%= education.semester.id %>"><%= education.semester.title %></a></li>
+          <% end %>
+        </ul>
+        <% study.educations.each do |education| %>
+          <div id="semester-<%= education.semester.id %>">
+            <!--
+            <strong class="<%= education.provided_class %>"><%= education.semester.title %></strong>
+            -->
+            <% education.grouped_publications.each do |kind, publications| %>
+              <p><%= t("activerecord.attributes.publication.kind_enum.#{kind}") %></p>
+              <% publications.each do |publication| %>
+                <%= render :partial => "crud/manage/publications/item", :locals => {:item => publication} %>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+

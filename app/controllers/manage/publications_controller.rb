@@ -32,7 +32,7 @@ class Manage::PublicationsController < Manage::ApplicationController
     params[:publication].delete("authors_attributes")
     params[:publication].delete("attachment_attributes")
     @publication = Publication.new(params[:publication])
-    render :partial => "/manage/publications/fields"
+    render :partial => "crud/manage/publications/fields"
   end
 
   def to_report

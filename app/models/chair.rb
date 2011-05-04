@@ -26,6 +26,7 @@ class Chair < ActiveRecord::Base
 
   default_scope order('id')
 
+
   def to_param
     self.slug
   end
@@ -37,6 +38,7 @@ class Chair < ActiveRecord::Base
   def display_name
     "#{self.abbr} - #{self.name}"
   end
+  alias :to_s :display_name
 
   def grouped_specialities
     grouped = {}

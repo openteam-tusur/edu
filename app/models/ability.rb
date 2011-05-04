@@ -12,6 +12,7 @@ class Ability
       can :manage, :all
     end
 
+    cannot [:create, :edit, :delete, :destroy, :new], Chair
     can :manage, Human,    :user_id  => user.id
     can :manage, Student,  :human_id => user.human.id if user.human
     can :manage, Employee, :human_id => user.human.id if user.human

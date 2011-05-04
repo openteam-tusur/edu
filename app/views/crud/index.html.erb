@@ -1,0 +1,14 @@
+<% if collection.any? %>
+  <div id="<%= resource_class.name.downcase.pluralize %>_list">
+    <ul>
+      <% collection.each do |item| %>
+        <li>
+          <%= render :partial => 'item', :locals => { :item => item } %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= link_to t("#{resource_class.name.downcase}.add"), new_resource_path, :class => 'button' if can?(:new, resource_class) %>
+

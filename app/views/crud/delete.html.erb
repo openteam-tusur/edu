@@ -1,0 +1,17 @@
+<%= render :partial => 'delete' %>
+
+<% if resource.protected? %>
+  <p>Нельзя удалить этот объект, пока существуют связанные объекты</p>
+<% else %>
+  <p>Вы уверены что хотите удалить?</p>
+<% end %>
+
+<%= semantic_form_for resource, :url => resource_path, :html => {:method => :delete} do |form| %>
+  <%= form.error_messages %>
+  <%= form.buttons do %>
+    <%= form.commit_button :label => t(:destroy),
+                           :button_html => { :class => "button red", :disabled => resource.protected? } %>
+    <li><%= link_to t(:cancel), smart_resource_url, :class => "button light" %></li>
+  <% end %>
+<% end %>
+

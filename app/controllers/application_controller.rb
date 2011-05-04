@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class ApplicationController < ActionController::Base
-  layout 'user'
+  layout 'frontend'
 
   protect_from_forgery
 
@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   def main_page
-    render :file => 'common/main.html.erb', :layout => 'application'
+    render :file => 'shared/main.html.erb', :layout => 'application'
   end
 
   protected

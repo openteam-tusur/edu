@@ -3,7 +3,7 @@
 class Manage::ApplicationController < CrudController
   check_authorization
 
-  layout 'manage'
+  layout 'backend'
 
   custom_actions :resource => :delete
 

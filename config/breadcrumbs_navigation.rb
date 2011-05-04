@@ -6,15 +6,15 @@ SimpleNavigation::Configuration.run do |navigation|
                  root_path do |secondary|
 
       secondary.item :sign_in,
-                     t('title.users/sessions.new'),
+                     t('title.devise/sessions.new'),
                      user_session_path
 
       secondary.item :sign_up,
-                     t('title.users/registrations.new'),
+                     t('title.devise/registrations.new'),
                      new_user_registration_path
 
       secondary.item :password_new,
-                     t('title.users/passwords.new'),
+                     t('title.devise/passwords.new'),
                      new_user_password_path
 
       secondary.item :training,
@@ -63,32 +63,32 @@ SimpleNavigation::Configuration.run do |navigation|
                      new_human_path
 
         profile.item :edit_user,
-                     t('title.users/registrations.edit'),
+                     t('title.devise/registrations.edit'),
                      edit_user_registration_path
 
-        if @roles_student
+        if @student
           profile.item :new_student_role,
-                       t('title.roles/students.new'),
-                       new_human_roles_student_path
+                       t('title.students.new'),
+                       new_human_student_path
 
           profile.item :new_student_role,
-                       t('title.roles/students.new'),
-                       human_roles_students_path if params[:action] == "create" && params[:controller] == "roles/students"
+                       t('title.students.new'),
+                       human_students_path if params[:action] == "create" && params[:controller] == "students"
          end
 
-        if @roles_graduate
+        if @graduate
           profile.item :new_graduate_role,
-                       t('title.roles/graduates.new'),
-                       new_human_roles_graduate_path
+                       t('title.graduates.new'),
+                       new_human_graduate_path
 
           profile.item :new_graduate_role,
-                       t('title.roles/graduates.new'),
-                       human_roles_graduates_path if params[:action] == "create" && params[:controller] == "roles/graduates"
+                       t('title.graduates.new'),
+                       human_graduates_path if params[:action] == "create" && params[:controller] == "graduates"
          end
 
         profile.item :new_employee_role,
-                     t('title.roles/employees.new'),
-                     new_human_roles_employee_path
+                     t('title.employees.new'),
+                     new_human_employee_path
       end
 
       secondary.item :humans,

@@ -1,0 +1,85 @@
+<% title "#{@publication.title} — #{@publication.human_kind}" %>
+
+<ul class="resource_action">
+  <%= render :partial => "crud/manage/common/resource_state", :locals => { :resource => @publication } %>
+  <li class="extended_kind"><%= @publication.extended_kind %></li>
+</ul>
+
+<div class="publication">
+
+  <%= show_for resource, :id => 'publication_comment' do |publication| %>
+    <%= publication.attribute :comment do %>
+      <%= simple_format(@publication.comment).gilensize %>
+    <% end %>
+  <% end unless @publication.comment.blank? %>
+
+  <%= render :partial => "crud/manage/common/resource", :locals => { :resource => @publication } %>
+
+  <div class="additional">
+    <h2>Дополнительно</h2>
+    <%= show_for @publication, :id => 'additional_attributes' do |publication| %>
+      <fieldset class="pictorial">
+        <% @publication.fields_for_kind.each do |attribute| %>
+          <% if attribute == :annotation || attribute == :content || attribute.eql?(:stamp) %>
+            <%= publication.attribute attribute do %>
+              <%= @publication.send(attribute).blank? ? simple_format("не указано") : simple_format(@publication.send(attribute)).gilensize %>
+            <% end %>
+          <% else %>
+            <%= publication.attribute attribute %>
+          <% end %>
+        <% end %>
+      </fieldset>
+    <% end %>
+
+  </div>
+
+  <% if @publication.kind == 'work_programm' %>
+    <div>
+      <h2>Используемая литература</h2>
+      <fieldset class="list_used_book">
+        <% @publication.used_books.each do |used_book| %>
+          <%= show_for used_book do |item| %>
+            <%= item.attributes :title, :kind %>
+            <% used_publication = Publication.find(item.object.publication_code) %>
+            <%= item.attribute :publication_code do
+              link_to used_publication, publication_path(used_publication)
+            end %>
+            <%= item.attributes :library_code, :quantity %>
+          <% end %>
+        <% end %>
+      </fieldset>
+    </div>
+  <% end %>
+
+  <ul class="resource_action">
+    <li><%= link_to t(:edit), edit_resource_path(@publication), :class => "button" %></li>
+    <li><%= link_to 'Лицензионный договор', to_report_manage_chair_publication_path(@chair, @publication), :class => "button" %></li>
+  </ul>
+
+  <div class='disciplines'>
+    <h2>Дисциплины</h2>
+    <% unless @publication.publication_disciplines.empty? %>
+      <% @publication.grouped_disciplines.each do |speciality, publication_disciplines| %>
+        <p class="speciality_name"><%= speciality.autocomplete_value %></p>
+        <% publication_disciplines.each do |publication_discipline| %>
+          <p class="discipline_name">
+            <%= publication_discipline.discipline.name %>
+            <%= link_to t(:edit), edit_manage_chair_publication_publication_discipline_path(@chair, @publication, publication_discipline), :class => "edit" %>
+          </p>
+          <ul class="educations">
+          <% publication_discipline.educations_grouped_by_curriculums.each do |curriculum, educations| %>
+            <li>
+              <%= curriculum.human_study_form %>:
+              <%= educations.collect(&:semester).collect(&:number).join(", ") %>
+              <%= t("semester.associate_publications", :count => educations.size) %>
+            </li>
+          <% end %>
+          </ul>
+        <% end %>
+      <% end %>
+    <% end %>
+    <p><%= link_to "Добавить дисциплину", new_manage_chair_publication_publication_discipline_path(@chair, @publication), :class => 'button' %></p>
+  </div>
+
+</div>
+

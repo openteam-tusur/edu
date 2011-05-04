@@ -58,7 +58,7 @@ class AutocompletesController < ApplicationController
     @publication_discipline = PublicationDiscipline.new(:discipline_id => discipline.id)
     @grouped_educations = discipline.educations_grouped_by_curriculums
     render :text => "Обучения для этой дисциплины не запланировано" and return if @grouped_educations.empty?
-    render :partial => "manage/publication_disciplines/discipline_educations", :layout => false
+    render :partial => "crud/manage/publication_disciplines/discipline_educations", :layout => false
   end
 
 private
