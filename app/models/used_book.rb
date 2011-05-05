@@ -8,6 +8,10 @@ class UsedBook < ActiveRecord::Base
   attr_accessor :publication_title
 
   has_enum :kind
+
+  def to_s
+    title
+  end
 end
 
 

@@ -225,13 +225,13 @@ SimpleNavigation::Configuration.run do |navigation|
       # / УМО
 
       # Обеспечиваемые дисциплины
-      chair.item :provided_specialities,
-                 t("title.manage/provided_specialities.index"),
-                 manage_chair_provided_specialities_path(@chair) do |provided_specialities|
+      chair.item :grouped_provided_specialities,
+                 t("title.manage/grouped_provided_specialities.index"),
+                 manage_chair_grouped_provided_specialities_path(@chair) do |provided_specialities|
 
         provided_specialities.item :provided_curriculum,
                "#{@curriculum.chair.abbr} - #{@curriculum.speciality.title} - #{@curriculum.title}",
-                manage_chair_provided_disciplines_path(@chair, @curriculum) if @curriculum && !@curriculum.new_record?
+                manage_chair_curriculum_provided_educations_grouped_by_semesters_path(@chair, @curriculum) if @curriculum && !@curriculum.new_record?
       end
     end if @chair
 

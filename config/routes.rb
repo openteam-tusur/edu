@@ -49,6 +49,8 @@ Portal::Application.routes.draw do
     end
 
     resources :chairs, :only => [:index, :show] do
+      resources :grouped_provided_specialities
+      resources :grouped_specialities
       resources :employees, :except => :show
 
       resources :publications do
@@ -58,6 +60,8 @@ Portal::Application.routes.draw do
       end
 
       resources :curriculums do
+        resources :provision_educations_grouped_by_semesters
+        resources :provided_educations_grouped_by_semesters
         put :transit, :on => :member
 
         resources :studies, :except => [:index, :show]
@@ -68,11 +72,6 @@ Portal::Application.routes.draw do
       end
     end
 
-    match 'chairs/:chair_id/provided_specialities' => 'provided_specialities#index',
-          :as => :chair_provided_specialities
-
-    match 'chairs/:chair_id/:curriculum_id/provided_disciplines' => 'provided_disciplines#index',
-          :as => :chair_provided_disciplines
 
     root :to => 'chairs#index'
   end

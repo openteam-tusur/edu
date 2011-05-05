@@ -117,17 +117,6 @@ class Chair < ActiveRecord::Base
     curriculum.educations.where(:study_id => studies)
   end
 
-  def provided_educations_for_curriculum_grouped_by_semesters(curriculum)
-    grouped = {}
-    curriculum.semesters.each do |semester|
-      semester.educations.each do |education|
-        grouped[semester] ||= []
-        grouped[semester] << education if education.chair.eql?(curriculum.chair)
-      end
-    end
-    grouped
-  end
-
   Publication.enums[:kind].each do |kind|
     class_eval <<-END
       def provided_curriculum_by_#{kind}(curriculum)
