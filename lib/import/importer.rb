@@ -25,7 +25,8 @@ module Import
 
       def find_or_create_speciality
         @speciality = Speciality.find_or_initialize_by_code(@parser.speciality_attributes[:code])
-        @speciality.update_attributes(@parser.speciality_attributes)
+        @speciality.attributes = @parser.speciality_attributes
+        @speciality.save(:validate => false)
       end
 
       def find_or_create_curriculum
