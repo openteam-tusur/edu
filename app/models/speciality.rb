@@ -51,7 +51,12 @@ class Speciality < ActiveRecord::Base
 
         facet :chair_id, :zeros => true, :exclude => chair_filter, :sort => :index
         facet :degree, :zeros => true, :exclude => degree_filter, :sort => :index
+        paginate :page => options[:page], :per_page => Speciality.per_page
     end
+  end
+
+  def self.per_page
+   10
   end
 
   def title
