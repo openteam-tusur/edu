@@ -233,6 +233,15 @@ SimpleNavigation::Configuration.run do |navigation|
                "#{@curriculum.chair.abbr} - #{@curriculum.speciality.title} - #{@curriculum.title}",
                 manage_chair_curriculum_provided_educations_grouped_by_semesters_path(@chair, @curriculum) if @curriculum && !@curriculum.new_record?
       end
+
+      # Книгообеспеченность
+      chair.item :grouped_specialities,
+                 t("title.manage/grouped_specialities.index"),
+                 manage_chair_grouped_specialities_path(@chair) do |provision_specialities|
+        provision_specialities.item :provision_curriculum,
+                 "#{@curriculum.title}",
+                 manage_chair_curriculum_provision_educations_grouped_by_semesters_path(@chair, @curriculum) if @curriculum && !@curriculum.new_record?
+      end
     end if @chair
 
     end

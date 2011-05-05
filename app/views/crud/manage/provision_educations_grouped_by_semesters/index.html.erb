@@ -1,4 +1,4 @@
-<% title 'Обеспечиваемые дисциплины' %>
+<% title 'Книгообеспеченность' %>
 
 <%= show_for @curriculum do |curriculum| %>
   <fieldset class="pictorial">
@@ -7,7 +7,7 @@
   </fieldset>
 <% end %>
 
-<div class="provided_disciplines">
+<div class="provision_disciplines">
   <% collection.each do |semester, educations| %>
     <div class='semester_block'>
       <h2><%= semester.title %></h2>
@@ -20,13 +20,34 @@
                 <% education.grouped_publications['work_programm'].each do |publication|%>
                   <%= render :partial => "crud/manage/publications/item", :locals => {:item => publication}%>
                   <% publication.used_books.group_by(&:human_kind).each do |kind, used_books| %>
-                    <h5><%= kind %></h5>
-                    <% used_books.each do |used_book|  %>
-                      <%= show_for used_book do |item|%>
-                        <%= item.attributes :title, :library_code, :quantity%>
-                        <%= link_to 'Публикация на портале' , publication_path(used_book)%>
-                      <% end%>
-                    <% end %>
+                    <h4><%= "#{kind} литература" %></h4>
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Название</th>
+                            <th>Код в библиотеке</th>
+                            <th>Кол-во экземпляров</th>
+                            <th>Публикация на портале</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          <% used_books.each do |used_book|  %>
+                            <%= show_for used_book, :show_for_tag => :tr do |item|%>
+                              <td class='title'><%= item.value :title %></td>
+                              <td><%= item.value :library_code %></td>
+                              <td><%= item.value :quantity %></td>
+                              <td>
+                                <% if used_book.publication_code %>
+                                  <%= link_to 'есть', publication_path(used_book.publication_code) %>
+                                <% else %>
+                                  нет
+                                <% end %>
+                              </td>
+                            <% end %>
+                          <% end %>
+                        </tbody>
+                      </table>
                   <% end %>
                 <% end%>
               <% else %>

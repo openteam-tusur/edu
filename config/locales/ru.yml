@@ -185,7 +185,7 @@ ru:
       index: Книгообеспеченность
 
     manage/grouped_specialities:
-      index: Книгообеспеченность
+      index: Учебные планы
 
     provided_specialities:
       index: Обеспечиваемые дисциплины

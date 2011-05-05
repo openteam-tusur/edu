@@ -1,11 +1,15 @@
-<% collection.each do |degree, specialities| %>
-  <h2><%= t "noun_#{degree}" %></h2>
-  <% specialities.each do |speciality, curriculums|%>
-    <h4><%= speciality.short_title%></h4>
-    <ul>
-      <% curriculums.each do |curriculum| %>
-        <li><%= link_to curriculum.since_with_study_form, manage_chair_curriculum_provision_educations_grouped_by_semesters_path(@chair, curriculum) %></li>
-      <% end %>
-    </ul>
-  <% end%>
-<% end %>
+<div class="grouped_specialities">
+  <% collection.each do |degree, specialities| %>
+    <div>
+      <h2><%= t "noun_#{degree}" %></h2>
+      <% specialities.each do |speciality, curriculums|%>
+        <h4><%= speciality.short_title%></h4>
+        <ul>
+          <% curriculums.each do |curriculum| %>
+            <li><%= link_to curriculum.since_with_study_form, manage_chair_curriculum_provision_educations_grouped_by_semesters_path(@chair, curriculum) %></li>
+          <% end %>
+        </ul>
+      <% end%>
+    </div>
+  <% end %>
+</div>
