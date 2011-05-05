@@ -11,7 +11,7 @@ describe Import::Importer do
     load_chairs
   end
 
-  it 'должен  создавать новую специальность' do
+  it 'должен создавать новую специальность' do
     importer.import
 
     Speciality.count.should be 1
@@ -38,7 +38,7 @@ describe Import::Importer do
 
   describe 'при повторном импорте для существующего учебного плана' do
     it 'должен создавать дисциплины, которых раньше не было' do
-
+      importer.import
     end
   end
 end
