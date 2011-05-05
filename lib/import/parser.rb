@@ -23,7 +23,7 @@ module Import
     def curriculum_attributes
       { :semesters_count => curriculum_semesters_count,
         :since => curriculum_since,
-        :study => curriculum_study }
+        :study_form => curriculum_study }
     end
 
     def attributes_for_studies_and_educations

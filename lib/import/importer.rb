@@ -23,26 +23,18 @@ module Import
       end
 
       def find_or_create_speciality
-        attributes = @parser.speciality_attributes
-
-        @speciality ||= Speciality.find_by_code(attributes[:code])
+        @speciality ||= Speciality.find_by_code(@parser.speciality_attributes[:code])
 
         unless @speciality
-          @speciality = Speciality.create!(:code => attributes[:code],
-                                           :degree => attributes[:degree],
-                                           :name => attributes[:name],
-                                           :qualification => attributes[:qualification])
+          @speciality = Speciality.create!(@parser.speciality_attributes)
         end
       end
 
       def create_curriculum
-        attributes = @parser.curriculum_attributes
-
-        @curriculum = Curriculum.create!(:since => attributes[:since],
-                                         :study_form => attributes[:study],
-                                         :semesters_count => attributes[:semesters_count],
-                                         :speciality_id => @speciality.id,
-                                         :chair_id => @chair.id)
+        @curriculum = Curriculum.create!(@parser.curriculum_attributes.merge({
+          :speciality_id => @speciality.id,
+          :chair_id => @chair.id
+        }))
       end
 
       def create_studies_with_educations
@@ -62,9 +54,9 @@ module Import
         chair = Chair.find_by_slug(attributes[:chair_slug])
 
         study = Study.create!(:discipline_name => attributes[:discipline_name],
-                                    :cycle_id => cycle.id,
-                                    :chair_id => chair.id,
-                                    :curriculum_id => @curriculum.id)
+                              :cycle_id => cycle.id,
+                              :chair_id => chair.id,
+                              :curriculum_id => @curriculum.id)
       end
 
       def create_educations_for_study(study, attributes)
