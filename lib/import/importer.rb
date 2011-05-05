@@ -12,7 +12,7 @@ module Import
       ActiveRecord::Base.transaction do
         find_profiled_chair
         find_or_create_speciality
-        create_curriculum
+        find_or_create_curriculum
         create_studies_with_educations
       end
     end
@@ -23,18 +23,14 @@ module Import
       end
 
       def find_or_create_speciality
-        @speciality ||= Speciality.find_by_code(@parser.speciality_attributes[:code])
-
-        unless @speciality
-          @speciality = Speciality.create!(@parser.speciality_attributes)
-        end
+        @speciality = Speciality.find_or_initialize_by_code(@parser.speciality_attributes[:code])
+        @speciality.update_attributes(@parser.speciality_attributes)
       end
 
-      def create_curriculum
-        @curriculum = Curriculum.create!(@parser.curriculum_attributes.merge({
-          :speciality_id => @speciality.id,
-          :chair_id => @chair.id
-        }))
+      def find_or_create_curriculum
+        @curriculum = @speciality.curriculums.send("study_form_#{@parser.curriculum_attributes[:study_form]}").
+          find_or_initialize_by_since(@parser.curriculum_attributes[:since])
+        @curriculum.update_attributes(@parser.curriculum_attributes.merge(:chair_id => @chair.id))
       end
 
       def create_studies_with_educations

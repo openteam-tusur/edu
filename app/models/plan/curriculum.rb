@@ -23,7 +23,7 @@ class Curriculum < Resource
 
   protected_parent_of :educations, :protects => :softly
 
-  has_enum :study_form, %w[fulltime parttime postal]
+  has_enum :study_form, %w[fulltime parttime postal], :scopes => true
 
   default_scope order('study_form')
   scope :published,   where(:state => 'published')
