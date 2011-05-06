@@ -2,15 +2,13 @@
 
 module Import
   class Parser
-    def initialize(path, chairs_from, study = 'fulltime', with_practics = true, encoding = 'cp1251')
+    def initialize(path, chairs_from, study_form = 'fulltime', with_practics = true, encoding = 'cp1251')
       @doc = Nokogiri::XML(File.open(path))
       @doc.encoding = encoding
 
       @chair_slugs = YAML.load_file(Rails.root.join("config", "chairs.yml"))['chairs'][chairs_from]
 
-      @study = study
-
-      @with_practics = with_practics
+      @study_form, @with_practics = study_form, with_practics
     end
 
     def speciality_attributes
@@ -23,7 +21,7 @@ module Import
     def curriculum_attributes
       { :semesters_count => curriculum_semesters_count,
         :since => curriculum_since,
-        :study => curriculum_study }
+        :study_form => curriculum_study_form }
     end
 
     def attributes_for_studies_and_educations
@@ -79,8 +77,8 @@ module Import
         @doc.xpath('//Документ/План/Титул/Квалификации/Квалификация').first.attr('СрокОбучения').to_i * 2
       end
 
-      def curriculum_study
-        @study
+      def curriculum_study_form
+        @study_form
       end
 
       def curriculum_since

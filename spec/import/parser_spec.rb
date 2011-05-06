@@ -5,23 +5,23 @@ require 'spec_helper'
 describe Import::Parser do
   let(:parser) { Import::Parser.new(File.expand_path('../../data/master.plm.xml', __FILE__), 'aoi') }
 
-  it 'должен правильно определяться slug профилирующей кафедры' do
+  it 'должен определяться slug профилирующей кафедры' do
     parser.profiled_chair_slug.should eql 'aoi'
   end
 
-  it 'должны подготавливаться аттрибуты для специальности' do
+  it 'должнен подготавливать аттрибуты для специальности' do
     parser.speciality_attributes[:code].should eql '081100.68'
     parser.speciality_attributes[:degree].should eql 'master'
     parser.speciality_attributes[:name].should eql 'Государственное и муниципальное управление'
     parser.speciality_attributes[:qualification].should eql 'Магистр'
   end
 
-  it 'должен  подготавливать аттрибуты для учебного план' do
+  it 'должен подготавливать аттрибуты для учебного план' do
     parser.curriculum_attributes[:semesters_count].should be 4
     parser.curriculum_attributes[:since].should eql '2011'
   end
 
-  it 'должны подготавливаться атрибуты для studies и educations' do
+  it 'должнен подготавливать атрибуты для studies и educations' do
     array = parser.attributes_for_studies_and_educations
     array.size.should be 32
 
@@ -42,7 +42,7 @@ describe Import::Parser do
     array[28][:semesters][2].should eql ['test']
   end
 
-  it 'должны подготавливаться атрибуты для практик' do
+  it 'должен подготавливать атрибуты для практик' do
     array = parser.attributes_for_studies_and_educations
 
     array[30][:discipline_name].should eql 'Производственная практика'

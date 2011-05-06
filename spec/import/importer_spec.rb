@@ -11,7 +11,7 @@ describe Import::Importer do
     load_chairs
   end
 
-  it 'должен  создавать новую специальность' do
+  it 'должен создавать новую специальность' do
     importer.import
 
     Speciality.count.should be 1
@@ -34,6 +34,12 @@ describe Import::Importer do
 
     Curriculum.first.speciality.should eql Speciality.first
     Curriculum.first.chair.should eql Chair.find_by_slug('aoi')
+  end
+
+  describe 'при повторном импорте для существующего учебного плана' do
+    it 'должен создавать дисциплины, которых раньше не было' do
+      importer.import
+    end
   end
 end
 
