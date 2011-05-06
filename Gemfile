@@ -1,4 +1,5 @@
-source 'http://rubygems.org'
+source 'http://gems.openteam.ru'
+#source 'http://rubygems.org'
 
 group :production do
   gem 'exception_notification_rails3',  :require => 'exception_notifier'
