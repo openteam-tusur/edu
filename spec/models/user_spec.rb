@@ -7,9 +7,9 @@ describe User do
   it 'должен знать свои подтвержденые роли' do
     user = Factory.create(:user)
     user.human.save
-    user.human.roles << Roles::Admin.new(:title => 'Администратор',
-                                          :slug => 'admin',
-                                          :state => 'accepted')
+    user.human.roles << Admin.new(:title => 'Администратор',
+                                  :slug => 'admin',
+                                  :state => 'accepted')
 
     user.reload.roles.should eql [:admin]
   end

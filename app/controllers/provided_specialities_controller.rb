@@ -1,5 +1,6 @@
 # encoding: utf-8
-class ProvidedSpecialitiesController < InheritedResources::Base
+
+class ProvidedSpecialitiesController < CrudController
   load_and_authorize_resource :class => "Chair"
   actions :index, :show
 

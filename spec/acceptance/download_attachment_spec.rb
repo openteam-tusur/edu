@@ -4,7 +4,7 @@ require File.dirname(__FILE__) + '/acceptance_helper'
 feature "Скачивание файлов" do
 
   before(:each) do
-    @curriculum = Factory.create(:plan_curriculum,
+    @curriculum = Factory.create(:curriculum,
                           :semesters_count => 10,
                           :access => "free",
                           :year => "2010",

@@ -1,12 +1,12 @@
+# encoding: utf-8
+
 class Manage::CurriculumsController < Manage::ApplicationController
 
-  load_and_authorize_resource :class => Plan::Curriculum
+  load_and_authorize_resource :class => 'Curriculum'
 
   custom_actions :resource => [:transit, :delete]
 
-  defaults :resource_class => Plan::Curriculum,
-           :instance_name => :curriculum,
-           :finder => :find_by_slug
+  defaults :finder => :find_by_slug
 
   actions :all
 

@@ -10,7 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110427100356) do
+ActiveRecord::Schema.define(:version => 20110429093600) do
+
+  create_table "accreditations", :force => true do |t|
+    t.integer  "speciality_id"
+    t.string   "number"
+    t.date     "issued_on"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "attachments", :force => true do |t|
     t.string   "data_uid"
@@ -38,6 +46,42 @@ ActiveRecord::Schema.define(:version => 20110427100356) do
     t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "curriculums", :force => true do |t|
+    t.string   "study_form"
+    t.integer  "speciality_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "state"
+    t.integer  "year"
+    t.string   "access"
+    t.integer  "since"
+    t.integer  "volume"
+    t.integer  "chair_id"
+    t.string   "profile"
+  end
+
+  create_table "cycles", :force => true do |t|
+    t.string   "code"
+    t.string   "name"
+    t.string   "degree"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "disciplines", :force => true do |t|
+    t.text     "name"
+    t.integer  "speciality_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "educations", :force => true do |t|
+    t.integer  "semester_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "study_id"
   end
 
   create_table "educations_examinations", :id => false, :force => true do |t|
@@ -74,72 +118,12 @@ ActiveRecord::Schema.define(:version => 20110427100356) do
     t.datetime "updated_at"
   end
 
-  create_table "plan_accreditations", :force => true do |t|
+  create_table "licences", :force => true do |t|
     t.integer  "speciality_id"
     t.string   "number"
     t.date     "issued_on"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "plan_curriculums", :force => true do |t|
-    t.string   "study"
-    t.integer  "speciality_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "state"
-    t.integer  "year"
-    t.string   "access"
-    t.integer  "since"
-    t.integer  "volume"
-    t.integer  "chair_id"
-    t.string   "profile"
-  end
-
-  create_table "plan_cycles", :force => true do |t|
-    t.string   "code"
-    t.string   "name"
-    t.string   "degree"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "plan_disciplines", :force => true do |t|
-    t.text     "name"
-    t.integer  "speciality_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "plan_educations", :force => true do |t|
-    t.integer  "semester_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "study_id"
-  end
-
-  create_table "plan_licences", :force => true do |t|
-    t.integer  "speciality_id"
-    t.string   "number"
-    t.date     "issued_on"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "plan_semesters", :force => true do |t|
-    t.integer  "curriculum_id"
-    t.integer  "number"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "plan_studies", :force => true do |t|
-    t.integer  "chair_id"
-    t.integer  "curriculum_id"
-    t.integer  "discipline_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "cycle_id"
   end
 
   create_table "publication_disciplines", :force => true do |t|
@@ -184,6 +168,13 @@ ActiveRecord::Schema.define(:version => 20110427100356) do
     t.integer  "contingent_id"
   end
 
+  create_table "semesters", :force => true do |t|
+    t.integer  "curriculum_id"
+    t.integer  "number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "specialities", :force => true do |t|
     t.string   "name"
     t.string   "degree"
@@ -191,6 +182,15 @@ ActiveRecord::Schema.define(:version => 20110427100356) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "code"
+  end
+
+  create_table "studies", :force => true do |t|
+    t.integer  "chair_id"
+    t.integer  "curriculum_id"
+    t.integer  "discipline_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "cycle_id"
   end
 
   create_table "used_books", :force => true do |t|

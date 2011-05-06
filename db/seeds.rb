@@ -28,7 +28,7 @@ admin = User.create( :email => 'admin@demo.de',
 admin.human.update_attributes( :name => 'Иван',
                                :surname => 'Иванов',
                                :patronymic => 'Иванович' )
-admin.human.roles << Roles::Admin.new( :state => :accepted )
+admin.human.roles << Admin.new( :state => :accepted )
 
 
 user = User.create( :email => 'user@demo.de',
@@ -37,11 +37,11 @@ user = User.create( :email => 'user@demo.de',
 user.human.update_attributes(:name => 'Петр',
                              :surname => 'Петров',
                              :patronymic => 'Петрович' )
-user.human.roles << Roles::Student.new(:group => '422',
+user.human.roles << Student.new(:group => '422',
                                        :birthday => '01.01.1970',
                                        :state => :accepted)
 
-user.human.roles << Roles::Employee.new(:chair_id => Chair.find_by_slug('asu'),
+user.human.roles << Employee.new(:chair_id => Chair.find_by_slug('asu'),
                                         :post => 'Старший преподаватель',
                                         :state => :accepted)
 

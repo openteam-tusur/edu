@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class HumansController < InheritedResourcesController
+class HumansController < CrudController
   check_authorization
 
   load_resource :except => [:create, :show]
@@ -23,10 +23,10 @@ class HumansController < InheritedResourcesController
   def show
     if params[:id]
       @human = Human.find(params[:id])
-      render :file => "humans/_view.html.erb", :layout => true
+      render :file => "crud/humans/show.html.erb", :layout => true
     else
       @human = current_user.human if current_user
-      render :file => "humans/_profile.html.erb", :layout => true
+      render :file => "crud/humans/_profile.html.erb", :layout => true
     end
   end
 

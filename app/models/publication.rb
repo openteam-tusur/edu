@@ -6,8 +6,8 @@ class Publication < Resource
   belongs_to  :chair
 
   has_many :publication_disciplines, :dependent => :destroy,
-    :include => :discipline,
-    :order => "plan_disciplines.name"
+                                     :include => :discipline,
+                                     :order => 'disciplines.name'
   has_many :disciplines, :through => :publication_disciplines
 
   has_many :used_books
@@ -22,7 +22,7 @@ class Publication < Resource
 
   after_save :reindex_publication_disciplines
 
-  has_enum :kind, :scopes => true
+  has_enum :kind, %w(work_programm tutorial training_toolkit), :scopes => true
 
   scope :published,   where(:state => 'published')
   scope :unpublished, where(:state => 'unpublished')

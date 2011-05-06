@@ -1,13 +1,14 @@
 # encoding: utf-8
-class Plan::Licence < ActiveRecord::Base
-  set_table_name :plan_licences
+
+class Licence < ActiveRecord::Base
+  set_table_name :licences
 
   belongs_to :speciality
 
   def to_s
-    result = ""
+    result = ''
     result += self.number.blank? ? "№<span class='empty'>не указан</span>" : "№#{self.number}"
-    result += " от "
+    result += ' от '
     result += self.issued_on.blank? ? "<span class='empty'>не указано</span>" : "#{I18n.l self.issued_on}"
     result.html_safe
   end
@@ -18,7 +19,7 @@ end
 
 # == Schema Information
 #
-# Table name: plan_licences
+# Table name: licences
 #
 #  id            :integer         not null, primary key
 #  speciality_id :integer

@@ -1,6 +1,7 @@
 # encoding: utf-8
-class Plan::Semester < ActiveRecord::Base
-  set_table_name :plan_semesters
+
+class Semester < ActiveRecord::Base
+  set_table_name :semesters
 
   belongs_to :curriculum
   delegate :speciality, :to => :curriculum
@@ -10,9 +11,8 @@ class Plan::Semester < ActiveRecord::Base
 
   validates_numericality_of :number, :only_integer => true
 
-  has_many :educations, :class_name => "Plan::Education",
-                        :include => :discipline,
-                        :order => 'plan_disciplines.name',
+  has_many :educations, :include => :discipline,
+                        :order => 'disciplines.name',
                         :dependent => :destroy
 
   protected_parent_of :educations, :protects => :softly
@@ -33,7 +33,7 @@ end
 
 # == Schema Information
 #
-# Table name: plan_semesters
+# Table name: semesters
 #
 #  id            :integer         not null, primary key
 #  curriculum_id :integer

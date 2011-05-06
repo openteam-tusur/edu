@@ -1,0 +1,31 @@
+<%= semantic_form_for :publications, :html => { :method => :get, :class => "publication_search" } do | form | %>
+  <%= form.inputs do %>
+    <%= form.input :query, :required => false, :label => false, :input_html => { :name => 'query', :value => params[:query] } %>
+  <% end %>
+  <%= form.buttons do %>
+    <%= form.commit_button "Найти", :button_html => { :class => "button light" } %>
+  <% end %>
+<% end %>
+
+
+<div class="publication_wrapper">
+  <div class="publication facets">
+    <%= render_navigation :context => 'publication_kind' %>
+  </div>
+
+  <% if collection.any? %>
+    <ul class="publications_list cool_list">
+      <% @publications.each do |obj| %>
+        <li> <%= render :partial => "item", :locals => { :item => obj } %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= will_paginate @publications %>
+  <div><%= link_to t("new"), new_resource_path, :class => 'button' %></div>
+</div>
+
+<div class="publication_other_facets">
+  <%= render_navigation :context => 'publication_other_facets' %>
+</div>
+

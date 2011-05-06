@@ -1,4 +1,5 @@
-source 'http://rubygems.org'
+source 'http://gems.openteam.ru'
+#source 'http://rubygems.org'
 
 group :production do
   gem 'exception_notification_rails3',  :require => 'exception_notifier'
@@ -40,7 +41,6 @@ gem 'gilenson'
 gem 'gravtastic'
 gem 'has_enum'
 gem 'inherited_resources',              :git => 'git://github.com/openteam/inherited_resources'
-gem 'inherited_resources_views'
 gem 'jquery-rails'
 gem 'mime-types',                       :require => 'mime/types'
 gem 'mime-types',                       :require => 'mime/types'
@@ -49,6 +49,7 @@ gem 'paperclip'
 gem 'protected_parent'
 gem 'racc',                             :require => false
 gem 'rails',                            :require => false
+gem 'render_inheritable'
 gem 'ruby-filemagic',                   :require => 'filemagic'
 gem 'russian'
 gem 'show_for'

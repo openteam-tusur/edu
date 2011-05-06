@@ -1,6 +1,8 @@
+# encoding: utf-8
+
 class Manage::EmployeesController < Manage::ApplicationController
 
-  load_and_authorize_resource :class => Human
+  load_and_authorize_resource :class => 'Human'
 
   actions :all, :except => [:show]
 

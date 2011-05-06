@@ -1,20 +1,22 @@
-class Manage::ApplicationController < InheritedResourcesController
+# encoding: utf-8
 
+class Manage::ApplicationController < CrudController
   check_authorization
 
-  layout "manage"
-
-  inherit_resources
+  layout 'backend'
 
   custom_actions :resource => :delete
 
   before_filter :verify_admin
 
-private
+  private
+    def verify_admin
+      redirect_to_root_with_access_denied_message unless current_user && current_user.roles.include?(:admin)
+    end
 
-  def verify_admin
-    redirect_to_root_with_access_denied_message unless current_user && current_user.roles.include?(:admin)
-  end
-
+  protected
+    def self.template_lookup_path(param = nil)
+      ["crud/manage/#{name.demodulize.gsub(/Controller$/, '').underscore}"] + super
+    end
 end
 

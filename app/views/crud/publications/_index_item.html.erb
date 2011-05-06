@@ -1,0 +1,8 @@
+<div class='publication'>
+  <%= link_to item, publication_path(item) %>
+
+  <p><%= item.annotation %></p>
+
+  <%= render :partial => 'shared/resource_link', :locals => {:resource => item} %>
+</div>
+

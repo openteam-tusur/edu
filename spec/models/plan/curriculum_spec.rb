@@ -1,36 +1,36 @@
 # encoding: utf-8
 require 'spec_helper'
 
-describe Plan::Curriculum do
+describe Curriculum do
 
   it 'при создании должны создаваться семестры' do
-    curriculum = Factory.create(:plan_curriculum, :semesters_count => 10)
+    curriculum = Factory.create(:curriculum, :semesters_count => 10)
 
     curriculum.semesters.count.should eql 10
   end
 
   it "должен находиться по слагу" do
-    curriculum = Factory.create(:plan_curriculum, :semesters_count => 2)
-    Plan::Curriculum.find_by_slug(curriculum.to_param).should eql curriculum
+    curriculum = Factory.create(:curriculum, :semesters_count => 2)
+    Curriculum.find_by_slug(curriculum.to_param).should eql curriculum
     curriculum.chair.curriculums.find_by_slug(curriculum.to_param).should eql curriculum
   end
 
   it 'должна правильно отдаваться продолжительность обучения в годах' do
-    curriculum = Factory.create(:plan_curriculum, :semesters_count => 8)
+    curriculum = Factory.create(:curriculum, :semesters_count => 8)
     curriculum.duration.should eql '4 года'
 
-    curriculum = Factory.create(:plan_curriculum, :semesters_count => 9)
+    curriculum = Factory.create(:curriculum, :semesters_count => 9)
     curriculum.duration.should eql '4,5 года'
 
-    curriculum = Factory.create(:plan_curriculum, :semesters_count => 10)
+    curriculum = Factory.create(:curriculum, :semesters_count => 10)
     curriculum.duration.should eql '5 лет'
 
-    curriculum = Factory.create(:plan_curriculum, :semesters_count => 11)
+    curriculum = Factory.create(:curriculum, :semesters_count => 11)
     curriculum.duration.should eql '5,5 лет'
   end
 
   it 'может публиковаться и убираться с публикации' do
-    curriculum = Factory.create(:plan_curriculum)
+    curriculum = Factory.create(:curriculum)
     curriculum.unpublished?.should eql true
 
     curriculum.publish!
@@ -41,7 +41,7 @@ describe Plan::Curriculum do
   end
 
   it "должен требовать заполнения всех полей ресурса, если заполнено хоть одно" do
-    curriculum = Factory.create(:plan_curriculum)
+    curriculum = Factory.create(:curriculum)
     curriculum.year = "2010"
     curriculum.save.should be false
     curriculum.errors[:attachment].should_not be nil
@@ -52,7 +52,7 @@ end
 
 # == Schema Information
 #
-# Table name: plan_curriculums
+# Table name: curriculums
 #
 #  id            :integer         not null, primary key
 #  study         :string(255)

@@ -1,10 +1,10 @@
+# encoding: utf-8
+
 class Manage::SemestersController < Manage::ApplicationController
 
   load_and_authorize_resource
 
-  defaults :resource_class => Plan::Semester,
-           :instance_name => :semester,
-           :finder => :find_by_number
+  defaults :finder => :find_by_number
 
   actions :all, :except => [:index]
 
@@ -12,7 +12,7 @@ class Manage::SemestersController < Manage::ApplicationController
     belongs_to :curriculum,
                :param => :curriculum_id,
                :instance_name => :curriculum,
-               :parent_class => Plan::Curriculum,
+               :parent_class => Curriculum,
                :finder => :find_by_slug
   end
 

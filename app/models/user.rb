@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class User < ActiveRecord::Base
   include Gravtastic
   # Include default devise modules. Others available are:

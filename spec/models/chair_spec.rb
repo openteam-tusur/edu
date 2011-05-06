@@ -94,9 +94,9 @@ describe Chair do
   describe "статистика обеспечиваемых дисциплин" do
 
     it "кафедра должна знать учебные планы и по которым она обеспечивает обучение" do
-      @curriculum_1 = Factory.create(:plan_curriculum)
-      @curriculum_2 = Factory.create(:plan_curriculum)
-      @study = Factory.create(:plan_study, :curriculum => @curriculum_1, :chair => @chair)
+      @curriculum_1 = Factory.create(:curriculum)
+      @curriculum_2 = Factory.create(:curriculum)
+      @study = Factory.create(:study, :curriculum => @curriculum_1, :chair => @chair)
       @chair.provided_curriculums.all.should eql [@curriculum_1]
       @chair.provided_specialities.all.should eql [@curriculum_1.speciality]
     end
@@ -104,18 +104,18 @@ describe Chair do
     it "должна отдавать сгруппированные по study специальности" do
       Speciality.destroy_all
       speciality_b_210041 = Factory.create(:speciality, :degree => "bachelor", :code => "210041")
-      Factory.create(:plan_study,
-              :curriculum => Factory.create(:plan_curriculum, :speciality => speciality_b_210041),
+      Factory.create(:study,
+              :curriculum => Factory.create(:curriculum, :speciality => speciality_b_210041),
               :discipline_name => "Математика",
               :chair => @chair)
       speciality_b_210040 = Factory.create(:speciality, :degree => "bachelor", :code => "210040")
-      Factory.create(:plan_study,
-              :curriculum => Factory.create(:plan_curriculum, :speciality => speciality_b_210040),
+      Factory.create(:study,
+              :curriculum => Factory.create(:curriculum, :speciality => speciality_b_210040),
               :discipline_name => "Математика",
               :chair => @chair)
       speciality_s_210040 = Factory.create(:speciality, :degree => "specialist", :code => "210040")
-      Factory.create(:plan_study,
-              :curriculum => Factory.create(:plan_curriculum, :speciality => speciality_s_210040),
+      Factory.create(:study,
+              :curriculum => Factory.create(:curriculum, :speciality => speciality_s_210040),
               :discipline_name => "Математика",
               :chair => @chair)
 
@@ -130,21 +130,21 @@ describe Chair do
 
     it "должна знать учебные планы и статистику дисциплин по общеспечивающим дисциплинам по специальности" do
       speciality_s_210040 = Factory.create(:speciality, :degree => "specialist", :code => "210040")
-      fulltime_curriculum =  Factory.create(:plan_curriculum,
+      fulltime_curriculum =  Factory.create(:curriculum,
                                             :speciality => speciality_s_210040,
-                                            :study => "fulltime")
-      parttime_curriculum =  Factory.create(:plan_curriculum,
+                                            :study_form => "fulltime")
+      parttime_curriculum =  Factory.create(:curriculum,
                                             :speciality => speciality_s_210040,
-                                            :study => "parttime")
-      Factory.create(:plan_education,
+                                            :study_form => "parttime")
+      Factory.create(:education,
               :semester => fulltime_curriculum.semesters.first,
-              :study => Factory.create(:plan_study, :chair => @chair, :curriculum => fulltime_curriculum))
-      Factory.create(:plan_education,
+              :study => Factory.create(:study, :chair => @chair, :curriculum => fulltime_curriculum))
+      Factory.create(:education,
               :semester => fulltime_curriculum.semesters.first,
-              :study => Factory.create(:plan_study, :chair => @chair, :curriculum => fulltime_curriculum))
-      Factory.create(:plan_education,
+              :study => Factory.create(:study, :chair => @chair, :curriculum => fulltime_curriculum))
+      Factory.create(:education,
               :semester => parttime_curriculum.semesters.first,
-              :study => Factory.create(:plan_study, :chair => @chair, :curriculum => parttime_curriculum))
+              :study => Factory.create(:study, :chair => @chair, :curriculum => parttime_curriculum))
 
       expected = {
         fulltime_curriculum => 2,
@@ -156,15 +156,15 @@ describe Chair do
 
     it "должна определяться обеспеченность educations для учебного плана рабочей программой и учебным пособием" do
       speciality = Factory.create(:speciality, :degree => "specialist", :code => "210040")
-      fulltime_curriculum =  Factory.create(:plan_curriculum,
+      fulltime_curriculum =  Factory.create(:curriculum,
                                             :speciality => speciality,
-                                            :study => "fulltime")
-      education_1 = Factory.create( :plan_education,
+                                            :study_form => "fulltime")
+      education_1 = Factory.create( :education,
                                     :semester => fulltime_curriculum.semesters.first,
-                                    :study => Factory.create(:plan_study, :chair => @chair, :curriculum => fulltime_curriculum))
-      education_2 = Factory.create( :plan_education,
+                                    :study => Factory.create(:study, :chair => @chair, :curriculum => fulltime_curriculum))
+      education_2 = Factory.create( :education,
                                     :semester => fulltime_curriculum.semesters.last,
-                                    :study => Factory.create(:plan_study, :chair => @chair,
+                                    :study => Factory.create(:study, :chair => @chair,
                                               :curriculum => fulltime_curriculum, :discipline => education_1.study.discipline))
 
       work_program = Factory.create(:publication, :chair => @chair, :kind => "work_programm")

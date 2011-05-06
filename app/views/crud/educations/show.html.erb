@@ -1,0 +1,24 @@
+<ul class='cool_list'>
+<% @education.grouped_publications.each do |kind, publications| %>
+  <li>
+    <h5 class='publications'><%= Publication.human_enums[:kind][kind.to_sym] %></h5>
+    <% unless publications.empty? %>
+      <ul class='wide without_bullet'>
+        <% publications.each do |publication| %>
+          <li class='publication'>
+            <%= render :partial => 'shared/resource_link', :locals => {:resource => publication, :full_text => true} %>
+            <%= publication.annotation %>
+            <hr />
+
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <ul>
+        <li><%= "#{Publication.human_enums[:kind][kind.to_sym]} пока не добавлено."%></li>
+      </ul>
+    <% end %>
+  </li>
+<% end %>
+</ul>
+

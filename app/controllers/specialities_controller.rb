@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class SpecialitiesController < InheritedResourcesController
+class SpecialitiesController < CrudController
   load_resource
 
   actions :index

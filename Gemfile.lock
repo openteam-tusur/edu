@@ -103,8 +103,6 @@ GEM
     has_scope (0.5.0)
     hirb (0.4.5)
     i18n (0.5.0)
-    inherited_resources_views (0.4.1)
-      inherited_resources (>= 1.0)
     jquery-rails (0.2.7)
       rails (~> 3.0)
       thor (~> 0.14.4)
@@ -153,6 +151,8 @@ GEM
       rake (>= 0.8.7)
       thor (~> 0.14.4)
     rake (0.8.7)
+    render_inheritable (1.0.0)
+      rails (~> 3.0)
     responders (0.6.2)
     rr (1.0.2)
     rsolr (0.12.1)
@@ -230,7 +230,6 @@ DEPENDENCIES
   has_enum
   hirb
   inherited_resources!
-  inherited_resources_views
   jquery-rails
   launchy
   mime-types
@@ -242,6 +241,7 @@ DEPENDENCIES
   rails
   rails-erd
   rails3-generators
+  render_inheritable
   rr
   rspec-rails
   ruby-filemagic

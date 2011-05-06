@@ -1,13 +1,20 @@
-class EmployeesController < InheritedResources::Base
-  actions :show
+# encoding: utf-8
 
-  defaults :resource_class => Human,
-           :instance_name => 'employee'
+class EmployeesController < RolesController
+  load_and_authorize_resource
 
-  belongs_to :chair, :finder => :find_by_slug
+  def create
+    create! do
+      RoleMailer.role_create_notification(resource).deliver!
+      profile_path
+    end
+  end
 
-  def index
-    @employees = Human.find_accepted_employees_in_chair(params[:query], params[:page], @chair)
+  def update
+    update! do
+     RoleMailer.role_update_notification(resource).deliver!
+     profile_path
+    end
   end
 end
 

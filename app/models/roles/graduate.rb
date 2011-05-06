@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class Roles::Graduate < Role
+class Graduate < Role
   validates_presence_of :group, :birthday
   validates_uniqueness_of :human_id, :scope => [:contingent_id, :group]
 

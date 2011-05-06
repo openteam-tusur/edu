@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Manage::HumansController < Manage::ApplicationController
   load_resource :except => [:check]
   authorize_resource

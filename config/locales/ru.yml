@@ -1,4 +1,6 @@
 ru:
+  save: Сохранить
+  cancel: Отменить
   access_denied: Доступ запрещен
   fill_human: Вы не можете  выполнить действие, пока не заполните профиль
   can_not_edit: Вы не можете редактировать, создайте новую роль
@@ -15,7 +17,6 @@ ru:
   deletion: Удаление
   destroy: Удалить
   edit: Редактировать
-  cancel: Отменить
 
   noun_specialist: Специалитет
   noun_master: Магистратура
@@ -76,12 +77,6 @@ ru:
     curriculums:
       index: Учебные планы для специальностей и направлений подготовки
 
-    educations:
-      show: Учебно-методическое обеспечение
-
-    employees:
-      index: Студенты и сотрудники кафедры
-
     specialities:
       index: Учебные планы для специальностей и направлений подготовки
 
@@ -89,35 +84,37 @@ ru:
       index: Профиль
       edit: Редактирование профиля
 
-    users/sessions:
+    devise/sessions:
       create: Вход
       new: Вход
       destroy: Выход
 
-    users/passwords:
+    devise/passwords:
       new: Восстановление пароля
       edit: Сброс пароля
 
-    users/registrations:
+    devise/registrations:
       new: Регистрация
       edit: Редактирование электронной почты и пароля
 
-    roles/students:
+    students:
       new: Создание роли студента
       edit: Редактирование роли студента
 
-    roles/employees:
+    employees:
+      index: Студенты и сотрудники кафедры
       new: Создание роли сотрудника
       edit: Редактирование роли сотрудника
 
-    roles/graduates:
+    graduates:
       new: Создание роли магистранта
       edit: Редактирование роли магистранта
 
     manage/chairs:
       index: Кафедры
 
-    plan/educations:
+    educations:
+      show: Учебно-методическое обеспечение
       index: Учебно-методическое обеспечение
 
     manage/studies:
@@ -174,19 +171,19 @@ ru:
       edit: Редактирование роли
       delete: Удаление роли
 
-    manage/roles/students:
-      new: Создать роль студента
-
-    manage/roles/employees:
-      new: Создать роль сотрудника
-
     manage/publication_disciplines:
       new: Добавление дисциплины
       edit: Редактирование дисциплины
       delete: Удаление дисциплины
 
-    manage/provided_specialities:
+    manage/grouped_provided_specialities:
       index: Обеспечиваемые дисциплины
+
+    manage/provision_educations_grouped_by_semesters:
+      index: Книгообеспеченность
+
+    manage/grouped_specialities:
+      index: Учебные планы
 
     provided_specialities:
       index: Обеспечиваемые дисциплины
@@ -315,30 +312,28 @@ ru:
         unpublish: Снять с публикации
 
     models:
-      chair: Кафедра
-      discipline: Дисциплина
-      faculty: Факультет
-      human: Персональная информация
-      employee: Сотрудник кафедры
-      used_book: Используемая публикация
-      plan:
-        accreditation: Аккредитация
-        curriculum: Учебный план
-        education: Дисциплина
-        licence: Лицензия
-        semester: Семестр
-      roles:
-        graduate: Роль магистранта
-        employee: Роль сотрудника
-        student: Роль студента
-      speciality: Специальность
-      user: Пользователь
-      resource: Ресурс
+      accreditation: Аккредитация
       attachment: Вложение
       author: Автор материала
+      chair: Кафедра
+      curriculum: Учебный план
+      discipline: Дисциплина
+      education: Дисциплина
+      employee: Роль сотрудника
+      employee: Сотрудник кафедры
+      faculty: Факультет
+      graduate: Роль магистранта
+      human: Персональная информация
+      licence: Лицензия
       publication: Учебно-методический материал
       publication_discipline: Дисциплина
+      resource: Ресурс
+      semester: Семестр
+      speciality: Специальность
+      student: Роль студента
       study: Дисциплина
+      used_book: Используемая публикация
+      user: Пользователь
 
     attributes:
       attachment:
@@ -355,16 +350,15 @@ ru:
         state:
           unpublished: Не опубликовано
           published: Опубликовано
-      roles:
-        graduate:
-          group: Группа
-          birthday: Дата рождения
-        student:
-          group: Группа
-          birthday: Дата рождения
-        employee:
-          chair: Кафедра
-          post: Должность
+      graduate:
+        group: Группа
+        birthday: Дата рождения
+      student:
+        group: Группа
+        birthday: Дата рождения
+      employee:
+        chair: Кафедра
+        post: Должность
       human:
         name: Имя
         patronymic: Отчество
@@ -404,55 +398,57 @@ ru:
         quantity: Количество
         title: Название
 
-      plan:
-        licence:
-          issued_on: Дата выдачи
-          number: Номер
-        accreditation:
-          issued_on: Дата выдачи
-          number: Номер
-        curriculum:
-          speciality: Направление подготовки (специальность)
-          speciality_id: Направление подготовки (специальность)
-          volume: Количество страниц
-          duration: Срок обучения
-          since: Действует с
-          semesters_count: Количество семестров
-          study: Форма обучения
-          year: Год издания
-          study_enum:
-            fulltime: очная
-            parttime: очно-заочная
-            postal: заочная
-          state_enum:
-            <<: *state_enum
-          access_enum:
-            <<: *access_enum
-          profile: Профиль/Специализация/Программа
-          profile_master: Программа
-          profile_bachelor: Профиль
-          profile_specialist: Специализация
+      licence:
+        issued_on: Дата выдачи
+        number: Номер
+      accreditation:
+        issued_on: Дата выдачи
+        number: Номер
+      curriculum:
+        speciality: Направление подготовки (специальность)
+        speciality_title: Направление подготовки (специальность)
+        speciality_id: Направление подготовки (специальность)
+        volume: Количество страниц
+        duration: Срок обучения
+        since: Действует с
+        semesters_count: Количество семестров
+        study_form: Форма обучения
+        year: Год издания
+        study_form_enum:
+          fulltime: очная
+          parttime: очно-заочная
+          postal: заочная
+        state_enum:
+          <<: *state_enum
+        access_enum:
+          <<: *access_enum
+        profile: Профиль/Специализация/Программа
+        profile_master: Программа
+        profile_bachelor: Профиль
+        profile_specialist: Специализация
 
         semester:
           number: Номер
-        study:
-          cycle: Цикл
-          cycle_enum:
-            humanities: Общие гуманитарные и социально-экономические дисциплины
-            mathematical: Общие математические и естественно-научные дисциплины
-            professional: Общепрофессиональные дисциплины
-            special: Специальные дисциплины
-            gpo: Групповое проектное обучение
-          discipline_name: Дисциплина
-          discipline_id: Дисциплина
-          educations: Посеместровая разбивка
-          chair: Кафедра
-          chair_id: Кафедра
-          publications: Учебно-методическое обеспечение
-        education:
-          examinations: Форма отчетности
-          semester_number: Номер семестра
-          semester: Семестр
+
+      study:
+        cycle: Цикл
+        cycle_id: Цикл
+        cycle_enum:
+          humanities: Общие гуманитарные и социально-экономические дисциплины
+          mathematical: Общие математические и естественно-научные дисциплины
+          professional: Общепрофессиональные дисциплины
+          special: Специальные дисциплины
+          gpo: Групповое проектное обучение
+        discipline_name: Дисциплина
+        discipline_id: Дисциплина
+        educations: Посеместровая разбивка
+        chair: Кафедра
+        chair_id: Кафедра
+        publications: Учебно-методическое обеспечение
+      education:
+        examinations: Форма отчетности
+        semester_number: Номер семестра
+        semester: Семестр
 
       publication:
         state_enum:

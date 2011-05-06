@@ -1,7 +1,9 @@
-class CurriculumsController < InheritedResources::Base
-  load_resource :class => Plan::Curriculum
+# encoding: utf-8
 
-  defaults :resource_class => Plan::Curriculum,
+class CurriculumsController < CrudController
+  load_resource :class => Curriculum
+
+  defaults :resource_class => Curriculum,
            :instance_name => :curriculum,
            :finder => :find_by_slug
 

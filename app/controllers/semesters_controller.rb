@@ -1,7 +1,9 @@
-class SemestersController < InheritedResources::Base
+# encoding: utf-8
+
+class SemestersController < CrudController
   load_resource
 
-  defaults :resource_class => Plan::Semester,
+  defaults :resource_class => Semester,
            :instance_name => :semester,
            :finder => :find_by_number
 
@@ -11,7 +13,7 @@ class SemestersController < InheritedResources::Base
     belongs_to :curriculum,
                :param => :curriculum_id,
                :instance_name => :curriculum,
-               :parent_class => Plan::Curriculum,
+               :parent_class => Curriculum,
                :finder => :find_by_slug
   end
 end

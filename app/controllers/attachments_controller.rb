@@ -1,5 +1,6 @@
-class AttachmentsController < ApplicationController
+# encoding: utf-8
 
+class AttachmentsController < ApplicationController
   check_authorization
 
   def download
@@ -10,5 +11,4 @@ class AttachmentsController < ApplicationController
     send_file_options = { :type => attachment.data.content_type }
     send_file(attachment.data.path, send_file_options)
   end
-
 end

@@ -1,9 +1,9 @@
 # encoding: utf-8
 
-Factory.define :plan_education,
+Factory.define :education,
   :default_strategy => :attributes_for,
-  :class => 'Plan::Education' do |education|
-  education.association :semester, :factory => :plan_semester
-  education.association :study, :factory => :plan_study
+  :class => 'Education' do |education|
+  education.association :semester, :factory => :semester
+  education.association :study, :factory => :study
 end
 

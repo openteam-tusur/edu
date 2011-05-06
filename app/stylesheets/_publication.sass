@@ -190,3 +190,104 @@
     float: left
     margin-right: 15px
 
+.provided_disciplines, .provision_disciplines
+  .semester_block
+    +border-radius
+    border: 1px solid #ccc
+    padding: 3px 3px 0 3px
+
+    h2
+      +border-radius
+      border: 1px solid #eee
+      background: #def3be
+      padding: 5px
+      text-align: center
+
+    .educations
+      margin: 3px 3px 0 3px
+
+      .education_item
+        +border-radius
+        background: #faf4b7
+        margin: 0 0 10px
+        padding: 12px
+
+        .show_for
+          +clearfix
+
+          .used_book_library_code, .used_book_quantity
+            float: left
+            margin-right: 10px
+
+        p
+          color: #555
+          margin: 0 0 5px 0
+
+        .publication
+          margin: 0 0 5px 10px
+
+.provision_disciplines
+  .semester_block
+    .educations
+      .education_item
+        background: #e8f3f4
+
+        h4
+          +border-radius
+          background: #afd5d9
+          border: 1px solid #afd5d9
+          margin: 10px 0 5px
+          padding: 5px
+          text-align: center
+
+        table
+          thead
+            tr
+              th
+                background: #afd5d9
+                border-color: #53a5ad
+                font-size: 12px
+                text-align: center
+                vertical-align: middle
+
+          tbody
+            tr
+              td
+                border-color: #53a5ad
+                text-align: center
+                vertical-align: middle
+
+                dl
+                  display: inline
+                  float: none !important
+                  margin: 0 !important
+
+              .title
+                text-align: left
+
+.grouped_specialities
+  div
+    +border-radius
+    background: #e8f3f4
+    border: 1px solid #ccc
+    padding: 3px 3px 0 3px
+
+    h2
+      +border-radius
+      border: 1px solid #eee
+      background: #afd5d9
+      padding: 5px
+      text-align: center
+
+    h4
+      margin: 3px 3px 0 3px
+
+    ul
+      list-style: circle inside
+      margin: 5px 3px 0 3px
+      padding: 0 0 0 5px
+
+      li
+        display: list-item
+        margin: 0 0 5px 0
+

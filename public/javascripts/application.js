@@ -123,7 +123,7 @@ function add_author_in_list(){
   var author_item = $(".author_item");
 
   if (author_item.length > 0) {
-    human_index = parseInt (author_item.attr("id"));
+    human_index = parseInt (author_item.last().attr("id"));
   };
 
   link.live("click",function(){

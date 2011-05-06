@@ -1,6 +1,8 @@
+# encoding: utf-8
+
 class Faculty < ActiveRecord::Base
   has_many :chairs
-  default_scope order("id")
+  default_scope order('id')
   validates_presence_of :name, :abbr, :slug
   validates_uniqueness_of :abbr, :slug, :name
 end

@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Manage::SpecialitiesController < Manage::ApplicationController
   load_and_authorize_resource
 

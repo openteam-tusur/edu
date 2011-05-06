@@ -13,7 +13,12 @@ module Portal
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
-    config.autoload_paths += %W(#{Rails.root}/lib)
+    config.autoload_paths += [
+                                "#{config.root}/app/models/roles",
+                                "#{config.root}/app/models/plan",
+
+                                "#{config.root}/lib",
+                             ]
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -31,7 +36,7 @@ module Portal
     config.i18n.default_locale = :ru
 
     # JavaScript files you want as :defaults (application.js is always included).
-    # config.action_view.javascript_expansions[:defaults] = %w(jquery.min rails)
+    config.action_view.javascript_expansions[:defaults] = %w(jquery.min jquery.ui.min jquery.ui.datepicker.ru jquery.tipsy.min rails formtastic_cocoon)
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
