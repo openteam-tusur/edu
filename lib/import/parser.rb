@@ -32,17 +32,6 @@ module Import
         cycle_code = node.attr('Цикл').match(/[БМС]\d|ФТД/).to_s
         chair_slug = @chair_slugs[node.attr('Кафедра').to_i]
 
-        #if discipline_name.blank? || cycle_code.blank? || cycle_code == 'undefined' || chair_slug.blank?
-          #puts 'Неверно указаны аттрибуты для дисциплины'
-
-          #puts "Ожидается строка вида:"
-          #puts '<Строка Дис="Логика" Цикл="Б2.ДВ1" ИдетификаторВидаПлана="2" ГОС="144" СР="54" СемЭкз="3" Компетенции="ОК-1" Кафедра="18" КредитовНаДисциплину="4" ПодлежитИзучению="108" ИдетификаторДисциплины="Б2.ДВ1.1">'
-
-          #puts 'но получена следующая:'
-          #puts node
-          #raise 'ololo'
-        #end
-
         result << {
           :discipline_name => discipline_name,
           :cycle_code => cycle_code,
@@ -64,20 +53,8 @@ module Import
 
     private
       def speciality_name
-        #begin
-          name = @doc.xpath('//Документ/План/Титул/Специальности/Специальность').first.attr('Название')
-          name[name.index('-') + 1, name.length].strip
-        #rescue
-          #puts 'Не удалось определить название специальности.'
-
-          #puts "Ожидается строка вида:"
-          #puts "<Специальности>"
-          #puts "  <Специальность Ном='4' Название='Направление подготовки бакалавра 040400.62 - Социальная работа'/>"
-          #puts "</Специальности>,"
-
-          #puts 'но получена следующая:'
-          #puts @doc.xpath('//Документ/План/Титул/Специальности')
-        #end
+        name = @doc.xpath('//Документ/План/Титул/Специальности/Специальность').first.attr('Название')
+        name[name.index('-') + 1, name.length].strip
       end
 
       def speciality_code
