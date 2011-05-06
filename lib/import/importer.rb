@@ -15,6 +15,8 @@ module Import
         find_or_create_speciality
         find_or_create_curriculum
         find_or_create_studies_with_educations
+
+        delete_disciplines
       end
     end
 
@@ -45,6 +47,17 @@ module Import
           puts "\t#{study.discipline.name}" if @print_messages
 
           create_educations_for_study(study, attributes)
+        end
+      end
+
+      def delete_disciplines
+        new_disciplines = @parser.attributes_for_studies_and_educations.map { |e| e[:discipline_name] }
+        present_disciplines = @curriculum.studies.map(&:discipline).map(&:name)
+
+        disciplines_for_delete = present_disciplines - (new_disciplines & present_disciplines)
+
+        disciplines_for_delete.each do |discipline_name|
+          @curriculum.studies.joins(:discipline).where(:disciplines => {:name => discipline_name}).first.try :destroy
         end
       end
 

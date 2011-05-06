@@ -39,6 +39,24 @@ describe Import::Importer do
   describe 'при повторном импорте для существующего учебного плана' do
     it 'должен создавать дисциплины, которых раньше не было' do
       importer.import
+
+      Curriculum.first.studies.joins(:discipline).where(:disciplines => {:name => 'Астрономия'}).should be_empty
+
+      new_importer = Import::Importer.new(File.expand_path('../../data/bachelor_with_new_discipline.plm.xml', __FILE__), 'aoi')
+      new_importer.import
+
+      Curriculum.first.studies.joins(:discipline).where(:disciplines => {:name => 'Астрономия'}).should be_any
+    end
+
+    it 'должен удалять дисциплины, которых больше нет в учебном плане' do
+      new_importer = Import::Importer.new(File.expand_path('../../data/bachelor_with_new_discipline.plm.xml', __FILE__), 'aoi')
+      new_importer.import
+
+      Curriculum.first.studies.joins(:discipline).where(:disciplines => {:name => 'Астрономия'}).should be_any
+
+      importer.import
+
+      Curriculum.first.studies.joins(:discipline).where(:disciplines => {:name => 'Астрономия'}).should be_empty
     end
   end
 end
