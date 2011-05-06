@@ -8,7 +8,7 @@
 <% end %>
 
 <div class="provided_disciplines">
-  <% @educations_by_semesters.each do |semester, educations| %>
+  <% collection.each do |semester, educations| %>
     <div class='semester_block'>
       <h2><%= semester.title %></h2>
       <div class='educations'>

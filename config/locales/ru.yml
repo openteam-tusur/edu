@@ -178,8 +178,14 @@ ru:
       edit: Редактирование дисциплины
       delete: Удаление дисциплины
 
-    manage/provided_specialities:
+    manage/grouped_provided_specialities:
       index: Обеспечиваемые дисциплины
+
+    manage/provision_educations_grouped_by_semesters:
+      index: Книгообеспеченность
+
+    manage/grouped_specialities:
+      index: Учебные планы
 
     provided_specialities:
       index: Обеспечиваемые дисциплины

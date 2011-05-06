@@ -7,6 +7,9 @@
         <% publications.each do |publication| %>
           <li class='publication'>
             <%= render :partial => 'shared/resource_link', :locals => {:resource => publication, :full_text => true} %>
+            <%= publication.annotation %>
+            <hr />
+
           </li>
         <% end %>
       </ul>

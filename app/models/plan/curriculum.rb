@@ -80,6 +80,19 @@ class Curriculum < Resource
     self.since ? "#{self.since} года" : nil
   end
 
+  def provided_educations_grouped_by_semesters
+    grouped = {}
+    self.semesters.each do |semester|
+      semester.educations.each do |education|
+        grouped[semester] ||= []
+        grouped[semester] << education if education.chair.eql?(self.chair)
+      end
+    end
+    grouped
+  end
+
+  alias :provision_educations_grouped_by_semesters :provided_educations_grouped_by_semesters
+
   private
 
     def create_semesters
