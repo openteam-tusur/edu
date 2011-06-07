@@ -7,7 +7,7 @@ class UsedBook < ActiveRecord::Base
 
   attr_accessor :publication_title
 
-  has_enum :kind
+  has_enum :kind, :scopes => true
 
   def to_s
     title

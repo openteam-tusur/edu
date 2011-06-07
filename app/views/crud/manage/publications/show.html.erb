@@ -36,22 +36,8 @@
   <% if @publication.kind == 'work_programm' && @publication.used_books.any? %>
     <div>
       <h2>Используемая литература</h2>
-      <fieldset class="list_used_book">
-        <% @publication.used_books.each do |used_book| %>
-          <%= show_for used_book do |item| %>
-            <%= item.attributes :title, :kind %>
-            <% used_publication = Publication.where(:id => item.object.publication_code).first %>
-            <%= item.attribute :publication_code do
-              if used_publication.present?
-                link_to used_publication, publication_path(used_publication)
-              else
-                'не указано'
-              end
-            end %>
-            <%= item.attributes :library_code, :quantity %>
-          <% end %>
-        <% end %>
-      </fieldset>
+      <%= render :partial => 'used_books', :locals => { :used_books => @publication.used_books.kind_main, :legend => 'Основная' } %>
+      <%= render :partial => 'used_books', :locals => { :used_books => @publication.used_books.kind_additional, :legend => 'Дополнительная' } %>
     </div>
   <% end %>
 

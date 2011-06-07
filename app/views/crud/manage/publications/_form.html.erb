@@ -35,19 +35,17 @@
     <% end  %>
   </li>
   <% end %>
-
   <li>
     <%= form.inputs "Дополнительно", :class => "inputs pictorial" do %>
       <%= form.enum_input :kind %>
-      <li class="publication_id">
-
-      </li>
-
+      <li class="publication_id"></li>
       <li class="publication_fields">
         <%= render :partial => "crud/manage/publications/fields" if resource.kind %>
       </li>
     <% end %>
   </li>
+
+  <%= render :partial => "crud/manage/common/resource_fields", :locals => {:form => form} %>
 
   <li>
     <fieldset class='inputs pictorial used_books'>
@@ -55,7 +53,6 @@
         <span>Используемая литература</span>
       </legend>
       <ol class='already_used_books_list'>
-        <%= link_to_add_association 'Добавить используемую литературу', form, :used_books %>
         <%= form.semantic_fields_for :used_books do |used_book| %>
           <%= render :partial => "used_book_fields", :locals => { :f => used_book } %>
         <% end %>
@@ -63,7 +60,7 @@
 
       <ol class="used_book_list">
       </ol>
+      <%= link_to_add_association 'Добавить используемую литературу', form, :used_books %>
     </fieldset>
   </li>
 <% end %>
-<%= render :partial => "crud/manage/common/resource_fields", :locals => {:form => form} %>
