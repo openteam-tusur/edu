@@ -93,3 +93,16 @@
   </tbody>
 </table>
 
+<div id="curriculum_bottom_panel">
+  <span class="title">Доступные действия</span>
+  <%= link_to "Редактировать специальность", edit_manage_chair_curriculum_path(@chair, @curriculum), :class => "button" %>
+  <% @curriculum.aasm_events_for_current_state.each do |event| %>
+    <%= link_to @curriculum.class.human_event_name(event),
+                transit_manage_chair_curriculum_path(@chair, @curriculum, :event => event),
+                :class => "button", :method => :put %>
+  <% end %>
+  <%= link_to "Добавить дисциплину",
+              new_manage_chair_curriculum_study_path(@chair, @curriculum),
+              :class => "button" %>
+</div>
+
