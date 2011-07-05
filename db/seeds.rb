@@ -73,6 +73,10 @@ b6 = Cycle.create!(:code => 'Б6',
                    :name => 'Итоговая государственная аттестация',
                    :degree => 'bachelor')
 
+b7 = Cycle.create!(:code => 'Б7',
+                   :name => 'Информационно-правовой цикл',
+                   :degree => 'bachelor')
+
 ftd = Cycle.create!(:code => 'ФТД',
                    :name => 'Факультативы',
                    :degree => 'bachelor')
