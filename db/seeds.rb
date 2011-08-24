@@ -121,6 +121,10 @@ s6 = Cycle.create!(:code => 'С6',
                    :name => 'Итоговая аттестация',
                    :degree => 'specialist')
 
+s7 = Cycle.create!(:code => 'С7',
+                   :name => 'Факультативы',
+                   :degree => 'specialist')
+
 svchkr = Chair.find_by_slug('svchkr')
 
 s210401 = Speciality.create! :code           => 210401,
