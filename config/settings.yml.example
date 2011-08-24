@@ -1,3 +1,7 @@
+hoptoad:
+  api_key:            11111111111111111111111111111111
+  host:               errbit.com
+
 mailer: &mailer
   delivery_method: :test
   admin_email: mail@openteam.ru

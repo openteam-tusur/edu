@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 group :production do
-  gem 'exception_notification_rails3',  :require => 'exception_notifier'
+  gem 'hoptoad_notifier'
   gem 'pg'
 end
 
@@ -30,6 +30,7 @@ end
 gem 'aasm',                             :git => 'git://github.com/etehtsea/aasm'
 gem 'cancan'
 gem 'compass'
+gem 'configliere'
 gem 'default_value_for'
 gem 'devise'
 gem 'dynamic_form'
