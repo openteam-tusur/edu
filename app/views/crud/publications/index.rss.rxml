@@ -1,0 +1,27 @@
+xml.instruct!
+
+xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
+  xml.channel do
+    xml.title { |t| t << "Научно-образовательный порта ТУСУРа"}
+
+    xml.image do
+      xml.title { |t| t << "Томский государственный университет систем управления и радиоэлектроники" }
+      xml.url "http://www.tusur.ru/export/system/modules/ru.tusur.new/resources/img/tusur-rss.png"
+      xml.link "http://www.tusur.ru"
+      xml.width 250
+      xml.height 70
+    end
+
+    xml.description { |t| t << "Учебно-методическое обеспечение" }
+
+    @publications.each do |publication|
+      xml.item do
+        xml.title       { |t| t << publication.title.squish }
+        xml.link        publication_url(publication)
+        xml.pubDate     publication.created_at.to_s(:rfc822)
+        xml.description { xml.cdata!(publication.annotation) }
+      end
+    end
+  end
+end
+
