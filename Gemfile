@@ -1,14 +1,16 @@
 source :rubygems
 
 group :production do
-  gem 'hoptoad_notifier'
-  gem 'unicorn'
-  gem 'pg'
+  gem 'hoptoad_notifier',               :require => false
+  gem 'unicorn',                        :require => false
+  gem 'pg',                             :require => false
 end
 
 group :development do
+  gem 'active_reload'
   gem 'hirb'
   gem 'rails-erd'
+  gem 'itslog'
   gem 'rails3-generators'
 end
 
@@ -19,13 +21,13 @@ group :test do
   gem 'factory_girl_rails'
   gem 'launchy'
   gem 'rr'
-  gem 'spork'
-  gem 'sqlite3-ruby',                    :require => 'sqlite3'
-end
-
-group :test, :development do
-  gem 'rspec-rails'
-  gem 'steak'
+  gem 'guard-spork'
+  gem 'guard-rspec'
+  gem 'libnotify'
+  gem 'rb-inotify'
+  gem 'rspec-rails',                    :require => false
+  gem 'steak',                          :require => false
+  gem 'sqlite3-ruby',                   :require => 'sqlite3'
 end
 
 gem 'aasm',                             :git => 'git://github.com/etehtsea/aasm'
