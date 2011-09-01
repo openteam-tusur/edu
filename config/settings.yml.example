@@ -21,7 +21,6 @@ production:
   students:
     <<: *students
 
-
 development:
   mailer:
     <<: *mailer

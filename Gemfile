@@ -1,7 +1,8 @@
-source 'http://rubygems.org'
+source :rubygems
 
 group :production do
   gem 'hoptoad_notifier'
+  gem 'unicorn'
   gem 'pg'
 end
 
@@ -41,7 +42,7 @@ gem 'gilenson'
 gem 'gravtastic'
 gem 'has_enum'
 gem 'inherited_resources',              :git => 'git://github.com/openteam/inherited_resources'
-gem 'jquery-rails'
+gem 'jquery-rails',                     :require => false
 gem 'mime-types',                       :require => 'mime/types'
 gem 'mime-types',                       :require => 'mime/types'
 gem 'nokogiri'
@@ -51,10 +52,11 @@ gem 'racc',                             :require => false
 gem 'rails',                            :require => false
 gem 'render_inheritable'
 gem 'ruby-filemagic',                   :require => 'filemagic'
-gem 'russian'
+gem 'russian',                          :git => 'git://github.com/tacid/russian'
 gem 'show_for'
 gem 'simple-navigation'
 gem 'sunspot'
 gem 'sunspot_rails'
 gem 'validation_reflection'
 gem 'will_paginate', '>= 3.0.pre2'
+

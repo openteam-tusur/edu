@@ -2,7 +2,7 @@
 
 class RoleMailer < ActionMailer::Base
   default :from => "portal@tusur.ru"
-  default :to => SETTINGS['mailer']['admin_email']
+  default :to => Settings['mailer']['admin_email']
 
   def role_create_notification(role)
     @role = role
