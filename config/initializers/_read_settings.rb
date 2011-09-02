@@ -8,7 +8,3 @@ Settings.define 'hoptoad.host',               :env_var => 'HOPTOAD_HOST'
 
 Settings.resolve!
 
-#SETTINGS = YAML.load_file(Rails.root.join("config", "settings.yml"))[Rails.env]
-
-#STUDENTS_HOST = SETTINGS['students']['host']
-
