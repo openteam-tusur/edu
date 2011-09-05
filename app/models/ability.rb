@@ -17,9 +17,10 @@ class Ability
     can :manage, Student,  :human_id => user.human.id if user.human
     can :manage, Employee, :human_id => user.human.id if user.human
     can :manage, Graduate, :human_id => user.human.id if user.human
+    can :manage, Postgraduate, :human_id => user.human.id if user.human
 
     can :download, Attachment do |attachment|
-      attachment.resource.access_free? || user.human.roles.any?
+      attachment.resource.access_free? || user.human.roles.accepted.any?
     end
   end
 end

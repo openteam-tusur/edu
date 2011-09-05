@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class EmployeesController < RolesController
+class PostgraduatesController < RolesController
   load_and_authorize_resource
 end
 

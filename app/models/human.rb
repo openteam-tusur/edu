@@ -13,6 +13,7 @@ class Human < ActiveRecord::Base
   has_many :students
   has_many :employees
   has_many :graduates
+  has_many :postgraduates
   has_many :coauthors
 
   validates_presence_of :surname, :name, :patronymic

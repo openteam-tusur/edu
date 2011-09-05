@@ -86,6 +86,11 @@ SimpleNavigation::Configuration.run do |navigation|
                        human_graduates_path if params[:action] == "create" && params[:controller] == "graduates"
          end
 
+
+        profile.item :new_postgraduate_role,
+                     t('title.postgraduates.new'),
+                     new_human_postgraduate_path
+
         profile.item :new_employee_role,
                      t('title.employees.new'),
                      new_human_employee_path

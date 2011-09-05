@@ -31,6 +31,7 @@ ru:
     employee: Сотрудники
     student: Студенты
     graduate: Магистранты
+    postgraduate: Аспиранты
     coauthor: Сторонние авторы
     admin: Администраторы
 
@@ -109,6 +110,10 @@ ru:
     graduates:
       new: Создание роли магистранта
       edit: Редактирование роли магистранта
+
+    postgraduates:
+      new: Создание роли аспиранта
+      edit: Редактирование роли аспиранта
 
     manage/chairs:
       index: Кафедры
@@ -323,6 +328,7 @@ ru:
       employee: Сотрудник кафедры
       faculty: Факультет
       graduate: Роль магистранта
+      postgraduate: Роль аспиранта
       human: Персональная информация
       licence: Лицензия
       publication: Учебно-методический материал
@@ -353,6 +359,8 @@ ru:
       graduate:
         group: Группа
         birthday: Дата рождения
+      postgraduate:
+        chair: Кафедра
       student:
         group: Группа
         birthday: Дата рождения

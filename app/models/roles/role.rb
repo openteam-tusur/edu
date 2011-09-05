@@ -34,6 +34,9 @@ class Role < ActiveRecord::Base
 
   after_save :reindex_human
 
+  after_create :send_create_notification, :if => Proc.new { |r| %w[Employee Postgraduate].include?(r.type)}
+  after_update :send_update_notification, :if => Proc.new { |r| %w[Employee Postgraduate].include?(r.type)}
+
   class_eval do
     %w[admin employee graduate student].each do |role|
       scope role.to_sym, where(:type => role.capitalize)
@@ -84,6 +87,14 @@ class Role < ActiveRecord::Base
       else
         RoleMailer.check_by_contingent_fault_notification(self).deliver!
       end
+    end
+
+    def send_create_notification
+      RoleMailer.role_create_notification(self).deliver!
+    end
+
+    def send_update_notification
+      RoleMailer.role_update_notification(self).deliver!
     end
 end
 

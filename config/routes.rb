@@ -7,6 +7,7 @@ Portal::Application.routes.draw do
     resources :graduates, :only => [:new, :create]
     resources :students,  :only => [:new, :create]
     resources :employees, :only => [:new, :create]
+    resources :postgraduates, :only => [:new, :create]
   end
 
   match '/profile'  => 'humans#show', :as => :profile, :method => :get
