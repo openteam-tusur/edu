@@ -30,7 +30,7 @@ group :test do
   gem 'sqlite3-ruby',                   :require => 'sqlite3'
 end
 
-gem 'aasm',                             :git => 'git://github.com/etehtsea/aasm'
+gem 'aasm'
 gem 'cancan'
 gem 'compass'
 gem 'configliere'

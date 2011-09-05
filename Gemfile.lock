@@ -1,10 +1,4 @@
 GIT
-  remote: git://github.com/etehtsea/aasm
-  revision: 09efa3e579d05e6d30e66c43a62954d4e278f0cf
-  specs:
-    aasm (2.2.0)
-
-GIT
   remote: git://github.com/openteam/formtastic-cocoon
   revision: 654021e3aac7b978050196954538f534a14e3dc4
   specs:
@@ -27,6 +21,8 @@ GIT
 GEM
   remote: http://rubygems.org/
   specs:
+    aasm (2.3.0)
+      activerecord
     abstract (1.0.0)
     actionmailer (3.0.9)
       actionpack (= 3.0.9)
@@ -243,7 +239,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aasm!
+  aasm
   active_reload
   cancan
   capybara

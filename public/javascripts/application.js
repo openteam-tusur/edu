@@ -273,7 +273,6 @@ $.fn.publication_autocomplete = function () {
       source: "/autocompletes/publications",
       minLength: 2,
       select: function(event, ui) {
-        console.log();
         $(this).parent().siblings('.publication_code_input').children('input').val(ui.item.id);
       }
     });
@@ -301,6 +300,7 @@ $(function() {
   });
   $("a[rel=tipsy-left], .need_vert_tipsy").tipsy({gravity: "e"});
   $(".formtastic .inputs .date input").datepicker({
+    yearRange: '1950:' + (new Date().getFullYear() + 10),
     showOn: "button",
     buttonImage: "/images/icon_datepicker.png",
     showOtherMonths: true,
