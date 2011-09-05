@@ -11,9 +11,14 @@
     margin: 0
 
   .done
+    span
+      +inline-block
+      width: 16px
+      height: 16px
+      text-indent: -9999em
+      background: transparent url("../images/icon_done.png") no-repeat
     p, a
       color: #777
-      text-decoration: line-through
 
   li
     +clearfix
