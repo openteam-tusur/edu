@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110429093600) do
+ActiveRecord::Schema.define(:version => 20110905030059) do
 
   create_table "accreditations", :force => true do |t|
     t.integer  "speciality_id"
@@ -144,13 +144,19 @@ ActiveRecord::Schema.define(:version => 20110429093600) do
     t.string   "isbn"
     t.string   "udk"
     t.string   "bbk"
-    t.text     "stamp"
+    t.text     "stamp",         :limit => 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "content"
     t.text     "annotation"
     t.string   "extended_kind"
     t.text     "comment"
+  end
+
+  create_table "records", :force => true do |t|
+    t.text     "fields"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "roles", :force => true do |t|
@@ -194,7 +200,7 @@ ActiveRecord::Schema.define(:version => 20110429093600) do
   end
 
   create_table "used_books", :force => true do |t|
-    t.text     "title"
+    t.text     "title",            :limit => 255
     t.string   "kind"
     t.integer  "publication_id"
     t.string   "library_code"
@@ -207,7 +213,6 @@ ActiveRecord::Schema.define(:version => 20110429093600) do
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
     t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
-    t.string   "password_salt",                       :default => "", :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"

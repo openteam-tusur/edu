@@ -16,6 +16,7 @@ module Portal
     config.autoload_paths += [
                                 "#{config.root}/app/models/roles",
                                 "#{config.root}/app/models/plan",
+                                "#{config.root}/app/models/abstracts",
 
                                 "#{config.root}/lib",
                              ]

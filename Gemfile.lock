@@ -18,6 +18,12 @@ GIT
   specs:
     russian (0.2.8.pre)
 
+GIT
+  remote: https://github.com/openteam/ruby-marc
+  revision: c9220dfb62bfa6f77d3f2b827f47417d8d9ffda5
+  specs:
+    marc (0.4.3)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -265,6 +271,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   libnotify
+  marc!
   mime-types
   nokogiri
   paperclip
@@ -290,3 +297,4 @@ DEPENDENCIES
   unicorn
   validation_reflection
   will_paginate (>= 3.0.pre2)
+
