@@ -279,6 +279,14 @@ $.fn.publication_autocomplete = function () {
   });
 };
 
+function prepare_main_menu() {
+  $(".main_menu a").each(function() {
+    if ($(this).attr("href").indexOf("http") > -1) {
+      $(this).attr("target", "_blank").attr("rel", "nofollow noreferrer");
+    };
+  });
+};
+
 $(function() {
   human_check();
   discipline_name_autocomplete();
@@ -311,5 +319,6 @@ $(function() {
   $('#science a').click(function(){
     return false;
   });
+  prepare_main_menu();
 });
 
