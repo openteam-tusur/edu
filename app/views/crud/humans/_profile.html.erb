@@ -1,28 +1,30 @@
 <div class="human_profile">
   <div class="roles_info">
-    <ul class="list">
-      <% @human.roles.each do |role| %>
-        <li class="<%= "#{role.type.demodulize.downcase}_icon" %>"><%= "#{role} (#{role.human_state.mb_chars.downcase})" %></li>
-      <% end %>
-    </ul>
+    <% if @human.roles.any? %>
+      <ul class="list">
+        <% @human.roles.each do |role| %>
+          <li class="<%= "#{role.type.demodulize.downcase}_icon" %>"><%= "#{role} (#{role.human_state.mb_chars.downcase})" %></li>
+        <% end %>
+      </ul>
+    <% end %>
     <ul class="add_links">
       <li class="student_icon" >
-        <%= link_to 'Добавить роль студента', new_human_student_path %>
+        <%= link_to "Добавить роль студента", new_human_student_path %>
       </li>
       <li class="graduate_icon" >
-        <%= link_to 'Добавить роль магистранта', new_human_graduate_path %>
+        <%= link_to "Добавить роль магистранта", new_human_graduate_path %>
       </li>
       <li class="graduate_icon" >
         <%= link_to 'Добавить роль аспиранта', new_human_postgraduate_path %>
       </li>
       <li class="employee_icon" >
-        <%= link_to 'Добавить роль сотрудника', new_human_employee_path %>
+        <%= link_to "Добавить роль сотрудника", new_human_employee_path %>
       </li>
     </ul>
   </div>
 
   <div class="avatar">
-    <%= image_tag @human.user ? @human.user.gravatar_url(size:90) : 'human_icon.png' %>
+    <%= image_tag @human.user ? @human.user.gravatar_url(size:90) : "human_icon.png", :width => 90, :height => 90 %>
   </div>
 
   <div class="personal_info">
@@ -32,13 +34,13 @@
 
     <ul>
       <li>
-        <%= link_to 'Изменить личную информацию', edit_human_path unless @human.new_record? %>
+        <%= link_to "Изменить личную информацию", edit_human_path unless @human.new_record? %>
       </li>
       <li>
-        <%= link_to 'Изменить электронную почту и пароль', edit_user_registration_path %>
+        <%= link_to "Изменить электронную почту и пароль", edit_user_registration_path %>
       </li>
       <li class="how_to">
-        <%= link_to 'Как изменить аватар?', 'http://gravatar.com', target:'_blank', class:'need_tipsy', title:'Чтобы изменить аватар - зарегестрируйтесь на http://gravatar.com, используя адрес электронной почты, представленный на портале.' %>
+        <%= link_to "Как изменить аватар?", "http://gravatar.com", target:"_blank", class:"need_tipsy", title:"Чтобы изменить аватар - зарегестрируйтесь на http://gravatar.com, используя адрес электронной почты, представленный на портале." %>
       </li>
     </ul>
   </div>
