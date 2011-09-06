@@ -6,6 +6,8 @@
           <li class="<%= "#{role.type.demodulize.downcase}_icon" %>"><%= "#{role} (#{role.human_state.mb_chars.downcase})" %></li>
         <% end %>
       </ul>
+    <% else %>
+      <p>Отредактируйте свою роль на портале, чтобы получить доступ к просмотру и скачиваю всех необходимых ресурсов</p>
     <% end %>
     <ul class="add_links">
       <li class="student_icon" >
@@ -29,18 +31,17 @@
 
   <div class="personal_info">
     <h3>
-      <%= @human.full_name %>
+      <%= @human.full_name.strip.blank? ? "Укажите свою фамилию, имя, и отчество" : @human.full_name %>
     </h3>
-
     <ul>
       <li>
-        <%= link_to "Изменить личную информацию", edit_human_path unless @human.new_record? %>
+        <%= link_to "Изменить информацию о себе", edit_human_path %>
       </li>
       <li>
         <%= link_to "Изменить электронную почту и пароль", edit_user_registration_path %>
       </li>
       <li class="how_to">
-        <%= link_to "Как изменить аватар?", "http://gravatar.com", target:"_blank", class:"need_tipsy", title:"Чтобы изменить аватар - зарегестрируйтесь на http://gravatar.com, используя адрес электронной почты, представленный на портале." %>
+        <%= link_to "Как изменить аватар?", "http://gravatar.com", target:"_blank", class:"need_tipsy", title:"Чтобы изменить аватар - зарегестрируйтесь на http://gravatar.com, используя адрес электронной почты, указанный в своём профиле на портале." %>
       </li>
     </ul>
   </div>
