@@ -79,6 +79,8 @@ Portal::Application.routes.draw do
 
   root :to => 'application#main_page'
 
+  match 'help' => 'application#help_page'
+
   resources :autocompletes, :only => [] do
     get :disciplines,           :on => :collection
     get :discipline_educations, :on => :collection

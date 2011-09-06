@@ -14,6 +14,10 @@ class ApplicationController < ActionController::Base
     render :file => 'shared/main.html.erb', :layout => 'application'
   end
 
+  def help_page
+    render :file => 'shared/help.html.erb', :layout => 'application'
+  end
+
   def after_sign_in_path_for(resource)
     profile_path
   end

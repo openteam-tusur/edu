@@ -68,6 +68,7 @@ ru:
   title:
     application:
       main_page: Главная страница
+      help_page: Помощь
 
     training:
       index: Для учёбы

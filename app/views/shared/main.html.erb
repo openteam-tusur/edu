@@ -16,9 +16,9 @@
 
       <li class="last">
         <h4>Помощь</h4>
-        <a href="#">Как разместить публикацию?</a>
-        <a href="#">Как разместить ученый план?</a>
-        <a href="#">Как связаться с администрацией?</a>
+        <%= link_to "Как разместить публикацию?", help_path(:anchor => "howto_umo") %>
+        <%= link_to "Как разместить ученый план?", help_path(:anchor => "howto_curriculum") %>
+        <%= link_to "Как связаться с администрацией?", help_path(:anchor => "administration") %>
       </li>
     </ul>
     <p class="greetings_text">
