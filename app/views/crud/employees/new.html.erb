@@ -1,3 +1,7 @@
+<% content_for :get_started do %>
+  <%= render :partial => 'shared/has_been_started' %>
+<% end %>
+
 <p>Для регистрации в качестве сотрудника ТУСУРа выберите кафедру и укажите свою должность.<br/>
 Ваша заявка будет отправлена администрации портала и утверждена после проверки.</p>
 <%= semantic_form_for resource, :url => human_employees_path do |form| %>

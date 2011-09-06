@@ -20,7 +20,7 @@
     </p>
   </div>
   <%= form.inputs do %>
-    <%= form.input :email, :as => :string %>
+    <%= form.input :email, :as => :string, :input_html => { :class => "focus_first" } %>
     <%= form.input :password %>
     <%= form.input :password_confirmation, :required => true %>
   <% end %>

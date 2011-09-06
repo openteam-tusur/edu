@@ -1,3 +1,7 @@
+<% content_for :get_started do %>
+  <%= render :partial => 'shared/has_been_started' %>
+<% end %>
+
 <p>Для регистрации в качестве студента ТУСУРа укажите свою группу и дату рождения.</p>
 <%= semantic_form_for resource, :url => human_students_path do |form| %>
   <%= form.error_messages %>
