@@ -1,5 +1,13 @@
+<p>Для регистрации в качестве студента ТУСУРа укажите свою группу и дату рождения.</p>
 <%= semantic_form_for resource, :url => human_students_path do |form| %>
   <%= form.error_messages %>
-  <%= render :partial => 'form', :object => form %>
+  <%= form.inputs do %>
+    <%= form.input :group, :input_html => { :class => "focus_first" } %>
+    <%= form.input :birthday %>
+  <% end %>
+  <%= form.buttons do %>
+    <%= form.commit_button :button_html => {:class => 'button'} %>
+    <li><%= link_to t(:cancel), profile_path, :class => "button light" %></li>
+  <% end %>
 <% end %>
 
