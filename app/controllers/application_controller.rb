@@ -14,6 +14,10 @@ class ApplicationController < ActionController::Base
     render :file => 'shared/main.html.erb', :layout => 'application'
   end
 
+  def after_sign_in_path_for(resource)
+    profile_path
+  end
+
   protected
     def redirect_to_root_with_access_denied_message
       redirect_to root_url, :alert => t( :access_denied )
