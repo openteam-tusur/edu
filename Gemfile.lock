@@ -297,4 +297,3 @@ DEPENDENCIES
   unicorn
   validation_reflection
   will_paginate (>= 3.0.pre2)
-

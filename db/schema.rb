@@ -144,7 +144,7 @@ ActiveRecord::Schema.define(:version => 20110905030059) do
     t.string   "isbn"
     t.string   "udk"
     t.string   "bbk"
-    t.text     "stamp",         :limit => 255
+    t.text     "stamp"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "content"
@@ -200,7 +200,7 @@ ActiveRecord::Schema.define(:version => 20110905030059) do
   end
 
   create_table "used_books", :force => true do |t|
-    t.text     "title",            :limit => 255
+    t.text     "title"
     t.string   "kind"
     t.integer  "publication_id"
     t.string   "library_code"
@@ -213,6 +213,7 @@ ActiveRecord::Schema.define(:version => 20110905030059) do
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
     t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
+    t.string   "password_salt",                       :default => "", :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"
