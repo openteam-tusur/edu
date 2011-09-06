@@ -52,7 +52,7 @@ gem 'nokogiri'
 gem 'paperclip'
 gem 'protected_parent'
 gem 'racc',                             :require => false
-gem 'rails',                            :require => false
+gem 'rails',                            '3.0.5', :require => false
 gem 'render_inheritable'
 gem 'ruby-filemagic',                   :require => 'filemagic'
 gem 'russian',                          :git => 'git://github.com/tacid/russian'

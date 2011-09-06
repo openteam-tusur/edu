@@ -9,7 +9,7 @@ class Study < ActiveRecord::Base
   belongs_to :discipline
   belongs_to :cycle
 
-  has_many :educations
+  has_many :educations, :dependent => :destroy
   has_many :semesters, :through => :educations
 
   attr_accessor :discipline_name
