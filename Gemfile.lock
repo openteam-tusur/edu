@@ -13,16 +13,16 @@ GIT
       responders (~> 0.6.0)
 
 GIT
+  remote: git://github.com/openteam/ruby-marc
+  revision: c9220dfb62bfa6f77d3f2b827f47417d8d9ffda5
+  specs:
+    marc (0.4.3)
+
+GIT
   remote: git://github.com/tacid/russian
   revision: 544a5e931a9044d941ff6f6746b10722f2fdb326
   specs:
     russian (0.2.8.pre)
-
-GIT
-  remote: https://github.com/openteam/ruby-marc
-  revision: c9220dfb62bfa6f77d3f2b827f47417d8d9ffda5
-  specs:
-    marc (0.4.3)
 
 GEM
   remote: http://rubygems.org/

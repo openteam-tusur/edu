@@ -45,7 +45,7 @@ gem 'gravtastic'
 gem 'has_enum'
 gem 'inherited_resources',              :git => 'git://github.com/openteam/inherited_resources'
 gem 'jquery-rails',                     :require => false
-gem 'marc',                             :require => false, :git => 'https://github.com/openteam/ruby-marc'
+gem 'marc',                             :require => false, :git => 'git://github.com/openteam/ruby-marc'
 gem 'mime-types',                       :require => 'mime/types'
 gem 'mime-types',                       :require => 'mime/types'
 gem 'nokogiri'
