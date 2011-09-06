@@ -1,5 +1,6 @@
 <div class="human_profile">
   <div class="roles_info">
+    <%= content_tag(:p, link_to('Администрирование системы', manage_root_path), :class => "manage") if @human.admin? %>
     <% if @human.roles.any? %>
       <ul class="list">
         <% @human.roles.each do |role| %>

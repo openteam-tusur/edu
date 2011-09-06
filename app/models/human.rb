@@ -65,6 +65,10 @@ class Human < ActiveRecord::Base
     "#{surname} #{name} #{patronymic}"
   end
 
+  def admin?
+    self.roles.map(&:type).include?("Admin")
+  end
+
   def abbreviated_name
     "#{surname} #{name[0...1]}. #{patronymic[0...1]}."
   end
