@@ -150,7 +150,7 @@ GEM
     pr_geohash (1.0.0)
     protected_parent (0.1.0)
     racc (1.4.6)
-    rack (1.2.3)
+    rack (1.2.2)
     rack-mount (0.6.14)
       rack (>= 1.0.0)
     rack-test (0.5.7)
@@ -175,7 +175,7 @@ GEM
       rake (>= 0.8.7)
       thor (~> 0.14.4)
     raindrops (0.7.0)
-    rake (0.9.2)
+    rake (0.8.7)
     rb-inotify (0.8.6)
       ffi (>= 0.5.0)
     render_inheritable (1.0.0)
@@ -276,9 +276,11 @@ DEPENDENCIES
   pg
   protected_parent
   racc
+  rack (= 1.2.2)
   rails (= 3.0.7)
   rails-erd
   rails3-generators
+  rake (= 0.8.7)
   rb-inotify
   render_inheritable
   rr

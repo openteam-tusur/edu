@@ -52,6 +52,8 @@ gem 'nokogiri'
 gem 'paperclip'
 gem 'protected_parent'
 gem 'racc',                             :require => false
+gem 'rack',                             '1.2.2'
+gem 'rake',                             '0.8.7'
 gem 'rails',                            '3.0.7', :require => false
 gem 'render_inheritable'
 gem 'ruby-filemagic',                   :require => 'filemagic'
