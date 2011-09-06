@@ -150,7 +150,7 @@ GEM
     pr_geohash (1.0.0)
     protected_parent (0.1.0)
     racc (1.4.6)
-    rack (1.2.2)
+    rack (1.2.3)
     rack-mount (0.6.14)
       rack (>= 1.0.0)
     rack-test (0.5.7)
@@ -276,7 +276,6 @@ DEPENDENCIES
   pg
   protected_parent
   racc
-  rack (= 1.2.2)
   rails (= 3.0.7)
   rails-erd
   rails3-generators
