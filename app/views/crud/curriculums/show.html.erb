@@ -5,6 +5,9 @@
   <%= curriculum.attribute :study_form %>
   <%= curriculum.attribute :profile, :label => Curriculum.human_attribute_name("profile_#{curriculum.object.speciality.degree}") if curriculum.object.profile.present? %>
   <%= curriculum.attribute :duration %>
+  <%= curriculum.attribute :chair do %>
+    <%= link_to "#{@curriculum.chair.name} (#{@curriculum.chair.abbr})", chair_path(@curriculum.chair) %>
+  <% end %>
 <% end %>
 
 <p>Ниже представлено учебно-методическое обеспечение для изучаемых предметов, разбитое по семестрам.</p>
