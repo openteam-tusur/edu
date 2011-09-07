@@ -68,6 +68,10 @@ class Publication < Resource
     end
   end
 
+  def published?
+    self.state.eql?("published")
+  end
+
   def grouped_disciplines
     result = {}
     Speciality.where(:id => self.disciplines.map(&:speciality_id)).each do |spec|
