@@ -22,6 +22,12 @@ ru:
   noun_master: Магистратура
   noun_bachelor: Бакалавриат
 
+  training:
+    umo:
+      training_toolkit: Учебно-методические пособия
+      tutorial: Учебные пособия
+      work_programm: Рабочие программы
+
   publication:
     work_programm: рабочую программу
     training_toolkit: учебно-методическое пособие
