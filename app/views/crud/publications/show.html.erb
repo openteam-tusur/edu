@@ -13,7 +13,7 @@
   <% end %>
   <% if @publication.kind == 'work_programm' && @publication.used_books.any? %>
     <div>
-      <h2>Используемая литература</h2>
+      <h2>Учебно-методическое и информационное обеспечение</h2>
       <fieldset class='list_used_book'>
         <% @publication.used_books.each do |used_book| %>
           <%= show_for used_book do |item| %>

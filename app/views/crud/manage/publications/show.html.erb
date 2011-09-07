@@ -35,7 +35,7 @@
 
   <% if @publication.kind == 'work_programm' && @publication.used_books.any? %>
     <div>
-      <h2>Используемая литература</h2>
+      <h2>Учебно-методическое и информационное обеспечение</h2>
       <%= render :partial => 'used_books', :locals => { :used_books => @publication.used_books.kind_main, :legend => 'Основная' } %>
       <%= render :partial => 'used_books', :locals => { :used_books => @publication.used_books.kind_additional, :legend => 'Дополнительная' } %>
     </div>

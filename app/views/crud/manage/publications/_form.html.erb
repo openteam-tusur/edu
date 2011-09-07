@@ -50,7 +50,7 @@
   <li>
     <fieldset class='inputs pictorial used_books'>
       <legend>
-        <span>Используемая литература</span>
+        <span>Учебно-методическое и информационное обеспечение</span>
       </legend>
       <ol class='already_used_books_list'>
         <%= form.semantic_fields_for :used_books do |used_book| %>
@@ -60,7 +60,8 @@
 
       <ol class="used_book_list">
       </ol>
-      <%= link_to_add_association 'Добавить используемую литературу', form, :used_books %>
+      <%= link_to_add_association 'Добавить литературу', form, :used_books %>
     </fieldset>
   </li>
 <% end %>
+
