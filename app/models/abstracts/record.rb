@@ -4,7 +4,7 @@ class Record < ActiveRecord::Base
   serialize :fields
 
   def authors
-    fields['001'].gsub(/%/, ', ').gsub(/~:u/, 'ü')
+    fields['001']
   end
 
   def short_title

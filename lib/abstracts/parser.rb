@@ -32,6 +32,23 @@ module Abstracts
 
     private
 
+      def replacements
+        @replacements ||=
+          YAML.load_file(Rails.root.join "config", "special_chars.yml").inject({}) do | hash, pair |
+            hash[pair[0]] = pair[1].gsub(/&#x(.+?);/) do
+              $1.to_i(16).chr(Encoding::UTF_8)
+            end
+            hash
+          end
+      end
+
+      def parse_value(string)
+        replacements.each do | from, to |
+          string.gsub! from, to
+        end
+        string
+      end
+
       def read_records
         data = File.open(path, "rb").read.gsub(/\r\n/, '')
         tempfile = Tempfile.new('abstracts', :encoding => 'ascii-8bit')
@@ -39,7 +56,9 @@ module Abstracts
         tempfile.flush
         tempfile.close
         MARC::Reader.new(File.open(tempfile.path, "r:cp866"), :forgiving => true).map do |marc|
-          Record.new(:fields => marc.fields.inject({}) { |hash, field| hash.merge!(field) })
+          Record.new :fields => marc.fields.inject({}) { |hash, pair|
+                                  hash.merge!(pair.tag => parse_value(pair.value))
+                                }
         end
       end
 
