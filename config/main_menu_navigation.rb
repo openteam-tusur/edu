@@ -11,7 +11,7 @@ SimpleNavigation::Configuration.run do |navigation|
                  "#",
                  :highlights_on => /jopa/,
                  :class => 'need_tipsy',
-                 :title => 'Раздел находится в разработке ;)'
+                 :title => 'Раздел находится в разработке'
 
     primary.item :subfaculties,
                  '<span class="decreased">наши</span> кафедры',
@@ -26,6 +26,11 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :library,
                  '<span class="decreased">наша</span> библиотека',
                  'http://lib.tusur.ru/'
+
+    primary.item :help,
+                 '<span class="decreased">наша</span> помощь',
+                 help_path,
+                 :highlights_on => /^\/help/
   end
 end
 
