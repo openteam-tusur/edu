@@ -11,6 +11,7 @@ class Role < ActiveRecord::Base
 
   default_scope order('id desc')
 
+  delegate :name, :surname, :patronymic, :to => :human
   aasm_column :state
 
   aasm_initial_state :pending
@@ -53,39 +54,21 @@ class Role < ActiveRecord::Base
     end
 
     def url_for_check
-      unescaped = sprintf("lastname=%s&firstname=%s&patronymic=%s&group=%s&birth_date=%s",
-                           self.human.surname,
-                           self.human.name,
-                           self.human.patronymic,
-                           self.group,
-                           self.birthday)
-
-      parametrs = URI.escape(unescaped)
-      URI.parse("http://#{STUDENTS_HOST}/check?#{parametrs}")
-    end
-
-    def get_contingent_id
-      contingent_id = nil
-      begin
-        contingent_id = Net::HTTP.get(url_for_check)
-      rescue Exception => e
-        RoleMailer.service_not_responding.deliver!
-      end
-
-      contingent_id
+      URI.escape("http://#{Settings['students.host']}/check/#{surname}/#{name}/#{patronymic}/#{group}/#{birthday}")
     end
 
     def check
-      contingent_id = get_contingent_id
-
-      unless contingent_id.blank?
-        if self.update_attributes(:contingent_id => contingent_id, :state => 'accepted')
+      begin
+        self.contingent_id = Net::HTTP.get_response(URI.parse(url_for_check)).body
+        if contingent_id
+          accept!
           RoleMailer.check_by_contingent_successful_notification(self).deliver!
         else
-
+          reject!
+          RoleMailer.check_by_contingent_fault_notification(self).deliver!
         end
-      else
-        RoleMailer.check_by_contingent_fault_notification(self).deliver!
+      rescue Exception => e # Net::HTTPResponse => e
+        RoleMailer.service_not_responding.deliver!
       end
     end
 
