@@ -1,0 +1,2 @@
+bundle
+echo "Portal::Application.config.secret_token = '`rake secret`'" > config/initializers/secret_token.rb

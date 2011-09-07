@@ -20,4 +20,6 @@ config/database.yml
 config/settings.yml
 config/sunspot.yml
 
+config/initializers/secret_token.rb
+
 solr/data/

@@ -1,10 +1,12 @@
-Settings.read Rails.root.join 'config', 'settings.yml'
-#Settings.define 'secret_token',              :env_var => 'SECRET_TOKEN',       :required => true
+Settings.read(Rails.root.join('config', 'settings.yml'))
 
-Settings.define 'students.host',              :env_var => 'STUDENTS_HOST'
+Settings.defaults Settings.extract!(Rails.env)[Rails.env] || {}
+Settings.extract!(:test, :development, :production)
 
-Settings.define 'hoptoad.api_key',            :env_var => 'HOPTOAD_API_KEY'
-Settings.define 'hoptoad.host',               :env_var => 'HOPTOAD_HOST'
+Settings.define 'domain',                       :required => Rails.env.production?
+Settings.define 'mailer.send_notifcations_to',  :required => true
+Settings.define 'students.host',                :required => Rails.env.production?
+Settings.define 'hoptoad.api_key',              :required => Rails.env.production?
+Settings.define 'hoptoad.host',                 :required => Rails.env.production?
 
 Settings.resolve!
-
