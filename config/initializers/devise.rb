@@ -3,7 +3,7 @@
 Devise.setup do |config|
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in DeviseMailer.
-  config.mailer_sender = "no-reply@portal.tusur.ru"
+  config.mailer_sender = Settings['mailer.send_notifcations_from']
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"

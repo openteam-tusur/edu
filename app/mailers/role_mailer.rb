@@ -1,8 +1,8 @@
 # encoding: utf-8
 
 class RoleMailer < ActionMailer::Base
-  default :from => "portal@tusur.ru"
-  default :to => Settings['mailer.send_notifcations_to']
+  default :from => Settings['mailer.send_notifcations_from']
+  default :to   => Settings['mailer.send_notifcations_to']
 
   def role_create_notification(role)
     @role = role

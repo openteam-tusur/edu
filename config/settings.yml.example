@@ -1,7 +1,7 @@
-domain:                   portal.tusur.ru
+domain:                   'localhost:3000'
 
 students:
-  host:                   'localhost:3000'
+  host:                   'localhost:3333'
 
 hoptoad:
   api_key:                SOME_HUGE_STRING
@@ -9,4 +9,8 @@ hoptoad:
 
 mailer:
   send_notifcations_to:   mail@openteam.ru
-  send_all_mail_to:       mail@openteam.ru  # comment this string out if you want really send mails to recipients
+  send_notifcations_from: no-reply@edu.tusur.ru
+  send_all_mail_to:       mail@openteam.ru  # comment this string out if you want to really send mails to recipients
+
+production:
+  domain:                 edu.tusur.ru
