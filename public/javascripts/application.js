@@ -249,7 +249,7 @@ function irregual_labels(){
 
 function expander() {
  $('.expand_link').click(function(){
-  $(this).parent().next().slideToggle('slow');
+  $(this).parent().next().slideToggle('fast');
   return false;
  }).parent().next().hide();
 };
