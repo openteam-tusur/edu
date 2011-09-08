@@ -1,0 +1,5 @@
+<%= form.inputs do %>
+  <%= form.input :chair, :group_by => :faculty, :input_html => { :class => "focus_first" } %>
+  <%= form.input "type", :as => :hidden, :value => "postgraduate", :name => "type" %>
+<% end %>
+
