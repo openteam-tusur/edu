@@ -1,7 +1,7 @@
 source :rubygems
 
 group :production do
-  gem 'hoptoad_notifier',               :require => false
+  gem 'hoptoad_notifier'
   gem 'unicorn',                        :require => false
   gem 'pg',                             :require => false
 end
