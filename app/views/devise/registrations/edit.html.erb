@@ -1,7 +1,3 @@
-<% content_for :get_started do %>
-  <%= render :partial => 'shared/has_been_started' %>
-<% end %>
-
 <%= semantic_form_for resource, :url => registration_path(resource), :method => :put do |form| %>
   <%= devise_error_messages! %>
   <%= form.inputs do  %>

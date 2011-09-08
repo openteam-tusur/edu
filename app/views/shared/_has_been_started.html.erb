@@ -1,4 +1,4 @@
-<% if current_user %>
+<% if current_user && !current_user.has_been_started? %>
 <div class='get_started<%= ' finished' unless current_user && !current_user.has_been_started? %>'>
   <ul>
     <% unless current_user.human.new_record? %>

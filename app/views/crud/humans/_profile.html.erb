@@ -1,8 +1,5 @@
-<% content_for :get_started do %>
-  <%= render :partial => 'shared/has_been_started' %>
-<% end %>
-
 <div class="human_profile">
+
   <div class="roles_info">
     <%= content_tag(:p, link_to('Администрирование системы', manage_root_path), :class => "manage") if @human.admin? %>
     <% if @human.roles.any? %>
@@ -12,7 +9,7 @@
         <% end %>
       </ul>
     <% else %>
-      <p>Отредактируйте свою роль на портале, чтобы получить доступ к просмотру и скачиваю всех необходимых ресурсов</p>
+      <p><strong>Уточните свой статус в ТУСУРе, чтобы получить доступ к просмотру и скачиваю всех необходимых ресурсов</strong></p>
     <% end %>
     <ul class="add_links">
       <li class="student_icon" >
