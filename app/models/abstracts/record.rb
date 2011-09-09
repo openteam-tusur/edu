@@ -3,6 +3,8 @@
 class Record < ActiveRecord::Base
   serialize :fields
 
+  belongs_to :issue
+
   def authors
     fields['001']
   end
@@ -67,9 +69,26 @@ class Record < ActiveRecord::Base
     fields['507']
   end
 
+  def month
+    fields['507']
+  end
+
   def code_thematic
     fields['514']
   end
 
 end
+
+
+
+# == Schema Information
+#
+# Table name: records
+#
+#  id         :integer         not null, primary key
+#  fields     :text
+#  created_at :datetime
+#  updated_at :datetime
+#  issue_id   :integer
+#
 

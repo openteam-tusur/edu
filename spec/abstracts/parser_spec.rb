@@ -96,6 +96,7 @@ describe Abstracts::Parser do
 
     it "номер выпуска РЖ и БД" do
       records.first.number_AJ_DB.should == "01"
+      records.first.month.should == "01"
     end
 
     it "имя (шифр) тематического фрагмента БД ВИНИТИ" do
