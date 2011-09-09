@@ -369,6 +369,7 @@ ru:
       postgraduate:
         chair: Кафедра
       student:
+        contingent_id:  ID в АИС &quot;Контингент&quot;
         group: Группа
         birthday: Дата рождения
       employee:
