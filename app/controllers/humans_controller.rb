@@ -25,8 +25,12 @@ class HumansController < CrudController
       @human = Human.find(params[:id])
       render :file => "crud/humans/show.html.erb", :layout => true
     else
-      @human = current_user.human if current_user
-      render :file => "crud/humans/_profile.html.erb", :layout => true
+      if current_user
+        @human = current_user.human
+        render :file => "crud/humans/_profile.html.erb", :layout => true
+      else
+        redirect_to root_path
+      end
     end
   end
 

@@ -97,6 +97,10 @@ m4 = Cycle.create!(:code => 'М4',
                    :name => 'Итоговая аттестация',
                    :degree => 'master')
 
+m5 = Cycle.create!(:code => 'М5',
+                   :name => 'Факультативы',
+                   :degree => 'master')
+
 s1 = Cycle.create!(:code => 'С1',
                    :name => 'Гуманитарный, социальный и экономический цикл',
                    :degree => 'specialist')
