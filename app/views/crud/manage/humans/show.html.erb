@@ -33,7 +33,6 @@
                     <%= link_to 'добавить роль соавтора', new_manage_human_role_path(@human, :type => "coauthor") %>)
                   </span>
     </h1>
-
       <% unless resource.roles.empty? %>
         <table>
           <thead>
@@ -50,7 +49,7 @@
                   <%= role %>
                   <% if current_user.roles.include?(:admin) %>
                     <span class="actions">
-                      <%= link_to t(:edit), edit_manage_role_path(role), :class => "need_tipsy edit", :title => "Редактировать" if can? :manage, role %>
+                      <%= link_to t(:edit), edit_manage_role_path(role), :class => "need_tipsy edit", :title => "Редактировать" if can?(:manage, role) && !role.type.eql?("Admin") %>
                       <% unless role.aasm_events_for_current_state.empty? %>
                         <% role.aasm_events_for_current_state.each do |event| %>
                           <%= link_to(Role.human_event_name(event),
