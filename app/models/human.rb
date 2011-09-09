@@ -4,7 +4,7 @@ class Human < ActiveRecord::Base
 
   default_scope order('surname, name, patronymic')
 
-  attr_accessor :post, :chair_id, :human_id
+  attr_accessor :post, :chair_id, :human_id, :gender
 
   belongs_to :user
 
@@ -23,6 +23,13 @@ class Human < ActiveRecord::Base
                         :on => :create,
                         :message => 'Необходимо выполнить проверку перед добавлением сотрудника или должности и выбрать действие'
 
+  validates_each :name, :surname, :patronymic do |model, attr, value|
+    model.errors.add(attr, 'Используйте только русские буквы, пробел и дефис') if value =~ /[^а-яёА-ЯЁ -]/
+    model.errors.add(attr, 'Первый символ должен быть прописной русской буквой') if value !~ /^[А-ЯЁ]/
+    model.errors.add(attr, 'Последний символ должен быть строчной русской буквой') if value !~ /[а-яё]$/ && value.length > 1
+  end
+
+
   has_many :authors
   has_many :publications,
            :through => :authors,
@@ -30,6 +37,8 @@ class Human < ActiveRecord::Base
            :source_type => "Publication"
 
   protected_parent_of :publications, :user
+
+  normalize_attributes :surname, :name, :patronymic, :post, :with => [:squish, :blank]
 
   searchable do
     text :autocomplete, :as => :autocomplete_textp do full_name end
@@ -39,7 +48,7 @@ class Human < ActiveRecord::Base
     end
 
     integer :chair_ids, :multiple => true, :references => Chair do
-      roles.accepted.where("type <> 'Admin' AND type <> 'Student' AND type <> 'Graduate' AND type <> 'Coauthor'").map(&:chair_id).compact
+      roles.accepted.where(:type => %w[Employee Postgraduate]).map(&:chair_id).compact
     end
 
     string :role_slugs, :multiple => true do

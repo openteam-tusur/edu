@@ -3,19 +3,22 @@
 require 'spec_helper'
 
 describe Human do
-  it "при удалении должен убивать роли" do
-    chair = Factory.create(:chair)
-    human = Factory.create(:human)
-    human = chair.create_employee "surname" => "Фамилия",
-                                  "name" => "Имя",
-                                  "patronymic" => "Отчество",
-                                  "post" => "старший преподаватель",
-                                  "human_id" => human.id
-    human.roles.should_not be_empty
-    human.destroy
-    Human.exists?(human.id).should be false
-    Role.where(:human_id => human.id).should be_empty
+  it { should have_many(:roles).dependent(:destroy) }
+  it { should normalize_attribute(:name).from("  Первое \n  второеСлово ").to("Первое второеСлово") }
+  it { should normalize_attribute(:surname) }
+  it { should normalize_attribute(:patronymic) }
+  it { should normalize_attribute(:post) }
+
+  def human(params={})
+    @human ||=  begin
+                  Factory.build :human, params
+                end
   end
+
+  it { human(:name => 'Vasily').should_not be_valid }
+  it { human(:name => 'Василий-Ёк').should be_valid }
+  it { human(:name => '-Ёк').should_not be_valid }
+  it { human(:name => 'Ёк оглы').should be_valid }
 
   it "должен знать свои рабочие программы" do
     publication = Factory.create(:publication)

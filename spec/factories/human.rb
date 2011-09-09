@@ -1,10 +1,11 @@
 # encoding: utf-8
 
-Sham.name { |n| "Объект #{n}" }
+require 'ryba'
 
 Factory.define :human, :default_strategy => :attributes_for do |human|
-  human.name { Sham.name }
-  human.patronymic "Факториевич"
-  human.surname "Генераторов"
+  human.gender {  Ryba::Name.gender }
+  human.name { |human| Ryba::Name.first_name(human.gender) }
+  human.patronymic { |human| Ryba::Name.middle_name(human.gender) }
+  human.surname { |human| Ryba::Name.family_name(human.gender) }
 end
 

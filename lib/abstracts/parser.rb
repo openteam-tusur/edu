@@ -56,7 +56,7 @@ module Abstracts
         tempfile.flush
         tempfile.close
         MARC::Reader.new(File.open(tempfile.path, "r:cp866"), :forgiving => true).map do |marc|
-          Record.new :fields => marc.fields.inject({}) { |hash, pair|
+          ::Record.new :fields => marc.fields.inject({}) { |hash, pair|
                                   hash.merge!(pair.tag => parse_value(pair.value))
                                 }
         end
