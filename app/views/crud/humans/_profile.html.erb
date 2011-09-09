@@ -1,31 +1,33 @@
 <div class="human_profile">
 
-  <div class="roles_info">
-    <%= content_tag(:p, link_to('Администрирование системы', manage_root_path), :class => "manage") if @human.admin? %>
-    <% if @human.roles.any? %>
-      <ul class="list">
-        <% @human.roles.each do |role| %>
-          <li class="<%= "#{role.type.demodulize.downcase}_icon" %>"><%= "#{role} (#{role.human_state.mb_chars.downcase})" %></li>
-        <% end %>
+  <% unless current_user.human.new_record? %>
+    <div class="roles_info">
+      <%= content_tag(:p, link_to('Администрирование системы', manage_root_path), :class => "manage") if @human.admin? %>
+      <% if @human.roles.any? %>
+        <ul class="list">
+          <% @human.roles.each do |role| %>
+            <li class="<%= "#{role.type.demodulize.downcase}_icon" %>"><%= "#{role} (#{role.human_state.mb_chars.downcase})" %></li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p><strong>Уточните свой статус в ТУСУРе, чтобы получить доступ к просмотру и скачиваю всех необходимых ресурсов</strong></p>
+      <% end %>
+      <ul class="add_links">
+        <li class="student_icon" >
+          <%= link_to "Добавить роль студента", new_human_student_path %>
+        </li>
+        <li class="graduate_icon" >
+          <%= link_to "Добавить роль магистранта", new_human_graduate_path %>
+        </li>
+        <li class="postgraduate_icon" >
+          <%= link_to 'Добавить роль аспиранта', new_human_postgraduate_path %>
+        </li>
+        <li class="employee_icon" >
+          <%= link_to "Добавить роль сотрудника", new_human_employee_path %>
+        </li>
       </ul>
-    <% else %>
-      <p><strong>Уточните свой статус в ТУСУРе, чтобы получить доступ к просмотру и скачиваю всех необходимых ресурсов</strong></p>
-    <% end %>
-    <ul class="add_links">
-      <li class="student_icon" >
-        <%= link_to "Добавить роль студента", new_human_student_path %>
-      </li>
-      <li class="graduate_icon" >
-        <%= link_to "Добавить роль магистранта", new_human_graduate_path %>
-      </li>
-      <li class="postgraduate_icon" >
-        <%= link_to 'Добавить роль аспиранта', new_human_postgraduate_path %>
-      </li>
-      <li class="employee_icon" >
-        <%= link_to "Добавить роль сотрудника", new_human_employee_path %>
-      </li>
-    </ul>
-  </div>
+    </div>
+  <% end %>
 
   <div class="avatar">
     <%= image_tag @human.user ? @human.user.gravatar_url(size:90) : "human_icon.png", :width => 90, :height => 90 %>

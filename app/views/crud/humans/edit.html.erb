@@ -1,7 +1,11 @@
 <%= semantic_form_for resource, :url => {:action => 'update'} do |form| %>
-  <%= form.inputs :surname, :name, :patronymic %>
+  <%= form.inputs do %>
+    <%= form.input :surname, :input_html => { :class => 'focus_first' } %>
+    <%= form.input :name %>
+    <%= form.input :patronymic %>
+  <% end %>
   <%= form.buttons do %>
-    <%= form.commit_button :button_html => {:class => 'button'} %>
+    <%= form.commit_button t('save'), :button_html => {:class => 'button'} %>
     <li><%= link_to t(:cancel), profile_path, :class => "button light" %></li>
   <% end %>
 <% end %>

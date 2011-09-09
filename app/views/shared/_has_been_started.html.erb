@@ -9,7 +9,7 @@
     <% else %>
       <li>
         <span>1.</span>
-        <p><%= link_to 'Укажите свою фамилию, имя и отчество', current_user.human.new_record? ? new_human_path : edit_human_path %></p>
+        <p><%= link_to 'Укажите свою фамилию, имя и отчество', edit_human_path %></p>
       </li>
     <% end %>
     <li<%= " class='done'" unless current_user.human.roles.empty? %>>
