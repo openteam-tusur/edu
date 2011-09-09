@@ -24,9 +24,13 @@ class Human < ActiveRecord::Base
                         :message => 'Необходимо выполнить проверку перед добавлением сотрудника или должности и выбрать действие'
 
   validates_each :name, :surname, :patronymic do |model, attr, value|
-    model.errors.add(attr, 'Используйте только русские буквы, пробел и дефис') if value =~ /[^а-яёА-ЯЁ -]/
-    model.errors.add(attr, 'Первый символ должен быть прописной русской буквой') if value !~ /^[А-ЯЁ]/
-    model.errors.add(attr, 'Последний символ должен быть строчной русской буквой') if value !~ /[а-яё]$/ && value.length > 1
+    if value.present?
+      errors = []
+      errors << 'используйте только русские буквы, пробел и дефис' if value =~ /[^а-яёА-ЯЁ -]/
+      errors << 'первый символ должен быть прописной русской буквой' if value !~ /^[А-ЯЁ]/
+      errors << 'последний символ должен быть строчной русской буквой' if value !~ /[а-яё]$/ && value.length > 1
+      model.errors.add(attr, errors.join('; '))
+    end
   end
 
 
