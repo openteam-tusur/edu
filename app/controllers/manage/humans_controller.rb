@@ -10,6 +10,7 @@ class Manage::HumansController < Manage::ApplicationController
     @humans = search.results
     @chair_facets = search.facet(:chair_ids).rows
     @role_facets = search.facet(:role_slugs).rows
+    @pending_role_facets = search.facet(:pending_role_slugs).rows
   end
 
   def check

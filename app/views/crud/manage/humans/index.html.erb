@@ -11,6 +11,9 @@
   <div class="role_facets">
     <%= render_navigation :context => 'human_roles' %>
   </div>
+  <div class="role_facets">
+    <%= render_navigation :context => 'human_pending_roles' %>
+  </div>
 
   <% unless @humans.empty? %>
     <ul class="list">

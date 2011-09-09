@@ -2,21 +2,17 @@
 
 SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
-    primary.item :all_humans,
-               'Все люди',
-               collection_path(:query => params[:query], :chair_id => params[:chair_id]),
-               :highlights_on => /^((?!role).)*$/
+    primary.item :pending, 'Подвисшие:', '', :highlights_on => /######################/
 
-    @role_facets.each do |facet|
+    @pending_role_facets.each do |facet|
       primary.item facet.value,
                    t("roles.#{facet.value}") + " (#{facet.count})",
                    collection_path(:query => params[:query],
-                                   :role => facet.value,
+                                   :pending_role => facet.value,
                                    :chair_id => params[:chair_id]),
                    :class => facet.value,
-                   :highlights_on => /(&|\?)role=#{facet.value}/
+                   :highlights_on => /pending_role=#{facet.value}/
     end
-
   end
 end
 

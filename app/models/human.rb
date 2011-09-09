@@ -55,6 +55,10 @@ class Human < ActiveRecord::Base
       roles.accepted.map(&:slug).compact
     end
 
+    string :pending_role_slugs, :multiple => true do
+      roles.pending.map(&:slug).compact
+    end
+
     string :surname
     string :name
     string :patronymic
@@ -157,9 +161,11 @@ class Human < ActiveRecord::Base
 
         chair_filter = with(:chair_ids, options[:chair_id]) if options[:chair_id]
         role_filter = with(:role_slugs, options[:role]) if options[:role]
+        pending_role_filter = with(:pending_role_slugs, options[:pending_role]) if options[:pending_role]
 
         facet :chair_ids, :zeros => true, :exclude => chair_filter, :sort => :index
         facet :role_slugs, :zeros => true, :exclude => role_filter, :sort => :index
+        facet :pending_role_slugs, :zeros => true, :exclude => pending_role_filter, :sort => :index
 
         paginate :page => options[:page], :per_page => 10
       end
