@@ -68,7 +68,7 @@
           <td colspan="<%= @curriculum.semesters.count+1 %>">Нет дисциплин</td>
         </tr>
       <% else %>
-        <% @curriculum.studies.where(:cycle_id => cycle.id).each do |study| %>
+        <% @curriculum.studies.where(:cycle_id => cycle.id).sort{|a, b| a.discipline.name <=> b.discipline.name}.each do |study| %>
           <tr class="discipline">
             <td class="discipline_name">
               <%= study.discipline.name %>
