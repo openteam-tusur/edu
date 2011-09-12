@@ -66,6 +66,8 @@ class Human < ActiveRecord::Base
     string :surname
     string :name
     string :patronymic
+
+
   end
 
   def self.autocomplete_authors(query)
@@ -159,7 +161,7 @@ class Human < ActiveRecord::Base
       end.results
      end
 
-    def self.search(query, options)
+    def self.search(query, options, per_page = 10)
       solr_search do
         keywords query
 
@@ -171,7 +173,7 @@ class Human < ActiveRecord::Base
         facet :role_slugs, :zeros => true, :exclude => role_filter, :sort => :index
         facet :pending_role_slugs, :zeros => true, :exclude => pending_role_filter, :sort => :index
 
-        paginate :page => options[:page], :per_page => 10
+        paginate :page => options[:page], :per_page => per_page
       end
     end
 

@@ -5,7 +5,7 @@ class Manage::HumansController < Manage::ApplicationController
   authorize_resource
 
   def index
-    search = Human.search(params[:query], params)
+    search = Human.search(params[:query], params, 50)
 
     @humans = search.results
     @chair_facets = search.facet(:chair_ids).rows
