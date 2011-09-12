@@ -34,6 +34,7 @@ class Role < ActiveRecord::Base
   end
 
   after_save :reindex_human
+  after_destroy :reindex_human
 
   after_create :send_create_notification, :if => Proc.new { |r| %w[Employee Postgraduate].include?(r.type)}
   after_update :send_update_notification, :if => Proc.new { |r| %w[Employee Postgraduate].include?(r.type)}
