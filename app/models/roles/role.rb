@@ -44,22 +44,11 @@ class Role < ActiveRecord::Base
     end
   end
 
-  def check_by_contingent
-    check
-  end
-
   protected
-    def reindex_human
-      human.reload.index!
-    end
 
-    def url_for_check
-      URI.escape("http://#{Settings['students.host']}/check/#{surname}/#{name}/#{patronymic}/#{group}/#{birthday}")
-    end
-
-    def check
+    def check_by_contingent
       begin
-        self.contingent_id = Net::HTTP.get_response(URI.parse(url_for_check)).body
+        self.contingent_id = Net::HTTP.get_response(URI.parse(url_for_check)).body.presence
         if contingent_id
           accept!
           RoleMailer.check_by_contingent_successful_notification(self).deliver!
@@ -70,6 +59,14 @@ class Role < ActiveRecord::Base
       rescue Exception => e # Net::HTTPResponse => e
         RoleMailer.service_not_responding.deliver!
       end
+    end
+
+    def reindex_human
+      human.reload.index!
+    end
+
+    def url_for_check
+      URI.escape("http://#{Settings['students.host']}/check/#{surname}/#{name}/#{patronymic}/#{group}/#{birthday}")
     end
 
     def send_create_notification
