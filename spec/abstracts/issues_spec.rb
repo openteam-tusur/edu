@@ -6,17 +6,20 @@ describe Issue do
 
  it { should have_many(:records) }
 
-# it { should belongs_to(:year) }
-
- let(:issue) { Factory.create :issue }
- let(:first) { Abstracts::Parser.new(Rails.root.join("spec/abstracts_data/ab01012007.iso")) }
+ let(:issue) { Factory :issue }
+#    issue.save!
+#    issue.data = File.new(Rails.root.join("spec/abstracts_data2/ab01012008.iso"))
+#    issue.save!
+#    issue
+# end
 
  describe "после создания Issue" do
-   it "должны создасться Record's" do
-     issue.records.first.month.should_not be_empty?
-   end
 
    it "должны создасться Record's" do
+     issue.records.should_not be_empty
+   end
+
+   pending "Должен быть четкий титл" do
      issue.title.should == "Январь 2007"
    end
 

@@ -30,6 +30,7 @@ module Abstracts
       @records ||= read_records
     end
 
+
     private
 
       def replacements

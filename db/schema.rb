@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110909083346) do
+ActiveRecord::Schema.define(:version => 20110909091218) do
 
   create_table "accreditations", :force => true do |t|
     t.integer  "speciality_id"
@@ -122,6 +122,11 @@ ActiveRecord::Schema.define(:version => 20110909083346) do
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "data_file_name"
+    t.integer  "data_file_size"
+    t.string   "data_content_type"
+    t.datetime "data_updated_at"
+    t.string   "data_hash"
   end
 
   create_table "licences", :force => true do |t|
