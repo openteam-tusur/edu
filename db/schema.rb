@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110909091218) do
+ActiveRecord::Schema.define(:version => 20110915085344) do
 
   create_table "accreditations", :force => true do |t|
     t.integer  "speciality_id"
@@ -77,6 +77,14 @@ ActiveRecord::Schema.define(:version => 20110909091218) do
     t.datetime "updated_at"
   end
 
+  create_table "disks", :force => true do |t|
+    t.string   "year"
+    t.string   "month"
+    t.integer  "disk_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "educations", :force => true do |t|
     t.integer  "semester_id"
     t.datetime "created_at"
@@ -119,7 +127,6 @@ ActiveRecord::Schema.define(:version => 20110909091218) do
   end
 
   create_table "issues", :force => true do |t|
-    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "data_file_name"
@@ -127,6 +134,7 @@ ActiveRecord::Schema.define(:version => 20110909091218) do
     t.string   "data_content_type"
     t.datetime "data_updated_at"
     t.string   "data_hash"
+    t.integer  "disk_id"
   end
 
   create_table "licences", :force => true do |t|

@@ -15,7 +15,7 @@ module Abstracts
     end
 
     def topic
-      constants["topic"][parsed_filename[0..3].upcase]
+      @topic = constants["topic"][parsed_filename[0..3].upcase]
     end
 
     def number
