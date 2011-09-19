@@ -1,7 +1,10 @@
 Portal::Application.routes.draw do
+
   devise_for :users
 
   resources :humans, :only => [:index, :show]
+
+  resources :disk
 
   resource :human, :except => [:index, :delete, :destroy], :path => '/profile' do
     resources :graduates, :only => [:new, :create]
@@ -12,6 +15,7 @@ Portal::Application.routes.draw do
 
   match '/profile'  => 'humans#show', :as => :profile, :method => :get
   match '/training' => 'training#index'
+  match '/disks' => 'disk#index'
 
   scope '/training' do
     resources :publications, :only => [:index, :show]

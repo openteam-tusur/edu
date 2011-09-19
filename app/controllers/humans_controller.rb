@@ -38,7 +38,7 @@ class HumansController < CrudController
     if current_user.human
       update! { profile_path }
     else
-      create! {profile _path }
+      create! {profile_path }
     end
   end
 

@@ -1,4 +1,7 @@
 class Disk < ActiveRecord::Base
+
+  has_many :issues
+
 end
 
 # == Schema Information
