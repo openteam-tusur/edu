@@ -1,0 +1,9 @@
+<% title @disk.title %>
+<%= link_to t(:edit), edit_resource_path(@disk), :class => "button" %>
+
+<% @disk.issues.each do | issue | %>
+
+<% end %>
+
+<%= link_to t("#{resource_class.name.downcase}.add"), new_resource_path, :class => 'button' if can?(:new, resource_class) %>
+

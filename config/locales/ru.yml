@@ -1,4 +1,5 @@
 ru:
+  back: Назад
   save: Сохранить
   cancel: Отменить
   access_denied: Доступ запрещен
@@ -75,6 +76,11 @@ ru:
     application:
       main_page: Главная страница
       help_page: Помощь
+
+    disk:
+      index: Электронные научные издания
+      new: Выберите файл для загрузки
+      show: Просмотр диска
 
     training:
       index: Для учёбы
@@ -166,6 +172,18 @@ ru:
     publications:
       index: Учебно-методическое обеспечение
 
+    manage/disks:
+      index: Реферативные журналы
+      new: Добавление обновления
+      edit: Редактирование диска с обновлениями
+      delete: Удаление диска с обновлениями
+
+    manage/issues:
+      index: Список файлов
+      new: Добавление файла
+      edit: Редактирование файла
+      delete: Удаление файла
+
     manage/authors:
       new: Добавление автора
 
@@ -205,6 +223,11 @@ ru:
       index: Наши люди
       edit: Редактирование профиля
       show: Просмотр профиля
+
+  disk:
+    add: Добавить обновления
+  issue:
+    add: Добавить обновления
 
   speciality:
     add: Добавить специальность
@@ -349,6 +372,11 @@ ru:
       user: Пользователь
 
     attributes:
+      disk:
+        released_on: Дата выпуска
+        year: Год
+      issue:
+        data: Файл
       attachment:
         data: Выберите файл
       resource:

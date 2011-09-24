@@ -1,8 +1,11 @@
 <%= semantic_form_for resource, :url => {:action => :create} do |form| %>
-  <%= form.inputs :year, :month %>
+  <%=
+  #form.inputs :year, :month
+   %>
   <%= form.buttons do %>
     <%= form.commit_button :button_html => {:class => 'button'} %>
-    <li><%=link_to t(:cancel), disks_path, :class => "button light" %></li>
+    <li><%=link_to t(:back), disks_path, :class => "button light" %></li>
+    <%= render 'fields', :form => form %>
   <% end %>
 <% end %>
 

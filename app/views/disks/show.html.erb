@@ -1,0 +1,49 @@
+<%= form_for(@disk, :html => { :multipart => true }) do |f| %>
+<div class="publication_wrapper">
+
+    <p>Год: <%= @disk.year  %></p>
+    <p>Месяц: <%=  @disk.month  %></p>
+    <p>Создано: <%= @disk.created_at  %></p>
+    <p><%=link_to t(:back), disks_path, :class => "button light" %></p>
+
+
+    <li><%= link_to t(:new), new_issue_path, :class => "button light" %></li>
+
+
+    <% f.fields_for :issues do |issue_fields| %>
+      <%= issue_fields.file_field :issue %>
+    <% end %>
+
+    <% if @disk.issues.any? %>
+      <ul>
+        <% @disk.issues.each do |issue| %>
+          <li><%= issue.issue_file_name %></li>
+        <% end %>
+      </ul>
+     <% else %>
+      <p>Нет загруженных файлов</p>
+     <% end %>
+
+
+</div>
+<% end %>
+<!--
+	  <div id="file-uploader-demo1">
+		  <noscript>
+			  <p>Please enable JavaScript to use file uploader.</p>
+		  </noscript>
+	  </div>
+
+    <%= javascript_include_tag "fileuploader" %>
+
+    <script>
+      $(function() {
+        var uploader = new qq.FileUploader({
+          element: document.getElementById('file-uploader-demo1'),
+          action: '//',
+          allowedExtensions: ['iso']
+        });
+      });
+    </script>
+-->
+

@@ -4,7 +4,9 @@ Portal::Application.routes.draw do
 
   resources :humans, :only => [:index, :show]
 
-  resources :disk
+  resources :disks
+
+  #resources :issues
 
   resource :human, :except => [:index, :delete, :destroy], :path => '/profile' do
     resources :graduates, :only => [:new, :create]
@@ -15,7 +17,6 @@ Portal::Application.routes.draw do
 
   match '/profile'  => 'humans#show', :as => :profile, :method => :get
   match '/training' => 'training#index'
-  match '/disks' => 'disk#index'
 
   scope '/training' do
     resources :publications, :only => [:index, :show]
@@ -40,6 +41,11 @@ Portal::Application.routes.draw do
     match '/humans/:id/merge_with/:namesake_id' => 'humans#merge_with', :as => 'human_merge_with'
 
     resources :specialities, :except => :show
+
+    resources :disks, :except => [:show] do
+      resources :issues
+    end
+
 
     resources :humans, :shallow => true do
       get :check, :on => :collection

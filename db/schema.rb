@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110915085344) do
+ActiveRecord::Schema.define(:version => 20110922133339) do
 
   create_table "accreditations", :force => true do |t|
     t.integer  "speciality_id"
@@ -78,11 +78,9 @@ ActiveRecord::Schema.define(:version => 20110915085344) do
   end
 
   create_table "disks", :force => true do |t|
-    t.string   "year"
-    t.string   "month"
-    t.integer  "disk_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "released_on"
   end
 
   create_table "educations", :force => true do |t|
@@ -163,7 +161,7 @@ ActiveRecord::Schema.define(:version => 20110915085344) do
     t.string   "isbn"
     t.string   "udk"
     t.string   "bbk"
-    t.text     "stamp"
+    t.text     "stamp",         :limit => 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "content"
@@ -220,7 +218,7 @@ ActiveRecord::Schema.define(:version => 20110915085344) do
   end
 
   create_table "used_books", :force => true do |t|
-    t.text     "title"
+    t.text     "title",            :limit => 255
     t.string   "kind"
     t.integer  "publication_id"
     t.string   "library_code"

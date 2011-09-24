@@ -1,0 +1,16 @@
+<%= form_for @disk, :html => { :multipart => true} do |form| %>
+<span class="content">
+    <div class="field">
+    <%= form.label :year %><br />
+    <%= form.text_field :year %>
+    </div>
+    <div class="field">
+    <%= form.label :month %><br />
+    <%= form.text_field :month %>
+    </div>
+    <% form.fields_for :issues do |issue_fields| %>
+      <%= issue_fields.file_field :issue %>
+    <% end %>
+</span>
+<% end %>
+

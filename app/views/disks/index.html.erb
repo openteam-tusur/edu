@@ -1,0 +1,26 @@
+<div class="publication_wrapper">
+
+  <p><%= link_to t("#{resource_class.name.downcase}.create_disk"), new_disk_path, :class => 'button' %></p>
+
+  <%
+  #@disks.each do |d|
+  %>
+    Год: <%=
+    # @year = d.year
+     %>
+    Месяц: <%=
+     # @month = d.month
+       %>
+    Создано: <%=
+   # @created_at = d.created_at
+    %>
+    <%=
+    #link_to t("#{resource_class.name.downcase}.show_disk"), disk_path(d.id), :class => 'button'
+     %>
+    </br></br>
+  <%
+  #end
+  %>
+
+</div>
+
