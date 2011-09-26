@@ -1,0 +1,10 @@
+<% title @disk.title %>
+
+<% @disk.issues.each do | issue | %>
+
+<h3><%= issue.id %></h3>
+
+<% end %>
+
+<%= link_to t(:back),  disks_path, :class => 'button light' %>
+

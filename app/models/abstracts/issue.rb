@@ -18,12 +18,14 @@ class Issue < ActiveRecord::Base
 
   delegate :year, :month, :to => :disk
 
+
   private
 
     def recreate_records
       records.destroy_all
       Abstracts::Parser.new(self.data.path).records.each  do | record |
-        records.create!(record.attributes)
+        record.issue = self
+        record.save
       end
     end
 

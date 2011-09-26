@@ -1,12 +1,21 @@
-<% title @disk.title %>
-<%= link_to t(:edit), edit_manage_disk_path(@disk), :class => "button" %>
+<p><%= link_to t("#{resource_class.name.downcase}.add"), new_resource_path, :class => 'button' if can?(:new, resource_class) %>
+<%= link_to t(:edit_disk), edit_manage_disk_path(@disk), :class => "button" %>
+<%= link_to t(:back),  manage_disks_path, :class => 'button light' %></p>
 
-<% @disk.issues.each do | issue | %>
+<% if @issues.any? %>
+  <% title @disk.title %>
 
-<%= issue.data_file_name %>
 
+  <% @disk.issues.each do | issue | %>
 
+    <h3>
+      <%= issue.data_file_name %>
+      (<%= issue.records.count %>)
+      <%= link_to t(:delete), delete_manage_disk_issue_path(@disk,issue), :class => 'button red' %>
+    </h3>
+
+  <% end %>
+<% else %>
+  <h3><%= t('no_any_files') %></h3>
 <% end %>
-
-<%= link_to t("#{resource_class.name.downcase}.add"), new_resource_path, :class => 'button' if can?(:new, resource_class) %>
 

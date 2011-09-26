@@ -7,7 +7,7 @@ describe Abstracts::Parser do
   let(:first) { Abstracts::Parser.new(Rails.root.join("spec/abstracts_data/ab01012007.iso")) }
   let(:second) { Abstracts::Parser.new(Rails.root.join("spec/abstracts_data/el022007.iso")) }
 
-  it 'должен возвращать тематику' do
+  pending 'должен возвращать тематику' do
     first.topic_code.should eql 'ab01'
     first.topic.should eql 'Автоматика и вычислительная техника'
     second.topic_code.should eql 'el00'

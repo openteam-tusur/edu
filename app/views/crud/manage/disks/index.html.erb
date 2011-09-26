@@ -1,4 +1,6 @@
 <div class="abstract">
+<p><%= link_to t("#{resource_class.name.downcase}.add"),
+  new_resource_path, :class => 'button' if can?(:new, resource_class) %></p>
   <% @disks.each_slice(5) do |row| %>
   <!-- <ul class="line"> -->
     <% row.each do |year, disks| %>
@@ -11,7 +13,6 @@
     <% end %>
    <!--</ul> -->
   <% end %>
-</div>
 
-<%= link_to t("#{resource_class.name.downcase}.add"), new_resource_path, :class => 'button' if can?(:new, resource_class) %>
+</div>
 
