@@ -16,6 +16,7 @@
           <% unless speciality.curriculums.published.empty? %>
           <ul class='wide'>
             <% speciality.curriculums.published.each do |curriculum| %>
+              <% next if params[:chair_id] && curriculum.profile.present? && !curriculum.chair_id.eql?(params[:chair_id].to_i) %>
               <li>
                 <%= link_to curriculum.since_with_study_form, speciality_curriculum_path(speciality, curriculum) %>
                 <%= show_for curriculum do |item| %>
