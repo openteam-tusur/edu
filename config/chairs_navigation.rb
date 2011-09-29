@@ -19,7 +19,7 @@ SimpleNavigation::Configuration.run do |navigation|
                                    :kind => params[:kind],
                                    :degree => params[:degree]),
                    :class => facet.instance.slug,
-                   :highlights_on => /chair_id=#{facet.instance.id}/
+                   :highlights_on => /chair_id=#{facet.instance.id}$/
     end
   end
 end
