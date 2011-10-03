@@ -1,0 +1,18 @@
+
+
+
+<% @issue.records.each do | record | %>
+
+  <p>
+    <p>ID: <%= record.id %></p>
+    Fields: <%= record.fields %>
+    <p>Укр. Тематика: <%= record.main_subject %></p>
+    <p>Тематика: <%= record.subject %></p>
+    <p>Год: <%= record.year %></p>
+    <p>месяц: <%= record.month %></p>
+
+
+  </p>
+  _________________________________________
+<% end %>
+

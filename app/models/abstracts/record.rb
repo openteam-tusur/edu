@@ -5,6 +5,15 @@ class Record < ActiveRecord::Base
 
   belongs_to :issue
 
+  def constants
+    @constants ||= YAML::load(File.open("#{Rails.root}/config/abstracts.yml"))
+  end
+
+  def ololo
+    @constants ||= YAML::load(File.open("#{Rails.root}/config/abstracts.yml"))["topic"]
+  end
+
+
   def authors
     fields['001']
   end
@@ -69,12 +78,26 @@ class Record < ActiveRecord::Base
     fields['507']
   end
 
-  def month
-    fields['507']
-  end
-
   def code_thematic
     fields['514']
+  end
+
+# Field for the formation of the structure of the form
+
+  def main_subject
+    constants["topic"][fields['514'][0..1]]
+  end
+
+  def subject
+    constants["topic"][fields['501']]
+  end
+
+  def year
+    fields['514'][2..5]
+  end
+
+  def month
+    fields['507']
   end
 
 end

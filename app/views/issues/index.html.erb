@@ -2,7 +2,7 @@
 
 <% @disk.issues.each do | issue | %>
 
-<h3><%= issue.id %></h3>
+<h3><%= link_to issue.data_file_name, manage_disk_issue_records_path(@disk, issue), :class => 'button light'%></h3>
 
 <% end %>
 

@@ -1,0 +1,16 @@
+<div class="abstract">
+  <% @disks.each_slice(5) do |row| %>
+  <!-- <ul class="line"> -->
+    <% row.each do |year, disks| %>
+
+        </br><span class="year"><%= year %> </span> |
+        <% disks.each do |disk| %>
+          <span class="month">  <%= link_to disk.month, disk_issues_path(disk) %> | </span>
+        <% end %>
+
+    <% end %>
+   <!--</ul> -->
+  <% end %>
+
+</div>
+

@@ -4,9 +4,10 @@ Portal::Application.routes.draw do
 
   resources :humans, :only => [:index, :show]
 
-  resources :disks, :only => [:index, :show] do
-    resources :issues, :only => [:index, :show]
-  end
+#  resources :disks, :only => [:index, :show] do
+   # resources :issues, :only => [:index, :show]
+  resources :records
+ # end
 
   resource :human, :except => [:index, :delete, :destroy], :path => '/profile' do
     resources :graduates, :only => [:new, :create]
