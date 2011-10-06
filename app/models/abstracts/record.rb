@@ -5,14 +5,39 @@ class Record < ActiveRecord::Base
 
   belongs_to :issue
 
+  delegate :year, :month, :to => :issue
+
+  searchable do
+    text :id, :boost => 2
+    text :main_subject, :year, :updated_month, :subject, :short_title, :authors
+    time :updated_at
+    string :main_subject
+    string :subject
+    string :year
+    string :updated_month
+  end
+
+  def self.search(params)
+    solr_search do
+      fulltext params[:search]
+      facet(:updated_month)
+      facet(:main_subject)
+      facet(:subject)
+      with(:updated_month, params[:month]) if params[:month].present?
+      with(:main_subject, params[:main_subject]) if params[:main_subject].present?
+      with(:subject, params[:subject]) if params[:subject].present?
+      with(:updated_month, params[:year]) if params[:year].present?
+      paginate :page => params[:page], :per_page => 10
+    end
+  end
+
+  def updated_month
+    updated_at = [year, month].join " "
+  end
+
   def constants
     @constants ||= YAML::load(File.open("#{Rails.root}/config/abstracts.yml"))
   end
-
-  def ololo
-    @constants ||= YAML::load(File.open("#{Rails.root}/config/abstracts.yml"))["topic"]
-  end
-
 
   def authors
     fields['001']
@@ -98,6 +123,10 @@ class Record < ActiveRecord::Base
 
   def month
     fields['507']
+  end
+
+  def tipe
+    constants["codes_documents"][fields["035"]]
   end
 
 end

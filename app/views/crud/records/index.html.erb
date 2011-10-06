@@ -1,24 +1,85 @@
+<div class="abstract">
 
+  <h3><%= link_to 'Вывести все', records_path %></h3>
 
-
-
-
-
-
-<% @records.each do | record | %>
-
+<%= form_tag records_path, :method => :get do %>
   <p>
-    <p>ID: <%= record.id %></p>
-    Fields: <%= record.fields %>
-    <p>Укр. Тематика: <%= record.main_subject %></p>
-    <p>Тематика: <%= record.subject %></p>
-    <p>Год: <%= record.year %></p>
-    <p>месяц: <%= record.month
-     #record.constants
-     %></p>
-
-
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Поиск", :name => nil %>
   </p>
-  _________________________________________
 <% end %>
+
+<div class="updated_month">
+  <h3>Года</h3>
+  <ul>
+    <% for row in @search.facet(:updated_month).rows %>
+      <li>
+        <% if params[:month].blank? %>
+          <%= link_to row.value, :month => row.value %> (<%= row.count %>)
+        <% else %>
+          <strong><%= row.value %></strong>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+
+<div class="main_subject">
+  <h3>Основная тематика</h3>
+  <ul>
+    <% for row in @search.facet(:main_subject).rows %>
+      <li>
+      <% if params[:main_subject].blank? %>
+        <%= link_to row.value, :main_subject => row.value %> (<%= row.count %>)
+      <% else %>
+        <strong><%= row.value %></strong>
+      <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="subject">
+  <ul>
+   <% if params[:main_subject].blank? %>
+   <% else %>
+     <h3>Тематика</h3>
+   <% end %>
+   <% for row in @search.facet(:subject).rows %>
+      <li>
+        <% if params[:subject].blank? %>
+          <% if params[:main_subject].blank? %>
+          <% else %>
+            <div class="subject_link"><%= link_to row.value, :subject => row.value %>
+              (<%=row.count %>) &nbsp;</div>
+          <% end %>
+        <% else %>
+        <h3>Тематика</h3>
+          <strong><%= row.value %></strong>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+
+<p><%= will_paginate @records %></p>
+
+<div class="record_wrapper">
+
+<table>
+<% @records.each do | record | %>
+  <tr>
+    <td><div class="tipe"><%= record.tipe %></div></td>
+    <td><div class="short_title"><%= link_to record.short_title, record_path(record) %></div></td>
+    <td><div class="author"><%= record.authors %></div></td>
+  </tr>
+<% end %>
+</table>
+
+<p><%= will_paginate @records %></p>
+
+</div>
+</div>
 

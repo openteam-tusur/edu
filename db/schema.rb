@@ -176,7 +176,7 @@ ActiveRecord::Schema.define(:version => 20110924061519) do
     t.string   "isbn"
     t.string   "udk"
     t.string   "bbk"
-    t.text     "stamp",         :limit => 255
+    t.text     "stamp"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "content"
@@ -233,7 +233,7 @@ ActiveRecord::Schema.define(:version => 20110924061519) do
   end
 
   create_table "used_books", :force => true do |t|
-    t.text     "title",            :limit => 255
+    t.text     "title"
     t.string   "kind"
     t.integer  "publication_id"
     t.string   "library_code"

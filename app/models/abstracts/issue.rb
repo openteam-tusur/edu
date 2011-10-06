@@ -19,6 +19,7 @@ class Issue < ActiveRecord::Base
   delegate :year, :month, :to => :disk
 
 
+
   private
 
     def recreate_records

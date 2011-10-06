@@ -82,6 +82,10 @@ ru:
     disks:
       index: Реферативные журналы
 
+    records:
+      index: Реферативные журналы
+      show: Просмотр записи
+
     training:
       index: Для учёбы
 

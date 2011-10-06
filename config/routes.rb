@@ -6,7 +6,10 @@ Portal::Application.routes.draw do
 
 #  resources :disks, :only => [:index, :show] do
    # resources :issues, :only => [:index, :show]
+
   resources :records
+
+
  # end
 
   resource :human, :except => [:index, :delete, :destroy], :path => '/profile' do
