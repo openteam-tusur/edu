@@ -9,14 +9,36 @@
   </p>
 <% end %>
 
-<div class="updated_month">
+<div class="abstract_year">
   <h3>Года</h3>
   <ul>
-    <% for row in @search.facet(:updated_month).rows %>
+    <% for row in @search.facet(:year).rows %>
+      <li>
+        <% if params[:year].blank? %>
+          <%= link_to row.value, :year => row.value %>
+        <% else %>
+          <%= link_to row.value, :year => row.value %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+
+  <ul>
+   <% if params[:year].blank? %>
+   <% else %>
+     <h3>Месяц</h3>
+   <% end %>
+   <% for row in @search.facet(:month).rows %>
       <li>
         <% if params[:month].blank? %>
-          <%= link_to row.value, :month => row.value %> (<%= row.count %>)
+          <% if params[:year].blank? %>
+          <% else %>
+            <div class="subject_link"><%= link_to row.value, :month => row.value %>
+              (<%=row.count %>) &nbsp;</div>
+          <% end %>
         <% else %>
+
+        <h3>Месяц</h3>
           <strong><%= row.value %></strong>
         <% end %>
       </li>
@@ -25,15 +47,23 @@
 </div>
 
 
+
+
+
 <div class="main_subject">
   <h3>Основная тематика</h3>
   <ul>
     <% for row in @search.facet(:main_subject).rows %>
       <li>
       <% if params[:main_subject].blank? %>
-        <%= link_to row.value, :main_subject => row.value %> (<%= row.count %>)
+      <%=  params[:main_subject].methods.sort  %>
+        <%= link_to row.value, :main_subject => row.value %>
       <% else %>
-        <strong><%= row.value %></strong>
+        <% if row.value.empty? %>
+           <strong><%= row.value %></strong>
+        <% else %>
+           <%= link_to row.value, :main_subject => row.value %>
+        <% end %>
       <% end %>
       </li>
     <% end %>
@@ -66,20 +96,24 @@
 
 <p><%= will_paginate @records %></p>
 
-<div class="record_wrapper">
 
-<table>
+
+<div class="human_wrapper">
+  <ul class="cool_list">
+
+
 <% @records.each do | record | %>
-  <tr>
-    <td><div class="tipe"><%= record.tipe %></div></td>
-    <td><div class="short_title"><%= link_to record.short_title, record_path(record) %></div></td>
-    <td><div class="author"><%= record.authors %></div></td>
-  </tr>
+<li>
+    <div class="short_title"><%= link_to record.short_title, record_path(record) %></div>
+    <div class="tipe"><%= record.tipe %></div>
+    <div class="author"><%= record.authors %></div>
+</li>
 <% end %>
-</table>
 
+
+  </ul>
+</div>
 <p><%= will_paginate @records %></p>
 
-</div>
 </div>
 

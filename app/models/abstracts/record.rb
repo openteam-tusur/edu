@@ -9,30 +9,35 @@ class Record < ActiveRecord::Base
 
   searchable do
     text :id, :boost => 2
-    text :main_subject, :year, :updated_month, :subject, :short_title, :authors
+    text :main_subject, :year, :month, :subject, :short_title, :authors
     time :updated_at
     string :main_subject
     string :subject
     string :year
-    string :updated_month
+    string :month
   end
 
   def self.search(params)
     solr_search do
       fulltext params[:search]
-      facet(:updated_month)
-      facet(:main_subject)
+      facet(:month)
+      facet :year, :zeros => true, :sort => :index
+      facet :main_subject, :zeros => true, :sort => :index
       facet(:subject)
-      with(:updated_month, params[:month]) if params[:month].present?
+      with(:month, params[:month]) if params[:month].present?
       with(:main_subject, params[:main_subject]) if params[:main_subject].present?
       with(:subject, params[:subject]) if params[:subject].present?
-      with(:updated_month, params[:year]) if params[:year].present?
+      with(:year, params[:year]) if params[:year].present?
       paginate :page => params[:page], :per_page => 10
     end
   end
 
-  def updated_month
-    updated_at = [year, month].join " "
+  def month
+    updated_at = [month]
+  end
+
+ def year
+    updated_at = [year]
   end
 
   def constants
