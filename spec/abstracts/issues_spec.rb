@@ -9,7 +9,8 @@ describe Issue do
  let(:issue) { Factory :issue }
 
  it "после создания Issue должны создасться Record's" do
-   issue.records.should_not be_empty
+   issue.should be_persisted
+   issue.reload.records.should_not be_empty
  end
 
 end

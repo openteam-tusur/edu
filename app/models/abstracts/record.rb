@@ -4,15 +4,20 @@ class Record < ActiveRecord::Base
   serialize :fields
 
   belongs_to :issue
+  belongs_to :subject
 
-  delegate :year, :month, :to => :issue
+  delegate :main_subject, :to => :subject
+
+  def self.subjects_dictionary
+    @subjects_dictionary ||= YAML.load_file(Rails.root.join('config', 'abstracts', 'subjects.yml'))
+  end
+
+  def self.document_codes
+    @document_codes ||= YAML.load_file(Rails.root.join('config', 'abstracts', 'document_codes.yml'))
+  end
 
   searchable do
-    text :id, :boost => 2
-    text :main_subject, :year, :month, :subject, :short_title, :authors
-    time :updated_at
-    string :main_subject
-    string :subject
+    text :year, :month, :title, :authors, :keywords, :summary, :tipe
     string :year
     string :month
   end
@@ -20,106 +25,42 @@ class Record < ActiveRecord::Base
   def self.search(params)
     solr_search do
       fulltext params[:search]
+
+      all_of do
+        with(:year, params[:year]) if params[:year]
+#        with(:main_subject, params[:main_subject]) if params[:main_subject]
+      end
+
+
       facet(:month)
       facet :year, :zeros => true, :sort => :index
-      facet :main_subject, :zeros => true, :sort => :index
-      facet(:subject)
-      with(:month, params[:month]) if params[:month].present?
-      with(:main_subject, params[:main_subject]) if params[:main_subject].present?
-      with(:subject, params[:subject]) if params[:subject].present?
-      with(:year, params[:year]) if params[:year].present?
+
       paginate :page => params[:page], :per_page => 10
     end
-  end
-
-  def month
-    updated_at = [month]
-  end
-
- def year
-    updated_at = [year]
-  end
-
-  def constants
-    @constants ||= YAML::load(File.open("#{Rails.root}/config/abstracts.yml"))
   end
 
   def authors
     fields['001']
   end
 
-  def short_title
-    fields['002'] || fields['003']
-  end
-
-  def language
-    fields['004']
-  end
-
-  def reflection_abstracts_service
-    fields['005']
-  end
-
-  def keyword
+  def keywords
     fields['006']
-  end
-
-  def publication_date
-    fields['007']
   end
 
   def title
     fields['021']
   end
 
-  def view_document
-    fields['035']
-  end
-
-  def code_column_VINITI
-    fields['036']
-  end
-
-  def country
-    fields['042']
-  end
-
-  def pagination
-    fields['043']
-  end
-
-  def serial_number
-    fields['076']
-  end
-
   def summary
     fields['100']
   end
 
-  def code_database
+  def main_subject_code
+    fields['501'][0..1]
+  end
+
+  def subject_code
     fields['501']
-  end
-
-  def codes_colomn_SRSTI
-    fields['504']
-  end
-
-  def number_AJ_DB
-    fields['507']
-  end
-
-  def code_thematic
-    fields['514']
-  end
-
-# Field for the formation of the structure of the form
-
-  def main_subject
-    constants["topic"][fields['514'][0..1]]
-  end
-
-  def subject
-    constants["topic"][fields['501']]
   end
 
   def year
@@ -131,7 +72,7 @@ class Record < ActiveRecord::Base
   end
 
   def tipe
-    constants["codes_documents"][fields["035"]]
+    self.class.document_codes[fields["035"]]
   end
 
 end

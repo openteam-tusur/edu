@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110924061519) do
+ActiveRecord::Schema.define(:version => 20111014055525) do
 
   create_table "accreditations", :force => true do |t|
     t.integer  "speciality_id"
@@ -148,12 +148,23 @@ ActiveRecord::Schema.define(:version => 20110924061519) do
     t.datetime "data_updated_at"
     t.string   "data_hash"
     t.integer  "disk_id"
+    t.string   "main_subject"
+    t.string   "subject"
+    t.integer  "year"
+    t.integer  "month"
   end
 
   create_table "licences", :force => true do |t|
     t.integer  "speciality_id"
     t.string   "number"
     t.date     "issued_on"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "main_subjects", :force => true do |t|
+    t.string   "title"
+    t.string   "key"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -176,7 +187,7 @@ ActiveRecord::Schema.define(:version => 20110924061519) do
     t.string   "isbn"
     t.string   "udk"
     t.string   "bbk"
-    t.text     "stamp"
+    t.text     "stamp",         :limit => 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "content"
@@ -190,6 +201,7 @@ ActiveRecord::Schema.define(:version => 20110924061519) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "issue_id"
+    t.integer  "subject_id"
   end
 
   create_table "roles", :force => true do |t|
@@ -232,8 +244,16 @@ ActiveRecord::Schema.define(:version => 20110924061519) do
     t.integer  "cycle_id"
   end
 
+  create_table "subjects", :force => true do |t|
+    t.string   "code"
+    t.string   "title"
+    t.integer  "main_subject_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "used_books", :force => true do |t|
-    t.text     "title"
+    t.text     "title",            :limit => 255
     t.string   "kind"
     t.integer  "publication_id"
     t.string   "library_code"

@@ -2,7 +2,7 @@
 
 class RecordsController < CrudController
   #belongs_to :issue
-
+  before_filter :authenticate_user!
 
 
   def index

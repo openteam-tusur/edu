@@ -110,7 +110,7 @@ SimpleNavigation::Configuration.run do |navigation|
                    records_path do |record|
 
         record.item :record,
-                   t("title.records.show"),
+                   @record.title,
                    record_path(@record) unless @record.nil? || @record.new_record?
       end
 

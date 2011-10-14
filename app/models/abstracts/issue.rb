@@ -3,7 +3,7 @@
 require 'digest/md5'
 class Issue < ActiveRecord::Base
 
-  has_many :records
+  has_many :records, :dependent => :destroy
 
   belongs_to :disk
 
@@ -17,8 +17,6 @@ class Issue < ActiveRecord::Base
   validates_uniqueness_of :data_hash
 
   delegate :year, :month, :to => :disk
-
-
 
   private
 

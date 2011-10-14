@@ -1,5 +1,6 @@
 <div class="abstract">
 
+
   <h3><%= link_to 'Вывести все', records_path %></h3>
 
 <%= form_tag records_path, :method => :get do %>
@@ -15,9 +16,13 @@
     <% for row in @search.facet(:year).rows %>
       <li>
         <% if params[:year].blank? %>
-          <%= link_to row.value, :year => row.value %>
+          <%= link_to row.value, params.merge(:year => row.value) %> &nbsp;(<%= row.count %>)
         <% else %>
-          <%= link_to row.value, :year => row.value %>
+          <% if row.value.eql? params[:year] %>
+            <div class="abstract_select"><%= link_to row.value, :year => row.value %>  &nbsp;(<%= row.count %>)</div>
+          <% else %>
+            <div class="abstract_no_select"><%= link_to row.value, params.merge(:year => row.value) %> </div>
+          <% end %>
         <% end %>
       </li>
     <% end %>
@@ -26,27 +31,24 @@
   <ul>
    <% if params[:year].blank? %>
    <% else %>
-     <h3>Месяц</h3>
+   <h3>Месяц</h3>
    <% end %>
    <% for row in @search.facet(:month).rows %>
       <li>
         <% if params[:month].blank? %>
           <% if params[:year].blank? %>
           <% else %>
-            <div class="subject_link"><%= link_to row.value, :month => row.value %>
+
+            <div class="subject_link"><%= link_to row.value, params.merge(:month => row.value) %>
               (<%=row.count %>) &nbsp;</div>
           <% end %>
         <% else %>
-
-        <h3>Месяц</h3>
-          <strong><%= row.value %></strong>
+          <strong><%= row.value %> (<%= row.count %>) </strong>
         <% end %>
       </li>
     <% end %>
   </ul>
 </div>
-
-
 
 
 
@@ -56,13 +58,12 @@
     <% for row in @search.facet(:main_subject).rows %>
       <li>
       <% if params[:main_subject].blank? %>
-      <%=  params[:main_subject].methods.sort  %>
-        <%= link_to row.value, :main_subject => row.value %>
+              <%= link_to row.value, params.merge(:main_subject => row.value) %> &nbsp;(<%= row.count %>)
       <% else %>
-        <% if row.value.empty? %>
-           <strong><%= row.value %></strong>
+        <% if row.value.eql? params[:main_subject] %>
+           <div class="abstract_select"><%= link_to row.value, :main_subject => row.value %>  &nbsp;(<%= row.count %>)</div>
         <% else %>
-           <%= link_to row.value, :main_subject => row.value %>
+           <div class="abstract_no_select"><%= link_to row.value, params.merge(:main_subject => row.value) %> </div>
         <% end %>
       <% end %>
       </li>
@@ -74,6 +75,7 @@
   <ul>
    <% if params[:main_subject].blank? %>
    <% else %>
+
      <h3>Тематика</h3>
    <% end %>
    <% for row in @search.facet(:subject).rows %>
@@ -81,20 +83,17 @@
         <% if params[:subject].blank? %>
           <% if params[:main_subject].blank? %>
           <% else %>
-            <div class="subject_link"><%= link_to row.value, :subject => row.value %>
+            <div class="subject_link"><%= link_to row.value, params.merge(:subject => row.value) %>
               (<%=row.count %>) &nbsp;</div>
           <% end %>
         <% else %>
-        <h3>Тематика</h3>
-          <strong><%= row.value %></strong>
+          <strong><%= row.value %> (<%= row.count %>) </strong>
         <% end %>
       </li>
     <% end %>
   </ul>
 </div>
 
-
-<p><%= will_paginate @records %></p>
 
 
 
@@ -104,9 +103,15 @@
 
 <% @records.each do | record | %>
 <li>
-    <div class="short_title"><%= link_to record.short_title, record_path(record) %></div>
+    <div class="title"><%= link_to record.title, record_path(record) %></div>
     <div class="tipe"><%= record.tipe %></div>
-    <div class="author"><%= record.authors %></div>
+    <div class="author">
+    <% if record.authors.blank? %>
+      <span><%= "Авторы не указаны" %></span>
+    <% else %>
+    <%= record.authors %>
+    <% end %>
+    </div>
 </li>
 <% end %>
 

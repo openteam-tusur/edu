@@ -1,4 +1,11 @@
+<%= content_for :place_for_title do %>
+  <h1><%= @record.title %></h1>
+<% end %>
+
+
+
 <div class="abstract">
+
 <p><strong><%= "Тип: "%></n></strong><%= @record.tipe %></p>
 <p><strong><%= "Тематика: "%></n></strong><%= @record.subject %></p>
 <p><strong><%= "Реферат: "%></n></strong><%= @record.summary %></p>
@@ -22,8 +29,8 @@
     <td><%= @record.publication_date %></td>
   </tr>
   <tr>
-    <td><%= "Основное заглавие "%></td>
-    <td><%= @record.title %></td>
+    <td><%= "Заглавие издания "%></td>
+    <td><%= @record.short_title %></td>
   </tr>
   <tr>
     <td><%= "Вид документа (двухсимвольный) "%></td>

@@ -8,7 +8,6 @@
         </br><span class="year"><%= year %> </span> |
         <% disks.each do |disk| %>
           <span class="month">  <%= link_to disk.month, manage_disk_issues_path(disk) %> | </span>
-          <%= disk.released_on %>
         <% end %>
 
     <% end %>

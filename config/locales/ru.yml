@@ -84,7 +84,7 @@ ru:
 
     records:
       index: Реферативные журналы
-      show: Просмотр записи
+      show: ""
 
     training:
       index: Для учёбы

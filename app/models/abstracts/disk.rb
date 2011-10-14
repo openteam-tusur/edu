@@ -2,7 +2,7 @@
 
 class Disk < ActiveRecord::Base
 
-  has_many :issues
+  has_many :issues, :dependent => :destroy
 
   validates_presence_of :released_on
 
