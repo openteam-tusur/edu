@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111014055525) do
+ActiveRecord::Schema.define(:version => 20111018042412) do
 
   create_table "accreditations", :force => true do |t|
     t.integer  "speciality_id"
@@ -148,10 +148,7 @@ ActiveRecord::Schema.define(:version => 20111014055525) do
     t.datetime "data_updated_at"
     t.string   "data_hash"
     t.integer  "disk_id"
-    t.string   "main_subject"
-    t.string   "subject"
-    t.integer  "year"
-    t.integer  "month"
+    t.text     "import_report"
   end
 
   create_table "licences", :force => true do |t|
@@ -164,9 +161,9 @@ ActiveRecord::Schema.define(:version => 20111014055525) do
 
   create_table "main_subjects", :force => true do |t|
     t.string   "title"
-    t.string   "key"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "code"
   end
 
   create_table "publication_disciplines", :force => true do |t|

@@ -8,12 +8,12 @@
 
   <% @disk.issues.each do | issue | %>
 
-    <h3>
+    <h4>
       <%= issue.data_file_name %>
       <%= number_to_human_size(issue.data_file_size, :precision => 4) %>
-      (<%= issue.records.count %>)
+      (<%= issue.import_report %>)
       <%= link_to t(:delete), delete_manage_disk_issue_path(@disk,issue), :class => 'button red' %>
-    </h3>
+    </h4>
 
   <% end %>
 <% else %>
