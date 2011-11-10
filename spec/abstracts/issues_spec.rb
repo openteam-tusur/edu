@@ -14,7 +14,7 @@ describe Issue do
  end
 
  it "should save import report" do
-   issue.import_report.should =~ /Количество записей: 3, Импортировано: 3, Необнаруженные в базе тематики: AR01/
+   issue.import_report.should =~ /ВНИМАНИЕ! В некоторых записях есть неизвестные тематики!/
  end
 
 end

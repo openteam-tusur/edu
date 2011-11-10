@@ -316,9 +316,6 @@ $(function() {
     changeYear: true
   });
   $(".disciplines .tabs").tabs();
-  $('#science a').click(function(){
-    return false;
-  });
   prepare_main_menu();
   $(".role_facets #pending a").click(function() { return false; });
 });

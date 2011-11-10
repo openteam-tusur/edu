@@ -17,13 +17,6 @@ describe Record do
     Record.new(:fields => {"501" => "AB01"}).subject_code.should == "AB01"
   end
 
-  it "должна определять номер выпуска ВИНИТИ" do
-    Record.new(:fields => {"507" => "01"}).month.should == "01"
-  end
-
-  it "должна определять год выпуска ВИНИТИ" do
-    Record.new(:fields => {"514" => "AB2007-ВИНИТИ"}).year.should == "2007"
-  end
 
   it "должен определять авторов" do
     Record.new(:fields => {"001" => "Иванов И.В."}).authors.should == "Иванов И.В."
@@ -43,7 +36,7 @@ describe Record do
 
   describe "после создания" do
 
-    it "должен создавать и ассоциировать subject и main_subject" do
+    pending "должен создавать и ассоциировать subject и main_subject" do
       issue = Factory :issue
       record = issue.reload.records.first
       record.subject.should be_persisted

@@ -4,13 +4,7 @@ Portal::Application.routes.draw do
 
   resources :humans, :only => [:index, :show]
 
-#  resources :disks, :only => [:index, :show] do
-   # resources :issues, :only => [:index, :show]
-
   resources :records
-
-
- # end
 
   resource :human, :except => [:index, :delete, :destroy], :path => '/profile' do
     resources :graduates, :only => [:new, :create]
@@ -21,6 +15,7 @@ Portal::Application.routes.draw do
 
   match '/profile'  => 'humans#show', :as => :profile, :method => :get
   match '/training' => 'training#index'
+  match '/science' => 'science#index'
 
 
   scope '/training' do
