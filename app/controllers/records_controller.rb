@@ -6,9 +6,14 @@ class RecordsController < CrudController
 
 
   def index
-    @main_subjects = MainSubject.all
+    @main_subjects = MainSubject.all(:order => 'title')
     @main_subject = MainSubject.find_by_id(params[:main_subject]) if params[:main_subject]
-    @subject = Subject.find_by_id(params[:subject]) if params[:subject]
+    @subject = Subject.find_by_id(params[:subject], :order => 'title') if params[:subject]
+    
+    @years = Year.all(:order => 'title DESC')
+    @year = Year.find_by_id(params[:year]) if params[:year]
+    @month = Month.find_by_id(params[:month]) if params[:month]
+  
     @search = Record.search(params)
     @records = @search.results
   end
@@ -16,7 +21,5 @@ class RecordsController < CrudController
   def show
     @record = Record.find(params[:id])
   end
-
-
 end
 

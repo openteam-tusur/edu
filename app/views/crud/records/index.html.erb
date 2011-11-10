@@ -1,5 +1,59 @@
+<div class="abstract">
+
+<p>В&nbsp;этом разделе находятся реферативные журналы - периодические издания, содержащие рефераты научных публикаций по какой-либо отрасли науки или техники и другие вторичные информационные материалы.</p>
+
+<%= form_tag records_path, :method => :get do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Поиск", :name => nil , :class => 'button light' %>
+    <%= link_to "Сбросить фильтры", records_path, :class => 'button light' %>  
+  </p>
+<% end %>
+
+
+<div class="abstract_year">
 <ul>
-<h2><%= "Основная тематика"%></h2>
+<h2>Год</h2>
+  <% @years.each do | year | %> 
+    <li>
+      <% if @year.eql?(year) %>
+        <b><%= year.title %></b>
+        
+      <% else %>
+        <%= link_to year.title, 
+                records_path(params.merge(:year => year.id, :month => nil)) %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<ul>
+  <% @years.each do | year | %> 
+    <li>
+      <% if @year.eql?(year) %> 
+        <h2>Месяц</h2>
+        <ul>
+          <% year.months.each do |month| %>
+            <li>
+              <% if @month.eql?(month) %>
+                <b><%= month.title %></b>
+              <% else %>
+              <%= link_to month.title, 
+                      records_path(params.merge(:month => month.id)) %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>    
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+</div>
+
+<div class="main_subject">
+<ul>
+<h2>Основная тематика</h2>
   <% @main_subjects.each do | main_subject | %> 
     <li>
       <% if @main_subject.eql?(main_subject) %>
@@ -7,18 +61,19 @@
         
       <% else %>
         <%= link_to main_subject.title, 
-                records_path(params.merge(:main_subject => main_subject.id)) %>
+                records_path(params.merge(:main_subject => main_subject.id, :subject => nil)) %>
       <% end %>
     </li>
   <% end %>
 </ul>
+</div>
 
-
+<div class="subject">
 <ul>
-<h2><%= "Тематика"%></h2>
   <% @main_subjects.each do | main_subject | %> 
     <li>
-      <% if @main_subject.eql?(main_subject) %> 
+      <% if @main_subject.eql?(main_subject) %>
+      <h2>Тематика</h2> 
         <ul>
           <% main_subject.subjects.each do |subject| %>
             <li>
@@ -36,19 +91,11 @@
     </li>
   <% end %>
 </ul>
+</div>
+
 
 
  
-
-<div class="abstract">
-
-<%= form_tag records_path, :method => :get do %>
-  <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Поиск", :name => nil %>
-  </p>
-<% end %>
-
 
 <div class="human_wrapper">
   <ul class="cool_list">
@@ -60,7 +107,7 @@
     <div class="tipe"><%= record.tipe %></div>
     <div class="author">
     <% if record.authors.blank? %>
-      <span><%= "Авторы не указаны" %></span>
+      <span>Авторы не указаны</span>
     <% else %>
     <%= record.authors %>
     <% end %>

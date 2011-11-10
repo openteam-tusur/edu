@@ -1,5 +1,5 @@
 class MainSubject < ActiveRecord::Base
-  has_many :subjects
+  has_many :subjects, :order => 'title'
   validates_presence_of :title, :code
   validates_uniqueness_of :code
 end

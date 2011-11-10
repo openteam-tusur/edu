@@ -36,13 +36,16 @@ class Issue < ActiveRecord::Base
       end
       self.skip_create_recrods = true
   
+    
+  
       if problem_subject_codes.blank?
       self.update_attribute(:import_report, "Все записи успешно импортированны (#{imported_records_count})")
       else
-      self.update_attribute(:import_report, "ВНИМАНИЕ! В некоторых записях есть неизвестные тематики: #{problem_subject_codes}")
+      self.update_attribute(:import_report, "ВНИМАНИЕ! В некоторых записях есть неизвестные тематики!")
       end
     end
-# .join(', ')
+    #{problem_subject_codes} 
+
     def set_hash
       return unless self.data.file?
       self.data_hash = Digest::MD5.hexdigest(self.data_file_size.to_s)
