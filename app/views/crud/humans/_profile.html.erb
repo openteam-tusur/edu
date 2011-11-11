@@ -6,7 +6,14 @@
       <% if @human.roles.any? %>
         <ul class="list">
           <% @human.roles.each do |role| %>
-            <li class="<%= "#{role.type.demodulize.downcase}_icon" %>"><%= "#{role} (#{role.human_state.mb_chars.downcase})" %></li>
+            <li class="<%= "#{role.type.demodulize.downcase}_icon" %>">
+            <%= role %>
+            <% if role.type.demodulize.downcase.eql?('employee') %>
+              (<%= role.human_state.mb_chars.downcase %>. <strong>Для того чтобы ускорить рассмотрение заявки, позвоните администрации портала по тел. 701–557</strong>)
+            <% else %>
+              (<%= role.human_state.mb_chars.downcase %>)
+            <% end %>
+            </li>
           <% end %>
         </ul>
       <% else %>
@@ -34,9 +41,7 @@
   </div>
 
   <div class="personal_info">
-    <h3>
-      <%= @human.full_name.strip.blank? ? "Укажите свою фамилию, имя и отчество" : @human.full_name %>
-    </h3>
+    <h3><%= @human.full_name.strip.blank? ? "Укажите свою фамилию, имя и отчество" : @human.full_name %></h3>
     <ul>
       <li>
         <%= link_to "Изменить информацию о себе", edit_human_path %>
