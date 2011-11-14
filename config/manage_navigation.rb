@@ -10,6 +10,9 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :manage_specialities, "<span class='decreased'>наши</span> специальности",
                   manage_specialities_path, :id => "specialities",
                   :highlights_on => /^\/manage\/specialities/
+    primary.item :manage_specialities, "<span class='decreased'>наши</span> РЖ",
+                  manage_disks_path, :id => "abstracts",
+                  :highlights_on => /^\/manage\/(disks|issues)/
   end
 
 end

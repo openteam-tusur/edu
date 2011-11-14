@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110915085344) do
+ActiveRecord::Schema.define(:version => 20111107084400) do
 
   create_table "accreditations", :force => true do |t|
     t.integer  "speciality_id"
@@ -70,6 +70,21 @@ ActiveRecord::Schema.define(:version => 20110915085344) do
     t.datetime "updated_at"
   end
 
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
   create_table "disciplines", :force => true do |t|
     t.text     "name"
     t.integer  "speciality_id"
@@ -78,11 +93,9 @@ ActiveRecord::Schema.define(:version => 20110915085344) do
   end
 
   create_table "disks", :force => true do |t|
-    t.string   "year"
-    t.string   "month"
-    t.integer  "disk_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "released_on"
   end
 
   create_table "educations", :force => true do |t|
@@ -135,12 +148,27 @@ ActiveRecord::Schema.define(:version => 20110915085344) do
     t.datetime "data_updated_at"
     t.string   "data_hash"
     t.integer  "disk_id"
+    t.text     "import_report"
   end
 
   create_table "licences", :force => true do |t|
     t.integer  "speciality_id"
     t.string   "number"
     t.date     "issued_on"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "main_subjects", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "code"
+  end
+
+  create_table "months", :force => true do |t|
+    t.string   "title"
+    t.integer  "year_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -163,7 +191,7 @@ ActiveRecord::Schema.define(:version => 20110915085344) do
     t.string   "isbn"
     t.string   "udk"
     t.string   "bbk"
-    t.text     "stamp"
+    t.text     "stamp",         :limit => 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "content"
@@ -177,6 +205,8 @@ ActiveRecord::Schema.define(:version => 20110915085344) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "issue_id"
+    t.integer  "subject_id"
+    t.integer  "month_id"
   end
 
   create_table "roles", :force => true do |t|
@@ -219,8 +249,16 @@ ActiveRecord::Schema.define(:version => 20110915085344) do
     t.integer  "cycle_id"
   end
 
+  create_table "subjects", :force => true do |t|
+    t.string   "code"
+    t.string   "title"
+    t.integer  "main_subject_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "used_books", :force => true do |t|
-    t.text     "title"
+    t.text     "title",            :limit => 255
     t.string   "kind"
     t.integer  "publication_id"
     t.string   "library_code"
@@ -247,5 +285,11 @@ ActiveRecord::Schema.define(:version => 20110915085344) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "years", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

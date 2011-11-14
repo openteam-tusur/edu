@@ -1,0 +1,10 @@
+<div class='<%= resource_instance_name %>'>
+  <%= show_for resource do |obj| %>
+    <h1 class='name'><%= resource %></h1>
+    <% resource.attributes.keys.each do |field| %>
+      <% next if ['id', 'created_at', 'updated_at'].include?(field) %>
+      <%= field.scan(/_id$/) ? obj.association(field.sub(/_id$/, "").to_sym) : obj.attribute(field.to_sym) %>
+    <% end %>
+  <% end %>
+</div>
+

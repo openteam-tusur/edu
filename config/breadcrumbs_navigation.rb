@@ -105,6 +105,15 @@ SimpleNavigation::Configuration.run do |navigation|
                    human_path(@human) unless @human.nil? || @human.new_record?
       end
 
+      secondary.item :records,
+                   t('title.records.index'),
+                   records_path do |record|
+
+        record.item :record,
+                   @record.title,
+                   record_path(@record) unless @record.nil? || @record.new_record?
+      end
+
       secondary.item :chairs,
                      t("title.chairs.index"),
                      chairs_path,

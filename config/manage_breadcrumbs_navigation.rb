@@ -278,6 +278,29 @@ SimpleNavigation::Configuration.run do |navigation|
                     :highlights_on => /humans/ if params[:action] == "update"
       end
     end
+    primary.item :abstracts,
+               t("title.manage/disks.index"),
+               manage_disks_path, :class => "disks",
+                 :highlights_on => /^\/manage\/disks/ do |disks|
+
+      disks.item :create_disk,
+                  t("title.manage/disks.new"),
+                  new_manage_disk_path,
+                  :highlights_on => /^\/manage\/disks(\/new)?/ if @disk && @disk.new_record?
+
+     if @disk && !@disk.new_record?
+        disks.item :disk,
+                    @disk.title,
+                    manage_disk_issues_path(@disk),
+                    :highlights_on => /^\/manage\/disks\/\d+/ do | disk |
+          disk.item :create_issue,
+                    t("title.manage/issues.new"),
+                    new_manage_disk_issue_path(@disk),
+                    :highlights_on => /^\/manage\/disks\/\d+\/issues(\/new)?/ if @issue && @issue.new_record?
+        end
+     end
+
+   end
   end
 end
 

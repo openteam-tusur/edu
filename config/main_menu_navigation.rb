@@ -8,10 +8,8 @@ SimpleNavigation::Configuration.run do |navigation|
 
     primary.item :science,
                  '<span class="decreased">для</span> науки',
-                 "#",
-                 :highlights_on => /jopa/,
-                 :class => 'need_tipsy',
-                 :title => 'Раздел находится в разработке'
+                 records_path,
+                 :highlights_on => /^\/records/
 
     primary.item :subfaculties,
                  '<span class="decreased">наши</span> кафедры',

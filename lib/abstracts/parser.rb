@@ -10,14 +10,6 @@ module Abstracts
       self.path = path
     end
 
-    def topic_code
-      parsed_filename[0..3]
-    end
-
-    def topic
-      @topic = constants["topic"][parsed_filename[0..3].upcase]
-    end
-
     def number
       parsed_filename[4..5]
     end
