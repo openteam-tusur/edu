@@ -1,124 +1,113 @@
-<div class="abstract">
+<div class="abstract_list">
 
-<p>В&nbsp;этом разделе находятся реферативные журналы - периодические издания, содержащие рефераты научных публикаций по какой-либо отрасли науки или техники и другие вторичные информационные материалы.</p>
+  <p>В&nbsp;этом разделе находятся реферативные журналы&nbsp;&mdash; периодические издания, содержащие рефераты научных публикаций по&nbsp;<nobr>какой-либо</nobr> отрасли науки или техники и&nbsp;другие вторичные информационные материалы.</p>
 
-<%= form_tag records_path, :method => :get do %>
-  <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Поиск", :name => nil , :class => 'button light' %>
-    <%= link_to "Сбросить фильтры", records_path, :class => 'button light' %>  
-  </p>
-<% end %>
-
-
-<div class="abstract_year">
-<ul>
-<h2>Год</h2>
-  <% @years.each do | year | %> 
-    <li>
-      <% if @year.eql?(year) %>
-        <b><%= year.title %></b>
-        
-      <% else %>
-        <%= link_to year.title, 
-                records_path(params.merge(:year => year.id, :month => nil)) %>
-      <% end %>
-    </li>
+  <%= form_tag records_path, :method => :get do %>
+    <p>
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag "Поиск", :name => nil , :class => 'button light' %>
+      <%= link_to "Сбросить фильтры", records_path, :class => 'button light' %>
+    </p>
   <% end %>
-</ul>
 
-<ul>
-  <% @years.each do | year | %> 
-    <li>
-      <% if @year.eql?(year) %> 
-        <h2>Месяц</h2>
-        <ul>
-          <% year.months.each do |month| %>
-            <li>
-              <% if @month.eql?(month) %>
-                <b><%= month.title %></b>
-              <% else %>
-              <%= link_to month.title, 
+  <div class="abstract_year">
+    <h2>Год</h2>
+    <ul>
+      <% @years.each do | year | %>
+        <li>
+          <% if @year.eql?(year) %>
+            <b><%= year.title %></b>
+          <% else %>
+            <%= link_to year.title, records_path(params.merge(:year => year.id, :month => nil)) %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+
+    <ul>
+      <% @years.each do | year | %>
+        <li>
+          <% if @year.eql?(year) %>
+            <h2>Месяц</h2>
+            <ul>
+              <% year.months.each do |month| %>
+                <li>
+                  <% if @month.eql?(month) %>
+                    <b><%= month.title %></b>
+                  <% else %>
+                    <%= link_to month.title,
                       records_path(params.merge(:month => month.id)) %>
+                  <% end %>
+                </li>
               <% end %>
-            </li>
+            </ul>
+          <% else %>
           <% end %>
-        </ul>
-      <% else %>    
+        </li>
       <% end %>
-    </li>
-  <% end %>
-</ul>
-</div>
+    </ul>
+  </div>
 
-<div class="main_subject">
-<ul>
-<h2>Основная тематика</h2>
-  <% @main_subjects.each do | main_subject | %> 
-    <li>
-      <% if @main_subject.eql?(main_subject) %>
-        <b><%= main_subject.title %></b>
-        
-      <% else %>
-        <%= link_to main_subject.title, 
-                records_path(params.merge(:main_subject => main_subject.id, :subject => nil)) %>
+  <div class="main_subject">
+    <ul>
+      <h2>Основная тематика</h2>
+      <% @main_subjects.each do | main_subject | %>
+        <li>
+          <% if @main_subject.eql?(main_subject) %>
+            <b><%= main_subject.title %></b>
+
+          <% else %>
+            <%= link_to main_subject.title,
+              records_path(params.merge(:main_subject => main_subject.id, :subject => nil)) %>
+          <% end %>
+        </li>
       <% end %>
-    </li>
-  <% end %>
-</ul>
-</div>
+    </ul>
+  </div>
 
-<div class="subject">
-<ul>
-  <% @main_subjects.each do | main_subject | %> 
-    <li>
-      <% if @main_subject.eql?(main_subject) %>
-      <h2>Тематика</h2> 
-        <ul>
-          <% main_subject.subjects.each do |subject| %>
-            <li>
-              <% if @subject.eql?(subject) %>
-                <b><%= subject.title %></b>
-              <% else %>
-              <%= link_to subject.title, 
+  <div class="subject">
+    <ul>
+      <% @main_subjects.each do | main_subject | %>
+        <li>
+          <% if @main_subject.eql?(main_subject) %>
+            <h2>Тематика</h2>
+            <ul>
+              <% main_subject.subjects.each do |subject| %>
+                <li>
+                  <% if @subject.eql?(subject) %>
+                    <b><%= subject.title %></b>
+                  <% else %>
+                    <%= link_to subject.title,
                       records_path(params.merge(:subject => subject.id)) %>
+                  <% end %>
+                </li>
               <% end %>
-            </li>
+            </ul>
+          <% else %>
           <% end %>
-        </ul>
-      <% else %>    
+        </li>
       <% end %>
-    </li>
-  <% end %>
-</ul>
-</div>
+    </ul>
+  </div>
 
+  <div class="human_wrapper">
+    <ul class="cool_list">
+      <% @records.each do | record | %>
+        <li>
+          <div class="title"><%= link_to record.title, record_path(record) %></div>
+          <div class="tipe"><%= record.tipe %></div>
+          <div class="author">
+            <% if record.authors.blank? %>
+              <span>Авторы не указаны</span>
+            <% else %>
+              <%= record.authors %>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 
-
- 
-
-<div class="human_wrapper">
-  <ul class="cool_list">
-
-
-<% @records.each do | record | %>
-<li>
-    <div class="title"><%= link_to record.title, record_path(record) %></div>
-    <div class="tipe"><%= record.tipe %></div>
-    <div class="author">
-    <% if record.authors.blank? %>
-      <span>Авторы не указаны</span>
-    <% else %>
-    <%= record.authors %>
-    <% end %>
-    </div>
-</li>
-<% end %>
-
-
-  </ul>
-</div>
-<p><%= will_paginate @records %></p>
+  <%= will_paginate @records %>
 
 </div>
-
