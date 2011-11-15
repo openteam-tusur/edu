@@ -7,8 +7,9 @@
         <li>
           <span class="year"><%= year %> </span>
           <% disks.sort{|a, b| a.month <=> b.month}.each do |disk| %>
-            <span class="month">
+            <span class="month <%= disk.issues.empty? ? 'empty' : 'filled' %>">
               <%= link_to t('date.standalone_month_names')[disk.month].mb_chars.downcase, manage_disk_issues_path(disk) %>
+              [<%= disk.issues.count >= 10 ? disk.issues.count : "0#{disk.issues.count}" %>]
             </span>
           <% end %>
         </li>

@@ -1,11 +1,21 @@
+<% title @disk.title %>
+
 <p>
-  <%= link_to t("#{resource_class.name.downcase}.add"), new_resource_path, :class => 'button' if can?(:new, resource_class) %>
   <%= link_to t(:edit_disk), edit_manage_disk_path(@disk), :class => "button" %>
   <%= link_to t(:back),  manage_disks_path, :class => 'button light' %>
 </p>
 
+<%= semantic_form_for @disk.issues.new, :url => manage_disk_issues_path(@disk), :html => {:multipart => true} do |form| %>
+  <%= form.error_messages %>
+  <%= form.inputs do %>
+    <%= form.input :data, :as => :file, :input_html => { :class => 'focus_first' } %>
+  <% end %>
+  <%= form.buttons do %>
+    <%= form.commit_button t(:new), :button_html => { :class => 'button' } %>
+  <% end %>
+<% end %>
+
 <% if @issues.any? %>
-  <% title @disk.title %>
   <ol class="issues_list">
   <% @disk.issues.each do | issue | %>
     <li>
@@ -21,6 +31,3 @@
 <% else %>
   <h3><%= t('no_any_files') %></h3>
 <% end %>
-<p>
-  <%= link_to t("#{resource_class.name.downcase}.add"), new_resource_path, :class => 'button' if can?(:new, resource_class) %>
-</p>

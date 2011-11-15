@@ -7,12 +7,10 @@ class Manage::DisksController < Manage::ApplicationController
     @disks = Disk.all.each_with_object({}) { | disk, grouped | grouped[disk.year] ||= []; grouped[disk.year] << disk }
   end
 
-  def create
-    create! { new_manage_disk_issue_path(@disk) }
-  end
+  private
+    def smart_resource_url
+      manage_disk_issues_url(@disk)
+    end
 
-  def update
-    update! { manage_disk_issues_path(@disk) }
-  end
 end
 
