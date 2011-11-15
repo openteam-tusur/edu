@@ -1,9 +1,12 @@
 class Month < ActiveRecord::Base
   belongs_to :year
-  validates_uniqueness_of :title
 
   def number
     title.to_i
+  end
+
+  def localized_caption
+    I18n.t('date.standalone_month_names')[number].mb_chars.downcase
   end
 end
 
