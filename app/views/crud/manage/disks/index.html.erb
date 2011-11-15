@@ -1,18 +1,19 @@
 <div class="abstract">
-<p><%= link_to t("#{resource_class.name.downcase}.add"),
-  new_resource_path, :class => 'button' if can?(:new, resource_class) %></p>
-  <% @disks.each_slice(5) do |row| %>
-  <!-- <ul class="line"> -->
-    <% row.each do |year, disks| %>
-
-        </br><span class="year"><%= year %> </span> |
-        <% disks.each do |disk| %>
-          <span class="month">  <%= link_to disk.month, manage_disk_issues_path(disk) %> | </span>
-        <% end %>
-
-    <% end %>
-   <!--</ul> -->
+  <p><%= link_to t("#{resource_class.name.downcase}.add"),
+    new_resource_path, :class => 'button' if can?(:new, resource_class) %></p>
+  <% if @disks.any? %>
+    <ul class="list">
+      <% @disks.each do |year, disks| %>
+        <li>
+          <span class="year"><%= year %> </span>
+          <% disks.sort{|a, b| a.month <=> b.month}.each do |disk| %>
+            <span class="month">
+              <%= link_to t('date.standalone_month_names')[disk.month].mb_chars.downcase, manage_disk_issues_path(disk) %>
+            </span>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
   <% end %>
-
 </div>
 

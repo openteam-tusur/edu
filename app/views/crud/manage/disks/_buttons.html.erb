@@ -1,12 +1,15 @@
 <%= form.buttons do %>
   <%= form.commit_button t(:save), :button_html => { :class => 'button' } %>
-  <li>
-    <%= link_to t(:back),  manage_disks_path, :class => 'button light' %>
-  </li>
   <% if form.object.persisted? %>
+    <li>
+      <%= link_to t(:back), manage_disk_issues_path(resource), :class => 'button light' %>
+    </li>
     <li class='floatr' >
       <%= link_to t(:delete), delete_resource_path, :class => 'button red' %>
     </li>
+  <% else %>
+    <li>
+      <%= link_to t(:back), manage_disks_path, :class => 'button light' %>
+    </li>
   <% end %>
 <% end %>
-
