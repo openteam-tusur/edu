@@ -9,13 +9,18 @@
   <ol class="issues_list">
   <% @disk.issues.each do | issue | %>
     <li>
+      <div class="info">
       <strong><%= issue.data_file_name %></strong>
-      <%= number_to_human_size(issue.data_file_size, :precision => 4) %>
-      (<%= issue.import_report %>)
-      <%= link_to t(:delete), delete_manage_disk_issue_path(@disk,issue), :class => 'red' %>
+      [<%= number_to_human_size(issue.data_file_size, :precision => 4) %>]
+      <%= link_to t(:delete), delete_manage_disk_issue_path(@disk,issue), :class => 'red', :title => t('delete') %>
+      </div>
+      <div class="report"><%= issue.import_report %></div>
     </li>
   <% end %>
   </ol>
 <% else %>
   <h3><%= t('no_any_files') %></h3>
 <% end %>
+<p>
+  <%= link_to t("#{resource_class.name.downcase}.add"), new_resource_path, :class => 'button' if can?(:new, resource_class) %>
+</p>

@@ -1,56 +1,28 @@
 .abstract
-  .button
-    font-size: 12px
-    vertical-align: top
-  .human_wrapper
-    ul
-      li
-        .tipe
-        .title
-          font-size: 15px
-          font-weight: bold
-        .author
-          span
-            font-style: italic
-  .pagination
-    width: 790px
-  .main_subject
-    width: 790px
-    inline
-    .abstract_select
-      background: no-repeat 0 0 #DFEEF9
-      border-radius: 5px 5px 5px 5px
-      padding: 3px 0px 3px 0px
-      display: inline
-    .abstract_no_select
-  .subject
-    width: 790px
-    .subject_link
-  .abstract_year
-    float: right
-    width: 100px
-    display: block
-    .abstract_select
-      background: none repeat scroll 0 0 #DFEEF9
-      border-radius: 5px 5px 5px 5px
-      padding: 3px 0px 3px 0px
-      display: inline
-    .abstract_no_select
-  .record_wrapper
-    table
-      background-color: #eee
-      tr
-        .tipe
-          width: 200px
-          vertical-align: middle
-        .short_title
-        .author
-          width: 200px
-  .year
-    font-size: 22px
-    margin: 10px
-    .month
+  .list
+    li
+      +clearfix
+    .year
+      font-family: 'DejaVu Sans Mono', 'Curier New', monospace
+      font-size: 16px
+    span
+      float: left
+      margin-right: 30px
+
 .issues_list
   li
     list-style: decimal
     margin-left: 25px
+    .info
+      margin-bottom: 0
+    .report
+      color: #999
+      font-size: 11px
+    a
+      +inline-block
+      width: 16px
+      height: 16px
+      background: transparent url('../images/icon_delete.png') no-repeat
+      text-indent: -9999em
+      outline: none
+      margin-left: 5px

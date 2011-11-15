@@ -22,12 +22,6 @@ class Disk < ActiveRecord::Base
 
 end
 
-
-
-
-
-
-
 # == Schema Information
 #
 # Table name: disks
@@ -37,4 +31,3 @@ end
 #  updated_at  :datetime
 #  released_on :date
 #
-
