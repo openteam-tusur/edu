@@ -17,31 +17,15 @@
         <li>
           <% if @year.eql?(year) %>
             <b><%= year.title %></b>
-          <% else %>
-            <%= link_to year.title, records_path(params.merge(:year => year.id, :month => nil)) %>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
-
-    <ul>
-      <% @years.each do | year | %>
-        <li>
-          <% if @year.eql?(year) %>
-            <h2>Месяц</h2>
             <ul>
-              <% year.months.each do |month| %>
+              <% @year.months.each do | month | %>
                 <li>
-                  <% if @month.eql?(month) %>
-                    <b><%= month.title %></b>
-                  <% else %>
-                    <%= link_to month.title,
-                      records_path(params.merge(:month => month.id)) %>
-                  <% end %>
-                </li>
+                  <%= link_to month.number, records_path(params.merge(:month => month.id)) %>
+                  </li>
               <% end %>
             </ul>
           <% else %>
+            <%= link_to year.title, records_path(params.merge(:year => year.id, :month => nil)) %>
           <% end %>
         </li>
       <% end %>
