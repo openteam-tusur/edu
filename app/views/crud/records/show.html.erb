@@ -1,13 +1,8 @@
-<%= content_for :place_for_title do %>
-  <h1><%= @record.title %></h1>
-<% end %>
-
-
+<% title @record.title %>
 
 <div class="abstract">
 
 <p><strong><%= "Тип: "%></n></strong><%= @record.tipe %></p>
-<p><strong><%= "Тематика: "%></n></strong><%= @record.title %></p>
 <p><strong><%= "Реферат: "%></n></strong><%= @record.summary %></p>
 <p><strong><%= "Ключевые слова: "%></n></strong><%= @record.keywords %></p>
 

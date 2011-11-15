@@ -15,13 +15,17 @@
     <ul>
       <% @years.each do | year | %>
         <li>
-          <% if @year.eql?(year) %>
+          <% if year.eql?(@year) %>
             <b><%= year.title %></b>
             <ul>
               <% @year.months.each do | month | %>
                 <li>
-                  <%= link_to month.number, records_path(params.merge(:month => month.id)) %>
-                  </li>
+                  <% if month.eql?(@month) %>
+                    <b><%= month.localized_caption %></b>
+                  <% else %>
+                    <%= link_to month.localized_caption, records_path(params.merge(:month => month.id)) %>
+                  <% end %>
+                </li>
               <% end %>
             </ul>
           <% else %>
@@ -78,7 +82,7 @@
     <ul class="cool_list">
       <% @records.each do | record | %>
         <li>
-          <div class="title"><%= link_to record.title, record_path(record) %></div>
+          <div class="title"><%= link_to raw(record.title), record_path(record) %></div>
           <div class="tipe"><%= record.tipe %></div>
           <div class="author">
             <% if record.authors.blank? %>

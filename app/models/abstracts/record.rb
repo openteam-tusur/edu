@@ -153,8 +153,8 @@ class Record < ActiveRecord::Base
     end
 
     def associate_month
-      year = Year.find_or_create_by_title(self.year_title)
-      month = year.months.find_or_create_by_title(self.month_title)
+      year = Year.find_or_create_by_title(year_title)
+      month = year.months.find_or_create_by_title(month_title)
       self.month = month
     end
 

@@ -44,6 +44,8 @@ class Issue < ActiveRecord::Base
       end
     end
 
+    handle_asynchronously :recreate_records unless Rails.env.test?
+
     def set_hash
       return unless self.data.file?
       self.data_hash = Digest::MD5.hexdigest(self.data_file_size.to_s)
