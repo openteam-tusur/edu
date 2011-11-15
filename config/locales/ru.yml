@@ -381,6 +381,8 @@ ru:
         year: Год
       issue:
         data: Файл
+        data_file_name: Файл
+        data_file_size: Размер
       attachment:
         data: Выберите файл
       resource:

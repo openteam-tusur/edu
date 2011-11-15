@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 require 'digest/md5'
+
 class Issue < ActiveRecord::Base
 
   attr_accessor :skip_create_recrods
@@ -8,7 +9,6 @@ class Issue < ActiveRecord::Base
   has_many :records, :dependent => :destroy
 
   belongs_to :disk
-
 
   has_attached_file :data,
                     :path => ':rails_root/attachments/abstracts/:issue_year/:issue_month/:issue_id-:filename'
@@ -19,6 +19,8 @@ class Issue < ActiveRecord::Base
   validates_uniqueness_of :data_hash
 
   delegate :year, :month, :to => :disk
+
+  default_scope :order => :data_file_name
 
   private
 
@@ -35,28 +37,19 @@ class Issue < ActiveRecord::Base
         problem_subject_codes << record.subject_code if record.subject.new_record?
       end
       self.skip_create_recrods = true
-  
-    
-  
       if problem_subject_codes.blank?
-      self.update_attribute(:import_report, "Все записи успешно импортированны (#{imported_records_count})")
+        self.update_attribute(:import_report, "Все записи успешно импортированны (#{imported_records_count})")
       else
-      self.update_attribute(:import_report, "ВНИМАНИЕ! В некоторых записях есть неизвестные тематики!")
+        self.update_attribute(:import_report, "ВНИМАНИЕ! В некоторых записях есть неизвестные тематики!")
       end
     end
-    #{problem_subject_codes} 
 
     def set_hash
       return unless self.data.file?
       self.data_hash = Digest::MD5.hexdigest(self.data_file_size.to_s)
     end
+
 end
-
-
-
-
-
-
 
 # == Schema Information
 #
@@ -73,4 +66,3 @@ end
 #  disk_id           :integer
 #  import_report     :text
 #
-

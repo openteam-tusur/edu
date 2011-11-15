@@ -1,6 +1,9 @@
 <p><%= @disk.title %></p>
-
 <%= show_for resource do | s | %>
+  <%= s.attribute :data_file_name %>
+  <%= s.attribute :data_file_size do %>
+    <%= number_to_human_size(resource.data_file_size, :precision => 4) %>
+  <% end %>
   <% unless resource.protected_children.empty? %>
     С этим объектом связаны:
     <% resource.protected_children.each do |attribute| %>
@@ -12,4 +15,3 @@
     <% end %>
   <% end %>
 <% end %>
-
