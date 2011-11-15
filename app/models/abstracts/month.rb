@@ -1,6 +1,10 @@
 class Month < ActiveRecord::Base
   belongs_to :year
   validates_uniqueness_of :title
+
+  def number
+    title.to_i
+  end
 end
 
 # == Schema Information

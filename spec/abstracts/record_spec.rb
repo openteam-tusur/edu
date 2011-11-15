@@ -35,14 +35,27 @@ describe Record do
   end
 
   describe "после создания" do
-
-    pending "должен создавать и ассоциировать subject и main_subject" do
+    before do
       issue = Factory :issue
-      record = issue.reload.records.first
-      record.subject.should be_persisted
-      record.main_subject.should be_persisted
-      record.subject.title.should == "Автоматика и телемеханика"
-      record.main_subject.title.should == "Автоматика и радиоэлектроника"
+      @record = issue.reload.records.second
+    end
+
+
+    it "должен создавать и ассоциировать subject и main_subject" do
+      @record.subject.should be_persisted
+      @record.main_subject.should be_persisted
+      @record.subject.title.should == "Автоматика и телемеханика"
+      @record.main_subject.title.should == "Автоматика и радиоэлектроника"
+    end
+
+    it "должен создавать и ассоциировать год и месяц" do
+      @record.month.should be_persisted
+      @record.year.should be_persisted
+      @record.month.title.should == "01"
+      @record.month.number.should == 1
+      @record.year.title.should == "2007"
+      @record.year.number.should == 2007
+      @record.year.should == @record.month.year
     end
 
   end
