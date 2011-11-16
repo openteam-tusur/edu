@@ -32,14 +32,14 @@
     text-transform: uppercase
     margin: 17px 0 0 110px
     a
-      +text-shadow(#000, 1px, 2px, 3px)
+      +single-text-shadow(#000, 1px, 2px, 3px)
       text-decoration: none
       color: #f4e1ca
 
   .dashboard
     float: right
     color: #999
-    +linear-gradient(color-stops(#f2dabe, #eac496), top)
+    +background-image(linear-gradient(top, #f2dabe,#eac496))
     background-color: #eecfaa
     +border-bottom-left-radius
     +border-bottom-right-radius
