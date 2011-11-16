@@ -9,6 +9,22 @@
       <%= link_to "Очистить", records_path, :class => 'button light' %>
       <%= link_to "расширенный поиск", "#" %>
     </p>
+    <ul>    
+      <% @main_subjects.each do |main_subject| %>
+        <li>
+          <%= check_box_tag "main_subject_#{main_subject.id}", main_subject.id, main_subject.all_subjects_checked?(params[:subject]) %>
+          <%= label_tag "main_subject_#{main_subject.id}", main_subject.title %>
+          <ul>
+            <% main_subject.subjects.each do |subject| %>
+              <li>
+                <%= check_box_tag "subject[]", subject.id, params[:subject].include?(subject.id.to_s), :id => "subject_#{subject.id}" %>
+                <%= label_tag "subject_#{subject.id}", subject.title %>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+      <% end %>
+    </ul>
   <% end %>
 
   <div class="search_result">
