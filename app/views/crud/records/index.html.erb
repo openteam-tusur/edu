@@ -20,10 +20,12 @@
               <%= link_to raw(record.title), record_path(record) %>
             <% end %>
             <%= obj.attribute :authors %>
-            <%= obj.attribute :summary %>
+            <%= obj.attribute :summary do %>
+              <%= raw(record.summary) %>
+            <% end %>
             <%= obj.attribute :tipe %>
             <%= obj.attribute :keywords do %>
-              <%= record.keywords %>
+              <%= raw(record.keywords) %>
               <a href="#" class="more">дополнительно &darr;</a>
             <% end %>
           <% end %>
