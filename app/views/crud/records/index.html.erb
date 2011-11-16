@@ -42,7 +42,7 @@
             <%= obj.attribute :tipe %>
             <%= obj.attribute :keywords do %>
               <%= raw(record.keywords) %>
-              <a href="#" class="more">дополнительно &darr;</a>
+              <%= link_to raw("дополнительно &darr;"), record_path(record), :class => "more" %>
             <% end %>
           <% end %>
           <%= render :partial => "fields", :locals => { :record => record } %>

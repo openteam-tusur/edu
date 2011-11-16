@@ -1,10 +1,10 @@
-<% title @record.title %>
+<% title raw(@record.title) %>
 
 <div class="abstract">
 
-<p><strong>Тип:</strong> <%= @record.tipe %></p>
-<p><strong>Реферат:</strong> <%= @record.summary %></p>
-<p><strong>Ключевые слова:</strong> <%= @record.keywords %></p>
+<p><strong>Тип:</strong> <%= raw(@record.tipe) %></p>
+<p><strong>Реферат:</strong> <%= raw(@record.summary) %></p>
+<p><strong>Ключевые слова:</strong> <%= raw(@record.keywords) %></p>
 
 <table>
   <tr>
