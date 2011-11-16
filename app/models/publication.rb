@@ -41,6 +41,8 @@ class Publication < Resource
 
     string :kind
     string :state
+    
+    text :license_number
 
     boolean :with_comment do
       !comment.blank?
@@ -64,7 +66,7 @@ class Publication < Resource
       facet :state, :zeros => true, :exclude => state_filter, :sort => :index
       facet :with_comment, :zeros => true, :exclude => comment_filter, :sort => :index
 
-      paginate :page => options[:page], :per_page => Publication.per_page
+      paginate :page => options[:page], :per_page => options[:per_page] || Publication.per_page
     end
   end
 
@@ -124,12 +126,16 @@ class Publication < Resource
   def kind_abbr
     human_kind.mb_chars.split(/[\s-]/).map(&:first).join.mb_chars.upcase.to_s
   end
+  
+  def license_number
+    "#{kind_abbr}-#{id}"
+  end
 
   def to_report
     builder = Nokogiri::XML::Builder.new(:encoding => 'utf-8') do |xml|
       xml.root do
         xml.parent.name = "doc"
-        xml.number "#{kind_abbr}-#{id}"
+        xml.number license_number
         xml.year Time.now.year
         xml.licensor authors.map(&:human).map(&:full_name).join(", ")
         xml.publication to_s
