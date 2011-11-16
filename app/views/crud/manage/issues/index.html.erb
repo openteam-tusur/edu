@@ -8,7 +8,7 @@
 <%= semantic_form_for @issue || @disk.issues.new, :url => manage_disk_issues_path(@disk), :html => {:multipart => true} do |form| %>
   <%= form.error_messages %>
   <%= form.inputs do %>
-    <%= form.input :data, :as => :file, :input_html => { :class => 'focus_first' } %>
+    <%= form.input :data, :as => :file %>
   <% end %>
   <%= form.buttons do %>
     <%= form.commit_button t(:new), :button_html => { :class => 'button' } %>
