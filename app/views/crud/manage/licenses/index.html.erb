@@ -1,0 +1,45 @@
+<%= semantic_form_for :licenses, :html => { :method => :get, :class => "publication_search" } do | form | %>
+  <%= form.inputs do %>
+    <%= form.input :query, :required => false, :label => false, :input_html => { :name => 'query', :value => params[:query] } %>
+  <% end %>
+  <%= form.buttons do %>
+    <%= form.commit_button "Найти", :button_html => { :class => "button light" } %>
+    <li><%= link_to "Сбросить фильтры", manage_licenses_path, :class => 'button light' %></li>
+  <% end %>
+<% end %>
+
+<div class="publication_wrapper">
+  <div class="publication facets">
+    <%= render_navigation :context => 'publication_kind' %>
+    <%= render_navigation :context => 'publication_other_facets' %>
+    <%= render_navigation :context => 'chairs' %>
+  </div>
+</div>
+
+  <table>
+    <tr>
+      <th>Договор</th>
+      <th>Кафедра</th>
+      <th>УМО</th>
+    </tr>
+    <% @publications.each do | publication | %>
+      <tr>
+        <td><%= publication.license_number %></td>
+        <td><%= link_to publication.chair.abbr, manage_chair_publications_path(publication.chair) %></td>
+        <td>
+          <%= link_to publication, manage_chair_publication_path(publication.chair, publication) %>
+          <%= link_to image_tag("icon_#{publication.state}.png"),
+                      manage_chair_publication_path(publication.chair, publication),
+                      :title => publication.human_state, :rel => "tipsy" %>
+          <%= content_tag :span,
+                          image_tag("icon_comment_info.png"),
+                          :class => "comment_info",
+                          :rel => "tipsy",
+                          :title => simple_format(publication.comment).gilensize.gsub(/"/, "'") unless publication.comment.blank? %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
+  <%= will_paginate @publications %>
+ 
