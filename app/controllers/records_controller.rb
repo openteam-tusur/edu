@@ -16,6 +16,10 @@ class RecordsController < CrudController
   
     @search = Record.search(params)
     @records = @search.results
+    @main_subject_counts = Record.main_subject_counts(params)
+    @subject_counts = Record.subject_counts(params) if params[:main_subject]
+    @year_counts = Record.year_counts(params)
+    @month_counts = Record.month_counts(params) if params[:year]
   end
 
   def show

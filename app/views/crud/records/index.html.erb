@@ -16,20 +16,20 @@
       <% @years.each do | year | %>
         <li>
           <% if year.eql?(@year) %>
-            <b><%= year.title %></b>
+            <b><%= year.title %> [<%= @year_counts[year.id] %>]</b>
             <ul>
               <% @year.months.each do | month | %>
                 <li>
                   <% if month.eql?(@month) %>
-                    <b><%= month.localized_caption %></b>
+                    <b><%= month.localized_caption %> [<%= @month_counts[month.id] %>] </b>
                   <% else %>
-                    <%= link_to month.localized_caption, records_path(params.merge(:month => month.id)) %>
+                    <%= link_to "#{month.localized_caption} [#{@month_counts[month.id]}]", records_path(params.merge(:month => month.id)) %>
                   <% end %>
                 </li>
               <% end %>
             </ul>
           <% else %>
-            <%= link_to year.title, records_path(params.merge(:year => year.id, :month => nil)) %>
+            <%= link_to "#{year.title} [#{@year_counts[year.id]}]", records_path(params.merge(:year => year.id, :month => nil)) %>
           <% end %>
         </li>
       <% end %>
@@ -42,10 +42,10 @@
       <% @main_subjects.each do | main_subject | %>
         <li>
           <% if @main_subject.eql?(main_subject) %>
-            <b><%= main_subject.title %></b>
+            <b><%= main_subject.title %> [<%= @main_subject_counts[main_subject.id] %>]</b>
 
           <% else %>
-            <%= link_to main_subject.title,
+            <%= link_to "#{main_subject.title} [#{@main_subject_counts[main_subject.id]}]",
               records_path(params.merge(:main_subject => main_subject.id, :subject => nil)) %>
           <% end %>
         </li>
@@ -63,9 +63,9 @@
               <% main_subject.subjects.each do |subject| %>
                 <li>
                   <% if @subject.eql?(subject) %>
-                    <b><%= subject.title %></b>
+                    <b><%= subject.title %> [<%= @subject_counts[subject.id] %>]</b>
                   <% else %>
-                    <%= link_to subject.title,
+                    <%= link_to "#{subject.title} [#{@subject_counts[subject.id]}]",
                       records_path(params.merge(:subject => subject.id)) %>
                   <% end %>
                 </li>
