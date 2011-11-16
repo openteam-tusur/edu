@@ -36,16 +36,20 @@ describe Record do
 
   describe "после создания" do
     before do
-      issue = Factory :issue
-      @record = issue.reload.records.second
+      @issue = Factory :issue
+      @record = @issue.reload.records.second
     end
-
 
     it "должен создавать и ассоциировать subject и main_subject" do
       @record.subject.should be_persisted
       @record.main_subject.should be_persisted
       @record.subject.title.should == "Автоматика и телемеханика"
       @record.main_subject.title.should == "Автоматика и радиоэлектроника"
+    end
+
+    it "должен относить к другим если в справочнике нет тематики" do
+      @issue.records.third.subject.code.should == "ABXX"
+      @issue.records.third.main_subject.code.should == "AB"
     end
 
     it "должен создавать и ассоциировать год и месяц" do
@@ -61,4 +65,3 @@ describe Record do
   end
 
 end
-
