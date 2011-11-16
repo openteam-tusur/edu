@@ -2,95 +2,32 @@
 
   <p>В&nbsp;этом разделе находятся реферативные журналы&nbsp;&mdash; периодические издания, содержащие рефераты научных публикаций по&nbsp;<nobr>какой-либо</nobr> отрасли науки или техники и&nbsp;другие вторичные информационные материалы.</p>
 
-  <%= form_tag records_path, :method => :get do %>
+  <%= form_tag records_path, :method => :get, :class => "abstract_search_form" do %>
     <p>
-      <%= text_field_tag :search, params[:search] %>
+      <%= text_field_tag :search, params[:search], :class => "search_field" %>
       <%= submit_tag "Поиск", :name => nil , :class => 'button light' %>
-      <%= link_to "Сбросить фильтры", records_path, :class => 'button light' %>
+      <%= link_to "Очистить", records_path, :class => 'button light' %>
+      <%= link_to "расширенный поиск", "#" %>
     </p>
   <% end %>
 
-  <div class="abstract_year">
-    <h2>Год</h2>
-    <ul>
-      <% @years.each do | year | %>
-        <li>
-          <% if year.eql?(@year) %>
-            <b><%= year.title %> [<%= @year_counts[year.id] %>]</b>
-            <ul>
-              <% @year.months.each do | month | %>
-                <li>
-                  <% if month.eql?(@month) %>
-                    <b><%= month.localized_caption %> [<%= @month_counts[month.id] %>] </b>
-                  <% else %>
-                    <%= link_to "#{month.localized_caption} [#{@month_counts[month.id]}]", records_path(params.merge(:month => month.id)) %>
-                  <% end %>
-                </li>
-              <% end %>
-            </ul>
-          <% else %>
-            <%= link_to "#{year.title} [#{@year_counts[year.id]}]", records_path(params.merge(:year => year.id, :month => nil)) %>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-
-  <div class="main_subject">
-    <ul>
-      <h2>Основная тематика</h2>
-      <% @main_subjects.each do | main_subject | %>
-        <li>
-          <% if @main_subject.eql?(main_subject) %>
-            <b><%= main_subject.title %> [<%= @main_subject_counts[main_subject.id] %>]</b>
-
-          <% else %>
-            <%= link_to "#{main_subject.title} [#{@main_subject_counts[main_subject.id]}]",
-              records_path(params.merge(:main_subject => main_subject.id, :subject => nil)) %>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-
-  <div class="subject">
-    <ul>
-      <% @main_subjects.each do | main_subject | %>
-        <li>
-          <% if @main_subject.eql?(main_subject) %>
-            <h2>Тематика</h2>
-            <ul>
-              <% main_subject.subjects.each do |subject| %>
-                <li>
-                  <% if @subject.eql?(subject) %>
-                    <b><%= subject.title %> [<%= @subject_counts[subject.id] %>]</b>
-                  <% else %>
-                    <%= link_to "#{subject.title} [#{@subject_counts[subject.id]}]",
-                      records_path(params.merge(:subject => subject.id)) %>
-                  <% end %>
-                </li>
-              <% end %>
-            </ul>
-          <% else %>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-
-  <div class="human_wrapper">
+  <div class="search_result">
     <ul class="cool_list">
       <% @records.each do | record | %>
         <li>
-          <div class="title"><%= link_to raw(record.title), record_path(record) %></div>
-          <div class="tipe"><%= record.tipe %></div>
-          <div class="author">
-            <% if record.authors.blank? %>
-              <span>Авторы не указаны</span>
-            <% else %>
-              <%= record.authors %>
+          <%= show_for record do |obj| %>
+            <%= obj.value :title do %>
+              <%= link_to raw(record.title), record_path(record) %>
             <% end %>
-          </div>
+            <%= obj.attribute :authors %>
+            <%= obj.attribute :summary %>
+            <%= obj.attribute :tipe %>
+            <%= obj.attribute :keywords do %>
+              <%= record.keywords %>
+              <a href="#" class="more">дополнительно &darr;</a>
+            <% end %>
+          <% end %>
+          <%= render :partial => "fields", :locals => { :record => record } %>
         </li>
       <% end %>
     </ul>

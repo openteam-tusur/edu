@@ -287,6 +287,21 @@ function prepare_main_menu() {
   });
 };
 
+function rj_search_manipulate() {
+  $(".cool_list .record .record_title a, .cool_list .record .record_keywords .more").click(function() {
+    var link = $(this);
+    var table = $("table", $(this).parents("li"));
+    table.toggle(0, function() {
+      if (table.is(":visible")) {
+        $(".cool_list .record .record_keywords .more").html("дополнительно &uarr;")
+      } else {
+        $(".cool_list .record .record_keywords .more").html("дополнительно &darr;");
+      };
+    });
+    return false;
+  });
+};
+
 $(function() {
   human_check();
   discipline_name_autocomplete();
@@ -318,5 +333,6 @@ $(function() {
   $(".disciplines .tabs").tabs();
   prepare_main_menu();
   $(".role_facets #pending a").click(function() { return false; });
+  rj_search_manipulate();
 });
 

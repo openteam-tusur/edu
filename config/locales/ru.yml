@@ -439,7 +439,6 @@ ru:
         password_confirmation: Подтверждения пароля
         remember_me: Запомнить меня?
         current_password: Текущий пароль
-
       used_book:
         kind: Тип
         kind_enum:
@@ -450,7 +449,6 @@ ru:
         publication_title: Публикация на портале
         quantity: Количество
         title: Название
-
       licence:
         issued_on: Дата выдачи
         number: Номер
@@ -480,10 +478,8 @@ ru:
         profile_master: Программа
         profile_bachelor: Профиль
         profile_specialist: Специализация
-
         semester:
           number: Номер
-
       study:
         cycle: Цикл
         cycle_id: Цикл
@@ -503,7 +499,6 @@ ru:
         examinations: Форма отчетности
         semester_number: Номер семестра
         semester: Семестр
-
       publication:
         state_enum:
           <<: *state_enum
@@ -524,12 +519,10 @@ ru:
         year: Год издания
         extended_kind: Полное название типа материала
         comment: Примечание
-
         kind_enum:
           training_toolkit: Учебно-методическое пособие
           tutorial: Учебное пособие
           work_programm: Рабочая программа
-
       publication_discipline:
         speciality_request: Специальность
         discipline_request: Дисциплина
@@ -537,9 +530,12 @@ ru:
         publication_id: Материал
         discipline: Дисциплина
         discipline_id: Дисциплина
-
       author:
         resource: Материал
         human: Автор
         human_id: Автор
-
+      record:
+        authors: Авторы
+        summary: Реферат
+        tipe: Тип
+        keywords: Ключевые слова

@@ -39,50 +39,40 @@
       margin-left: 5px
 
 .abstract_list
-  .button
-    font-size: 12px
-    vertical-align: top
-  .human_wrapper
+  .abstract_search_form
+    .search_field
+      width: 400px
+      font-family: Arial, Verdana, sans-serif
+      border: 1px solid #ccc
+      +border-radius
+      padding: 4px 3px 3px
+      margin-right: 5px
+    .button
+      font-size: 12px
+      vertical-align: top
+      margin-right: 5px
+  .search_result
     margin-bottom: 0
     ul
+      width: 100%
       margin-bottom: 0
       li
-        .tipe
-        .title
+        div, dl
+          margin-bottom: 0
+        .record_title
           font-size: 15px
           font-weight: bold
-        .author
-          span
-            font-style: italic
-  .main_subject
-    width: 790px
-    inline
-    .abstract_select
-      background: no-repeat 0 0 #DFEEF9
-      border-radius: 5px 5px 5px 5px
-      padding: 3px 0px 3px 0px
-      display: inline
-    .abstract_no_select
-  .subject
-    width: 790px
-    .subject_link
-  .abstract_year
-    float: right
-    width: 100px
-    display: block
-    .abstract_select
-      background: none repeat scroll 0 0 #DFEEF9
-      border-radius: 5px 5px 5px 5px
-      padding: 3px 0px 3px 0px
-      display: inline
-    .abstract_no_select
-  .record_wrapper
-    table
-      background-color: #eee
-      tr
-        .tipe
-          width: 200px
-          vertical-align: middle
-        .short_title
-        .author
-          width: 200px
+          margin-bottom: 10px
+        .record_authors,
+        .record_summary,
+        .record_tipe,
+        .record_keywords
+          margin-top: 5px
+        .more
+          float: right
+          text-decoration: none
+          outline: none
+        table
+          display: none
+          width: 100%
+          margin: 5px 0 0 0
