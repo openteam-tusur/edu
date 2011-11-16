@@ -38,13 +38,49 @@ class Record < ActiveRecord::Base
       all_of do
         with(:main_subject_id, params[:main_subject]) if params[:main_subject]
         with(:subject_id, params[:subject]) if params[:subject]
-      end
-      all_of do
         with(:year_id, params[:year]) if params[:year]
         with(:month_id, params[:month]) if params[:month]
       end
       paginate :page => params[:page], :per_page => 10
     end
+  end
+  
+  def self.main_subject_counts(params)
+    solr_search do
+      fulltext params[:search]
+      with(:year_id, params[:year]) if params[:year]
+      with(:month_id, params[:month]) if params[:month]
+      facet :main_subject_id, :zeros => true
+    end.facet(:main_subject_id).rows.inject({}) { | hash, facet | hash[facet.value] = facet.count; hash }
+  end
+
+  def self.subject_counts(params)
+    solr_search do
+      fulltext params[:search]
+      with(:year_id, params[:year]) if params[:year]
+      with(:month_id, params[:month]) if params[:month]
+      with(:main_subject_id, params[:main_subject])
+      facet :subject_id, :zeros => true
+    end.facet(:subject_id).rows.inject({}) { | hash, facet | hash[facet.value] = facet.count; hash }
+  end
+
+  def self.year_counts(params)
+    solr_search do
+      fulltext params[:search]
+      with(:main_subject_id, params[:main_subject]) if params[:main_subject]
+      with(:subject_id, params[:subject]) if params[:subject]
+      facet :year_id, :zeros => true
+    end.facet(:year_id).rows.inject({}) { | hash, facet | hash[facet.value] = facet.count; hash }
+  end
+
+  def self.month_counts(params)
+    solr_search do
+      fulltext params[:search]
+      with(:main_subject_id, params[:main_subject]) if params[:main_subject]
+      with(:subject_id, params[:subject]) if params[:subject]
+      with(:year_id, params[:year])
+      facet :month_id, :zeros => true
+    end.facet(:month_id).rows.inject({}) { | hash, facet | hash[facet.value] = facet.count; hash }
   end
 
   def authors
