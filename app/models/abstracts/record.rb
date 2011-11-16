@@ -32,8 +32,6 @@ class Record < ActiveRecord::Base
     integer :subject_id
   end
 
-
-
   def self.search(params)
     solr_search do
       fulltext params[:search]
@@ -126,7 +124,7 @@ class Record < ActiveRecord::Base
   end
 
   def subject_code
-    fields['501']
+    self.class.subjects_dictionary.keys.include?(fields['501']) ? fields['501'] : "#{main_subject_code}XX"
   end
 
   def year_title

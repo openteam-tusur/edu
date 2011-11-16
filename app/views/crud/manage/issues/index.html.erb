@@ -5,7 +5,7 @@
   <%= link_to t(:back),  manage_disks_path, :class => 'button light' %>
 </p>
 
-<%= semantic_form_for @disk.issues.new, :url => manage_disk_issues_path(@disk), :html => {:multipart => true} do |form| %>
+<%= semantic_form_for @issue || @disk.issues.new, :url => manage_disk_issues_path(@disk), :html => {:multipart => true} do |form| %>
   <%= form.error_messages %>
   <%= form.inputs do %>
     <%= form.input :data, :as => :file, :input_html => { :class => 'focus_first' } %>
@@ -17,7 +17,7 @@
 
 <% if @issues.any? %>
   <ol class="issues_list">
-  <% @disk.issues.each do | issue | %>
+  <% @issues.each do | issue | %>
     <li>
       <div class="info">
       <strong><%= issue.data_file_name %></strong>
