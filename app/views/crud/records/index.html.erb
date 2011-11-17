@@ -10,18 +10,23 @@
       <%= link_to "расширенный поиск", "#" %>
     </p>
     <div class="extend_search">
-      <div class="tree_subjects">
+      <%= javascript_include_tag "jquery.tree.js" %>
+      <div class="subjects">
         <h3>Тематики</h3>
-        <ul>
+        <ul class="subjects_tree">
           <% @main_subjects.each do |main_subject| %>
             <li>
-              <%= check_box_tag "main_subject_#{main_subject.id}", main_subject.id, main_subject.all_subjects_checked?(params[:subject]) %>
-              <%= label_tag "main_subject_#{main_subject.id}", main_subject.title %>
+              <%= label_tag "main_subject_#{main_subject.id}" do %>
+                <%= check_box_tag "main_subject_#{main_subject.id}", main_subject.id, main_subject.all_subjects_checked?(params[:subject]) %>
+                <%= main_subject.title %>
+              <% end %>
               <ul>
                 <% main_subject.subjects.each do |subject| %>
                   <li>
-                    <%= check_box_tag "subject[]", subject.id, params[:subject].include?(subject.id.to_s), :id => "subject_#{subject.id}" %>
-                    <%= label_tag "subject_#{subject.id}", subject.title %>
+                    <%= label_tag "subject_#{subject.id}" do %>
+                      <%= check_box_tag "subject[]", subject.id, params[:subject].include?(subject.id.to_s), :id => "subject_#{subject.id}" %>
+                      <%= subject.title %>
+                    <% end %>
                   </li>
                 <% end %>
               </ul>
@@ -29,18 +34,22 @@
           <% end %>
         </ul>
       </div>
-      <div class="tree_years">
+      <div class="years">
         <h3>Выпуски ВИНИТИ</h3>
-        <ul>
+        <ul class="years_tree">
           <% @years.each do |year| %>
             <li>
-              <%= check_box_tag "year_#{year.id}", year.id, year.all_months_checked?(params[:month]) %>
-              <%= label_tag "year_#{year.id}", year.title %>
+              <%= label_tag "year_#{year.id}" do %>
+                <%= check_box_tag "year_#{year.id}", year.id, year.all_months_checked?(params[:month]) %>
+                <%= year.title %>
+              <% end %>
               <ul>
                 <% year.months.each do |month| %>
                   <li>
-                    <%= check_box_tag "month[]", month.id, params[:month].include?(month.id.to_s), :id => "month_#{month.id}" %>
-                    <%= label_tag "month_#{month.id}", month.localized_caption %>
+                    <%= label_tag "month_#{month.id}" do %>
+                      <%= check_box_tag "month[]", month.id, params[:month].include?(month.id.to_s), :id => "month_#{month.id}" %>
+                      <%= month.localized_caption %>
+                    <% end %>
                   </li>
                 <% end %>
               </ul>

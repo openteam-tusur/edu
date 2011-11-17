@@ -302,6 +302,12 @@ function rj_search_manipulate() {
   });
 };
 
+function init_checkbox_tree() {
+  if ($.fn.Tree) {
+    $(".subjects_tree, .years_tree").Tree();
+  };
+};
+
 $(function() {
   human_check();
   discipline_name_autocomplete();
@@ -334,5 +340,6 @@ $(function() {
   prepare_main_menu();
   $(".role_facets #pending a").click(function() { return false; });
   rj_search_manipulate();
+  init_checkbox_tree();
 });
 
