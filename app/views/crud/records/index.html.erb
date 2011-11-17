@@ -7,7 +7,7 @@
       <%= text_field_tag :search, params[:search], :class => "search_field" %>
       <%= submit_tag "Поиск", :name => nil , :class => 'button light' %>
       <%= link_to "Очистить", records_path, :class => 'button light' %>
-      <%= link_to "расширенный поиск", "#", :class => "extend_search_toggle" %>
+      <%= link_to raw("расширенный поиск &darr;"), "#", :class => "extend_search_toggle" %>
     </p>
     <div class="extend_search">
       <%= javascript_include_tag "jquery.tree.js" %>

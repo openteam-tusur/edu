@@ -305,7 +305,14 @@ function rj_search_manipulate() {
 function init_checkbox_tree() {
   if ($.fn.tree) {
     $(".extend_search_toggle").click(function() {
-      $(".extend_search").toggle();
+      var link = $(this);
+      $(".extend_search").toggle(0, function() {
+        if ($(".extend_search").is(":visible")) {
+          link.html("расширенный поиск &uarr;")
+        } else {
+          link.html("расширенный поиск &darr;");
+        };
+      });
       return false;
     });
     $(".subjects_tree, .years_tree").tree({
