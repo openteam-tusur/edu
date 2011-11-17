@@ -303,8 +303,9 @@ function rj_search_manipulate() {
 };
 
 function init_checkbox_tree() {
-  if ($.fn.Tree) {
-    $(".subjects_tree, .years_tree").Tree();
+  if ($.fn.tree) {
+    $(".subjects_tree").tree();
+    $(".years_tree").tree();
   };
 };
 
