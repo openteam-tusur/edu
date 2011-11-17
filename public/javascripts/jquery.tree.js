@@ -43,7 +43,7 @@
      *   </li>
      * </ul>
      */
-    Tree: function(){
+    tree: function() {
       // Добавим контролы для всего дерева (все свернуть, развернуть и т.д.), и добавим класс
       $(this)
         .addClass(CLASS_JQUERY_TREE)
@@ -69,7 +69,7 @@
         .closest('li').addClass(CLASS_JQUERY_TREE_LEAF);
 
       // Для всех элементов, являющихся узлами (имеющих дочерние элементы)...
-      $('li:has(ul:has(li))', this).find(':first')
+      var nodes_has_children = $('li:has(ul:has(li))', this).find(':first')
         // ... добавим элемент, открывающий/закрывающий узел
         .before(TREE_NODE_HANDLE_CODE)
         // ... добавим к контейнеру класс "узел дерева" и "свернем".
@@ -106,6 +106,13 @@
       .closest('label').click(function(){
         labelClick(this);
         checkCheckbox($('input:checkbox', this));
+      });
+      nodes_has_children.each(function() {
+        if ($('label', this).hasClass(CLASS_JQUERY_TREE_CHECKED) ||
+            $('label', this).hasClass(CLASS_JQUERY_TREE_CHECKED_PARTIAL)) {
+          $(this).removeClass(CLASS_JQUERY_TREE_COLLAPSED);
+          $('.' + CLASS_JQUERY_TREE_HANDLE, this).html(TREE_NODE_HANDLE_EXPANDED);
+        };
       });
     }
 
