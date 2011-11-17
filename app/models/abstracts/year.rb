@@ -5,6 +5,10 @@ class Year < ActiveRecord::Base
   def number
     title.to_i
   end
+
+  def all_months_checked?(month_ids)
+    (months.map(&:id).map(&:to_s) - month_ids).empty?
+  end
 end
 
 # == Schema Information

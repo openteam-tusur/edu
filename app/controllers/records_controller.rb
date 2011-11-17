@@ -8,9 +8,10 @@ class RecordsController < CrudController
   def index
     @main_subjects = MainSubject.all(:order => 'title')
     @years = Year.all(:order => 'title DESC')
-    
+
     params[:subject] ||= []
-  
+    params[:month] ||= []
+
     @search = Record.search(params)
     @records = @search.results
   end

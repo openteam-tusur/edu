@@ -9,22 +9,46 @@
       <%= link_to "Очистить", records_path, :class => 'button light' %>
       <%= link_to "расширенный поиск", "#" %>
     </p>
-    <ul>    
-      <% @main_subjects.each do |main_subject| %>
-        <li>
-          <%= check_box_tag "main_subject_#{main_subject.id}", main_subject.id, main_subject.all_subjects_checked?(params[:subject]) %>
-          <%= label_tag "main_subject_#{main_subject.id}", main_subject.title %>
-          <ul>
-            <% main_subject.subjects.each do |subject| %>
-              <li>
-                <%= check_box_tag "subject[]", subject.id, params[:subject].include?(subject.id.to_s), :id => "subject_#{subject.id}" %>
-                <%= label_tag "subject_#{subject.id}", subject.title %>
-              </li>
-            <% end %>
-          </ul>
-        </li>
-      <% end %>
-    </ul>
+    <div class="extend_search">
+      <div class="tree_subjects">
+        <h3>Тематики</h3>
+        <ul>
+          <% @main_subjects.each do |main_subject| %>
+            <li>
+              <%= check_box_tag "main_subject_#{main_subject.id}", main_subject.id, main_subject.all_subjects_checked?(params[:subject]) %>
+              <%= label_tag "main_subject_#{main_subject.id}", main_subject.title %>
+              <ul>
+                <% main_subject.subjects.each do |subject| %>
+                  <li>
+                    <%= check_box_tag "subject[]", subject.id, params[:subject].include?(subject.id.to_s), :id => "subject_#{subject.id}" %>
+                    <%= label_tag "subject_#{subject.id}", subject.title %>
+                  </li>
+                <% end %>
+              </ul>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="tree_years">
+        <h3>Выпуски ВИНИТИ</h3>
+        <ul>
+          <% @years.each do |year| %>
+            <li>
+              <%= check_box_tag "year_#{year.id}", year.id, year.all_months_checked?(params[:month]) %>
+              <%= label_tag "year_#{year.id}", year.title %>
+              <ul>
+                <% year.months.each do |month| %>
+                  <li>
+                    <%= check_box_tag "month[]", month.id, params[:month].include?(month.id.to_s), :id => "month_#{month.id}" %>
+                    <%= label_tag "month_#{month.id}", month.localized_caption %>
+                  </li>
+                <% end %>
+              </ul>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   <% end %>
 
   <div class="search_result">
