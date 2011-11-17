@@ -38,20 +38,19 @@
   display: inline-block
 
 .jquery-tree-checked-partial, .jquery-tree-checked, .jquery-tree-unchecked
-  background-position: 5px 0
-  background-repeat: no-repeat
+  background: transparent url('../images/tree_checkboxes.png') no-repeat
   cursor: default
   padding-left: 25px
   margin: 0
 
-.jquery-tree-checked-partial
-  background-image: url('../images/tree/checkbox-partial.png')
+.jquery-tree-unchecked
+  background-position: 5px 0
 
 .jquery-tree-checked
-  background-image: url('../images/tree/checkbox-checked.png')
+  background-position: 5px -100px
 
-.jquery-tree-unchecked
-  background-image: url('../images/tree/checkbox-unchecked.png')
+.jquery-tree-checked-partial
+  background-position: 5px -200px
 
 .jquery-tree-node label,
 .jquery-tree-handle
