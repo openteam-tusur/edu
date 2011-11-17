@@ -37,11 +37,12 @@ class Record < ActiveRecord::Base
       fulltext params[:search]
       all_of do
         with(:subject_id, params[:subject]) if params[:subject].any?
+        with(:month_id, params[:month]) if params[:month].any?
       end
       paginate :page => params[:page], :per_page => 10
     end
   end
-  
+
   def authors
     fields['001']
   end
