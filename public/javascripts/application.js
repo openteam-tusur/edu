@@ -304,6 +304,10 @@ function rj_search_manipulate() {
 
 function init_checkbox_tree() {
   if ($.fn.tree) {
+    $(".extend_search_toggle").click(function() {
+      $(".extend_search").toggle();
+      return false;
+    });
     $(".subjects_tree, .years_tree").tree({
       expand_checked_partial_on_load: true
     });
