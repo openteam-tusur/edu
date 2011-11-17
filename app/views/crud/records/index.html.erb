@@ -9,6 +9,32 @@
       <%= link_to "Очистить", records_path, :class => 'button light' %>
       <%= link_to raw("расширенный поиск &darr;"), "#", :class => "extend_search_toggle" %>
     </p>
+    <p>
+     <%= content_tag(:ul) do %>
+      <% @subjects.each do |main_subject, subjects| %>
+        <li>
+          <%= main_subject.title %>
+          <%= content_tag(:ul) do %>
+            <% subjects.each do |subject| %>
+              <%= content_tag :li, subject.title %>
+            <% end %>
+          <% end unless main_subject.all_subjects_checked?(params[:subject]) %>
+        </li>
+      <% end %>
+     <% end if @subjects.any? %>
+     <%= content_tag(:ul) do %>
+      <% @months.each do |year, months| %>
+        <li>
+          <%= year.title %>
+          <%= content_tag(:ul) do %>
+            <% months.each do |month| %>
+              <%= content_tag :li, month.title %>
+            <% end %>
+          <% end unless year.all_months_checked?(params[:month]) %>
+        </li>
+      <% end %>
+     <% end if @subjects.any? %>
+    </p>
     <div class="extend_search">
       <%= javascript_include_tag "jquery.tree.js" %>
       <div class="subjects">
