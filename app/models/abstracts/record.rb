@@ -19,6 +19,10 @@ class Record < ActiveRecord::Base
   def self.document_codes
     @document_codes ||= YAML.load_file(Rails.root.join('config', 'abstracts', 'document_codes.yml'))
   end
+  
+  def self.field_codes
+    field_codes ||= YAML.load_file(Rails.root.join('config', 'abstracts', 'field_codes.yml'))
+  end
 
   searchable do
     text :title, :authors, :keywords, :summary
@@ -41,6 +45,10 @@ class Record < ActiveRecord::Base
       end
       paginate :page => params[:page], :per_page => 10
     end
+  end
+  
+  def self.special_fields
+    ["001", "006", "021", "100", "035"]
   end
 
   def authors
