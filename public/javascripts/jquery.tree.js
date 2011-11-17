@@ -15,8 +15,8 @@
   var CLASS_JQUERY_TREE_NODE = 'jquery-tree-node';
   var CLASS_JQUERY_TREE_LEAF = 'jquery-tree-leaf';
   var CLASS_JQUERY_TREE_CHECKED = 'jquery-tree-checked';
-  var CLASS_JQUERY_TREE_UNCHECKED = 'jquery-tree-unchecked';
   var CLASS_JQUERY_TREE_CHECKED_PARTIAL = 'jquery-tree-checked-partial';
+  var CLASS_JQUERY_TREE_UNCHECKED = 'jquery-tree-unchecked';
 
   var COLLAPSE_ALL_CODE = '<span class="' + CLASS_JQUERY_TREE_COLLAPSE_ALL + '">Свернуть все</span>';
   var EXPAND_ALL_CODE = '<span class="' + CLASS_JQUERY_TREE_EXPAND_ALL + '">Развернуть все</span>';
@@ -29,7 +29,14 @@
   var TREE_NODE_HANDLE_COLLAPSED = "+";
   var TREE_NODE_HANDLE_EXPANDED = "&minus;";
 
+
   $.fn.extend({
+
+    defaults: {
+      expand_checked_on_load: false, // развернуть полностью выбранные узлы
+      expand_checked_partial_on_load: false, // развернуть частично выбранные узлы
+      expand_unchecked_on_load: false // развернуть невыбранные узлы
+    },
 
     /**
      * Делает дерево из структуры вида:
@@ -43,7 +50,10 @@
      *   </li>
      * </ul>
      */
-    tree: function() {
+    tree: function(options) {
+      // Подбираем пользовательские настройки
+      options = $.extend({}, $.fn.defaults, options);
+
       // Добавим контролы для всего дерева (все свернуть, развернуть и т.д.), и добавим класс
       $(this)
         .addClass(CLASS_JQUERY_TREE)
@@ -107,13 +117,19 @@
         labelClick(this);
         checkCheckbox($('input:checkbox', this));
       });
-      nodes_has_children.each(function() {
-        if ($('label', this).hasClass(CLASS_JQUERY_TREE_CHECKED) ||
-            $('label', this).hasClass(CLASS_JQUERY_TREE_CHECKED_PARTIAL)) {
-          $(this).removeClass(CLASS_JQUERY_TREE_COLLAPSED);
-          $('.' + CLASS_JQUERY_TREE_HANDLE, this).html(TREE_NODE_HANDLE_EXPANDED);
-        };
-      });
+      // При загрузке страницы раскрываем узлы у которых есть дочерние в зависимости от типа и опций (по умолчанию не раскрывается никто)
+      if (options.expand_checked_on_load ||
+          options.expand_checked_partial_on_load ||
+          options.expand_unchecked_on_load) {
+        nodes_has_children.each(function() {
+          if (($('label', this).hasClass(CLASS_JQUERY_TREE_CHECKED) && options.expand_checked_on_load) ||
+              ($('label', this).hasClass(CLASS_JQUERY_TREE_CHECKED_PARTIAL) && options.expand_checked_partial_on_load) ||
+              ($('label', this).hasClass(CLASS_JQUERY_TREE_UNCHECKED) && options.expand_unchecked_on_load)) {
+            $(this).removeClass(CLASS_JQUERY_TREE_COLLAPSED);
+            $('.' + CLASS_JQUERY_TREE_HANDLE, this).html(TREE_NODE_HANDLE_EXPANDED);
+          };
+        });
+      };
     }
 
   });
@@ -126,7 +142,7 @@
    *
    * @param {Object} checkboxElement текущий чекбокс
    */
-  function checkParentCheckboxes(checkboxElement){
+  function checkParentCheckboxes(checkboxElement) {
     if (typeof checkboxElement == 'undefined' || !checkboxElement)
       return;
 
@@ -160,8 +176,8 @@
             .addClass(CLASS_JQUERY_TREE_UNCHECKED);
 
       checkParentCheckboxes(parentCheckbox.get(0));
-    }
-  }
+    };
+  };
 
   /**
    * Если у текущего чекбокса есть дочерние узлы - меняет их состояние
@@ -169,9 +185,9 @@
    *
    * @param {Object} checkboxElement текущий чекбокс
    */
-  function checkCheckbox(checkboxElement){
+  function checkCheckbox(checkboxElement) {
     // чекнем/анчекнем нижележащие чекбоксы
-    $(checkboxElement).closest('li').find('input:checkbox').each(function(){
+    $(checkboxElement).closest('li').find('input:checkbox').each(function() {
       this.checked = $(checkboxElement).attr('checked');
       setLabelClass(this);
     });
@@ -183,7 +199,7 @@
    *
    * @param {Object} checkboxElement чекбокс
    */
-  function setLabelClass(checkboxElement){
+  function setLabelClass(checkboxElement) {
     isChecked = $(checkboxElement).attr('checked');
 
     if (isChecked) {
@@ -197,17 +213,17 @@
         .addClass(CLASS_JQUERY_TREE_UNCHECKED)
         .removeClass(CLASS_JQUERY_TREE_CHECKED)
         .removeClass(CLASS_JQUERY_TREE_CHECKED_PARTIAL);
-    }
+    };
   };
 
   /**
    * Обрабатывает клик по лейблу (для IE6)
    */
-  function labelClick(labelElement){
+  function labelClick(labelElement) {
     var checkbox = $('input:checkbox', labelElement);
     var checked = checkbox.attr('checked');
     checkbox.attr('checked', !checked);
     setLabelClass(checkbox);
-  }
+  };
 
 })(jQuery);

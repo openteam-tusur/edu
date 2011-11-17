@@ -304,8 +304,9 @@ function rj_search_manipulate() {
 
 function init_checkbox_tree() {
   if ($.fn.tree) {
-    $(".subjects_tree").tree();
-    $(".years_tree").tree();
+    $(".subjects_tree, .years_tree").tree({
+      expand_checked_partial_on_load: true
+    });
   };
 };
 
