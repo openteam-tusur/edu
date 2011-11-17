@@ -56,7 +56,6 @@
             .find('.' + CLASS_JQUERY_TREE_HANDLE)
             .html(TREE_NODE_HANDLE_COLLAPSED);
         })
-
         .parent('.' + CLASS_JQUERY_TREE_CONTROLS).find('.' + CLASS_JQUERY_TREE_EXPAND_ALL)
           .click(function(){
             $(this).parent().next('.' + CLASS_JQUERY_TREE)
