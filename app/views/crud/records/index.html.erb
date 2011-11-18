@@ -3,38 +3,44 @@
   <p>В&nbsp;этом разделе находятся реферативные журналы&nbsp;&mdash; периодические издания, содержащие рефераты научных публикаций по&nbsp;<nobr>какой-либо</nobr> отрасли науки или техники и&nbsp;другие вторичные информационные материалы.</p>
 
   <%= form_tag records_path, :method => :get, :class => "abstract_search_form" do %>
-    <p>
+    <p class="inputs">
       <%= text_field_tag :search, params[:search], :class => "search_field" %>
       <%= submit_tag "Поиск", :name => nil , :class => 'button light' %>
       <%= link_to "Очистить", records_path, :class => 'button light' %>
       <%= link_to raw("расширенный поиск &darr;"), "#", :class => "extend_search_toggle" %>
     </p>
-    <p>
-     <%= content_tag(:ul) do %>
-      <% @subjects.each do |main_subject, subjects| %>
-        <li>
-          <%= main_subject.title %>
-          <%= content_tag(:ul) do %>
-            <% subjects.each do |subject| %>
-              <%= content_tag :li, subject.title %>
+
+    <div class="selected_filters">
+      <div class="subjects">
+        <h3>Тематики</h3>
+        <% if @subjects.any? %>
+          <ul>
+            <% @subjects.each do |main_subject, subjects| %>
+              <li>
+                <strong><%= main_subject.title %></strong><%= ": #{subjects.map(&:title).join('. ')}" unless main_subject.all_subjects_checked?(params[:subject]) %>
+              </li>
             <% end %>
-          <% end unless main_subject.all_subjects_checked?(params[:subject]) %>
-        </li>
-      <% end %>
-     <% end if @subjects.any? %>
-     <%= content_tag(:ul) do %>
-      <% @months.each do |year, months| %>
-        <li>
-          <%= year.title %>
-          <%= content_tag(:ul) do %>
-            <% months.each do |month| %>
-              <%= content_tag :li, month.title %>
+          </ul>
+        <% else %>
+          <strong>Все</strong>
+        <% end %>
+      </div>
+      <div class="years">
+        <h3>Выпуски ВИНИТИ</h3>
+        <% if @months.any? %>
+          <ul>
+           <% @months.to_a.sort{ |a,b| b[0].title <=> a[0].title }.each do |year, months| %>
+              <li>
+                <strong><%= year.title %></strong><%= ": #{months.map(&:localized_caption).join(', ')}" unless year.all_months_checked?(params[:month]) %>
+              </li>
             <% end %>
-          <% end unless year.all_months_checked?(params[:month]) %>
-        </li>
-      <% end %>
-     <% end if @subjects.any? %>
-    </p>
+          </ul>
+        <% else %>
+          <strong>Все</strong>
+        <% end %>
+      </div>
+    </div>
+
     <div class="extend_search">
       <%= javascript_include_tag "jquery.tree.js" %>
       <div class="subjects">
