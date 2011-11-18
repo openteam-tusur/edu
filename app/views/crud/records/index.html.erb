@@ -100,7 +100,7 @@
             <%= obj.value :title do %>
               <%= link_to raw(record.title), record_path(record) %>
             <% end %>
-            <%= obj.attribute :authors %>
+            <%= obj.attribute :authors, :if_blank => "Не указаны" %>
             <%= obj.attribute :summary do %>
               <%= raw(record.summary) %>
             <% end %>
