@@ -306,6 +306,7 @@ function init_checkbox_tree() {
   if ($.fn.tree) {
     $(".extend_search_toggle").click(function() {
       var link = $(this);
+      $(".selected_filters").toggle();
       $(".extend_search").toggle(0, function() {
         if ($(".extend_search").is(":visible")) {
           link.html("расширенный поиск &uarr;")
