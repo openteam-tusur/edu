@@ -1,7 +1,5 @@
 # encoding: utf-8
 
-require 'digest/md5'
-
 class Attachment < ActiveRecord::Base
 
   belongs_to :resource, :polymorphic => true
@@ -12,9 +10,8 @@ class Attachment < ActiveRecord::Base
 
   validates_attachment_content_type :data, :content_type => ['application/pdf']
 
-  validates_uniqueness_of :data_hash
+  validates_uniqueness_of :data_fingerprint
 
-  before_validation :set_hash
   before_validation :set_mime_type
 
   private
@@ -23,11 +20,6 @@ class Attachment < ActiveRecord::Base
     return unless self.data.file? && !data.queued_for_write[:original].nil?
     require 'filemagic'
     self.data_content_type =  MIME::Types[FileMagic.new(FileMagic::MAGIC_MIME).file(data.queued_for_write[:original].path)].first.content_type
-  end
-
-  def set_hash
-    return unless self.data.file?
-    self.data_hash = Digest::MD5.hexdigest(self.data_file_size.to_s)
   end
 
 end

@@ -13,10 +13,9 @@ class Issue < ActiveRecord::Base
   has_attached_file :data,
                     :path => ':rails_root/attachments/abstracts/:issue_year/:issue_month/:issue_id-:filename'
 
-  before_validation :set_hash
   after_save :recreate_records, :unless => :skip_create_recrods
 
-  validates_uniqueness_of :data_hash
+  validates_uniqueness_of :data_fingerprint
 
   delegate :year, :month, :to => :disk
 
@@ -45,11 +44,6 @@ class Issue < ActiveRecord::Base
     end
 
     handle_asynchronously :recreate_records unless Rails.env.test?
-
-    def set_hash
-      return unless self.data.file?
-      self.data_hash = Digest::MD5.hexdigest(self.data_file_size.to_s)
-    end
 
 end
 

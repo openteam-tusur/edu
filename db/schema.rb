@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111107084400) do
+ActiveRecord::Schema.define(:version => 20111118085007) do
 
   create_table "accreditations", :force => true do |t|
     t.integer  "speciality_id"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(:version => 20111107084400) do
     t.integer  "data_file_size"
     t.string   "data_content_type"
     t.datetime "data_updated_at"
-    t.string   "data_hash"
+    t.string   "data_fingerprint"
     t.string   "resource_type"
   end
 
@@ -146,7 +146,7 @@ ActiveRecord::Schema.define(:version => 20111107084400) do
     t.integer  "data_file_size"
     t.string   "data_content_type"
     t.datetime "data_updated_at"
-    t.string   "data_hash"
+    t.string   "data_fingerprint"
     t.integer  "disk_id"
     t.text     "import_report"
   end
