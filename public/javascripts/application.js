@@ -301,6 +301,11 @@ function rj_search_manipulate() {
     });
     return false;
   });
+  $(".abstract_list ..search_result .cool_list table tr").mouseenter(function() {
+    $(this).css("background-color", "white");
+  }).mouseleave(function() {
+    $(this).css("background-color", "transparent");
+  });
 };
 
 function init_checkbox_tree() {
