@@ -290,12 +290,13 @@ function prepare_main_menu() {
 function rj_search_manipulate() {
   $(".cool_list .record .record_title a, .cool_list .record .record_keywords .more").click(function() {
     var link = $(this);
+    var parent_block = link.closest("li");
     var table = $("table", $(this).parents("li"));
     table.toggle(0, function() {
       if (table.is(":visible")) {
-        $(".cool_list .record .record_keywords .more").html("дополнительно &uarr;")
+        $(".more", parent_block).html("дополнительно &uarr;")
       } else {
-        $(".cool_list .record .record_keywords .more").html("дополнительно &darr;");
+        $(".more", parent_block).html("дополнительно &darr;");
       };
     });
     return false;

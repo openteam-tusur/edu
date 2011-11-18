@@ -19,7 +19,7 @@ class Record < ActiveRecord::Base
   def self.document_codes
     @document_codes ||= YAML.load_file(Rails.root.join('config', 'abstracts', 'document_codes.yml'))
   end
-  
+
   def self.field_codes
     field_codes ||= YAML.load_file(Rails.root.join('config', 'abstracts', 'field_codes.yml'))
   end
@@ -36,6 +36,14 @@ class Record < ActiveRecord::Base
     integer :subject_id
   end
 
+  def human_subject
+    "#{main_subject.title}: #{subject.title}"
+  end
+
+  def fascicle
+    "#{month.localized_caption} #{year.title}"
+  end
+
   def self.search(params)
     solr_search do
       fulltext params[:search]
@@ -46,9 +54,9 @@ class Record < ActiveRecord::Base
       paginate :page => params[:page], :per_page => 10
     end
   end
-  
+
   def self.special_fields
-    ["001", "006", "021", "100", "035"]
+    ["001", "006", "021", "100", "035", "507", "514"]
   end
 
   def authors

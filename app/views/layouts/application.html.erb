@@ -85,7 +85,7 @@
         <p class="openteam"><a href="http://openteam.ru/" title="Сделано с любовью OpenTeam" rel="tipsy" target="_blank">OpenTeam</a></p>
         <p class="tusur"><a href="http://www.tusur.ru/" title="Томский государственный университет систем управления и радиоэлектроники" rel="tipsy" target="_blank">Томский государственный университет систем управления и радиоэлектроники</a></p>
         <p class="copy">&copy; Томский государственный университет систем управления и радиоэлектроники, <span class="nowrap">2010 &ndash; <%= Date.today.year %></span></p>
-        <p>Автор фотографии: Павел Синегубов</p>
+        <%= content_tag :p, "Автор фотографии: Павел Синегубов" if params[:controller].eql?('application') %>
         <p class="issue"><a href="mailto:openteam@tusur.ru">Высказать пожелание или сообщить об ошибке</a></p>
       </div>
     </div>

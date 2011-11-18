@@ -196,7 +196,7 @@ ru:
       index: Список людей
       new: Создание профиля
       show: Просмотр профиля
-      
+
     manage/licenses:
       index: Регистрация УМО
 
@@ -539,3 +539,5 @@ ru:
         summary: Реферат
         tipe: Тип
         keywords: Ключевые слова
+        human_subject: Тематика
+        fascicle: Выпуск ВИНИТИ

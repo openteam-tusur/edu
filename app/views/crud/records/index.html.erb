@@ -100,11 +100,13 @@
             <%= obj.value :title do %>
               <%= link_to raw(record.title), record_path(record) %>
             <% end %>
-            <%= obj.attribute :authors, :if_blank => "Не указаны" %>
+            <%= obj.attribute :authors, :if_blank => "не указаны" %>
             <%= obj.attribute :summary do %>
               <%= raw(record.summary) %>
             <% end %>
             <%= obj.attribute :tipe %>
+            <%= obj.attribute :human_subject %>
+            <%= obj.attribute :fascicle %>
             <%= obj.attribute :keywords do %>
               <%= raw(record.keywords) %>
               <%= link_to raw("дополнительно &darr;"), record_path(record), :class => "more" %>
