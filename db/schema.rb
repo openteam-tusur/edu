@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111118085007) do
+ActiveRecord::Schema.define(:version => 20111128044716) do
 
   create_table "accreditations", :force => true do |t|
     t.integer  "speciality_id"
@@ -222,6 +222,7 @@ ActiveRecord::Schema.define(:version => 20111118085007) do
     t.integer  "chair_id"
     t.string   "post"
     t.integer  "contingent_id"
+    t.string   "other"
   end
 
   create_table "semesters", :force => true do |t|

@@ -1,17 +1,22 @@
 # encoding: utf-8
 
 class Employee < Role
-  validates_presence_of :chair, :post
-  validates_uniqueness_of :chair_id, :scope => [:human_id, :state]
+  #validates_presence_of :post, :chair, :unless => :other?
+  validates_presence_of :post, :chair, :unless => :other?
+  validates_uniqueness_of :chair_id, :scope => [:human_id, :state], :unless => :other?
+  validates_uniqueness_of :other, :scope => [:human_id, :state], :unless => :chair_id?
 
   default_values :title => 'Сотрудник', :slug => 'employee'
 
 
   def to_s
-    "#{post.mb_chars.downcase} каф. #{chair.abbr}"
+    if chair.nil?
+      "#{post.mb_chars.downcase} подр. #{other}"
+    else
+      "#{post.mb_chars.downcase} каф. #{chair.abbr}"
+    end
   end
 end
-
 
 
 # == Schema Information

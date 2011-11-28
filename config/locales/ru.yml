@@ -358,6 +358,7 @@ ru:
       attachment: Вложение
       author: Автор материала
       chair: Кафедра
+      other: Другое подразделение
       curriculum: Учебный план
       discipline: Дисциплина
       education: Дисциплина
@@ -411,6 +412,7 @@ ru:
         birthday: Дата рождения
       employee:
         chair: Кафедра
+        other: Другое подразделение
         post: Должность
       human:
         name: Имя

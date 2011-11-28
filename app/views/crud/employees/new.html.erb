@@ -1,14 +1,26 @@
-<p>Для регистрации в качестве сотрудника ТУСУРа выберите кафедру и укажите свою должность.<br/>
+<div class="employee">
+<p>Для регистрации в качестве сотрудника ТУСУРа выберите кафедру или другое подразделение и укажите свою должность.<br/>
 Для подтверждения заявки <strong>вам необходимо позвонить</strong> администрации портала по тел. 701-557.</p>
 <%= semantic_form_for resource, :url => human_employees_path do |form| %>
   <%= form.error_messages %>
   <%= form.inputs do %>
-    <%= form.input :chair, :group_by => :faculty, :input_html => { :class => "focus_first" } %>
-    <%= form.input :post %>
+    <div class="chair">
+      <%= form.input :chair, :group_by => :faculty, :input_html => { :class => "focus_first" }  %>
+    </div>
+    <div class="ili">
+    или
+    </div>
+    <div class="other">
+      <%= form.input :other %>
+    </div>
+    <div class="post">
+      <%= form.input :post %>
+    </div>
   <% end %>
   <%= form.buttons do %>
     <%= form.commit_button :button_html => {:class => 'button'} %>
     <li><%= link_to t(:cancel), profile_path, :class => "button light" %></li>
   <% end %>
 <% end %>
+</div>
 
