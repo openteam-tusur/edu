@@ -4,7 +4,7 @@ Paperclip.interpolates :chair_slug do |attachment, style|
 end
 
 Paperclip.interpolates :year do |attachment, style|
-  Date.today.year
+  attachment.instance.resource.year || Date.today.year
 end
 
 Paperclip.interpolates :resource_type do |attachment, style|
