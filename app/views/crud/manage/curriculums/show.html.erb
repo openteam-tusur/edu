@@ -60,14 +60,10 @@
   </thead>
   <tbody>
     <% Cycle.with_degree(@curriculum.speciality.degree).each do |cycle| %>
-      <tr class="cycle">
-        <td colspan="<%= @curriculum.semesters.count+1 %>"><a id="<%= cycle.id %>"><%= cycle.name %></a></td>
-      </tr>
-      <% if @curriculum.studies.where(:cycle_id => cycle.id).empty? %>
-        <tr>
-          <td colspan="<%= @curriculum.semesters.count+1 %>">Нет дисциплин</td>
+      <% if @curriculum.studies.where(:cycle_id => cycle.id).any? %>
+        <tr class="cycle">
+          <td colspan="<%= @curriculum.semesters.count+1 %>"><a id="<%= cycle.id %>"><%= cycle.name %></a></td>
         </tr>
-      <% else %>
         <% @curriculum.studies.where(:cycle_id => cycle.id).sort{|a, b| a.discipline.name <=> b.discipline.name}.each do |study| %>
           <tr class="discipline">
             <td class="discipline_name">
