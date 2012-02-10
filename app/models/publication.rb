@@ -41,7 +41,7 @@ class Publication < Resource
 
     string :kind
     string :state
-    
+
     text :license_number
 
     boolean :with_comment do
@@ -76,10 +76,8 @@ class Publication < Resource
 
   def grouped_disciplines
     result = {}
-    Speciality.where(:id => self.disciplines.map(&:speciality_id)).each do |spec|
-      result[spec] = []
-    end
     publication_disciplines.each do |publication_discipline|
+      result[publication_discipline.speciality] ||= []
       result[publication_discipline.speciality] << publication_discipline
     end
     result
@@ -126,7 +124,7 @@ class Publication < Resource
   def kind_abbr
     human_kind.mb_chars.split(/[\s-]/).map(&:first).join.mb_chars.upcase.to_s
   end
-  
+
   def license_number
     "#{kind_abbr}-#{id}"
   end
