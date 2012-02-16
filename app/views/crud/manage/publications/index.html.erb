@@ -24,10 +24,9 @@
   <% end %>
 
   <%= will_paginate @publications %>
+  <div><%= link_to t("new"), new_resource_path, :class => 'button' %></div>
 </div>
 
 <div class="publication_other_facets">
   <%= render_navigation :context => 'publication_other_facets' %>
 </div>
-
-<div><%= link_to t("new"), new_resource_path, :class => 'button' %></div>
