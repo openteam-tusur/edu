@@ -13,10 +13,11 @@ GIT
       responders (~> 0.6.0)
 
 GIT
-  remote: git://github.com/openteam/ruby-marc
-  revision: c9220dfb62bfa6f77d3f2b827f47417d8d9ffda5
+  remote: git://github.com/ruby-marc/ruby-marc
+  revision: 81ee15c72307fbdf6885bd1ba0332a4abf717230
+  branch: char_encodings
   specs:
-    marc (0.4.3)
+    marc (0.5.0)
 
 GIT
   remote: git://github.com/tacid/russian
@@ -102,8 +103,7 @@ GEM
       railties (>= 3.0.0)
     fancy-buttons (1.1.2)
       compass (>= 0.11)
-    ffi (1.0.7)
-      rake (>= 0.8.7)
+    ffi (1.0.11)
     formtastic (1.2.3)
       actionpack (>= 2.3.7)
       activesupport (>= 2.3.7)

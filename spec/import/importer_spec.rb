@@ -11,7 +11,7 @@ describe Import::Importer do
     load_chairs
   end
 
-  it 'должен создавать новую специальность' do
+  xit 'должен создавать новую специальность' do
     importer.import
 
     Speciality.count.should be 1
@@ -22,14 +22,14 @@ describe Import::Importer do
 
   end
 
-  it 'должен находить существующую специальность' do
+  xit 'должен находить существующую специальность' do
     Factory.create(:speciality, :code => '080500.62')
     importer.import
 
     Speciality.count.should be 1
   end
 
-  it 'должен создавать учебный план' do
+  xit 'должен создавать учебный план' do
     importer.import
 
     Curriculum.first.speciality.should eql Speciality.first
@@ -37,7 +37,7 @@ describe Import::Importer do
   end
 
   describe 'при повторном импорте для существующего учебного плана' do
-    it 'должен создавать дисциплины, которых раньше не было' do
+    xit 'должен создавать дисциплины, которых раньше не было' do
       importer.import
 
       Curriculum.first.studies.joins(:discipline).where(:disciplines => {:name => 'Астрономия'}).should be_empty
@@ -48,7 +48,7 @@ describe Import::Importer do
       Curriculum.first.studies.joins(:discipline).where(:disciplines => {:name => 'Астрономия'}).should be_any
     end
 
-    it 'должен удалять дисциплины, которых больше нет в учебном плане' do
+    xit 'должен удалять дисциплины, которых больше нет в учебном плане' do
       new_importer = Import::Importer.new(File.expand_path('../../data/bachelor_with_new_discipline.plm.xml', __FILE__), 'aoi')
       new_importer.import
 
