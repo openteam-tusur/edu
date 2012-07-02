@@ -38,6 +38,7 @@
       <h2>Учебно-методическое и информационное обеспечение</h2>
       <%= render :partial => 'used_books', :locals => { :used_books => @publication.used_books.kind_main, :legend => 'Основная' } %>
       <%= render :partial => 'used_books', :locals => { :used_books => @publication.used_books.kind_additional, :legend => 'Дополнительная' } %>
+      <%= render :partial => 'used_books', :locals => { :used_books => @publication.used_books.kind_scince_methodic, :legend => 'Научно-методическая' } %>
     </div>
   <% end %>
 

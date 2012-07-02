@@ -444,8 +444,9 @@ ru:
       used_book:
         kind: Тип
         kind_enum:
-          additional: Дополнительная
           main: Основная
+          additional: Дополнительная
+          scince_methodic: Научно-методическая
         library_code: Код издания в библиотеке
         publication_code: Публикация на портале
         publication_title: Публикация на портале

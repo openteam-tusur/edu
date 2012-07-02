@@ -1,0 +1,27 @@
+diff --git a/app/views/crud/manage/publications/show.html.erb b/app/views/crud/manage/publications/show.html.erb
+index 1738db2..669927d 100644
+--- a/app/views/crud/manage/publications/show.html.erb
++++ b/app/views/crud/manage/publications/show.html.erb
+@@ -38,6 +38,7 @@
+       <h2>Учебно-методическое и информационное обеспечение</h2>
+       <%= render :partial => 'used_books', :locals => { :used_books => @publication.used_books.kind_main, :legend => 'Основная' } %>
+       <%= render :partial => 'used_books', :locals => { :used_books => @publication.used_books.kind_additional, :legend => 'Дополнительная' } %>
++      <%= render :partial => 'used_books', :locals => { :used_books => @publication.used_books.kind_scince_methodic, :legend => 'Научно-методическая' } %>
+     </div>
+   <% end %>
+ 
+diff --git a/config/locales/ru.yml b/config/locales/ru.yml
+index ed3d2e6..8320c42 100644
+--- a/config/locales/ru.yml
++++ b/config/locales/ru.yml
+@@ -444,8 +444,9 @@ ru:
+       used_book:
+         kind: Тип
+         kind_enum:
+-          additional: Дополнительная
+           main: Основная
++          additional: Дополнительная
++          scince_methodic: Научно-методическая
+         library_code: Код издания в библиотеке
+         publication_code: Публикация на портале
+         publication_title: Публикация на портале
