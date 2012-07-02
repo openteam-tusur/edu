@@ -22,7 +22,7 @@ class Publication < Resource
 
   after_save :reindex_publication_disciplines
 
-  has_enum :kind, %w(work_programm tutorial training_toolkit), :scopes => true
+  has_enum :kind, %w(tutorial training_toolkit work_programm), :scopes => true
 
   scope :published,   where(:state => 'published')
   scope :unpublished, where(:state => 'unpublished')

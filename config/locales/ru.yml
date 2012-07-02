@@ -522,8 +522,8 @@ ru:
         extended_kind: Полное название типа материала
         comment: Примечание
         kind_enum:
-          training_toolkit: Учебно-методическое пособие
           tutorial: Учебное пособие
+          training_toolkit: Учебно-методическое пособие
           work_programm: Рабочая программа
       publication_discipline:
         speciality_request: Специальность
