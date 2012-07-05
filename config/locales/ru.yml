@@ -446,7 +446,7 @@ ru:
         kind_enum:
           main: Основная
           additional: Дополнительная
-          scince_methodic: Научно-методическая
+          scince_methodic: Методическая
         library_code: Код издания в библиотеке
         publication_code: Публикация на портале
         publication_title: Публикация на портале
