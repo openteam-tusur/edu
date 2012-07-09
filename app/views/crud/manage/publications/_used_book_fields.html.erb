@@ -2,7 +2,7 @@
   <ol>
     <%= f.input :title %>
     <%= f.enum_input :kind, :wrapper_html => {:class => 'kind_input'} %>
-    <%= f.input :publication_code, :as => :hidden, :wrapper_html => {:class => 'publication_code_input'} %>
+    <%= f.input :publication_code, :wrapper_html => {:class => 'publication_code_input quantity_input'}, :label => 'Код публикации' %>
     <%= f.input :publication_title, :input_html => {:class => 'publication_title_field', :value => f.object.publication_code.present? ? Publication.find(f.object.publication_code).to_s : '' }, :wrapper_html => {:class => 'publication_title_input'} %>
     <%= f.input :library_code, :wrapper_html => {:class => 'library_code_input'} %>
     <%= f.input :quantity, :wrapper_html => {:class => 'quantity_input'} %>
