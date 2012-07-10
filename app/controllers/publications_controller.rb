@@ -11,7 +11,7 @@ class PublicationsController < CrudController
   end
 
   def show
-    @publication = Publication.find(params[:id])
+    @publication = Publication.published.find(params[:id])
   end
 
   def get_fields

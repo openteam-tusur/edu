@@ -1,4 +1,4 @@
-  <% unless human.publications.empty? %>
+  <% unless human.publications.published.empty? %>
     <div class="human_publications">
       <ul class="tabs">
         <% Publication.human_enums[:kind].each_with_index do |kind, index| %>
@@ -10,12 +10,12 @@
 
       <% Publication.enums[:kind].each_with_index do |kind, index| %>
         <ul class="<%= "#{kind} #{'first' if index == 0}" %>">
-          <% if human.publications.send("kind_#{kind}").empty? %>
+          <% if human.publications.published.send("kind_#{kind}").empty? %>
             <li class='publication'>
               <p>Нет публикаций данного типа</p>
             </li>
           <% end %>
-          <% human.publications.send("kind_#{kind}").each do |publication| %>
+          <% human.publications.published.send("kind_#{kind}").each do |publication| %>
             <li class='publication'>
               <%= link_to publication, publication_path(publication) %>
               <p><%= publication.annotation %></p>
