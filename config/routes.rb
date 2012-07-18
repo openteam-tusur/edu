@@ -41,8 +41,10 @@ Portal::Application.routes.draw do
     match '/humans/:id/merge_with/:namesake_id' => 'humans#merge_with', :as => 'human_merge_with'
 
     resources :specialities, :except => :show
-    
-    resources :licenses, :only => :index
+
+    resources :licenses, :only => :index do
+      get :roster, :on => :collection
+    end
 
 
     resources :disks, :except => [:show] do

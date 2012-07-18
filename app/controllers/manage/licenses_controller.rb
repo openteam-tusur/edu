@@ -3,7 +3,7 @@ class Manage::LicensesController < Manage::ApplicationController
   actions :index
 
   load_and_authorize_resource :class => "Publication"
-  
+
   def index
     search = Publication.search(params[:query], nil, params.merge(:per_page => 20))
     @publications = search.results
@@ -14,5 +14,11 @@ class Manage::LicensesController < Manage::ApplicationController
     @comment_facets = search.facet(:with_comment).rows.inject({}) do |hash, facet|
       hash[facet.value] = facet.count; hash
     end
+  end
+
+  def roster
+    mime_type = MIME::Types.of('odt').first.content_type
+    data = Publication.generate_data('roster.ods', Publication.roster_data)
+    send_data data, :type => mime_type, :filename => 'roster.ods'
   end
 end

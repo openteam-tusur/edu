@@ -16,30 +16,33 @@
   </div>
 </div>
 
-  <table>
-    <tr>
-      <th>Договор</th>
-      <th>Кафедра</th>
-      <th>УМО</th>
-    </tr>
-    <% @publications.each do | publication | %>
-      <tr>
-        <td><%= publication.license_number %></td>
-        <td><%= link_to publication.chair.abbr, manage_chair_publications_path(publication.chair) %></td>
-        <td>
-          <%= link_to publication, manage_chair_publication_path(publication.chair, publication) %>
-          <%= link_to image_tag("icon_#{publication.state}.png"),
-                      manage_chair_publication_path(publication.chair, publication),
-                      :title => publication.human_state, :rel => "tipsy" %>
-          <%= content_tag :span,
-                          image_tag("icon_comment_info.png"),
-                          :class => "comment_info",
-                          :rel => "tipsy",
-                          :title => simple_format(publication.comment).gilensize.gsub(/"/, "'") unless publication.comment.blank? %>
-        </td>
-      </tr>
-    <% end %>
-  </table>
+<div>
+  <%= link_to 'Реестр', roster_manage_licenses_path %>
+</div>
 
-  <%= will_paginate @publications %>
- 
+<table>
+  <tr>
+    <th>Договор</th>
+    <th>Кафедра</th>
+    <th>УМО</th>
+  </tr>
+  <% @publications.each do | publication | %>
+    <tr>
+      <td><%= publication.license_number %></td>
+      <td><%= link_to publication.chair.abbr, manage_chair_publications_path(publication.chair) %></td>
+      <td>
+        <%= link_to publication, manage_chair_publication_path(publication.chair, publication) %>
+        <%= link_to image_tag("icon_#{publication.state}.png"),
+          manage_chair_publication_path(publication.chair, publication),
+          :title => publication.human_state, :rel => "tipsy" %>
+        <%= content_tag :span,
+          image_tag("icon_comment_info.png"),
+          :class => "comment_info",
+          :rel => "tipsy",
+          :title => simple_format(publication.comment).gilensize.gsub(/"/, "'") unless publication.comment.blank? %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= will_paginate @publications %>

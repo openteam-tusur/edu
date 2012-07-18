@@ -40,7 +40,7 @@ class Manage::PublicationsController < Manage::ApplicationController
     @mime_type = MIME::Types.of('odt').first.content_type
 
     begin
-      data = @publication.generate_data
+      data = Publication.generate_data('publication.odt', @publication.to_report)
       send_data data, :type => @mime_type, :filename => 'publication.odt'
     rescue Exception => e
       redirect_to manage_chair_publication_path(@chair, @publication)

@@ -27,6 +27,8 @@ class Publication < Resource
   scope :published,   where(:state => 'published')
   scope :unpublished, where(:state => 'unpublished')
 
+  delegate :abbr, :to => :chair, :prefix => true
+
   searchable do
     text :title
     text :year
@@ -115,9 +117,13 @@ class Publication < Resource
     extended_kind.gsub(/^./) { |symbol| symbol.mb_chars.upcase}
   end
 
+  def author_names(format = :full_name)
+    authors.map(&:human).map(&format).join(", ")
+  end
+
   def to_s
     result = "#{title}: #{get_extended_kind} / "
-    result += authors.empty? ? "" : "#{authors.map(&:abbreviated_name).join(', ')} – "
+    result += authors.empty? ? "" : "#{author_names(:abbreviated_name)} – "
     result += "#{year}. #{volume} с."
   end
 
@@ -135,7 +141,7 @@ class Publication < Resource
         xml.parent.name = "doc"
         xml.number license_number
         xml.year Time.now.year
-        xml.licensor authors.map(&:human).map(&:full_name).join(", ")
+        xml.licensor author_names
         xml.publication to_s
 
         xml.authors do |xml_authors|
@@ -151,20 +157,49 @@ class Publication < Resource
     builder.to_xml
   end
 
-  def generate_data
-    template_path = Rails.root.join("reports", "publication.odt").to_s
+  def self.roster_data
+    builder = Nokogiri::XML::Builder.new(:encoding => 'utf-8') do |xml|
+      xml.root do
+        xml.parent.name = 'doc'
+
+        %w(tutorial training_toolkit).each do |kind|
+          xml.send kind.pluralize do
+            self.send("kind_#{kind}").order('id DESC').each do |publication|
+              xml.send kind do
+                xml.id          publication.id
+                xml.title       publication.title
+                xml.chair_abbr  publication.chair_abbr
+                xml.authors     publication.author_names(:abbreviated_name)
+                xml.year        publication.year
+                xml.volume      publication.volume
+                xml.stamp       publication.stamp
+                xml.access      publication.access_free? ? 'Свободный' : 'Ограниченный'
+              end
+            end
+          end
+        end
+      end
+    end
+
+    builder.to_xml
+  end
+
+  def self.generate_data(template, data)
+    template_name, template_ext = template.split('.')
+
+    template_path = Rails.root.join("reports", template).to_s
     result_data = ""
 
     Tempfile.open ["data_file", ".xml"] do |data_file|
-      data_file << to_report
+      data_file << data
       data_file.flush
 
-      Tempfile.open ["publication", ".odt"] do | odt_file |
+      Tempfile.open [template_name, ".#{template_ext}"] do |file|
         libdir = Rails.root.join "reports", "lib"
-        result = system("java", "-Djava.ext.dir=#{libdir}", "-jar", "#{libdir}/jodreports-2.1-RC.jar", template_path, data_file.path, odt_file.path)
+        result = system("java", "-Djava.ext.dir=#{libdir}", "-jar", "#{libdir}/jodreports-2.1-RC.jar", template_path, data_file.path, file.path)
         raise "Ошибка создания документа" unless result
 
-        result_data = File.read(odt_file.path)
+        result_data = File.read(file.path)
       end
     end
     result_data
