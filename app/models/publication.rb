@@ -164,7 +164,7 @@ class Publication < Resource
 
         %w(tutorial training_toolkit).each do |kind|
           xml.send kind.pluralize do
-            self.send("kind_#{kind}").order('id DESC').each do |publication|
+            self.send("kind_#{kind}").published.order('id DESC').each do |publication|
               xml.send kind do
                 xml.id          publication.id
                 xml.title       publication.title
@@ -174,6 +174,9 @@ class Publication < Resource
                 xml.volume      publication.volume
                 xml.stamp       publication.stamp
                 xml.access      publication.access_free? ? 'Свободный' : 'Ограниченный'
+                xml.isbn        publication.isbn
+                xml.udk         publication.udk
+                xml.bbk         publication.bbk
               end
             end
           end

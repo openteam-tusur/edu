@@ -49,6 +49,15 @@
      <table:table-cell office:value-type="string">
       <text:p>Доступ</text:p>
      </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p>ISBN</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p>УДК</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p>ББК</text:p>
+     </table:table-cell>
     </table:table-row>
 
     <text:script script:language="jooscript">[#list doc.tutorials.tutorial as t]</text:script>
@@ -84,6 +93,18 @@
       <table:table-cell office:value-type="string">
         <text:p>${t.access}</text:p>
       </table:table-cell>
+
+      <table:table-cell office:value-type="string">
+        <text:p>${t.isbn}</text:p>
+      </table:table-cell>
+
+      <table:table-cell office:value-type="string">
+        <text:p>${t.udk}</text:p>
+      </table:table-cell>
+
+      <table:table-cell office:value-type="string">
+        <text:p>${t.bbk}</text:p>
+      </table:table-cell>
     </table:table-row>
     <text:script script:language="jooscript">[/#list]</text:script>
 
@@ -115,6 +136,15 @@
      </table:table-cell>
      <table:table-cell office:value-type="string">
       <text:p>Доступ</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p>ISBN</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p>УДК</text:p>
+     </table:table-cell>
+     <table:table-cell office:value-type="string">
+      <text:p>ББК</text:p>
      </table:table-cell>
     </table:table-row>
 
@@ -150,6 +180,18 @@
 
       <table:table-cell office:value-type="string">
         <text:p>${t.access}</text:p>
+      </table:table-cell>
+
+      <table:table-cell office:value-type="string">
+        <text:p>${t.isbn}</text:p>
+      </table:table-cell>
+
+      <table:table-cell office:value-type="string">
+        <text:p>${t.udk}</text:p>
+      </table:table-cell>
+
+      <table:table-cell office:value-type="string">
+        <text:p>${t.bbk}</text:p>
       </table:table-cell>
     </table:table-row>
     <text:script script:language="jooscript">[/#list]</text:script>
