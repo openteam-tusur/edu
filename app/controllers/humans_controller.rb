@@ -13,7 +13,7 @@ class HumansController < CrudController
   actions :all, :except => [:delete, :destroy]
 
   def index
-    search = Human.search(params[:query], params)
+    search = Human.only_with_accepted_roles(params[:query], params)
 
     @humans = search.results
     @chair_facets = search.facet(:chair_ids).rows

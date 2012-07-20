@@ -161,19 +161,25 @@ class Human < ActiveRecord::Base
       end.results
      end
 
+    def self.only_with_accepted_roles(query, options, per_page = 10)
+      search(query, options, per_page) { |search| search.without :role_slugs, nil }
+    end
+
     def self.search(query, options, per_page = 10)
-      solr_search do
-        keywords query
+      solr_search do |search|
+        search.keywords query
 
-        chair_filter = with(:chair_ids, options[:chair_id]) if options[:chair_id]
-        role_filter = with(:role_slugs, options[:role]) if options[:role]
-        pending_role_filter = with(:pending_role_slugs, options[:pending_role]) if options[:pending_role]
+        chair_filter = search.with(:chair_ids, options[:chair_id]) if options[:chair_id]
+        role_filter = search.with(:role_slugs, options[:role]) if options[:role]
+        pending_role_filter = search.with(:pending_role_slugs, options[:pending_role]) if options[:pending_role]
 
-        facet :chair_ids, :zeros => true, :exclude => chair_filter, :sort => :index
-        facet :role_slugs, :zeros => true, :exclude => role_filter, :sort => :index
-        facet :pending_role_slugs, :zeros => true, :exclude => pending_role_filter, :sort => :index
+        search.facet :chair_ids, :zeros => true, :exclude => chair_filter, :sort => :index
+        search.facet :role_slugs, :zeros => true, :exclude => role_filter, :sort => :index
+        search.facet :pending_role_slugs, :zeros => true, :exclude => pending_role_filter, :sort => :index
 
-        paginate :page => options[:page], :per_page => per_page
+        yield search if block_given?
+
+        search.paginate :page => options[:page], :per_page => per_page
       end
     end
 
