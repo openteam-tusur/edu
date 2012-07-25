@@ -45,6 +45,7 @@ class Publication < Resource
     string :state
 
     text :license_number
+    time :updated_at
 
     boolean :with_comment do
       !comment.blank?
@@ -69,6 +70,10 @@ class Publication < Resource
       facet :with_comment, :zeros => true, :exclude => comment_filter, :sort => :index
 
       paginate :page => options[:page], :per_page => options[:per_page] || Publication.per_page
+
+      unless query && options.empty?
+        order_by :udated_at, :desc
+      end
     end
   end
 
