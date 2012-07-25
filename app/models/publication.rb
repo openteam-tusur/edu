@@ -72,7 +72,7 @@ class Publication < Resource
       paginate :page => options[:page], :per_page => options[:per_page] || Publication.per_page
 
       unless query && options.empty?
-        order_by :udated_at, :desc
+        order_by :updated_at, :desc
       end
     end
   end
