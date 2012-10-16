@@ -20,16 +20,6 @@ Portal::Application.routes.draw do
 
   scope '/training' do
     resources :publications, :only => [:index, :show]
-
-    resources :specialities,         :only => :index do
-      resources :curriculums,        :only => :show  do
-        resources :semesters,        :only => :show  do
-          resources :educations,     :only => :show  do
-            resources :publications, :only => :show
-          end
-        end
-      end
-    end
   end
 
   resources :chairs, :only => [:index, :show]

@@ -3,7 +3,7 @@ SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
     primary.item :training,
                  '<span class="decreased">для</span> учёбы',
-                 training_path,
+                 publications_path,
                  :highlights_on => /^\/training/
 
     primary.item :science,

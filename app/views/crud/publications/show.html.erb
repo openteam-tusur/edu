@@ -33,21 +33,5 @@
       </fieldset>
     </div>
   <% end %>
-
-  <div class='disciplines expander'>
-    <h4><a href="#" class='expand_link'>Изучаемые дисциплины</a></h4>
-    <% unless @publication.publication_disciplines.empty? %>
-      <ul>
-        <% @publication.grouped_disciplines.each do |speciality, publication_disciplines|  %>
-          <li>
-            <%= raw publication_disciplines.map(&:discipline).map(&:name).join(', ') %>
-            <%= raw "для специальности #{link_to speciality.title, speciality_curriculum_path(speciality, speciality.curriculums.first)}" %>
-          </li>
-        <% end %>
-      </ul>
-    <% else %>
-      <p>Не связано ни с одной дисциплиной.</p>
-    <% end %>
-  </div>
 </div>
 

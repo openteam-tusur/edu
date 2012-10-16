@@ -299,7 +299,7 @@ SimpleNavigation::Configuration.run do |navigation|
                     :highlights_on => /^\/manage\/disks\/\d+\/issues(\/new)?/ if @issue && @issue.new_record?
         end
      end
-     
+
     # УМО
     primary.item "manage_licenses",
                  t("title.manage/licenses.index"),

@@ -1,20 +1,5 @@
 <ul class='cool_list'>
   <li>
-    <h4 class='specialities'>
-      <%= link_to 'Учебные планы для специальностей', specialities_path %>
-    </h4>
-    <ul>
-      <% @specialities_facets.each do |facet| %>
-        <li><%= link_to "По квалификации #{Speciality.human_enums[:degree][facet.value.to_sym]} (#{facet.count})", specialities_path(:degree => facet.value) %></li>
-      <% end %>
-    </ul>
-    <div class='search_form'>
-      <%= render :partial => 'crud/specialities/search_form' %>
-    </div>
-    <p>В&nbsp;этом разделе расположены учебные планы по&nbsp;всем специальностям и&nbsp;направлениям подготовки ТУСУРа. В&nbsp;каждом учебном плане представлено <span class="nobr">учебно-методическое</span> обеспечение для изучаемых предметов, разбитое по&nbsp;семестрам. Для поиска необходимого учебного плана введите код или наименование специальности.</p>
-  </li>
-
-  <li>
     <h4 class='publications'>
       <%= link_to 'Учебно-методическое обеспечение', publications_path %>
     </h4>
