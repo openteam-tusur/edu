@@ -17,10 +17,8 @@ SimpleNavigation::Configuration.run do |navigation|
                  :highlights_on => /^\/chairs/
 
     primary.item :humans,
-                 '<span class="decreased">наши</span> люди',
-                 humans_path,
-                 :highlights_on => /^\/humans/
-
+                 '<span class="decreased">наши</span> специальности',
+                 '/plans'
     primary.item :library,
                  '<span class="decreased">наша</span> библиотека',
                  'http://lib.tusur.ru/'
