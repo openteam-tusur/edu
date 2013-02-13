@@ -281,7 +281,7 @@ $.fn.publication_autocomplete = function () {
 
 function prepare_main_menu() {
   $(".main_menu a").each(function() {
-    if ($(this).attr("href").indexOf("http") > -1) {
+    if ($(this).closest("li").hasClass("target_blank")) {
       $(this).attr("target", "_blank").attr("rel", "nofollow noreferrer");
     };
   });

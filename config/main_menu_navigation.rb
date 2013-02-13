@@ -18,10 +18,11 @@ SimpleNavigation::Configuration.run do |navigation|
 
     primary.item :humans,
                  '<span class="decreased">наши</span> специальности',
-                 '/plans'
+                 'http://plans.tusur.ru/plans'
     primary.item :library,
                  '<span class="decreased">наша</span> библиотека',
-                 'http://lib.tusur.ru/'
+                 'http://lib.tusur.ru/',
+                 :class => 'target_blank'
 
     primary.item :help,
                  '<span class="decreased">наша</span> помощь',
