@@ -18,7 +18,7 @@ SimpleNavigation::Configuration.run do |navigation|
 
     primary.item :humans,
                  '<span class="decreased">наши</span> специальности',
-                 'http://plans.tusur.ru/plans'
+                 'http://plans.tusur.ru/edu'
     primary.item :library,
                  '<span class="decreased">наша</span> библиотека',
                  'http://lib.tusur.ru/',
