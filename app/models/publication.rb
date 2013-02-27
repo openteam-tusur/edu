@@ -46,6 +46,7 @@ class Publication < Resource
 
     text :license_number
     time :updated_at
+    text :extended_kind
 
     boolean :with_comment do
       !comment.blank?
