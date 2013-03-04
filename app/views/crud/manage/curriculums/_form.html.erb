@@ -3,7 +3,7 @@
     <%= form.inputs :class => "common_info" do %>
       <%= form.input :speciality %>
       <%= form.input :profile %>
-      <%= form.enum_input :study_form, :input_html => { :class => "focus_first" }, :wrapper_html => {:id => 'curriculum_study_input'} %>
+      <%= raw(form.enum_input :study_form, :input_html => { :class => "focus_first" }, :wrapper_html => {:id => 'curriculum_study_input'}) %>
       <%= form.input :semesters_count if resource.new_record? %>
       <%= form.input :since %>
     <% end %>

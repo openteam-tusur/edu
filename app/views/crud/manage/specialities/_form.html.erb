@@ -3,7 +3,7 @@
   <%= form.input :name %>
 <% end %>
 <%= form.inputs :class => "inputs speciality_qualification" do %>
-  <%= form.enum_input :degree %>
+  <%= raw(form.enum_input :degree) %>
   <%= form.input :qualification %>
 <% end %>
 

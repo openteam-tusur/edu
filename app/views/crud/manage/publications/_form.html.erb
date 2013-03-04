@@ -37,7 +37,7 @@
   <% end %>
   <li>
     <%= form.inputs "Дополнительно", :class => "inputs pictorial" do %>
-      <%= form.enum_input :kind %>
+      <%= raw(form.enum_input :kind) %>
       <li class="publication_id"></li>
       <li class="publication_fields">
         <%= render :partial => "crud/manage/publications/fields" if resource.kind %>
