@@ -1,4 +1,4 @@
-source :rubygems
+source 'http://rubygems.org'
 
 group :production do
   gem 'hoptoad_notifier'
@@ -8,6 +8,7 @@ end
 
 group :development do
   gem 'active_reload'
+  gem 'brakeman'
   gem 'guard-rspec',                                    :require => false
   gem 'guard-spork',                                    :require => false
   gem 'hirb',                                           :require => false
@@ -27,7 +28,6 @@ group :test do
   gem 'sqlite3',                                        :require => false
   gem 'steak',                                          :require => false
 end
-
 
 gem 'aasm'
 gem 'attribute_normalizer',         '>= 1.0.0.pre4'
@@ -50,9 +50,10 @@ gem 'marc',                                             :require => false,      
 gem 'mime-types',                                       :require => 'mime/types'
 gem 'nokogiri'
 gem 'paperclip'
+gem 'progress_bar'
 gem 'protected_parent'
 gem 'racc',                                             :require => false
-gem 'rails',                        '3.0.7',            :require => false
+gem 'rails',                        '~> 3.0.7',         :require => false
 gem 'rake',                         '0.8.7'
 gem 'render_inheritable'
 gem 'ruby-filemagic',                                   :require => false
@@ -62,4 +63,3 @@ gem 'simple-navigation'
 gem 'sunspot_rails'
 gem 'validation_reflection'
 gem 'will_paginate',                '>= 3.0.pre2'
-
