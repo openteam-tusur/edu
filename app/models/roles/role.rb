@@ -1,7 +1,6 @@
 # encoding: utf-8
 
-require 'net/http'
-require 'uri'
+require 'open-uri'
 
 class Role < ActiveRecord::Base
   include AASM
@@ -49,7 +48,7 @@ class Role < ActiveRecord::Base
 
     def check_by_contingent
       begin
-        self.contingent_id = Net::HTTP.get_response(URI.parse(url_for_check)).body.presence
+        self.contingent_id = get_contingent_id
         if contingent_id
           accept!
           RoleMailer.check_by_contingent_successful_notification(self).deliver!
@@ -66,8 +65,24 @@ class Role < ActiveRecord::Base
       human.reload.index!
     end
 
-    def url_for_check
-      URI.escape("http://#{Settings['students.host']}/check/#{surname}/#{name}/#{patronymic}/#{group}/#{birthday}")
+    def get_contingent_id
+      if contingent_response.is_a?(Array) && contingent_response.one?
+        contingent_response.first['study_id']
+      end
+    end
+
+    def contingent_response
+      @contingent_response ||= JSON.parse(open("#{Settings['students.url']}/api/v1/students/?#{contingent_hash.to_param}").read)
+    end
+
+    def contingent_hash
+      {
+        :firstname  => name,
+        :lastname   => surname,
+        :patronymic => patronymic,
+        :born_on    => birthday,
+        :group      => group,
+      }
     end
 
     def send_create_notification
