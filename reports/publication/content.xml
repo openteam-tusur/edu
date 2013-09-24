@@ -186,7 +186,7 @@
    <text:p text:style-name="P5"/>
    <text:p text:style-name="P5">г. Томск<text:tab/><text:tab/><text:tab/><text:tab/><text:tab/><text:tab/><text:tab/><text:tab/>«___» _______ ${doc.year} г.</text:p>
    <text:p text:style-name="P5"/>
-   <text:p text:style-name="P7"><text:span text:style-name="T1">Федеральное государственное бюджетное образовательное учреждение высшего профессионального образования «Томский государственный университет систем управления и радиоэлектроники», именуемое в дальнейшем «Лицензиат», в лице проректора по информатизации и управлению Ехлакова Юрия Поликарповича, действующего на основании <text:s/>доверенности №19/111 от 21.01.2010 г., с одной стороны и </text:span><text:span text:style-name="T2">${doc.licensor}</text:span><text:span text:style-name="T1">, именуемые в дальнейшем «Лицензиар», с другой стороны, а вместе именуемые «Стороны» заключили настоящий договор о нижеследующем:</text:span></text:p>
+   <text:p text:style-name="P7"><text:span text:style-name="T1">Федеральное государственное бюджетное образовательное учреждение высшего профессионального образования «Томский государственный университет систем управления и радиоэлектроники», именуемое в дальнейшем «Лицензиат», в лице начальника управления информатизации Носуленко Александра Владимировича, с одной стороны и </text:span><text:span text:style-name="T2">${doc.licensor}</text:span><text:span text:style-name="T1">, именуемые в дальнейшем «Лицензиар», с другой стороны, а вместе именуемые «Стороны» заключили настоящий договор о нижеследующем:</text:span></text:p>
    <text:p text:style-name="P7"/>
    <text:list xml:id="list1518762643" text:style-name="WW8Num1">
     <text:list-item>
@@ -375,7 +375,7 @@
      </table:table-cell>
      <table:table-cell table:style-name="Таблица1.A1" office:value-type="string">
       <text:p text:style-name="P4">От Лицензиата:</text:p>
-      <text:p text:style-name="Standard">Проректор по информатизации и управлению<text:line-break/>_________________ <text:span text:style-name="T8">Ю.П. Ехлаков</text:span></text:p>
+      <text:p text:style-name="Standard">Начальник управления информатизации<text:line-break/>_________________ <text:span text:style-name="T8">А.В. Носуленко</text:span></text:p>
      </table:table-cell>
     </table:table-row>
    </table:table>
@@ -383,7 +383,7 @@
    <text:p text:style-name="P10"/>
    <text:p text:style-name="P7">г. Томск<text:tab/><text:tab/><text:tab/><text:tab/><text:tab/><text:tab/><text:tab/><text:tab/>«___» ________ ${doc.year} г.</text:p>
    <text:p text:style-name="P7"/>
-   <text:p text:style-name="P7"><text:span text:style-name="T1">Государственное образовательное учреждение высшего профессионального образования «Томский государственный университет систем управления и радиоэлектроники», именуемое в дальнейшем «Лицензиат», в лице проректора по информатизации и управлению Ехлакова Юрия Поликарповича, действующего на основании доверенности №19/111 от 21.01.2010 г., с одной стороны и</text:span><text:span text:style-name="T4">${doc.licensor}</text:span><text:span text:style-name="T1">, именуемые в дальнейшем «Лицензиар», с другой стороны, а вместе именуемые «Стороны» составили настоящий акт о том, что Лицензиар предоставил Лицензиату произведение </text:span><text:span text:style-name="T3">${doc.publication}</text:span><text:span text:style-name="T5"> </text:span><text:span text:style-name="T1">в электронной версии для использования в соответствии с подписанным сторонами Лицензионным договором № ${doc.number} от «___» _________<text:s/>${doc.year}г.</text:span></text:p>
+   <text:p text:style-name="P7"><text:span text:style-name="T1">Федеральное государственное бюджетное образовательное учреждение высшего профессионального образования «Томский государственный университет систем управления и радиоэлектроники», именуемое в дальнейшем «Лицензиат», в лице начальника управления информатизации Носуленко Александра Владимировича, с одной стороны и</text:span><text:span text:style-name="T4">${doc.licensor}</text:span><text:span text:style-name="T1">, именуемые в дальнейшем «Лицензиар», с другой стороны, а вместе именуемые «Стороны» составили настоящий акт о том, что Лицензиар предоставил Лицензиату произведение </text:span><text:span text:style-name="T3">${doc.publication}</text:span><text:span text:style-name="T5"> </text:span><text:span text:style-name="T1">в электронной версии для использования в соответствии с подписанным сторонами Лицензионным договором № ${doc.number} от «___» _________<text:s/>${doc.year}г.</text:span></text:p>
    <text:p text:style-name="P7"/>
    <table:table table:name="Таблица2" table:style-name="Таблица2">
     <table:table-column table:style-name="Таблица2.A"/>
@@ -407,7 +407,7 @@
      </table:table-cell>
      <table:table-cell table:style-name="Таблица2.A1" office:value-type="string">
       <text:p text:style-name="P4">От Лицензиата:</text:p>
-      <text:p text:style-name="Standard">Проректор по информатизации и управлению<text:line-break/>_________________ <text:span text:style-name="T8">Ю.П. Ехлаков</text:span></text:p>
+      <text:p text:style-name="Standard">Начальник управления информатизации<text:line-break/>_________________ <text:span text:style-name="T8">А.В. Носуленко</text:span></text:p>
      </table:table-cell>
     </table:table-row>
    </table:table>
