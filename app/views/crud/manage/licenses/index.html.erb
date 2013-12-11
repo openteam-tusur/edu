@@ -16,9 +16,11 @@
   </div>
 </div>
 
-<div>
-  <%= link_to 'Реестр', roster_manage_licenses_path %>
-</div>
+<ul>
+  <li><%= link_to 'Реестр УП', roster_manage_licenses_path(:kind => :tutorial) %></li>
+  <li><%= link_to 'Реестр УМП', roster_manage_licenses_path(:kind => :training_toolkit) %></li>
+  <li><%= link_to 'Реестр РП', roster_manage_licenses_path(:kind => :work_programm) %></li>
+</ul>
 
 <table>
   <tr>

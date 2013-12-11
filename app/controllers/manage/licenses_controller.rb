@@ -17,8 +17,6 @@ class Manage::LicensesController < Manage::ApplicationController
   end
 
   def roster
-    mime_type = MIME::Types.of('odt').first.content_type
-    data = Publication.generate_data('roster.ods', Publication.roster_data)
-    send_data data, :type => mime_type, :filename => 'roster.ods'
+    send_data Publication.roster(params[:kind]), :type => 'text/csv', :filename => 'roster.csv'
   end
 end

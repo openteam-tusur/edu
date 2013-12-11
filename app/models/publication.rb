@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+require 'csv'
+
 class Publication < Resource
   set_table_name :publications
 
@@ -163,36 +165,6 @@ class Publication < Resource
     builder.to_xml
   end
 
-  def self.roster_data
-    builder = Nokogiri::XML::Builder.new(:encoding => 'utf-8') do |xml|
-      xml.root do
-        xml.parent.name = 'doc'
-
-        %w(tutorial training_toolkit).each do |kind|
-          xml.send kind.pluralize do
-            self.send("kind_#{kind}").published.order('id DESC').each do |publication|
-              xml.send kind do
-                xml.id          publication.id
-                xml.title       publication.title
-                xml.chair_abbr  publication.chair_abbr
-                xml.authors     publication.author_names(:abbreviated_name)
-                xml.year        publication.year
-                xml.volume      publication.volume
-                xml.stamp       publication.stamp
-                xml.access      publication.access_free? ? 'Свободный' : 'Ограниченный'
-                xml.isbn        publication.isbn
-                xml.udk         publication.udk
-                xml.bbk         publication.bbk
-              end
-            end
-          end
-        end
-      end
-    end
-
-    builder.to_xml
-  end
-
   def self.generate_data(template, data)
     template_name, template_ext = template.split('.')
 
@@ -214,11 +186,24 @@ class Publication < Resource
     result_data
   end
 
-  private
-    def reindex_publication_disciplines
-      PublicationDiscipline.reindex
-    end
+  def self.roster(kind)
+    CSV.generate do |csv|
+      csv << %w( id title kind chair_abbr authors year volume stamp access isbn udk bbk )
 
+      send("kind_#{kind}").published.order('id DESC').each do |pub|
+        author_names = pub.author_names(:abbreviated_name)
+        access = pub.access_free? ? 'Свободный' : 'Ограниченный'
+
+        csv << [pub.id, pub.title, pub.get_extended_kind, pub.chair_abbr, author_names, pub.year, pub.volume, pub.stamp, access, pub.isbn, pub.udk, pub.bbk]
+      end
+    end
+  end
+
+  private
+
+  def reindex_publication_disciplines
+    PublicationDiscipline.reindex
+  end
 end
 
 
