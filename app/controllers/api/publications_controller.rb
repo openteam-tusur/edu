@@ -8,6 +8,7 @@ class Api::PublicationsController < ActionController::Base
       keywords params[:q]
 
       without :kind, :work_programm
+      with :state, :published
     end
 
     data = search.results.map do |publication|
