@@ -12,9 +12,9 @@ class Api::PublicationsController < ActionController::Base
     end
 
     data = search.results.map do |publication|
-      { :id => publication.id, :title => publication.title, :url => publication_url(publication) }
+      { :title => publication.to_s, :url => publication_url(publication) }
     end
 
-    render :json => data.to_json
+    render :json => data.to_json, :callback => params['callback']
   end
 end
