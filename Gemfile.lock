@@ -166,6 +166,12 @@ GEM
       activesupport (>= 2.3.2)
     pg (0.11.0)
     polyglot (0.3.3)
+    postmark (1.2.0)
+      json
+      rake
+    postmark-rails (0.7.0)
+      actionmailer (>= 3.0.0)
+      postmark (~> 1.2.0)
     pr_geohash (1.0.0)
     progress_bar (0.4.0)
       highline (~> 1.6.1)
@@ -308,6 +314,7 @@ DEPENDENCIES
   nokogiri
   paperclip
   pg
+  postmark-rails
   progress_bar
   protected_parent
   racc

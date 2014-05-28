@@ -7,11 +7,13 @@ hoptoad:
   api_key:                SOME_HUGE_STRING
   host:                   errbit.com
 
+postmark:
+  api_key:                123456
+
 mailer:
   send_notifications_to:   mail@openteam.ru
   send_notifications_from: no-reply@edu.tusur.ru
-  send_all_mail_to:       mail@openteam.ru  # comment this string out if you want to really send mails to recipients
+  send_all_mail_to:        mail@openteam.ru  # comment this string out if you want to really send mails to recipients
 
 production:
   domain:                 edu.tusur.ru
-

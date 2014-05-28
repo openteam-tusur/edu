@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 group :production do
+  gem 'postmark-rails'
   gem 'hoptoad_notifier'
   gem 'unicorn',                                        :require => false
   gem 'pg',                                             :require => false
