@@ -12,10 +12,11 @@ class Api < Grape::API
 
   class AuthorEntity < Grape::Entity
     expose :id
-    expose(:surname) { |a, _| a.human.try :surname }
-    expose(:name) { |a, _| a.human.try :name }
-    expose(:patronymic) { |a, _| a.human.try :patronymic }
-    expose(:roles) { |a, _| a.human.try(:roles).try :map, &:post }
+    expose(:surname,    :if => ->(a, _) { a.human }) { |a, _| a.human.try :surname }
+    expose(:name,       :if => ->(a, _) { a.human }) { |a, _| a.human.try :name }
+    expose(:patronymic, :if => ->(a, _) { a.human }) { |a, _| a.human.try :patronymic }
+    expose(:roles,      :if => ->(a, _) { a.human }) { |a, _| a.human.try(:roles).try :map, &:post }
+
     expose(:created_at) { |pub, _| pub.created_at.to_i }
     expose(:updated_at) { |pub, _| pub.updated_at.to_i }
   end
