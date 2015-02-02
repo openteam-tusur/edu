@@ -25,13 +25,19 @@ class Api < Grape::API
 
   rescue_from :all
 
+  helpers do
+    def publications_basic
+      Publication.joins(:authors).where('authors.human_id IS NOT NULL').select('distinct publications.*').order(:id)
+    end
+  end
+
   resource :publications do
     get '/' do
-      present Publication.order(:id), :with => PublicationEntity
+      present publications_basic, :with => PublicationEntity
     end
 
     get '/kind/:kind' do
-      present Publication.where(:kind => params[:kind]).order(:id), :with => PublicationEntity
+      present publications_basic.where('publications.kind = ?', params[:kind]), :with => PublicationEntity
     end
 
     get '/:id' do
@@ -39,7 +45,7 @@ class Api < Grape::API
     end
 
     get '/since/:date' do
-      present Publication.where('created_at > :date OR updated_at > :date', :date => Time.zone.parse(params[:date])), :with => PublicationEntity
+      present publications_basic.where('publications.created_at > :date OR publications.updated_at > :date', :date => Time.zone.parse(params[:date])), :with => PublicationEntity
     end
   end
 
