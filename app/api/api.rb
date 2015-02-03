@@ -15,7 +15,7 @@ class Api < Grape::API
     expose(:surname,    :if => ->(a, _) { a.human }) { |a, _| a.human.try :surname }
     expose(:name,       :if => ->(a, _) { a.human }) { |a, _| a.human.try :name }
     expose(:patronymic, :if => ->(a, _) { a.human }) { |a, _| a.human.try :patronymic }
-    expose(:roles,      :if => ->(a, _) { a.human }) { |a, _| a.human.try(:roles).try :map, &:post }
+    expose(:roles,      :if => ->(a, _) { a.human }) { |a, _| a.human.try(:roles).try(:delete_if, &:blank?).try(:map, &:post) }
 
     expose(:created_at) { |pub, _| pub.created_at.to_i }
     expose(:updated_at) { |pub, _| pub.updated_at.to_i }
@@ -27,7 +27,8 @@ class Api < Grape::API
 
   helpers do
     def publications_basic
-      Publication.joins(:authors).where('authors.human_id IS NOT NULL').select('distinct publications.*').order(:id)
+      #Publication.joins(:authors).where('authors.human_id IS NOT NULL').select('distinct publications.*').order(:id)
+      Publication.order(:id)
     end
   end
 
@@ -51,7 +52,7 @@ class Api < Grape::API
 
   resource :authors do
     get '/' do
-      present Author.order(:id), :with => AuthorEntity
+      present Author.order(:id).select(&:human), :with => AuthorEntity
     end
 
     get '/:id' do
