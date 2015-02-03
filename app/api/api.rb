@@ -15,7 +15,7 @@ class Api < Grape::API
     expose(:surname,    :if => ->(a, _) { a.human }) { |a, _| a.human.try :surname }
     expose(:name,       :if => ->(a, _) { a.human }) { |a, _| a.human.try :name }
     expose(:patronymic, :if => ->(a, _) { a.human }) { |a, _| a.human.try :patronymic }
-    expose(:roles,      :if => ->(a, _) { a.human }) { |a, _| (a.human.try(:roles) || []).map { |r| r.post.present? ? r.post : title }.delete_if(&:blank?) }
+    expose(:roles,      :if => ->(a, _) { a.human }) { |a, _| (a.human.try(:roles) || []).map { |r| r.post.present? ? r.post : r.title }.delete_if(&:blank?) }
 
     expose(:created_at) { |pub, _| pub.created_at.to_i }
     expose(:updated_at) { |pub, _| pub.updated_at.to_i }
