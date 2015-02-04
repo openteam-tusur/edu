@@ -5,18 +5,19 @@ class Api < Grape::API
     expose :volume
     expose :year
     expose :kind
-    expose :author_ids
+
+    expose(:author_ids) { |pub, _| pub.human_ids }
     expose(:created_at) { |pub, _| pub.created_at.to_i }
     expose(:updated_at) { |pub, _| pub.updated_at.to_i }
   end
 
-  class AuthorEntity < Grape::Entity
+  class HumanEntity < Grape::Entity
     expose :id
-    expose(:surname,    :if => ->(a, _) { a.human }) { |a, _| a.human.try :surname }
-    expose(:name,       :if => ->(a, _) { a.human }) { |a, _| a.human.try :name }
-    expose(:patronymic, :if => ->(a, _) { a.human }) { |a, _| a.human.try :patronymic }
-    expose(:roles,      :if => ->(a, _) { a.human }) { |a, _| (a.human.try(:roles) || []).map { |r| r.post.present? ? r.post : r.title }.uniq.delete_if(&:blank?) }
+    expose :surname
+    expose :name
+    expose :patronymic
 
+    expose(:roles) { |h, _| h.roles.map(&:title).uniq }
     expose(:created_at) { |pub, _| pub.created_at.to_i }
     expose(:updated_at) { |pub, _| pub.updated_at.to_i }
   end
@@ -27,8 +28,11 @@ class Api < Grape::API
 
   helpers do
     def publications_basic
-      #Publication.joins(:authors).where('authors.human_id IS NOT NULL').select('distinct publications.*').order(:id)
-      Publication.order(:id)
+      Publication.unscoped.order(:id)
+    end
+
+    def humans_basic
+      Human.unscoped.joins(:publications).select('DISTINCT humans.*').order('humans.id')
     end
   end
 
@@ -52,15 +56,15 @@ class Api < Grape::API
 
   resource :authors do
     get '/' do
-      present Author.order(:id).select(&:human), :with => AuthorEntity
+      present humans_basic, :with => HumanEntity
     end
 
     get '/:id' do
-      present Author.find(params[:id]), :with => AuthorEntity
+      present Human.find(params[:id]), :with => HumanEntity
     end
 
     get '/since/:date' do
-      present Author.where('created_at > :date OR updated_at > :date', :date => Time.zone.parse(params[:date])), :with => AuthorEntity
+      present humans_basic.where('humans.created_at > :date OR humans.updated_at > :date', :date => Time.zone.parse(params[:date])), :with => HumanEntity
     end
   end
 end
