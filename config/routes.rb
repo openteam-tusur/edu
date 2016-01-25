@@ -25,7 +25,7 @@ Portal::Application.routes.draw do
 
   resources :chairs, :only => [:index, :show]
 
-  get '/api/publications' => 'api/publications#index'
+  get '/api_for_workprogram/publications' => 'api/publications#index'
 
   namespace :manage do
     match '/publications/get_fields' => 'publications#get_fields', :method => :post

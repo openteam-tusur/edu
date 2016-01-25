@@ -25,3 +25,5 @@ config/sunspot.yml
 config/initializers/secret_token.rb
 
 solr/data/
+
+.ruby-version
