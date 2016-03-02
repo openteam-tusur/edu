@@ -8,7 +8,7 @@ class Postgraduate < Role
 
 
   def to_s
-    "#{title} каф. #{chair.abbr}"
+    "#{title} каф. #{chair.try(:abbr)}"
   end
 end
 
