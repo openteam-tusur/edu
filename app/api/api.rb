@@ -3,10 +3,16 @@ class Api < Grape::API
     expose :id
     expose :title
     expose :extended_kind
+    expose :kind
     expose :volume
     expose :year
-    expose :kind
+    expose :isbn
+    expose :bbk
+    expose :udk
+    expose :stamp
     expose :annotation
+    expose :content
+    expose :comment
     expose(:download_link) { |pub, _| pub.attachment.data.url }
 
     expose(:author_ids) { |pub, _| pub.human_ids }
