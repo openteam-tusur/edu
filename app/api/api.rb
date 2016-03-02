@@ -14,6 +14,7 @@ class Api < Grape::API
     expose :content
     expose :comment
     expose(:chair_abbr) { |pub, _| pub.chair.abbr }
+    expose(:chair_title) { |pub, _| pub.chair.name }
     expose(:download_link) { |pub, _| pub.attachment.data.url }
 
     expose(:author_ids) { |pub, _| pub.human_ids }
