@@ -6,6 +6,8 @@ class Api < Grape::API
     expose :volume
     expose :year
     expose :kind
+    expose :annotation
+    expose(:download_link) { |pub, _| pub.attachment.data.url }
 
     expose(:author_ids) { |pub, _| pub.human_ids }
     expose(:created_at) { |pub, _| pub.created_at.to_i }
