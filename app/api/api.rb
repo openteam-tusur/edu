@@ -2,6 +2,7 @@ class Api < Grape::API
   class PublicationEntity < Grape::Entity
     expose :id
     expose :title
+    expose :access
     expose :extended_kind
     expose :kind
     expose :volume
